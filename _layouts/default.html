@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang={% if site.language %}{{ site.language }}{% else %}nl{% endif %}>
+    <head>
+        <meta charset=utf-8>
+
+        <title>{% if page.title != null %}{{ page.title }} | Wouter J {% else %}Wouter J | Een script is meer dan code alleen{% endif %}</title>
+
+        <link rel=stylesheet href=css/wouterj.min.css>
+    </head>
+    <body class=page>
+        <header class=page__head>
+            <h1>Wouter J</h1>
+        </header>
+
+        <div class="page__body  gw">
+            {{ content }}
+        </div>
+    </body>
+</html>

@@ -152,17 +152,17 @@
 /**
  * Base styles; unclassed HTML elements etc.
  */
-   @import "base/main";
-   @import "base/headings";
-   @import "base/paragraphs";
-   @import "base/smallprint";
-   @import "base/quotes";
-   @import "base/code";
-   @import "base/links";
-   @import "base/images";
-   @import "base/lists";
-   @import "base/tables";
-   @import "base/forms";
+    @import "base/main";
+    @import "base/headings";
+    @import "base/paragraphs";
+    @import "base/smallprint";
+    @import "base/quotes";
+    @import "base/code";
+    @import "base/links";
+    @import "base/images";
+    @import "base/lists";
+    @import "base/tables";
+    @import "base/forms";
 
 
 /**
@@ -170,7 +170,7 @@
  * 
  * Single-line comment (//) out any objects you do not need in your project.
  */
-//  @import "objects/grids";
+    @import "objects/grids";
 //  @import "objects/flexbox";
 //  @import "objects/columns";
 //  @import "objects/nav";
@@ -200,9 +200,9 @@
 /**
  * Style trumps; helper and brand classes
  */
-//  @import "generic/widths";
+    @import "generic/widths";
 //  @import "generic/push";
 //  @import "generic/pull";
-//  @import "generic/brand";
+    @import "generic/brand";
 //  @import "generic/helper";
 //  @import "generic/debug";

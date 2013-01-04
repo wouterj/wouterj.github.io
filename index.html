@@ -1,0 +1,15 @@
+---
+layout: default
+---
+{% assign i = 1 %}
+{% for post in site.posts %}
+<article class="post{% if post.type != null %}  post--{{ post.type }}{% endif %}  g  one-whole  desk-{% case i %}{% when 1 %}two-thirds{% when 2 %}one-third{% else %}{% cycle 'two-sixths', 'three-sixths', 'two-sixths' %}{% endcase %}">
+    <h1 class=post__heading><a href="{{ post.url }}">{{ post.title }}</a></h1>
+
+    <div class="entry--excerpt">
+        {{ post.content|excerpt }}
+    </div>
+</article>
+
+{% assign i = i|plus:1 %}
+{% endfor %}

@@ -2,8 +2,9 @@
 layout: post
 title: "OO: de niet bestane objecten"
 description: ""
-category: 
-tags: []
+category: php
+tags: [oo]
+type: article
 ---
 De vorige 2 lessen hebben we gekeken naar de fysieke objecten, objecten
 waarbij we ons wat voor kunnen stellen. Vandaag gaan we ons denkvermogen op de
