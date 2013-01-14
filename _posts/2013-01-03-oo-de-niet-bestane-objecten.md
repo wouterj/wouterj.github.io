@@ -11,7 +11,7 @@ waarbij we ons wat voor kunnen stellen. Vandaag gaan we ons denkvermogen op de
 proef stellen om ook bij niet fysieke objecten een beeld te krijgen.
 <!--more-->
 
-### Een project heeft taken
+## Een project heeft taken
 
 Het is allemaal leuk en aardig dat we nu heel wat fysieke objectjes in onze
 applicatie hebben, maar die mogen natuurlijk niet de hele tijd een beetje
@@ -31,13 +31,13 @@ De verantwoordelijkheden zijn de taken die ik opnoemde. Deze krijgen dus
 allemaal een eigen method en de meeste ook nog een eigen klasse. Laten we elke
 klasse eens gaan uitdenken.
 
-#### 1 verantwoordelijkheid per klasse? Waar is dat voor nodig?
+### 1 verantwoordelijkheid per klasse? Waar is dat voor nodig?
 
 Een OO applicatie wordt gekenmerkt door het feit dat hij extreem flexibel is.
 Als je iets 1 keer gemaakt hebt hoef je het nooit meer te maken, je kunt hem
 dan telkens opnieuw gebruikt. Omdat dat doel te 
 
-### Database
+## Database
 
 Oke, deze lag voor de hand. We gaan een Database object maken (of maken
 gebruik van een standaard PHP database klasse zoals [`PDO`](http://php.net/pdo) of

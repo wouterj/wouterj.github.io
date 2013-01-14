@@ -14,7 +14,7 @@ Symfony2.0 niet standaard via composer verkrijgbaar, maar je kan je project wel
 omzetten tot een composer project.
 <!--more-->
 
-### Symfony2 is een groot begrip
+## Symfony2 is een groot begrip
 
 Symfony2 is een heel algemeen begrip. In feite verwijs je naar [alle Symfony2
 componenten](http://symfony.com/doc/current/components) als je het begrip
@@ -33,7 +33,7 @@ verbeteren als ze deze begrippen door elkaar halen, maar het is wel essentieel
 om Symfony2 een beetje door te krijgen. En het is zeker essentieel om straks
 door te krijgen.
 
-### Symfony en Composer
+## Symfony en Composer
 
 Composer is een dependency manager. Kort gezegd kun je hiermee makkelijk code
 van anderen in je project downloaden en zorgen dat je de juiste versies hebt.
@@ -54,7 +54,7 @@ moeilijker via de `lock` bestanden.
 Nu kunnen we de Symfony2 Standard Edition gaan aanpassen en zo composer gaan
 gebruiken. Tijd om te beginnen met code!
 
-### Stap 1. `composer.json` maken
+## Stap 1. `composer.json` maken
 
 Als eerst moeten we een `composer.json` bestand maken waarin we de
 dependencies gaan zetten. Deze houden we nu zo simpel mogelijk en dus vullen we
