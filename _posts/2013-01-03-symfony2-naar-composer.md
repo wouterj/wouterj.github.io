@@ -65,7 +65,7 @@ hier alleen de `require` items in:
         }
     }
 
-### Stap 2. Symfony2 framework toevoegen
+## Stap 2. Symfony2 framework toevoegen
 
 De basis dependency is natuurlijk het Symfony2 Framework. Deze is beschikbaar
 via de [symfony/symfony](https://packagist.org/packages/symfony/symfony)
