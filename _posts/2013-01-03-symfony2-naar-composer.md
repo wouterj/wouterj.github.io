@@ -4,6 +4,7 @@ title: "Hoe je een Symfony2 project omzet in composer"
 description: ""
 category: php
 tags: [symfony2]
+type: article
 ---
 De architectuur van Symfony2 geeft je veel mogelijkheden tot het gebruik van
 code van andere en niet zelf 'het wiel uitvinden'. Composer is de tool die je

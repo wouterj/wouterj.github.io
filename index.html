@@ -2,14 +2,63 @@
 layout: default
 ---
 {% assign i = 1 %}
-{% for post in site.posts %}
-<article class="post{% if post.type != null %}  post--{{ post.type }}{% endif %}  g  one-whole  desk-{% case i %}{% when 1 %}two-thirds{% when 2 %}one-third{% else %}{% cycle 'two-sixths', 'three-sixths', 'two-sixths' %}{% endcase %}">
-    <h1 class=post__heading><a href="{{ post.url }}">{{ post.title }}</a></h1>
+<ul class="post-list  gw" id="js-posts">
+    {% for post in site.posts %}
+    <li class="g  one-whole  desk-{% case i %}{% when 1 %}two-thirds{% when 2 %}one-third{% else %}{% cycle 'two-sixths', 'three-sixths', 'two-sixths' %}{% endcase %}">
+        <article class="post{% if post.type != null %}  post--{{ post.type }}{% endif %}">
+            <h1 class="post__heading  post__heading{% case i %}{% when 1 %}--alpha{% when 2 %}--beta{% else %}--gamma{% endcase %}"><a href="{{ post.url }}">{{ post.title }}</a></h1>
 
-    <div class="entry--excerpt">
-        {{ post.content|excerpt }}
-    </div>
-</article>
+            <img src="http://placehold.it/200" class="img--stripe  img--{% case i %}{% when 1 %}medium{% else %}short{% endcase %}  img--left">
+            <div class="post__entry  post__entry--excerpt">
+                {{ post.content|excerpt }}
+            </div>
+        </article>
+    </li>
 
-{% assign i = i|plus:1 %}
-{% endfor %}
+    {% assign i = i|plus:1 %}
+    {% endfor %}
+
+    <li class="g  one-whole  desk-one-half">
+        <article class="post  post--about">
+            <h1 class="post__heading  post__heading--gamma">Nieuwsbrief</h1>
+
+            <div class="post__entry">
+                <p>Er gebeurd razend veel op de markt van webdevelopers, dit is niet bij te houden. Daarom breng ik elke maand een nieuwsbrief uit met daarin tientallen handige linkjes naar dingen die het nieuws zijn op front-end en back-end gebied. Bekijk de laatste nieuwsbrief op <a href="http://bit.ly/wjnewsletter">bit.ly/wjnewsletter</a>.</p>
+
+                <p>Meld je ook aan om de nieuwsbrief direct te ontvangen door een mailtje te sturen naar nieuwsbrief@wouterj.nl.</p>
+            </div>
+        </article>
+    </li>
+
+    <li class="g  one-whole  desk-one-half">
+        <article class="post  post--about">
+            <h1 class="post__heading  post__heading--gamma">GitHub</h1>
+
+            <div class="post__entry">
+                <p>Ik een enorme voorstander van open source en help graag de PHP community een stapje verder. Hierdoor ben ik dagelijks te vinden op GitHub. Ik ben het drukst met <a href="http://github.com/symfony/symfony-docs">de Symfony2 Documentatie</a>. Andere projecten waaraan ik meedoe zijn:
+                {% github_user WouterJ %}
+                </p>
+            </div>
+        </article>
+    </li>
+
+    <li class="g  one-whole  desk-one-half">
+        <article class="post  post--about">
+        	<h1 class="post__heading  post__heading--gamma">Contact</h1>
+        	<div class="post__entry">
+        		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        	</div>
+        </article>
+    </li>
+</ul>
+
+<script src="/js/masonry.min.js"></script>
+<script type="text/javascript">
+!function() {
+    var wall = new Masonry(document.getElementById('js-posts'), {
+        columnWidth: function (width) {
+            return width / 6;
+        }
+    });
+}();
+</script>
