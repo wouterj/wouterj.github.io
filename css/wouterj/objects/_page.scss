@@ -8,3 +8,8 @@
     margin:0 auto;
     background:url(/img/css/bg-grid.png);
 }
+
+.page__footer{
+    @extend .post;
+    border-top-color:#aaa !important;
+}
