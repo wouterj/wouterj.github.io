@@ -4,6 +4,7 @@ title: "OO: de niet bestane objecten"
 description: ""
 category: php
 tags: [oo]
+published: false
 type: article
 ---
 De vorige 2 lessen hebben we gekeken naar de fysieke objecten, objecten
