@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "OO - Eens goed nadenken in objecten"
+title: "OO: Eens goed nadenken in objecten"
 description: ""
 category: oo
 tags: [developing]
