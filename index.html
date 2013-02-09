@@ -4,7 +4,7 @@ layout: default
 {% assign i = 1 %}
 <ul class="post-list  gw" id="js-posts">
     {% for post in paginator.posts %}
-    <li class="g  one-whole  desk-{% case i %}{% when 1 %}two-thirds{% when 2 %}one-third{% else %}{% cycle 'two-sixths', 'three-sixths', 'two-sixths' %}{% endcase %}">
+    <li class="g  one-whole  desk-{% case i %}{% when 1 %}eight-twelfths{% when 2 %}four-twelfths{% else %}one-half{% endcase %}">
         <article class="post{% if post.type != null %}  post--{{ post.type }}{% endif %}">
             <h1 class="post__heading  post__heading{% case i %}{% when 1 %}--alpha{% when 2 %}--beta{% else %}--gamma{% endcase %}"><a href="{{ post.url }}">{{ post.title }}</a></h1>
 
@@ -57,7 +57,7 @@ layout: default
 !function() {
     var wall = new Masonry(document.getElementById('js-posts'), {
         columnWidth: function (width) {
-            return width / 6;
+            return width / 12;
         }
     });
 }();
