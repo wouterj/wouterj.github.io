@@ -26,10 +26,8 @@
 
             <nav>
                 <ul>
-                    {% for page in site.pages %}
-                        {% if page.title != null %}
-                        <li><a href="{{ page.url }}">{{ page.title }}</a></li>
-                        {% endif %}
+                    {% for item in site.nav %}
+                        <li><a href="{{ item.path }}">{{ item.title }}</a></li>
                     {% endfor %}
                 </ul>
             </nav>

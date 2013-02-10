@@ -1,3 +1,12 @@
 paginate: 10
 archive_paginate: 20
+
 permalink: /:year/:month/:categories/:title/
+
+nav:
+    - 
+        title: Over mij
+        path: /about
+    - 
+        title: Archief
+        path: /archive
