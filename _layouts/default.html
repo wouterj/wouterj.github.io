@@ -24,10 +24,10 @@
                 <h3 class="hN  site-slogan">A script is more than code</h3>
             </hgroup>
 
-            <nav>
-                <ul>
+            <nav class=page__nav>
+                <ul class="nav  nav--block">
                     {% for item in site.nav %}
-                        <li><a href="{{ item.path }}">{{ item.title }}</a></li>
+                        <li class="nav__item"><a href="{{ item.path }}">{{ item.title }}</a></li>
                     {% endfor %}
                 </ul>
             </nav>
