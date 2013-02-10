@@ -4,6 +4,9 @@ archive_paginate: 20
 permalink: /:year/:month/:categories/:title/
 
 nav:
+    -
+        title: Home
+        path: /
     - 
         title: Over mij
         path: /about
