@@ -9,6 +9,22 @@
     background:url(/img/css/bg-grid.png);
 }
 
+
+
+
+
+.site-title{
+    @extend .mega;
+}
+    .site-title a{
+        color:#000;
+        text-decoration:none;
+    }
+
+
+
+
+
 .page__footer{
     @extend .post;
     border-top-color:#aaa !important;
