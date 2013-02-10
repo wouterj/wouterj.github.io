@@ -23,6 +23,11 @@
             color:#000;
         }
 
+.post--featured .post__entry--excerpt{
+    @include font-size(20px);
+    line-height:1.5;
+}
+
 // post types
 .post--article{
     border-top-color:#c33;
