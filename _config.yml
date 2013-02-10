@@ -1,1 +1,2 @@
 paginate: 10
+permalink: /:year/:month/:categories/:title/
