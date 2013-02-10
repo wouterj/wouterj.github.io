@@ -1,2 +1,3 @@
 paginate: 10
+archive_paginate: 20
 permalink: /:year/:month/:categories/:title/

@@ -2,7 +2,7 @@
 layout: default
 ---
 {% assign i = 1 %}
-<ul class="post-list  gw" id="js-posts">
+<ul class="gw" id="js-posts">
     {% for post in paginator.posts %}
     <li class="g  one-whole  desk-{% case i %}{% when 1 %}eight-twelfths{% when 2 %}four-twelfths{% else %}one-half{% endcase %}">
         <article class="post{% if post.type != null %}  post--{{ post.type }}{% endif %}">
