@@ -16,7 +16,7 @@ module Jekyll
 
     end
 
-    class Pager
+    class ArchivePager < Pager
 
         def initialize(config, page, all_posts, per_page = nil, num_pages = nil)
             @page = page
@@ -42,11 +42,11 @@ module Jekyll
 
         def write_archive(archive_dir)
             posts = self.posts.sort_by {|post| post.date}.reverse
-            pages = Pager.calculate_pages(posts, self.config['archive_paginate'].to_i)
+            pages = ArchivePager.calculate_pages(posts, self.config['archive_paginate'].to_i)
             index = nil
 
             (1..pages).each do |page_num|
-                pager = Pager.new(self.config, page_num, posts, self.config['archive_paginate'], pages)
+                pager = ArchivePager.new(self.config, page_num, posts, self.config['archive_paginate'], pages)
 
                 page = ArchivePage.new(self, self.source, archive_dir)
                 page.pager = pager
