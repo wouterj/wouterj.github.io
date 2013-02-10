@@ -8,13 +8,14 @@ module Jekyll
         end
 
         def parseApi()
-            repos = Github.repos.list user: 'WouterJ'
-            repos = repos.select { |r|
-                r.fork
-            }
-            @repos = repos.map { |r|
-                "<a href=\"#{ r.html_url }\">#{r.name}</a>"
-            }
+#            repos = Github.repos.list user: 'WouterJ'
+#            repos = repos.select { |r|
+#                r.fork
+#            }
+#            @repos = repos.map { |r|
+#                "<a href=\"#{ r.html_url }\">#{r.name}</a>"
+#            }
+            @repos = ['symfony', 'symfony-docs', 'Faker', 'SonataAdminBundle']
         end
 
         def render(context)
