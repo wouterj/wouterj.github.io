@@ -16,7 +16,11 @@ module Jekyll
 
     end
 
-    class ArchivePager < Pager
+    class ListPager < Pager
+
+        def base_url= url
+            @base_url = url
+        end
 
         def initialize(config, page, all_posts, per_page = nil, num_pages = nil)
             @page = page
@@ -35,6 +39,19 @@ module Jekyll
             @previous_page = @page != 1 ? @page - 1 : nil
             @next_page = @page != @total_pages ? @page + 1 : nil
         end
+
+        alias_method :org_to_liquid, :to_liquid
+        def to_liquid
+            vars = org_to_liquid
+
+            if nil == @base_url
+                vars['base_url'] = ''
+            else
+                vars['base_url'] = @base_url
+            end
+
+            vars
+        end
         
     end
 
@@ -42,11 +59,12 @@ module Jekyll
 
         def write_archive(archive_dir)
             posts = self.posts.sort_by {|post| post.date}.reverse
-            pages = ArchivePager.calculate_pages(posts, self.config['archive_paginate'].to_i)
+            pages = ListPager.calculate_pages(posts, self.config['archive_paginate'].to_i)
             index = nil
 
             (1..pages).each do |page_num|
-                pager = ArchivePager.new(self.config, page_num, posts, self.config['archive_paginate'], pages)
+                pager = ListPager.new(self.config, page_num, posts, self.config['archive_paginate'], pages)
+                pager.base_url = "/#{archive_dir}"
 
                 page = ArchivePage.new(self, self.source, archive_dir)
                 page.pager = pager
