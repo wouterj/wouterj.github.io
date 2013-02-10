@@ -20,6 +20,11 @@
         color:#000;
         text-decoration:none;
     }
+.site-slogan{
+    font-size:27px;
+    font-size:(27px / $base-font-size) * 1rem;
+    font-weight:normal;
+}
 
 
 
