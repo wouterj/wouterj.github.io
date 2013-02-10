@@ -23,6 +23,16 @@
                 <h1 class="hN  site-title"><a href="/">Wouter J</a></h1>
                 <h3 class="hN  site-slogan">A script is more than code</h3>
             </hgroup>
+
+            <nav>
+                <ul>
+                    {% for page in site.pages %}
+                        {% if page.title != null %}
+                        <li><a href="{{ page.url }}">{{ page.title }}</a></li>
+                        {% endif %}
+                    {% endfor %}
+                </ul>
+            </nav>
         </header>
 
         <div class=page__body>
