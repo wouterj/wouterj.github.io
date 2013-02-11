@@ -37,7 +37,7 @@ ontwikkeling in de webwereld: De retina displays van Apple. Het laat
 deze schermen kunt herkennen. (Wat dit allemaal voorstelt leer je binnenkort op
 WouterJ).
 
-![R.I.P. HotPink](http://wouterj.nl/wp-content/uploads/2012/08/h5bp-4-hotpink.png)
+![R.I.P. HotPink](/img/2012/08/h5bp-4-hotpink.png)
 
 Er is ook iets bedroefends veranderd: Hotpink als selectie kleur is verdwenen.
 De herkenning van de HTML5 boilerplate was door op <code>Ctrl + A</code> te

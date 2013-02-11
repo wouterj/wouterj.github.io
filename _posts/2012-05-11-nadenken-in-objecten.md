@@ -153,7 +153,7 @@ op als we het niet kunnen uittekenen. Voor het uittekenen van onze ideeën
 gebruiken we in OOP de UML (Undefined Modeling Language) diagrammen. Een
 voorbeeld van ons bovenstaande idee over het User en het UserMapper object:
 
-![Wees gerust, zo moeilijk is het niet wat hier staat.](http://wouterj.nl/wp-content/uploads/2012/05/oop-nadenken-uml-usermapper.png)
+![Wees gerust, zo moeilijk is het niet wat hier staat.](/img/2012/05/oop-nadenken-uml-usermapper.png)
 
 We zien hier 2 blokken elk blok stelt 1 object voor. We hebben dus een
 UserMapper object en een User object. Vervolgens heeft elk blok een naam

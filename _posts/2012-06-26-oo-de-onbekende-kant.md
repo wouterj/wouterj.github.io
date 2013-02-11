@@ -165,14 +165,14 @@ UML tekenen, laten we dan nu de pas geleerde relaties gaan gebruiken in UML:
 Een HEEFT-EEN relatie wordt in UML aangeduid met een doorgetrokken streep met
 aan het eind een open pijl:
 
-![Een HEEFT-EEN relatie in UML](http://wouterj.nl/wp-content/uploads/2012/06/oo2-uml-has-a.png)
+![Een HEEFT-EEN relatie in UML](/img/2012/06/oo2-uml-has-a.png)
 
 ### `IS-EEN` relatie
 
 Een IS-EEN relatie wordt in UML aangeduid met een gestreepte streep met aan het
 eind een gesloten pijl die niet is ingekleurd:
 
-![Een IS-EEN relatie in UML](http://wouterj.nl/wp-content/uploads/2012/06/oo2-uml-is-a.png)
+![Een IS-EEN relatie in UML](/img/2012/06/oo2-uml-is-a.png)
 
 Merk op dat bij een IS-EEN relatie de subklassen (de kinderen) alle methoden
 overerven, deze worden dus ook weer in de nieuwe class geplaats.

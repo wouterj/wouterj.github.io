@@ -63,7 +63,7 @@ en gaat vervolgens de pagina afhandelen. Vervolgens stuurt de server een HTTP
 Response terug naar de browser, die deze vervolgens omzet in wat voor ons een
 normale webpagina is. Omgezet in een afbeelding is het:
 
-![Een normale pagina opvraag van client naar server en weer terug](http://wouterj.nl/wp-content/uploads/2012/05/http-protocol2.png)
+![Een normale pagina opvraag van client naar server en weer terug](/img/2012/05/http-protocol.png)
 
 #### En wat heeft dit er mee te maken?
 
@@ -85,7 +85,7 @@ heeft een aantal consequenties:
 Om het weer duidelijk te maken nu hetzelfde plaatje, maar dan met de PHP
 engine erin:
 
-![Merk op dat alleen pagina's die PHP zijn door de PHP engine worden gehaald.](http://wouterj.nl/wp-content/uploads/2012/05/http-protocol-with-php.png)
+![Merk op dat alleen pagina's die PHP zijn door de PHP engine worden gehaald.](/img/2012/05/http-protocol-with-php.png)
 
 ### En nu de client-side
 

@@ -19,7 +19,7 @@ met manier B. Dat moet simpeler kunnen toch?
 
 ## Back-ups maken
 
-![Back-ups maken - Handig of niet?](http://wouterj.nl/wp-content/uploads/2012/04/git-1-backup.png)
+![Back-ups maken - Handig of niet?](/img/2012/04/git-backup.png)
 
 Een oplossing voor het probleem hierboven is om backups te maken. Telkens als
 je iets belangrijks klaar hebt kopieer je de map en ga je weer verder.
@@ -34,7 +34,7 @@ Nee, dit moet handiger kunnen...
 
 ## Subversion
 
-![controle over je versies](http://wouterj.nl/wp-content/uploads/2012/04/svn1-300x259.png)
+![controle over je versies](/img/2012/04/git-svn.png)
 Ja, dan komt er een systeem om de hoek kijken: [Apache Subversion](http://subversion.apache.org/).
 Hiermee kun je na elke verandering een nieuwe 'versie' aanmaken. Als je weer
 terug wilt kun je zo weer een paar versies terug en ben je klaar.
@@ -51,7 +51,6 @@ Hmmm, het moet nog steeds beter kunnen...
 
 ## GIT
 
-![GIT - het betere version management systeem](http://wouterj.nl/wp-content/uploads/2012/04/2001.jpg)
 Ik wil je niet meer in spanning houden: Hier houdt het voor vandaag op, GIT is
 het eindstation waar we de komende tijd mee gaan werken.
 

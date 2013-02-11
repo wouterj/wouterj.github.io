@@ -25,7 +25,7 @@ De tools die ik hier bespreek zijn:
 
 ## Prefixr {#prefixr}
 
-![de prefixr tool](http://wouterj.nl/wp-content/uploads/2012/04/prefix-free-prefixr.png)
+![de prefixr tool](/img/2012/04/prefix-free-prefixr.png)
 
 De eerste die ik wil bespreken is [Prefixr](http://prefixr.com/). Prefixr is
 een geweldig simpele tool met een uitgebreid API systeem waarbij je alle CSS3
@@ -123,7 +123,7 @@ Wordt:
 
 ## SASS + Compass (en andere CSS precompressors) {#compass}
 
-![SASS compass framework](http://wouterj.nl/wp-content/uploads/2012/04/prefix-free-compass.png)
+![SASS compass framework](/img/2012/04/prefix-free-compass.png)
 
 Een andere optie die ik zeer kan aanraden is het gebruik van een CSS
 precompressor. Een precompressor voegt handige functies, syntaxes en andere
@@ -170,7 +170,7 @@ Wordt:
 
 ## Prefix-free {#prefix-free}
 
-![Prefix-free client side tool](http://wouterj.nl/wp-content/uploads/2012/04/prefix-free-prefix-free.png)
+![Prefix-free client side tool](/img/2012/04/prefix-free-prefix-free.png)
 
 Prefix-free is een andere oplossing die client-side werkt. In tegenstelling
 tot de hierboven genoemde opties kan dit dus wel voor een tragere snelheid op
@@ -196,7 +196,7 @@ Nu ben je al klaar en werkt het!
 
 ## CSS3 please {#css3-please}
 
-![de CSS3 please website](http://wouterj.nl/wp-content/uploads/2012/04/prefix-free-css3-please.png)
+![de CSS3 please website](/img/2012/04/prefix-free-css3-please.png)
 
 [CSS3 please](http://css3please.com/) vind ik zelf de minst mooie optie die ik
 hier plaats. Het is een leuke one-page app voor als je kleine dingentjes snel
@@ -233,7 +233,7 @@ een comment en is die niet meer zichtbaar.
 
 ## Waarom niet alleen `-webkit-`? {#webkit-in-moz}
 
-![webkit vendors ten opzichte van andere](http://wouterj.nl/wp-content/uploads/2012/04/prefix-free-moz-webkit.png)
+![webkit vendors ten opzichte van andere](/img/2012/04/prefix-free-moz-webkit.png)
 
 Waarom zullen we niet alleen de webkit prefix gebruiken? FireFox heeft ontdekt
 bij [een onderzoek](https://bug708406.bugzilla.mozilla.org/attachment.cgi?id=579826)

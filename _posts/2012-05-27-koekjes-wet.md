@@ -77,7 +77,7 @@ wat gezocht en een paar gratis oplossingen zijn:
 
 ### Zelf eentje maken
 
-![De box van ICO](http://wouterj.nl/wp-content/uploads/2012/05/cookie-law-ico.png)
+![De box van ICO](/img/2012/05/cookie-law-ico.png)
 
 [ICO](http://www.ico.gov.uk/) heeft zelf een boxje gemaakt die bovenaan hun
 website is geplaatst. Naast het feit dat de hele website van ICO niet mooi is
@@ -86,7 +86,7 @@ valt veel te veel op.  Als je er dus zelf eentje maakt, doe het dan goed.
 
 ### Optanon
 
-![De Optanon bar](http://wouterj.nl/wp-content/uploads/2012/05/cookie-law-cookie-collective.png)
+![De Optanon bar](/img/2012/05/cookie-law-cookie-collective.png)
 
 [Optanon](http://www.cookielaw.org/) is een plugin voor je website, gemaakt
 door cookielaw.org, die een bar toevoegt aan je website, zoals je hierboven
@@ -97,7 +97,7 @@ maken.
 
 ### Cookie Control
 
-![De Cookie Control bar](http://wouterj.nl/wp-content/uploads/2012/05/cookie-law-cookie-control.png)
+![De Cookie Control bar](/img/2012/05/cookie-law-cookie-control.png)
 
 [Cookie control](http://www.civicuk.com/cookie-law/index) is een andere plugin
 voor je website gemaakt door Civicuk.<br /> Deze plugin plaats dit kleine
@@ -107,7 +107,7 @@ weinig op.
 
 ### Cookie Consent
 
-![De Cookie Consent bar](http://wouterj.nl/wp-content/uploads/2012/05/cookie-law-cookie-consent.png)
+![De Cookie Consent bar](/img/2012/05/cookie-law-cookie-consent.png)
 
 [Cookie Consent](http://silktide.com/cookieconsent) is een andere plugin
 gemaakt door Silktide. Het mooie van deze plugin is dat je hem maar 1 keer
