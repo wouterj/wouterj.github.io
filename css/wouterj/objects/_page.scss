@@ -17,9 +17,14 @@
     position:relative;
 }
     .page__nav{
-        position:absolute;
-        right:0;
-        bottom:0;
+        float:right;
+        margin-top:-90px;
+
+        @include media-query(portable){
+            width:251px;
+            float:none;
+            margin:0 auto;
+        }
     }
 
     .site-title{
