@@ -34,4 +34,9 @@
 // post types
 .post--article{
     border-top-color:#c33;
+
+    @include media-query(portable){
+        padding-left:20px;
+        padding-right:20px;
+    }
 }
