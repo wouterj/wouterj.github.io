@@ -1,9 +1,10 @@
 ---
 layout: post
 title: "OO: Eens goed nadenken in objecten"
-description: ""
+thumbnail: oop-nadenken-thumb.png
 category: oo
-tags: [developing]
+tags:
+- scripting
 type: article
 ---
 OOP is vooral het denken in objecten. Ja, daar beginnen heel veel OOP

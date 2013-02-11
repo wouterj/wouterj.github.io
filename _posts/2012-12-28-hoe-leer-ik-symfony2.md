@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Hoe leer ik Symfony2?"
-description: ""
+thumbnail: symfony-leren-thumb.png
 category: php
 tags: [symfony2]
 type: article

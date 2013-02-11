@@ -1,9 +1,10 @@
 ---
 layout: post
 title: "OO: De onbekende kant"
-description: ""
+thumbnail: oo-onbekende-kant-thumb.png
 category: oo
-tags: []
+tags:
+- scripting
 type: article
 ---
 OO, elke beginner weet het wel: Denken in objecten en dat omzetten in een

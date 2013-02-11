@@ -1,9 +1,10 @@
 ---
 layout: post
 title: "Community: Bedankt!"
-description: ""
 category: nieuws
-tags: [site, opensource]
+tags:
+- site
+- opensource
 type: article
 ---
 Het is vandaag weer kerst. Tijd om na te denken over wat je dit jaar gedaan

@@ -1,9 +1,9 @@
 ---
 layout: post
 title: "Wat de nieuwsbrief niet haalde"
-description: ""
 category: nieuws
-tags: [nieuwsbrief]
+tags:
+- nieuwsbrief
 type: article
 ---
 Elke maand heb ik teveel linkjes om allemaal in de nieuwsbrief te stoppen. Het

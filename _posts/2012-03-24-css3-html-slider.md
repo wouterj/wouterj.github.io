@@ -1,9 +1,10 @@
 ---
 layout: post
 title: "Pure CSS3 en HTML slider"
-description: ""
+thumbnail: css3-slider-thumb
 category: css
-tags: [bleeding edge]
+tags:
+- bleeding edge
 type: article
 ---
 Op 10 nov. 2011 zei

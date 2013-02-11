@@ -1,9 +1,10 @@
 ---
 layout: post
 title: "Google Maps API V3 - Begin tot eind"
-description: ""
-category: js
-tags: [google, serie]
+thumbnail: google-maps-api-thumb.png
+category: javascript
+tags:
+- google maps
 type: article
 ---
 Google Maps kent iedereen wel en je kan er geweldige dingen mee doen. Om een

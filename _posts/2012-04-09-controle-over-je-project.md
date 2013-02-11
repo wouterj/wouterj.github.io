@@ -1,9 +1,10 @@
 ---
 layout: post
 title: "Controle over je project"
-description: ""
+thumbnail: controle-over-je-project-thumb.jpg
 category: git
-tags: [organisatie]
+tags:
+- tools
 type: article
 ---
 Als je de basis van een taal kent en verder komt en je eigen projecten gaat

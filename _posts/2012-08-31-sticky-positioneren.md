@@ -1,9 +1,9 @@
 ---
 layout: post
 title: "CSS bleeding edge: Sticky Positioneren"
-description: ""
 category: css
-tags: [bleeding edge]
+tags:
+- bleeding edge
 type: article
 ---
 Vandaag bespreek ik een echte bleeding edge: Er is nog geen specificatie voor

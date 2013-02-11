@@ -1,9 +1,9 @@
 ---
 layout: post
 title: "Abonneer op de nieuwsbrief!"
-description: ""
 category: nieuws
-tags: [site, nieuwsbrief]
+tags:
+- nieuwsbrief
 type: article
 ---
 Er gebeurd enorm veel op het gebied van webdevelopment. Van nieuwe technieken

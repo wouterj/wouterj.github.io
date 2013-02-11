@@ -1,9 +1,10 @@
 ---
 layout: post
-title: "Hello World"
-description: ""
-category: nieuws
-tags: [site]
+title: "5 oplossingen voor de vendors"
+thumbnail: prefix-free-thumb.png
+category: css
+tags:
+- tools
 type: article
 ---
 CSS3 vind ik geweldig, maar die prefixen zijn natuurlijk totaal niet handig.

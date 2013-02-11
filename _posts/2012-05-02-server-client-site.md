@@ -1,9 +1,8 @@
 ---
 layout: post
 title: "PHP server-side? JS client-side? En HTML en CSS dan?"
-description: ""
-category: algemeen
-tags: [http]
+thumbnail: client-server-side-thumb.png
+category: general
 type: article
 ---
 Tja, scripten is lastig. Maar het wordt nog lastiger als we het ook nog

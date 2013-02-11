@@ -1,9 +1,11 @@
 ---
 layout: post
 title: "HTML5 Boilerplate 4.0"
-description: ""
+thumbnail: h5bp-v4-thumb.png
 category: nieuws
-tags: [html, css, tricks]
+tags:
+- tools
+- releases
 type: article
 ---
 HTML5 boilerplate, de populairste front-end template, is vandaag overgegaan

@@ -1,9 +1,12 @@
 ---
 layout: post
 title: "Webplatform.org gelanceerd"
-description: ""
+thumbnail: webplatform-thumb.png
 category: nieuws
-tags: [documentation, html, css]
+tags:
+- documentation
+- front-end
+- releases
 type: article
 ---
 Vanmiddag is [WebPlatform.org](http://webplatform.org/) gelanceerd, de website

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Werken met Composer"
-description: ""
+thumbnail: composer-thumb.png
 category: php
 tags: [development]
 type: article

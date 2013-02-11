@@ -1,9 +1,9 @@
 ---
 layout: post
 title: "Minimale HTML Boilerplate"
-description: ""
-category: nieuws
-tags: [site]
+category: html
+tags:
+- bleeding edge
 type: article
 ---
 Je kent het vast wel, het [HTML5 boilerplate](http://html5boilerplate.com/)

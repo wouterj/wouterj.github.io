@@ -1,9 +1,10 @@
 ---
 layout: post
 title: "Hello World"
-description: ""
+thumbnail: hello-world-thumb.png
 category: nieuws
-tags: [site]
+tags:
+- site
 type: article
 ---
 Het eerste echte berichtje op een blog, dan hoor je eigenlijk wel welkom te

@@ -1,9 +1,11 @@
 ---
 layout: post
 title: "De Koekjes Wet"
-description: ""
+thumbnail: cookie-law-thumb.png
 category: nieuws
-tags: [rechten]
+tags:
+- wetten
+- cookies
 type: article
 ---
 Iedereen het de aloude koekjes wet van vroeger, toen ze kind waren, vast nog
