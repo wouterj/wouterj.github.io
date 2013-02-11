@@ -4,7 +4,11 @@ layout: default
 <article class="post{% if page.type != null %}  post--{{ page.type }}{% endif %}">
     <h1 class="post__heading">{{ page.title }}</h1>
 
+    {% if page.thumbnail != null %}
+    <img src="{{ page.thumbnail_url }}" class="img--stripe  img--left">
+    {% endif %}
+
     <div class="post__entry">
-        {{ page.content|markdownify|replace:'<pre>','<pre class="prettyprint  linenums">' }}
+        {{ page.content|markdownify|replace_first:'<p>', '<p class="post__intro">'|replace_first:'</p>', '</p><div class="cf"></div>'|replace:'<pre>','<pre class="prettyprint  linenums">' }}
     </div>
 </article>

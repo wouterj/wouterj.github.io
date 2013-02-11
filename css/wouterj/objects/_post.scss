@@ -23,9 +23,12 @@
             color:#000;
         }
 
-.post--featured .post__entry--excerpt{
+.post__intro{
     @include font-size(20px);
     line-height:1.5;
+}
+.post--featured .post__entry--excerpt{
+    @extend .post__intro;
 }
 
 // post types
