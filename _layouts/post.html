@@ -9,6 +9,6 @@ layout: default
     {% endif %}
 
     <div class="post__entry">
-        {{ page.content|markdownify|replace_first:'<p>', '<p class="post__intro">'|replace_first:'</p>', '</p><div class="cf"></div>'|replace:'<pre>','<pre class="prettyprint  linenums">' }}
+        {{ page.content|markdownify|site_specific }}
     </div>
 </article>
