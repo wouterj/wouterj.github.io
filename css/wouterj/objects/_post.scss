@@ -40,3 +40,25 @@
         padding-right:20px;
     }
 }
+
+
+
+
+
+
+/*-----------------------------------*\
+    $POST_LIST
+\*-----------------------------------*/
+.post-list{
+    @extend .block-list;
+}
+    .post-list .post__heading{
+        margin-bottom:0;
+    }
+    .post-list .post__date{
+        float:left;
+        background:#fff;
+        box-shadow:0px 1px 3px #555;
+        padding:10px;
+        margin-right:10px;
+    }
