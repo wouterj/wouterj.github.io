@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang=nl>
+    <head>
+        <meta charset=ucs-bom>
+
+        <title>Git Introductie | Wouter J </title>
+
+        <link rel=stylesheet href=/css/wouterj.min.css> 
+
+        <!-- Prettifier -->
+        <script src="/libs/prettifier/google-code-prettify/prettify.js"></script>
+        <link rel=stylesheet href="/libs/prettifier/prettifier.css">
+        <script>
+            window.onload = function() {
+                prettyPrint();
+            };
+        </script>
+    </head>
+    <body class=page>
+        <header class=page__header>
+
+            <hgroup>
+                <h1 class="hN  site-title"><a href="/">Wouter J</a></h1>
+                <h3 class="hN  site-slogan">A script is more than code</h3>
+            </hgroup>
+
+            <nav class=page__nav>
+                <ul class="nav  nav--block">
+                    
+                        <li class="nav__item"><a href="/">Home</a></li>
+                    
+                        <li class="nav__item"><a href="/about">Over mij</a></li>
+                    
+                        <li class="nav__item"><a href="/archive">Archief</a></li>
+                    
+                </ul>
+            </nav>
+        </header>
+
+        <div class=page__body>
+            <article class="post  post--article">
+    <h1 class="post__heading">Git Introductie</h1>
+
+    
+
+    <div class="post__entry">
+        <p class="post__intro">Nadat we <a href='http://wouterj.nl/development/controle-over-je-project/266/'>de vorige keer</a> kennis hebben gemaakt met de echte basis van GIT gaan we vandaag GIT installeren op onze computer en krijg je een introductie in GIT. Hoe werkt het, wat moet je weten, enz. En aan het eind gaan we misschien eindelijk echte code maken.</p><div class="cf"></div>
+<!--more-->
+<h2 id='git_installeren'>GIT installeren</h2>
+
+<p>Ik bespreek hier alleen hoe je GIT moet installeren op Windows, omdat de meeste bezoekers windows gebruiken. Voor de Macs en Linux gebruikers zijn er handige tutorials te vinden op github:</p>
+
+<ul>
+<li><a href='http://help.github.com/mac-set-up-git/'>mac</a></li>
+
+<li><a href='http://help.github.com/linux-set-up-git/'>linux</a></li>
+</ul>
+
+<h3 id='git_voor_windows'>GIT voor Windows</h3>
+
+<p>GIT installeren op Windows is eigenlijk heel erg makkelijk. GIT heeft een Windows versie die, heel toepasselijk, <a href='http://msysgit.github.com/'>GIT for windows</a> heet. We downloaden de nieuwste versie, bij tijd van schrijven van dit artikel is dat GIT-1.7.10. Vervolgens voeren we het bestandje uit en kunnen we de stappen volgen. Er wordt ons opgegeven moment gevraagd of we alleen de Git Bash willen gebruiken of ook via de Windows Command Prompt. Ik heb er zelf voor gekozen om alleen de GIT bash te gebruiken (die ik vervolgens aan mijn cmd heb gekoppeld) i.p.v. de windows command prompt, omdat het niet helemaal lekker loopt. Als er wordt gevraagd om PuTTY te gebruiken moet je het niet doen, we gaan nu alleen maar SSH gebruiken.</p>
+
+<h2 id='even_voorstellen_aan_git'>Even voorstellen aan GIT</h2>
+
+<p>Vervolgens moeten we ons gaan voorstellen aan GIT, wie zijn we eigenlijk? En wat is ons mail adres? Dit is later handig voor als je samen gaat werken met GitHub of andere GIT-sites, want dan hebben we dit nodig.</p>
+
+<p>Open je eerst GIT bash (<code>Windows &gt; start &gt; alle programma&#39;s &gt; git &gt; GIT
+bash</code>). GIT bash is eigenlijk de gewone CMD command prompt met wat extra GIT functies. Als je het Command Prompt nog bijna nooit gebruikt hebt even een spoed cursus:</p>
+
+<p>Met <code>cd</code> navigeer je van map naar map. Bijv:</p>
+
+<pre class="prettyprint  linenums">"<code>$ cd My-Project
+C:\Users\Wouter\My-Project</code></pre>
+
+<p>Als je naar een andere schrijf navigeert moet je doormiddel van de naam van de schrijf + <code>:</code> ernaar toe navigeren:</p>
+
+<pre class="prettyprint  linenums">"<code>$ cd D:\Wamp\www\My-Project
+$ d:
+D:\Wamp\www\My-Project</code></pre>
+
+<p>Nu gaan we weer verder met waar we gebleven zijn. We hebben onze GIT Bash geopend en nu gaan we ons voorstellen. Dit doen we als volgt:</p>
+
+<pre class="prettyprint  linenums">"<code>$ git config --global user.name &quot;Wouter J&quot;
+$ git config --global user.email &quot;my@email.com&quot;</code></pre>
+
+<p>Nu hebben we ons voorgesteld!</p>
+
+<h2 id='tijd_om_te_beginnen'>Tijd om te beginnen</h2>
+
+<p>Ja, dan gaan we eindelijk beginnen. Al dat gepraat, daar houd een developer natuurlijk niet van, dus nu gaan we wat codes schrijven.</p>
+
+<p>We maken een heel simpel projectje aan op onze computer. Ik download de <a href='http://html5boilerplate.com/'>HTML5 boilerplate</a> en zet die in <code>D:\Wamp\www\My-Project\</code>. Nu openen we weer onze Bash en gaan we naar deze locatie toe:</p>
+
+<pre class="prettyprint  linenums">"<code>$ cd \d\wamp\www\my-project\</code></pre>
+
+<p>(in de bash gaat het iets anders dan in de command prompt)</p>
+
+<p>Nu gaan we GIT aanzetten in dit project. Dit doe je met het <code>git init</code> command. Alles commands van GIT beginnen met <code>git</code> gevolgt door en spatie en hun naam. Als je informatie wilt over een bepaald command gebruik je <code>git help
+&lt;command naam&gt;</code>.</p>
+
+<pre class="prettyprint  linenums">"<code>$ git init</code></pre>
+
+<p>Zo nu kunnen we aan de slag! Per verandering gaan we een nieuwe versie aanmaken, dit noemen we vanaf nu een commit. Je moet hierbij niet denken aan de versies in bijv. jQuery. Met een versie bedoelen we dat GIT onthoud hoe het project er op dat tijdstip uitziet.</p>
+
+<h3 id='de_opbouw_van_git'>De opbouw van GIT</h3>
+
+<p>GIT werkt met 3 area&#8217;s, zoals je ook al in de eerste blogpost hebt gelezen. Deze area&#8217;s hebben allemaal een eigen taak:</p>
+
+<h4 id='werk_area'>Werk area</h4>
+
+<p>Dit is de map die op de computer staat. Alles wat je dus in de bestanden aanpast en welke bestanden toegevoegd worden zie je direct veranderen.</p>
+
+<h4 id='staging_area'>Staging area</h4>
+
+<p>Dit is een geniaal iets in GIT. Voordat je iets commit moet je de bestanden die je wilt commiten in de staging area zetten. Hierdoor hoef je niet alle wijzigen uit de werk area direct om te zetten in de staging area.</p>
+
+<h4 id='repository_area'>Repository area</h4>
+
+<p>Als je een commit doet wordt de commit + de status van de bestanden opgeslagen in de git repository (kortweg repo).</p>
+
+<h3 id='bestanden_in_de_staging_zetten'>Bestanden in de staging zetten</h3>
+
+<p>Zo nu gaan we eerst de bestanden in de staging zetten. Dat doe je met de <code>git
+add</code> method. Deze method verwacht minimaal 1 parameter: de naam/path van het bestand. Door spaties tussen de bestandnamen te laten kun je meerdere bestanden tegelijkertijd in de staging zetten. Maar in ons geval willen we alle bestanden hebben. Waarom zouden we ze dan allemaal apart typen? Hiervoor heeft GIT het <code>.</code> teken uitgevonden, dit betekend alle bestanden. Dus laten we dat maar doen:</p>
+
+<pre class="prettyprint  linenums">"<code>$ git add .</code></pre>
+
+<h3 id='tijd_voor_de_commit'>Tijd voor de commit</h3>
+
+<p>Nu we hebben geselecteerd wat we willen commiten is het tijd om de commit te doen. Hiervoor heeft GIT de <code>git commit</code> method. Als je dit command runt probeerd GIT Vim te openen, dit is een editor die in de command prompt werkt. Mocht je dit niet willen moet je de vlag <code>-m</code> gebruiken. Dan kun je de parameter als de naam gebruiken. Maar normaal wordt het dus:</p>
+
+<pre class="prettyprint  linenums">"<code>$ git commit</code></pre>
+
+<p>Nu wordt er in je command prompt Vim geopend. Vervolgens staat vim in de visual mode, door <code>i</code> in te drukken (of <code>a</code>) ga je naar insert mode (de mode waarin je kan typen). Nu typ je de commit naam (in ons geval &#8216;Getting Started&#8217;) en nu klik je op <code>Ctrl + [</code> hiermee ga je weer naar visual mode en dan doe je <code>:wq</code> dit <strong>w</strong>rite (opslaan) de naam en vervolgens <strong>q</strong>uit (sluit) Vim. Nu ben je weer terug en is je commit opgeslagen. In het schermpje waar je nu bent kun je zien welke bestanden er zijn toegevoegd, aan welke branch (hierover de volgende keer meer) en wat er precies is veranderd.</p>
+
+<h2 id='checken'>Checken</h2>
+
+<p>Nu willen we kijken of alles gelukt is. Dit doen we met <code>git log</code>, dit laat alle recente commits zien. In ons geval staat er maar 1. Laten we eens kijken wat erin staat</p>
+
+<pre class='lang-none'><code>commit 0935a1f33c8e75ab7356c3e94f27f397ffd7b472
+Author: WouterJ &lt;my @email.com&gt;
+Date:   Thu Apr 12 15:49:27 2012 +0200
+    Getting Started</code></pre>
+
+<p>We zien hier een hash (die lange tekenreeks) dat &#8216;de versie&#8217; voorstelt. Het voordeel van zo&#8217;n hash ten opzichte van een simpele versie nummer is dat deze altijd uniek is. Als we de volgende keer aan de slag gaan met commits zul je zien dat alleen de eerste 7 tekens hiervan belangrijk zijn.</p>
+
+<p>Dan komt de gegevens over wie de commit heeft gedaan (handig als je in een team werkt) en de datum waarop. Vervolgens zie je de korte commit beschrijving.</p>
+
+<h2 id='aanpassen'>Aanpassen</h2>
+
+<p>Oké, we hebben nu heel veel dingen aangepast aan ons project. Tijd voor de volgende commit. We willen dingen apart commiten, eerst de HTML veranderingen, dan de CSS veranderingen en dan JS. Eerst wil ik weten welke bestanden er allemaal sinds de laatste commit gewijzigd zijn, dit doen we met de <code>git
+status</code> command. Nu krijg je een overzicht van bestanden/mappen die aangepast zijn. Vervolgens voegen we weer alle HTML bestanden toe aan de staging area:</p>
+
+<pre class="prettyprint  linenums">"<code>$ git add index.html</code></pre>
+
+<p>Hierdoor voegen we index.html toe aan de pagina. Stel dat we nu alle bestanden die eindigen op <code>.html</code> willen toevoegen gebruiken we <code>*.html</code> de * wordt dan door de bestandsnaam vervangen. Nu kunnen we weer onze commit uitvoeren</p>
+
+<pre class="prettyprint  linenums">"<code>$ git commit -m &#39;[HTML] Added header&#39;</code></pre>
+
+<p>En we voegen heel de css directory toe aan de staging area, voor de volgende commit:</p>
+
+<pre class="prettyprint  linenums">"<code>$ git add css/.
+$ git commit -m &#39;[CSS] Changed RESET and added header&#39;`&lt;/pre&gt;</code></pre>
+
+<p>Met <code>css/.</code> voeg je alle bestanden in de css map toe aan de commit.</p>
+
+<p>En zo doen we het ook voor de andere commits.</p>
+
+<h2 id='je_kan_nog_veel_meer'>Je kan nog veel meer</h2>
+
+<p>Maar je kan nog veel meer met commits. De volgende keer ga ik daarop in en ook op wat andere dingen die je met GIT kunt doen zoals branches, gitignore en meer!</p>
+    </div>
+
+    <div id="disqus_thread" class="post__comments"></div>
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'wouterjnl'; // required: replace example with your forum shortname
+        var disqus_identifier = '2012-04-20 00:00:00 +0200';
+        var disqus_title = 'Git Introductie';
+        var disqus_developer = 1;
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</article>
+
+        </div>
+
+        <footer class="page__footer">
+            <p>&copy; Wouter J 2013</p>
+        </footer>
+    </body>
+</html>

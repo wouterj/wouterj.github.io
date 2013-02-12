@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang=nl>
+    <head>
+        <meta charset=ucs-bom>
+
+        <title>CSS bleeding edge: Sticky Positioneren | Wouter J </title>
+
+        <link rel=stylesheet href=/css/wouterj.min.css> 
+
+        <!-- Prettifier -->
+        <script src="/libs/prettifier/google-code-prettify/prettify.js"></script>
+        <link rel=stylesheet href="/libs/prettifier/prettifier.css">
+        <script>
+            window.onload = function() {
+                prettyPrint();
+            };
+        </script>
+    </head>
+    <body class=page>
+        <header class=page__header>
+
+            <hgroup>
+                <h1 class="hN  site-title"><a href="/">Wouter J</a></h1>
+                <h3 class="hN  site-slogan">A script is more than code</h3>
+            </hgroup>
+
+            <nav class=page__nav>
+                <ul class="nav  nav--block">
+                    
+                        <li class="nav__item"><a href="/">Home</a></li>
+                    
+                        <li class="nav__item"><a href="/about">Over mij</a></li>
+                    
+                        <li class="nav__item"><a href="/archive">Archief</a></li>
+                    
+                </ul>
+            </nav>
+        </header>
+
+        <div class=page__body>
+            <article class="post  post--article">
+    <h1 class="post__heading">CSS bleeding edge: Sticky Positioneren</h1>
+
+    
+
+    <div class="post__entry">
+        <p class="post__intro">Vandaag bespreek ik een echte bleeding edge: Er is nog geen specificatie voor en het is gister beland in de alpha channel van Chrome.</p><div class="cf"></div>
+<!--more-->
+<h2 id='chrome_canary_of_webkit_nightly'>Chrome Canary of Webkit Nightly</h2>
+
+<p>Om deze blogpost live te kunnen uittesten en om de demo te kunnen bekijken heb je Chrome Canary nodig. Dit is een versie van Chrome die je naast je stable of dev. versie kunt draaien. Het is het alpha kanaal met elke dag de nieuwste updates.</p>
+
+<p>Ga naar <a href='https://tools.google.com/dlpage/chromesxs/'>deze pagina</a> om Chrome Canary te downloaden.</p>
+
+<p>Je kan ook <a href='http://nightly.webkit.org/'>webkit nightly</a> downloaden.</p>
+
+<h2 id='het_probleem_inflow_en_fixed'>Het probleem: In-flow en fixed</h2>
+
+<p>Elk element is standard in-flow: Het gaat mee met de flow van de pagina. Maar aan de hand van positionering kun je een element uit de flow halen en er wat leuks mee doen. Met bijv. absoluut positioneren kun je een element een vaste plek geven, aan de hand van de eerste relative parent, wat vaak het body element is.</p>
+
+<p>Fixed positioneren kennen we al een tijdje. Hiermee geef je een element een vaste positie op het scherm en die positie die blijft als je scrolld. Hij zal dus nooit veranderen, zie ook <a href='http://wouterj.nl/demos/position-sticky/fixed.html'>deze demo</a>.</p>
+
+<p>Maar nu hebben we het probleem dat we soms in-flow en fixed willen combineren. We willen het element gewoon een plek geven in de content, maar zodra hij dreigt te verwijderen moet hij fixed zijn. Een voorbeeld kun je op <a href='https://news.google.com/'>Google Nieuws</a> zien. Het menu aan de linkerkant staat eerst leuk in de flow, maar zodra hij dreigt te verdwijnen wordt hij fixed.</p>
+
+<h2 id='de_oude_oplossing_javascript_scroll_events'>De oude oplossing: JavaScript scroll events</h2>
+
+<p>Om dit voor elkaar te krijgen gebruikte men JavaScript, om precies te zijn het scroll event. Deze wordt per pixel dat je naar beneden gaat aangeroepen. Doormiddel van een simpele if kun je dan kijken of de pagina al zover naar beneden is dat het element gaat verdwijnen. Dan maak je zo&#8217;n element fixed.</p>
+
+<h3 id='niet_ideaal'>Niet ideaal</h3>
+
+<p>Het grote nadeel is dat je hiermee per pixel dat je scroll een javascript functie laat uitvoeren. Dit maakt het scrollen wat schokkerig en geeft je niet de scroll ervaring die je hoort te hebben. Je moet zoveel mogelijk van scroll events afblijven.</p>
+
+<h2 id='de_nieuwe_oplossing_css_sticky'>De nieuwe oplossing: CSS sticky</h2>
+
+<p>Simon Fraser had dit probleem ook en dacht: Kan CSS me niet helpen? Dus hij <a href='https://bugs.webkit.org/show_bug.cgi?id=95146'>vroeg een feature aan bij webkit</a>. Tevens vroeg <a href='http://lists.w3.org/Archives/Public/www-style/2012Jun/0627.html'>iemand aan w3c</a> of die er een specificatie voor konden maken, zodat andere browsers het ook konden implementeren. Maar zoiets kost tijd, en de specificatie is er nu nog niet (ook niet een editors draft).</p>
+
+<p>Het Webkit team is gelukkig wel snel en <a href='http://trac.webkit.org/changeset/126774'>het is zojuist beland in de webkit alpha versie</a>.</p>
+
+<h3 id='laten_we_wat_gaan_testen'>Laten we wat gaan testen</h3>
+
+<p>Het is heel simpel om te gebruiken. Je definieert eerst dat het <code>position:
+sticky;</code> is, merk op dat dit momenteel nog prefixed is. Tevens moet je definiëren wanneer hij moet vastplakken. In dit geval zeggen we dat als hij niet meer <code>10px</code> vanaf de bovenkant van de pagina is hij fixed moet worden.</p>
+
+<pre class='prettyprint  linenums  lang-css'><code>#element {
+    position: -webkit-sticky;
+    position: -moz-sticky;
+    position: -ms -sticky;
+    position: -o -sticky;
+    position: sticky;
+    top: 10px;
+}</code></pre>
+
+<p>En we zijn klaar!</p>
+
+<p>Nu hoor ik je denken, waarom al die prefixen als het alleen in webkit werkt? Je wilt natuurlijk dat als een browser het support, met prefix of niet, hij meteen werk. Daarom denk je alvast vooruit en zorg je dat de prefixen er al staan. Mijn verwachting is dat Mozilla snel gaat komen met hun sticky, aangezien webkit en Mozilla elkaar vaak wel snel volgen en soms zelf dingen samen doen. MicroSoft en Opera zullen wel wachten op de specificaties. Maar nogmaals: dat zijn mijn verwachtingen.</p>
+
+<h2 id='een_demo'>Een demo</h2>
+
+<p>Om het te demonstreren heb ik <a href='http://wouterj.nl/demos/position-sticky/sticky.html'>een simpele demo</a> gemaakt, let wel op of je in een browser zit dat het ondersteund!</p>
+    </div>
+
+    <div id="disqus_thread" class="post__comments"></div>
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'wouterjnl'; // required: replace example with your forum shortname
+        var disqus_identifier = '2012-08-31 00:00:00 +0200';
+        var disqus_title = 'CSS bleeding edge: Sticky Positioneren';
+        var disqus_developer = 1;
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</article>
+
+        </div>
+
+        <footer class="page__footer">
+            <p>&copy; Wouter J 2013</p>
+        </footer>
+    </body>
+</html>

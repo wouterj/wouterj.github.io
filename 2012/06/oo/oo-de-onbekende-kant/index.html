@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang=nl>
+    <head>
+        <meta charset=ucs-bom>
+
+        <title>OO: De onbekende kant | Wouter J </title>
+
+        <link rel=stylesheet href=/css/wouterj.min.css> 
+
+        <!-- Prettifier -->
+        <script src="/libs/prettifier/google-code-prettify/prettify.js"></script>
+        <link rel=stylesheet href="/libs/prettifier/prettifier.css">
+        <script>
+            window.onload = function() {
+                prettyPrint();
+            };
+        </script>
+    </head>
+    <body class=page>
+        <header class=page__header>
+
+            <hgroup>
+                <h1 class="hN  site-title"><a href="/">Wouter J</a></h1>
+                <h3 class="hN  site-slogan">A script is more than code</h3>
+            </hgroup>
+
+            <nav class=page__nav>
+                <ul class="nav  nav--block">
+                    
+                        <li class="nav__item"><a href="/">Home</a></li>
+                    
+                        <li class="nav__item"><a href="/about">Over mij</a></li>
+                    
+                        <li class="nav__item"><a href="/archive">Archief</a></li>
+                    
+                </ul>
+            </nav>
+        </header>
+
+        <div class=page__body>
+            <article class="post  post--article">
+    <h1 class="post__heading">OO: De onbekende kant</h1>
+
+    
+    <img src="/img/2012/06/oo-onbekende-kant-thumb.png" class="img--stripe  img--left">
+    
+
+    <div class="post__entry">
+        <p class="post__intro">OO, elke beginner weet het wel: Denken in objecten en dat omzetten in een script. Maar OO is veel en veel meer, laat me even kennis maken met de, voor velen, onbekende kant van OO.</p><div class="cf"></div>
+<!--more-->
+<h2 id='even_een_klein_sprongetje'>Even een klein sprongetje</h2>
+
+<p>Voor ik verder kan moet ik dan nu toch dat kleine sprongetje maken van objecten naar een script. Daarvoor moet ik even 3 universele begrippen uitleggen, verder gaan we nog niet.</p>
+
+<h3 id='object__class'>Object = class</h3>
+
+<p>Een object, wat in de vorige tutorial is uitgelegd, heet in een scripttaal een class (klasse in het Nederlands). Een object is dus een klasse, maar niet elke klasse is een object. Dat betekend dat we ook klassen kunnen hebben die geen object voorstellen in de werkelijkheid.</p>
+
+<h3 id='eigenschap__property'>Eigenschap = property</h3>
+
+<p>Een eigenschap, zoals een blauwe kleur, is in een klasse een property. Dit is te vergelijken met een variabele.</p>
+
+<p>Ook een property hoeft niet per se een eigenschap te zijn, maar kan ook een virtueel iets zijn dat het scripten makkelijk maakt.</p>
+
+<h3 id='gedragsverandering__method'>Gedragsverandering = method</h3>
+
+<p>Een gedragsverandering, zoals het veranderen van een kleur, wordt gedaan door een method, dit is te vergelijken met een functie.</p>
+
+<p>Een method hoeft niet per se een gedragsverandering te zijn, maar kan ook gebruikt worden als bijv. een getter (waarmee je de waarde van een eigenschap ophaalt).</p>
+
+<h2 id='een_blogsysteempje'>Een blogsysteempje</h2>
+
+<p>We gaan een blogsysteempje maken en houden het heel simpel: We zorgen dat iemand een bericht kan plaatsen.</p>
+
+<p>Allereerst moeten we dan eens de objecten bekijken, mocht je dit nog niet begrijpen lees dan <a href='http://wouterj.nl/php/eens-goed-nadenken-in-objecten/354/'>“Eens goed nadenken in objecten”</a>.</p>
+
+<h3 id='welke_fysieke_objecten_zijn_er'>Welke fysieke objecten zijn er?</h3>
+
+<p>Nou, wat was de zin die we net hadden: <em>&#8220;We zorgen dat iemand een bericht kan plaatsen.&#8221;</em> Wat voor objecten zijn er in deze zin? Ik denk <em>bericht</em> en <em>iemand</em>. Die iemand is dan de Author en dat bericht is een BlogPost.</p>
+
+<h3 id='welke_eigenschappen_hebben_die_objecten'>Welke eigenschappen hebben die objecten?</h3>
+
+<p>Een Author heeft een naam, een biografie en een foto van zichzelf.</p>
+
+<p>Een BlogPost heeft een titel, content en een slug (het geen in de url staat).</p>
+
+<h3 id='welke_methods_horen_er_dan_bij'>Welke methods horen er dan bij?</h3>
+
+<p>En welke methods hebben die objecten dan? Nou, je zal als eerst natuurlijk methods moeten hebben om die eigenschappen op te vragen, de zogeheten getters, en ook kunnen sommige eigenschappen opnieuw ingesteld worden, de setters.</p>
+
+<p>Een Author heeft setName, setBiography, setPicture setters en getName, getBiography, getPicture getters.</p>
+
+<p>Een BlogPost heeft setTitle, setContent en setSlug en getTitle, getContent en getSlug.</p>
+
+<h2 id='de__relatie'>De <code>HEEFT-EEN</code> relatie</h2>
+
+<p>Ik heb jullie net iets achtergehouden, maar ik hoop dat je dat zelf ook wel door had. Want wat heeft een BlogPost nou nog meer? Een Author toch?!</p>
+
+<p>En die Author, is dat niet dat andere object die we net gemaakt hadden?</p>
+
+<p>Huh, zul je denken, kan ik dan een object aan een ander object meegeven? Ja, dat kan. Dan komen we bij 1 van de 3 meest gebruikte relaties in OO: De <code>HEEFT-EEN</code> releatie. Deze relatie kun je gewoon heel makkelijk opzeggen: Een BlogPost <code>HEEFT-EEN</code> Author. En klopt dat? Ja.</p>
+
+<p>We hebben in het BlogPost object dus een eigenschap author (met zijn getter en setter) en die bevat de waarde van het Author object. Als we later in de code de naam van de Author willen krijgen dan moeten we eerst de author van die BlogPost krijgen, dat doen we met de getAuthor van de BlogPost. Vervolgens hebben we de author en kunnen we de getName method van die Author object gebruiken om de naam te krijgen.</p>
+
+<h2 id='klein_blogsysteempje_wordt_groter'>Klein blogsysteempje wordt groter</h2>
+
+<p>Je concept is een groot succes en je krijgt dozijnen aan bezoekers per uur. Een paar daar van posten berichten, andere beginnen spam te posten en je site wordt langzaam 1 grote hoop reclame. Het is tijd voor verandering, anders is je site straks 1 grote ramp.</p>
+
+<p>Nu is een goed OO script flexibel en horen dit soort dingen snel en makkelijk toegevoegd te kunnen worden. Tijd om onze goede OO kennis op de proef te stellen.</p>
+
+<h2 id='admins_toevoegen'>Admins toevoegen</h2>
+
+<p>Zonder admins die berichten goedkeuren blijft er alleen maar spam komen. Dus we moeten een nieuw soort User toevoegen, iemand met meer rechten dan een Author.</p>
+
+<p>Nou denk je, we maken gewoon weer een nieuw object aan: Admin. Die geven we weer de eigenschappen naam, biografie en foto mee, met hun setters en getters. Tevens voegen we wat methods toe als allowPost en disallowPost. En klaar zijn we.</p>
+
+<p>Maar is dit wel zo flexibel als ik net beweerde dat OO is? Stel we besluiten dat de naam altijd moet beginnen met een hoofdletter. Dan zullen we de method setName van de Author en van de Admin moeten wijzigen. Dat kost ons dus 2x zoveel werk als dat het hoort.</p>
+
+<p>Hoe moeten we het dan doen? Nou, dan gaan we programmeren naar een superobject. Klinkt heel moeilijk, is heel makkelijk. We kijken welke dingen de Author en de Admin gemeen hebben: alle eigenschappen + hun getters. Het enige verschil is eigenlijk dat de Admin wat extra methods heeft.</p>
+
+<p>Deze overeenkomsten halen we uit de bestaande objecten en plaatsen we in een totaal nieuw object: User. Vervolgens gaan we overerving gebruiken: we geven aan dat de Admin een soort User is, waardoor hij automatisch de methods en eigenschappen van User krijgt en dat doen we ook met de Author.</p>
+
+<h2 id='de__relatie'>De <code>IS-EEN</code> relatie</h2>
+
+<p>En daar hebben we al weer een nieuwe relatie gekregen: De <code>IS-EEN</code> relatie. Ook deze kunnen we makkelijk opzeggen: De Author <code>IS-EEN</code> User. En dat klopt, ook als we de Admin hiervoor invullen.</p>
+
+<p>Een IS-EEN relatie is altijd handig. Je moet altijd proberen IS-EEN relaties te krijgen, te programmeren naar een superobject, zoals ik net al zei.</p>
+
+<h3 id='waarom_moet_dat'>Waarom moet dat?</h3>
+
+<p>Omdat je dan heel makkelijk kunt controleren. We willen dat de Author van de BlogPost wel een object is met bepaalde methods. Stel dat we nou alleen controleren of die eigenschap een Author object is dan kan de Admin geen berichten plaatsen? Als we nou controleren op het overkoepelende object, het superobject, dan kan ook de Admin berichten plaatsen.</p>
+
+<p>Ook kunnen we nu bepalen dat de Author en de Admin op zijn minst een aantal eigenschappen en methods heeft, dat is wel handig als je die ergens in een method van de BlogPost gaat gebruiken.</p>
+
+<h2 id='uml'>UML</h2>
+
+<p>Als laatste wil ik weer even doorgaan met UML. In de vorige tutorial van deze serie hebben we geleerd hoe we een object met hun methods en eigenschappen in UML tekenen, laten we dan nu de pas geleerde relaties gaan gebruiken in UML:</p>
+
+<h3 id='_relatie'><code>HEEFT-EEN</code> relatie</h3>
+
+<p>Een HEEFT-EEN relatie wordt in UML aangeduid met een doorgetrokken streep met aan het eind een open pijl:</p>
+
+<p><img class="img--stripe" alt='Een HEEFT-EEN relatie in UML' src='/img/2012/06/oo2-uml-has-a.png' /></p>
+
+<h3 id='_relatie'><code>IS-EEN</code> relatie</h3>
+
+<p>Een IS-EEN relatie wordt in UML aangeduid met een gestreepte streep met aan het eind een gesloten pijl die niet is ingekleurd:</p>
+
+<p><img class="img--stripe" alt='Een IS-EEN relatie in UML' src='/img/2012/06/oo2-uml-is-a.png' /></p>
+
+<p>Merk op dat bij een IS-EEN relatie de subklassen (de kinderen) alle methoden overerven, deze worden dus ook weer in de nieuwe class geplaats.</p>
+
+<h2 id='alweer_het_einde'>Alweer het einde</h2>
+
+<p>En dit is al weer het einde van deze les. Ik hoop dat je nu weer even vooruit kunt. De volgende les gaan we nog 1 relatie leren en gaan we kijken naar Interfaces en Abstracte Objecten, een apart soort superobject.</p>
+    </div>
+
+    <div id="disqus_thread" class="post__comments"></div>
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'wouterjnl'; // required: replace example with your forum shortname
+        var disqus_identifier = '2012-06-26 00:00:00 +0200';
+        var disqus_title = 'OO: De onbekende kant';
+        var disqus_developer = 1;
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</article>
+
+        </div>
+
+        <footer class="page__footer">
+            <p>&copy; Wouter J 2013</p>
+        </footer>
+    </body>
+</html>

@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang=nl>
+    <head>
+        <meta charset=ucs-bom>
+
+        <title>Pure CSS3 en HTML slider | Wouter J </title>
+
+        <link rel=stylesheet href=/css/wouterj.min.css> 
+
+        <!-- Prettifier -->
+        <script src="/libs/prettifier/google-code-prettify/prettify.js"></script>
+        <link rel=stylesheet href="/libs/prettifier/prettifier.css">
+        <script>
+            window.onload = function() {
+                prettyPrint();
+            };
+        </script>
+    </head>
+    <body class=page>
+        <header class=page__header>
+
+            <hgroup>
+                <h1 class="hN  site-title"><a href="/">Wouter J</a></h1>
+                <h3 class="hN  site-slogan">A script is more than code</h3>
+            </hgroup>
+
+            <nav class=page__nav>
+                <ul class="nav  nav--block">
+                    
+                        <li class="nav__item"><a href="/">Home</a></li>
+                    
+                        <li class="nav__item"><a href="/about">Over mij</a></li>
+                    
+                        <li class="nav__item"><a href="/archive">Archief</a></li>
+                    
+                </ul>
+            </nav>
+        </header>
+
+        <div class=page__body>
+            <article class="post  post--article">
+    <h1 class="post__heading">Pure CSS3 en HTML slider</h1>
+
+    
+    <img src="/img/2012/03/css3-slider-thumb" class="img--stripe  img--left">
+    
+
+    <div class="post__entry">
+        <p class="post__intro">Op 10 nov. 2011 zei <a href='https://plus.google.com/117682024645575752797/posts/dRQApCxohW1'>Jeffrey Way op Google+</a>: <em>&#8220;So here&#8217;s what I came up with for my simple CSS3-only slider. Not practical yet - but as a proof of concept&#8230; http://jsfiddle.net/8TYm3/2/&#8221;</em></p><div class="cf"></div>
+
+<p>Dit heeft mij aan het denken gezet om ook een CSS3 slider te maken, die een mooie HTML heeft en makkelijk te bedienen is. In dit bericht wil ik graag laten zien wat het resultaat is geworden en hoe je tot zoiets komt.</p>
+<!--more-->
+<h2 id='css3_animations'>CSS3 Animations</h2>
+
+<p>Allereerst kun je zoiets natuurlijk niet met CSS2 af. Je zult CSS3 technieken moeten gebruiken, animations om exact te zijn. Dit betekend dat het momenteel alleen zal werken in Chrome of FireFox.</p>
+
+<p>Helaas, maar dit is natuurlijk ook alleen als test en oefening, het is momenteel nog niet serieus te gebruiken.</p>
+
+<h2 id='het_concept'>Het concept</h2>
+
+<p>Wat vaak het beste werkt als je met iets nieuws begint is je computer afsluiten of je lap top dichtklappen en een kladblok, potlood en gum te pakken. Vervolgens ga je al je ideeën opschreven en kijk je of ze wel mogelijk zijn.</p>
+
+<p>Deze techniek heb ik deze keer ook gebruikt, alleen vandaag heb ik nog wat extra&#8217;s erbij gepakt: Wat lijm en een schaar. Vervolgens heb ik hier wat zitten knippen en plakken en ben zo tot het basis concept gekomen.</p>
+
+<h3 id='probleem_1_hoe_beweeg_je_de_afbeeldingen'>Probleem 1: Hoe beweeg je de afbeeldingen?</h3>
+
+<p>Dit probleem lijkt, als je CSS3 animations doorhebt, in het begin makkelijk. Maar dat is schijn. Want je kan moeilijk per afbeelding een animatie frame maken. Laten we eerst eens kijken hoe we dit willen gebruiken als HTML code. Wat zou de beste manier zijn om iets semantisch correct en makkelijk handelbaar te krijgen?</p>
+
+<p>Het eerste idee:</p>
+
+<pre class="prettyprint  linenums">"<code>&lt;div id=&quot;slider&quot;&gt;
+    &lt;img src=&quot;img/slide1.png&quot; alt=&quot;some text&quot;&gt;
+    &lt;img src=&quot;img/slide2.png&quot; alt=&quot;some other text&quot;&gt;
+    &lt;!-- ... --&gt;
+&lt;/div&gt;</code></pre>
+
+<p>Ziet er niet verkeerd uit, zo werken de meeste jQuery sliders ook. Alleen hoe gaan we deze nou bewegen? We kunnen moeilijk de hele slider <code>div</code> gaan bewegen en een ander element die alle slides omringt hebben we niet&#8230; Laat ik hier stoppen en bedenk eerst zelf een oplossen voordat je verder scrolled.</p>
+
+<h4 id='oplossing'>Oplossing</h4>
+
+<p>Als we nou eens de slides zien als een lijst van afbeeldingen (slides)? Dan kunnen we de <code>ul</code> als overkoepelende element gebruiken en de li&#8217;s daarmee animeren. Ook qua semantisch opzicht is het te verdedigen en zeker niet fout. De code wordt dus zoiets:</p>
+
+<pre class="prettyprint  linenums">"<code>&lt;div id=&quot;slider&quot;&gt;
+&lt;ul&gt;
+    &lt;li&gt;&lt;img src=&quot;img/slide1.png&quot; alt=&quot;some text&quot;&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;img src=&quot;img/slide2.png&quot; alt=&quot;some other text&quot;&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;</code></pre>
+
+<h3 id='probleem_2_hoe_verbergen_we_de_andere_afbeeldingen'>Probleem 2: Hoe verbergen we de andere afbeeldingen?</h3>
+
+<p>Je wilt per keer maar 1 afbeelding laten zien, dus de andere moet je zien te verbergen. Nu heb ik ooit een jQuery scriptje gemaakt waarbij je een soort spotlight effect creëerde. Als je met de muis over de afbeelding bewoog werd alles donker behalve een cirkel met een diameter van ong. 10px rond je muis. Daar moest ik hierbij als eerst aan denken. Ik gebruikte hiervoor destijds een gigantisch grote (qua formaat) donkere afbeelding met in het midden een doorzicht cirkeltje. Als we dit nu ook toepassen in dit voorbeeld? Helaas, is dit niet praktisch (en dat is nou juist niet wat we willen). Want:</p>
+
+<ol>
+<li>Je moet het formaat van het doorzichtige gat telkens aanpassen als je het slider-formaat veranderd</li>
+
+<li>Je moet het niet doorzichtige gedeelte telkens aanpassen aan de kleur die je als achtergrond op de pagina wilt hebben.</li>
+</ol>
+
+<p>Wat kan dan wel de oplossing zijn? Denk eerst zelf wat na en ga wat knippen en plakken, zo kun je hier nog wat van leren, of bekijk meteen het filmpje waarin ik (helaas zonder geluid) laat zien hoe je het kan oplossen:</p>
+
+<p>Even kort beschreven de oplossing is dat we <code>#slider</code> <code>overflow: hidden;</code> meegeven en de breedte en hoogte van de slides. Hierdoor zie je telkens maar 1 afbeelding.</p>
+
+<h2 id='uitvoering'>Uitvoering</h2>
+
+<p>Tot zover het verkennen van de mogelijkheden en het uitwerken van het idee. Nu moeten we de CSS gaan schrijven. Laten we weer bij het begin beginnen:</p>
+
+<h3 id='afbeeldingen_in__naast_elkaar_krijgen'>Afbeeldingen in <code>ul</code> naast elkaar krijgen</h3>
+
+<p>Eerst moeten we de slides naast elkaar krijgen. Dit doen we heel simpel door <code>float: left;</code> mee te geven aan <code>li</code>. NOTE: Gebruik <strong>geen</strong> <code>display: inline-block;</code> hiervoor, dit is onjuist. Waarom dat zo is schrijf ik misschien nog wel een bericht over.</p>
+
+<h3 id='_opmaken'><code>#slider</code> opmaken</h3>
+
+<p>Vervolgens gaan we de <code>#slider</code> opmaken. De oplossing voor het 2e probleem was dat we deze <code>overflow: hidden;</code> en de hoogte en breedte van de afbeelding meegeven. Nou, laten we dat dan maar gaan doen:</p>
+
+<pre class='prettyprint  linenums  lang-css'><code>#slider{
+    width:610px;
+    height:244px;
+    overflow:hidden;
+}</code></pre>
+
+<h3 id='de_animatie'>De animatie</h3>
+
+<p>En dan komt nu het moeilijkste onderdeel: De CSS3 animatie. Omdat dit voor veel mensen die dit lezen nieuw zal zijn zal ik dit stap voor stap doen, zodat je het kunt begrijpen.</p>
+
+<p>Elke animatie heeft een animatie frame (keyframe genoemd). Dit is niet een HTML frame, maar in CSS. Met dit keyframe geef je aan wat de animatie precies is. Dus de keyframe bevat een gedetailleerde overzicht van de animatie. Als we bijv. een animatie willen maken die de achtergrondkleur van rood naar blauw veranderd doen we:</p>
+
+<pre class='prettyprint  linenums  lang-css'><code>@keyframes changeBgColor {
+    from { 
+        background:red;
+    }
+    to {
+        background:green;
+    }
+}</code></pre>
+
+<p>Merk wel op dat het geen je hier ziet alleen de animatie zelf is. We moeten deze animatie nog toevoegen aan een element. Dit doen we met <code>animation</code> en omdat het nog in de test fase is moeten hier nog de prefixen (bijv. <code>-webkit-</code> en <code>-moz-</code>) toegevoegd worden. Als waardes verwacht <code>animation</code> als eerste de naam van het keyframe, deze is <em>changeBgColor</em> in het voorbeeld hierboven. Als 2e waarde wordt de duration verwacht, of te wel de snelheid van de animatie. Dit kan van alles zijn. Vervolgens kun je er andere opties bijzetten. Welke opties en meer informatie kun je vinden op de <a href='http://www.w3.org/TR/2009/WD-css3-animations-20090320/'>CSS Animations Module level 3</a> specificaties.</p>
+
+<h3 id='terug_naar_onze_code'>Terug naar onze code</h3>
+
+<p>In ons geval willen we een animatie maken die de ul steeds de breedte van 1 slide opschuift en als hij bij het eind is weer terug gaat. Voordat we een keyframe kunnen maken moeten we weten hoeveel slides we hebben en hoe groot deze slides zijn en als extra hoelang de slide duurt (het glijden van de afbeeldingen). In mijn voorbeeld heb ik 4 slides van ong. 620px breed.</p>
+
+<p>I.p.v. een keyframe te gebruiken met <code>from</code> en <code>to</code> kun je ze ook met procenten gebruiken en zelfs combineren. In dit voorbeeld gebruiken we het laatste. We gaan de ul doormiddel van <code>margin-left</code> bewegen, zodat de afbeeldingen sliden. Om ervoor te zorgen dat alle slides even lang duren doen we <code>100% / aantal slides - 0.5</code> om tot het antwoord te komen. In dit geval wordt dat <code>100% / (4 -0.5)</code> en dan krijg je het geweldige antwoord van 28.57% met nog heel wat decimalen erachter. Vervolgens kunnen we dit gebruiken voor de keyframes. We beginnen bij 0%, wat gelijk is aan from, en hierbij is de <code>margin-left</code> ook 0. Vervolgens gaan we naar de eerste stap, 28%, waarbij de <code>margin-left</code> de negatieve waarde van de breedte van onze slide heeft, in dit geval dus <code>-620px</code>. De tweede stap is op 56% met de waarde van 2 slides dus <code>-1240px</code>. En zo ga je door met 74% en 100% (to), waarbij deze beide een waarde van <code>-1860px</code> hebben. De totale code wordt dus zoiets:</p>
+
+<pre class='prettyprint  linenums  lang-css'><code>@keyframes slider
+{
+    from     { margin-left:0;          }
+    28%      { margin-left:-620px;     }
+    56%      { margin-left:-1240px;    }
+    74%, to  { margin-left:-1860px;    }
+}</code></pre>
+
+<p>Nu moeten we alleen de ul nog deze keyframe meegeven, een tijd en wat extra opties, en we hebben onze slider af. De aanroep in <code>#slider ul</code> wordt:</p>
+
+<pre class='prettyprint  lang-css'><code>animation: slider 10s linear infinite alternate;</code></pre>
+
+<p>Even een uitleg:</p>
+
+<ul>
+<li><strong>slider</strong>, dit is de keyframe die we gebruiken</li>
+
+<li><strong>10s</strong>, een slideshow van de eerste tot de laatste slide duurt 10 seconden (dit kun je aanpassen)</li>
+
+<li><strong>linear</strong>, er is niks van vertraging of effect in de slide</li>
+
+<li><strong>infinite</strong>, herhaal de animatie oneindig</li>
+
+<li><strong>alternate</strong>, voer de keyframe de eerste keer van from naar to uit en de 2e keer van to naar from, zodat het mooi blijft doorlopen.</li>
+</ul>
+
+<h3 id='helaas_sliders_zijn_niet_makkelijk'>Helaas, sliders zijn niet makkelijk</h3>
+
+<p>Het leek zo simpel en ik wou zo graag nu al het eind resultaat laten zien, maar dit werkt nog niet. Dit komt door weer 2 problemen:</p>
+
+<h4 id='prefixen'>Prefixen</h4>
+
+<p>Zowel de animatie aanroepen en de prefixen in de <code>@keyframes</code> moeten worden toegevoegd. Aangezien dit alleen in Chrome en FireFox werkt hoeven we maar 2 prefixen toe te voegen: <code>@-webkit-keyframes</code> en <code>@-moz-keyframes</code> en <code>-webkit-animation</code> en <code>-moz-animation</code>. Hou de officiële properties, dus zonder prefixen, er altijd ook gewoon in.</p>
+
+<h4 id='ruimte_voor_de_slide'>Ruimte voor de slide</h4>
+
+<p>Het zal nu in 1 keer van links tot rechts doorlopen. We hebben namelijk niet aangegeven wat er tussen 0% en 28% zit en dus zal hij telkens tussen deze 2 waardes een stapje opschuiven. We moeten dus aangeven dat hij voor 28% nog steeds op <code>0px</code> zet. Dus doen we dit:</p>
+
+<pre class='prettyprint  linenums  lang-css'><code>@keyframes slider
+{
+    from,27% { margin-left:0;          }
+    28%, 55% { margin-left:-620px;     }
+    56%, 73% { margin-left:-1240px;    }
+    74%, to  { margin-left:-1860px;    }
+}</code></pre>
+
+<p>Hierbij kan CSS nog niks animaten en begin het pas met sliden bij 27% en dan bij 28% stopt het weer tot 56% en zo gaat het door.</p>
+
+<p>Weer een probleem, de slides duren nu veel te kort en we moeten dus de CSS slide tijd verlengen. Ik stel voor dat we een slide tijd hebben van 6%. Dit betekend dat er 3% vanaf gaat en 3% bij komt. We krijgen dus uiteindelijk zoiets:</p>
+
+<pre class='prettyprint  linenums  lang-css'><code>@keyframes slider
+{
+    from, 24% { margin-left:0;         }
+    31%, 53%  { margin-left:-620px;    }
+    59%, 71%  { margin-left:-1240px;   }
+    77%, to   { margin-left:-1860px;   }
+}</code></pre>
+
+<h3 id='feestje'>Feestje?</h3>
+
+<p>Ja, eindelijk is het zo ver! Onze slider werkt en is <a href='http://wouterj.nl/demos/css3-slider/'>hier</a> te aanschouwen met de juiste prefixen en met nog een slide optie met alleen CSS3 en HTML.</p>
+
+<p>Ik hoop dat je van deze tutorial hebt geleerd hoe je iets van een idee tot een CSS en HTML code kunt omtoveren en dat je warm bent gemaakt dingen uit te proberen met CSS3 en dan vooral het geweldige animations.</p>
+
+<p>Mocht je net zo&#8217;n animatie hebben gemaakt als <a href='http://www.optimum7.com/css3-man/'>Anthony Calzadilla</a>&lt;/a&gt; of vind je dat je iets geweldigs hebt gemaakt? Deel het met ons in de reacties!</p>
+    </div>
+
+    <div id="disqus_thread" class="post__comments"></div>
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'wouterjnl'; // required: replace example with your forum shortname
+        var disqus_identifier = '2012-03-24 00:00:00 +0100';
+        var disqus_title = 'Pure CSS3 en HTML slider';
+        var disqus_developer = 1;
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</article>
+
+        </div>
+
+        <footer class="page__footer">
+            <p>&copy; Wouter J 2013</p>
+        </footer>
+    </body>
+</html>

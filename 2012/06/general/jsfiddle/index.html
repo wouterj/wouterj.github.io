@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang=nl>
+    <head>
+        <meta charset=ucs-bom>
+
+        <title>Deel je scripts makkelijk met JSFiddle | Wouter J </title>
+
+        <link rel=stylesheet href=/css/wouterj.min.css> 
+
+        <!-- Prettifier -->
+        <script src="/libs/prettifier/google-code-prettify/prettify.js"></script>
+        <link rel=stylesheet href="/libs/prettifier/prettifier.css">
+        <script>
+            window.onload = function() {
+                prettyPrint();
+            };
+        </script>
+    </head>
+    <body class=page>
+        <header class=page__header>
+
+            <hgroup>
+                <h1 class="hN  site-title"><a href="/">Wouter J</a></h1>
+                <h3 class="hN  site-slogan">A script is more than code</h3>
+            </hgroup>
+
+            <nav class=page__nav>
+                <ul class="nav  nav--block">
+                    
+                        <li class="nav__item"><a href="/">Home</a></li>
+                    
+                        <li class="nav__item"><a href="/about">Over mij</a></li>
+                    
+                        <li class="nav__item"><a href="/archive">Archief</a></li>
+                    
+                </ul>
+            </nav>
+        </header>
+
+        <div class=page__body>
+            <article class="post  post--article">
+    <h1 class="post__heading">Deel je scripts makkelijk met JSFiddle</h1>
+
+    
+    <img src="/img/2012/06/jsfiddle-thumb.png" class="img--stripe  img--left">
+    
+
+    <div class="post__entry">
+        <p class="post__intro">Soms heb je op forums hulp nodig. Je wilt dan wat code laten zien en een live voorbeeld waar mensen aan kunnen sleutelen. Helaas heb je geen host of heb je geen zin/tijd om het op je host te zetten. Wat doe je dan?</p><div class="cf"></div>
+<!--more-->
+<h2 id='jsfiddle'>JSfiddle</h2>
+
+<p><a href='http://jsfiddle.net'>JSfiddle</a> is slechts een van die vele &#8216;playgrounds voor developers&#8217; waarmee je scripts en live voorbeelden kunt delen. Anderen zijn bijv. <a href='http://tinkerbin.com'>tinkerbin</a>, <a href='http://jsbin.com'>JSbin</a>, <a href='http://cssdesk.com/'>CSSdesk</a> en <a href='http://codepen.io/'>codepen</a>. Met JSfiddle heb je 4 grote inputvelden: HTML, CSS, JS en Result. Je kan zo wel zien waar ze voor zijn.</p>
+
+<p>JSfiddle heeft standaard al een HTML documentje klaar, dit betekend dat je alleen het geen in de body in het HTML veld moet stoppen. In de CSS stop je gewoon je stylesheet en in JS je script file.</p>
+
+<p>Als je op <em>Run</em> klikt (of <code>Ctrl</code> + <code>Enter</code>) zal JSfiddle het samenvoegen en in een iFrame tonen in het Result panel. JSfiddle voegt zelf een doctype, html, head + children en body element in. Hierdoor hoef je echt alleen maar de basis in te voegen en JSfiddle maakt er een website van.</p>
+
+<h2 id='choose_framework'>Choose Framework</h2>
+
+<h3 id='de_plaats_van_invoegen'>De plaats van invoegen</h3>
+
+<p>JavaScript kun je op 2 plaatsen invoegen: In de head of vlak voor <code>&lt;/body&gt;</code>. Dat zijn de eerste 2 opties. Vervolgens kun je ook nog kiezen voor een wrap. Er zijn 2 wraps: <code>window.onload</code> en DOM ready. Wat JSfiddle dan doet is de JavaScript code in de head plaatsen en een window.onload of een DOM ready event (is iets ingewikkelder) eromheen zetten. Hierdoor voorkom je errors als DOM not ready.</p>
+
+<h3 id='frameworks'>Frameworks</h3>
+
+<p>Vervolgens kun je in een select box kiezen uit een heel scala JavaScript frameworks, waaronder MooTools; jQuery; Pototype; YUI; DoJo; ect. Van al deze frameworks kan je ook nog uit meerdere versies kiezen. Als je een framework kiest laad JSfiddle dit framework automatisch in, in de head. Je kan ook No-libary selecteren, dan wordt er niks ingeladen.</p>
+
+<p>Een input veld daaronder zie je &#8216;Libary tag attributes&#8217; dit zijn eventuele attributen die bij de scripttag worden gevoegd waarin de libary wordt ingeladen:</p>
+
+<pre class="prettyprint  linenums">"<code>&lt;script src=http://lib.path/to/some/lib.min.js {libary_tag_attributes}&gt;&lt;/script&gt;</code></pre>
+
+<h3 id='extra_libaries'>Extra libaries</h3>
+
+<p>De meeste JS frameworks hebben ook nog wat extra sublibaries. Als je er eentje uitkiest, bijv. jQuery, krijg je de mogelijkheid om dingen als jQuery UI/Mobile nog erbij te laden. Hierdoor hoef je dat niet zelf in je HTML code te doen en houd je je 3 inputs schoon.</p>
+
+<h3 id='normalizecss'>Normalize.css</h3>
+
+<p>Als laatst kun je nog aangeven of je <a href='https://github.com/necolas/normalize.css'>normalize.css</a>, een van de beste CSS reset stylesheets wilt gebruiken of niet.</p>
+
+<h2 id='panels'>Panels</h2>
+
+<p>Zoals je nu wel weet heb je 4 panels: HTML, CSS, JS en Result. Je kan deze ook aanpassen. I.p.v. CSS kun je bijv. ook SASS (een CSS pre-processor) gebruiken. Of i.p.v. JS coffeescript.</p>
+
+<h2 id='add_resources'>Add Resources</h2>
+
+<p>Soms moet je wel eens iets extra&#8217;s inladen. Denk dan bijv. aan een jQuery plugin of een default stylesheet. Dat kun je allemaal doen in het Add Resources menu. Plaats de exacte URL naar een JavaScript of CSS bestand en klik op de +.</p>
+
+<h2 id='info'>Info</h2>
+
+<p>Het laatste menu wat ik met je wil bespreken is het info menu. Hierbij kun je wat informatie over jou fiddle plaatsen en kun je eventuele klassen toevoegen aan de body tag of het doctype veranderen.</p>
+
+<h2 id='shortcuts'>Shortcuts</h2>
+
+<p>JSfiddle heeft een heleboel shortcuts, een paar opgesomd:</p>
+
+<ul>
+<li><code>Ctrl</code> + <code>Enter</code> - Run jou fiddle</li>
+
+<li><code>Ctrl</code> + <code>S</code> - Sla je fiddle op</li>
+
+<li><code>Ctrl</code> + <code>pijl omhoog</code>/<code>pijl naar beneden</code> - Navigeer tussen de panels</li>
+
+<li><code>Ctrl</code> + <code>Shift</code> + <code>pijl omhoog</code> - Toggle sidebar</li>
+</ul>
+
+<h2 id='je_fiddle_delen'>Je fiddle delen</h2>
+
+<p>Om hem met iemand te delen moet je je fiddle opslaan en de link doorsturen naar een ander. Het opslaan doe je door op Save te klikken (of de shortcut). Vervolgens wordt je door gelinkt naar de link met jou fiddle. De URL kun je dan kopiëren en aan de ander geven. Of je klikt op share en dan op share link</p>
+
+<p>Je kan je code ook embedden (in een iFrame). Hiervoor hebben ze een speciale url. Namelijk jsfiddle.net/FiddleCode/embedded/panels. De FiddleCode is de code van jou fiddle en bij panels kun je, met spaties gescheiden, de panels invullen die je wilt laten zien. Elk panel is full-screen en in de bar bovenin kun je dan switchen tussen de panels. De panels komen in de volgorde dat jij aangeeft in de URL en het eerste panel wordt meteen getoond.</p>
+
+<p>Je kunt ook nog de skin aanpassen in de embedded page. Je kan kiezen uit light (normaal), dark of presentation (lettertype groter). Dit plaats je helemaal aan het eind na de panels.</p>
+
+<h2 id='meer_informatie'>Meer informatie</h2>
+
+<p>Voor meer informatie over JSfiddle en hoe je het moet gebruiken kun je terecht in <a href='http://doc.jsfiddle.net/'>de documentatie van JSfiddle</a>.</p>
+    </div>
+
+    <div id="disqus_thread" class="post__comments"></div>
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'wouterjnl'; // required: replace example with your forum shortname
+        var disqus_identifier = '2012-06-15 00:00:00 +0200';
+        var disqus_title = 'Deel je scripts makkelijk met JSFiddle';
+        var disqus_developer = 1;
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</article>
+
+        </div>
+
+        <footer class="page__footer">
+            <p>&copy; Wouter J 2013</p>
+        </footer>
+    </body>
+</html>

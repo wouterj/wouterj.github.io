@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang=nl>
+    <head>
+        <meta charset=ucs-bom>
+
+        <title>PHP server-side? JS client-side? En HTML en CSS dan? | Wouter J </title>
+
+        <link rel=stylesheet href=/css/wouterj.min.css> 
+
+        <!-- Prettifier -->
+        <script src="/libs/prettifier/google-code-prettify/prettify.js"></script>
+        <link rel=stylesheet href="/libs/prettifier/prettifier.css">
+        <script>
+            window.onload = function() {
+                prettyPrint();
+            };
+        </script>
+    </head>
+    <body class=page>
+        <header class=page__header>
+
+            <hgroup>
+                <h1 class="hN  site-title"><a href="/">Wouter J</a></h1>
+                <h3 class="hN  site-slogan">A script is more than code</h3>
+            </hgroup>
+
+            <nav class=page__nav>
+                <ul class="nav  nav--block">
+                    
+                        <li class="nav__item"><a href="/">Home</a></li>
+                    
+                        <li class="nav__item"><a href="/about">Over mij</a></li>
+                    
+                        <li class="nav__item"><a href="/archive">Archief</a></li>
+                    
+                </ul>
+            </nav>
+        </header>
+
+        <div class=page__body>
+            <article class="post  post--article">
+    <h1 class="post__heading">PHP server-side? JS client-side? En HTML en CSS dan?</h1>
+
+    
+    <img src="/img/2012/05/client-server-side-thumb.png" class="img--stripe  img--left">
+    
+
+    <div class="post__entry">
+        <p class="post__intro">Tja, scripten is lastig. Maar het wordt nog lastiger als we het ook nog eens gaan hebben over wat een scirpttaal precies doet en hoe het werkt. Maar toch is het iets wat je echt door moet hebben wil je goed kunnen werken met scripttalen. Helaas kom ik vaak tegen dat beginners dit niet door hebben en met hun handen in hun haar naar een forum komen om te vragen of je iets kunt doen in PHP wat PHP helemaal niet kan. Of precies andersom dat je in JS iets wilt doen maar dat helemaal niet kan. Dat komt omdat er 1 heel groot verschil zit in die talen.<br /> Om het voor eens en altijd duidelijk te maken hier een artikel die het, hoop ik, goed uitlegt.</p><div class="cf"></div>
+<!--more-->
+<h2 id='een_scripttaal'>Een scripttaal</h2>
+
+<p>Laten we eerst eens kijken wat nou een scripttaal is. Ik wil het niet te moeilijk maken, want over dit onderwerp wordt nog <a href='http://www.bautforum.com/showthread.php/93514-Scripting-vs-coding-vs-programming'>heel</a> <a href='http://www.killersites.com/blog/2005/scripting-vs-programming-is-there-a-difference/'>veel</a> <a href='http://www.naelshawwa.com/scripting-coding-programming/'>gediscussieerd</a>. Maar een scripttaal is een programmeertaal die in een programma werkt. Bijv. PHP is een scripttaal. PHP heeft de PHP Engine (alle code achter PHP) nodig om te kunnen werken, zodra je dit niet hebt kun je geen PHP draaien. Een taal als JAVA (dus niet JavaScript!!!) draait uit zichzelf, in elk geval zo zeggen we het. JavaScript (dus niet JAVA!!!) is weer een scripttaal, het heeft de JavaScript Engine (ECMA) nodig om te draaien.</p>
+
+<h3 id='en_html_en_css_dan'>&#8230;en HTML en CSS dan?</h3>
+
+<p>Dan gaan we er nog een moeilijk begrip bij verzinnen. Een programmeertaal is een taal die voorschrijft hoe een computer iets moet behandelen. HTML en CSS schrijven helemaal geen handelingen voor, HTML en CSS zijn alleen maar voor hoe het eruit ziet. Daarom zijn HTML en CSS mark-up talen.</p>
+
+<h3 id='even_op_een_rijtje'>Even op een rijtje</h3>
+
+<ul>
+<li><strong>Programmeertaal</strong> - Een taal die handelingen voorschrijft voor de computer (bijv. JAVA)</li>
+
+<li><strong>Scripttaal</strong> - Een programmeertaal die een programma (Engine) nodig heeft om te werken (bijv. PHP of JavaScript)</li>
+
+<li><strong>Mark-uptaal</strong> - Een taal die voorschrijft hoe iets eruit komt te zien. (bijv. HTML of CSS)</li>
+</ul>
+
+<h2 id='serverside_vs_clientside'>Server-side vs Client-side</h2>
+
+<p>Oké, 1 verschil tussen soorten talen begrijpen we nu. Laten we naar nog een verschil kijken tussen scripttalen: Server-side en Client-side. Je hebt het vast al een keer voorbij horen komen, maar wat nou precies het verschil is?</p>
+
+<h3 id='wat_gebeurd_er_als_je_een_pagina_oproept'>Wat gebeurd er als je een pagina oproept?</h3>
+
+<p>Een Server-side taal kan alleen op de server worden uitgevoerd. Als je een url in je browser typt gaat het browser in de wereld opzoek naar een server waar die domein opstaat. Hij zoekt deze server doormiddel van een HTTP Request uit te sturen de wereld in. Een server ontvangt deze, denkt: <em>&#8220;Hé, die is voor mij&#8221;</em> en gaat vervolgens de pagina afhandelen. Vervolgens stuurt de server een HTTP Response terug naar de browser, die deze vervolgens omzet in wat voor ons een normale webpagina is. Omgezet in een afbeelding is het:</p>
+
+<p><img class="img--stripe" alt='Een normale pagina opvraag van client naar server en weer terug' src='/img/2012/05/http-protocol.png' /></p>
+
+<h4 id='en_wat_heeft_dit_er_mee_te_maken'>En wat heeft dit er mee te maken?</h4>
+
+<p>Meer dan je denkt! We nemen even PHP als voorbeeld. PHP is een server-side scripttaal. Dat betekend dat alle PHP code op de server worden uitgevoerd en dat de code die gegenereerd wordt wordt meegezonden met de HTTP response. Dat heeft een aantal consequenties:</p>
+
+<ul>
+<li>PHP kan maar 1 keer per pagina aanroept worden uitgevoerd - Omdat een pagina (en dus de code) alleen langs de server komt bij het aanvragen kun je PHP alleen bij het genereren van een pagina gebruiken. Dus niet halverwege een pagina.</li>
+
+<li>PHP is server afhankelijk - Doordat het op de server uit wordt gevoerd is het afhankelijk van die server. Staat er op die server PHP4.1 dan wordt de PHP uitgevoerd in PHP4.1, ookal heb jij op je computer PHP5.4.</li>
+
+<li>PHP code kun je niet in de broncode terug zien, omdat de browser niet eens weet dat de pagina gemaakt is met PHP. Dat weet slechts alleen de server.</li>
+</ul>
+
+<p>Om het weer duidelijk te maken nu hetzelfde plaatje, maar dan met de PHP engine erin:</p>
+
+<p><img class="img--stripe" alt='Merk op dat alleen paginas die PHP zijn door de PHP engine worden gehaald.' src='/img/2012/05/http-protocol-with-php.png' /></p>
+
+<h3 id='en_nu_de_clientside'>En nu de client-side</h3>
+
+<p>Client-side zegt het al, het wordt aan de kant van de client uitgevoerd. Oftewel: in de browser. Dit zorgt ervoor dat we dingen kunnen aanpassen zonder dat we de pagina hoeven te refreshen. En we kunnen een code net zo vaak aanroepen als we zelf willen, in een JavaScript voorbeeld: Je kunt een click event oneindig vaak aanroepen. Maar er kleven ook nadelen aan:</p>
+
+<ul>
+<li>Het is afhankelijk van browsers - Doordat het in de browser wordt uitgevoerd zijn deze scripttalen afhankelijk van de engine in een browser. Dat kan door de browserwar nogal voor flinke problemen en irritaties zorgen.</li>
+
+<li>Hoe meer scriptcode hoe trager de pagina laad en hoe trager de site werkt omdat de browser nu wel van de code af weet en nu alles in de gaten moet houden.</li>
+
+<li>Het is te lezen in de broncode, je kan ten alle tijden de code lezen in de broncode. Persoonlijke gegevens als wachtwoorden kun je er dus niet in kwijt.</li>
+
+<li>Het is door tools altijd aan te passen en dus mag je er nooit van uitgaan dat iets de waarde bevat/het ding doet die jij hebt voorgeschreven, controle is dus veel belangrijker.</li>
+
+<li>Je kan niet communiceren met de server dus dingen uit een DataBase halen of een bestand van de server halen is niet mogelijk (tegenwoordig een beetje door AJAX en <a href='http://html5doctor.com/introducing-web-sql-databases/'>Web databases</a> (web dus geen server db!))</li>
+</ul>
+
+<h2 id='wanneer_kies_ik_welke_taal'>Wanneer kies ik welke taal?</h2>
+
+<p>Per onderdeel moet je je dus afvragen welke soort taal je gaat gebruiken. Vaak is het zo dat je JavaScript alleen gebruikt ter verleuking van je website of bijv. om pop-ups te tonen. PHP gebruik je voor het dynamisch maken van de pagina en voor alle communicatie met de server.</p>
+    </div>
+
+    <div id="disqus_thread" class="post__comments"></div>
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'wouterjnl'; // required: replace example with your forum shortname
+        var disqus_identifier = '2012-05-02 00:00:00 +0200';
+        var disqus_title = 'PHP server-side? JS client-side? En HTML en CSS dan?';
+        var disqus_developer = 1;
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</article>
+
+        </div>
+
+        <footer class="page__footer">
+            <p>&copy; Wouter J 2013</p>
+        </footer>
+    </body>
+</html>

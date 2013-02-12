@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang=nl>
+    <head>
+        <meta charset=ucs-bom>
+
+        <title>LoVe HAte | Wouter J </title>
+
+        <link rel=stylesheet href=/css/wouterj.min.css> 
+
+        <!-- Prettifier -->
+        <script src="/libs/prettifier/google-code-prettify/prettify.js"></script>
+        <link rel=stylesheet href="/libs/prettifier/prettifier.css">
+        <script>
+            window.onload = function() {
+                prettyPrint();
+            };
+        </script>
+    </head>
+    <body class=page>
+        <header class=page__header>
+
+            <hgroup>
+                <h1 class="hN  site-title"><a href="/">Wouter J</a></h1>
+                <h3 class="hN  site-slogan">A script is more than code</h3>
+            </hgroup>
+
+            <nav class=page__nav>
+                <ul class="nav  nav--block">
+                    
+                        <li class="nav__item"><a href="/">Home</a></li>
+                    
+                        <li class="nav__item"><a href="/about">Over mij</a></li>
+                    
+                        <li class="nav__item"><a href="/archive">Archief</a></li>
+                    
+                </ul>
+            </nav>
+        </header>
+
+        <div class=page__body>
+            <article class="post  post--article">
+    <h1 class="post__heading">LoVe HAte</h1>
+
+    
+
+    <div class="post__entry">
+        <p class="post__intro">CSS is een taal die veel geeft om volgordes en rangen. Dit kan heel handig zijn, maar ook heel irritant. Vooral bij het stijlen van anchor element (<code>&lt;a&gt;</code>) is dit een ramp, omdat je je dan aan een aparte volgorde moet houden. Waarom moet je dat eigenlijk doen? En wat is die volgorde precies? Dat ga ik jullie in dit eerste echte bericht vertellen.</p><div class="cf"></div>
+<!--more-->
+<h2 id='basis_van_volgordes_in_css'>Basis van volgordes in CSS</h2>
+
+<p>In CSS zijn er bepaalde basis regels en dingen die je eerst zult moeten begrijpen voordat je verder kan. Een paar van deze regels:</p>
+
+<ol>
+<li>IDs gaan voor classes</li>
+
+<li>Classes gaan voor tags</li>
+
+<li>Als iets op het zelfde niveau zit gaat de gene die als laatst wordt gemaakt voor.</li>
+</ol>
+
+<p>Met regel 3 bedoel ik:</p>
+
+<pre class='prettyprint  linenums  lang-css'><code>#box { background: red;   }
+#box { background: green; }</code></pre>
+
+<p>Dan wordt de background green van <code>#box</code>. Deze regel is erg belangrijk voor het verloop van deze tutorial.</p>
+
+<h2 id='link_condities'>Link condities</h2>
+
+<p>Een link heeft verschillende condities die je kunt stijlen met CSS:</p>
+
+<ul>
+<li><code>:link</code> - Als de link een echte link is en dus een href attribuut bevat</li>
+
+<li><code>:visited</code> - Als je de link al een keer eerder hebt bezocht</li>
+
+<li><code>:hover</code> - Als je met de muis over de link gaat</li>
+
+<li><code>:active</code> - Het moment dat je op de link klikt</li>
+</ul>
+
+<p>Deze condities kun je allemaal een aparte stijl meegeven. Bijvoorbeeld:</p>
+
+<pre class='prettyprint  linenums  lang-css'><code>a       { text-decoration: none;      }
+a:hover { text-decoration: underline; }</code></pre>
+
+<p>Nu zal er een lijn onder de tekst komen als je er met je muis overheen gaat. Even voor de geïnteresseerden, alles in CSS met <code>:*</code> heten pseudo classes.</p>
+
+<h2 id='het_probleem'>Het probleem</h2>
+
+<p>Het probleem is de volgorde waarin je deze condities zet. Stel je wilt alle condities een stijl geven. Dan zul je hebben dat de ene stijl de andere overrulled en dat je daardoor nooit de echte stijl ziet.</p>
+
+<p>Stel we hebben een link waarop je al een keer bent geweest en we hebben de volgende CSS:</p>
+
+<pre class='prettyprint  linenums  lang-css'><code>a:link    { color: red;   }
+a:visited { color: green; }</code></pre>
+
+<p>Nu komt dit bij de browser binnen, hij denkt: <em>&#8216;Hé, je het is een echte link&#8217;</em> en vervolgens stijlt hij de link naar <code>color: red;</code>. Nu leest hij verder en denkt hij: <em>&#8216;Ja, hij is er al een keer eerder op geweest&#8217;</em> vervolgens overrulled hij de stijlen van <code>:link</code> in die van <code>:visited</code> en wordt de link <code>green</code>.</p>
+
+<p>Stel dat we nu <code>:link</code> en <code>:visited</code> omdraaien. Dan komt de browser eerst visited tegen, hij weet dat je hem al een keer eerder hebt bezocht en begint de anchor <code>color: green;</code> mee te geven. Vervolgens komt hij bij de volgende en denkt, ja het is een echte link. Nu worden de visited stijlen overrulled door de link stijlen en wordt de link dus <code>color: red;</code>. Het gevolg is dus dat alle stijlen van visited overrulled worden.</p>
+
+<p>Om dit te voorkomen moeten we een goede volgorde aan houden. Deze volgorde is de volgorde waarin ik in het begin deze pseudo classes heb genoemd. Laten we nu eens kijken wat er allemaal gestijld wordt als we op een link klikken die we al eens hebben bezocht:</p>
+
+<ol>
+<li>Het browser komt bij <code>:link</code> en stijlt de link naar deze stijlen</li>
+
+<li>Het browser komt bij <code>:visited</code> en denkt, <em>ja, dit ook</em>, en overrulled de stijlen van <code>:link</code></li>
+
+<li>Het browser komt bij <code>:hover</code> en ja, je gaat er met je muis over. Dus deze stijlen overrullen de vorige</li>
+
+<li>Het browser komt bij <code>:active</code> en ja, je klikt er ook nog eens op. Dus ook deze stijlen worden toegevoegd.</li>
+</ol>
+
+<p>Uiteindelijk krijgt je link dus 4 verschillende stijlen mee die elkaar allemaal overrullen.</p>
+
+<h2 id='een_ezelsbruggetje'>Een ezelsbruggetje</h2>
+
+<p>Om deze volgorde te onthouden is er een ezelsbruggetje uitgevonden die je hier al een keer bent tegen gekomen, namelijk: <strong>L</strong>o<strong>V</strong>e <strong>HA</strong>te de dik gedrukte hoofdletters vormen hier de beginletters van de pseudo classes.</p>
+    </div>
+
+    <div id="disqus_thread" class="post__comments"></div>
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'wouterjnl'; // required: replace example with your forum shortname
+        var disqus_identifier = '2012-03-19 00:00:00 +0100';
+        var disqus_title = 'LoVe HAte';
+        var disqus_developer = 1;
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</article>
+
+        </div>
+
+        <footer class="page__footer">
+            <p>&copy; Wouter J 2013</p>
+        </footer>
+    </body>
+</html>

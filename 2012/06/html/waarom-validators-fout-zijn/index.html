@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang=nl>
+    <head>
+        <meta charset=ucs-bom>
+
+        <title>Waarom ik geen voorstander van validators ben | Wouter J </title>
+
+        <link rel=stylesheet href=/css/wouterj.min.css> 
+
+        <!-- Prettifier -->
+        <script src="/libs/prettifier/google-code-prettify/prettify.js"></script>
+        <link rel=stylesheet href="/libs/prettifier/prettifier.css">
+        <script>
+            window.onload = function() {
+                prettyPrint();
+            };
+        </script>
+    </head>
+    <body class=page>
+        <header class=page__header>
+
+            <hgroup>
+                <h1 class="hN  site-title"><a href="/">Wouter J</a></h1>
+                <h3 class="hN  site-slogan">A script is more than code</h3>
+            </hgroup>
+
+            <nav class=page__nav>
+                <ul class="nav  nav--block">
+                    
+                        <li class="nav__item"><a href="/">Home</a></li>
+                    
+                        <li class="nav__item"><a href="/about">Over mij</a></li>
+                    
+                        <li class="nav__item"><a href="/archive">Archief</a></li>
+                    
+                </ul>
+            </nav>
+        </header>
+
+        <div class=page__body>
+            <article class="post  post--article">
+    <h1 class="post__heading">Waarom ik geen voorstander van validators ben</h1>
+
+    
+    <img src="/img/2012/06/validators-bad.png" class="img--stripe  img--left">
+    
+
+    <div class="post__entry">
+        <p class="post__intro">Een validator wordt door veel webscripters gezien als een heilige tool. Heb je geen fouten dan draait je website overal goed en heb je wel fouten dan is je website code eigenlijk al meteen slecht. Nu ben ik 3 jaar geleden, toen ik begon, ook zo opgevoed. Elke website die ik in elkaar zette haalde ik door de validator en ik deed er alles aan om die <em>kuch</em> mooie buttons op mijn website te mogen zetten.</p><div class="cf"></div>
+
+<p>Helaas is de validator alles behalve heilig en kun je die na een half jaar beter op een zijspoortje zetten, op weg naar Tokio.</p>
+<!--more-->
+<h2 id='semantiek_is_het_belangrijkst'>Semantiek is het belangrijkst</h2>
+
+<p>HTML gaat om het semantisch weergeven van een woordje of een stuk tekst. Helaas zal de validator alleen maar kijken of onze mark-up voldoet aan de regels, gesteld door een één of andere DTD file. Of de pagina semantisch correct is boeit hem niks. Deze pagina bijv. zou worden goed gerekend:</p>
+
+<pre class="prettyprint  linenums">"<code>&lt;!doctype html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;Hello World&lt;/title&gt;
+    &lt;meta charset=utf-8&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div&gt;Sitetitel&lt;/div&gt;
+    &lt;div&gt;Artikeltitel&lt;/div&gt;
+    &lt;div&gt;Lorem ipsum geblaat&lt;/div&gt;
+    &lt;div&gt;Nog een alinea&lt;/div&gt;
+    &lt;div&gt;Footer info&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
+<p>Even voor de duidelijkheid, dit is natuurlijk totaal verkeerd. Titels horen in heading elementen (<code>&lt;h1&gt; t/m &lt;h6&gt;</code>), een alinea hoor in een paragraph element (<code>&lt;p&gt;</code>) en een footer in een footer element (<code>&lt;footer&gt;</code>).</p>
+
+<p>Maar dit alles merkt de validator niet op. De enige waarschuwing die ik hierbij krijg is dat hij in de HTML5 validator gaat en die nog volledig in beta is&#8230;</p>
+
+<h2 id='trias_politica_de_wetgevende_macht__rechterlijke_macht'>Trias Politica: De wetgevende macht !== Rechterlijke macht</h2>
+
+<p>W3C is de partij die de regels voorschrijft, in hun hele lange, maar o zo leervolle, specificaties. De browsers volgen deze regels dan op, plus wat eigen inbreng.</p>
+
+<p>W3C moet vervolgens niet gaan controleren doormiddel van validators of de code correct is volgens het geen wat browsers zouden moeten doen. Het zou veel beter zijn als een browser zelf een validator inbouwt die je kan aanroepen. De browser weet immers hoe hij met het HTML document omgaat en weet daarom ook wat er fout is.</p>
+
+<h2 id='niet_up_to_date'>Niet up to date</h2>
+
+<p>De validators zijn totaal niet up to date. Tegenwoordig leven we bijna in het HTML5 tijdperk. De HTML5 specificaties en de HTML5 DTD zijn al lang klaar (sinds mei 2011). Het is nu slechts alleen wachten tot alle browsers dit hebben geïmplementeerd. De W3C validator is DTD based dat betekend dat ze gewoon de HTML5 DTD file kunnen laden en ze hebben een goede (voorzover een validator goed is) HTML5 validator. Waarom wachten ze er dan nog zo lang mee en hebben ze alleen maar &#8216;beta&#8217; HTML5 validators?</p>
+
+<p>Deze traagheid van W3C zorgt voor veel zorgen, vooral bij beginners. Neem nou <a href='http://www.html-site.nl/forum/1_28231_0.html'>deze persoon</a>, 415 fouten(!). Je schrikt je rot als je dat ziet. Maar als je eens bij die fouten kijkt hou je maar 5 echte fouten over. Die andere 410 fouten zijn omdat de validator niet tegen prefixes kan. Waarom bouwen ze niet in dat deze worden genegeerd, zoals het in elk browser gedaan wordt? De browsers pakken alleen de prefixen die zij gebruiken en die andere negeren ze gewoon.</p>
+
+<p>Ook de officiële syntax van bijv. <code>linear-gradient</code> kan een validator niet. Waarom? Waarom moet er zo moeilijk gedaan worden?</p>
+
+<h2 id='zeer_onduidelijke_foutmeldingen'>Zeer onduidelijke foutmeldingen</h2>
+
+<p>De validators doen geen moeite om ook maar een ietwat goede foutmelding te geven. Als je een sluit tag ergens bovenin vergeet krijg je onderin een foutmelding dat er iets niet goed is afgesloten. Met een beetje meer moeite kan je achterhalen wat er verkeerd is afgesloten. Waarom meldt je dat niet?</p>
+
+<p>Of neem nou deze voorbeeld code:</p>
+
+<pre class="prettyprint  linenums">"<code>&lt;!doctype html&gt;
+&lt;h1&gt;Sitenaam&lt;/h1&gt;</code></pre>
+
+<p>Laten we de error stap voor stap nagaan:</p>
+
+<p>&gt; Line 2, Column 4: Element head is missing a required instance of child element title.</p>
+
+<p>Als eerste, waarom krijg ik deze error pas bij het openen van een h1 element? Waarom niet vlak voor het eerste body element om te melden dat ik iets mis in de head?</p>
+
+<p>Ten tweede, &#8216;element head&#8217; hmm. Waar is mijn head element? Ben ik niet gewoon mijn hele head element vergeten? Is dat niet de fout?</p>
+
+<p>&gt; Content model for element head: &gt; If the document is an iframe srcdoc document or if title information is &gt; available from a higher-level protocol: Zero or more elements of metadata &gt; content.<br /> &gt; Otherwise: One or more elements of metadata content, of which exactly one &gt; is a title element.</p>
+
+<p>Hier begrijp ik dus bar weinig van, een beginner al helemaal niks. Het wil zo&#8217;n beetje zeggen dat een title element verplicht is (2e zin) behalve als het een iFrame srcdoc document (joost mag weten wat dat is) of als de title information in een higher-level protocol (??) staat.</p>
+
+<p>Ik ga er maar vanuit dat dit geen iFrame srcdoc document is en dat er geen higher-level protocol bestaat. Dus dan zal ik wel verplicht een title element in een één of andere head element moeten plaatsen&#8230;</p>
+
+<h2 id='mooie_richtlijn_maar_heilignee'>Mooie richtlijn, maar heilig&#8230;nee</h2>
+
+<p>Validators zijn een mooie richtlijn om te gebruiken voor je code. Maar laat je niet belemmeren door de validator. Als jij een mooie pagina die goed in elkaar zit en die mooi modern is met nieuwe technieken dan moet je dat niet gaan verwijderen omdat de validator het niet leuk vind. Laat die validator lekker denken wat hij wil denken, maar ga zelf gewoon lekker door met waar je goed in bent.</p>
+
+<h3 id='beginners'>Beginners</h3>
+
+<p>Voor beginners is het, mochten ze de errors doorkrijgen, een goed punt om te zien waar grenzen liggen. Maar als je op gegeven moment ver genoeg ben in HTML dat je zelf weet wat wel en niet zou mogen dan moet je die dingen niet gebruiken.</p>
+
+<h3 id='denk_goed_na'>Denk goed na</h3>
+
+<p>Ik zal altijd blijven verkondigen dat je bij al je code die je schrijft een gedachte erachter moet hebben. Heb je dat niet dan moet je de code verwijderen en opnieuw beginnen. Zo werkt het ook met HTML. Schrijf HTML met een gedachte probeer HTML op een zo semantisch correcte methode te schrijven. Je zult zien dat de rest (browser support) vanzelf komt. Meer over semantiek kun je in <a href='http://www.phphulp.nl/php/tutorial/html-ajax-css-javascript/html-en-semantiek/785/'>deze tutorial</a> (van Jeroen vd en mij) lezen.</p>
+    </div>
+
+    <div id="disqus_thread" class="post__comments"></div>
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'wouterjnl'; // required: replace example with your forum shortname
+        var disqus_identifier = '2012-06-03 00:00:00 +0200';
+        var disqus_title = 'Waarom ik geen voorstander van validators ben';
+        var disqus_developer = 1;
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</article>
+
+        </div>
+
+        <footer class="page__footer">
+            <p>&copy; Wouter J 2013</p>
+        </footer>
+    </body>
+</html>

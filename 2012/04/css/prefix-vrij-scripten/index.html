@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang=nl>
+    <head>
+        <meta charset=ucs-bom>
+
+        <title>5 oplossingen voor de vendors | Wouter J </title>
+
+        <link rel=stylesheet href=/css/wouterj.min.css> 
+
+        <!-- Prettifier -->
+        <script src="/libs/prettifier/google-code-prettify/prettify.js"></script>
+        <link rel=stylesheet href="/libs/prettifier/prettifier.css">
+        <script>
+            window.onload = function() {
+                prettyPrint();
+            };
+        </script>
+    </head>
+    <body class=page>
+        <header class=page__header>
+
+            <hgroup>
+                <h1 class="hN  site-title"><a href="/">Wouter J</a></h1>
+                <h3 class="hN  site-slogan">A script is more than code</h3>
+            </hgroup>
+
+            <nav class=page__nav>
+                <ul class="nav  nav--block">
+                    
+                        <li class="nav__item"><a href="/">Home</a></li>
+                    
+                        <li class="nav__item"><a href="/about">Over mij</a></li>
+                    
+                        <li class="nav__item"><a href="/archive">Archief</a></li>
+                    
+                </ul>
+            </nav>
+        </header>
+
+        <div class=page__body>
+            <article class="post  post--article">
+    <h1 class="post__heading">5 oplossingen voor de vendors</h1>
+
+    
+    <img src="/img/2012/04/prefix-free-thumb.png" class="img--stripe  img--left">
+    
+
+    <div class="post__entry">
+        <p class="post__intro">CSS3 vind ik geweldig, maar die prefixen zijn natuurlijk totaal niet handig. Vooral als je ook nog verschillende syntaxen en waardes per prefix hebt. Aangezien veel mensen met deze onhandige prefixen te maken hebben zijn er diverse dingen bedacht. Een paar die ik ben tegenkomen wil ik vandaag met jullie delen.</p><div class="cf"></div>
+<!--more-->
+<p>De tools die ik hier bespreek zijn:</p>
+
+<ol>
+<li><a href='#prefixr'>Prefixr</a></li>
+
+<li><a href='#compass'>SASS + Compass</a></li>
+
+<li><a href='#prefix-free'>-Prefix-free</a></li>
+
+<li><a href='#css3-please'>CSS3 Please</a></li>
+
+<li><a href='#webkit-in-moz'>Waarom niet alleen <code>-webkit-</code>?</a></li>
+</ol>
+
+<h2 id='prefixr'>Prefixr</h2>
+
+<p><img class="img--stripe" alt='de prefixr tool' src='/img/2012/04/prefix-free-prefixr.png' /></p>
+
+<p>De eerste die ik wil bespreken is <a href='http://prefixr.com/'>Prefixr</a>. Prefixr is een geweldig simpele tool met een uitgebreid API systeem waarbij je alle CSS3 properties automatisch kunt prefixen. Stel we hebben het volgende:</p>
+
+<pre class='prettyprint  linenums  lang-css'><code>#box {
+    width:100px;
+    height:100px;
+    background:red;
+    background:-webkit-linear-gradient(
+        top,
+        #000,
+        #555
+    );
+    -moz-border-radius:5em;
+    box-shadow:2px 3px 4px #2d2d2d;
+}</code></pre>
+
+<p>Nu hebben we maar 1 prefix per CSS3 propertie en bij de laatste zelfs helemaal geen één. Als we deze code in Prefixr stoppen en op Prefixize klikken krijgen we daaruit deze code:</p>
+
+<pre class='prettyprint  linenums  lang-css'><code>#box {
+    width: 100px;
+    height: 100px;
+    background: red;
+
+    background: -webkit-linear-gradient( top, #000, #555 );
+    background: -moz-linear-gradient( top, #000, #555 );
+    background: -o-linear-gradient( top, #000, #555 );
+    background: -ms-linear-gradient( top, #000, #555 );
+    background: linear-gradient( top, #000, #555 );
+
+    -webkit-border-radius: 5em;
+    -moz-border-radius: 5em;
+    border-radius: 5em;
+
+    -webkit-box-shadow: 2px 3px 4px #2d2d2d;
+    -moz-box-shadow: 2px 3px 4px #2d2d2d;
+    box-shadow: 2px 3px 4px #2d2d2d;
+}</code></pre>
+
+<p>Deze bevat alle mogelijke prefixen voor de properties, helaas wordt de oude gradient syntax van webkit er niet in gestopt.</p>
+
+<h3 id='api'>API</h3>
+
+<p>Prefixr heeft een api systeem, waardoor je deze code als extensie of plugin op je editor kan gebruiken. Een overzicht van al hun API&#8217;s kun je op hun <a href='http://www.prefixr.com/api/usage/'>api pagina</a> vinden.</p>
+
+<p>Maar prefixr heeft nog veel andere features die het zo&#8217;n leuke tool maakt:</p>
+
+<h3 id='compressing'>Compressing</h3>
+
+<p>Als je een site online zet wil je die snel laten werken, een manier om te krijgen is door alle onnodige whitespace weg te halen. Als je Compress My Code aanzet wordt dit automatisch gedaan. De bovenstaande code wordt dan:</p>
+
+<pre class='prettyprint  linenums  lang-css'><code>#box{width:100px;height:100px;background:red;background:-webkit-linear-gradient( top, #000, #555 );background:-moz-linear-gradient( top, #000, #555 );background:-o-linear-gradient( top, #000, #555 );background:-ms-linear-gradient( top, #000, #555 );background:linear-gradient( top, #000, #555 );-webkit-border-radius:5em;-moz-border-radius:5em;border-radius:5em;-webkit-box-shadow:2px 3px 4px #2d2d2d;-moz-box-shadow:2px 3px 4px #2d2d2d;box-shadow:2px 3px 4px #2d2d2d;}</code></pre>
+
+<h3 id='exclude'>Exclude</h3>
+
+<p>Als je juist van een code prefixes weg wilt halen kun je met exclude beslissen welke prefixes er niet moeten worden toegepast.</p>
+
+<h3 id='variabelen'>Variabelen</h3>
+
+<p>Prefixr begint zelfs steeds meer te lijken op een CSS precompessor (als SASS of Stylus) en kan zelfs werken met variabelen:</p>
+
+<pre class='prettyprint  linenums  lang-css'><code>@variables {
+    main_color:red;  
+}
+#box {
+    /* ... */
+    background:var(main_color);  
+}
+#container {
+    /* ... */
+    border-color:var(main_color);
+}</code></pre>
+
+<p>Wordt:</p>
+
+<pre class='prettyprint  linenums  lang-css'><code>#box {
+    /* ... */
+    background: red;
+}
+#container {
+    /* ... */
+    border-color: red;
+}</code></pre>
+
+<h2 id='compass'>SASS + Compass (en andere CSS precompressors)</h2>
+
+<p><img class="img--stripe" alt='SASS compass framework' src='/img/2012/04/prefix-free-compass.png' /></p>
+
+<p>Een andere optie die ik zeer kan aanraden is het gebruik van een CSS precompressor. Een precompressor voegt handige functies, syntaxes en andere dingen toe aan CSS waardoor het CSS schrijven makkelijker en leuker wordt. Precompressors zijn bijv. SASS, Stylus of LESS. De CSS die je schrijft gaat door de compressor en die maakt er een normale CSS file van voor het browser.</p>
+
+<p>SASS en Stylus zijn de precompressors die ik vaak gebruik. <a href='http://sass-lang.com/'>SASS</a>&lt;/a&gt; is erg mooi en het heeft een geweldig framework: <a href='http://compass-style.org/'>Compass</a>. Deze bevat ook functies waarmee je niet telkens alle prefixes hoeft te schrijven.</p>
+
+<h3 id='compass_css3_module'>Compass CSS3 module</h3>
+
+<p>Compass bevat heel wat mooie modules, maar de CSS3 module is degene waar we vandaag naar kijken. Laten we eens zien hoe we een <code>box-shadow</code> in Compass maken. Ik neem aan dat we SASS kennen en kunt omgaan met Compass, zo niet dan raad ik je aan dit eerst te gaan leren.</p>
+
+<p>Nu nemen we een kijkje in <a href='http://compass-style.org/reference/compass/css3/box_shadow/'>de documentatie over box-shadow</a>, we zien hier dat we het bestand <code>compass/css3/box-shadow</code> moeten includen en dan kunnen we de <code>box-shadow</code> mixin gebruiken. Deze werkt als volgt:</p>
+
+<pre class='prettyprint  linenums  lang-css'><code>@import &quot;compass/css3/box-shadow&quot;;
+#box {
+    width:100px;
+    height:100px;
+    @include box-shadow(2px 3px 5px #2d2d2d);
+}</code></pre>
+
+<p>Wordt:</p>
+
+<pre class='prettyprint  linenums  lang-css'><code>#box {
+    width:100px;
+    height:100px;
+    -webkit-box-shadow:2px 3px 5px #2d2d2d;
+    -moz-box-shadow:2px 3px 5px #2d2d2d;
+    box-shadow:2px 3px 5px #2d2d2d;
+}</code></pre>
+
+<h2 id='prefix-free'>Prefix-free</h2>
+
+<p><img class="img--stripe" alt='Prefix-free client side tool' src='/img/2012/04/prefix-free-prefix-free.png' /></p>
+
+<p>Prefix-free is een andere oplossing die client-side werkt. In tegenstelling tot de hierboven genoemde opties kan dit dus wel voor een tragere snelheid op je website zorgen. Maar desondanks is het wel een tool die erg mooi gemaakt is en goed werkt, daarom bespreek ik hem hier ook.</p>
+
+<h3 id='inladen_in_het_script'>Inladen in het script</h3>
+
+<p>Prefix-free is een JS API die, als de pagina geladen wordt, alle stylesheets in de <code>link</code> elementen en alle <code>style</code> elementen aanpast zodat hij alle prefixen erin zet. Je hoeft in je stylesheet dus alleen maar de officiële versie (dus zonder prefixen) te gebruiken.</p>
+
+<p>Allereerst moeten we de JS file downloaden. Dit doen we door naar de <a href='http://leaverou.github.com/prefixfree/'>Homepagina van Prefix-free</a> te gaan en dan op de download button te klikken. Dit bestand kun je vervolgens opslaan in je webhost, of je kunt gewoon direct naar dit scriptfile linken. De url voeg je dan toe doormiddel van een <code>script</code> element:</p>
+
+<pre class="prettyprint  linenums">"<code>&lt;script src=&quot;https://raw.github.com/LeaVerou/prefixfree/master/prefixfree.min.js&quot;&gt;&lt;/script&gt;</code></pre>
+
+<p>Nu ben je al klaar en werkt het!</p>
+
+<h2 id='css3-please'>CSS3 please</h2>
+
+<p><img class="img--stripe" alt='de CSS3 please website' src='/img/2012/04/prefix-free-css3-please.png' /></p>
+
+<p><a href='http://css3please.com/'>CSS3 please</a> vind ik zelf de minst mooie optie die ik hier plaats. Het is een leuke one-page app voor als je kleine dingentjes snel wil prefixen, maar in grote projecten is het veel te langzaam om elke CSS3 propertie eerst helemaal te maken in CSS3 please. <strong>Maar CSS3 please heeft ook een voordeel, en dat is dat het het niet alleen prefixen ervoor plaatst, maar ook laat zien hoe je browser problemen kunt oplossen. Ook heeft het her en der IE filters, zodat dingen ook werken in IE5.5+</strong></p>
+
+<h3 id='hoe_werkt_css3_please'>Hoe werkt CSS3 please?</h3>
+
+<p>CSS3 please is een webpagina die eigenlijk helemaal vol zit met allemaal CSS3 stijlen. Je kunt van 1 propertie de waardes veranderen en dan veranderd het automatisch ook bij de andere prefixen. Tevens is de box die links bovenin staat een live voorbeeld van de code die je maakt.</p>
+
+<p>Laten we eens beginnen met het maken van <code>border-radius</code>. We willen een radius van <code>15px</code>. De bovenste code op de pagina is die voor een <code>border-radius</code>. De standaard CSS3 please waarde is <code>12px</code> om dit te wijzigen klik je op deze onderstreepte waarde en vul je jou waarde in. Als we nu eens iets heel groots in vullen zien we dat de box ernaast meteen ook van radius veranderd. Als je het goed vind kun je op <code>[to clipboard]</code> klikken en de code in je stylesheet plakken. Maar we zien nog wat anders, CSS3 please voegt deze regel ook nog toe aan de class:</p>
+
+<pre class='prettyprint  linenums  lang-css'><code>/* useful if you don&#39;t want a bg color from leaking outside the border: */
+-moz-background-clip: padding; -webkit-background-clip: padding-box; background-clip: padding-box;</code></pre>
+
+<p>Hiermee zorgen we dat de bug dat de background geen radius krijgt opgelost is.</p>
+
+<p>Maar wat als we nou bijv. geen border-radius op de box willen zien? Dan kunnen we heel makkelijk op <code>[toggle rule off]</code> klikken dan wordt de code omvangen door een comment en is die niet meer zichtbaar.</p>
+
+<h2 id='webkit-in-moz'>Waarom niet alleen <code>-webkit-</code>?</h2>
+
+<p><img class="img--stripe" alt='webkit vendors ten opzichte van andere' src='/img/2012/04/prefix-free-moz-webkit.png' /></p>
+
+<p>Waarom zullen we niet alleen de webkit prefix gebruiken? FireFox heeft ontdekt bij <a href='https://bug708406.bugzilla.mozilla.org/attachment.cgi?id=579826'>een onderzoek</a> dat de moz prefix vaak wordt vergeten en er alleen een webkit prefix bestaat. Daarom hebben ze bedacht dat ze ook maar gaan werken met de webkit prefix. Sinds begin 2012 accepteert FireFox dus ook de webkit prefixes. De webkit prefix bevat nu dus al 3 browsers: Chrome, Safari en FireFox. Omdat het dus al 3/5 van de grote browsers is denk ik dat Opera al heel snel overstapt naar de webkit prefix en dan hou je alleen IE nog over. En tja, IE bevat sinds IE5.5 al bijna alle CSS3 properties in de vorm van hun geweldige filter systeem dus dat is ook zo opgelost. Dit is zomaar een wild idee en ik zou het nog niet doen, maar het geeft je misschien wat stof om over na te denken.</p>
+
+<h2 id='en_jij'>En jij?</h2>
+
+<p>Er zullen vast nog wel meer dingen op de markt zijn. Dus daarbij mijn vraag, wat gebruik jij en waarom?</p>
+    </div>
+
+    <div id="disqus_thread" class="post__comments"></div>
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'wouterjnl'; // required: replace example with your forum shortname
+        var disqus_identifier = '2012-04-03 00:00:00 +0200';
+        var disqus_title = '5 oplossingen voor de vendors';
+        var disqus_developer = 1;
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</article>
+
+        </div>
+
+        <footer class="page__footer">
+            <p>&copy; Wouter J 2013</p>
+        </footer>
+    </body>
+</html>

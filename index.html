@@ -1,24 +1,187 @@
----
-layout: default
----
-{% assign i = 1 %}
-<ul class="gw" id="js-posts">
-    {% for post in paginator.posts %}
-    <li class="g  one-whole  desk-{% case i %}{% when 1 %}eight-twelfths{% when 2 %}four-twelfths{% else %}one-half{% endcase %}">
-        <article class="post{% if post.type != null %}  post--{{ post.type }}{% endif %}{% if i == 1 or i == 2 %}  post--featured{% endif %}">
-            <h1 class="post__heading  post__heading{% case i %}{% when 1 %}--alpha{% when 2 %}--beta{% else %}--gamma{% endcase %}"><a href="{{ post.url }}">{{ post.title }}</a></h1>
+<!doctype html>
+<html lang=nl>
+    <head>
+        <meta charset=ucs-bom>
 
-            {% if post.thumbnail != null %}
-            <img src="{{ post.thumbnail_url }}" class="img--stripe  img--{% case i %}{% when 1 %}medium{% else %}short{% endcase %}  img--left">
-            {% endif %}
+        <title>Wouter J | Een script is meer dan code alleen</title>
+
+        <link rel=stylesheet href=/css/wouterj.min.css> 
+    </head>
+    <body class=page>
+        <header class=page__header>
+
+            <hgroup>
+                <h1 class="hN  site-title"><a href="/">Wouter J</a></h1>
+                <h3 class="hN  site-slogan">A script is more than code</h3>
+            </hgroup>
+
+            <nav class=page__nav>
+                <ul class="nav  nav--block">
+                    
+                        <li class="nav__item"><a href="/">Home</a></li>
+                    
+                        <li class="nav__item"><a href="/about">Over mij</a></li>
+                    
+                        <li class="nav__item"><a href="/archive">Archief</a></li>
+                    
+                </ul>
+            </nav>
+        </header>
+
+        <div class=page__body>
+            
+<ul class="gw" id="js-posts">
+    
+    <li class="g  one-whole  desk-eight-twelfths">
+        <article class="post  post--article  post--featured">
+            <h1 class="post__heading  post__heading--alpha"><a href="/2012/12/php/hoe-leer-ik-symfony2/">Hoe leer ik Symfony2?</a></h1>
+
+            
+            <img src="/img/2012/12/symfony-leren-thumb.png" class="img--stripe  img--medium  img--left">
+            
             <div class="post__entry  post__entry--excerpt">
-                {{ post.content|excerpt }}
+                <p>Bijna iedereen weet wel dat ik een fan ben van Symfony2 en alles wat er mee te maken heeft. Door mijn enthousiasme wil iedereen het wel eens proberen en daardoor krijg ik vaak de vraag hoe je nu het beste Symfony2 kunt leren.</p>
+
             </div>
         </article>
     </li>
 
-    {% assign i = i|plus:1 %}
-    {% endfor %}
+    
+    
+    <li class="g  one-whole  desk-four-twelfths">
+        <article class="post  post--article  post--featured">
+            <h1 class="post__heading  post__heading--beta"><a href="/2012/12/nieuws/community-bedankt/">Community: Bedankt!</a></h1>
+
+            
+            <div class="post__entry  post__entry--excerpt">
+                <p>Het is vandaag weer kerst. Tijd om na te denken over wat je dit jaar gedaan hebt, wat je volgend jaar wilt doen en wie je allemaal moet bedanken.</p>
+
+            </div>
+        </article>
+    </li>
+
+    
+    
+    <li class="g  one-whole  desk-one-half">
+        <article class="post  post--article">
+            <h1 class="post__heading  post__heading--gamma"><a href="/2012/10/nieuws/wat-de-nieuwsbrief-niet-haalde/">Wat de nieuwsbrief niet haalde</a></h1>
+
+            
+            <div class="post__entry  post__entry--excerpt">
+                <p>Elke maand heb ik teveel linkjes om allemaal in de nieuwsbrief te stoppen. Het is zonde als deze linkjes het zwarte gat in gaan, daarom post ik elke maand een blogpost met de linkjes die dit keer niet in de nieuwsbrief paste.</p>
+
+            </div>
+        </article>
+    </li>
+
+    
+    
+    <li class="g  one-whole  desk-one-half">
+        <article class="post  post--article">
+            <h1 class="post__heading  post__heading--gamma"><a href="/2012/09/nieuws/abonneer-op-de-nieuwsbrief/">Abonneer op de nieuwsbrief!</a></h1>
+
+            
+            <div class="post__entry  post__entry--excerpt">
+                <p>Er gebeurd enorm veel op het gebied van webdevelopment. Van nieuwe technieken tot nieuwe tools en van nieuwe versies tot nieuwe blogposts. Meld je aan op de nieuwsbrief en blijf op de hoogte!</p>
+
+            </div>
+        </article>
+    </li>
+
+    
+    
+    <li class="g  one-whole  desk-one-half">
+        <article class="post  post--article">
+            <h1 class="post__heading  post__heading--gamma"><a href="/2012/09/nieuws/webplatfrom-gelanceerd/">Webplatform.org gelanceerd</a></h1>
+
+            
+            <img src="/img/2012/09/webplatform-thumb.png" class="img--stripe  img--short  img--left">
+            
+            <div class="post__entry  post__entry--excerpt">
+                <p>Vanmiddag is <a href='http://webplatform.org/'>WebPlatform.org</a> gelanceerd, de website is een nieuwe samenwerking tussen groten partijen in de ontwikkeling van het web. Het is bedoelt om de grootste en beste documentatie voor het web te worden.</p>
+
+            </div>
+        </article>
+    </li>
+
+    
+    
+    <li class="g  one-whole  desk-one-half">
+        <article class="post  post--article">
+            <h1 class="post__heading  post__heading--gamma"><a href="/2012/09/nieuws/jquery-ui-1.9-released/">Eindelijk is jQuery UI 1.9 een feit</a></h1>
+
+            
+            <div class="post__entry  post__entry--excerpt">
+                <p>Er is lang op gewacht, maar vandaag is hij uitgekomen: <a href='http://blog.jqueryui.com/2012/10/jquery-ui-1-9-0/'>versie 1.9 van jQuery UI</a>. Het is een grote stap richting het doel voor een duidelijkere API.</p>
+
+            </div>
+        </article>
+    </li>
+
+    
+    
+    <li class="g  one-whole  desk-one-half">
+        <article class="post  post--article">
+            <h1 class="post__heading  post__heading--gamma"><a href="/2012/08/css/sticky-positioneren/">CSS bleeding edge: Sticky Positioneren</a></h1>
+
+            
+            <div class="post__entry  post__entry--excerpt">
+                <p>Vandaag bespreek ik een echte bleeding edge: Er is nog geen specificatie voor en het is gister beland in de alpha channel van Chrome.</p>
+
+            </div>
+        </article>
+    </li>
+
+    
+    
+    <li class="g  one-whole  desk-one-half">
+        <article class="post  post--article">
+            <h1 class="post__heading  post__heading--gamma"><a href="/2012/08/nieuws/html5-boilerplate-v4/">HTML5 Boilerplate 4.0</a></h1>
+
+            
+            <img src="/img/2012/08/h5bp-v4-thumb.png" class="img--stripe  img--short  img--left">
+            
+            <div class="post__entry  post__entry--excerpt">
+                <p>HTML5 boilerplate, de populairste front-end template, is vandaag overgegaan naar de 4e versie. Tijd om er wat verder in te duiken.</p>
+
+            </div>
+        </article>
+    </li>
+
+    
+    
+    <li class="g  one-whole  desk-one-half">
+        <article class="post  post--article">
+            <h1 class="post__heading  post__heading--gamma"><a href="/2012/07/php/werken-met-composer/">Werken met Composer</a></h1>
+
+            
+            <img src="/img/2012/07/composer-thumb.png" class="img--stripe  img--short  img--left">
+            
+            <div class="post__entry  post__entry--excerpt">
+                <p>Je hebt vast wel eens gewerkt met Ruby of Node.js en je hebt vast wel eens gedroomd hoe geweldig het niet zal zijn om een Gem (ruby) of Npm (node.js) te hebben voor PHP. Nu is het tijd om je dromen werkelijkheid te maken!</p>
+
+            </div>
+        </article>
+    </li>
+
+    
+    
+    <li class="g  one-whole  desk-one-half">
+        <article class="post  post--article">
+            <h1 class="post__heading  post__heading--gamma"><a href="/2012/06/oo/oo-de-onbekende-kant/">OO: De onbekende kant</a></h1>
+
+            
+            <img src="/img/2012/06/oo-onbekende-kant-thumb.png" class="img--stripe  img--short  img--left">
+            
+            <div class="post__entry  post__entry--excerpt">
+                <p>OO, elke beginner weet het wel: Denken in objecten en dat omzetten in een script. Maar OO is veel en veel meer, laat me even kennis maken met de, voor velen, onbekende kant van OO.</p>
+
+            </div>
+        </article>
+    </li>
+
+    
+    
 
     <li class="g  one-whole  desk-one-half">
         <article class="post  post--about">
@@ -38,7 +201,7 @@ layout: default
 
             <div class="post__entry">
                 <p>Ik een enorme voorstander van open source en help graag de PHP community een stapje verder. Hierdoor ben ik dagelijks te vinden op GitHub. Ik ben het drukst met <a href="http://github.com/symfony/symfony-docs">de Symfony2 Documentatie</a>. Andere projecten waaraan ik meedoe zijn:
-                {% github_user WouterJ %}
+                Faker, symfony-docs, symfony, SonataAdminBundle
                 </p>
             </div>
         </article>
@@ -64,3 +227,11 @@ layout: default
     });
 }();
 </script>
+
+        </div>
+
+        <footer class="page__footer">
+            <p>&copy; Wouter J 2013</p>
+        </footer>
+    </body>
+</html>

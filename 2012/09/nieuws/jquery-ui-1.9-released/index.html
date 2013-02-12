@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang=nl>
+    <head>
+        <meta charset=ucs-bom>
+
+        <title>Eindelijk is jQuery UI 1.9 een feit | Wouter J </title>
+
+        <link rel=stylesheet href=/css/wouterj.min.css> 
+
+        <!-- Prettifier -->
+        <script src="/libs/prettifier/google-code-prettify/prettify.js"></script>
+        <link rel=stylesheet href="/libs/prettifier/prettifier.css">
+        <script>
+            window.onload = function() {
+                prettyPrint();
+            };
+        </script>
+    </head>
+    <body class=page>
+        <header class=page__header>
+
+            <hgroup>
+                <h1 class="hN  site-title"><a href="/">Wouter J</a></h1>
+                <h3 class="hN  site-slogan">A script is more than code</h3>
+            </hgroup>
+
+            <nav class=page__nav>
+                <ul class="nav  nav--block">
+                    
+                        <li class="nav__item"><a href="/">Home</a></li>
+                    
+                        <li class="nav__item"><a href="/about">Over mij</a></li>
+                    
+                        <li class="nav__item"><a href="/archive">Archief</a></li>
+                    
+                </ul>
+            </nav>
+        </header>
+
+        <div class=page__body>
+            <article class="post  post--article">
+    <h1 class="post__heading">Eindelijk is jQuery UI 1.9 een feit</h1>
+
+    
+
+    <div class="post__entry">
+        <p class="post__intro">Er is lang op gewacht, maar vandaag is hij uitgekomen: <a href='http://blog.jqueryui.com/2012/10/jquery-ui-1-9-0/'>versie 1.9 van jQuery UI</a>. Het is een grote stap richting het doel voor een duidelijkere API.</p><div class="cf"></div>
+<!--more-->
+<h2 id='wat_is_jquery_ui'>Wat is jQuery UI?</h2>
+
+<p>Voor de lezers die jQuery UI niet kennen, het is de User Interface API van jQuery. Het is een uitbereiding van de jQuery libary met een aantal handige functies en een stylesheet voor standaard stijlen. Sommige veel gebruikte jQuery plugins zijn verbeterd en geplaatst in deze UI API. Hierdoor bevat het geweldige functies voor accordion menu’s, demo’s, effecten en veel meer.</p>
+
+<h2 id='het_redesingen_van_de_api'>Het redesingen van de API</h2>
+
+<p>Zoals je net las is de API ontstaan uit verschillende bronnen. Hierdoor was de API rommelig en waren er verschillen tussen dingen waar geen verschil hoorden te zijn. <a href='http://blog.jqueryui.com/2011/03/api-redesigns-the-past-present-and-future/'>Het jQuery UI team</a> stelde zelf een doel deze API gelijk te maken en te zorgen dat hij zo gebruikersvriendelijk als mogelijk is.</p>
+
+<p>In versie 1.9 is hier veel aandacht aan besteed en daardoor zijn de API’s van <a href='http://forum.jquery.com/topic/accordion-api-redesign'>de accordion</a>, <a href='http://forum.jquery.com/topic/tabs-api-redesign'>taps</a> en <a href='http://forum.jquery.com/topic/position-api-redesign'>position</a> compleet herschreven.</p>
+
+<h3 id='deprecated'>Deprecated</h3>
+
+<p>Herschrijven van functies zorgt ervoor dat de oude niet meer gebruikt moeten worden. Vele functies zijn dan ook deprecated. In jQuery UI 1.9 wordt je dan gewaarschuwd als je een van die functies gebruikt, maar het zal nog gewoon werken. Vanaf jQuery 1.10 zullen de functies verwijderd worden. Hierdoor kun je je scripts nu al klaar maken voor jQuery 1.10.</p>
+
+<p>Mocht je de flags niet willen kun je deze uitzetten kun je deze code gebruiken, waarbij je zelf de juiste paden naar de code moet neerzetten:</p>
+
+<pre class="prettyprint  linenums">"<code>&lt;script src=&quot;.../jquery.js&quot;&gt;&lt;/script&gt;
+&lt;script&gt;$.uiBackCompat = false;&lt;/script&gt;
+&lt;script src=&quot;.../jquery-ui.js&quot;&gt;&lt;/script&gt;</code></pre>
+
+<h2 id='nieuwe_functies'>Nieuwe functies</h2>
+
+<p>En natuurlijk zijn er ook een aantal functies toegevoegd:</p>
+
+<h3 id='menu'><a href='http://jqueryui.com/menu/'>Menu</a></h3>
+
+<p>De Menu API zat al in de vorige versie, maar hij was verborgen. Vanaf 1.9 is hij makkelijk te vinden en te gebruiken en wordt hij ook gedocumenteerd.</p>
+
+<h3 id='spinner'><a href='http://jqueryui.com/spinner'>Spinner</a></h3>
+
+<p>HTML5 leverde een <code>&lt;input type=number&gt;</code> type waarde. Dit is de JavaScript versie daarvan voor browsers die dit nog niet ondersteunen.</p>
+
+<h3 id='tooltip'><a href='http://jqueryui.com/tooltip'>Tooltip</a></h3>
+
+<p>De tooltip is iets wat makkelijk zelf te bouwen is, maar jQuery UI heeft deze zelfgebouwde versies verbeterd tot het maximum met vele handige extra’s.</p>
+
+<h2 id='documentatie_website'>Documentatie website</h2>
+
+<p>Een minpunt van jQuery UI was altijd de ontbrekende documentatie. Sinds 1.9 heeft jQuery UI eindelijk een documentatie die te bereiken is op <a href='http://api.jqueryui.com/'>api.jqueryui.com</a></p>
+
+<h2 id='nieuwe_website'>Nieuwe website</h2>
+
+<p>Ook het design van de jqueryui website zelf is vernieuwd, het is zelfs responsive gemaakt. Dit alles voor een betere gebruikersvriendelijkheid, een woord dat centraal staat in deze update.</p>
+
+<h2 id='verdere_veranderingen'>Verdere veranderingen</h2>
+
+<p>Natuurlijk is er nog veel meer veranderd, lees nu <a href='http://jqueryui.com/upgrade-guide/1.9/'>de upgrade guide</a> voor alle informatie hoe je je jQuery UI 1.8 scripts kunt omzetten in 1.9.</p>
+    </div>
+
+    <div id="disqus_thread" class="post__comments"></div>
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'wouterjnl'; // required: replace example with your forum shortname
+        var disqus_identifier = '2012-09-08 00:00:00 +0200';
+        var disqus_title = 'Eindelijk is jQuery UI 1.9 een feit';
+        var disqus_developer = 1;
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</article>
+
+        </div>
+
+        <footer class="page__footer">
+            <p>&copy; Wouter J 2013</p>
+        </footer>
+    </body>
+</html>

@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang=nl>
+    <head>
+        <meta charset=ucs-bom>
+
+        <title>Werken met Composer | Wouter J </title>
+
+        <link rel=stylesheet href=/css/wouterj.min.css> 
+
+        <!-- Prettifier -->
+        <script src="/libs/prettifier/google-code-prettify/prettify.js"></script>
+        <link rel=stylesheet href="/libs/prettifier/prettifier.css">
+        <script>
+            window.onload = function() {
+                prettyPrint();
+            };
+        </script>
+    </head>
+    <body class=page>
+        <header class=page__header>
+
+            <hgroup>
+                <h1 class="hN  site-title"><a href="/">Wouter J</a></h1>
+                <h3 class="hN  site-slogan">A script is more than code</h3>
+            </hgroup>
+
+            <nav class=page__nav>
+                <ul class="nav  nav--block">
+                    
+                        <li class="nav__item"><a href="/">Home</a></li>
+                    
+                        <li class="nav__item"><a href="/about">Over mij</a></li>
+                    
+                        <li class="nav__item"><a href="/archive">Archief</a></li>
+                    
+                </ul>
+            </nav>
+        </header>
+
+        <div class=page__body>
+            <article class="post  post--article">
+    <h1 class="post__heading">Werken met Composer</h1>
+
+    
+    <img src="/img/2012/07/composer-thumb.png" class="img--stripe  img--left">
+    
+
+    <div class="post__entry">
+        <p class="post__intro">Je hebt vast wel eens gewerkt met Ruby of Node.js en je hebt vast wel eens gedroomd hoe geweldig het niet zal zijn om een Gem (ruby) of Npm (node.js) te hebben voor PHP. Nu is het tijd om je dromen werkelijkheid te maken!</p><div class="cf"></div>
+<!--more-->
+<h2 id='wat_is_een_dependency_manager'>Wat is een dependency manager?</h2>
+
+<p>Met een dependency manager kun je makkelijk en snel libaries, die je project gebruikt, inladen. Deze libaries worden vaak third-party libaries genoemd. Het Symfony Framework gebruikt bijv. voor het mailen Swiftmailer, dat is een third-party libary. Als je een website maakt met jQuery dan is jQuery een third-party libary voor jou website.</p>
+
+<p>Deze libaries moest je eerst altijd handmatig downloaden en dan in je project plaatsen. Als je een nieuwe versie wilde moest je het weer opnieuw downloaden en die andere verwijderen.</p>
+
+<p>Een dependency manager helpt je hierbij, nouja helpen, je hoeft er eigenlijk bijna niks meer voor te doen. Als je een project maakt maak je een <code>composer.json</code> bestand waarin je schrijft welke third-party libaries je wilt en welke versie. Vervolgens hoef je alleen maar <code>composer install</code> uit te voeren en je hebt alle benodigde libaries.</p>
+
+<h2 id='composer_installeren_windows'>Composer installeren (windows)</h2>
+
+<p>Als eerst moeten we natuurlijk composer installeren. Dat doen we door naar de <a href='http://getcomposer.org/download/'>download pagina</a> te gaan en de laatste versie te downloaden.</p>
+
+<p>Als je het hebt gedownload kun je composer gebruiken via het command panel (cmd). Als je hier nog nooit mee hebt gewerkt even een korte tutorial:</p>
+<hr />
+<p>Als je het cmd opent (ga naar Start en vul bij ‘zoekopdracht starten’ cmd in) zie je een zwart scherm voor je. Je ziet hier eerst het path waar we inzitten en daarna een <code>&gt;</code> en daarna kan je typen.</p>
+
+<p>Het CMD werkt met commands om alles te doen. Stel we zijn nu in <code>C:\Users\Acme</code> en we willen naar <code>C:\Users\Acme\projects</code> dan doen we:</p>
+
+<pre class="prettyprint  linenums">"<code>C:\Users\Acme&gt; cd projects</code></pre>
+
+<p>Stel we willen naar <code>E:\wamp\www\myProject</code> dan moet dat in 2 stappen: Eerst moeten we naar de andere schrijf (E) en daarna gaan we naar de juiste map:</p>
+
+<pre class="prettyprint  linenums">"<code>C:\Users\Acme\projects&gt; e:
+E:\&gt; cd wamp/www/myProject</code></pre>
+
+<p>Dit spreekt wel voorzich denk ik. Als je nu wilt weten welke bestanden er in deze map zitten gebruik je het ls command:</p>
+
+<pre class="prettyprint  linenums">"<code>E:\wamp\www\myProject&gt; ls
+css         img         js
+index.php   .htaccess</code></pre>
+<hr />
+<p>I.p.v. de standaard command (cd, ls, enz.) kun je ook programma’s toevoegen als command. Dit doe je door dat programma aan de omgevingsvariabele PATH toe te voegen.</p>
+
+<h3 id='php'>PHP</h3>
+
+<p>Het is nu nodig dat we PHP toevoegen als programma. Eerst zoeken we de locatie op van php.exe (in mijn geval E:\wamp\bin\php\php5.4.0\php.exe). Nu klikken we met de rechtermuisknop op Computer en dan eigenschappen &gt; Geavanceerde systeeminstellingen &gt; Geavanceerd &gt; Omgevingsvariabelen… Daarin klikken we dubbel op PATH en dan voegen we onze map (dus zonder bestandsnaam) toe aan deze variabele door deze te scheiden met de vorige map met een <code>;</code>.</p>
+
+<p>Nu kunnen we in ons CMD PHP gebruiken. Stel we hebben het composer.phar bestand gedownload in <code>C:\Programs</code>. Dan kunnen we nu het composer bestand aanroepen met PHP:</p>
+
+<p>E:\wamp\www\myProject&gt; php C:\Programs\composer.phar install</p>
+
+<h3 id='composer_shortcut'>Composer shortcut</h3>
+
+<p>Maar dat is zoveel typewerk vind je niet? Daarom gaan we dit wat verbeteren. We verplaatsen composer.phar even naar een map die wat logischer is, in mijn geval heb ik het in dezelfde map als PHP gezet. In dezelfde map maken we een bestandje genaamd <code>composer.bat</code>. Hierin plaatsen we het volgende:</p>
+
+<pre class="prettyprint  linenums">"<code>@echo off
+php &quot;E:\wamp\bin\php\php5.4.0\composer.phar&quot; %*</code></pre>
+
+<p>Wat dit doet is dat we ons php command aanroepen (<code>php</code> op regel 2) vervolgens roepen we ons composer.phar bestandje aan en dan met <code>%*</code> geven we aan dat alle argumenten worden overgenomen en doorgegeven aan composer.phar.</p>
+
+<p>We moeten vervolgens deze map, mocht dat nog niet zo zijn, weer toevoegen aan de omgevingsvariabelen.</p>
+
+<p>We hebben nu dus eigenlijk een bestandje gemaakt met een shortcut erin, i.p.v. <code>php E:\wamp\bin\php\php5.4.0\composer.phar install</code> hoeven we nu alleen <code>composer install</code> te gebruiken. Er wordt dan het bestandje <code>composer.bat</code> aangeroepen die vervolgens weer ons oude command aanroept en het argument <code>install</code> doorgeeft aan de composer.phar.</p>
+
+<h3 id='git'>GIT</h3>
+
+<p>Composer werkt met GIT, mocht je dat dus niet op je computer hebben staan dan moet je dat installeren (lees <a href='http://git-scm.com/book/en/Getting-Started-Installing-Git#Installing-on-Windows'>hier</a> hoe) en vervolgens weer het path naar sh.exe in je omgevingsvariabele toevoegen.</p>
+
+<h2 id='aan_het_werk'>Aan het werk</h2>
+
+<p>Nou dan kunnen we eindelijk aan de slag. We gaan naar ons project en maken een <code>composer.json</code> bestand aan waarin we in JSON allemaal settings kunnen instellen.</p>
+
+<p>Stel ik heb nu een project en nu wil ik Swiftmailer gebruiken. Dan moeten we eerst kijken hoe de Swiftmailer package heet (een third-party libary heet in Composer een package). Hiervoor gaan we naar <a href='http://packagist.org/'>packagist.org</a>, de site met alle packages voor composer. We zoeken hier op Swiftmailer en krijgen swiftmailer/swiftmailer als resultaat, dat is de gene die we zoeken. Een package naam bestaat altijd uit een organisatienaam en een project naam (organisatie/project). Als jij bijv. een Swiftmailer extensie schrijft en die als package openstelt wordt dat JouNaam\Swiftmailer-extension.</p>
+
+<p>Nu klikken we op deze package en we zien dan wat informatie over deze package met onder anderen de versies. Bij het instellen welke package we willen moeten we ook altijd een versie instellen. Deze versie kun je op verschillende manieren opbouwen:</p>
+
+<pre class="prettyprint  linenums">"<code>2.1.*
+&gt;= 2.1.0, &lt;2.2.5
+2.1.13</code></pre>
+
+<p>In het eerste geval gebruiken we de <code>*</code> wildchart, dat staat voor elk getal. In ons geval betekend 2.1.* dus dat het 2.1.0 kan zijn, maar ook 2.1.29, enz. Zolang het maar begint met 2.1.</p>
+
+<p>Je kan ook een range selecteren. In het tweede geval doen we dat, we zeggen pak op zijn minst versie 2.1.0, maar niet hoger dan versie 2.2.5. In het 3e geval hebben we gewoon een exacte versie ingevuld.</p>
+
+<p>Nu we de versie weten (we gaan voor 4.2.*) kunnen we het instellen zodat composer het gaat inladen. Dat doen we door in <code>composer.json</code> de require parameter in te vullen:</p>
+
+<pre class="prettyprint  linenums">"<code>{
+    &quot;require&quot; : {
+        &quot;swiftmailer\swiftmailer&quot; : &quot;4.2.*&quot;
+    }
+}</code></pre>
+
+<p>Stel dat we nu ook nog Propel willen inladen. Dan gaan we weer zoeken op propel en vinden we de propel\propel package. Deze heeft maar 1 versie en dus gaan we die er ook bij zetten:</p>
+
+<pre class="prettyprint  linenums">"<code>{
+    &quot;require&quot; : {
+        &quot;swiftmailer\swiftmailer&quot; : &quot;4.2.*&quot;,
+        &quot;propel\propel&quot; : &quot;dev-master&quot;
+    }
+}</code></pre>
+
+<p>Nu we alle packages hebben gedefinieerd kunnen we ze gaan installeren door de composer command aan te roepen:</p>
+
+<pre class="prettyprint  linenums">"<code>cd path/to/myProject
+composer install</code></pre>
+
+<p>De packages worden nu in de vendor map gezet, vendors is weer zo’n andere naam voor third-party libaries.</p>
+
+<h3 id='autoloader'>Autoloader</h3>
+
+<p>Als je vaak met klassen werkt en projecten/libaries zul je merken dat elk project zijn eigen autoloader hebt. Je hebt dan in ons geval 3 autoloaders geregistreerd. Dat is natuurlijk iets teveel van het goede en daarom komt Composer met zijn eigen autoloader. Deze kun je includen en dan wordt alles automatisch goed geladen.</p>
+
+<p>Aangezien je naast de packages ook nog je eigen klassen hebt die ingeladen moeten worden kun je de autoloader instellen waar hij naar jou klassen moet gaan zoeken. Ik plaats bijv. alles in een <code>src</code> map, we geven dan aan dat hij naar klassen kan zoeken in de src map:</p>
+
+<pre class="prettyprint  linenums">"<code>{
+    &quot;require&quot; : {
+        &quot;swiftmailer\swiftmailer&quot; : &quot;4.2.*&quot;,
+        &quot;propel\propel&quot; : &quot;dev-master&quot;
+    },
+    &quot;autoload&quot; : {
+        &quot;psr-0&quot; : { &quot;&quot; : &quot;src/&quot; }
+    }
+}</code></pre>
+
+<p>Dit komt wellicht wat vaag over, maar PSR-0 is de standaard waaraan alle klassenamen zich moeten houden en we kunnen dan aangeven dat er naar een bepaalde namespace gezocht moet worden in een bepaalde map. In dit geval hebben we een lege namespace, wat staat voor alle namespaces, en die kunnen gezocht worden in de src map.</p>
+
+<p>Je kan nog veel meer met het composer.json bestand. Daarom raad ik je aan <a href='http://getcomposer.org/doc/'>de documentatie van composer</a> uitgebreid te lezen en wat online voorbeelden te zoeken. Een voorbeeld die ik heb gemaakt is <a href='https://github.com/WouterJ/Decres'>Decres</a> of kijk bijv. eens naar <a href='https://github.com/symfony/symfony'>Symfony</a>.</p>
+
+<h2 id='packages_updaten'>Packages updaten</h2>
+
+<p>Als je je packages eenmaal hebt geïnstalleerd wordt er een composer.lock bestand aangemaakt die aangeeft welke versies er nu zijn geïnstalleerd.</p>
+
+<p>Stel dat Swiftmailer een nieuwe versie heeft (bijv. 4.2.5) en die wil jij ook hebben, dan hoef je alleen maar <code>composer update</code> uit te voeren en de packages worden geüpdatet.</p>
+
+<h2 id='en_nu_kan_je'>…en nu kan je</h2>
+
+<p>Na deze les heb je geleerd hoe composer werkt en hoe je hem kan installeren. Nu kun je hier natuurlijk wat problemen mee krijgen, laat dan even een reactie achter dan zal ik je zo goed mogelijk proberen te helpen.</p>
+
+<p>Maar deze tutorial heb ik niet zomaar geplaatst, ik ben namelijk bezig met het schrijven van een tutorial over het Symfony Framework. Blijf me volgen en misschien kom je halverwege deze vakantie wel de eerste berichten tegen. Om je alvast warm te maken en een idee te geven hoe makkelijk het is om Symfony te downloaden met composer:</p>
+
+<pre class="prettyprint  linenums">"<code>composer create-project symfony/framework-standard-edition</code></pre>
+    </div>
+
+    <div id="disqus_thread" class="post__comments"></div>
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'wouterjnl'; // required: replace example with your forum shortname
+        var disqus_identifier = '2012-07-13 00:00:00 +0200';
+        var disqus_title = 'Werken met Composer';
+        var disqus_developer = 1;
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</article>
+
+        </div>
+
+        <footer class="page__footer">
+            <p>&copy; Wouter J 2013</p>
+        </footer>
+    </body>
+</html>

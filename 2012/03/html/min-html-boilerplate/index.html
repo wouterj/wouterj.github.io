@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang=nl>
+    <head>
+        <meta charset=ucs-bom>
+
+        <title>Minimale HTML Boilerplate | Wouter J </title>
+
+        <link rel=stylesheet href=/css/wouterj.min.css> 
+
+        <!-- Prettifier -->
+        <script src="/libs/prettifier/google-code-prettify/prettify.js"></script>
+        <link rel=stylesheet href="/libs/prettifier/prettifier.css">
+        <script>
+            window.onload = function() {
+                prettyPrint();
+            };
+        </script>
+    </head>
+    <body class=page>
+        <header class=page__header>
+
+            <hgroup>
+                <h1 class="hN  site-title"><a href="/">Wouter J</a></h1>
+                <h3 class="hN  site-slogan">A script is more than code</h3>
+            </hgroup>
+
+            <nav class=page__nav>
+                <ul class="nav  nav--block">
+                    
+                        <li class="nav__item"><a href="/">Home</a></li>
+                    
+                        <li class="nav__item"><a href="/about">Over mij</a></li>
+                    
+                        <li class="nav__item"><a href="/archive">Archief</a></li>
+                    
+                </ul>
+            </nav>
+        </header>
+
+        <div class=page__body>
+            <article class="post  post--article">
+    <h1 class="post__heading">Minimale HTML Boilerplate</h1>
+
+    
+
+    <div class="post__entry">
+        <p class="post__intro">Je kent het vast wel, het <a href='http://html5boilerplate.com/'>HTML5 boilerplate</a> project opgezet door Paul Irish en een paar anderen. Het heeft een paar mooie en handige technieken erin staan, maar echt een boilerplate is het niet. Vandaar dat ik vandaag eens wil kijken hoe nou echt een minimale HTML boilerplate eruit zou zien. Wat moet het minimaal hebben om in elk browser goed geparsed te worden?</p><div class="cf"></div>
+<!--more-->
+<h2 id='een_oude_boilerplate'>Een &#8216;oude&#8217; boilerplate</h2>
+
+<p>Van <a href='http://html-site.nl/'>HTML-site</a> heb ik een HTML4.01 boilerplate gehaald. Laten we eens kijken wat we hier tegenwoordig allemaal van kunnen schrappen.</p>
+
+<pre class="prettyprint  linenums">"<code>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01//EN&quot;
+        &quot;http://www.w3.org/TR/html4/strict.dtd&quot;&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;Hello World&lt;/title&gt;
+    &lt;meta http-equiv=&quot;content-type&quot; content=&quot;text/html; charset=utf-8&quot;&gt;
+    &lt;meta name=&quot;keywords&quot; content=&quot;&quot;&gt;
+    &lt;meta name=&quot;description&quot; content=&quot;&quot;&gt;
+    &lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;css/style.css&quot;&gt;
+    &lt;script type=&quot;text/javascript&quot; src=&quot;js/scripts.js&quot;&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Hello World&lt;/h1&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
+<p>Omdat we deze hele tijd willen weten hoe een browser nou tegen deze code aankijken gaan we de DOM bekijken. Als het browser een pagina binnen krijgt leest hij van boven naar onder door het HTML bestand en maakt hij hiervan een DOM. Dit is 1 groot schema waarin alle elementen staan en de verhouding tot aan andere elementen (denk aan parents, children, siblings, enz.). Dit doen we met <a href='http://software.hixie.ch/utilities/js/live-dom-viewer/'>de live dom viewer</a> van Hixie. Ik werk hier met Chrome, maar de DOM is in bijna alle browser ong. hetzelfde. Pas als je vreemde dingen gaat doen krijg je verschillen, deze maand meer daarover, maar dat doen we nu niet.</p>
+
+<h2 id='doctype'>Doctype</h2>
+
+<p>Allereerst dat hele lange doctype. Als we dit in de parser stoppen krijgen we dit terug <code>DOCTYPE: html</code>. Dat betekend dat het geen het browser onthoud van dit hele lange doctype niet meer is dan de tag name (<code>DOCTYPE</code>, tagsnames staan in de DOM altijd met hoofdletters) en welk soort doctype (<code>html</code>) het is. De rest kunnen we dus allemaal weglaten! Als we dat doen en dus alleen <code>&lt;!DOCTYPE html&gt;</code> erin stoppen zien we dat er niks veranderd in de DOM, pas als we ook nog <code>html</code> weglaten gaat er iets mis.<br /> We kunnen hieruit dus concluderen dat we alleen <code>&lt;!DOCTYPE html&gt;</code> nodig hebben, i.p.v. die 2 lange regels aan urls.</p>
+
+<h2 id='__en__elementen'><code>HTML</code>, <code>HEAD</code> en <code>BODY</code> elementen</h2>
+
+<p>Als we nu alleen het doctype in de parser stoppen is je waarschijnlijk nog wat opgevallen. Er worden in de DOM automatisch <code>HTML</code>, <code>HEAD</code> en <code>BODY</code> elementen toegevoegd. Betekend dit dat we dit nu niet meer zelf hoeven te schrijven?</p>
+
+<p>Laten we het eens testen. Als we nu eens een <code>H1</code> element onder het doctype plaatsen, wordt deze dan automatisch toegevoegd in de DOM als kind van <code>BODY</code>? Ja, dit werkt! En wat als we nou hiervoor een <code>TITLE</code> element toevoegen. Wordt deze dan ook in de <code>BODY</code> geplaatst, of heeft het browser door dat het naar de <code>HEAD</code> moet? Hé, het browser is slimmer dan we denken. Deze <code>TITLE</code> element wordt namelijk toegevoegd aan de <code>HEAD</code>. Een laatste proef, een <code>SCRIPT</code> element kan in beide elementen thuishoren. Wat kiest het browser? Daarom plaatsen we onder de title een <code>SCRIPT</code> element. Hmm, het browser kiest er dus voor om deze in de <code>HEAD</code> te plaatsen.</p>
+
+<p>Al met al is dit een behoorlijk succes! We kunnen nu namelijk 6 regels verwijderen!</p>
+
+<h2 id='de_charset'>De charset</h2>
+
+<p>Dan komt de charset. In elk geval, dan hoort die te komen. IE verwacht de charset binnen een x aantal tekens vanaf het doctype. Eerst de title plaatsen en dan pas de charset kan dus niet. Daarom moet je altijd direct na <code>&lt;head&gt;</code> (of direct na het doctype als je deze tags weghaalt zoals nu) de charset definiëren. Kijk eens goed naar de charset:</p>
+
+<pre class="prettyprint  linenums">"<code>&lt;meta http-equiv=&quot;content-type&quot; content=&quot;text/html; charset=utf-8&quot;&gt;</code></pre>
+
+<p>De content value is een soort attribuut in een attribuut (&#8221;&#8230;; charset=&#8230;&#8221;). Hier klopt iets niet zou je denken. Daarom plaatsen veel developers de quote na <code>text/html;</code> en gebruiken ze charset als een eigen attribuut. Omdat browser developers ook webdevelopers zijn begrijpen ze ook dat er een probleem heerst. Vandaar dat ze al jaren toestaan dat je de charset als attribuut gebruikt. De content value heeft dan geen waarde meer, want we weten wel dat het text/html is, en de charset kan gewoon zonder name attribuut gebruikt worden. Van deze, toch wel lange, regel code kunnen we dus simpel <code>&lt;meta charset=&quot;utf-8&quot;&gt;</code> maken.</p>
+
+<h2 id='andere_meta_tags'>Andere meta tags</h2>
+
+<p>Op naar de volgende meta tags. Als eerst staat er de keywords meta tag. Deze kunnen we meteen weggooien. Dan houden we nog de description over. Tja, ik vind tegenwoordig, met rich snippets en microformat/-data, dat deze ook overbodig is, maar het nut kan ik er nog wel van inzien. Daarom laten we die staan.</p>
+
+<h2 id='link_tag'>Link tag</h2>
+
+<p>De stylesheet is niet echt iets wat een minimale site nodig heeft, maar we houden hem er toch in. Een echt minimale boilerplate in HTML5 bevat alleen het doctype, de rest is namelijk overbodig. Maar we willen het toch een beetje op een site laten lijken.</p>
+
+<p>Er is wel een ding dat we kunnen verwijderen uit deze regel. Namelijk <code>type=&quot;text/css&quot;</code> de nieuwste parser zijn nu zo slim dat ze begrijpen dat zodra je een stylesheet included het in het text/css formaat staat. Dit kun je dus weglaten.</p>
+
+<h2 id='de_script_tag'>De script tag</h2>
+
+<p>Een paar hoofdstukjes terug zag je dat de Chrome parser script tags automatisch in de <code>HEAD</code> zet. Ik vind dit zelf nooit goed en ik ga altijd voor script tags in de footer, op Modernizr na. Waarom?</p>
+
+<p>Een browser leest een document van boven naar onder en van links naar rechts. Hij leest de regel, deze wordt geparsed en de gebruiker kan deze regel zien. Stel je plaatst de script tags in de head. Dan zal hij eerst helemaal moeten wachten met het ophalen van de JS bestanden, dit kan wel eens lang duren, en dan pas kan hij verder. Het kost dus, relatief, heel lang voordat de gebruiker de pagina kan zien.</p>
+
+<p>Als we de script tags vlak voor <code>&lt;/body&gt;</code> plaatsen krijgt de gebruiker eerst de pagina te zien en dan pas worden de files opgevraagd. De gebruiker kan dus al sneller gebruik maken van de website en JS moet nooit zo belangrijk zijn dat je dan niks met de site kan.</p>
+
+<p>Kortom: We pakken deze script tag en plaatsen die aan het eind van onze boilerplate, aangezien we de <code>&lt;body&gt;</code> tags verwijderd hebben. Tevens kunnen we ook hier het type attribuut weglaten, omdat het browser deze zelf wel doorheeft.</p>
+
+<h2 id='de_pagina_content'>De pagina content</h2>
+
+<p>Vervolgens komt er de pagina content. Deze kun je direct onder de link tag zetten en dan ben je al klaar! Hier kun je niet heel veel van verwijderen.</p>
+
+<p>Maar natuurlijk altijd wat. Zo kun je de quotes om attribuut waardes verwijderen als er geen <code>&lt; </code>, <code>&gt;</code> of <code>&amp;nbsp;</code> in wordt gebruikt. Je kunt het, bij twijfel, altijd testen in de one-page-app <a href='http://mothereffingunquotedattributes.com'>MothereffingUnquotedAttributes</a>.</p>
+
+<p>Ook kun je sommige sluit tags weglaten, als <code>&lt;/li&gt;</code>, <code>&lt;/tr&gt;</code>, <code>&lt;/td&gt;</code>, <code>&lt;/body&gt;</code>, <code>&lt;/html&gt;</code>. Als je deze weglaat sluit het browser deze automatisch op de plek waar jij hem verwacht.</p>
+
+<h2 id='het_eindresultaat'>Het eindresultaat</h2>
+
+<p>Het eindresultaat van onze verkleining wordt dus:</p>
+
+<pre class="prettyprint  linenums">"<code>&lt;!doctype html&gt;
+&lt;meta charset=utf-8&gt;
+&lt;title&gt;Hello World&lt;/title&gt;
+&lt;link rel=stylesheet href=css/style.css&gt;
+
+&lt;h1&gt;Hello World&lt;/h1&gt;
+
+&lt;script src=js/scripts.js&gt;&lt;/script&gt;</code></pre>
+
+<p>En hoe dit eruit ziet in de DOM van jouw browser kun je <a href='http://software.hixie.ch/utilities/js/live-dom-viewer/?%3C!DOCTYPE%20HTML%3E%0A%3Cmeta%20charset%3Dutf-8%3E%0A%3Ctitle%3EHello%20World%3C%2Ftitle%3E%0A%3Clink%20rel%3Dstylesheet%20href%3Dcss%2Fstyle.css%3E%0A%3Ch1%3EHello%20world%3C%2Fh1%3E%0A%3Cscript%20src%3Djs%2Fscripts.js%3E%3C%2Fscript%3E'>hier bekijken</a>.&lt;/head&gt;</p>
+
+<h2 id='wacht_eens_kan_ik_dit_nu_altijd_gebruiken_voor_mijn_nieuwe_website'>Wacht eens, kan ik dit nu altijd gebruiken voor mijn nieuwe website?</h2>
+
+<p>Een simpel antwoord: Ja. Maar er zit wel een maar aan, want zoals een mooie engelse uitspraak zegt</p>
+
+<p>&gt; Just Because You Can, Does Not Mean You Should</p>
+
+<p>Je kan het gebruiken, maar het ziet er bij sommige dingen niet heel mooi uit en ik (en de uitvinder hiervan) staan niet garant dat oude IE versies dit ook zo handelen en dat er niet ergens een probleem kan zijn.</p>
+
+<p>Een mooi voorbeeld waarbij dit gebruikt is, en waarbij je dit ook kan gebruiken is <a href='http://www.google.com/404.html'>de 404 error pagina van Google</a>. Dit is nou niet de belangrijkste pagina van je website, dus je hoeft er ook niet heel veel moeite voor te doen, maar toch wil je wel dat het in elk browser goed is. De ideale omstandigheid waarbij je het kan gebruiken!</p>
+    </div>
+
+    <div id="disqus_thread" class="post__comments"></div>
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'wouterjnl'; // required: replace example with your forum shortname
+        var disqus_identifier = '2012-03-28 00:00:00 +0200';
+        var disqus_title = 'Minimale HTML Boilerplate';
+        var disqus_developer = 1;
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</article>
+
+        </div>
+
+        <footer class="page__footer">
+            <p>&copy; Wouter J 2013</p>
+        </footer>
+    </body>
+</html>
