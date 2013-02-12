@@ -61,4 +61,10 @@
         box-shadow:0px 1px 3px #555;
         padding:10px;
         margin-right:10px;
+
+        @include media-query(portable){
+            float:none;
+            margin-top:5px;
+            display:inline-block;
+        }
     }
