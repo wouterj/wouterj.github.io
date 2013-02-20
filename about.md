@@ -3,6 +3,7 @@ layout: post
 title: "Over mij"
 description: ""
 permalink: /about/
+comments: false
 ---
 Ik ben Wouter de Jong en woon in Huizen. Sinds feb. 2012 ben ik deze blog
 begonnen om mensen te leren verdiepen en nadenken over het web.
