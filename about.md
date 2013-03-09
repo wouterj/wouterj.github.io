@@ -11,5 +11,5 @@ begonnen om mensen te leren verdiepen en nadenken over het web.
 Ik ben op 24 jan. 2010 begonnen met webscripten en heb sindsdien heel wat
 talen geleerd. Ik beheers HTML, CSS, JS en PHP goed en Ruby bijna goed, verder
 heb ik ooit kennis gemaakt met C#, ASP.net, Python. De manier van scripten die
-ik gebruik is OO, object geörienteerd. Dit zul je ook vaak tegenkomen in mijn
+ik gebruik is OO, object geÃ¶rienteerd. Dit zul je ook vaak tegenkomen in mijn
 blog.
