@@ -24,7 +24,7 @@ beter op een zijspoortje zetten, op weg naar Tokio.
 
 HTML gaat om het semantisch weergeven van een woordje of een stuk tekst.
 Helaas zal de validator alleen maar kijken of onze mark-up voldoet aan de
-regels, gesteld door een één of andere DTD file. Of de pagina semantisch
+regels, gesteld door een Ã©Ã©n of andere DTD file. Of de pagina semantisch
 correct is boeit hem niks. Deze pagina bijv. zou worden goed gerekend:
 
     <!doctype html>
@@ -67,7 +67,7 @@ wat er fout is.
 De validators zijn totaal niet up to date. Tegenwoordig leven we bijna in het
 HTML5 tijdperk. De HTML5 specificaties en de HTML5 DTD zijn al lang klaar
 (sinds mei 2011). Het is nu slechts alleen wachten tot alle browsers dit
-hebben geïmplementeerd. De W3C validator is DTD based dat betekend dat ze
+hebben geÃ¯mplementeerd. De W3C validator is DTD based dat betekend dat ze
 gewoon de HTML5 DTD file kunnen laden en ze hebben een goede (voorzover een
 validator goed is) HTML5 validator. Waarom wachten ze er dan nog zo lang mee
 en hebben ze alleen maar 'beta' HTML5 validators?
@@ -80,7 +80,7 @@ validator niet tegen prefixes kan. Waarom bouwen ze niet in dat deze worden
 genegeerd, zoals het in elk browser gedaan wordt? De browsers pakken alleen de
 prefixen die zij gebruiken en die andere negeren ze gewoon.
 
-Ook de officiële syntax van bijv. `linear-gradient` kan een validator niet.
+Ook de officiÃ«le syntax van bijv. `linear-gradient` kan een validator niet.
 Waarom? Waarom moet er zo moeilijk gedaan worden?
 
 ## Zeer onduidelijke foutmeldingen
@@ -120,7 +120,7 @@ information in een higher-level protocol (??) staat.
 
 Ik ga er maar vanuit dat dit geen iFrame srcdoc document is en dat er geen
 higher-level protocol bestaat. Dus dan zal ik wel verplicht een title element
-in een één of andere head element moeten plaatsen...
+in een Ã©Ã©n of andere head element moeten plaatsen...
 
 ## Mooie richtlijn, maar heilig...nee
 

@@ -18,17 +18,17 @@ iedereen geschikt.
 
 <!--more-->
 
-## Object Georiënteerd
+## Object GeoriÃ«nteerd
 
-Laten we eerst eens dit moeilijke begrip uitpluizen. Dat georiënteerd begrijp
+Laten we eerst eens dit moeilijke begrip uitpluizen. Dat georiÃ«nteerd begrijp
 je waarschijnlijk wel. Maar wat bedoelen we nou met programmeren naar een
 Object? Wat de van dale over een object zegt:
 
- > ob•j<u>e</u>ct het; o -en voorwerp (1, 2)
+ > obÂ•j<u>e</u>ct het; o -en voorwerp (1, 2)
 
 En wat is dan een voorwerp?
 
- > voor•werp het; o -en 1 iets dat men waarneemt, aanvat, bewerkt, liefheeft,
+ > voorÂ•werp het; o -en 1 iets dat men waarneemt, aanvat, bewerkt, liefheeft,
  > haat enz. 2 (taalk) naam van dat zinsdeel dat een persoon, zaak enz. noemt
  > die naast het onderwerp bij het gebeuren betrokken is (...)
 
@@ -77,7 +77,7 @@ is het dus geen object. We noemen eens wat eigenschappen op van mijn bureau:
 
  - laptop is van Toshiba en draait op Windows Vista
  - Papier is wit en is 210 mm bij 297 mm
- - Kladblok bevat 100 pagina’s, gekoppeld door een ringband
+ - Kladblok bevat 100 paginaÂ’s, gekoppeld door een ringband
  - Een pen heeft een blauwe kleur vulling en is 15 cm lang
 
 Maar ook onze objecten in het web hebben eigenschappen:
@@ -122,7 +122,7 @@ stel je voor). Dan zullen we het hele user object moeten aanpassen zodat het
 met een XML file(oid) kan werken. En dit moeten we straks met grotere
 projecten niet alleen voor de User doen, maar ook voor de artikelen, sitenaam,
 enz. Kortom: niet echt flexibel. Om een script flexibel te maken moeten we ons
-houden aan één van de basisregels van OO:
+houden aan Ã©Ã©n van de basisregels van OO:
 
 **Een object mag slechts 1 functionaliteit hebben, wanneer er meer zijn behoort
 het in 2 aparte objecten gesplitst te worden**
@@ -149,7 +149,7 @@ passen en de rest blijft gewoon werken. Ideaal toch?
 ## Gedachte uittekenen
 
 We kunnen wel uren per project gaan nadenken, maar daar schieten we niks mee
-op als we het niet kunnen uittekenen. Voor het uittekenen van onze ideeën
+op als we het niet kunnen uittekenen. Voor het uittekenen van onze ideeÃ«n
 gebruiken we in OOP de UML (Undefined Modeling Language) diagrammen. Een
 voorbeeld van ons bovenstaande idee over het User en het UserMapper object:
 

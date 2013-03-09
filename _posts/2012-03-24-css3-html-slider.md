@@ -31,7 +31,7 @@ momenteel nog niet serieus te gebruiken.
 
 Wat vaak het beste werkt als je met iets nieuws begint is je computer
 afsluiten of je lap top dichtklappen en een kladblok, potlood en gum te
-pakken. Vervolgens ga je al je ideeën opschreven en kijk je of ze wel mogelijk
+pakken. Vervolgens ga je al je ideeÃ«n opschreven en kijk je of ze wel mogelijk
 zijn.
 
 Deze techniek heb ik deze keer ook gebruikt, alleen vandaag heb ik nog wat
@@ -77,7 +77,7 @@ De code wordt dus zoiets:
 
 Je wilt per keer maar 1 afbeelding laten zien, dus de andere moet je zien te
 verbergen. Nu heb ik ooit een jQuery scriptje gemaakt waarbij je een soort
-spotlight effect creëerde. Als je met de muis over de afbeelding bewoog werd
+spotlight effect creÃ«erde. Als je met de muis over de afbeelding bewoog werd
 alles donker behalve een cirkel met een diameter van ong. 10px rond je muis.
 Daar moest ik hierbij als eerst aan denken. Ik gebruikte hiervoor destijds een
 gigantisch grote (qua formaat) donkere afbeelding met in het midden een
@@ -214,7 +214,7 @@ maar dit werkt nog niet. Dit komt door weer 2 problemen:
 Zowel de animatie aanroepen en de prefixen in de `@keyframes` moeten worden
 toegevoegd. Aangezien dit alleen in Chrome en FireFox werkt hoeven we maar 2
 prefixen toe te voegen: `@-webkit-keyframes` en `@-moz-keyframes` en
-`-webkit-animation` en `-moz-animation`. Hou de officiële properties, dus
+`-webkit-animation` en `-moz-animation`. Hou de officiÃ«le properties, dus
 zonder prefixen, er altijd ook gewoon in.
 
 #### Ruimte voor de slide

@@ -68,7 +68,7 @@ Laten we het eens testen. Als we nu eens een `H1` element onder het doctype
 plaatsen, wordt deze dan automatisch toegevoegd in de DOM als kind van `BODY`?
 Ja, dit werkt! En wat als we nou hiervoor een `TITLE` element toevoegen. Wordt
 deze dan ook in de `BODY` geplaatst, of heeft het browser door dat het naar de
-`HEAD` moet? Hé, het browser is slimmer dan we denken. Deze `TITLE` element
+`HEAD` moet? HÃ©, het browser is slimmer dan we denken. Deze `TITLE` element
 wordt namelijk toegevoegd aan de `HEAD`. Een laatste proef, een `SCRIPT`
 element kan in beide elementen thuishoren. Wat kiest het browser? Daarom
 plaatsen we onder de title een `SCRIPT` element. Hmm, het browser kiest er dus
@@ -83,7 +83,7 @@ Dan komt de charset. In elk geval, dan hoort die te komen. IE verwacht de
 charset binnen een x aantal tekens vanaf het doctype. Eerst de title plaatsen
 en dan pas de charset kan dus niet. Daarom moet je altijd direct na `<head>`
 (of direct na het doctype als je deze tags weghaalt zoals nu) de charset
-definiëren. Kijk eens goed naar de charset:
+definiÃ«ren. Kijk eens goed naar de charset:
 
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
 

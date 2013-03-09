@@ -16,13 +16,13 @@ worden.
 
 <!--more-->
 
-Web Platform zal grote documentatie’s als Mozilla Developers Network en Google
+Web Platform zal grote documentatieÂ’s als Mozilla Developers Network en Google
 Developers combineren, samen met de krachten en kennis van kleinere bedrijven
 in deze webwereld, om zo de grootste bron van kennis en tutorials te worden
 voor beginners en ervaren mensen.
 
 WebPlatform is opgericht door W3C en wordt momenteel beheerd door 10
-‘stewards’, de naam voor beheerders op WebPlatform. Deze zijn: Adobe, Apple,
+Â‘stewardsÂ’, de naam voor beheerders op WebPlatform. Deze zijn: Adobe, Apple,
 Facebook, Google, HP, MicroSoft, Mozilla, Nokia en Opera.
 
 ## Alpha

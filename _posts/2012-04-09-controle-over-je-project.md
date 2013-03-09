@@ -29,7 +29,7 @@ met manier B.
 Dit ziet er goed uit, maar toch is er iets wat nog niet helemaal lekker loopt.
 Je hebt dan op gegeven moment heel wat mappen op je server staan, kost
 geheugen en het wordt er niet overzichtelijker op. Ook kost het wel heel veel
-tijd om de map te kopiëren als de map langzamerhand groot begint te worden.
+tijd om de map te kopiÃ«ren als de map langzamerhand groot begint te worden.
 Nee, dit moet handiger kunnen...
 
 ## Subversion
