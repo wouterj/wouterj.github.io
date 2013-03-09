@@ -49,7 +49,7 @@ hoe het eruit ziet. Daarom zijn HTML en CSS mark-up talen.
 
 ## Server-side vs Client-side
 
-Oké, 1 verschil tussen soorten talen begrijpen we nu. Laten we naar nog een
+OkÃ©, 1 verschil tussen soorten talen begrijpen we nu. Laten we naar nog een
 verschil kijken tussen scripttalen: Server-side en Client-side. Je hebt het
 vast al een keer voorbij horen komen, maar wat nou precies het verschil is?
 
@@ -58,7 +58,7 @@ vast al een keer voorbij horen komen, maar wat nou precies het verschil is?
 Een Server-side taal kan alleen op de server worden uitgevoerd. Als je een url
 in je browser typt gaat het browser in de wereld opzoek naar een server waar
 die domein opstaat. Hij zoekt deze server doormiddel van een HTTP Request uit
-te sturen de wereld in. Een server ontvangt deze, denkt: *"Hé, die is voor mij"*
+te sturen de wereld in. Een server ontvangt deze, denkt: *"HÃ©, die is voor mij"*
 en gaat vervolgens de pagina afhandelen. Vervolgens stuurt de server een HTTP
 Response terug naar de browser, die deze vervolgens omzet in wat voor ons een
 normale webpagina is. Omgezet in een afbeelding is het:

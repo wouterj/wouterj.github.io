@@ -43,7 +43,7 @@ Er is ook iets bedroefends veranderd: Hotpink als selectie kleur is verdwenen.
 De herkenning van de HTML5 boilerplate was door op <code>Ctrl + A</code> te
 klikken. Je zag dan een hotpink selectie kleur, de easter-egg in HTML5
 boilerplate. <a href="http://youtu.be/qyM37XKkmKQ?t=5m48s">Dit leidde nog wel
-eens tot leuke situaties</a>. Maar helaas, één van de makers van HTML5
+eens tot leuke situaties</a>. Maar helaas, Ã©Ã©n van de makers van HTML5
 boilerplate vond het niet professioneel en heeft het dus weggehaald, <a
 href="https://github.com/h5bp/html5-boilerplate/commit/1d320b59a390041f25cf87d790f6472a25a512ef">tot
 groot verdriet van iedereen overigens</a>.
@@ -57,7 +57,7 @@ Voor de complete changelog kun je terecht
 ## Een introductie
 
 Mocht je nieuw zijn met HTML5 boilerplate en het nog niet allemaal snappen dan
-kun je de, ondertussen verouderde, video's van één van de makers (en bedenker
+kun je de, ondertussen verouderde, video's van Ã©Ã©n van de makers (en bedenker
 van hotpink), Paul Irish, bekijken: 
 [HTML5 Boilerplate Walkthrough](http://www.youtube.com/watch?v=oDlsOyPKUTM) en
 [Paul Irish on HTML5 Boilerplate](http://www.youtube.com/watch?v=qyM37XKkmKQ).

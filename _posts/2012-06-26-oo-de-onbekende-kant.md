@@ -50,7 +50,7 @@ iemand een bericht kan plaatsen.
 
 Allereerst moeten we dan eens de objecten bekijken, mocht je dit nog niet
 begrijpen lees dan
-[“Eens goed nadenken in objecten”](http://wouterj.nl/php/eens-goed-nadenken-in-objecten/354/).
+[Â“Eens goed nadenken in objectenÂ”](http://wouterj.nl/php/eens-goed-nadenken-in-objecten/354/).
 
 ### Welke fysieke objecten zijn er?
 

@@ -21,7 +21,7 @@ Elk bedrijf wil op zijn website graag laten zien waar het gevestigd is.
 Hiervoor natuurlijk het best een kaart gebruiken. Google Maps kaarten kun je
 makkelijk inladen met een iFrame. Maar wat als je meerdere punten wilt die je
 bijv. beheert vanuit een xml file? En wat als je de kaart naar je eigen wensen
-wilt aanpassen? In deze tutorial reeks van 5 lessen gaan we kijken hoe we zo’n
+wilt aanpassen? In deze tutorial reeks van 5 lessen gaan we kijken hoe we zoÂ’n
 kaart kunnen krijgen en hoe we dingen kunnen toevoegen en verwijderen.
 
 ## 2. [Markers](http://www.html-site.nl/google-maps-api-v3-markers)

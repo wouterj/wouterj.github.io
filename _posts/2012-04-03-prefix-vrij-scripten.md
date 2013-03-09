@@ -46,7 +46,7 @@ properties automatisch kunt prefixen. Stel we hebben het volgende:
 {: class="prettyprint  linenums  lang-css" :}
 
 Nu hebben we maar 1 prefix per CSS3 propertie en bij de laatste zelfs helemaal
-geen één. Als we deze code in Prefixr stoppen en op Prefixize klikken krijgen
+geen Ã©Ã©n. Als we deze code in Prefixr stoppen en op Prefixize klikken krijgen
 we daaruit deze code:
 
     #box {
@@ -181,7 +181,7 @@ en goed werkt, daarom bespreek ik hem hier ook.
 
 Prefix-free is een JS API die, als de pagina geladen wordt, alle stylesheets
 in de `link` elementen en alle `style` elementen aanpast zodat hij alle
-prefixen erin zet. Je hoeft in je stylesheet dus alleen maar de officiële
+prefixen erin zet. Je hoeft in je stylesheet dus alleen maar de officiÃ«le
 versie (dus zonder prefixen) te gebruiken.
 
 Allereerst moeten we de JS file downloaden. Dit doen we door naar de

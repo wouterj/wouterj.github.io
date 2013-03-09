@@ -48,6 +48,6 @@ maanden afwezigheid van blog artikelen hebben jullie het gemiddelde van
 ## Prettig kerstfeest en een gelukkig nieuwjaar!
 
 Ik wens jullie allemaal een prettig kerstfeest vandaag en morgen.
-[De wereld is niet geëndigd](https://twitter.com/donttrythis/status/282155927778492416)
+[De wereld is niet geÃ«ndigd](https://twitter.com/donttrythis/status/282155927778492416)
 dus veel succes in 2013! Mijn goede voornemens ga je in de loop naar het oude
 jaar nog wel lezen.

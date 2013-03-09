@@ -32,7 +32,7 @@ hoe lang je je op een pagina bevind en of je voor de eerste keer de website
 bezoekt of niet. Ook houd Google bij waar je op zoekt, als je bijv. op een
 automerk zoekt in Google wordt dit opgeslagen. Als je dan op een site komt met
 Google Advertenties weet Google waar je op hebt gezocht, en waar je dus
-waarschijnlijk geïnteresseerd in bent. Grote kans dat er 1 advertentie is over
+waarschijnlijk geÃ¯nteresseerd in bent. Grote kans dat er 1 advertentie is over
 een auto.
 
 ## De Cookie wet

@@ -41,7 +41,7 @@ Als je het hebt gedownload kun je composer gebruiken via het command panel
 
 ---
 
-Als je het cmd opent (ga naar Start en vul bij ‘zoekopdracht starten’ cmd in)
+Als je het cmd opent (ga naar Start en vul bij Â‘zoekopdracht startenÂ’ cmd in)
 zie je een zwart scherm voor je. Je ziet hier eerst het path waar we inzitten
 en daarna een `>` en daarna kan je typen.
 
@@ -65,7 +65,7 @@ deze map zitten gebruik je het ls command:
 
 ---
 
-I.p.v. de standaard command (cd, ls, enz.) kun je ook programma’s toevoegen als
+I.p.v. de standaard command (cd, ls, enz.) kun je ook programmaÂ’s toevoegen als
 command. Dit doe je door dat programma aan de omgevingsvariabele PATH toe te
 voegen. 
 
@@ -74,7 +74,7 @@ voegen.
 Het is nu nodig dat we PHP toevoegen als programma. Eerst zoeken we de locatie
 op van php.exe (in mijn geval E:\wamp\bin\php\php5.4.0\php.exe). Nu klikken we
 met de rechtermuisknop op Computer en dan eigenschappen > Geavanceerde
-systeeminstellingen > Geavanceerd > Omgevingsvariabelen… Daarin klikken we
+systeeminstellingen > Geavanceerd > OmgevingsvariabelenÂ… Daarin klikken we
 dubbel op PATH en dan voegen we onze map (dus zonder bestandsnaam) toe aan deze
 variabele door deze te scheiden met de vorige map met een `;`.
 
@@ -175,7 +175,7 @@ composer command aan te roepen:
     cd path/to/myProject
     composer install
 
-De packages worden nu in de vendor map gezet, vendors is weer zo’n andere naam
+De packages worden nu in de vendor map gezet, vendors is weer zoÂ’n andere naam
 voor third-party libaries.
 
 ### Autoloader
@@ -215,14 +215,14 @@ naar <a href="https://github.com/symfony/symfony">Symfony</a>.
 
 ## Packages updaten
 
-Als je je packages eenmaal hebt geïnstalleerd wordt er een composer.lock
-bestand aangemaakt die aangeeft welke versies er nu zijn geïnstalleerd.
+Als je je packages eenmaal hebt geÃ¯nstalleerd wordt er een composer.lock
+bestand aangemaakt die aangeeft welke versies er nu zijn geÃ¯nstalleerd.
 
 Stel dat Swiftmailer een nieuwe versie heeft (bijv. 4.2.5) en die wil jij ook
 hebben, dan hoef je alleen maar `composer update` uit te voeren en de packages
-worden geüpdatet.
+worden geÃ¼pdatet.
 
-## …en nu kan je
+## Â…en nu kan je
 
 Na deze les heb je geleerd hoe composer werkt en hoe je hem kan installeren. Nu
 kun je hier natuurlijk wat problemen mee krijgen, laat dan even een reactie

@@ -45,7 +45,7 @@ overstap naar Symfony2 makkelijker wordt.
 
 ## Stap 1: De kennismaking
 
-Oké, je bent klaar om te beginnen met Symfony2. Tijd om Symfony2 eens voor te
+OkÃ©, je bent klaar om te beginnen met Symfony2. Tijd om Symfony2 eens voor te
 stellen en te beslissen of je het een leuk framework vindt. Lees hiervoor de
 [quick tour](http://symfony.com/doc/current/quick_tour/) in de Symfony2
 documentatie.  Deze serie bestaat uit 4 hoofdstukken van ong. 10 minuten

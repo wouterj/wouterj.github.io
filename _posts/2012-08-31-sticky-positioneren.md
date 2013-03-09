@@ -73,7 +73,7 @@ Het Webkit team is gelukkig wel snel en
 
 Het is heel simpel om te gebruiken. Je definieert eerst dat het `position:
 sticky;` is, merk op dat dit momenteel nog prefixed is. Tevens moet je
-definiëren wanneer hij moet vastplakken. In dit geval zeggen we dat als hij
+definiÃ«ren wanneer hij moet vastplakken. In dit geval zeggen we dat als hij
 niet meer `10px` vanaf de bovenkant van de pagina is hij fixed moet
 worden.
 
