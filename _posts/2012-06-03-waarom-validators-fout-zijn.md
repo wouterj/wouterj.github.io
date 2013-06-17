@@ -18,8 +18,6 @@ te mogen zetten.
 Helaas is de validator alles behalve heilig en kun je die na een half jaar
 beter op een zijspoortje zetten, op weg naar Tokio.
 
-<!--more-->
-
 ## Semantiek is het belangrijkst
 
 HTML gaat om het semantisch weergeven van een woordje of een stuk tekst.

@@ -13,8 +13,6 @@ Aangezien veel mensen met deze onhandige prefixen te maken hebben zijn er
 diverse dingen bedacht. Een paar die ik ben tegenkomen wil ik vandaag met
 jullie delen.
 
-<!--more-->
-
 De tools die ik hier bespreek zijn:
 
  1. [Prefixr](#prefixr)

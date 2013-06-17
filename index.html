@@ -12,7 +12,7 @@ layout: default
             <img src="{{ post.thumbnail_url }}" class="img--stripe  img--{% case i %}{% when 1 %}medium{% else %}short{% endcase %}  img--left">
             {% endif %}
             <div class="post__entry  post__entry--excerpt">
-                {{ post.content|excerpt }}
+                {{ post.excerpt }}
             </div>
         </article>
     </li>

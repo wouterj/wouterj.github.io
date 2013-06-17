@@ -15,8 +15,6 @@ Vanaf 1 juli 2012 is het verboden om koekjes op te slaan zonder
 toestemming. Wat mag dan niet en wat wel en hoe kun je het oplossen? Dat alles
 heb ik vandaag overzichtelijk in dit bericht geplaatst.
 
-<!--more-->
-
 ## Wat zijn cookies?
 
 Voor de mensen die nieuw zijn in deze wereld eerst een uitleg van wat cookies

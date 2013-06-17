@@ -10,8 +10,6 @@ Je hebt vast wel eens gewerkt met Ruby of Node.js en je hebt vast wel eens
 gedroomd hoe geweldig het niet zal zijn om een Gem (ruby) of Npm (node.js) te
 hebben voor PHP. Nu is het tijd om je dromen werkelijkheid te maken!
 
-<!--more-->
-
 ## Wat is een dependency manager?
 
 Met een dependency manager kun je makkelijk en snel libaries, die je project

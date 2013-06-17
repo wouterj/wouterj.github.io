@@ -15,8 +15,6 @@ iets wilt doen maar dat helemaal niet kan. Dat komt omdat er 1 heel groot
 verschil zit in die talen.<br /> Om het voor eens en altijd duidelijk te maken
 hier een artikel die het, hoop ik, goed uitlegt.
 
-<!--more-->
-
 ## Een scripttaal
 
 Laten we eerst eens kijken wat nou een scripttaal is. Ik wil het niet te

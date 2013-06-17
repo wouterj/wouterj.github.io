@@ -13,8 +13,6 @@ zijn- doen met een simpel Hello World berichtje, maar dat vind ik toch wel
 iets te weinig voor jou, de bezoeker die tijd heeft genomen dit bericht te
 lezen.
 
-<!--more-->
-
 ## Welkom, wie ben ik?
 
 Welkom, ik ben Wouter de Jong en ik woon in Huizen, Nederland. In januari 2010

@@ -16,8 +16,6 @@ theorie les, maar dat probeer ik te voorkomen. Het betekend ook dat iedereen,
 in welke taal je ook script, deze tutorial kan volgen en dus is dit voor
 iedereen geschikt.
 
-<!--more-->
-
 ## Object Georiënteerd
 
 Laten we eerst eens dit moeilijke begrip uitpluizen. Dat georiënteerd begrijp

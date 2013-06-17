@@ -13,8 +13,6 @@ Google. In deze blogpost staan links naar 5 artikelen die ik ooit voor een
 andere website heb geschreven hierover, deze gaan vanaf het begin tot aan de
 extra's.
 
-<!--more-->
-
 ## 1. [De Kaart krijgen](http://www.html-site.nl/google-maps-api-v3-de-kaart-krijgen)
 
 Elk bedrijf wil op zijn website graag laten zien waar het gevestigd is.

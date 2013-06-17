@@ -10,8 +10,6 @@ Er gebeurd enorm veel op het gebied van webdevelopment. Van nieuwe technieken
 tot nieuwe tools en van nieuwe versies tot nieuwe blogposts. Meld je aan op de
 nieuwsbrief en blijf op de hoogte!
 
-<!--more-->
-
 ## Wouter's Monthly Marks
 
 Mijn maandelijkse bookmarks, zo heet de nieuwsbrief die ik deze maand ga

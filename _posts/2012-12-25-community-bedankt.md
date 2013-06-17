@@ -10,8 +10,6 @@ type: article
 Het is vandaag weer kerst. Tijd om na te denken over wat je dit jaar gedaan
 hebt, wat je volgend jaar wilt doen en wie je allemaal moet bedanken.
 
-<!--more-->
-
 ## Open source bedankt
 
 Webdevelopment kost geld,

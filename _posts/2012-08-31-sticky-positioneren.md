@@ -9,8 +9,6 @@ type: article
 Vandaag bespreek ik een echte bleeding edge: Er is nog geen specificatie voor
 en het is gister beland in de alpha channel van Chrome.
 
-<!--more-->
-
 ## Chrome Canary of Webkit Nightly
 
 Om deze blogpost live te kunnen uittesten en om de demo te kunnen bekijken heb

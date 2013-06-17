@@ -11,8 +11,6 @@ OO, elke beginner weet het wel: Denken in objecten en dat omzetten in een
 script. Maar OO is veel en veel meer, laat me even kennis maken met de, voor
 velen, onbekende kant van OO.
 
-<!--more-->
-
 ## Even een klein sprongetje
 
 Voor ik verder kan moet ik dan nu toch dat kleine sprongetje maken van objecten

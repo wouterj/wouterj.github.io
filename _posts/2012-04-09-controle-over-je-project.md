@@ -15,8 +15,6 @@ opzoeken waarin je iets voor manier A hebt veranderd en daar moet je alle
 codes van manier A verwijderen. Vervolgens kun je bijna weer opnieuw beginnen
 met manier B. Dat moet simpeler kunnen toch?
 
-<!--more-->
-
 ## Back-ups maken
 
 ![Back-ups maken - Handig of niet?](/img/2012/04/git-backup.png)

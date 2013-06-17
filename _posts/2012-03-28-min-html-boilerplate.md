@@ -13,8 +13,6 @@ Vandaar dat ik vandaag eens wil kijken hoe nou echt een minimale HTML
 boilerplate eruit zou zien. Wat moet het minimaal hebben om in elk browser
 goed geparsed te worden?
 
-<!--more-->
-
 ## Een 'oude' boilerplate
 
 Van [HTML-site](http://html-site.nl/) heb ik een HTML4.01 boilerplate gehaald.

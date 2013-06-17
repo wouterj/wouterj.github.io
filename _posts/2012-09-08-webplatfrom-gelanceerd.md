@@ -14,8 +14,6 @@ is een nieuwe samenwerking tussen groten partijen in de ontwikkeling van het
 web. Het is bedoelt om de grootste en beste documentatie voor het web te
 worden.
 
-<!--more-->
-
 Web Platform zal grote documentaties als Mozilla Developers Network en Google
 Developers combineren, samen met de krachten en kennis van kleinere bedrijven
 in deze webwereld, om zo de grootste bron van kennis en tutorials te worden

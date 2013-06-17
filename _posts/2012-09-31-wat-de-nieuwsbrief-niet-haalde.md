@@ -10,8 +10,6 @@ Elke maand heb ik teveel linkjes om allemaal in de nieuwsbrief te stoppen. Het
 is zonde als deze linkjes het zwarte gat in gaan, daarom post ik elke maand een
 blogpost met de linkjes die dit keer niet in de nieuwsbrief paste.
 
-<!--more-->
-
 ## Aanmelden voor de nieuwsbrief
 
 De nieuwsbrief is zojuist de deur uit gegaan. Baal je omdat je hem ook wou

@@ -11,8 +11,6 @@ type: article
 HTML5 boilerplate, de populairste front-end template, is vandaag overgegaan
 naar de 4e versie. Tijd om er wat verder in te duiken.
 
-<!--more-->
-
 ## Wat is HTML5 boilerplate?
 
 [HTML5 boilerplate](http://html5boilerplate.com) is een template die helemaal

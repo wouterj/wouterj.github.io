@@ -10,8 +10,6 @@ Bijna iedereen weet wel dat ik een fan ben van Symfony2 en alles wat er mee te
 maken heeft. Door mijn enthousiasme wil iedereen het wel eens proberen en
 daardoor krijg ik vaak de vraag hoe je nu het beste Symfony2 kunt leren.
 
-<!--more-->
-
 ## Stappen
 
 Symfony2 leer je in stappen. Je begint met een introductie, vervolgens kun je

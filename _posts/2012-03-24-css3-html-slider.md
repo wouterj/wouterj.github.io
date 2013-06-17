@@ -16,8 +16,6 @@ Dit heeft mij aan het denken gezet om ook een CSS3 slider te maken, die een
 mooie HTML heeft en makkelijk te bedienen is. In dit bericht wil ik graag
 laten zien wat het resultaat is geworden en hoe je tot zoiets komt.
 
-<!--more-->
-
 ## CSS3 Animations
 
 Allereerst kun je zoiets natuurlijk niet met CSS2 af. Je zult CSS3 technieken
