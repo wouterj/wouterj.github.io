@@ -18,11 +18,11 @@
             };
         </script>{% endif %}
     </head>
-    <body class=page>
+    <body class=page itemscope itemtype="http://schema.org/WebPage">
         <header class=page__header>
 
             <hgroup>
-                <h1 class="hN  site-title"><a href="/">Wouter J</a></h1>
+                <h1 class="hN  site-title" itemprop="name"><a href="/">Wouter J</a></h1>
                 <h3 class="hN  site-slogan">A script is more than code</h3>
             </hgroup>
 
@@ -35,7 +35,7 @@
             </nav>
         </header>
 
-        <div class=page__body>
+        <div class=page__body itemscope itemtype="http://schema.org/Blog">
             {{ content }}
         </div>
 

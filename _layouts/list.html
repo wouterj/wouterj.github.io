@@ -1,14 +1,14 @@
 ---
 layout: default
 ---
-<article class="post{% if page.type != null %}  post--{{ page.type }}{% endif %}">
-    <h1 class="post__heading">{{ page.title }}</h1>
+<article class="post{% if page.type != null %}  post--{{ page.type }}{% endif %}" itemscope itemtype="http://schema.org/Blog">
+    <h1 class="post__heading" itemprop="headline">{{ page.title }}</h1>
 
     <ul class="post-list">
         {% for post in paginator.posts %}
-        <li class="post--{{ post.categories }}">
-            <time class="post__date" datetime="{{ post.date|date_to_xmlschema }}">{{ post.date|date:"%d %b" }}</time>
-            <h2 class="post__heading"><a href="{{ post.url }}">{{ post.title }}</a></h2>
+        <li class="post--{{ post.categories }}" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+            <time class="post__date" datetime="{{ post.date|date_to_xmlschema }}" itemprop="dateCreated">{{ post.date|date:"%d %b" }}</time>
+            <h2 class="post__heading" itemprop="headline"><a href="{{ post.url }}" itemprop="url">{{ post.title }}</a></h2>
         </li>
         {% endfor %}
     </ul>

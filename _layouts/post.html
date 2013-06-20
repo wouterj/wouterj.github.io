@@ -1,19 +1,19 @@
 ---
 layout: default
 ---
-<article class="post{% if page.type != null %}  post--{{ page.type }}{% endif %}">
-    <h1 class="post__heading">{{ page.title }}</h1>
+<article class="post{% if page.type != null %}  post--{{ page.type }}{% endif %}" itemscope itemtype="http://schema.org/BlogPosting">
+    <h1 class="post__heading" itemprop="headline">{{ page.title }}</h1>
 
     {% if page.thumbnail != null %}
-    <img src="{{ page.thumbnail_url }}" class="img--stripe  img--left">
+    <img src="{{ page.thumbnail_url }}" class="img--stripe  img--left" itemprop="thumbnailUrl">
     {% endif %}
 
-    <div class="post__entry">
+    <div class="post__entry" itemprop="articleBody">
         {{ page.content|markdownify|site_specific }}
     </div>
 
     {% if page.comments == null or page.comments %}
-    <div id="disqus_thread" class="post__comments"></div>
+    <div id="disqus_thread" class="post__comments" itemprop="comment"></div>
     <script type="text/javascript">
         /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
         var disqus_shortname = 'wouterjnl'; // required: replace example with your forum shortname

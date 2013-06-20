@@ -5,13 +5,13 @@ layout: default
 <ul class="gw" id="js-posts">
     {% for post in paginator.posts %}
     <li class="g  one-whole  desk-{% case i %}{% when 1 %}eight-twelfths{% when 2 %}four-twelfths{% else %}one-half{% endcase %}">
-        <article class="post{% if post.type != null %}  post--{{ post.type }}{% endif %}{% if i == 1 or i == 2 %}  post--featured{% endif %}">
-            <h1 class="post__heading  post__heading{% case i %}{% when 1 %}--alpha{% when 2 %}--beta{% else %}--gamma{% endcase %}"><a href="{{ post.url }}">{{ post.title }}</a></h1>
+        <article class="post{% if post.type != null %}  post--{{ post.type }}{% endif %}{% if i == 1 or i == 2 %}  post--featured{% endif %}" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+            <h1 class="post__heading  post__heading{% case i %}{% when 1 %}--alpha{% when 2 %}--beta{% else %}--gamma{% endcase %}" itemprop="headline"><a href="{{ post.url }}" itemprop="url">{{ post.title }}</a></h1>
 
             {% if post.thumbnail != null %}
-            <img src="{{ post.thumbnail_url }}" class="img--stripe  img--{% case i %}{% when 1 %}medium{% else %}short{% endcase %}  img--left">
+            <img src="{{ post.thumbnail_url }}" class="img--stripe  img--{% case i %}{% when 1 %}medium{% else %}short{% endcase %}  img--left" itemprop="thumbnailUrl">
             {% endif %}
-            <div class="post__entry  post__entry--excerpt">
+            <div class="post__entry  post__entry--excerpt" itemprop="description">
                 {{ post.excerpt }}
             </div>
         </article>
@@ -21,10 +21,10 @@ layout: default
     {% endfor %}
 
     <li class="g  one-whole  desk-one-half">
-        <article class="post  post--about">
-            <h1 class="post__heading  post__heading--gamma">GitHub</h1>
+        <article class="post  post--about" itemscope itemtype="http://schema.org/Article">
+            <h1 class="post__heading  post__heading--gamma" itemprop="headline">GitHub</h1>
 
-            <div class="post__entry">
+            <div class="post__entry" itemprop="articleBody">
                 <p>Ik een enorme voorstander van open source en help graag de PHP community een stapje verder. Hierdoor ben ik dagelijks te vinden op GitHub. Ik ben het drukst met <a href="http://github.com/symfony/symfony-docs">de Symfony2 Documentatie</a>. Andere projecten waaraan ik meedoe zijn oa: <a href="http://github.com/symfony-cmf/">Symfony CMF</a>; <a href="http://github.com/padraic/mockery">Mockery</a>; <a href="http://github.com/fzaninotto/Faker">Faker</a>; <a href="http://github.com/BonsaiDen/JavaScript-Garden">JavaScript Garden</a>.
                 </p>
             </div>
@@ -32,9 +32,10 @@ layout: default
     </li>
 
     <li class="g  one-whole  desk-one-half">
-        <article class="post  post--about">
-        	<h1 class="post__heading  post__heading--gamma">Contact</h1>
-        	<div class="post__entry">
+        <article class="post  post--about" itemscope itemtype="http://schema.org/Article">
+        	<h1 class="post__heading  post__heading--gamma" itemprop="headline">Contact</h1>
+
+        	<div class="post__entry" itemprop="articleBody">
         		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
         	</div>
         </article>
