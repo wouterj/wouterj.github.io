@@ -41,27 +41,6 @@ module JB
   end #Path
 end #JB
 
-desc "Generate blog files"
-task :generate do
-    Jekyll::Site.new(Jekyll.configuration({
-        "source" => ".",
-        "destination" => "_site"
-    })).process
-end
-
-desc "Generate and publish blog to gh-pages"
-task :publish => [:generate] do
-    system "sass css/wouterj.scss:css/wouterj.min.css --style compressed"
-    system "jekyll build"
-    system "git add ."
-    system "git commit -qm 'Build site'"
-    message = "Site updated at #{Time.now.utc}"
-    system "git filter-branch --subdirectory-filter _site/ -qf"
-    system "touch .nojekyll"
-    system "git add css/wouterj.min.css .nojekyll"
-    system "git commit -qm 'Setup site'"
-end
-
 # Usage: rake post title="A Title" [date="2012-02-09"]
 desc "Begin a new post in #{CONFIG['posts']}"
 task :post do
