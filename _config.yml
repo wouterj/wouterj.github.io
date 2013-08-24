@@ -1,15 +1,13 @@
+---
 paginate: 10
 archive_paginate: 20
-
 permalink: /:year/:month/:categories/:title/
-
 nav:
-    -
-        title: Home
-        path: /
-    - 
-        title: Over mij
-        path: /about
-    - 
-        title: Archief
-        path: /archive
+- title: Home
+  path: /
+- title: Over mij
+  path: /about
+- title: Archief
+  path: /archive
+vars:
+  ua_tracking: UA-XXX-X

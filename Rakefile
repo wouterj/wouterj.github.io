@@ -41,6 +41,28 @@ module JB
   end #Path
 end #JB
 
+task :analytics do
+    data = YAML.load_file('_config.yml')
+
+    if data['vars']['ua_tracking'] == 'UA-XXX-X'
+        data['vars']['ua_tracking'] = 'UA-30226315-1'
+        activated = true
+    else
+        data['vars']['ua_tracking'] = 'UA-XXX-X'
+        activated = false
+    end
+
+    File.open('_config.yml', 'wb') do |file|
+        file.write(data.to_yaml)
+    end
+
+    if activated
+        puts "Analytics is enabled"
+    else
+        puts "Analytics is disabled"
+    end
+end
+
 # Usage: rake post title="A Title" [date="2012-02-09"]
 desc "Begin a new post in #{CONFIG['posts']}"
 task :post do
