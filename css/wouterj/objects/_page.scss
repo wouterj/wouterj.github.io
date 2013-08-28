@@ -21,23 +21,42 @@
         margin-top:-90px;
 
         @include media-query(portable){
-            width:251px;
+            width:254px;
             float:none;
             margin:0 auto;
         }
     }
 
+    .page__headline{
+        @include media-query(portable){
+            width:330px;
+            margin:0 auto;
+        }
+
+        @include media-query(palm){
+            width:235px;
+            margin-bottom:14px;
+        }
+    }
+
     .site-title{
         @extend .mega;
+
+        @include media-query(palm){
+            @include font-size(55px);
+        }
     }
         .site-title a{
             color:#000;
             text-decoration:none;
         }
     .site-slogan{
-        font-size:27px;
-        font-size:(27px / $base-font-size) * 1rem;
+        @include font-size(27px);
         font-weight:normal;
+
+        @include media-query(palm){
+            @include font-size(20px);
+        }
     }
 
 
