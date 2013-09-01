@@ -10,6 +10,7 @@ CONFIG = {
   'themes' => File.join(SOURCE, "_includes", "themes"),
   'layouts' => File.join(SOURCE, "_layouts"),
   'posts' => File.join(SOURCE, "_posts"),
+  'drafts' => File.join(SOURCE, "_drafts"),
   'post_ext' => "md",
   'theme_package_version' => "0.1.0"
 }
@@ -90,9 +91,53 @@ task :post do
     post.puts "tags: []"
     post.puts "type: article"
     post.puts "---"
-    post.puts "{% include JB/setup %}"
   end
 end # task :post
+
+namespace :draft do
+    # Usage: rake draft:create title="A Title"
+    desc "Begin a new draft in #{CONFIG['drafts']}"
+    task :create do
+        abort("rake aborted: '#{CONFIG['posts']}' directory not found.") unless FileTest.directory?(CONFIG['posts'])
+        title = ENV["title"] || "new-post"
+        slug = title.downcase.strip.gsub(' ', '-').gsub(/[^\w-]/, '')
+
+        filename = File.join(CONFIG['drafts'], "#{slug}.#{CONFIG['post_ext']}")
+        if File.exist?(filename)
+            abort("rake aborted!") if ask("#{filename} already exists. Do you want to overwrite?", ['y', 'n']) == 'n'
+        end
+
+        puts "Creating new draft: #{filename}"
+        open(filename, 'w') do |post|
+            post.puts "---"
+            post.puts "layout: post"
+            post.puts "title: \"#{title.gsub(/-/,' ')}\""
+            post.puts "category: "
+            post.puts "thumbnail: "
+            post.puts "tags: []"
+            post.puts "type: article"
+            post.puts "---"
+        end
+    end
+
+    # Usage: rake draft:publish file="a-title"
+    desc "Publishes a draft in #{CONFIG['drafts']}"
+    task :publish do
+        abort("rake aborted: '#{CONFIG['posts']}' directory not found.") unless FileTest.directory?(CONFIG['posts'])
+        filename = File.join(CONFIG['drafts'], "#{ENV["file"]}.#{CONFIG['post_ext']}")
+        abort("rake aborted: '#{filename}' is not found") unless File.exists?(filename)
+
+        newfilename = File.join(CONFIG['posts'], "#{ENV['file']}.#{CONFIG['post_ext']}")
+        if File.exist?(newfilename)
+            abort("rake aborted!") if ask("#{filename} already exists. Do you want to overwrite?", ['y', 'n']) == 'n'
+        end
+
+        FileUtils.mv filename, newfilename
+
+        puts "Post '#{ENV['file']}' published"
+    end
+end
+
 
 # Usage: rake page name="about.html"
 # You can also specify a sub-directory path.
