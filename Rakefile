@@ -127,7 +127,8 @@ namespace :draft do
         filename = File.join(CONFIG['drafts'], "#{ENV["file"]}.#{CONFIG['post_ext']}")
         abort("rake aborted: '#{filename}' is not found") unless File.exists?(filename)
 
-        newfilename = File.join(CONFIG['posts'], "#{ENV['file']}.#{CONFIG['post_ext']}")
+        date = Time.now.strftime('%Y-%m-%d')
+        newfilename = File.join(CONFIG['posts'], "#{date}-#{ENV['file']}.#{CONFIG['post_ext']}")
         if File.exist?(newfilename)
             abort("rake aborted!") if ask("#{filename} already exists. Do you want to overwrite?", ['y', 'n']) == 'n'
         end
