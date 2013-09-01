@@ -6,9 +6,8 @@ category: php
 tags: [symfony2]
 type: article
 ---
-Bijna iedereen weet wel dat ik een fan ben van Symfony2 en alles wat er mee te
-maken heeft. Door mijn enthousiasme wil iedereen het wel eens proberen en
-daardoor krijg ik vaak de vraag hoe je nu het beste Symfony2 kunt leren.
+Symfony2, ik ben er een groot fan van. Deze blogpost bevat een makkelijk weg
+om Symfony2 te leren als je alleen nog maar PHP ervaring hebt.
 
 ## Stappen
 
