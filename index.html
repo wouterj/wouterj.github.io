@@ -9,7 +9,7 @@ layout: default
             <h1 class="post__heading  post__heading{% case i %}{% when 1 %}--alpha{% when 2 %}--beta{% else %}--gamma{% endcase %}" itemprop="headline"><a href="{{ post.url }}" itemprop="url">{{ post.title }}</a></h1>
 
             {% if post.thumbnail != null and i != 2 %}
-            <img src="{{ post.thumbnail_url }}" class="img--stripe  img--{% case i %}{% when 1 %}medium{% else %}short{% endcase %}  img--left" itemprop="thumbnailUrl">
+            <img src="{{ post.thumbnail_url }}" class="post__thumbnail  img--stripe  img--{% case i %}{% when 1 %}medium{% else %}short  post__thumbnail--home{% endcase %}  img--left" itemprop="thumbnailUrl">
             {% endif %}
             <div class="post__entry  post__entry--excerpt" itemprop="description">
                 {{ post.excerpt }}

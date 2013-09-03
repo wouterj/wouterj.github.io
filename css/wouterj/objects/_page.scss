@@ -54,6 +54,9 @@
         @include font-size(27px);
         font-weight:normal;
 
+        position:relative;
+        top:-5px;
+
         @include media-query(palm){
             @include font-size(20px);
         }

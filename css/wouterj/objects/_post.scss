@@ -30,6 +30,17 @@
 .post--featured .post__entry--excerpt{
     @extend .post__intro;
 }
+.post__thumbnail{
+    @include media-query(portable) {
+        max-width:100%;
+        height:auto!important;
+    }
+}
+.post__thumbnail--home{
+    @include media-query(portable) {
+        display:none;
+    }
+}
 
 // post types
 .post--article{
