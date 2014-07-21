@@ -28,8 +28,26 @@
 
             <nav class=page__nav>
                 <ul class="nav  nav--block">
-                    {% for item in site.nav %}
-                    <li class="nav__item"><a href="{{ item.path }}">{{ item.title }}</a></li>
+                    {% set category_nav = [
+                        {
+                            'path': '/categories/article',
+                            'title': '<i class=icon>&#xF139;</i> Articles'
+                        },
+                        {
+                            'path': '/categories/news',
+                            'title': '<i class=icon>&#xF0CA;</i> News'
+                        },
+                        {
+                            'path': '/categories/opinion',
+                            'title': '<i class=icon>&#xF075;</i> Opinions'
+                        },
+                        {
+                            'path': '/categories/experiment',
+                            'title': '<i class=icon>&#xF051;</i> Experiments'
+                        },
+                    ] %}
+                    {% for item in site.nav|merge(category_nav) %}
+                    <li class="nav__item"><a href="{{ item.path }}">{{ item.title|raw }}</a></li>
                     {% endfor %}
                 </ul>
             </nav>
