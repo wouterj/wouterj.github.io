@@ -2,7 +2,8 @@
 layout: post
 title: "Webplatform.org gelanceerd"
 thumbnail: webplatform-thumb.png
-category: news
+categories:
+- news
 tags:
 - documentation
 - front-end

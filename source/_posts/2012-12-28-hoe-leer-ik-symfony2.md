@@ -2,7 +2,8 @@
 layout: post
 title: "Hoe leer ik Symfony2?"
 thumbnail: symfony-leren-thumb.png
-category: article
+categories:
+- article
 tags:
 - symfony2
 - php

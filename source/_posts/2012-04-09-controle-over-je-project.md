@@ -2,7 +2,8 @@
 layout: post
 title: "Controle over je project"
 thumbnail: controle-over-je-project-thumb.jpg
-category: article
+categories:
+- article
 tags:
 - tools
 - git

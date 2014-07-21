@@ -4,30 +4,48 @@ title: Category Archive
 generator: [posts_category_index, pagination]
 pagination:
     provider: page.category_posts
+    max_per_page: 20
 
 ---
-{% block title %}{{ page.title }} "{{ page.category }}"{% endblock %}
 {% block content %}
-    <h2>"{{ page.category }}"</h2>
+<ul class="gw" id="js-posts">
     {% for post in page.pagination.items %}
+    <li class="g  one-whole  desk-one-half">
+        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+            <h1 class="post__heading  post__heading--gamma" itemprop="headline"><a href="{{ post.url }}" itemprop="url">{{ post.title }}</a></h1>
 
-        <article>
-            <div><a href="{{ site.url }}{{ post.url }}">{{ post.title }}</a></div>
+            {% if post.thumbnail and i != 2 %}
+            <img src="{{ site.url }}/img/{{ post.thumbnail }}" class="post__thumbnail  img--stripe  img--{% if i == 1 %}medium{% else %}short  post__thumbnail--home{% endif %}  img--left" itemprop="thumbnailUrl">
+            {% endif %}
+            <div class="post__entry  post__entry--excerpt" itemprop="description">
+                {{ post|excerpt }}
+            </div>
         </article>
-
+    </li>
     {% endfor %}
+</ul>
 
-    <div>
-    {% if page.pagination.previous_page or page.pagination.next_page %}
-        <nav class="article clearfix">
-        {% if page.pagination.previous_page %}
-            <a class="previous" href="{{ site.url }}{{ page.pagination.previous_page.url }}" title="Previous Page"><span class="title">Previous Page</span></a>
-        {% endif %}
-
-        {% if page.pagination.next_page %}
-            <a class="next" href="{{ site.url }}{{ page.pagination.next_page.url }}" title="Next Page"><span class="title">Next Page</span></a>
-        {% endif %}
-        </nav>
+<nav>
+{% if page.pagination.previous_page or page.pagination.next_page %}
+    <nav class="article clearfix">
+    {% if page.pagination.previous_page %}
+        <a class="previous" href="{{ site.url }}{{ page.pagination.previous_page.url }}" title="Previous Page"><span class="title">Previous Page</span></a>
     {% endif %}
-    </div>
-{% endblock content %}
+
+    {% if page.pagination.next_page %}
+        <a class="next" href="{{ site.url }}{{ page.pagination.next_page.url }}" title="Next Page"><span class="title">Next Page</span></a>
+    {% endif %}
+    </nav>
+{% endif %}
+</nav>
+{% endblock %}
+
+{% block javascripts_body %}
+<script src="/libs/masonry/masonry.min.js"></script>
+<script type="text/javascript">
+var container = document.getElementById('js-posts');
+var wall = new Masonry(container, {
+    columnWidth: window.getComputedStyle(container).getProperty('width') / 12
+});
+</script>
+{% endblock %}

@@ -1,7 +1,8 @@
 ---
 layout: post
 title: "Abonneer op de nieuwsbrief!"
-category: news
+categories:
+- news
 tags:
 - nieuwsbrief
 

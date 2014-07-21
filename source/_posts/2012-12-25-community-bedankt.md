@@ -1,7 +1,8 @@
 ---
 layout: post
 title: "Community: Bedankt!"
-category: news
+categories:
+- news
 tags:
 - site
 - opensource

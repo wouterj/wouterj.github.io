@@ -2,7 +2,8 @@
 layout: post
 title: "PHP server-side? JS client-side? En HTML en CSS dan?"
 thumbnail: client-server-side-thumb.png
-category: article
+categories:
+- article
 tags:
 - programming types
 

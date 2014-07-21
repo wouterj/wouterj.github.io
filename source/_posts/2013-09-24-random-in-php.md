@@ -1,7 +1,8 @@
 ---
 layout: post
 title: "Random in PHP"
-category: article
+categories:
+- article
 tags:
 - php
 - reading the source

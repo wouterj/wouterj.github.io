@@ -2,7 +2,8 @@
 layout: post
 title: "De Koekjes Wet"
 thumbnail: cookie-law-thumb.png
-category: news
+categories:
+- news
 tags:
 - wetten
 - cookies

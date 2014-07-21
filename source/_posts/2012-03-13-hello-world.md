@@ -2,7 +2,8 @@
 layout: post
 title: "Hello World"
 thumbnail: hello-world-thumb.png
-category: news
+categories:
+- news
 tags:
 - site
 

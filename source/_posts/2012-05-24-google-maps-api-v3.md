@@ -2,7 +2,8 @@
 layout: post
 title: "Google Maps API V3 - Begin tot eind"
 thumbnail: google-maps-api-thumb.png
-category: article
+categories:
+- article
 tags:
 - google maps
 - javascript

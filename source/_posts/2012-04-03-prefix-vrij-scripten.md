@@ -2,7 +2,8 @@
 layout: post
 title: "5 oplossingen voor de vendors"
 thumbnail: prefix-free-thumb.png
-category: article
+categories:
+- article
 tags:
 - tools
 - css

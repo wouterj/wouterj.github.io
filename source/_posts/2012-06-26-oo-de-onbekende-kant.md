@@ -2,10 +2,11 @@
 layout: post
 title: "OO: De onbekende kant"
 thumbnail: oo-onbekende-kant-thumb.png
-category: oo
+categories:
+- article
 tags:
-- scripting
-type: article
+- oo
+
 ---
 OO, elke beginner weet het wel: Denken in objecten en dat omzetten in een
 script. Maar OO is veel en veel meer, laat me even kennis maken met de, voor

@@ -1,8 +1,9 @@
 ---
 layout: post
 title: "Waarom ik geen voorstander van validators ben"
-thumbnail: validators-bad.png
-category: opinion
+thumbnail: validators-bad-thumb.png
+categories:
+- opinion
 tags:
 - validators
 - w3c

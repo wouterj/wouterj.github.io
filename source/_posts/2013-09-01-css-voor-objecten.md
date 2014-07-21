@@ -2,7 +2,8 @@
 layout: post
 title: "CSS voor objecten"
 thumbnail: css-objecten-thumb.png
-category: article
+categories:
+- article
 tags:
 - object oriented
 - css

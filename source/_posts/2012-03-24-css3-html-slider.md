@@ -1,8 +1,9 @@
 ---
 layout: post
 title: "Pure CSS3 en HTML slider"
-thumbnail: css3-slider-thumb
-category: proof
+thumbnail: css3-slider-thumb.jpg
+categories:
+- experiment
 tags:
 - bleeding edge
 - css

@@ -1,7 +1,8 @@
 ---
 layout: post
 title: "Wat de nieuwsbrief niet haalde"
-category: news
+categories:
+- news
 tags:
 - nieuwsbrief
 

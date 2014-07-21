@@ -2,7 +2,8 @@
 layout: post
 title: "HTML5 Boilerplate 4.0"
 thumbnail: h5bp-v4-thumb.png
-category: news
+categories:
+- news
 tags:
 - tools
 - releases

@@ -1,7 +1,8 @@
 ---
 layout: post
 title: "Minimale HTML Boilerplate"
-category: article
+categories:
+- article
 tags:
 - bleeding edge
 - html

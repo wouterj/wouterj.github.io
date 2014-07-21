@@ -1,7 +1,8 @@
 ---
 layout: post
 title: "CSS bleeding edge: Sticky Positioneren"
-category: article
+categories:
+- article
 tags:
 - bleeding edge
 - css

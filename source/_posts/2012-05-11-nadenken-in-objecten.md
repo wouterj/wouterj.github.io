@@ -2,7 +2,8 @@
 layout: post
 title: "OO: Eens goed nadenken in objecten"
 thumbnail: oop-nadenken-thumb.png
-category: article
+categories:
+- article
 tags:
 - scripting
 - object oriented
