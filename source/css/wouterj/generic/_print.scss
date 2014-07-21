@@ -1,0 +1,20 @@
+@media print {
+    body{
+        @include font-size(12px);
+    }
+
+    .post{
+        h2 { @include font-size($h4-size); }
+        h3 { @include font-size($h5-size); }
+        h4 { @include font-size($h6-size); }
+    }
+        .post__intro{
+            @include font-size(14px);
+        }
+
+    .page__header,
+    .post__comments,
+    .page__footer{
+        display:none;
+    }
+}

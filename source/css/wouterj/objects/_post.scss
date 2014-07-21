@@ -1,0 +1,154 @@
+/*-----------------------------------*\
+    $POST
+\*-----------------------------------*/
+.post{
+    @extend .cf;
+
+    border-top:5px solid #c33;
+    background:#fff;
+    @include vendor(box-shadow, 0px 1px 2px #555);
+    padding:$half-spacing-unit;
+    margin-top:$base-spacing-unit;
+
+    position:relative;
+
+    h1, h2, h3, h4, h5, h6{
+        font-family: 'Roboto Slab';
+    }
+
+    @include media-query(portable){
+        padding-left:20px;
+        padding-right:20px;
+    }
+}
+    .post__heading--gamma{
+        @extend .gamma;
+    }
+    .post__heading--beta{
+        @extend .beta;
+    }
+    .post__heading--alpha{
+        @extend .alpha;
+    }
+        .post__heading a{
+            color:#000;
+        }
+
+.post__intro{
+    @include font-size(20px);
+    line-height:1.5;
+}
+.post--featured .post__entry--excerpt{
+    @extend .post__intro;
+}
+.post__thumbnail{
+    @include media-query(portable) {
+        max-width:100%;
+        height:auto!important;
+    }
+}
+.post__thumbnail--home{
+    @include media-query(portable) {
+        display:none;
+    }
+}
+.post__comments{
+    box-shadow:0 -1px 3px #555;
+    padding:10px;
+}
+.post-side{
+    background:#eee;
+    padding:24px;
+    margin-left:96px;
+
+    @include font-size($h6-size);
+
+    position:relative;
+
+    p{
+        margin:0;
+    }
+
+    &:before{
+        content:attr(data-type);
+
+        font-size:12px;
+        font-weight:bold;
+        text-transform:uppercase;
+        color:#555;
+
+        position:absolute;
+        top:3px;
+        left:6px;
+    }
+}
+
+
+
+
+
+/*-----------------------------------*\
+    $POST TYPES
+\*-----------------------------------*/
+.post--article:before, .post--opinion:before, .post--news:before{
+    font-family:Batch;
+
+    position:absolute;
+    top:0;
+    right:10px;
+
+    padding:.25 * $half-spacing-unit .5 * $half-spacing-unit;
+    background:#c33;
+    float:left;
+    color:#fff;
+}
+.post--article:before { content:'\F139'; }
+.post--opinion:before { content:'\F075'; }
+.post--news:before    { content:'\F0CA'; }
+.post--proof:before   { content:'\F051'; }
+.post--idea:before    { content:'\F12C'; }
+
+
+
+
+
+/*-----------------------------------*\
+    $POST_LIST
+\*-----------------------------------*/
+.post-list{
+    @extend .block-list;
+}
+    .post-list .post__heading{
+        margin-bottom:0;
+    }
+    .post-list .post__date{
+        float:left;
+        background:#fff;
+        box-shadow:0px 1px 3px #555;
+        padding:10px;
+        margin-right:10px;
+
+        @include media-query(portable){
+            float:none;
+            margin-top:5px;
+            display:inline-block;
+        }
+    }
+
+.post-table{
+    table-layout: fixed;
+
+    h2{
+        margin:0;
+    }
+
+    tr{
+        border-bottom:2px groove #eee;
+    }
+        td:first-child{
+            width:90px;
+        }
+        td:nth-child(2){
+            width:80%;
+        }
+}

@@ -1,0 +1,51 @@
+/*-----------------------------------*\
+    $PAGE
+\*-----------------------------------*/
+.page{
+    @extend .brand-face;
+    width:100%;
+    max-width:978px;
+    margin:0 auto;
+    background:url(/img/css/bg-grid.png);
+}
+
+
+
+
+
+.page__header{
+    position:relative;
+}
+    .page__nav{
+        float:right;
+        margin-top:-90px;
+
+        @include media-query(portable){
+            width:254px;
+            float:none;
+            margin:0 auto;
+        }
+    }
+
+    .page__headline{
+        margin-top:28px;
+
+        @include media-query(portable){
+            width:330px;
+            margin:0 auto;
+        }
+
+        @include media-query(palm){
+            width:235px;
+            margin-bottom:14px;
+        }
+    }
+
+
+
+
+
+.page__footer{
+    @extend .post;
+    border-top-color:#aaa !important;
+}

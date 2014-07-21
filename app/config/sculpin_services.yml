@@ -1,0 +1,8 @@
+services:
+    wouterj.twig.site:
+        class: WouterJ\Twig\Site
+        tags: [{ name: twig.extension }]
+
+    wouterj.formatter.site:
+        class: WouterJ\Formatter\Site
+        tags: [{ name: kernel.event_subscriber }]

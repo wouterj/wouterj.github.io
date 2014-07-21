@@ -3,31 +3,59 @@ layout: default
 title: Home
 generator: pagination
 pagination:
-    max_per_page: 3
+    max_per_page: 10
 use:
     - posts
 ---
-{% for post in page.pagination.items %}
-    <article>
-        <header>
-            <h2><a href="{{ site.url }}{{ post.url }}">{{ post.title }}</a></h2>
-        </header>
-        <div>
-            {{ post.blocks.content|raw }}
-        </div>
-        {% if post.meta.tags %}
-            <p class="tags">
-            Tags:
-            {% for tag in post.meta.tags %}
-            <a href="{{ site.url }}/blog/tags/{{ tag|url_encode(true) }}">{{ tag }}</a>{% if not loop.last %}, {% endif %}
-            {% endfor %}
-            </p>
-        {% endif %}
-    </article>
-{% endfor %}
-{% if page.pagination.previous_page or page.pagination.next_page %}
-    <nav>
-        {% if page.pagination.previous_page %}<a href="{{ site.url }}{{ page.pagination.previous_page.url }}">Newer Posts</a>{% endif %}<br />
-        {% if page.pagination.next_page %}<a href="{{ site.url }}{{ page.pagination.next_page.url }}">Older Posts</a>{% endif %}<br />
-    </nav>
-{% endif %}
+{% set i = 1 %}
+<ul class="gw" id="js-posts">
+    {% for post in page.pagination.items %}
+    <li class="g  one-whole  desk-{% if i == 1 %}eight-twelfths{% elseif i == 2 %}four-twelfths{% else %}one-half{% endif %}">
+        <article class="post{% if post.category %}  post--{{ post.category }}{% endif %}{% if i == 1 or i == 2 %}  post--featured{% endif %}" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+            <h1 class="post__heading  post__heading{% if i == 1 %}--alpha{% elseif i == 2 %}--beta{% else %}--gamma{% endif %}" itemprop="headline"><a href="{{ post.url }}" itemprop="url">{{ post.title }}</a></h1>
+
+            {% if post.thumbnail and i != 2 %}
+            <img src="{{ site.url }}/img/{{ post.thumbnail }}" class="post__thumbnail  img--stripe  img--{% if i == 1 %}medium{% else %}short  post__thumbnail--home{% endif %}  img--left" itemprop="thumbnailUrl">
+            {% endif %}
+            <div class="post__entry  post__entry--excerpt" itemprop="description">
+                {{ post|excerpt }}
+            </div>
+        </article>
+    </li>
+
+    {% set i = i + 1 %}
+    {% endfor %}
+
+    <li class="g  one-whole  desk-one-half">
+        <article class="post  post--about" itemscope itemtype="http://schema.org/Article">
+            <h1 class="post__heading  post__heading--gamma" itemprop="headline">GitHub</h1>
+
+            <div class="post__entry" itemprop="articleBody">
+                <p>I'm a big fan of Open Source. I'm working on a daily basis on the <a href="http://github.com/symfony/symfony-docs/">Symfony docs</a> and the <a href="http://github.com/symfony-cmf">Symfony CMF</a>. You'll be my hero if you contribute to Open Source projects too!</p>
+                </p>
+            </div>
+        </article>
+    </li>
+
+    <li class="g  one-whole  desk-one-half">
+        <article class="post  post--about" itemscope itemtype="http://schema.org/Article">
+        	<h1 class="post__heading  post__heading--gamma" itemprop="headline">Contact</h1>
+
+        	<div class="post__entry" itemprop="articleBody">
+                <p>You can contact my on <a href="http://github.com/WouterJ">GitHub</a>,
+        		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        	</div>
+        </article>
+    </li>
+</ul>
+
+<script src="/libs/masonry/masonry.min.js"></script>
+<script type="text/javascript">
+!function() {
+    var wall = new Masonry(document.getElementById('js-posts'), {
+        columnWidth: function (width) {
+            return width / 12;
+        },
+    });
+}();
+</script>

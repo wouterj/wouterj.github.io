@@ -1,0 +1,26 @@
+/*-----------------------------------*\
+    $SITE
+\*-----------------------------------*/
+.site-title{
+    @extend .mega;
+
+    @include media-query(palm){
+        @include font-size(55px);
+    }
+
+    a{
+        color:#000;
+        text-decoration:none;
+    }
+}
+.site-slogan{
+    @include font-size(22px);
+    font-weight:normal;
+    word-spacing:1.5px;
+
+    margin-top:1px;
+
+    @include media-query(palm){
+        @include font-size(20px);
+    }
+}

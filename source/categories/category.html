@@ -1,0 +1,33 @@
+---
+layout: default
+title: Category Archive
+generator: [posts_category_index, pagination]
+pagination:
+    provider: page.category_posts
+
+---
+{% block title %}{{ page.title }} "{{ page.category }}"{% endblock %}
+{% block content %}
+    <h2>"{{ page.category }}"</h2>
+    {% for post in page.pagination.items %}
+
+        <article>
+            <div><a href="{{ site.url }}{{ post.url }}">{{ post.title }}</a></div>
+        </article>
+
+    {% endfor %}
+
+    <div>
+    {% if page.pagination.previous_page or page.pagination.next_page %}
+        <nav class="article clearfix">
+        {% if page.pagination.previous_page %}
+            <a class="previous" href="{{ site.url }}{{ page.pagination.previous_page.url }}" title="Previous Page"><span class="title">Previous Page</span></a>
+        {% endif %}
+
+        {% if page.pagination.next_page %}
+            <a class="next" href="{{ site.url }}{{ page.pagination.next_page.url }}" title="Next Page"><span class="title">Next Page</span></a>
+        {% endif %}
+        </nav>
+    {% endif %}
+    </div>
+{% endblock content %}
