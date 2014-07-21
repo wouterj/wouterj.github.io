@@ -8,3 +8,5 @@
 s3.conf
 /vendor/
 composer.lock
+.sass-cache
+*.css
