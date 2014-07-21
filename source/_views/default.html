@@ -61,6 +61,7 @@
             <p>&copy; Copyright 2012 Wouter de Jong</p>
         </footer>
 
+        {% block javascripts_body %}
         <script type="text/javascript">
         var _gaq = _gaq || [];
         _gaq.push(['_setAccount', '{{ site.ua_tracking }}']);
@@ -72,5 +73,6 @@
             var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
         })();
         </script>
+        {% endblock %}
     </body>
 </html>
