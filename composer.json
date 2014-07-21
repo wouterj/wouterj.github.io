@@ -1,4 +1,8 @@
 {
+    "require": {
+        "sculpin/sculpin": "dev-master"
+    },
+    "minimum-stability": "dev",
     "autoload": {
         "psr-4": {"WouterJ\\": "app/src"}
     }
