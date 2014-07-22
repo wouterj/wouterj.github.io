@@ -31,19 +31,19 @@
                     {% set category_nav = [
                         {
                             'path': '/categories/article',
-                            'title': '<i class=icon>&#xF139;</i> Articles'
+                            'title': '<i class=icon>&#xF139;</i> <span class="button__text">Articles</span>'
                         },
                         {
                             'path': '/categories/news',
-                            'title': '<i class=icon>&#xF0CA;</i> News'
+                            'title': '<i class=icon>&#xF0CA;</i> <span class="button__text">News</span>'
                         },
                         {
                             'path': '/categories/opinion',
-                            'title': '<i class=icon>&#xF075;</i> Opinions'
+                            'title': '<i class=icon>&#xF075;</i> <span class="button__text">Opinions</span>'
                         },
                         {
                             'path': '/categories/experiment',
-                            'title': '<i class=icon>&#xF051;</i> Experiments'
+                            'title': '<i class=icon>&#xF051;</i> <span class="button__text">Experiments</span>'
                         },
                     ] %}
                     {% for item in site.nav|merge(category_nav) %}

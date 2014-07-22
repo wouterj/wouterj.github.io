@@ -11,7 +11,8 @@ use:
 {% set i = 1 %}
 <ul class="gw" id="js-posts">
     {% for post in page.pagination.items %}
-    <li class="g  one-whole  desk-{% if i == 1 %}eight-twelfths{% elseif i == 2 %}four-twelfths{% else %}one-half{% endif %}">
+    {% set size = (i == 1 ? 'eight-twelfths' : (i == 2 ? 'four-twelfths' : 'one-half')) %}
+    <li class="g  one-whole  desk-{{ size }}  lap-{{ size }}">
         <article class="post{% if post.categories %}  post--{{ post.categories|first }}{% endif %}{% if i == 1 or i == 2 %}  post--featured{% endif %}" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
             <h1 class="post__heading  post__heading{% if i == 1 %}--alpha{% elseif i == 2 %}--beta{% else %}--gamma{% endif %}" itemprop="headline"><a href="{{ post.url }}" itemprop="url">{{ post.title }}</a></h1>
 

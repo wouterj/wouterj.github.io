@@ -21,9 +21,17 @@
         margin-top:-90px;
 
         @include media-query(portable){
-            width:254px;
+            width:571px;
             float:none;
-            margin:0 auto;
+            margin:20px auto;
+        }
+
+        @include media-query(palm){
+            width:272px;
+
+            .button__text{
+                display:none;
+            }
         }
     }
 
@@ -48,4 +56,12 @@
 .page__footer{
     @extend .post;
     border-top-color:#aaa !important;
+
+    @include media-query(palm){
+        @include font-size($milli-size);
+
+        p{
+            margin:0;
+        }
+    }
 }
