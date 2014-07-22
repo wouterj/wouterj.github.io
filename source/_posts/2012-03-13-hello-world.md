@@ -9,10 +9,11 @@ tags:
 
 ---
 Het eerste echte berichtje op een blog, dan hoor je eigenlijk wel welkom te
-zeggen natuurlijk. Tja, dit kan je natuurlijk -zoals webdevelopers gewent
-zijn- doen met een simpel Hello World berichtje, maar dat vind ik toch wel
-iets te weinig voor jou, de bezoeker die tijd heeft genomen dit bericht te
-lezen.
+zeggen natuurlijk.
+
+Tja, dit kan je natuurlijk -zoals webdevelopers gewent zijn- doen met een
+simpel Hello World berichtje, maar dat vind ik toch wel iets te weinig voor
+jou, de bezoeker die tijd heeft genomen dit bericht te lezen.
 
 ## Welkom, wie ben ik?
 

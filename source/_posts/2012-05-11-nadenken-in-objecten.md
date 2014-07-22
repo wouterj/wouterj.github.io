@@ -9,14 +9,15 @@ tags:
 - object oriented
 
 ---
-OOP is vooral het denken in objecten. Ja, daar beginnen heel veel OOP
+OOP is vooral het denken in objecten. Daar beginnen heel veel OOP
 tutorials mee. Maar wat nou precies dat denken in objecten is dat wordt vaak
 heel vaag uitgelegd. En hoe je dat moet doen is vaak al helemaal niet
-uitgelegd. Tijd om daar eens verandering in te brengen. In deze tutorial raken
-we geen 1 stukje code aan. Dat betekend dat het uit kan lopen op een saaie
-theorie les, maar dat probeer ik te voorkomen. Het betekend ook dat iedereen,
-in welke taal je ook script, deze tutorial kan volgen en dus is dit voor
-iedereen geschikt.
+uitgelegd. Tijd om daar eens verandering in te brengen.
+
+In deze tutorial raken we geen 1 stukje code aan. Dat betekend dat het uit kan
+lopen op een saaie theorie les, maar dat probeer ik te voorkomen. Het betekend
+ook dat iedereen, in welke taal je ook script, deze tutorial kan volgen en dus
+is dit voor iedereen geschikt.
 
 ## Object Georiënteerd
 

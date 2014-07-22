@@ -10,9 +10,7 @@ tags:
 
 ---
 CSS3 vind ik geweldig, maar die prefixen zijn natuurlijk totaal niet handig.
-Vooral als je ook nog verschillende syntaxen en waardes per prefix hebt.
-Aangezien veel mensen met deze onhandige prefixen te maken hebben zijn er
-diverse dingen bedacht. Een paar die ik ben tegenkomen wil ik vandaag met
+Er zijn veel tooltjes bedacht om deze te voorkomen, een paar wil ik vandaag met
 jullie delen.
 
 De tools die ik hier bespreek zijn:

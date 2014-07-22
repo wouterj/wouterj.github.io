@@ -9,14 +9,16 @@ tags:
 
 ---
 Tja, scripten is lastig. Maar het wordt nog lastiger als we het ook nog
-eens gaan hebben over wat een scirpttaal precies doet en hoe het werkt. Maar
+eens gaan hebben over wat een scripttaal precies doet en hoe het werkt. Maar
 toch is het iets wat je echt door moet hebben wil je goed kunnen werken met
-scripttalen. Helaas kom ik vaak tegen dat beginners dit niet door hebben
-en met hun handen in hun haar naar een forum komen om te vragen of je iets
-kunt doen in PHP wat PHP helemaal niet kan. Of precies andersom dat je in JS
-iets wilt doen maar dat helemaal niet kan. Dat komt omdat er 1 heel groot
-verschil zit in die talen.<br /> Om het voor eens en altijd duidelijk te maken
-hier een artikel die het, hoop ik, goed uitlegt.
+scripttalen.
+
+Helaas kom ik vaak tegen dat beginners dit niet door hebben en met hun handen
+in hun haar naar een forum komen om te vragen of je iets kunt doen in PHP wat
+PHP helemaal niet kan. Of precies andersom dat je in JS iets wilt doen maar dat
+helemaal niet kan. Dat komt omdat er 1 heel groot verschil zit in die talen. Om
+het voor eens en altijd duidelijk te maken hier een artikel die het, hoop ik,
+goed uitlegt.
 
 ## Een scripttaal
 

@@ -12,13 +12,13 @@ tags:
 ---
 Een validator wordt door veel webscripters gezien als een heilige tool. Heb je
 geen fouten dan draait je website overal goed en heb je wel fouten dan is je
-website code eigenlijk al meteen slecht. Nu ben ik 3 jaar geleden, toen ik
-begon, ook zo opgevoed. Elke website die ik in elkaar zette haalde ik door de
-validator en ik deed er alles aan om die *kuch* mooie buttons op mijn website
-te mogen zetten.
+website code eigenlijk al meteen slecht.
 
-Helaas is de validator alles behalve heilig en kun je die na een half jaar
-beter op een zijspoortje zetten, op weg naar Tokio.
+Nu ben ik 3 jaar geleden, toen ik begon, ook zo opgevoed. Elke website die ik
+in elkaar zette haalde ik door de validator en ik deed er alles aan om die
+*kuch* mooie buttons op mijn website te mogen zetten. Helaas is de validator
+alles behalve heilig en kun je die na een half jaar beter op een zijspoortje
+zetten, op weg naar Tokio.
 
 ## Semantiek is het belangrijkst
 

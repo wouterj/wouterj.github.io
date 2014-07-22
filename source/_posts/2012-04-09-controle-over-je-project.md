@@ -11,11 +11,13 @@ tags:
 ---
 Als je de basis van een taal kent en verder komt en je eigen projecten gaat
 schrijven, zoals een inlog systeem of een forum dan kom je vanzelf vaak wel
-problemen tegen. Je wou eerst iets op manier A doen, maar nu kom je er toch
-achter dat manier B eigenlijk veel beter werkt. Je moet dan alle bestanden
-opzoeken waarin je iets voor manier A hebt veranderd en daar moet je alle
-codes van manier A verwijderen. Vervolgens kun je bijna weer opnieuw beginnen
-met manier B. Dat moet simpeler kunnen toch?
+problemen tegen. Hoe kun je snel bijhouden wanneer iets misging?
+
+Je wou eerst iets op manier A doen, maar nu kom je er toch achter dat manier B
+eigenlijk veel beter werkt. Je moet dan alle bestanden opzoeken waarin je iets
+voor manier A hebt veranderd en daar moet je alle codes van manier A
+verwijderen. Vervolgens kun je bijna weer opnieuw beginnen met manier B. Dat
+moet simpeler kunnen toch?
 
 ## Back-ups maken
 

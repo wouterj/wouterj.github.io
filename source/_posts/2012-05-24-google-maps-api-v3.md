@@ -11,9 +11,10 @@ tags:
 ---
 Google Maps kent iedereen wel en je kan er geweldige dingen mee doen. Om een
 Google Maps op jou website te krijgen zul je aan de slag moeten met de API van
-Google. In deze blogpost staan links naar 5 artikelen die ik ooit voor een
-andere website heb geschreven hierover, deze gaan vanaf het begin tot aan de
-extra's.
+Google.
+
+In deze blogpost staan links naar 5 artikelen die ik ooit voor een andere
+website heb geschreven hierover, deze gaan vanaf het begin tot aan de extra's.
 
 ## 1. [De Kaart krijgen](http://www.html-site.nl/google-maps-api-v3-de-kaart-krijgen)
 

@@ -11,9 +11,10 @@ tags:
 Je kent het vast wel, het [HTML5 boilerplate](http://html5boilerplate.com/)
 project opgezet door Paul Irish en een paar anderen. Het heeft een paar mooie
 en handige technieken erin staan, maar echt een boilerplate is het niet.
-Vandaar dat ik vandaag eens wil kijken hoe nou echt een minimale HTML
-boilerplate eruit zou zien. Wat moet het minimaal hebben om in elk browser
-goed geparsed te worden?
+
+Vandaag wil ik eens kijken hoe nou een echte minimale HTML boilerplate eruit
+zou zien. Wat moet het minimaal hebben om in elk browser goed geparsed te
+worden?
 
 ## Een 'oude' boilerplate
 

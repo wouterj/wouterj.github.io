@@ -9,12 +9,10 @@ tags:
 - cookies
 
 ---
-Iedereen het de aloude koekjes wet van vroeger, toen ze kind waren, vast nog
-wel: Geen koekjes stelen uit de koekentrommel. Nu heeft de Europese Unie
-besloten dat dit ook moet gaan gelden voor de volwassenen op het internet.
-Vanaf 1 juli 2012 is het verboden om koekjes op te slaan zonder
-toestemming. Wat mag dan niet en wat wel en hoe kun je het oplossen? Dat alles
-heb ik vandaag overzichtelijk in dit bericht geplaatst.
+De Europese Unie heeft besloten dat vanaf 1 juli 2012 het verboden is om
+koekjes op te slaan zonder toestemming. Wat mag dan niet en wat wel en hoe kun
+je het oplossen? Dat alles heb ik vandaag overzichtelijk in dit bericht
+geplaatst.
 
 ## Wat zijn cookies?
 
