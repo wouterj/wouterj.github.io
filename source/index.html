@@ -47,18 +47,17 @@ use:
         	</div>
         </article>
     </li>
+
+    <li class="g  one-twelfth"></li>
 </ul>
 {% endblock %}
 
 {% block javascripts_body %}
 <script src="/libs/masonry/masonry.min.js"></script>
 <script type="text/javascript">
-!function() {
-    var wall = new Masonry(document.getElementById('js-posts'), {
-        columnWidth: function (width) {
-            return width / 12;
-        },
-    });
-}();
+var wall = new Masonry(document.querySelector('#js-posts'), {
+    columnWidth: '.one-twelfth',
+    itemSelector: '.g'
+});
 </script>
 {% endblock %}

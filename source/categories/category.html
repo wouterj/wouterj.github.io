@@ -43,9 +43,9 @@ pagination:
 {% block javascripts_body %}
 <script src="/libs/masonry/masonry.min.js"></script>
 <script type="text/javascript">
-var container = document.getElementById('js-posts');
-var wall = new Masonry(container, {
-    columnWidth: window.getComputedStyle(container).getProperty('width') / 12
+var wall = new Masonry(document.querySelector('#js-posts'), {
+    columnWidth: '.one-twelfth',
+    itemSelector: '.g'
 });
 </script>
 {% endblock %}
