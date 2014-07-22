@@ -36,7 +36,7 @@ class Site implements EventSubscriberInterface
         $event->source()->setContent(preg_replace_callback(
             '/<div data-wj-block="(\w+)"(?: data-wj-block-title="(.+?)")?>(.+?)<\/div>/s',
             function ($m) {
-                $html = '<aside class="side--'.$m[1].'">';
+                $html = '<aside class="side  side--'.$m[1].'" data-type="'.$m[1].'">';
                 if ($m[2]) {
                     $html .= '<h1>'.$m[2].'</h1>';
                 }

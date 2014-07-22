@@ -56,32 +56,6 @@
     box-shadow:0 -1px 3px #555;
     padding:10px;
 }
-.post-side{
-    background:#eee;
-    padding:24px;
-    margin-left:96px;
-
-    @include font-size($h6-size);
-
-    position:relative;
-
-    p{
-        margin:0;
-    }
-
-    &:before{
-        content:attr(data-type);
-
-        font-size:12px;
-        font-weight:bold;
-        text-transform:uppercase;
-        color:#555;
-
-        position:absolute;
-        top:3px;
-        left:6px;
-    }
-}
 
 
 
