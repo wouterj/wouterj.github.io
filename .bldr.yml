@@ -58,3 +58,24 @@ bldr:
                         - '--server'
 
         publish:
+            description: Publishes the output_prod directory to the master branch
+            calls:
+                -
+                    type: exec
+                    executable: git
+                    arguments: ['branch', '-D', 'master']
+
+                -
+                    type: exec
+                    executable: git
+                    arguments: ['checkout', '-b', 'master']
+
+                -
+                    type: exec
+                    executable: git
+                    arguments: ['filter-branch', '--subdirectory-filter', 'output_prod/', '-f']
+
+                -
+                    type: exec
+                    executable: git
+                    arguments: [''
