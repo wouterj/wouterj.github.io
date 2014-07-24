@@ -23,6 +23,8 @@ pagination:
         </article>
     </li>
     {% endfor %}
+
+    <li class="g  one-twelfth"></li>
 </ul>
 
 <nav>
@@ -41,6 +43,8 @@ pagination:
 {% endblock %}
 
 {% block javascripts_body %}
+{{ parent() }}
+
 <script src="/libs/masonry/masonry.min.js"></script>
 <script type="text/javascript">
 var wall = new Masonry(document.querySelector('#js-posts'), {

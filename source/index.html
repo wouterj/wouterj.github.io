@@ -54,6 +54,7 @@ use:
 {% endblock %}
 
 {% block javascripts_body %}
+{{ parent() }}
 <script src="/libs/masonry/masonry.min.js"></script>
 <script type="text/javascript">
 var wall = new Masonry(document.querySelector('#js-posts'), {
