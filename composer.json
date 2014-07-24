@@ -2,6 +2,9 @@
     "require": {
         "sculpin/sculpin": "dev-master"
     },
+    "require-dev": {
+        "bldr-io/bldr": "dev-master"
+    },
     "minimum-stability": "dev",
     "autoload": {
         "psr-4": {"WouterJ\\": "app/src"}
