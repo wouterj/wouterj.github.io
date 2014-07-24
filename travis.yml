@@ -1,0 +1,12 @@
+language: php
+
+php:
+  - 5.5
+
+before_script:
+  - "gem install sass"
+  - "composer selfupdate"
+  - "composer install"
+
+script:
+  - "vendor/bin/bldr build publish"
