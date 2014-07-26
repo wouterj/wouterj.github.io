@@ -103,4 +103,5 @@ bldr:
 
                 -
                     type: exec
-                    executable: 'git push https://${GH_TOKEN}@github.com/WouterJ/new-blog'
+                    executable: git
+                    arguments: ['push', 'https://${GH_TOKEN}@github.com/WouterJ/new-blog']
