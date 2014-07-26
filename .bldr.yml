@@ -6,7 +6,7 @@ bldr:
             tasks:
                 - sass_generate
                 - sculpin_generate
-                #- publish
+                - publish
         watch:
             description: Executes the watch commands
             tasks:
@@ -73,9 +73,18 @@ bldr:
                 -
                     type: exec
                     executable: git
-                    arguments: ['filter-branch', '--subdirectory-filter', 'output_prod/', '-f']
+                    arguments: ['add', '-f', 'output_prod']
 
                 -
                     type: exec
                     executable: git
-                    arguments: [''
+                    arguments: ['commit', '-m', 'Build website']
+
+                -
+                    type: exec
+                    executable: git
+                    arguments: ['filter-branch', '--subdirectory-filter', 'output_prod/', '-f']
+
+                -
+                    type: exec
+                    executable: 'git push https://${GH_TOKEN}@github.com/WouterJ/new-blog'

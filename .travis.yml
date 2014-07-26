@@ -1,12 +1,15 @@
 language: php
-
 php:
-  - hhvm
+- hhvm
 
 before_script:
-  - "gem install sass"
-  - "composer selfupdate"
-  - "composer install"
+- gem install sass
+- composer selfupdate
+- composer install
 
 script:
-  - "vendor/bin/bldr build publish"
+- vendor/bin/bldr build publish
+
+env:
+  global:
+    secure: Qx5LgPLGlhK5OXMYB76S7R9CV0oMR3MweBBByQSUlApOov4tXlN7wg3PYNqd5RWz2bHJA0BV7Kgq14qJWTTypRJtqKIdKNbmITHuA1oHyvmZED5+QfwGz5x1+cf1KI2WS/TlRlV8Zd6m+e1El8//tpjFu6vjwoDwnI7mlioE/FU=
