@@ -63,6 +63,16 @@ bldr:
                 -
                     type: exec
                     executable: git
+                    arguments: ['config', '--global', 'user.email', 'bot@wouterj.nl']
+
+                -
+                    type: exec
+                    executable: git
+                    arguments: ['config', '--global', 'user.name', 'WouterJ.nl bot']
+
+                -
+                    type: exec
+                    executable: git
                     failOnError: false
                     arguments: ['branch', '-D', 'master']
 
@@ -70,6 +80,11 @@ bldr:
                     type: exec
                     executable: git
                     arguments: ['checkout', '-b', 'master']
+
+                -
+                    type: exec
+                    executable: touch
+                    arguments: ['.nojekyll']
 
                 -
                     type: exec
