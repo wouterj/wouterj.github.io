@@ -62,46 +62,5 @@ bldr:
             calls:
                 -
                     type: exec
-                    executable: git
-                    arguments: ['config', '--global', 'user.email', 'bot@wouterj.nl']
-
-                -
-                    type: exec
-                    executable: git
-                    arguments: ['config', '--global', 'user.name', 'WouterJ.nl bot']
-
-                -
-                    type: exec
-                    executable: git
-                    failOnError: false
-                    arguments: ['branch', '-D', 'master']
-
-                -
-                    type: exec
-                    executable: git
-                    arguments: ['checkout', '-b', 'master']
-
-                -
-                    type: exec
-                    executable: touch
-                    arguments: ['.nojekyll']
-
-                -
-                    type: exec
-                    executable: git
-                    arguments: ['add', '-f', 'output_prod']
-
-                -
-                    type: exec
-                    executable: git
-                    arguments: ['commit', '-m', 'Build website']
-
-                -
-                    type: exec
-                    executable: git
-                    arguments: ['filter-branch', '--subdirectory-filter', 'output_prod/', '-f']
-
-                -
-                    type: exec
-                    executable: git
-                    arguments: ['push', 'https://${GH_TOKEN}@github.com/WouterJ/new-blog']
+                    executable: sh
+                    arguments: ['publish.sh']
