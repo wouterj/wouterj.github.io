@@ -75,20 +75,14 @@
     @include vendor(box-shadow, 0px 0px 2px $shadow);
     padding:10px;
 }
-
-
-
-
-
-/*-----------------------------------*\
-    $POST TYPES
-\*-----------------------------------*/
 .post__category{
     font-family:Batch;
 
     position:absolute;
     top:0;
     right:10px;
+
+    cursor:default;
 
     padding:.25 * $half-spacing-unit .5 * $half-spacing-unit;
     background:$primary1;
