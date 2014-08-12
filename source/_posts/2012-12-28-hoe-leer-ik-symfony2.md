@@ -134,7 +134,7 @@ rustig aan, doe het goed en je leerd de mooie kant van PHP kennen. Het is bijna
 zeker dat je vragen zult krijgen. Deze kun je altijd op diverse plekken vragen:
 
  - De [Symfony2 User Group](https://groups.google.com/forum/?fromgroups=#!forum/symfony2)
- - Op [Stackoverflow](http://stackoverflow.com/questions/tagged/symfony2%0A(vergeet%20niet%20je%20vraag%20te%20taggen%20met%20*symfony2*)
+ - Op [Stackoverflow](http://stackoverflow.com/questions/tagged/symfony2) (vergeet niet je vraag te taggen met *symfony2*)
  - Op [PHPhulp](http://phphulp.nl/)
  - En natuurlijk door een mailtje te sturen naar wouter{at}wouterj{dot}nl of
    door mij te contacteren via PHPhulp.
