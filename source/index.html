@@ -13,12 +13,30 @@ use:
     {% for post in page.pagination.items %}
     {% set size = (i == 1 ? 'eight-twelfths' : (i == 2 ? 'four-twelfths' : 'one-half')) %}
     <li class="g  one-whole  desk-{{ size }}  lap-{{ size }}">
-        <article class="post{% if post.categories %}  post--{{ post.categories|first }}{% endif %}{% if i == 1 or i == 2 %}  post--featured{% endif %}" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+        <article class="post{% if i == 1 or i == 2 %}  post--featured{% endif %}" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+            {% spaceless %}
+            {% if post.categories %}
+            <span class="post__category">
+            {% set cat = post.categories|first %}
+            {% if cat == 'article' %}
+            &#xf139;
+            {% elseif cat == 'opinion' %}
+            &#xf075;
+            {% elseif cat == 'news' %}
+            &#xf0CA;
+            {% elseif cat == 'experiment' %}
+            &#xf051;
+            {% elseif cat == 'idea' %}
+            &#xf12C;
+            {% endif %}
+            </span>
+            {% endif %}
+            {% endspaceless %}
             <h1 class="post__heading  post__heading{% if i == 1 %}--alpha{% elseif i == 2 %}--beta{% else %}--gamma{% endif %}" itemprop="headline"><a href="{{ post.url }}" itemprop="url">{{ post.title }}</a></h1>
 
-            {% if post.thumbnail and i != 2 %}
+            {% if post.thumbnail and i != 2 -%}
             <img src="{{ site.url }}/img/{{ post.thumbnail }}" class="post__thumbnail  img--stripe  img--{% if i == 1 %}medium{% else %}short  post__thumbnail--home{% endif %}  img--left" itemprop="thumbnailUrl">
-            {% endif %}
+            {%- endif %}
             <div class="post__entry  post__entry--excerpt" itemprop="description">
                 {{ post|excerpt }}
             </div>

@@ -3,5 +3,5 @@
 \*-----------------------------------*/
 .img--stripe{
     padding:$half-spacing-unit / 4;
-    border:1px solid #888;
+    @include vendor(box-shadow, 0px 0px 2px $shadow);
 }

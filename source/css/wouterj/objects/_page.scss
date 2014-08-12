@@ -3,10 +3,11 @@
 \*-----------------------------------*/
 .page{
     @extend .brand-face;
+    color:$text;
     width:100%;
     max-width:978px;
     margin:0 auto;
-    background:url(/img/css/bg-grid.png);
+    background:#f9f9f9 url(/img/css/bg-grid.png);
 }
 
 
@@ -55,7 +56,8 @@
 
 .page__footer{
     @extend .post;
-    border-top-color:#aaa !important;
+    background:$lightShade !important;
+    color:$secondaryText;
 
     @include media-query(palm){
         @include font-size($milli-size);

@@ -1,0 +1,34 @@
+/*-----------------------------------*\
+    $SECTION
+\*-----------------------------------*/
+.section-link{
+    font-family:Batch;
+    font-weight:normal;
+    color:$hintText;
+
+    position:absolute;
+    left:-50px;
+    opacity:0;
+
+    @include vendor(transition, opacity,transform .1s ease);
+    @include vendor(transition-delay, 1s);
+    @include vendor(transform, rotate(10deg));
+    @include vendor(transform-origin, center center);
+
+    &:hover{
+        text-decoration:none;
+        color:$secondaryText;
+    }
+}
+.post{
+    h1, h2, h3, h4, h5, h6{
+        position:relative;
+
+        &:hover{
+            .section-link{
+                opacity:1;
+                @include vendor(transform, rotate(-10deg));
+            }
+        }
+    }
+}

@@ -78,7 +78,7 @@ class Site implements EventSubscriberInterface
         foreach ($dom->getElementsByTagName('pre') as $pre) {
             if ($code = $pre->getElementsByTagName('code')) {
                 $code = $code->item(0);
-                $class = 'prettyprint  linenums';
+                $class = 'prettyprint';
 
                 if ($code->hasAttribute('class')) {
                     $class .= '  lang-'.trim(current(explode(' ', $code->getAttribute('class'))));
@@ -104,10 +104,14 @@ class Site implements EventSubscriberInterface
         
         foreach (array('h1', 'h2', 'h3', 'h4', 'h5', 'h6') as $level) {
             foreach ($dom->getElementsByTagName($level) as $headline) {
-                $headline->setAttribute(
-                    'id',
-                    strtolower(trim(preg_replace('/\W+/', '-', $headline->nodeValue), '-'))
-                );
+                $id = strtolower(trim(preg_replace('/\W+/', '-', $headline->nodeValue), '-'));
+                $headline->setAttribute('id', $id);
+
+                $a = $dom->createElement('a', '&#xf068;');
+                $a->setAttribute('href', '#'.$id);
+                $a->setAttribute('class', 'section-link');
+
+                $headline->insertBefore($a, $headline->firstChild);
             }
         }
 

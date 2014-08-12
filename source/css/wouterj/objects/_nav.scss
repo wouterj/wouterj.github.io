@@ -4,17 +4,23 @@
 .nav__item{
     @include font-size(18px);
 
-    background:#fff;
-    box-shadow:0px 1px 2px #555;
+    background:$light;
+    @include vendor(box-shadow, 0px 1px 5px $shadow);
+    @include vendor(transition, .1s ease);
 
     &:hover{
-        background:rgba($brand-color, 1);
+        background:$primary1;
+    }
+
+    &:active{
+        @include vendor(box-shadow, 1px 2px 8px $text);
+        @include vendor(transform, scale(1.1, 1.1));
     }
 }
     .nav__item a{
-        color:#000;
+        color:$secondaryText;
 
         &:hover{
-            color:#fff;
+            color:$lightText;
         }
     }

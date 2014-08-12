@@ -2,7 +2,7 @@
     $SIDE
 \*-----------------------------------*/
 .side{
-    border-left:5px solid #c33;
+    border-left:5px solid $primary1;
     margin-left:$base-spacing-unit;
     padding:1.5 * $base-spacing-unit 0 $half-spacing-unit $half-spacing-unit;
 
@@ -12,8 +12,8 @@
         content:attr(data-type);
 
         display:block;
-        background:#c33;
-        color:#fff;
+        background:$primary1;
+        color:$lightText;
         min-width:50px;
 
         @include font-size($milli-size);

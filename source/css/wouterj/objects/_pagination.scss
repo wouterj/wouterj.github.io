@@ -3,11 +3,11 @@
 \*-----------------------------------*/
 .pagination-nav {
     .btn{
-        background:#fff;
-        box-shadow:0px 1px 3px #555;
+        background:$light;
+        box-shadow:0px 1px 3px $shadow;
     }
         .btn a{
-            color:#000;
+            color:$text;
         }
 
     .btn--disabled{

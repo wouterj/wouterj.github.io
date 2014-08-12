@@ -17,7 +17,25 @@
 
 
 {% block content_wrapper %}
-<article class="post{% if post.categories %}  post--{{ post.categories }}{% endif %}" itemscope itemtype="http://schema.org/BlogPosting">
+<article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+    {% spaceless %}
+    {% if page.categories %}
+    <span class="post__category">
+    {% set cat = page.categories|first %}
+    {% if cat == 'article' %}
+    &#xf139;
+    {% elseif cat == 'opinion' %}
+    &#xf075;
+    {% elseif cat == 'news' %}
+    &#xf0CA;
+    {% elseif cat == 'experiment' %}
+    &#xf051;
+    {% elseif cat == 'idea' %}
+    &#xf12C;
+    {% endif %}
+    </span>
+    {% endif %}
+    {% endspaceless %}
     <h1 class="post__heading" itemprop="headline">{{ page.title }}</h1>
 
     {% if page.thumbnail %}

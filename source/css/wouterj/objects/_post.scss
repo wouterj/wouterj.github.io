@@ -4,11 +4,10 @@
 .post{
     @extend .cf;
 
-    border-top:5px solid #c33;
-    background:#fff;
-    @include vendor(box-shadow, 0px 1px 2px #555);
+    background:$light;
     padding:$half-spacing-unit;
     margin-top:$base-spacing-unit;
+    @include vendor(box-shadow, 0px 1px 8px $shadow);
 
     position:relative;
 
@@ -19,6 +18,23 @@
     @include media-query(portable){
         padding-left:20px;
         padding-right:20px;
+    }
+
+    &:before{
+        content:'';
+        display:block;
+        position:absolute;
+        top:-5px;
+        left:0;
+        width:100%;
+        height:5px;
+        background:#c33;
+        @include vendor(box-shadow, 0px 0px 2px $shadow);
+    }
+    
+    pre{
+        @include vendor(box-shadow, 0px 0px 2px $shadow);
+        border:none !important;
     }
 }
     .post__heading{
@@ -34,7 +50,7 @@
         @extend .alpha;
     }
         .post__heading a{
-            color:#000;
+            color:$text;
         }
 
 .post__intro{
@@ -56,7 +72,7 @@
     }
 }
 .post__comments{
-    box-shadow:0 -1px 3px #555;
+    @include vendor(box-shadow, 0px 0px 2px $shadow);
     padding:10px;
 }
 
@@ -67,7 +83,7 @@
 /*-----------------------------------*\
     $POST TYPES
 \*-----------------------------------*/
-.post--article:before, .post--opinion:before, .post--news:before, .post--experiment:before, .post-idea:before{
+.post__category{
     font-family:Batch;
 
     position:absolute;
@@ -75,15 +91,11 @@
     right:10px;
 
     padding:.25 * $half-spacing-unit .5 * $half-spacing-unit;
-    background:#c33;
+    background:$primary1;
     float:left;
-    color:#fff;
+    color:$light;
+    @include vendor(box-shadow, 0px 0px 2px $shadow);
 }
-.post--article:before    { content:'\F139'; }
-.post--opinion:before    { content:'\F075'; }
-.post--news:before       { content:'\F0CA'; }
-.post--experiment:before { content:'\F051'; }
-.post--idea:before       { content:'\F12C'; }
 
 
 
@@ -101,7 +113,7 @@
     .post-list .post__date{
         float:left;
         background:#fff;
-        box-shadow:0px 1px 3px #555;
+        box-shadow:0px 1px 3px $shadow;
         padding:10px;
         margin-right:10px;
 
@@ -120,7 +132,7 @@
     }
 
     tr{
-        border-bottom:2px groove #eee;
+        border-bottom:2px groove $dividers;
     }
         td:first-child{
             width:90px;
