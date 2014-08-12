@@ -3,7 +3,6 @@
 /app/logs/*
 /output_*/
 /source/components/
-s3.conf
 /vendor/
 composer.lock
 .sass-cache
