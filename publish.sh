@@ -1,4 +1,4 @@
-git config --global user.email 'bot@wouterj.nl'
+git config --global user.email 'waldio.webdesign@gmail.com'
 git config --global user.name 'WouterJ.nl bot'
 
 git branch -D master
