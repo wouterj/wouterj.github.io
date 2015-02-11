@@ -11,4 +11,4 @@ git commit -m "Build website"
 
 git filter-branch --subdirectory-filter output_prod/ -f
 
-git push "https://${GH_TOKEN}@github.com/WouterJ/wouterj.github.com" -f master
+git push "https://github.com/WouterJ/wouterj.github.com" -f master
