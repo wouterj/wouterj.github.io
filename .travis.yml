@@ -1,17 +1,23 @@
 language: php
 php:
-- hhvm
+  - hhvm
+
+sudo: false
+
+cache:
+  directories:
+    - $HOME/.composer/cache
 
 before_install:
-- echo -e "machine github.com\n  login $GH_TOKEN" >> ~/.netrc
+  - echo -e "machine github.com\n  login $GH_TOKEN" >> ~/.netrc
 
 before_script:
-- gem install sass
-- composer selfupdate
-- composer install
+  - gem install sass
+  - composer selfupdate
+  - composer install --prefer-dist
 
 script:
-- vendor/bin/bldr build publish
+  - sh publish.sh
 
 env:
   global:
