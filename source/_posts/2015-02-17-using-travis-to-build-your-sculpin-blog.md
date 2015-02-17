@@ -91,8 +91,8 @@ Git config is required:
     # ... build site section
 
 Since the build is executed on the `source` branch, Travis need to checkout the
-master branch. However, as master is going to be replaced each time, it should
-just delete current master and create a new one based on the `source` branch:
+`master` branch. However, as `master` is going to be replaced each time, it should
+just delete current `master` and create a new one based on the `source` branch:
 
     [shell]
     # ... configure env section
@@ -105,7 +105,7 @@ just delete current master and create a new one based on the `source` branch:
 
 Travis is in the `master` branch and has build the site in `output_prod` now.
 Git can make this output directory the new root of the branch using the `git
-filter-branch` command. Before executing this, Travis have to commit the
+filter-branch` command. Before executing this, Travis has to commit the
 currently added files (the `output_prod` directory):
 
     [shell]
