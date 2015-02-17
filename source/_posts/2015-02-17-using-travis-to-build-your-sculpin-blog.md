@@ -180,9 +180,12 @@ site will be regenerated. There are even more nice features:
 * The output is never pushed when the build failed, meaning you always have a
   working site.
 
+You can see the complete files in [the repository of this site][7].
+
  [1]: http://sculpin.io/
  [2]: https://pages.github.com/
  [3]: https://travis-ci.org/
  [4]: http://jekyllrb.com/
  [5]: https://github.com/travis-ci/travis.rb
  [6]: https://sculpin.io/download/
+ [7]: https://github.com/WouterJ/wouterj.github.com
