@@ -19,9 +19,9 @@ class Site implements EventSubscriberInterface
         $event->source()->setContent(preg_replace_callback(
             '/^    \[(note|caution|tip|sidebar)(?: "(.*?)")?\]((?:\s{5}.+$)+)/m',
             function ($m) {
-                return '<div data-wj-block="'.$m[1].'"'.($m[2] ? ' data-wj-block-title="'.trim($m[2]).'"' : '').'>'.
+                return '<span data-wj-block="'.$m[1].'"'.($m[2] ? ' data-wj-block-title="'.trim($m[2]).'"' : '').'>'.
                            trim(preg_replace('/^\s{4}/m', '', $m[3])).
-                       '</div>';
+                       '</span>';
             },
             $event->source()->content()
         ));
@@ -34,7 +34,7 @@ class Site implements EventSubscriberInterface
         }
 
         $event->source()->setContent(preg_replace_callback(
-            '/<div data-wj-block="(\w+)"(?: data-wj-block-title="(.+?)")?>(.+?)<\/div>/s',
+            '/<span data-wj-block="(\w+)"(?: data-wj-block-title="(.+?)")?>(.+?)<\/span>/s',
             function ($m) {
                 $html = '<aside class="side  side--'.$m[1].'" data-type="'.$m[1].'">';
                 if ($m[2]) {
@@ -58,7 +58,7 @@ class Site implements EventSubscriberInterface
         $event->source()->setContent(preg_replace_callback(
             '/^    \[(\w+)\]((?:\s{5}.+$)+)/m',
             function ($m) {
-                return '~~~'.$m[1].PHP_EOL.trim(preg_replace('/^\s{4}/m', '', $m[2])).PHP_EOL.'~~~';
+                return '~~~'.$m[1].PHP_EOL.trim(preg_replace('/^ {4}/m', '', $m[2])).PHP_EOL.'~~~';
             },
             $event->source()->content()
         ));
@@ -78,7 +78,7 @@ class Site implements EventSubscriberInterface
         foreach ($dom->getElementsByTagName('pre') as $pre) {
             if ($code = $pre->getElementsByTagName('code')) {
                 $code = $code->item(0);
-                $class = 'prettyprint';
+                $class = 'prettyprint  linenums';
 
                 if ($code->hasAttribute('class')) {
                     $class .= '  lang-'.trim(current(explode(' ', $code->getAttribute('class'))));

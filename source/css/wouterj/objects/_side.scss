@@ -4,7 +4,11 @@
 .side{
     border-left:5px solid $primary1;
     margin-left:$base-spacing-unit;
+    margin-bottom:$base-spacing-unit;
+    margin-bottom:($base-spacing-unit / $base-font-size)*1rem;
     padding:1.5 * $base-spacing-unit 0 $half-spacing-unit $half-spacing-unit;
+    
+    color:$secondaryText;
 
     position:relative;
 
@@ -15,6 +19,7 @@
         background:$primary1;
         color:$lightText;
         min-width:50px;
+        padding:0 6px;
 
         @include font-size($milli-size);
         text-transform:uppercase;

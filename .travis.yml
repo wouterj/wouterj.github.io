@@ -3,10 +3,13 @@ php:
   - hhvm
 
 sudo: false
-
 cache:
   directories:
     - $HOME/.composer/cache
+
+branches:
+  only:
+    - source
 
 before_install:
   - echo -e "machine github.com\n  login $GH_TOKEN" >> ~/.netrc
