@@ -1,5 +1,7 @@
 # make the script fail for any failed command
 set -e
+# make the script display the commands it runs to help debugging failures
+set -x
 
 # configure env
 git config --global user.email 'waldio.webdesign@gmail.com'
