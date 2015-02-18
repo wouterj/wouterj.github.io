@@ -8,7 +8,9 @@ git config --global user.email 'waldio.webdesign@gmail.com'
 git config --global user.name 'WouterJ.nl bot'
 
 # checkout publish branch
-git branch -D master
+if [ "`git show-ref --heads master`" ]; then
+  git branch -D master
+fi
 git checkout -b master
 
 # build site
