@@ -20,7 +20,10 @@ before_script:
   - composer install --prefer-dist
 
 script:
-  - sh publish.sh
+  - sh build.sh
+
+after_success:
+  - if [ "$TRAVIS_PULL_REQUEST" != "false" ]; then sh publish.sh; fi
 
 env:
   global:
