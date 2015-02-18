@@ -1,3 +1,6 @@
+# make the script fail for any failed command
+set -e
+
 # configure env
 git config --global user.email 'waldio.webdesign@gmail.com'
 git config --global user.name 'WouterJ.nl bot'
