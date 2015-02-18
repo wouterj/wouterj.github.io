@@ -1,9 +1,16 @@
+# make the script fail for any failed command
+set -e
+# make the script display the commands it runs to help debugging failures
+set -x
+
 # configure env
 git config --global user.email 'waldio.webdesign@gmail.com'
 git config --global user.name 'WouterJ.nl bot'
 
 # checkout publish branch
-git branch -D master
+if [ "`git show-ref --heads master`" ]; then
+  git branch -D master
+fi
 git checkout -b master
 
 # build site
