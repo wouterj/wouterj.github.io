@@ -1,7 +1,7 @@
 # wouterj.nl
 
 This is the code of the new WouterJ.nl. You can view the source on the
-[`source`](tree/source) branch.
+[`source`](https://github.com/WouterJ/wouterj.github.com/tree/source/source) branch.
 
 WouterJ.nl is created with [Sculpin](https://sculpin.io) and
 [inuit.css](http://inuitcss.com).
