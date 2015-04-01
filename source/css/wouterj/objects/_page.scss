@@ -4,6 +4,7 @@
 .page{
     @extend .brand-face;
     color:$text;
+    font-weight:300;
     width:100%;
     max-width:978px;
     margin:0 auto;
