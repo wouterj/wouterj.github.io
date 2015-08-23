@@ -1,6 +1,6 @@
 ---
 layout: post
-title: How to Manage Frontend Dependency in PHP packages
+title: How to Manage Front-end Dependencies in PHP Packages
 categories:
 - article
 tags:
