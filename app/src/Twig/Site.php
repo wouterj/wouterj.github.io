@@ -20,7 +20,9 @@ class Site extends \Twig_Extension
         $dom = new \DOMDocument();
         $dom->loadHTML($post['blocks']['content']);
 
-        return $dom->getElementsByTagName('p')->item(0)->nodeValue;
+        if ($elem = $dom->getElementsByTagName('p')->item(0)) {
+            return $elem->nodeValue;
+        }
     }
 
     public function getName()
