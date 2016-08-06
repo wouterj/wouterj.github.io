@@ -16,7 +16,7 @@ install:
   - gem install sass
   - composer install --prefer-dist
   - sudo pip install Pygments
-  - sudo python setup.py -q install
+  - sudo python setup.py install
 
 script: sh build.sh
 
