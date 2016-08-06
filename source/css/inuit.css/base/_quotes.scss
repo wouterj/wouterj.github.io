@@ -4,18 +4,18 @@
 /**
  * Big up @boblet: html5doctor.com/blockquote-q-cite
  */
-q{ quotes:"‘" "’" "“" "”"; }
+q{ quotes:"'" "'" '"' '"'; }
 
-q:before{ content:"‘"; content:open-quote; }
-q:after{ content:"’"; content:close-quote; }
+q:before{ content:"'"; content:open-quote; }
+q:after{ content:"'"; content:close-quote; }
 
-q q:before{ content: "“"; content: open-quote; }
-q q:after{ content: "”"; content: close-quote; }
+q q:before{ content: '"'; content: open-quote; }
+q q:after{ content: '"'; content: close-quote; }
 
-blockquote{ quotes: "“" "”"; }
-blockquote p:before{ content: "“"; content: open-quote; }
+blockquote{ quotes: '"' '"'; }
+blockquote p:before{ content: '"'; content: open-quote; }
 blockquote p:after{ content: ""; content: no-close-quote; }
-blockquote p:last-of-type:after{ content: "”"; content: close-quote; }
+blockquote p:last-of-type:after{ content: '"'; content: close-quote; }
 
 
 /**

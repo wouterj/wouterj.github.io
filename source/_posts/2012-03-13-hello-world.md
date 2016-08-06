@@ -44,7 +44,7 @@ zodat ze leren scripten.
 Ja, dan laat ik hier toch het Hello World script zien in diverse talen. Aan
 jou de taak om de taal te herkennen!
 
-    [js]
+    [javascript]
     document.write('Hello World');
 
 <!-- -->
