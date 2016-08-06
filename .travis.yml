@@ -1,10 +1,7 @@
 language: php
 php: 7
 
-sudo: false
-cache:
-  directories:
-    - $HOME/.composer/cache
+sudo: true
 
 branches:
   only:
@@ -18,7 +15,7 @@ before_install:
 install:
   - gem install sass
   - composer install --prefer-dist
-  - python setup.py -q install
+  - sudo python setup.py -q install
 
 script: sh build.sh
 
