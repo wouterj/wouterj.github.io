@@ -18,6 +18,7 @@ class Site extends \Twig_Extension
         }
 
         $dom = new \DOMDocument();
+        var_dump($post['blocks']['content']);
         $dom->loadHTML($post['blocks']['content']);
 
         if ($elem = $dom->getElementsByTagName('p')->item(0)) {
