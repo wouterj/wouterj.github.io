@@ -20,7 +20,9 @@ class Site extends \Twig_Extension
         $dom = new \DOMDocument();
         $dom->loadHTML($post['blocks']['content'], LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
 
+        var_dump(htmlspecialchars($post['blocks']['content']));
         $paragraphs = $dom->getElementsByTagName('p');
+        var_dump($paragraphs);
         if ($paragraphs->length) {
             return $paragraphs->item(0)->nodeValue;
         }
