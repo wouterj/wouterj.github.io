@@ -120,7 +120,7 @@ You see the `assetsBasePath` variable in front of the path, this can be set to
 the path to the frontend dependencies. The main template file now looks like:
 
     {# CmfTreeBrowserBundle/Resources/views/Base/tree.html.twig #}
-    {{ '{%' }} include 'CmfTreeBrowserBundle:Base:scripts.html.twig' with {
+    {% include 'CmfTreeBrowserBundle:Base:scripts.html.twig' with {
         assetsBasePath: 'bundles/cmftreebrowser/vendor'
     } %}
 
@@ -128,7 +128,7 @@ This will retrieve the files installed with the bundle. When a user uses Bower,
 they override this file with the new base path:
 
     {# app/Resources/views/CmfTreeBrowserBundle/Base/tree.html.twig #}
-    {{ '{%' }} include 'CmfTreeBrowserBundle:Base:scripts.html.twig' with {
+    {% include 'CmfTreeBrowserBundle:Base:scripts.html.twig' with {
         assetsBasePath: 'bower_packages'
     } %}
 

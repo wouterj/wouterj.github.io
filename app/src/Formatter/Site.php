@@ -109,6 +109,7 @@ class Site implements EventSubscriberInterface
                 } else {
                     // guess the lexer
                     $processBuilder->add('-g');
+                    $processBuilder->add('-Plinenos=1');
                 }
 
                 $process = $processBuilder->setInput(trim($code->nodeValue))->getProcess();

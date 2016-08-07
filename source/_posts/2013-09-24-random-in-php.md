@@ -15,7 +15,7 @@ gedaan wordt.
 ## De PHP source
 
 De PHP source is geschreven in C en je kunt een hele makkelijk navigeerbare
-weergave van de source op http://lxr.php.net/ vinden. Hier kun je zoeken naar
+weergave van de source op <http://lxr.php.net/> vinden. Hier kun je zoeken naar
 functies en makkelijk naar de source van functies navigeren.
 
 Er is 1 basis conceptje die ik moet vertellen, de rest zal je gaanderweg wel
@@ -25,20 +25,24 @@ compilen kun je wat dingen doe die PHP niet kan. Bijv. het gebruik van
 defines. Defines zijn woorden die worden omgezet in de waarde die je er aan
 meegeeft. Laten we beginnen met een simpele constante:
 
+    [c]
     #define M_PI 3.14159265358979323846
 
 Wanneer we nu in onze code `M_PI` gebruiken wordt dit vervangen door dit
 getal:
 
+    [c]
     long omtrek = M_PI * 4;
 
 Hier staat na het compilen eigenlijk:
 
+    [c]
     long omtrek = 3.14159265358979323846 * 4;
 
 Naast het invullen van getallen of strings kun je ook macro's definiëren.
 Bijvoorbeeld deze macro:
 
+    [c]
     #define INCREMENT(x) x++
 
 Nu zal `INCREMENT(5)` worden omgezet in `6`.
@@ -69,21 +73,22 @@ niet). In de [resultaten][1] krijgen we dan 2 bestanden: `php_math.h` en
 allemaal in de `*.c` bestanden staat. De `*.c` bestanden bevatten de echte
 code. We klikken dus op die link en navigeren naar [regel 290][2]:
 
+    [c]
     PHP_FUNCTION(rand)
     {
         long min;
         long max;
         long number;
         int  argc = ZEND_NUM_ARGS();
-    
+
         if (argc != 0 && zend_parse_parameters(argc TSRMLS_CC, "ll", &min, &max) == FAILURE)
             return;
-    
+
         number = php_rand(TSRMLS_C);
         if (argc == 2) {
             RAND_RANGE(number, min, max, PHP_RAND_MAX);
         }
-    
+
         RETURN_LONG(number);
     }
 
@@ -93,6 +98,7 @@ En dat is de functie!
 
 Als eerst zien we dat er 4 variabelen gedeclareerd worden:
 
+    [c]
     long min;
     long max;
     long number;
@@ -105,6 +111,7 @@ doet, we gaan dus niet naar die source code kijken.
 
 Dan krijgen we een check voor de argumenten:
 
+    [c]
     if (argc != 0 && zend_parse_parameters(argc TSRMLS_CC, "ll", &min, &max) == FAILURE)
         return;
 
@@ -121,6 +128,7 @@ hadden).
 
 Dan gaan we de seed maken:
 
+    [c]
     number = php_rand(TSRMLS_C);
 
 In deze regel roepen we de functie `php_rand` (een interne functie die niet in
@@ -130,14 +138,15 @@ niet interessant.
 Wat wel interessant is hoe PHP die random seed maakt. Dus klikken we op de
 functie `php_rand` om die source te bekijken:
 
+    [c]
     PHPAPI long php_rand(TSRMLS_D)
     {
         long ret;
-    
+
         if (!BG(rand_is_seeded)) {
             php_srand(GENERATE_SEED() TSRMLS_CC);
         }
-    
+
     #ifdef ZTS
         ret = php_rand_r(&BG(rand_seed));
     #else
@@ -149,7 +158,7 @@ functie `php_rand` om die source te bekijken:
         ret = rand();
     # endif
     #endif
-    
+
         return ret;
     }
 
@@ -158,6 +167,7 @@ instellingen, de C functies `rand`, `lrand48` of `random` gebruikt.
 
 ### Het maken van het random getal
 
+    [c]
     if (argc == 2) {
         RAND_RANGE(number, min, max, PHP_RAND_MAX);
     }
@@ -170,6 +180,7 @@ Nu zijn we natuurlijk benieuwd wat voor algoritme PHP gebruikt voor het maken
 van het random getal, dus klikken we erop en gaan we naar een
 [`php_rand.h`][3] bestand:
 
+    [c]
     #define RAND_RANGE(__n, __min, __max, __tmax) \
         (__n) = (__min) + (long) ((double) ( (double) (__max) - (__min) + 1.0) * ((__n) / ((__tmax) + 1.0)))
 
@@ -183,6 +194,7 @@ seed dus weer vernieuwd wordt door het gegenereerde random getal.
 
 Het enige dat ons nog rest is het returnen van de gemaakt `long`:
 
+    [c]
     RETURN_LONG(number);
 
 Achter deze simpele regel zit weer heel wat zend gedoe, maar daar bemoeien we
