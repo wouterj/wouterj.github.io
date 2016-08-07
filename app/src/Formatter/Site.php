@@ -77,7 +77,7 @@ class Site implements EventSubscriberInterface
         $content = $event->source()->content();
 
         $dom = new \DOMDocument();
-        $dom->loadHTML($content);
+        $dom->loadHTML($content, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
         $processBuilder = ProcessBuilder::create()->setPrefix(['pygmentize', '-Pstyle=wouterj']);
 
         foreach ($dom->getElementsByTagName('pre') as $pre) {
@@ -133,7 +133,7 @@ class Site implements EventSubscriberInterface
         $content = $event->source()->content();
 
         $dom = new \DOMDocument();
-        $dom->loadHTML($content);
+        $dom->loadHTML($content, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
         
         foreach (array('h1', 'h2', 'h3', 'h4', 'h5', 'h6') as $level) {
             foreach ($dom->getElementsByTagName($level) as $headline) {
@@ -160,7 +160,7 @@ class Site implements EventSubscriberInterface
         $content = $event->source()->content();
 
         $dom = new \DOMDocument();
-        $dom->loadHTML($content);
+        $dom->loadHTML($content, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
 
         foreach ($dom->getElementsByTagName('img') as $img) {
             $img->setAttribute('class', 'img--stripe');
@@ -178,7 +178,7 @@ class Site implements EventSubscriberInterface
         $content = $event->source()->content();
 
         $dom = new \DOMDocument();
-        $dom->loadHTML($content);
+        $dom->loadHTML($content, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
 
         $intro = $dom->getElementsByTagName('p')->item(0);
         if ($intro) {
