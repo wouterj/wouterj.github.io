@@ -14,6 +14,7 @@ class WouterJStyle(Style):
         Other: "#c7c8d2", # class 'x'
 
         Comment: "#2e88fd", # class: 'c'
+        Comment.Preproc: "#aaabbb", # class: 'cp' - also used for start/end tags
 
         Keyword: "#e5673d", # class: 'k'
 

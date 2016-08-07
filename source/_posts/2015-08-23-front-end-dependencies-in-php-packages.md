@@ -22,6 +22,7 @@ Composer is doing for PHP.
 To install it, make sure you have NodeJS and NPM installed and then install the
 bower package:
 
+    [bash]
     $ npm install -g bower
 
 For information about using Bower in Symfony, read [the official Symfony
@@ -47,10 +48,12 @@ have to, continue reading!
 
 First things first, let's make a `bower.json` file by running the init command:
 
+    [bash]
     $ bower init
 
 Your `bower.json` file looks something like this:
 
+    [json]
     {
         "name": "...",
         "version": "...",
@@ -88,7 +91,7 @@ Now you can register both packages:
 Assume your bundle is called ``acme/blog-bundle``, your Bower package might be
 called ``acme-blog-bundle``. Installation now consists of 2 steps:
 
-    [none]
+    [bash]
     $ composer require acme/blog-bundle
     $ bower install --save acme-blog-bundle
 
@@ -112,25 +115,40 @@ But this means a bundle has to support 2 different paths for the dependencies:
 In the CmfTreeBrowserBundle, we solved this problem by having a
 `scripts.html.twig` template like this:
 
+{% verbatim %}
+
+    [html+twig]
     {# CmfTreeBrowserBundle/Resources/views/Base/scripts.html.twig #}
-    <script src="{{ '{{' }} asset(assetsBasePath ~ '/jquery/dist/jquery.min.js') }}">
+    <script src="{{ asset(assetsBasePath ~ '/jquery/dist/jquery.min.js') }}">
     </script>
+
+{% endverbatim %}
 
 You see the `assetsBasePath` variable in front of the path, this can be set to
 the path to the frontend dependencies. The main template file now looks like:
 
+{% verbatim %}
+
+    [html+twig]
     {# CmfTreeBrowserBundle/Resources/views/Base/tree.html.twig #}
     {% include 'CmfTreeBrowserBundle:Base:scripts.html.twig' with {
         assetsBasePath: 'bundles/cmftreebrowser/vendor'
     } %}
 
+{% endverbatim %}
+
 This will retrieve the files installed with the bundle. When a user uses Bower,
 they override this file with the new base path:
 
+{% verbatim %}
+
+    [html+twig]
     {# app/Resources/views/CmfTreeBrowserBundle/Base/tree.html.twig #}
     {% include 'CmfTreeBrowserBundle:Base:scripts.html.twig' with {
         assetsBasePath: 'bower_packages'
     } %}
+
+{% endverbatim %}
 
 This will pick the scripts from `/web/bower_packages/jquery/dist/jquery.min.js`
 and you're ready to upgrade jQuery whenever you want in your app!

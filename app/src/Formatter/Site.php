@@ -58,9 +58,9 @@ class Site implements EventSubscriberInterface
 
         # transforms blockquotes to code blocks
         $content = preg_replace_callback(
-            '/^    \[([\w,]+)\]((?:\s{5}.+$)+)/m',
+            '/^    \[([\w+]+)\]((?:\s{5}.+$)+)/m',
             function ($m) {
-                return '~~~'.$m[1].PHP_EOL.trim(preg_replace('/^ {4}/m', '', $m[2])).PHP_EOL.'~~~';
+                return '~~~'.str_replace('+', '-', $m[1]).PHP_EOL.trim(preg_replace('/^ {4}/m', '', $m[2])).PHP_EOL.'~~~';
             },
             $event->source()->content()
         );
@@ -88,12 +88,10 @@ class Site implements EventSubscriberInterface
                 $code = $code->item(0);
 
                 if ($code->hasAttribute('class')) {
-                    $language = $code->getAttribute('class');
+                    $language = str_replace('-', '+', $code->getAttribute('class'));
 
                     switch ($language) {
                         case 'none':
-                            continue 2;
-
                         case 'bash':
                             break;
 
@@ -102,10 +100,10 @@ class Site implements EventSubscriberInterface
                             // no break is intended, PHP blocks need linenumbers
 
                         default:
+                            $processBuilder->add('-l'.$language);
                             $processBuilder->add('-Plinenos=1');
                     }
 
-                    $processBuilder->add('-l'.$language);
                 } else {
                     // guess the lexer
                     $processBuilder->add('-g');
