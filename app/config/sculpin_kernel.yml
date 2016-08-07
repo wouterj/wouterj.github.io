@@ -1,3 +1,6 @@
 sculpin_content_types:
     posts:
         permalink: :year/:month/:title/
+
+sculpin:
+    ignore: ['**/*~']
