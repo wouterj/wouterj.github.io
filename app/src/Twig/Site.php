@@ -13,12 +13,12 @@ class Site extends \Twig_Extension
 
     public function excerpt($post)
     {
+        var_dump($post['blocks']);
         if (!isset($post['blocks']['content'])) {
             return '';
         }
 
         $dom = new \DOMDocument();
-        var_dump($post['blocks']['content']);
         $dom->loadHTML($post['blocks']['content']);
 
         if ($elem = $dom->getElementsByTagName('p')->item(0)) {
