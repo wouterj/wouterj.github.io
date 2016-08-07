@@ -1,8 +1,15 @@
 services:
+    wouterj.cache:
+        class: Symfony\Component\Cache\Adapter\FilesystemAdapter
+        arguments:
+            - wouterjnl
+            - 5184000    # 2 months
+
     wouterj.twig.site:
         class: WouterJ\Twig\Site
         tags: [{ name: twig.extension }]
 
     wouterj.formatter.site:
         class: WouterJ\Formatter\Site
+        arguments: ['@wouterj.cache']
         tags: [{ name: kernel.event_subscriber }]

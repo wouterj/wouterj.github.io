@@ -8,9 +8,17 @@ use Sculpin\Bundle\TwigBundle\SculpinTwigBundle;
 use Sculpin\Bundle\MarkdownBundle\SculpinMarkdownBundle;
 use Symfony\Component\Process\ProcessBuilder;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
+use Psr\Cache\CacheItemPoolInterface;
 
 class Site implements EventSubscriberInterface
 {
+    private $cache;
+
+    public function __construct(CacheItemPoolInterface $cache)
+    {
+        $this->cache = $cache;
+    }
+
     public function compileBlocks(ConvertEvent $event)
     {
         if (!$event->isHandledBy(SculpinMarkdownBundle::CONVERTER_NAME, SculpinTwigBundle::FORMATTER_NAME)) {
@@ -87,31 +95,40 @@ class Site implements EventSubscriberInterface
                 $processBuilder->setArguments(['-fhtml']);
                 $code = $code->item(0);
 
-                if ($code->hasAttribute('class')) {
-                    $language = str_replace('-', '+', $code->getAttribute('class'));
+                $cacheItem = $this->cache->getItem(md5($code->nodeValue));
+                if ($cacheItem->isHit()) {
+                    $highlightedCode = $cacheItem->get();
+                } else {
+                    if ($code->hasAttribute('class')) {
+                        $language = str_replace('-', '+', $code->getAttribute('class'));
 
-                    switch ($language) {
-                        case 'none':
-                        case 'bash':
-                            break;
+                        switch ($language) {
+                            case 'none':
+                            case 'bash':
+                                break;
 
-                        case 'php':
-                            $language = 'inline-php';
-                            // no break is intended, PHP blocks need linenumbers
+                            case 'php':
+                                $language = 'inline-php';
+                                // no break is intended, PHP blocks need linenumbers
 
-                        default:
-                            $processBuilder->add('-l'.$language);
-                            $processBuilder->add('-Plinenos=1');
+                            default:
+                                $processBuilder->add('-l'.$language);
+                                $processBuilder->add('-Plinenos=1');
+                        }
+
+                    } else {
+                        // guess the lexer
+                        $processBuilder->add('-g');
+                        $processBuilder->add('-Plinenos=1');
                     }
 
-                } else {
-                    // guess the lexer
-                    $processBuilder->add('-g');
-                    $processBuilder->add('-Plinenos=1');
+                    $process = $processBuilder->setInput(trim($code->nodeValue))->getProcess();
+                    $highlightedCode = $process->mustRun()->getOutput();
+
+                    $cacheItem->set($highlightedCode);
+                    $this->cache->save($cacheItem);
                 }
 
-                $process = $processBuilder->setInput(trim($code->nodeValue))->getProcess();
-                $highlightedCode = $process->mustRun()->getOutput();
                 $fragment = $dom->createDocumentFragment();
                 $fragment->appendXML($highlightedCode);
 
