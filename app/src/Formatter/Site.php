@@ -6,6 +6,7 @@ use Sculpin\Core\Sculpin;
 use Sculpin\Core\Event\ConvertEvent;
 use Sculpin\Bundle\TwigBundle\SculpinTwigBundle;
 use Sculpin\Bundle\MarkdownBundle\SculpinMarkdownBundle;
+use Symfony\Component\Process\ProcessBuilder;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 class Site implements EventSubscriberInterface
@@ -55,16 +56,19 @@ class Site implements EventSubscriberInterface
             return;
         }
 
-        $event->source()->setContent(preg_replace_callback(
-            '/^    \[(\w+)\]((?:\s{5}.+$)+)/m',
+        # transforms blockquotes to code blocks
+        $content = preg_replace_callback(
+            '/^    \[([\w,]+)\]((?:\s{5}.+$)+)/m',
             function ($m) {
                 return '~~~'.$m[1].PHP_EOL.trim(preg_replace('/^ {4}/m', '', $m[2])).PHP_EOL.'~~~';
             },
             $event->source()->content()
-        ));
+        );
+
+        $event->source()->setContent($content);
     }
 
-    public function prettifyCodeBlocks(ConvertEvent $event)
+    public function highlightCodeBlocks(ConvertEvent $event)
     {
         if (!$event->isHandledBy(SculpinMarkdownBundle::CONVERTER_NAME, SculpinTwigBundle::FORMATTER_NAME)) {
             return;
@@ -74,17 +78,45 @@ class Site implements EventSubscriberInterface
 
         $dom = new \DOMDocument();
         $dom->loadHTML($content);
+        $processBuilder = ProcessBuilder::create()->setPrefix(['pygmentize', '-Pstyle=wouterj']);
 
         foreach ($dom->getElementsByTagName('pre') as $pre) {
-            if ($code = $pre->getElementsByTagName('code')) {
+            $code = $pre->getElementsByTagName('code');
+
+            if ($code->length) {
+                $processBuilder->setArguments(['-fhtml']);
                 $code = $code->item(0);
-                $class = 'prettyprint  linenums';
 
                 if ($code->hasAttribute('class')) {
-                    $class .= '  lang-'.trim(current(explode(' ', $code->getAttribute('class'))));
+                    $language = $code->getAttribute('class');
+
+                    switch ($language) {
+                        case 'none':
+                            continue 2;
+
+                        case 'bash':
+                            break;
+
+                        case 'php':
+                            $language = 'inline-php';
+                            // no break is intended, PHP blocks need linenumbers
+
+                        default:
+                            $processBuilder->add('-Plinenos=1');
+                    }
+
+                    $processBuilder->add('-l'.$language);
+                } else {
+                    // guess the lexer
+                    $processBuilder->add('-g');
                 }
 
-                $pre->setAttribute('class', $class);
+                $process = $processBuilder->setInput(trim($code->nodeValue))->getProcess();
+                $highlightedCode = $process->mustRun()->getOutput();
+                $fragment = $dom->createDocumentFragment();
+                $fragment->appendXML($highlightedCode);
+
+                $pre->parentNode->replaceChild($fragment, $pre);
             }
         }
 
@@ -168,7 +200,7 @@ class Site implements EventSubscriberInterface
             ),
             Sculpin::EVENT_AFTER_CONVERT => array(
                 array('parseBlocks', 0),
-                array('prettifyCodeBlocks', -99),
+                array('highlightCodeBlocks', -99),
                 array('addHeadlineIds', 0),
                 array('fixImages', 0),
                 array('styleIntro', 0)

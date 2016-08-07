@@ -3,6 +3,30 @@
 \*-----------------------------------*/
 code{
     word-wrap:break-word;
-    font-family: 'Ubuntu Mono';
+    font-family: 'Inconsolata', Consolas, monospace;
     color:$brand-color;
+}
+pre{
+    font-family: 'Inconsolata', Consolas, monospace;
+}
+
+.code__annotation{
+    height:31px;
+    color:#aaa;
+    background:#333;
+    padding:3px;
+    padding-left:29px;
+    margin-top:-2px;
+    overflow:hidden;
+
+    position:absolute;
+
+    &:before{
+        content:'\2190  ';
+        margin-left:-18px;
+    }
+
+    &:hover{
+        height:auto;
+    }
 }

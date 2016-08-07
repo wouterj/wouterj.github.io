@@ -4,6 +4,7 @@
 /output_*/
 /source/components/
 /vendor/
+/*.egg-info/
 .sass-cache
 *.css
 *.css.map

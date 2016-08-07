@@ -1,29 +1,26 @@
 language: php
-php:
-  - hhvm
+php: 7
 
-sudo: false
-cache:
-  directories:
-    - $HOME/.composer/cache
+sudo: true
 
 branches:
   only:
     - source
 
 before_install:
+  - phpenv config-rm xdebug.ini || true
+  - composer self-update
   - echo -e "machine github.com\n  login $GH_TOKEN" >> ~/.netrc
 
-before_script:
+install:
   - gem install sass
-  - composer selfupdate
   - composer install --prefer-dist
+  - sudo pip install Pygments
+  - sudo python setup.py install
 
-script:
-  - sh build.sh
+script: sh build.sh
 
-after_success:
-  - if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then sh publish.sh; fi
+after_success: if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then sh publish.sh; fi
 
 env:
   global:
