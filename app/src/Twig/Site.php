@@ -13,16 +13,14 @@ class Site extends \Twig_Extension
 
     public function excerpt($post)
     {
-        if (!isset($post['blocks']['content'])) {
+        if (!array_key_exists('content', $post['blocks'])) {
             return '';
         }
 
         $dom = new \DOMDocument();
-        $dom->loadHTML($post['blocks']['content'], LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
+        $dom->loadHTML($post['blocks']['content']);
 
-        var_dump(htmlspecialchars($post['blocks']['content']));
         $paragraphs = $dom->getElementsByTagName('p');
-        var_dump($paragraphs);
         if ($paragraphs->length) {
             return $paragraphs->item(0)->nodeValue;
         }
