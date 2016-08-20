@@ -26,7 +26,7 @@ class Site implements EventSubscriberInterface
         }
 
         $event->source()->setContent(preg_replace_callback(
-            '/^    \[(note|caution|tip|sidebar)(?: "(.*?)")?\]((?:\s{5}.+$)+)/m',
+            '/^    \[(example|note|caution|tip|sidebar)(?: "(.*?)")?\]((?:\s{5}.+$)+)/m',
             function ($m) {
                 return '<span data-wj-block="'.$m[1].'"'.($m[2] ? ' data-wj-block-title="'.trim($m[2]).'"' : '').'>'.
                            trim(preg_replace('/^\s{4}/m', '', $m[3])).
