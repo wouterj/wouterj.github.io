@@ -46,7 +46,6 @@ of the [Symfony demo][sf-demo]:
         ]);
     }
     
-
 While the controller doesn't do a lot of things, it's impossible to call it
 thin. The main reason? It manages one big task: Handling form submission. Let's
 move this to a service as well!
@@ -269,7 +268,7 @@ to a reusable service.
  * Hostnet's FormHandlerBundle helps you extract form handling logic
 
 On top of these features, the bundle provides a param converter to pass form
-handlers as controller arguments. If you find this usefull, read checkout the
+handlers as controller arguments. If you find this usefull, checkout the
 [docs][bundle-docs].
 
  [bundle-github]: https://github.com/hostnet/form-handler-bundle
