@@ -8,12 +8,11 @@ use:
     - posts
 ---
 {% block content %}
-{% set i = 1 %}
-<ul class="gw" id="js-posts">
+<ul class="gw" id="js-posts"><!--
     {% for post in page.pagination.items %}
-    {% set size = (i == 1 ? 'eight-twelfths' : (i == 2 ? 'four-twelfths' : 'one-half')) %}
-    <li class="g  one-whole  desk-{{ size }}  lap-{{ size }}">
-        <article class="post{% if i == 1 or i == 2 %}  post--featured{% endif %}" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+    {% set size = loop.first ? 'one-whole' : 'one-half' %}
+    --><li class="g  one-whole  desk-{{ size }}  lap-{{ size }}">
+        <article class="post{% if loop.first %}  post--featured{% endif %}" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
             {% spaceless %}
             {% if post.categories %}
             <span class="post__category">
@@ -41,12 +40,11 @@ use:
                 {{ post|excerpt }}
             </div>
         </article>
-    </li>
+    </li><!--
 
-    {% set i = i + 1 %}
     {% endfor %}
 
-    <li class="g  one-whole  desk-one-half">
+    --><li class="g  one-whole  desk-one-half">
         <article class="post  post--about" itemscope itemtype="http://schema.org/Article">
             <h1 class="post__heading  post__heading--gamma" itemprop="headline">GitHub</h1>
 
@@ -55,9 +53,9 @@ use:
                 </p>
             </div>
         </article>
-    </li>
+    </li><!--
 
-    <li class="g  one-whole  desk-one-half">
+    --><li class="g  one-whole  desk-one-half">
         <article class="post  post--about" itemscope itemtype="http://schema.org/Article">
         	<h1 class="post__heading  post__heading--gamma" itemprop="headline">Contact</h1>
 
@@ -65,19 +63,20 @@ use:
                 <p>You can contact me on <a href="http://github.com/WouterJ">GitHub</a>, <a href="http://twitter.com/wouterjnl">Twitter</a>, IRC (WouterJ), <a href="http://stackoverflow.com/users/1149495/wouter-j">StackOverflow</a>, <a href="http://www.phphulp.nl/profiel/wouter-j/23590/">PHPhulp</a> or <a href="mailto:wouter@wouterj.nl">by mail</a>.
         	</div>
         </article>
-    </li>
+    </li><!--
 
-    <li class="g  one-twelfth"></li>
+    --><li class="g  one-half"></li>
 </ul>
 {% endblock %}
 
-{% block javascripts_body %}
+{# block javascripts_body %}
 {{ parent() }}
 <script src="/libs/masonry/masonry.min.js"></script>
 <script type="text/javascript">
 var wall = new Masonry(document.querySelector('#js-posts'), {
-    columnWidth: '.one-twelfth',
-    itemSelector: '.g'
+    columnWidth: '.one-half',
+    itemSelector: '.g',
+    gutter: 0
 });
 </script>
-{% endblock %}
+{% endblock #}
