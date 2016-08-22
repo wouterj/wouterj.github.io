@@ -69,8 +69,31 @@ use:
 </ul>
 {% endblock %}
 
-{# block javascripts_body %}
+{% block javascripts_body %}
 {{ parent() }}
+<script>
+(function ($, $$) {
+    var posts = $$('.desk-one-half');
+    for (var i = 0; (i + 1) < posts.length; i++) {
+        var fst = $('.post', posts[i]);
+        var snd = $('.post', posts[++i]);
+
+        var fstHeight = parseFloat(window.getComputedStyle(fst)['height']);
+        var sndHeight = parseFloat(window.getComputedStyle(snd)['height']);
+
+        if (fstHeight > sndHeight) {
+            snd.style.height = fstHeight + 'px';
+        } else {
+            fst.style.height = sndHeight + 'px';
+        }
+    }
+})(
+    function (selector, elem) { return (elem || document).querySelector(selector); },
+    function (selector, elem) { return (elem || document).querySelectorAll(selector); }
+);
+</script>
+{#
+
 <script src="/libs/masonry/masonry.min.js"></script>
 <script type="text/javascript">
 var wall = new Masonry(document.querySelector('#js-posts'), {
@@ -78,5 +101,5 @@ var wall = new Masonry(document.querySelector('#js-posts'), {
     itemSelector: '.g',
     gutter: 0
 });
-</script>
-{% endblock #}
+</script>#}
+{% endblock %}
