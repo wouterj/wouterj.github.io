@@ -26,7 +26,7 @@ class Site implements EventSubscriberInterface
         }
 
         $event->source()->setContent(preg_replace_callback(
-            '/^    \[(note|caution|tip|sidebar)(?: "(.*?)")?\]((?:\s{5}.+$)+)/m',
+            '/^    \[(example|note|caution|tip|sidebar)(?: "(.*?)")?\]((?:\s{5}.+$)+)/m',
             function ($m) {
                 return '<span data-wj-block="'.$m[1].'"'.($m[2] ? ' data-wj-block-title="'.trim($m[2]).'"' : '').'>'.
                            trim(preg_replace('/^\s{4}/m', '', $m[3])).
@@ -94,13 +94,17 @@ class Site implements EventSubscriberInterface
             if ($code->length) {
                 $processBuilder->setArguments(['-fhtml']);
                 $code = $code->item(0);
+                $class = null;
+                if ($code->hasAttribute('class')) {
+                    $class = $code->getAttribute('class');
+                }
 
-                $cacheItem = $this->cache->getItem(md5($code->nodeValue));
+                $cacheItem = $this->cache->getItem(md5($class.'@'.$code->nodeValue));
                 if ($cacheItem->isHit()) {
                     $highlightedCode = $cacheItem->get();
                 } else {
-                    if ($code->hasAttribute('class')) {
-                        $language = str_replace('-', '+', $code->getAttribute('class'));
+                    if (null !== $class) {
+                        $language = str_replace('-', '+', $class);
 
                         switch ($language) {
                             case 'none':
