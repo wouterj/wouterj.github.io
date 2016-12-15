@@ -44,7 +44,7 @@ add two simple methods for more specific operations on this collection:
 
     [php]
     // src/AppBundle/Product/ProductRepository.php
-    
+
     // ...
     interface ProductRepository extends \Countable
     {
