@@ -21,10 +21,10 @@ footer { clear:both;text-align:center;font-family:sans-serif;padding-top:20px; }
 </svg>
 
 <div id="controls">
-<input type="color" class="color-switcher" data-color="bg" value="#333333"> Background <br>
-<input type="color" class="color-switcher" data-color="sf" value="#ffffff"> Text<br>
-<input type="color" class="color-switcher" data-color="four" value="#333333"> Four<br>
-<input type="color" class="color-switcher" data-color="fourBlock" value="#ffffff"> Four block<br><br>
+<input type="color" class="color-switcher" id="bg-switcher" data-color="bg" value="#333333"> Background <br>
+<input type="color" class="color-switcher" id="fg-switcher" data-color="sf" value="#ffffff"> Text<br>
+<input type="color" class="color-switcher" id="ffg-switcher" data-color="four" value="#333333"> Four<br>
+<input type="color" class="color-switcher" id="fbg=switcher" data-color="fourBlock" value="#ffffff"> Four block<br><br>
 <button id="js-save">Save</button> (only works on Chrome, make a print screen when you're using another browser)
 </div>
 
@@ -46,6 +46,27 @@ var save = $('#js-save');
 var svg = $('#js-svg');
 var canvas = $('#js-canvas');
 var ctx = canvas.getContext('2d');
+
+var url = document.createElement('a');
+url.href = document.documentURI;
+var defaultColors = url.hash.substr(1).split(';').map(function (l) { return l.split('='); });
+defaultColors.map(function (color) {
+    if ('fg' === color[0]) {
+        elements.s.style.fill = '#' + color[1];
+        elements.f.style.fill = '#' + color[1];
+    } else if ('bg' === color[0]) {
+        elements.bg.style.fill = '#' + color[1];
+    } else if ('ffg' === color[0]) {
+        elements.four.style.fill = '#' + color[1];
+    } else if ('fbg' === color[0]) {
+        elements.four.style.fill = '#' + color[1];
+    }
+    
+    var input = $('#' + color[0] + '-switcher');
+    if (input) {
+        input.value = '#' + color[1];
+    }
+});
 
 function triggerDownload (imgURI) {
   var evt = new MouseEvent('click', {
@@ -75,9 +96,8 @@ save.addEventListener('click', function (e) {
     DOMURL.revokeObjectURL(url);
 
     var imgURI = canvas
-        .toDataURL('image/png');
-        //.replace('image/png', 'image/octet-stream');
-console.log(canvas);
+        .toDataURL('image/png')
+        .replace('image/png', 'image/octet-stream');
     triggerDownload(imgURI);
   };
 
