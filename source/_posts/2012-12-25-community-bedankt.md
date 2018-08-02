@@ -6,6 +6,7 @@ categories:
 tags:
 - site
 - opensource
+draft: true
 
 ---
 Het is vandaag weer kerst. Tijd om na te denken over wat je dit jaar gedaan

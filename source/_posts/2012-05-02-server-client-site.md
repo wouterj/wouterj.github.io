@@ -6,6 +6,7 @@ categories:
 - article
 tags:
 - programming types
+draft: true
 
 ---
 Tja, scripten is lastig. Maar het wordt nog lastiger als we het ook nog

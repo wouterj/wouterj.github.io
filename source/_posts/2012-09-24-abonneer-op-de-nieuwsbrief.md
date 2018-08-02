@@ -5,6 +5,7 @@ categories:
 - news
 tags:
 - nieuwsbrief
+draft: true
 
 ---
 Er gebeurd enorm veel op het gebied van webdevelopment. Van nieuwe technieken
