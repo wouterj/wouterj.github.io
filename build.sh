@@ -5,6 +5,5 @@ set -e
 set -x
 
 # build site
-sass source/css/wouterj.scss:source/css/wouterj.css --style compressed --no-cache
-./vendor/bin/sculpin generate --env prod
-touch output_prod/.nojekyll
+jekyll build
+touch _site/.nojekyll

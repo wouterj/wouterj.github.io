@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="{{ page.lang | default: site.lang }}">
+
+  {%- include head.html -%}
+
+  <body class=page itemscope itemtype="http://schema.org/WebPage">
+
+    {%- include header.html -%}
+
+    <div class=page__body itemscope itemtype="http://schema.org/Blog">
+        {{ content }}
+    </main>
+
+    {%- include footer.html -%}
+
+  </body>
+
+</html>

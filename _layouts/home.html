@@ -1,0 +1,82 @@
+---
+layout: default
+
+---
+<ul class="gw" id="js-posts"><!--
+    {% for post in paginator.posts %}
+    {% capture size %}{% if forloop.first %}one-whole{% else %}one-half{% endif %}{% endcapture %}
+    --><li class="g  one-whole  desk-{{ size }}  lap-{{ size }}">
+        <article class="post{% if forloop.first %}  post--featured{% endif %}" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+            {% if post.categories %}
+            <span class="post__category">
+            {% assign cat = post.categories|first %}
+            {% if cat == 'article' %}
+            &#xf139;
+            {% elsif cat == 'opinion' %}
+            &#xf075;
+            {% elsif cat == 'news' %}
+            &#xf0CA;
+            {% elsif cat == 'experiment' %}
+            &#xf051;
+            {% elsif cat == 'idea' %}
+            &#xf12C;
+            {% endif %}
+            </span>
+            {% endif %}
+
+            <h1 class="post__heading  post__heading{% if i == 1 %}--alpha{% elsif i == 2 %}--beta{% else %}--gamma{% endif %}" itemprop="headline"><a href="{{ post.url }}" itemprop="url">{{ post.title }}</a></h1>
+            {% if post.thumbnail and i != 2 -%}
+            <img src="{{ site.url }}/img/{{ post.thumbnail }}" class="post__thumbnail  img--stripe  img--{% if i == 1 %}medium{% else %}short  post__thumbnail--home{% endif %}  img--left" itemprop="thumbnailUrl">
+            {%- endif %}
+            <div class="post__entry  post__entry--excerpt" itemprop="description">
+                {{ post.excerpt }}
+            </div>
+        </article>
+    </li><!--
+
+    {% endfor %}
+    --><li class="g  one-whole  desk-one-half">
+        <article class="post  post--about" itemscope itemtype="http://schema.org/Article">
+            <h1 class="post__heading  post__heading--gamma" itemprop="headline">GitHub</h1>
+
+            <div class="post__entry" itemprop="articleBody">
+                <p>I'm a big fan of Open Source. I'm working on a daily basis on the <a href="http://github.com/symfony/symfony-docs/">Symfony docs</a> and the <a href="http://github.com/symfony-cmf">Symfony CMF</a>. You'll be my hero if you contribute to Open Source projects too!</p>
+                </p>
+            </div>
+        </article>
+    </li><!--
+
+    --><li class="g  one-whole  desk-one-half">
+        <article class="post  post--about" itemscope itemtype="http://schema.org/Article">
+        	<h1 class="post__heading  post__heading--gamma" itemprop="headline">Contact</h1>
+
+        	<div class="post__entry" itemprop="articleBody">
+                <p>You can contact me on <a href="http://github.com/WouterJ">GitHub</a>, <a href="http://twitter.com/wouterjnl">Twitter</a>, IRC (WouterJ), <a href="http://stackoverflow.com/users/1149495/wouter-j">StackOverflow</a>, <a href="http://www.phphulp.nl/profiel/wouter-j/23590/">PHPhulp</a> or <a href="mailto:wouter@wouterj.nl">by mail</a>.
+        	</div>
+        </article>
+    </li><!--
+
+    --><li class="g  one-half"></li>
+</ul>
+
+<script>
+(function ($, $$) {
+    var posts = $$('.desk-one-half');
+    for (var i = 0; (i + 1) < posts.length; i++) {
+        var fst = $('.post', posts[i]);
+        var snd = $('.post', posts[++i]);
+
+        var fstHeight = parseFloat(window.getComputedStyle(fst)['height']);
+        var sndHeight = parseFloat(window.getComputedStyle(snd)['height']);
+
+        if (fstHeight > sndHeight) {
+            snd.style.height = fstHeight + 'px';
+        } else {
+            fst.style.height = sndHeight + 'px';
+        }
+    }
+})(
+    function (selector, elem) { return (elem || document).querySelector(selector); },
+    function (selector, elem) { return (elem || document).querySelectorAll(selector); }
+);
+</script>

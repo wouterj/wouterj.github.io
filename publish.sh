@@ -5,7 +5,7 @@ set -e
 set -x
 
 # Go to the output directory
-cd output_prod
+cd _site
 
 # Remove the existing repo if it exists
 if [ -d ".git" ]; then
@@ -16,7 +16,7 @@ fi
 git init
 
 # configure env (locally)
-git config user.email 'waldio.webdesign@gmail.com'
+git config user.email 'wouter@wouterj.nl'
 git config user.name 'WouterJ.nl bot'
 
 # commit build

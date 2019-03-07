@@ -1,22 +1,12 @@
-language: php
-php: 7
-
-sudo: true
+language: ruby
 
 branches:
   only:
     - source
 
-before_install:
-  - phpenv config-rm xdebug.ini || true
-  - composer self-update
-  - echo -e "machine github.com\n  login $GH_TOKEN" >> ~/.netrc
+before_install: echo -e "machine github.com\n  login $GH_TOKEN" >> ~/.netrc
 
-install:
-  - gem install sass
-  - composer install --prefer-dist
-  - sudo pip install Pygments
-  - sudo python setup.py install
+install: bundler install
 
 script: sh build.sh
 
