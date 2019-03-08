@@ -19,7 +19,7 @@ author: Wouter de Jong
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://wouterj.nl" # the base hostname & protocol for your site, e.g. http://example.com
 
-permalink: /:year/:month/:title:output_ext
+permalink: /:year/:month/:title
 
 google_analytics: UA-30226315-1
 disqus:
