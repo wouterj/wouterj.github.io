@@ -2,62 +2,116 @@
 layout: default
 
 ---
-<ul class="gw post-list" id="js-posts"><!--
-    {% for post in paginator.posts %}
-    {% capture size %}{% if forloop.first %}one-whole{% else %}one-half{% endif %}{% endcapture %}
-    --><li class="g  one-whole  desk-{{ size }}  lap-{{ size }}">
-        <article class="post{% if forloop.first %}  post--featured{% endif %}" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
-            {% if post.categories %}
-            <span class="post__category">
-            {% assign cat = post.categories|first %}
-            {% if cat == 'article' %}
-            &#xf139;
-            {% elsif cat == 'opinion' %}
-            &#xf075;
-            {% elsif cat == 'news' %}
-            &#xf0CA;
-            {% elsif cat == 'experiment' %}
-            &#xf051;
-            {% elsif cat == 'idea' %}
-            &#xf12C;
-            {% endif %}
-            </span>
-            {% endif %}
+<div class="post-list">
+    {% for post in paginator.posts %}{% if post.hide != true %}
+        {% if forloop.first %}
+            <article class="post  post--featured" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+                {% if post.categories %}
+                <span class="post__category">
+                {% assign cat = post.categories|first %}
+                {% if cat == 'article' %}
+                &#xf139;
+                {% elsif cat == 'opinion' %}
+                &#xf075;
+                {% elsif cat == 'news' %}
+                &#xf0CA;
+                {% elsif cat == 'experiment' %}
+                &#xf051;
+                {% elsif cat == 'idea' %}
+                &#xf12C;
+                {% endif %}
+                </span>
+                {% endif %}
 
-            <h1 class="post__heading  post__heading{% if forloop.first %}--alpha{% elsif forloop.index < 4 %}--beta{% else %}--gamma{% endif %}" itemprop="headline"><a href="{{ post.url }}" itemprop="url">{{ post.title }}</a></h1>
-            {% if post.thumbnail and i != 2 -%}
-            <img src="{{ site.url }}/img/{{ post.thumbnail }}" class="post__thumbnail  img--stripe  img--{% if i == 1 %}medium{% else %}short  post__thumbnail--home{% endif %}  img--left" itemprop="thumbnailUrl">
-            {%- endif %}
-            <div class="post__entry  post__entry--excerpt" itemprop="description">
-                {{ post.excerpt }}
-            </div>
-        </article>
-    </li><!--
+                <h1 class="post__heading  post__heading--alpha" itemprop="headline"><a href="{{ post.url }}" itemprop="url">{{ post.title }}</a></h1>
+                {% if post.thumbnail and i != 2 -%}
+                <img src="{{ site.url }}/img/{{ post.thumbnail }}" class="post__thumbnail  img--stripe  img--{% if i == 1 %}medium{% else %}short  post__thumbnail--home{% endif %}  img--left" itemprop="thumbnailUrl">
+                {%- endif %}
+                <div class="post__entry  post__entry--excerpt" itemprop="description">
+                    {{ post.excerpt }}
+                </div>
+            </article>
+        {% elsif forloop.index < 4 %}
+            {% if forloop.index == 2 %}<ul class="gw">{% endif %}
+                <li class="g  one-whole  desk-one-half"><article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+                {% if post.categories %}
+                <span class="post__category">
+                {% assign cat = post.categories|first %}
+                {% if cat == 'article' %}
+                &#xf139;
+                {% elsif cat == 'opinion' %}
+                &#xf075;
+                {% elsif cat == 'news' %}
+                &#xf0CA;
+                {% elsif cat == 'experiment' %}
+                &#xf051;
+                {% elsif cat == 'idea' %}
+                &#xf12C;
+                {% endif %}
+                </span>
+                {% endif %}
 
-    {% endfor %}
-    --><li class="g  one-whole  desk-one-half">
-        <article class="post  post--static" itemscope itemtype="http://schema.org/Article">
-            <h1 class="post__heading  post__heading--gamma" itemprop="headline">GitHub</h1>
+                <h1 class="post__heading  post__heading--beta" itemprop="headline"><a href="{{ post.url }}" itemprop="url">{{ post.title }}</a></h1>
+                {% if post.thumbnail and i != 2 -%}
+                <img src="{{ site.url }}/img/{{ post.thumbnail }}" class="post__thumbnail  img--stripe  img--{% if i == 1 %}medium{% else %}short  post__thumbnail--home{% endif %}  img--left" itemprop="thumbnailUrl">
+                {%- endif %}
+                <div class="post__entry  post__entry--excerpt" itemprop="description">
+                    {{ post.excerpt }}
+                </div>
+            </article></li>
+            {% if forloop.index == 3 %}</ul>{% endif %}
+        {% else %}
+            {% if forloop.index == 4 %}<ul class="post-list--titles">{% endif %}
+            <li class="post--summary">
+                <h4 class="post__heading  post__heading--gamma" itemprop="headline"><a href="{{ post.url }}" itemprop="url">{{ post.title }}</a></h4>
 
-            <div class="post__entry" itemprop="articleBody">
-                <p>I'm a big fan of Open Source. I'm working on a daily basis on the <a href="http://github.com/symfony/symfony-docs/">Symfony docs</a> and the <a href="http://github.com/symfony-cmf">Symfony CMF</a>. You'll be my hero if you contribute to Open Source projects too!</p>
-                </p>
-            </div>
-        </article>
-    </li><!--
+                <span class="post__category">
+                    <time class="dt-published" datetime="{{ post.date | date_to_xmlschema }}" itemprop="datePublished">
+                        {{ post.date | date: "%^b '%y" }}
+                    </time>
+                {% assign cat = post.categories|first %}
+                {% if cat == 'article' %}
+                &#xf139;
+                {% elsif cat == 'opinion' %}
+                &#xf075;
+                {% elsif cat == 'news' %}
+                &#xf0CA;
+                {% elsif cat == 'experiment' %}
+                &#xf051;
+                {% elsif cat == 'idea' %}
+                &#xf12C;
+                {% endif %}
+                </span>
+            </li>
+        {% endif %}
+    {% endif %}{% endfor %}
+    </ul>
 
-    --><li class="g  one-whole  desk-one-half">
-        <article class="post  post--static" itemscope itemtype="http://schema.org/Article">
-        	<h1 class="post__heading  post__heading--gamma" itemprop="headline">Contact</h1>
+    <ul class="gw">
+        <li class="g  one-whole  desk-one-half">
+            <article itemscope itemtype="http://schema.org/Article">
+                <h1 class="post__heading  post__heading--gamma" itemprop="headline">GitHub</h1>
 
-        	<div class="post__entry" itemprop="articleBody">
-                <p>You can contact me on <a href="http://github.com/WouterJ">GitHub</a>, <a href="http://stackoverflow.com/users/1149495/wouter-j">StackOverflow</a>, <a href="https://symfony.com/slack">Symfony Slack</a> or <a href="mailto:wouter@wouterj.nl">by mail</a>.
-        	</div>
-        </article>
-    </li><!--
+                <div class="post__entry" itemprop="articleBody">
+                    <p>I'm a big fan of Open Source. I'm working on a daily basis on the <a href="http://github.com/symfony/symfony-docs/">Symfony docs</a> and the <a href="http://github.com/symfony-cmf">Symfony CMF</a>. You'll be my hero if you contribute to Open Source projects too!</p>
+                    </p>
+                </div>
+            </article>
+        </li><!--
 
-    --><li class="g  one-half"></li>
-</ul>
+        --><li class="g  one-whole  desk-one-half">
+            <article itemscope itemtype="http://schema.org/Article">
+                <h1 class="post__heading  post__heading--gamma" itemprop="headline">Contact</h1>
+
+                <div class="post__entry" itemprop="articleBody">
+                    <p>You can contact me on <a href="http://github.com/WouterJ">GitHub</a>, <a href="http://stackoverflow.com/users/1149495/wouter-j">StackOverflow</a>, <a href="https://symfony.com/slack">Symfony Slack</a> or <a href="mailto:wouter@wouterj.nl">by mail</a>.
+                </div>
+            </article>
+        </li><!--
+
+        --><li class="g  one-half"></li>
+    </ul>
+</div>
 
 <script>
 (function ($, $$) {

@@ -64,6 +64,7 @@
     background:$lightShade !important;
     color:$secondaryText;
     @include font-size($milli-size);
+    position:relative;
 
     @include media-query(palm){
         p{
