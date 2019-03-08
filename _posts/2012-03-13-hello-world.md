@@ -4,6 +4,7 @@ title: "Hello World"
 thumbnail: hello-world-thumb.png
 categories: news
 tags: site
+hide: true
 
 ---
 Het eerste echte berichtje op een blog, dan hoor je eigenlijk wel welkom te

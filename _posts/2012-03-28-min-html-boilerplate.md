@@ -3,6 +3,7 @@ layout: post
 title: "Minimale HTML Boilerplate"
 categories: article
 tags: [bleeding edge, html]
+hide: true
 
 ---
 Je kent het vast wel, het [HTML5 boilerplate](http://html5boilerplate.com/)

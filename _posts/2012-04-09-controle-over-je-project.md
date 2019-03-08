@@ -4,6 +4,7 @@ title: "Controle over je project"
 thumbnail: controle-over-je-project-thumb.jpg
 categories: article
 tags: [tools, git]
+hide: true
 
 ---
 Als je de basis van een taal kent en verder komt en je eigen projecten gaat

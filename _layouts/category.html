@@ -4,6 +4,7 @@ layout: default
 ---
 <ul class="gw post-list" id="js-posts"><!--
     {% for post in paginator.posts %}
+    {% if post.hide != true %}
     --><li class="g  one-whole  desk-half lap-half">
         <article class="post{% if forloop.first %}  post--featured{% endif %}" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
             {% if post.categories %}
@@ -31,7 +32,7 @@ layout: default
                 {{ post.excerpt }}
             </div>
         </article>
-    </li><!--    {% endfor %}
+    </li><!--    {% endif %}{% endfor %}
 
     --><li class="g  one-half"></li>
 </ul>

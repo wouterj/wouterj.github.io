@@ -5,7 +5,7 @@ categories:
 - news
 tags:
 - nieuwsbrief
-draft: true
+hide: true
 
 ---
 Elke maand heb ik teveel linkjes om allemaal in de nieuwsbrief te stoppen. Het

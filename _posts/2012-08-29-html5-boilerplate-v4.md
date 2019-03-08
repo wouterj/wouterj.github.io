@@ -7,6 +7,7 @@ categories:
 tags:
 - tools
 - releases
+hide: true
 
 ---
 HTML5 boilerplate, de populairste front-end template, is vandaag overgegaan

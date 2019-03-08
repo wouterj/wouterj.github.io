@@ -4,6 +4,7 @@ title: "5 oplossingen voor de vendors"
 thumbnail: prefix-free-thumb.png
 categories: article
 tags: [tools, css]
+hide: true
 
 ---
 CSS3 vind ik geweldig, maar die prefixen zijn natuurlijk totaal niet handig.

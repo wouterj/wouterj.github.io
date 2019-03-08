@@ -4,6 +4,7 @@ title: "Waarom ik geen voorstander van validators ben"
 thumbnail: validators-bad-thumb.png
 categories: opinion
 tags: [validators, w3c, html]
+hide: true
 
 ---
 Een validator wordt door veel webscripters gezien als een heilige tool. Heb je

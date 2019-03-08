@@ -4,6 +4,7 @@ title: "De Koekjes Wet"
 thumbnail: cookie-law-thumb.png
 categories: news
 tags: [wetten, cookies]
+hide: true
 
 ---
 De Europese Unie heeft besloten dat vanaf 1 juli 2012 het verboden is om

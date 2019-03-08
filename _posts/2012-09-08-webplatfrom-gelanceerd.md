@@ -8,6 +8,7 @@ tags:
 - documentation
 - front-end
 - releases
+hide: true
 
 ---
 Vanmiddag is [WebPlatform.org](http://webplatform.org/) gelanceerd, de website
