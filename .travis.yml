@@ -4,7 +4,10 @@ branches:
   only:
     - source
 
-before_install: echo -e "machine github.com\n  login $GH_TOKEN" >> ~/.netrc
+before_install:
+    - echo -e "machine github.com\n  login $GH_TOKEN" >> ~/.netrc
+    - gem update --system
+    - gem install bundler
 
 script: sh build.sh
 
