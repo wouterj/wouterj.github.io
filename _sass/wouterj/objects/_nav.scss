@@ -6,12 +6,9 @@
 
     @include vendor(transition, .1s ease);
 
-    &:hover{
+    &:hover a{
         background:$primary1;
-
-        a{
-            text-decoration:none;
-        }
+        text-decoration:none;
     }
 
     &:active{
@@ -24,4 +21,7 @@
         &:hover{
             color:$lightText;
         }
+    }
+    .nav__item--current a{
+        color:$primary1;
     }

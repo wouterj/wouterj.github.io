@@ -222,12 +222,12 @@ As I tried to show in this post, treating repositories as collections has some
 significant advantages:
 
  * The collection implementation is abstracted away, not much hassle with
-   Doctrine anymore;
+   Doctrine anymore
  * All collection methods are located in one class/service. This means you
    never has to rely on both the entity repository and manager (in order to
-   fetch and persist) anymore;
+   fetch and persist) anymore
  * Working with Doctrine as if it's a collection makes programming easier to
-   follow.
+   follow
 
 My last warning of this post is to not add non-collection related methods in
 the repository. I sometimes see people adding `getXxxQuery()` methods in the
@@ -239,7 +239,7 @@ collections (try to think what this method should return in the
 ## Take Home's
 
  * The `EntityRepository` class shipped by Doctrine is purely to ease usage,
-   it's not mandatory at all;
+   it's not mandatory at all
  * Writing your own repositories allow you to abstract away Doctrine almost
-   completely from your services and controllers;
- * Repositories are just collections, please treat them as such.
+   completely from your services and controllers
+ * Repositories are just collections, please treat them as such

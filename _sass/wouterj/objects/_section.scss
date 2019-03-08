@@ -12,7 +12,7 @@
 
     @include vendor(transition, color .2s);
 
-    @media screen and (max-width:$lap-end + 160px){
+    @include media-query(portable){
         display:none;
     }
 }

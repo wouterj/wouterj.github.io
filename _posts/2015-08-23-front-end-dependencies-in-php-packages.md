@@ -88,8 +88,8 @@ there.
 
 Now you can register both packages:
 
- * Register your repository as a Composer PHP package (your bundle);
- * Register the same repository as a Bower package (the frontend dependencies).
+ * Register your repository as a Composer PHP package (your bundle)
+ * Register the same repository as a Bower package (the frontend dependencies)
 
 Assume your bundle is called ``acme/blog-bundle``, your Bower package might be
 called ``acme-blog-bundle``. Installation now consists of 2 steps:
@@ -112,9 +112,9 @@ their Bower dependencies, as explained above.
 
 But this means a bundle has to support 2 different paths for the dependencies:
 
- * `bundles/acmeblog/vendor` when Bower isn't used in the project;
+ * `bundles/acmeblog/vendor` when Bower isn't used in the project
  * `bower_packages` (or any other configured URL) when the user used the
-   virtual Bower package.
+   virtual Bower package
 
 In the CmfTreeBrowserBundle, we solved this problem by having a
 `scripts.html.twig` template like this:

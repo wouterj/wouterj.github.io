@@ -184,9 +184,9 @@ Congrats, you have a running Sculpin blog on GitHub Pages using automatic
 buildings with Travis! Everytime you push to your blog's `source` branch, the
 site will be regenerated. There are even more nice features:
 
-* You get a notification when the build failed;
+* You get a notification when the build failed
 * The output is never pushed when the build failed, meaning you always have a
-  working site.
+  working site
 
 You can see the complete files in [the repository of this site][7].
 

@@ -15,6 +15,34 @@
         font-weight:400;
     }
 
+    ul{
+        margin-left:0;
+
+        li{
+            list-style:none;
+            position:relative;
+
+            &:after{
+                color:$secondaryText;
+                content:';';
+            }
+            &:last-child:after{
+                content:'.';
+            }
+
+            &:before{
+                content:'– ';
+
+                @include media-query(desk){
+                    position:absolute;
+                    left:-2ch;
+                }
+                color:$secondaryText;
+                font-weight:bold;
+            }
+        }
+    }
+
     @include media-query(portable){
         padding-left:20px;
         padding-right:20px;
@@ -101,6 +129,14 @@
         .post__heading a{
             color:$text;
         }
+    .post__entry p a{
+        color:$text;
+        text-decoration:underline;
+
+        &:hover{
+            color:$primary1;
+        }
+    }
 
 .post--featured .post__entry--excerpt,
 .page--post .post p:first-of-type{
