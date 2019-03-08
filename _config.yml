@@ -21,6 +21,7 @@ url: "http://wouterj.nl" # the base hostname & protocol for your site, e.g. http
 
 permalink: /:year/:month/:title:output_ext
 
+google_analytics: UA-30226315-1
 disqus:
     shortname: wouterjnl
 
