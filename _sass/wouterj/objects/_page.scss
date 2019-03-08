@@ -28,13 +28,13 @@
         margin-top:-88px;
 
         @include media-query(portable){
-            width:508px;
+            width:527px;
             float:none;
             margin:20px auto 0;
         }
 
         @include media-query(palm){
-            width:184px;
+            width:200px;
 
             .button__text{
                 display:none;
