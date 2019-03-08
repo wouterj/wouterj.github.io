@@ -17,7 +17,7 @@ title: Wouter J
 email: wouter@wouterj.nl
 author: Wouter de Jong
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "http://wouterj.nl" # the base hostname & protocol for your site, e.g. http://example.com
+url: "https://wouterj.nl" # the base hostname & protocol for your site, e.g. http://example.com
 
 permalink: /:year/:month/:title:output_ext
 
