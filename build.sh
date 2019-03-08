@@ -5,5 +5,5 @@ set -e
 set -x
 
 # build site
-jekyll build
+bundle exec jekyll build
 touch _site/.nojekyll
