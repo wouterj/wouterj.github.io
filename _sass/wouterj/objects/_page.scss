@@ -8,7 +8,7 @@
     width:100%;
     max-width:978px;
     margin:0 auto;
-    background:#f9f9f9 url(/img/css/bg-grid.png);
+    background:$light;
 }
 
 
@@ -17,19 +17,24 @@
 
 .page__header{
     position:relative;
+    margin-bottom:60px;
+
+    @include media-query(palm) {
+        margin-bottom:20px;
+    }
 }
     .page__nav{
         float:right;
         margin-top:-90px;
 
         @include media-query(portable){
-            width:571px;
+            width:508px;
             float:none;
-            margin:20px auto;
+            margin:20px auto 0;
         }
 
         @include media-query(palm){
-            width:272px;
+            width:184px;
 
             .button__text{
                 display:none;
@@ -56,13 +61,11 @@
 
 
 .page__footer{
-    @extend .post;
     background:$lightShade !important;
     color:$secondaryText;
+    @include font-size($milli-size);
 
     @include media-query(palm){
-        @include font-size($milli-size);
-
         p{
             margin:0;
         }

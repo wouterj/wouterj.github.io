@@ -7,12 +7,12 @@
     background:$light;
     padding:$half-spacing-unit;
     margin-top:$base-spacing-unit;
-    @include vendor(box-shadow, 0px 1px 8px $shadow);
 
     position:relative;
 
     h1, h2, h3, h4, h5, h6{
-        font-family: 'Roboto Slab';
+        font-family: $title-face;
+        font-weight:400;
     }
 
     @include media-query(portable){
@@ -29,15 +29,12 @@
         width:100%;
         height:5px;
         background:#c33;
-        @include vendor(box-shadow, 0px 0px 2px $shadow);
+    }
+    &.post--static:before{
+        background:lighten($dark, 13);
     }
 
-    .highlight pre{
-        color:#c7c8d2;
-        padding:13px;
-    }
-    
-    .highlighttable{
+    .highlight{
         @extend %sass-margin-bottom;
         @include vendor(box-shadow, 0px 0px 2px $shadow);
         border:none !important;
@@ -45,25 +42,35 @@
 
         table-layout:fixed;
 
-        .linenos{
+        pre{
+            color:#c7c8d2;
+            padding:13px;
+        }
+
+        .rouge-table{
+            margin-bottom:0;
+        }
+
+        .rouge-gutter{
             background:rgba(255,255,255,.05);
             width:50px;
             padding:0;
 
             vertical-align:top;
+        }
+
+        .lineno{
+            margin:13px 8px;
+            padding-right:5px;
 
             color:#888;
             line-height:1.5;
             text-align:right;
         }
 
-        .linenodiv{
-            margin:13px 8px;
-            padding-right:5px;
-        }
-
-        .code{
+        .rouge-code{
             line-height:1.5;
+            padding:13px;
             vertical-align:top;
         }
 
@@ -76,9 +83,10 @@
             word-break:break-all;
         }
     }
+
 }
     .post__heading{
-        padding-right:20px;
+        padding-right:100px;
     }
     .post__heading--gamma{
         @extend .gamma;
@@ -86,6 +94,7 @@
     .post__heading--beta{
         @extend .beta;
     }
+    .post--featured .post__header,
     .post__heading--alpha{
         @extend .alpha;
     }
@@ -93,12 +102,10 @@
             color:$text;
         }
 
-.post__intro{
+.post--featured .post__entry--excerpt,
+.page--post .post p:first-of-type{
     @include font-size(20px);
-    line-height:1.5;
-}
-.post--featured .post__entry--excerpt{
-    @extend .post__intro;
+    line-height:1.6;
 }
 .post__thumbnail{
     @include media-query(portable) {
@@ -112,7 +119,6 @@
     }
 }
 .post__comments{
-    @include vendor(box-shadow, 0px 0px 2px $shadow);
     padding:10px;
 }
 .post__category{
@@ -128,7 +134,6 @@
     background:$primary1;
     float:left;
     color:$light;
-    @include vendor(box-shadow, 0px 0px 2px $shadow);
 }
 
 
@@ -139,15 +144,25 @@
     $POST_LIST
 \*-----------------------------------*/
 .post-list{
-    @extend .block-list;
-}
-    .post-list .post__heading{
+    p{
         margin-bottom:0;
     }
-    .post-list .post__date{
+    .post--featured{
+        margin-top:0;
+    }
+
+    .post__heading{
+        margin-bottom:$base-spacing-unit / 2;
+        padding-right:20px;
+    }
+
+    .post__heading--beta{
+        line-height:1.4;
+    }
+
+    .post__date{
         float:left;
         background:#fff;
-        box-shadow:0px 1px 3px $shadow;
         padding:10px;
         margin-right:10px;
 
@@ -157,6 +172,7 @@
             display:inline-block;
         }
     }
+}
 
 .post-table{
     table-layout: fixed;

@@ -2,7 +2,7 @@
 layout: default
 
 ---
-<ul class="gw" id="js-posts"><!--
+<ul class="gw post-list" id="js-posts"><!--
     {% for post in paginator.posts %}
     {% capture size %}{% if forloop.first %}one-whole{% else %}one-half{% endif %}{% endcapture %}
     --><li class="g  one-whole  desk-{{ size }}  lap-{{ size }}">
@@ -24,7 +24,7 @@ layout: default
             </span>
             {% endif %}
 
-            <h1 class="post__heading  post__heading{% if i == 1 %}--alpha{% elsif i == 2 %}--beta{% else %}--gamma{% endif %}" itemprop="headline"><a href="{{ post.url }}" itemprop="url">{{ post.title }}</a></h1>
+            <h1 class="post__heading  post__heading{% if forloop.first %}--alpha{% elsif forloop.index < 4 %}--beta{% else %}--gamma{% endif %}" itemprop="headline"><a href="{{ post.url }}" itemprop="url">{{ post.title }}</a></h1>
             {% if post.thumbnail and i != 2 -%}
             <img src="{{ site.url }}/img/{{ post.thumbnail }}" class="post__thumbnail  img--stripe  img--{% if i == 1 %}medium{% else %}short  post__thumbnail--home{% endif %}  img--left" itemprop="thumbnailUrl">
             {%- endif %}
@@ -36,7 +36,7 @@ layout: default
 
     {% endfor %}
     --><li class="g  one-whole  desk-one-half">
-        <article class="post  post--about" itemscope itemtype="http://schema.org/Article">
+        <article class="post  post--static" itemscope itemtype="http://schema.org/Article">
             <h1 class="post__heading  post__heading--gamma" itemprop="headline">GitHub</h1>
 
             <div class="post__entry" itemprop="articleBody">
@@ -47,11 +47,11 @@ layout: default
     </li><!--
 
     --><li class="g  one-whole  desk-one-half">
-        <article class="post  post--about" itemscope itemtype="http://schema.org/Article">
+        <article class="post  post--static" itemscope itemtype="http://schema.org/Article">
         	<h1 class="post__heading  post__heading--gamma" itemprop="headline">Contact</h1>
 
         	<div class="post__entry" itemprop="articleBody">
-                <p>You can contact me on <a href="http://github.com/WouterJ">GitHub</a>, <a href="http://twitter.com/wouterjnl">Twitter</a>, IRC (WouterJ), <a href="http://stackoverflow.com/users/1149495/wouter-j">StackOverflow</a>, <a href="http://www.phphulp.nl/profiel/wouter-j/23590/">PHPhulp</a> or <a href="mailto:wouter@wouterj.nl">by mail</a>.
+                <p>You can contact me on <a href="http://github.com/WouterJ">GitHub</a>, <a href="http://stackoverflow.com/users/1149495/wouter-j">StackOverflow</a>, <a href="https://symfony.com/slack">Symfony Slack</a> or <a href="mailto:wouter@wouterj.nl">by mail</a>.
         	</div>
         </article>
     </li><!--
@@ -61,20 +61,36 @@ layout: default
 
 <script>
 (function ($, $$) {
-    var posts = $$('.desk-one-half');
-    for (var i = 0; (i + 1) < posts.length; i++) {
-        var fst = $('.post', posts[i]);
-        var snd = $('.post', posts[++i]);
+    window.addEventListener("resize", resizeThrottler, false);
 
-        var fstHeight = parseFloat(window.getComputedStyle(fst)['height']);
-        var sndHeight = parseFloat(window.getComputedStyle(snd)['height']);
-
-        if (fstHeight > sndHeight) {
-            snd.style.height = fstHeight + 'px';
-        } else {
-            fst.style.height = sndHeight + 'px';
+    var resizeTimeout;
+    function resizeThrottler() {
+        // ignore resize events as long as an actualResizeHandler execution is in the queue
+        if (!resizeTimeout) {
+            resizeTimeout = setTimeout(function() {
+                resizeTimeout = null;
+                calculateHeights();
+            }, 66);
         }
     }
+
+    var posts = $$('.desk-one-half');
+    function calculateHeights() {
+        for (var i = 0; (i + 1) < posts.length; i++) {
+            var fst = $('.post', posts[i]);
+            var snd = $('.post', posts[++i]);
+
+            var fstHeight = parseFloat(window.getComputedStyle(fst)['height']);
+            var sndHeight = parseFloat(window.getComputedStyle(snd)['height']);
+
+            if (fstHeight > sndHeight) {
+                snd.style.height = fstHeight + 'px';
+            } else {
+                fst.style.height = sndHeight + 'px';
+            }
+        }
+    }
+    calculateHeights();
 })(
     function (selector, elem) { return (elem || document).querySelector(selector); },
     function (selector, elem) { return (elem || document).querySelectorAll(selector); }

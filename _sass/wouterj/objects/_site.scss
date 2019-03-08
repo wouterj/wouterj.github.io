@@ -3,26 +3,16 @@
 \*-----------------------------------*/
 .site-title{
     @extend .mega;
+    font-family:$title-face;
+    font-weight:400;
 
-    @include media-query(palm){
-        @include font-size(54px);
+    @include media-query(portable){
+        text-align:center;
+        margin-top:$base-spacing-unit;
     }
 
     a{
         color:#555;
         text-decoration:none;
-    }
-}
-.site-slogan{
-    @include font-size(22px);
-    font-weight:normal;
-    word-spacing:1.5px;
-
-    margin-top:1px;
-
-    @include media-query(palm){
-        @include font-size(16px);
-
-        margin-top:-10px;
     }
 }

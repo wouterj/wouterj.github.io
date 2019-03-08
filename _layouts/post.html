@@ -5,6 +5,9 @@ layout: default
 <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
     {% if page.categories %}
         <span class="post__category">
+        <time class="dt-published" datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">
+            {{ page.date | date: "%^b '%y" }}
+        </time>
         {% assign cat = page.categories|first %}
         {% if cat == 'article' %}
         &#xf139;
@@ -21,19 +24,13 @@ layout: default
     {% endif %}
 
     <h1 class="post__heading" itemprop="headline">{{ page.title | escape }}</h1>
-    <!--
-    <time class="dt-published" datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">
-        {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
-        {{ page.date | date: date_format }}
-    </time>
-    -->
 
     {% if page.thumbnail %}
-    <img src="{{ site.url }}/img/{{ page.thumbnail }}" class="post__thumbnail  img--stripe  img--short  img--left" itemprop="thumbnailUrl">
+    <img src="{{ site.url }}/img/{{ page.thumbnail }}" class="post__thumbnail  img--stripe  img--short  img--right" itemprop="thumbnailUrl">
     {% endif %}
 
     <div class="post__entry" itemprop="articleBody">
-        {{ content }}
+        {% include anchor_headings.html html=content beforeHeading=true anchorClass='section-link' %}
     </div>
 
     {%- if site.disqus.shortname -%}

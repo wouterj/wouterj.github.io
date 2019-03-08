@@ -25,10 +25,10 @@ disqus:
     shortname: wouterjnl
 
 header_pages:
-    - categories/article.md
-    - categories/news.md
-    - categories/opinion.md
-    - categories/experiment.md
+    - Articles Archive
+    - News Archive
+    - Opinions Archive
+    - Experiments Archive
 
 # Build settings
 markdown: kramdown
@@ -36,6 +36,12 @@ highlighter: rouge
 plugins:
   - jekyll-feed
   - jekyll-paginate-v2
+
+kramdown:
+    parse_block_html: true
+    syntax_highlighter_opts:
+        block:
+            line_numbers: true
 
 pagination:
     enabled: true

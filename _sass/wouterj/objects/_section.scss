@@ -2,33 +2,48 @@
     $SECTION
 \*-----------------------------------*/
 .section-link{
-    font-family:Batch;
+    font-size:.8em;
     font-weight:normal;
     color:$hintText;
+    text-align:right;
+    width:-40px;
 
     position:absolute;
-    left:-50px;
-    opacity:0;
 
-    @include vendor(transition, opacity,transform .1s ease);
-    @include vendor(transition-delay, 1s);
-    @include vendor(transform, rotate(10deg));
-    @include vendor(transform-origin, center center);
+    @include vendor(transition, color .2s);
 
-    &:hover{
-        text-decoration:none;
-        color:$secondaryText;
+    @media screen and (max-width:$lap-end + 160px){
+        display:none;
     }
 }
+
+@each $str, $size in (
+    '##': $h2-size,
+    '###': $h3-size,
+    '####': $h4-size,
+    '#####': $h5-size,
+    '######': $h6-size,
+)
+ {
+    $h: str-length($str);
+    h#{$h} .section-link {
+        left:-#{$h + 1}ch;
+        bottom:.1em;
+        line-height:ceil($size / $base-line-height) * ($base-line-height / $size);
+
+        &:before{
+            content:$str;
+        }
+    }
+}
+
 .post{
     h1, h2, h3, h4, h5, h6{
         position:relative;
 
-        &:hover{
-            .section-link{
-                opacity:1;
-                @include vendor(transform, rotate(-10deg));
-            }
+        &:hover .section-link{
+            text-decoration:none;
+            color:$dark;
         }
     }
 }

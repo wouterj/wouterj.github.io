@@ -1,5 +1,7 @@
 ---
 layout: home
-pagination: { enabled: true }
+pagination:
+    enabled: true
+    per_page: 9
 
 ---

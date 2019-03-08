@@ -3,14 +3,14 @@
         <h1 class="site-title" itemprop="name"><a href="/">{{ site.title }}</a></h1>
     </hgroup>
 
-    {%- assign default_paths = site.pages | map: "path" -%}
+    {%- assign default_paths = site.pages | map: "title" -%}
     {%- assign page_paths = site.header_pages | default: default_paths -%}
 
     {%- if page_paths -%}
     <nav class=page__nav>
         <ul class="nav  nav--block">
         {%- for path in page_paths -%}
-            {%- assign my_page = site.pages | where: "path", path | first -%}
+            {%- assign my_page = site.pages | where: "title", path | first -%}
             {%- if my_page.menu -%}
             <li class="nav__item"><a href="{{ my_page.url | relative_url }}">{{ my_page.menu }}</a></li>
             {%- endif -%}

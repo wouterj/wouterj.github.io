@@ -4,16 +4,17 @@
 .nav__item{
     @include font-size(18px);
 
-    background:$light;
-    @include vendor(box-shadow, 0px 1px 5px $shadow);
     @include vendor(transition, .1s ease);
 
     &:hover{
         background:$primary1;
+
+        a{
+            text-decoration:none;
+        }
     }
 
     &:active{
-        @include vendor(box-shadow, 1px 2px 8px $text);
         @include vendor(transform, scale(1.1, 1.1));
     }
 }

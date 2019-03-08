@@ -26,7 +26,7 @@ $global-border-box: true;
  * Base stuff
  */
 $base-font-size:    18px!default;
-$base-line-height:  26px!default;
+$base-line-height:  28px!default;
 
 
 /**
@@ -58,7 +58,7 @@ $desk-start:        900px!default;
  * Font-sizes (in pixels). Refer to relevant sections for their implementations.
  */
 $giga-size:         96px!default;
-$mega-size:         72px!default;
+$mega-size:         54px!default;
 $kilo-size:         48px!default;
 
 $h1-size:           36px!default; // .alpha
@@ -76,8 +76,8 @@ $micro-size:        10px!default;
  * Brand stuff
  */
 $brand-color:       #cc3333!default;
-$brand-face:        "Roboto", "Open sans", sans-serif!default;
-$title-face:        "Roboto Slab", serif!default;
+$brand-face:        "IBM Plex Serif", "Georgia", serif!default;
+$title-face:        "Oswald", serif!default;
 
 
 /**
