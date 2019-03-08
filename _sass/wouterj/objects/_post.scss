@@ -129,17 +129,25 @@
         .post__heading a{
             color:$text;
         }
-    .post__entry p a{
-        color:$text;
-        text-decoration:underline;
+    .post__entry{
+        max-width:700px;
+        margin:0 auto;
 
-        &:hover{
-            color:$primary1;
+        &.post__entry--excerpt{
+            max-width:100%;
+        }
+        p a{
+            color:$text;
+            text-decoration:underline;
+
+            &:hover{
+                color:$primary1;
+            }
         }
     }
 
 .post--featured .post__entry--excerpt,
-.page--post .post p:first-of-type{
+.post__excerpt{
     @include font-size(20px);
     line-height:1.6;
 }
@@ -188,7 +196,7 @@
     }
 
     .post__heading{
-        margin-bottom:$base-spacing-unit / 2;
+        //margin-bottom:$base-spacing-unit / 2;
         padding-right:20px;
     }
 

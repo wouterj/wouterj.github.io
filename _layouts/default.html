@@ -3,7 +3,7 @@
 
   {%- include head.html -%}
 
-  <body class=page itemscope itemtype="http://schema.org/WebPage">
+  <body class="page  {% if layout.type %}page--{{ layout.type }}{% endif %}" itemscope itemtype="http://schema.org/WebPage">
 
     {%- include header.html -%}
 

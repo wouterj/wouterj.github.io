@@ -1,5 +1,6 @@
 ---
 layout: default
+type: post
 
 ---
 <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
@@ -29,8 +30,11 @@ layout: default
     <img src="{{ site.url }}/img/{{ page.thumbnail }}" class="post__thumbnail  img--stripe  img--short  img--right" itemprop="thumbnailUrl">
     {% endif %}
 
-    <div class="post__entry" itemprop="articleBody">
-        {% include anchor_headings.html html=content beforeHeading=true anchorClass='section-link' %}
+    <div itemprop="articleBody">
+        <div class="post__excerpt">
+            {% assign excerpt = content|replace_first: '</p>', '</p></div><div class="post__entry">' %}
+            {% include anchor_headings.html html=excerpt beforeHeading=true anchorClass='section-link' %}
+        </div>
     </div>
 
     {%- if site.disqus.shortname -%}
