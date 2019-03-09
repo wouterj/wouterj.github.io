@@ -47,13 +47,13 @@ public function commentNewAction(Request $request, Post $post)
 }
 ```
 
+<aside class="side" data-type="example">
+You can check out the final working version at [github](https://github.com/wouterj-nl/form-handler).
+</aside>
+
 While the controller doesn't do a lot of things, it's impossible to call it
 thin. The main reason? It manages one big task: Handling form submission. Let's
 move this to a service as well!
-
-<aside class="side" data-type="example">
-You can check out the final working version at <https://github.com/wouterj-nl/form-handler>
-</aside>
 
 ## Meet the HostnetFormHandlerBundle
 
