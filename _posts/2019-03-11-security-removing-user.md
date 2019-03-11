@@ -6,7 +6,7 @@ tags: symfony security
 
 ---
 Symfony 2 completely renewed Symfony. Symfony 3 gave us a completely refactored
-and improved Form component. Symfony 4 gaves us a renew dependency injection
+and improved Form component. Symfony 4 gave us a renewed dependency injection
 experience. Let's fix Security in Symfony 5! To start with: The concept of
 users in security.
 
