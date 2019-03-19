@@ -15,7 +15,8 @@
         font-weight:400;
     }
 
-    ul{
+    ul,
+    ol{
         margin-left:0;
 
         li{
@@ -31,14 +32,27 @@
             }
 
             &:before{
-                content:'– ';
-
                 @include media-query(desk){
                     position:absolute;
                     left:-2ch;
                 }
                 color:$secondaryText;
-                font-weight:bold;
+            }
+        }
+    }
+
+    ul li:before{
+        content:'– ';
+        font-weight:bold;
+    }
+    ol{
+        counter-reset:list-counter;
+
+        li{
+            counter-increment:list-counter;
+
+            &:before{
+                content:counter(list-counter) ". ";
             }
         }
     }
