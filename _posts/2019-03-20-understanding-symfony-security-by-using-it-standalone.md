@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 'Understanding Symfony Security by using it standalone'
+title: 'Understanding Symfony Security by Using it Standalone'
 categories: article
 tags: symfony security
 
