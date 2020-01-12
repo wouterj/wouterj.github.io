@@ -66,7 +66,7 @@ Someone might be the "modator" on this forum, just a regular visitor or
 some premium plan member. That's their role. *Roles allows your
 application to group different users together. This makes granting
 permissions easier.* For instance, it's difficult to describe that users
-John, Marc and William are allowed to edit all posts. It's easier to
+John, Mary and William are allowed to edit all posts. It's easier to
 group them as being "the moderators" of this website. You can then grant
 the permissions "edit all posts" to the "moderators" role.
 
