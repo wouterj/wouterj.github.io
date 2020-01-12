@@ -79,6 +79,11 @@
         border:none !important;
         background:#1b1f28;
 
+        @include media-query(desk) {
+            width:110%;
+            margin-left:-5%;
+        }
+
         table-layout:fixed;
 
         pre{
