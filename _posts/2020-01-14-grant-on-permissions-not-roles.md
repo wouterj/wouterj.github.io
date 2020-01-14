@@ -62,7 +62,7 @@ authorization.**
 ![roles groups users](/img/security-roles-as-identification.png)
 
 Roles defines the role (or function/task) of this user on the website.
-Someone might be the "modator" on this forum, just a regular visitor or
+Someone might be the "moderator" on this forum, just a regular visitor or
 some premium plan member. That's their role. *Roles allows your
 application to group different users together. This makes granting
 permissions easier.* For instance, it's difficult to describe that users
