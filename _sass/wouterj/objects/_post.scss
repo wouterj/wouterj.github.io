@@ -221,8 +221,11 @@
     }
 
     .post__heading{
-        //margin-bottom:$base-spacing-unit / 2;
-        padding-right:30px;
+        padding-right:80px;
+    }
+
+    time{
+        font-size:$milli-size;
     }
 
     .post__heading--beta{
