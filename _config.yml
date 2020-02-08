@@ -29,9 +29,8 @@ disqus:
 
 header_pages:
     - Articles Archive
-    - News Archive
-    - Opinions Archive
     - Experiments Archive
+    - Links Archive
 
 # Build settings
 markdown: kramdown

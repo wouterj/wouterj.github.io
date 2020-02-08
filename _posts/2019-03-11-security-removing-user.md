@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 'Symfony Security: Is Security about User management?'
-categories: opinion
+categories: experiment
 tags: symfony security
 
 ---
