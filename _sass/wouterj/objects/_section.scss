@@ -1,11 +1,12 @@
 /*-----------------------------------*\
     $SECTION
 \*-----------------------------------*/
-.section-link{
+a.section-link{
     font-size:.8em;
     font-weight:normal;
     color:$hintText;
     text-align:right;
+    text-decoration:none;
     width:-40px;
 
     position:absolute;

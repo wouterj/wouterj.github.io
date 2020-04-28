@@ -17,7 +17,8 @@
     color:lighten($dark, 23);
     font-size:$milli-size;
 
-    p{margin-bottom:0;}
+    p{margin-bottom:$half-spacing-unit;}
+    p:last-child{margin-bottom:0;}
     &:before{
         content:attr(data-type);
 
@@ -26,5 +27,9 @@
         @include font-size($h6-size);
         text-transform:uppercase;
         font-family:$title-face;
+    }
+    ul,ol{
+        margin-left:3ex;
+        margin-bottom:0;
     }
 }
