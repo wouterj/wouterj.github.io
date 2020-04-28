@@ -220,7 +220,7 @@ listener of Symfony, to customize the checks.
 
 There also is a `CustomCredentials` class that you can use to call a
 custom method to check credentials and a `SelfCheckingPassport` in case
-you don't need Symfony do check any credentials (e.g. when using API tokens).
+you don't need Symfony to check any credentials (e.g. when using API tokens).
 
 ## Next up
 
