@@ -7,7 +7,7 @@ draft: true
 
 ---
 After more than half a year of work and discussions, Symfony 5.1 ships
-with an experimental and revisited Security system. I'm incredible
+with an experimental and revisited Security system. I'm incredibly
 excited about this system, as I think it opens up the component for a
 lot of possibilities. That's why in the coming week, I'll publish a
 series of blogposts about this new system. I hope you'll be just as
@@ -85,7 +85,7 @@ response.
 
 ## Moved to an Event-based System
 
-Symfony's HttpKernel component is build around
+Symfony's HttpKernel component is built around
 [5 kernel events](https://symfony.com/doc/current/components/http_kernel.html#httpkernel-driven-by-events).
 Listeners to these events execute the core process of Symfony: finding a
 controller, executing that controller and handling the response. You can
@@ -105,7 +105,7 @@ contribute them to Symfony.
 
 Up to now, the Security component didn't use events for this purpose.
 This made many parts of the component quite hard to extend or customize.
-That's why this new system is build around 3 main events:
+That's why this new system is built around 3 main events:
 
 `VerifyAuthenticatorCredentialsEvent`
 : This is the most important event. Its listeners validate any
@@ -121,7 +121,7 @@ password hash.
 : If there was an error or credentials are not correct, this event is
 dispatched.
 
-All core logic is now executed as listener on this events. E.g. if an
+All core logic is now executed as listener on these events. E.g. if an
 authenticator requires a password to be validated, a listener on
 `VerifyAuthenticatorCredentialsEvent` will do this for you. Things like
 user checkers, session strategies, remember me cookies, password
