@@ -15,14 +15,13 @@ excited as I am and help realising the full potential with us!
 
 <aside class="side" data-type="Try it yourself!">
 If you're using Symfony 5.1, the SecurityBundle comes with all tools you
-need! Set `security.enable_authenticator_manager` to `true` in and
-you're using the new system!
+need! Set `security.enable_authenticator_manager` to `true` to enable the
+new system!
 
-Please be aware that this new system in experimental. This means it may
-contain backwards compatibility breaks in 5.2. However, I don't like to
-ruin the life of early-testers so we keep this to the bare minimum.
-Please give it a go and report any suggestions, problems, bugs, leaks or
-whatever!
+Please be aware that this new system in experimental. It may contain
+backwards compatibility breaks in 5.2. However, I don't like to ruin the
+life of early-testers so we keep this to the bare minimum. Please give it
+a go and report any suggestions, problems, bugs, leaks or whatever!
 </aside>
 
 So... what is so different about this new system? It would like to
@@ -43,7 +42,7 @@ This diagram has set-up 2 firewalls (yellow and red). The yellow
 firewall has 2 different ways to authenticate (e.g. login form and json
 login) and the red firewall has one way to authenticate (e.g. JWT).
 
-In sort, a *firewall listener* extracts all necessary information from the
+A *firewall listener* extracts all necessary information from the
 request (e.g. username, password, csrf token). This is passed into a
 global *authentication manager*, which then calls the required
 *authentication provider* (e.g. one that can authenticate a username and
@@ -55,7 +54,7 @@ all stuff: calling the manager, storing the authenticated token, setting
 up the session (e.g. migrating it) and creating a correct response. It's
 very easy to forget a step, resulting in a less secure or broken
 authentication. Hence, if you look at Symfony's own firewall listeners,
-you can find many small differences as well.
+you can find minor inconsistencies as well.
 
 The new authenticator system can be drawn like this:
 
@@ -72,16 +71,17 @@ manager (maintained by Symfony) takes care of session management,
 storing the token, remember me functionality, etc. So there are less
 things to forget!
 
-This is also what you got when using Guards in the current system.
+This may appear to be similar to Guards in the current system... It is!
 However, the internal logics of the component was still using the
 listeners and providers. This new system makes them all use exactly the
 same interface: Authenticators. This makes it easier to understand and
 contribute to the Security component.
 
 As there now is one authenticator manager per firewall, the manager
-knows how to authenticate a request and return a success response. This
-also allowed us to add programmatic login to Symfony: The manager is now
-finally able to authenticate a User object and return a success response.
+knows how to authenticate a request and return a success response. **This
+also allowed us to add programmatic login to Symfony**: The manager is
+now finally able to authenticate a User object and return a success
+response.
 
 ## Moved to an Event-based System
 
@@ -138,13 +138,13 @@ Symfony core:
 * "Magic links" sent via Notifier component
 </aside>
 
-A few years ago
+A few years ago,
 [Guards](https://symfonycasts.com/blog/guard-authentication) where
 introduced to provide a better extension point for Security. The new
 system started with this exact Guard interface as a base. The event
 based logic introduced a centralized credentials checking. This removed
 the need for a `checkCredentials()` method in the Guard interface. Later
-on, we introduced some more changes to the interface: The
+on, we introduced some more changes to the interface: The next generation
 `AuthenticatorInterface` was born!
 
 The big change from the Guard interface you may know is that
@@ -157,7 +157,7 @@ a new concept in authenticators. **A passport contains the user and any
 credentials needed to authenticate.** This extra information is provided
 using *Passport Badges*. Listeners on the
 `VerifyAuthenticatorCredentialsEvent` will validate and check the
-passport and all its badges. If all badges are resolved, the user is
+passport and all its badges. If *all* badges are resolved, the user is
 succesfully authenticated.
 
 Let's see the passport in action. Assume we're building a form login:
@@ -212,20 +212,20 @@ build a system that works without user and submit it to Symfony.
 </aside>
 
 This gives an authenticator all power about what is needed for
-successful authentication. At the same time, the most vunerable piece is
-handled centralized in an event listener. This makes applications a lot
-less vunerable, as security leaks will be fixed by the Symfony Security
+successful authentication. At the same time, the most important piece is
+handled centralized in an event listener. This makes applications less
+vunerable, as security leaks will be fixed by the Symfony Security
 team. You can also write your own listener to resolve a badge before a
 listener of Symfony, to customize the checks.
 
 There also is a `CustomCredentials` class that you can use to call a
 custom method to check credentials and a `SelfCheckingPassport` in case
-you don't need Symfony do check anything (e.g. when using API tokens).
+you don't need Symfony do check any credentials (e.g. when using API tokens).
 
 ## Next up
 
 I plan to write at least two more blogposts about the new system in the
-coming weeks. We'll write real code for a real login on both of these:
+coming weeks. We'll write real code for a real custom logins on both of these:
 
 * Writing a custom authenticator: Passwords & Badges
 * Customizing security using event listeners
