@@ -6,7 +6,7 @@
     {%- assign default_paths = site.pages | map: "title" -%}
     {%- assign page_paths = site.header_pages | default: default_paths -%}
 
-    {%- if page_paths -%}
+    <!--{%- if page_paths -%}
     <nav class=page__nav>
         <ul class="nav  nav--block">
         {%- for path in page_paths -%}
@@ -17,6 +17,6 @@
         {%- endfor -%}
         </ul>
     </nav>
-    {%- endif -%}
+    {%- endif -%}-->
   </div>
 </header>
