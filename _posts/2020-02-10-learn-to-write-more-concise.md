@@ -5,9 +5,9 @@ categories: link
 tags: symfony security
 
 ---
-Ernest Hemingway is a writer from the twentieth-century know for it’s
+Ernest Hemingway is a writer from the twentieth-century know for his
 short and declarative writing style. Hemingwayapp.com is a free online
-tool that analyses your text according to this style. It also run the
+tool that analyses your text according to this style. It also runs the
 Automated Readability Index algorithm. This makes it a perfect tool to
 write concise, short and easy to understand texts.
 
