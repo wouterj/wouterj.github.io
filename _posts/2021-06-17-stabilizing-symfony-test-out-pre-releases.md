@@ -59,9 +59,9 @@ resulted in a PHP error. Applications that already upgraded fixed their
 code to remove this error. This means that removing the BC break is also
 a BC break in itself!
 
-This is why testing pre-releases is critical. Pre-releases are not
-covered by the BC promise. If you find a problem, we can fix the
-break without yet another deprecation layer.
+This is why testing pre-releases are critical. Pre-releases are not
+covered by the BC promise. If you find a problem, we can fix the break
+without yet another deprecation layer.
 
 ## How to Test Pre-Releases
 
