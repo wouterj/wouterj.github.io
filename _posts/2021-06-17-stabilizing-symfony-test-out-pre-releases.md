@@ -116,10 +116,10 @@ dependencies (e.g. they test support for Symfony 4 and 5).
 
 You can also add a "dev" version to test your package with the next
 version of your dependencies. When running the dev tests, you can use
-this one-liner to allow dev dependencies:
+`composer config` to allow dev dependencies:
 
 ```shell
-perl -pi -e "s/^}\$/,\"minimum-stability\":\"dev\"}/" composer.json
+composer config minimum-stability dev
 ```
 
 This means your package now also tests against the dev dependencies.
