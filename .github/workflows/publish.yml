@@ -7,7 +7,7 @@ on:
 
 jobs:
   jekyll:
-    runs-on: ubuntu-16.04
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
 
@@ -21,5 +21,4 @@ jobs:
       - uses: helaili/jekyll-action@v2
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          target_branch: 'master-test'
-          build_only: true
+          target_branch: 'master'
