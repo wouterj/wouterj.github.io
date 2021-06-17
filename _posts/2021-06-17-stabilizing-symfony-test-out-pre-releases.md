@@ -8,11 +8,10 @@ tags: symfony contribute pre-release
 Symfony has a very rigid [release schedule][releases] since Symfony 3.0.
 Predictable releases are often mentioned as a major advantage. Did you
 know that this schedule also includes a 2 month "stabilization phase"?
-This phase gives time to all libraries and bundles to catch up. In
-today's [SymfonyWorld Keynote][keynote], Fabien emphasized that testing
-pre-releases is one of the best contributions you can make. Let's see
-how you can help Symfony by reservering 30 minutes during these 2
-months!
+This phase gives time to all libraries and bundles to catch up. Testing
+pre-releases is one of the best and least time consuming contributions
+you can make to Symfony. Let's see how you can help Symfony by reservering
+30 minutes during these 2 months!
 
 ## A quick Introduction to the Backwards Compatibility Promise
 
