@@ -97,7 +97,7 @@ It's often a great idea to use `@dev` instead of `@beta` or `@rc`.
    but use stable versions for all your non-Symfony packages
 3. Update your dependencies and run your test suite
 
-Hopefully, your tests will pass. If it doesn't, it means there is a BC
+Hopefully, your tests will pass. If they don't, it means there is a BC
 break or bug in the upcoming release.
 In that case, you can [report a bug][bugreport] to Symfony. It's great
 to also provide a reproducer: some code that allows everyone to
@@ -106,7 +106,7 @@ experience it ;)
 
 There is also a great benefit for you: You already tested your
 application with the upcoming version. You may find yourself fixing some
-deprecations at a boring Friday afternoon. Before you know it, your
+deprecations on a boring Friday afternoon. Before you know it, your
 applications is ready for the next release!
 
 ### Testing Pre-Releases in Packages
@@ -134,7 +134,7 @@ example:
 * [GitHub Actions][github]
 * [Travis CI][travis]
 
-## Take Home's
+## Take Homes
 
 - Contributing to Symfony doesn't only include writing code
 - Bugs are much more easily fixed in a pre-release
