@@ -13,6 +13,16 @@
 
     {%- feed_meta -%}
 
+    <meta content="{{ site.title }}" property="og:site_name">
+    {% if page.id %}
+      <meta content="{{ page.title }}" property="og:title">
+      <meta content="article" property="og:type">
+      <meta content="{{ page.excerpt | strip_html }}" property="og:description">
+      <meta content="{{ page.date | date_to_xmlschema }}" property="article:published_time">
+      <meta content="{{ page.url | absolute_url }}" property="og:url">
+      <meta content="{{ '/img/og/' | append: page.slug | append: '.png' | absolute_url }}" property="og:image">
+    {% endif %}
+
     {%- if jekyll.environment == 'production' and site.google_analytics -%}
     {%- include google-analytics.html -%}
     {%- endif -%}
