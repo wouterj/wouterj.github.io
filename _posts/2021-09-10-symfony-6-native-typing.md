@@ -190,10 +190,10 @@ in the Symfony bundles (e.g. `Command::execute(): int` and
 ## Take Home's
 
 - Symfony 6 will be type safe
-- There is a `patch-type-declarations` script in Symfony 5.4+ that
+- There is a [`patch-type-declarations` script][doc] in Symfony 5.4+ that
   automatically makes your code compatible
-- Open source maintainers have 2.5 months to help us reduce the impact
-  of this change
+- Open source maintainers have 2.5 months to [help us reduce the
+  impact][github] of this change
 
 [nicolas-grekas]: https://github.com/sponsors/nicolas-grekas
 [derrabus]: https://github.com/derrabus
