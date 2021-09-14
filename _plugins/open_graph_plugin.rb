@@ -4,21 +4,19 @@ module OpenGraphPlugin
 
     def generate(site)
       site.posts.docs.each do |post|
-        title = post.data['title']
-        category = post.data['categories'].first
+        title = CGI.escapeHTML(post.data['title'])
+        category = CGI.escapeHTML(post.data['categories'].first)
         read_time = [post.content.split.length / 200, 1].max
         time = post.date.strftime('%d %^B \'%y')
 
         svg = to_svg(title, category, read_time, time).gsub(/\n/, '').gsub(/'/, '\\\'')
         filename = "#{post.data['slug']}.png"
 
-        if File.file? "#{site.source}/img/og/#{filename}"
-          return
+        unless File.file? "#{site.source}/img/og/#{filename}"
+          `echo '#{svg}' | inkscape --pipe -o #{site.source}/img/og/#{filename}`
+
+          site.static_files << Jekyll::StaticFile.new(site, site.source, '/img/og/', filename)
         end
-
-        `echo '#{svg}' | inkscape --pipe -o #{site.source}/img/og/#{filename}`
-
-        site.static_files << Jekyll::StaticFile.new(site, site.source, '/img/og/', filename)
       end
     end
 
