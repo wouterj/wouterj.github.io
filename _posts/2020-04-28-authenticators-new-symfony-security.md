@@ -3,7 +3,6 @@ layout: post
 title: 'Meet the new Symfony Security: Authenticators'
 categories: article
 tags: symfony security
-draft: true
 
 ---
 After more than half a year of work and discussions, Symfony 5.1 ships

@@ -127,8 +127,10 @@
             word-break:break-all;
         }
     }
-
 }
+            .language-bash .rouge-gutter pre{
+                visibility:hidden;
+            }
     .post__heading{
         padding-right:100px;
         margin-bottom:$half-spacing-unit;
@@ -167,8 +169,7 @@
         }
     }
 
-.post--featured .post__entry--excerpt,
-.post__excerpt{
+.post__entry--excerpt{
     @include font-size(20px);
     line-height:1.6;
 }

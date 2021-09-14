@@ -27,7 +27,7 @@ type: post
     {% endif %}
 
     <div itemprop="articleBody">
-        <div class="post__excerpt">
+        <div class="post__entry--excerpt">
             {% assign excerpt = content|replace_first: '</p>', '</p></div><div class="post__entry">' %}
             {% include anchor_headings.html html=excerpt beforeHeading=true anchorClass='section-link' %}
         </div>
