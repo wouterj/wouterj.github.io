@@ -42,7 +42,8 @@ module OpenGraphPlugin
       end
 
       return <<-EOS
-        <svg xmlns="http://www.w3.org/2000/svg" width="680" height="340" viewBox="0 0 680 340" style="background:#fdfdfd;">
+        <svg xmlns="http://www.w3.org/2000/svg" width="680" height="340" viewBox="0 0 680 340">
+          <rect x="0" y="0" width="680" height="340" fill="#fdfdfd"/>
           <rect x="40" y="60" width="100" height="100" fill="#cc3333"/>
           <g xmlns="http://www.w3.org/2000/svg" fill="#333333" transform="matrix(3.78,0,0,3.78,-0.00500038,-0.007504)">
             <path d="m 21.209081,27.637629 0.728079,7.224786 h 0.28003 l 1.344147,-13.19877 h 1.493496 l -1.493496,14.692266 h -2.968323 l -0.72808,-7.224786 h -0.317368 l -0.728079,7.224786 H 15.851164 L 14.357668,21.663645 h 1.493496 l 1.344146,13.19877 h 0.280031 l 0.728079,-7.224786 z"/>
