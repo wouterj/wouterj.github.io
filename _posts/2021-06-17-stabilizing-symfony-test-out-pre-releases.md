@@ -88,7 +88,7 @@ It's often a great idea to use `@dev` instead of `@beta` or `@rc`.
 </aside>
 
 1. Update your `composer.json` to allow the next dev release. E.g.
-   change `5.3.*` to `5.4@dev` for all `symfony/*` packages to test
+   change `5.3.*` to `5.4.*@dev` for all `symfony/*` packages to test
    Symfony 5.4. 
    Make sure to also update the `extra.symfony.require` key if it's
    present
