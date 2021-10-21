@@ -130,12 +130,12 @@ from Symfony defines safe methods as any method that:
 - Is `@internal` (or its class)
 - Is `private`
 
-Use ``force=2`` to only patch types for these safe methods:
+Use ``force=1`` to only patch types for these safe methods:
 
 ```bash
 # you can set the minimum PHP version, e.g. "static" won't be added
 # as a return type for 7.4
-$ SYMFONY_PATCH_TYPE_DECLARATIONS="force=2&php=7.4" ./vendor/bin/patch-type-declarations
+$ SYMFONY_PATCH_TYPE_DECLARATIONS="force=1&php=7.4" ./vendor/bin/patch-type-declarations
 ```
 
 Now, you have to check if there are any methods that would produce an
