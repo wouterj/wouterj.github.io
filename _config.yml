@@ -23,10 +23,6 @@ future: false
 
 permalink: /:year/:month/:title
 
-google_analytics: UA-30226315-1
-disqus:
-    shortname: wouterjnl
-
 header_pages:
     - Articles Archive
     - Experiments Archive

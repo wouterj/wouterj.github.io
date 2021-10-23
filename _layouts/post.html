@@ -32,8 +32,4 @@ type: post
             {% include anchor_headings.html html=excerpt beforeHeading=true anchorClass='section-link' %}
         </div>
     </div>
-
-    {%- if site.disqus.shortname -%}
-        {%- include disqus_comments.html -%}
-    {%- endif -%}
 </article>
