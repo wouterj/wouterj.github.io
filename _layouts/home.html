@@ -53,7 +53,7 @@ layout: default
                 {% if post.thumbnail and i != 2 -%}
                 <img src="{{ site.url }}/img/{{ post.thumbnail }}" class="post__thumbnail  img--stripe  img--{% if i == 1 %}medium{% else %}short  post__thumbnail--home{% endif %}  img--left" itemprop="thumbnailUrl">
                 {%- endif %}
-                <div class="post__entry" itemprop="description">
+                <div class="post__entry  post__entry--excerpt" itemprop="description">
                     {{ post.excerpt }}
                 </div>
             </article></li>
@@ -90,7 +90,7 @@ layout: default
             <article itemscope itemtype="http://schema.org/Article">
                 <h1 class="post__heading  post__heading--gamma" itemprop="headline">GitHub</h1>
 
-                <div class="post__entry" itemprop="articleBody">
+                <div class="post__entry  post__entry--excerpt" itemprop="articleBody">
                     <p>I'm a big fan of Open Source. I'm working on a daily basis on the <a href="http://github.com/symfony/symfony-docs/">Symfony docs</a> and the <a href="http://github.com/symfony-cmf">Symfony CMF</a>. You'll be my hero if you contribute to Open Source projects too!</p>
                     </p>
                 </div>
@@ -101,7 +101,7 @@ layout: default
             <article itemscope itemtype="http://schema.org/Article">
                 <h1 class="post__heading  post__heading--gamma" itemprop="headline">Contact</h1>
 
-                <div class="post__entry" itemprop="articleBody">
+                <div class="post__entry  post__entry--excerpt" itemprop="articleBody">
                     <p>You can contact me on <a href="http://github.com/WouterJ">GitHub</a>, <a href="http://stackoverflow.com/users/1149495/wouter-j">StackOverflow</a>, <a href="https://symfony.com/slack">Symfony Slack</a> or <a href="mailto:wouter@wouterj.nl">by mail</a>.
                 </div>
             </article>

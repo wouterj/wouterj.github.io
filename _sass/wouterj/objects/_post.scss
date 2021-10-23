@@ -169,10 +169,13 @@
         }
     }
 
-.post__entry--excerpt{
-    @include font-size(20px);
-    line-height:1.6;
+.page--post, .post--featured{
+    .post__entry--excerpt{
+        @include font-size(20px);
+        line-height:1.6;
+    }
 }
+
 .post__thumbnail{
     @include media-query(portable) {
         max-width:100%;
@@ -219,6 +222,9 @@
 
     .post{
         margin-top:$half-spacing-unit;
+    }
+    .post:nth-child(n+1) {
+        clear:left;
     }
 
     .post__heading{
