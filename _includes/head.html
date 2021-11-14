@@ -23,7 +23,7 @@
       <meta content="{{ '/img/og/' | append: page.slug | append: '.png' | absolute_url }}?1" property="og:image">
     {% endif %}
 
-    {%- if jekyll.environment == 'production' -%}
-    <script>if(!sessionStorage.getItem("_swa")&&document.referrer.indexOf(location.protocol+"//"+location.host)!== 0){fetch("https://counter.dev/track?"+new URLSearchParams({referrer:document.referrer,screen:screen.width+"x"+screen.height,user:"wouterj",utcoffset:"2"},{headers:{"X-Referer":window.location.href}}))};sessionStorage.setItem("_swa","1");</script>
+    {%- if jekyll.environment == 'production' and layout.type == "post" -%}
+    <script>if(!sessionStorage.getItem("_swa")&&document.referrer.indexOf(location.protocol+"//"+location.host)!==0){fetch("https://counter.dev/track?"+new URLSearchParams({referrer:document.referrer,screen:screen.width+"x"+screen.height,user:"wouterj",utcoffset:"2"}),{headers:{"X-Referer":window.location.href}})};sessionStorage.setItem("_swa","1");</script>
     {%- endif -%}
 </head>
