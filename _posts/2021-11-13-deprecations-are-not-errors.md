@@ -117,6 +117,49 @@ source project.
 If we all do it, the open source project will support the new major
 version months before it's even released.
 
+## How to Hide and Log Deprecations
+
+If you are using the default PHP error handler, you're left to either
+hide deprecations or output them like all other errors. Symfony has a
+small [`symfony/error-handler`](https://github.com/symfony/error-handler)
+package that allows you to register [PSR-3 loggers](https://php-fig.org/psr/psr-3/)
+for a specific error level. Besides, it automatically hides
+deprecations from the normal output.
+
+Using this code, all deprecations are logged to ``deprecation.log`` and
+the normal error handler is used for all other errors:
+
+```php
+<?php
+
+require_once 'vendor/autoload.php';
+
+use Psr\Log\AbstractLogger;
+use Symfony\Component\ErrorHandler\ErrorHandler;
+
+ErrorHandler::register()
+    ->setDefaultLogger(new class extends AbstractLogger {
+        public function log($level, string|\Stringable $message, array $context = []): void
+        {
+            $formattedLogLine = sprintf(
+                '[%s] %s: %s%s'.PHP_EOL,
+                date('Y-m-dTH:i:s.uP'),
+                $level,
+                (string) $message,
+                ($context['exception'] ?? false) instanceof \Throwable
+                    ? sprintf(' in %s:%s', $context['exception']->getFile(), $context['exception']->getLine())
+                    : ''
+            );
+
+            file_put_contents(__DIR__.'/deprecations.log', $formattedLogLine, \FILE_APPEND);
+        }
+    }, \E_DEPRECATED | \E_USER_DEPRECATED)
+;
+
+// "null" argument deprecated as of PHP 8.1
+var_dump(str_contains('foo', null));
+```
+
 ## Take Home's
 
 - Don't try to run deprecation free until you want to upgrade to a new
