@@ -24,6 +24,6 @@
     {% endif %}
 
     {%- if jekyll.environment == 'production' and layout.type == "post" -%}
-    <script>if(!sessionStorage.getItem("_swa")&&document.referrer.indexOf(location.protocol+"//"+location.host)!==0){fetch("https://counter.dev/track?"+new URLSearchParams({referrer:document.referrer,screen:screen.width+"x"+screen.height,user:"wouterj",utcoffset:"2"}),{headers:{"X-Referer":window.location.href}})};sessionStorage.setItem("_swa","1");</script>
+    <script>if(!sessionStorage.getItem("_swa")){fetch("https://counter.dev/track?"+new URLSearchParams({referrer:document.referrer.indexOf(location.protocol+"//"+location.host)!==0?document.referrer:'',screen:screen.width+"x"+screen.height,user:"wouterj",utcoffset:"2"}),{headers:{"X-Referer":"{{ site.url }}{{ page.url }}"}})};sessionStorage.setItem("_swa","1");</script>
     {%- endif -%}
 </head>
