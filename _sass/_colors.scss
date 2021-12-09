@@ -3,14 +3,11 @@
 \*------------------------------------*/
 
 $primary1:#cc3333;
+$dark:#eeeeee;
+$light:#111111;
 
-$dark:#111111;
-$text:lighten($dark, 13);
-$secondaryText:lighten($dark, 46);
-$hintText:lighten($dark, 74);
-$dividers:lighten($dark, 88);
+$text:mix($dark, $light, 87%);
+$secondaryText:mix($dark, $light, 54%);
+$hintText:mix($dark, $light, 26%);
+$dividers:mix($dark, $light, 5%);
 $shadow:$secondaryText;
-
-$light:#fdfdfd;
-$lightText:#fefefe;
-$lightShade:#fcfcfc;

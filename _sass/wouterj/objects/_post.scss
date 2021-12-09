@@ -173,6 +173,15 @@
     .post__entry--excerpt{
         @include font-size(20px);
         line-height:1.6;
+
+        a{
+            color:$text;
+            text-decoration:underline;
+
+            &:hover{
+                color:$primary1;
+            }
+        }
     }
 }
 
@@ -304,4 +313,11 @@
         td:nth-child(2){
             width:80%;
         }
+}
+
+.post__slides{
+    width:100%;
+    min-height:200px;
+    aspect-ratio:16/10;
+    margin-bottom:$base-spacing-unit;
 }

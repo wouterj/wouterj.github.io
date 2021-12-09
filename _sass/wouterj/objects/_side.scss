@@ -14,7 +14,7 @@
     padding:$half-spacing-unit/2;
     background:$dividers;
     
-    color:lighten($dark, 23);
+    color:mix($dark, $light, 77%);
     font-size:$milli-size;
 
     p{margin-bottom:$half-spacing-unit;}
