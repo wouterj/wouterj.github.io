@@ -320,4 +320,9 @@
     min-height:200px;
     aspect-ratio:16/10;
     margin-bottom:$base-spacing-unit;
+
+    @include media-query(desk) {
+        width:120%;
+        margin-left:-10%;
+    }
 }
