@@ -38,7 +38,7 @@ Setting up a blank project is nothing more than creating a new directory. In
 the directory, we'll use [Composer](https://getcomposer.org/) to install the
 Security Core component:
 
-```shell
+```bash
 $ mkdir security-101
 $ cd security-101
 $ composer require symfony/security-core

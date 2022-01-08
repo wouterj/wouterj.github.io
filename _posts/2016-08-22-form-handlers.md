@@ -61,7 +61,7 @@ The [HostnetFormHandlerBundle][bundle-github] introduces the concept of *form
 handlers*. These handle form submissions through the request. Install the
 bundle using Composer:
 
-```shell
+```bash
 $ composer require hostnet/form-handler-bundle
 ```
 

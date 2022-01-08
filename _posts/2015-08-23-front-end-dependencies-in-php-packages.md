@@ -22,7 +22,7 @@ Composer is doing for PHP.
 To install it, make sure you have NodeJS and NPM installed and then install the
 bower package:
 
-```shell
+```bash
 $ npm install -g bower
 ```
 
@@ -49,7 +49,7 @@ have to, continue reading!
 
 First things first, let's make a `bower.json` file by running the init command:
 
-```shell
+```bash
 $ bower init
 ```
 
@@ -94,7 +94,7 @@ Now you can register both packages:
 Assume your bundle is called ``acme/blog-bundle``, your Bower package might be
 called ``acme-blog-bundle``. Installation now consists of 2 steps:
 
-```shell
+```bash
 $ composer require acme/blog-bundle
 $ bower install --save acme-blog-bundle
 ```
