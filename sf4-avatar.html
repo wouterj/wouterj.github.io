@@ -1,0 +1,117 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>Design your Symfony 4 avatar | Wouter J</title>
+
+<style>
+#controls { font-family:sans-serif;margin:0 20px;padding:10px 30px;background:#eeeeee;float:left; }
+#js-svg { width:400px;height:400px;float:left; }
+footer { clear:both;text-align:center;font-family:sans-serif;padding-top:20px; }
+</style>
+
+<svg version="1.1" id="js-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 400 400" style="enable-background:new 0 0 400 400;" xml:space="preserve">
+<rect id="bg" style="fill:#333333;" width="400" height="400"/>
+<rect id="four-block" x="229.4" y="104.7" style="fill:#ffffff;" width="125.4" height="181.7"/>
+<path id="s" style="fill:#ffffff;" d="M53.5,238.6c5,3.2,16,8.6,29.6,8.6c11.2,0,21.2-6.2,21.2-20.2c0-10-5.8-14.4-18.2-21.2l-13-7.2
+	C59.3,191,50.3,180,50.3,162c0-25,20.6-38,44-38c14.8,0,25.2,3.8,29.2,5l-1.2,21.4c-6.2-2.4-14.4-6-26.2-6
+	c-12.8,0-19.4,6.8-19.4,16.4c0,10.4,7,14.4,14.8,18.8l15,8.4c16.4,9.2,24.2,18,24.2,37.6c0,28.4-20.2,42-46.8,42
+	c-14,0-24.8-2-31.8-6.2L53.5,238.6z"/>
+<path id="f" style="fill:#ffffff;" d="M145.3,125h70.6v20.4h-45v38h43v20.4h-43v60.8h-25.6V125z"/>
+<path id="four" style="fill:#333333;" d="M298.8,235.7h-53.2v-23.2l48.4-87.4h28v91.8h15.6v18.8H322v29h-23.2V235.7z M298.8,150.7h-0.4L264,216.9h34.8V150.7z"/>
+</svg>
+
+<div id="controls">
+<input type="color" class="color-switcher" id="bg-switcher" data-color="bg" value="#333333"> Background <br>
+<input type="color" class="color-switcher" id="fg-switcher" data-color="sf" value="#ffffff"> Text<br>
+<input type="color" class="color-switcher" id="ffg-switcher" data-color="four" value="#333333"> Four<br>
+<input type="color" class="color-switcher" id="fbg=switcher" data-color="fourBlock" value="#ffffff"> Four block<br><br>
+<button id="js-save">Save</button> (only works on Chrome, make a print screen when you're using another browser)
+</div>
+
+<footer>&copy; Symfony. Original at <a href="http://symfony.com/symfony4-avatars">http://symfony.com/symfony4-avatars</a></footer>
+
+<canvas id="js-canvas" width="400px" height="400px" style="display:none;"/>
+
+<script>
+var $ = document.querySelector.bind(document);
+var $$ = document.querySelectorAll.bind(document);
+var elements = {
+	bg: $('#bg'),
+  s: $('#s'),
+  f: $('#f'),
+  fourBlock: $('#four-block'),
+  four: $('#four')
+};
+var save = $('#js-save');
+var svg = $('#js-svg');
+var canvas = $('#js-canvas');
+var ctx = canvas.getContext('2d');
+
+var url = document.createElement('a');
+url.href = document.documentURI;
+var defaultColors = url.hash.substr(1).split(';').map(function (l) { return l.split('='); });
+defaultColors.map(function (color) {
+    if ('fg' === color[0]) {
+        elements.s.style.fill = '#' + color[1];
+        elements.f.style.fill = '#' + color[1];
+    } else if ('bg' === color[0]) {
+        elements.bg.style.fill = '#' + color[1];
+    } else if ('ffg' === color[0]) {
+        elements.four.style.fill = '#' + color[1];
+    } else if ('fbg' === color[0]) {
+        elements.fourBlock.style.fill = '#' + color[1];
+    }
+    
+    var input = $('#' + color[0] + '-switcher');
+    if (input) {
+        input.value = '#' + color[1];
+    }
+});
+
+function triggerDownload (imgURI) {
+  var evt = new MouseEvent('click', {
+    view: window,
+    bubbles: false,
+    cancelable: true
+  });
+
+  var a = document.createElement('a');
+  a.setAttribute('download', 'avatar.png');
+  a.setAttribute('href', imgURI);
+  a.setAttribute('target', '_blank');
+
+  a.dispatchEvent(evt);
+}
+
+save.addEventListener('click', function (e) {
+	var data = (new XMLSerializer()).serializeToString(svg);
+  var DOMURL = window.URL || window.webkitURL || window;
+
+  var img = new Image();
+  var svgBlob = new Blob([data], {type: 'image/svg+xml;charset=utf-8'});
+  var url = DOMURL.createObjectURL(svgBlob);
+
+  img.onload = function () {
+    ctx.drawImage(img, 0, 0);
+    DOMURL.revokeObjectURL(url);
+
+    var imgURI = canvas
+        .toDataURL('image/png')
+        .replace('image/png', 'image/octet-stream');
+    triggerDownload(imgURI);
+  };
+
+  img.src = url;
+}, false);
+
+[].forEach.call($$('.color-switcher'), function (switcher) {
+	switcher.addEventListener('change', function (e) {
+  	if (this.dataset.color === 'sf') {
+    	elements.s.style.fill = this.value;
+      elements.f.style.fill = this.value;
+    }
+    
+    elements[this.dataset.color].style.fill = this.value;
+  }, false);
+})
+</script>

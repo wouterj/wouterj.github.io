@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang=""><head>
+    <meta charset=utf-8>
+
+    <title>CSS bleeding edge: Sticky Positioneren ~ Wouter J</title>
+
+    <meta http-equiv=X-UA-Compatible content="IE=edge">
+    <meta name=viewport content="width=device-width, initial-scale=1">
+    <meta name=theme-color content=#cc3333>
+
+    <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Serif:400,400i,700|Oswald|Inconsolata" rel="stylesheet">
+    <link rel=stylesheet href="/assets/main.css">
+    <link rel=icon type=image/png href=/img/css/favicon.png sizes=96x96><link type="application/atom+xml" rel="alternate" href="https://wouterj.nl/feed.xml" title="Wouter J" /><meta content="Wouter J" property="og:site_name">
+    
+      <meta content="CSS bleeding edge: Sticky Positioneren" property="og:title">
+      <meta content="article" property="og:type">
+      <meta content="Vandaag bespreek ik een echte bleeding edge: Er is nog geen specificatie voor
+en het is gister beland in de alpha channel van Chrome.
+
+" property="og:description">
+      <meta content="2012-08-31T00:00:00+00:00" property="article:published_time">
+      <meta content="https://wouterj.nl/2012/08/sticky-positioneren" property="og:url">
+      <meta content="https://wouterj.nl/img/og/sticky-positioneren.png?1" property="og:image">
+    <script>if(!sessionStorage.getItem("_swa")){fetch("https://counter.dev/track?"+new URLSearchParams({referrer:document.referrer.indexOf(location.protocol+"//"+location.host)!==0?document.referrer:'',screen:screen.width+"x"+screen.height,user:"wouterj",utcoffset:"2"}),{headers:{"X-Referer":"https://wouterj.nl/2012/08/sticky-positioneren","Content-Type":"text/plain"}})};sessionStorage.setItem("_swa","1");</script></head>
+<body class="page  page--post" itemscope itemtype="http://schema.org/WebPage"><header class=page__header>
+    <hgroup class=page__headline>
+        <h1 class="site-title" itemprop="name"><a href="/">Wouter J</a></h1>
+    </hgroup><!--<nav class=page__nav>
+        <ul class="nav  nav--block"><li class="nav__item  "><a href="/categories/article/index.html"><i class=icon>&#xF139;</i> <span class="button__text">Articles</span></a></li><li class="nav__item  "><a href="/categories/experiment/index.html"><i class=icon>&#xF051;</i> <span class="button__text">Experiments</span></a></li><li class="nav__item  "><a href="/categories/links/index.html"><i class=icon>&#xF10E;</i> <span class="button__text">Links</span></a></li></ul>
+    </nav>-->
+  </div>
+</header>
+<div class=page__body itemscope itemtype="http://schema.org/Blog">
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+        <span class="post__category">
+        <time class="dt-published" datetime="2012-08-31T00:00:00+00:00" itemprop="datePublished">
+            AUG '12
+        </time>
+        
+        
+        &#xf139;
+        
+        </span>
+    
+
+    <h1 class="post__heading" itemprop="headline">CSS bleeding edge: Sticky Positioneren</h1>
+
+    
+
+    <div itemprop="articleBody">
+        <div class="post__entry--excerpt">
+            
+            <p>Vandaag bespreek ik een echte bleeding edge: Er is nog geen specificatie voor
+en het is gister beland in de alpha channel van Chrome.</p></div><div class="post__entry">
+      <h2 id="chrome-canary-of-webkit-nightly">
+        
+        
+          <a href="#chrome-canary-of-webkit-nightly" class="section-link"></a> Chrome Canary of Webkit Nightly
+        
+        
+      </h2>
+
+<p>Om deze blogpost live te kunnen uittesten en om de demo te kunnen bekijken heb
+je Chrome Canary nodig. Dit is een versie van Chrome die je naast je stable of
+dev. versie kunt draaien. Het is het alpha kanaal met elke dag de nieuwste
+updates.</p>
+
+<p>Ga naar <a href="https://tools.google.com/dlpage/chromesxs/">deze pagina</a> om Chrome
+Canary te downloaden.</p>
+
+<p>Je kan ook <a href="http://nightly.webkit.org/">webkit nightly</a> downloaden.</p>
+    
+      <h2 id="het-probleem-in-flow-en-fixed">
+        
+        
+          <a href="#het-probleem-in-flow-en-fixed" class="section-link"></a> Het probleem: In-flow en fixed
+        
+        
+      </h2>
+
+<p>Elk element is standard in-flow: Het gaat mee met de flow van de pagina. Maar
+aan de hand van positionering kun je een element uit de flow halen en er wat
+leuks mee doen. Met bijv. absoluut positioneren kun je een element een vaste
+plek geven, aan de hand van de eerste relative parent, wat vaak het body
+element is.</p>
+
+<p>Fixed positioneren kennen we al een tijdje. Hiermee geef je een element een
+vaste positie op het scherm en die positie die blijft als je scrolld. Hij zal
+dus nooit veranderen, zie ook <a href="http://wouterj.nl/demos/position-sticky/fixed.html">deze demo</a>.</p>
+
+<p>Maar nu hebben we het probleem dat we soms in-flow en fixed willen combineren.
+We willen het element gewoon een plek geven in de content, maar zodra hij
+dreigt te verwijderen moet hij fixed zijn. Een voorbeeld kun je op
+<a href="https://news.google.com/">Google Nieuws</a> zien. Het menu aan de linkerkant
+staat eerst leuk in de flow, maar zodra hij dreigt te verdwijnen wordt hij
+fixed.</p>
+    
+      <h2 id="de-oude-oplossing-javascript-scroll-events">
+        
+        
+          <a href="#de-oude-oplossing-javascript-scroll-events" class="section-link"></a> De oude oplossing: JavaScript scroll events
+        
+        
+      </h2>
+
+<p>Om dit voor elkaar te krijgen gebruikte men JavaScript, om precies te zijn het
+scroll event. Deze wordt per pixel dat je naar beneden gaat aangeroepen.
+Doormiddel van een simpele if kun je dan kijken of de pagina al zover naar
+beneden is dat het element gaat verdwijnen. Dan maak je zo’n element fixed.</p>
+    
+      <h3 id="niet-ideaal">
+        
+        
+          <a href="#niet-ideaal" class="section-link"></a> Niet ideaal
+        
+        
+      </h3>
+
+<p>Het grote nadeel is dat je hiermee per pixel dat je scroll een javascript
+functie laat uitvoeren. Dit maakt het scrollen wat schokkerig en geeft je niet
+de scroll ervaring die je hoort te hebben. Je moet zoveel mogelijk van scroll
+events afblijven.</p>
+    
+      <h2 id="de-nieuwe-oplossing-css-sticky">
+        
+        
+          <a href="#de-nieuwe-oplossing-css-sticky" class="section-link"></a> De nieuwe oplossing: CSS sticky
+        
+        
+      </h2>
+
+<p>Simon Fraser had dit probleem ook en dacht: Kan CSS me niet helpen? Dus hij
+<a href="https://bugs.webkit.org/show_bug.cgi?id=95146">vroeg een feature aan bij webkit</a>.
+Tevens vroeg
+<a href="http://lists.w3.org/Archives/Public/www-style/2012Jun/0627.html">iemand aan w3c</a>
+of die er een specificatie voor konden maken, zodat andere browsers het ook
+konden implementeren. Maar zoiets kost tijd, en de specificatie is er nu nog
+niet (ook niet een editors draft).</p>
+
+<p>Het Webkit team is gelukkig wel snel en
+<a href="http://trac.webkit.org/changeset/126774">het is zojuist beland in de webkit alpha versie</a>.</p>
+    
+      <h3 id="laten-we-wat-gaan-testen">
+        
+        
+          <a href="#laten-we-wat-gaan-testen" class="section-link"></a> Laten we wat gaan testen
+        
+        
+      </h3>
+
+<p>Het is heel simpel om te gebruiken. Je definieert eerst dat het <code class="highlighter-shiki">position:
+sticky;</code> is, merk op dat dit momenteel nog prefixed is. Tevens moet je
+definiëren wanneer hij moet vastplakken. In dit geval zeggen we dat als hij
+niet meer <code class="highlighter-shiki">10px</code> vanaf de bovenkant van de pagina is hij fixed moet
+worden.</p>
+
+<div class="language-css highlighter-shiki"><pre class="shiki-gutter">1
+2
+3
+4
+5
+6
+7
+8
+</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #999999">#</span><span style="color: #C7C8D2">element</span><span style="color: #BBBBBB"> </span><span style="color: #999999">{</span></span>
+<span class="line" data-linenr="2"><span style="color: #BBBBBB">    </span><span style="color: #D8DEE9">position</span><span style="color: #999999">:</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">-webkit-sticky;</span></span>
+<span class="line" data-linenr="3"><span style="color: #BBBBBB">    </span><span style="color: #D8DEE9">position</span><span style="color: #999999">:</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">-moz-sticky;</span></span>
+<span class="line" data-linenr="4"><span style="color: #BBBBBB">    </span><span style="color: #D8DEE9">position</span><span style="color: #999999">:</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">-ms -sticky</span><span style="color: #E5673D">;</span></span>
+<span class="line" data-linenr="5"><span style="color: #BBBBBB">    </span><span style="color: #D8DEE9">position</span><span style="color: #999999">:</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">-o -sticky</span><span style="color: #E5673D">;</span></span>
+<span class="line" data-linenr="6"><span style="color: #BBBBBB">    </span><span style="color: #D8DEE9">position</span><span style="color: #999999">:</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">sticky;</span></span>
+<span class="line" data-linenr="7"><span style="color: #BBBBBB">    </span><span style="color: #D8DEE9">top</span><span style="color: #999999">:</span><span style="color: #BBBBBB"> </span><span style="color: #B48EAD">10</span><span style="color: #E5673D">px;</span></span>
+<span class="line" data-linenr="8"><span style="color: #999999">}</span></span></code></pre>
+</div>
+
+<p>En we zijn klaar!</p>
+
+<p>Nu hoor ik je denken, waarom al die prefixen als het alleen in webkit werkt? Je
+wilt natuurlijk dat als een browser het support, met prefix of niet, hij meteen
+werk. Daarom denk je alvast vooruit en zorg je dat de prefixen er al staan.
+Mijn verwachting is dat Mozilla snel gaat komen met hun sticky, aangezien
+webkit en Mozilla elkaar vaak wel snel volgen en soms zelf dingen samen doen.
+MicroSoft en Opera zullen wel wachten op de specificaties. Maar nogmaals: dat
+zijn mijn verwachtingen.</p>
+    
+      <h2 id="een-demo">
+        
+        
+          <a href="#een-demo" class="section-link"></a> Een demo
+        
+        
+      </h2>
+
+<p>Om het te demonstreren heb ik
+<a href="http://wouterj.nl/demos/position-sticky/sticky.html">een simpele demo</a>
+gemaakt, let wel op of je in een browser zit dat het ondersteund!</p>
+
+        </div>
+    </div>
+</article>
+
+    </main><footer class="page__footer">
+    <p>&copy; Copyright 2012 - 2022 Wouter de Jong</p>
+</footer>
+</body>
+
+</html>

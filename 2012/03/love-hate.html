@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang=""><head>
+    <meta charset=utf-8>
+
+    <title>LoVe HAte ~ Wouter J</title>
+
+    <meta http-equiv=X-UA-Compatible content="IE=edge">
+    <meta name=viewport content="width=device-width, initial-scale=1">
+    <meta name=theme-color content=#cc3333>
+
+    <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Serif:400,400i,700|Oswald|Inconsolata" rel="stylesheet">
+    <link rel=stylesheet href="/assets/main.css">
+    <link rel=icon type=image/png href=/img/css/favicon.png sizes=96x96><link type="application/atom+xml" rel="alternate" href="https://wouterj.nl/feed.xml" title="Wouter J" /><meta content="Wouter J" property="og:site_name">
+    
+      <meta content="LoVe HAte" property="og:title">
+      <meta content="article" property="og:type">
+      <meta content="CSS is een taal die veel geeft om volgordes en rangen. Dit kan heel handig
+zijn, maar ook heel irritant. Vooral bij het stijlen van anchor element
+(&lt;a&gt;) is dit een ramp, omdat je je dan aan een aparte volgorde moet houden.
+
+" property="og:description">
+      <meta content="2012-03-19T00:00:00+00:00" property="article:published_time">
+      <meta content="https://wouterj.nl/2012/03/love-hate" property="og:url">
+      <meta content="https://wouterj.nl/img/og/love-hate.png?1" property="og:image">
+    <script>if(!sessionStorage.getItem("_swa")){fetch("https://counter.dev/track?"+new URLSearchParams({referrer:document.referrer.indexOf(location.protocol+"//"+location.host)!==0?document.referrer:'',screen:screen.width+"x"+screen.height,user:"wouterj",utcoffset:"2"}),{headers:{"X-Referer":"https://wouterj.nl/2012/03/love-hate","Content-Type":"text/plain"}})};sessionStorage.setItem("_swa","1");</script></head>
+<body class="page  page--post" itemscope itemtype="http://schema.org/WebPage"><header class=page__header>
+    <hgroup class=page__headline>
+        <h1 class="site-title" itemprop="name"><a href="/">Wouter J</a></h1>
+    </hgroup><!--<nav class=page__nav>
+        <ul class="nav  nav--block"><li class="nav__item  "><a href="/categories/article/index.html"><i class=icon>&#xF139;</i> <span class="button__text">Articles</span></a></li><li class="nav__item  "><a href="/categories/experiment/index.html"><i class=icon>&#xF051;</i> <span class="button__text">Experiments</span></a></li><li class="nav__item  "><a href="/categories/links/index.html"><i class=icon>&#xF10E;</i> <span class="button__text">Links</span></a></li></ul>
+    </nav>-->
+  </div>
+</header>
+<div class=page__body itemscope itemtype="http://schema.org/Blog">
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+        <span class="post__category">
+        <time class="dt-published" datetime="2012-03-19T00:00:00+00:00" itemprop="datePublished">
+            MAR '12
+        </time>
+        
+        
+        &#xf139;
+        
+        </span>
+    
+
+    <h1 class="post__heading" itemprop="headline">LoVe HAte</h1>
+
+    
+
+    <div itemprop="articleBody">
+        <div class="post__entry--excerpt">
+            
+            <p>CSS is een taal die veel geeft om volgordes en rangen. Dit kan heel handig
+zijn, maar ook heel irritant. Vooral bij het stijlen van anchor element
+(<code class="highlighter-shiki">&lt;a&gt;</code>) is dit een ramp, omdat je je dan aan een aparte volgorde moet houden.</p></div><div class="post__entry">
+      <h2 id="basis-van-volgordes-in-css">
+        
+        
+          <a href="#basis-van-volgordes-in-css" class="section-link"></a> Basis van volgordes in CSS
+        
+        
+      </h2>
+
+<p>In CSS zijn er bepaalde basis regels en dingen die je eerst zult moeten
+begrijpen voordat je verder kan. Een paar van deze regels:</p>
+
+<ol>
+  <li>IDs gaan voor classes</li>
+  <li>Classes gaan voor tags</li>
+  <li>Als iets op het zelfde niveau zit gaat de gene die als laatst wordt gemaakt
+voor.</li>
+</ol>
+
+<p>Met regel 3 bedoel ik:</p>
+
+<div class="language-css highlighter-shiki"><pre class="shiki-gutter">1
+2
+</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #999999">#</span><span style="color: #C7C8D2">box</span><span style="color: #BBBBBB"> </span><span style="color: #999999">{</span><span style="color: #BBBBBB"> </span><span style="color: #D8DEE9">background</span><span style="color: #999999">:</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">red;</span><span style="color: #BBBBBB">   </span><span style="color: #999999">}</span></span>
+<span class="line" data-linenr="2"><span style="color: #999999">#</span><span style="color: #C7C8D2">box</span><span style="color: #BBBBBB"> </span><span style="color: #999999">{</span><span style="color: #BBBBBB"> </span><span style="color: #D8DEE9">background</span><span style="color: #999999">:</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">green;</span><span style="color: #BBBBBB"> </span><span style="color: #999999">}</span></span></code></pre>
+</div>
+
+<p>Dan wordt de background green van <code class="highlighter-shiki">#box</code>. Deze regel is erg belangrijk voor
+het verloop van deze tutorial.</p>
+    
+      <h2 id="link-condities">
+        
+        
+          <a href="#link-condities" class="section-link"></a> Link condities
+        
+        
+      </h2>
+
+<p>Een link heeft verschillende condities die je kunt stijlen met CSS:</p>
+
+<ul>
+  <li><code class="highlighter-shiki">:link</code> - Als de link een echte link is en dus een href attribuut bevat</li>
+  <li><code class="highlighter-shiki">:visited</code> - Als je de link al een keer eerder hebt bezocht</li>
+  <li><code class="highlighter-shiki">:hover</code> - Als je met de muis over de link gaat</li>
+  <li><code class="highlighter-shiki">:active</code> - Het moment dat je op de link klikt</li>
+</ul>
+
+<p>Deze condities kun je allemaal een aparte stijl meegeven. Bijvoorbeeld:</p>
+
+<div class="language-css highlighter-shiki"><pre class="shiki-gutter">1
+2
+</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #E5673D">a</span><span style="color: #BBBBBB">       </span><span style="color: #999999">{</span><span style="color: #BBBBBB"> </span><span style="color: #D8DEE9">text-decoration</span><span style="color: #999999">:</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">none;</span><span style="color: #BBBBBB">      </span><span style="color: #999999">}</span></span>
+<span class="line" data-linenr="2"><span style="color: #E5673D">a</span><span style="color: #999999">:</span><span style="color: #C7C8D2">hover</span><span style="color: #BBBBBB"> </span><span style="color: #999999">{</span><span style="color: #BBBBBB"> </span><span style="color: #D8DEE9">text-decoration</span><span style="color: #999999">:</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">underline;</span><span style="color: #BBBBBB"> </span><span style="color: #999999">}</span></span></code></pre>
+</div>
+
+<p>Nu zal er een lijn onder de tekst komen als je er met je muis overheen gaat.
+Even voor de geïnteresseerden, alles in CSS met <code class="highlighter-shiki">:*</code> heten pseudo classes.</p>
+    
+      <h2 id="het-probleem">
+        
+        
+          <a href="#het-probleem" class="section-link"></a> Het probleem
+        
+        
+      </h2>
+
+<p>Het probleem is de volgorde waarin je deze condities zet. Stel je wilt alle
+condities een stijl geven. Dan zul je hebben dat de ene stijl de andere
+overrulled en dat je daardoor nooit de echte stijl ziet.</p>
+
+<p>Stel we hebben een link waarop je al een keer bent geweest en we hebben de
+volgende CSS:</p>
+
+<div class="language-css highlighter-shiki"><pre class="shiki-gutter">1
+2
+</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #E5673D">a</span><span style="color: #999999">:</span><span style="color: #C7C8D2">link</span><span style="color: #BBBBBB">    </span><span style="color: #999999">{</span><span style="color: #BBBBBB"> </span><span style="color: #D8DEE9">color</span><span style="color: #999999">:</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">red;</span><span style="color: #BBBBBB">   </span><span style="color: #999999">}</span></span>
+<span class="line" data-linenr="2"><span style="color: #E5673D">a</span><span style="color: #999999">:</span><span style="color: #C7C8D2">visited</span><span style="color: #BBBBBB"> </span><span style="color: #999999">{</span><span style="color: #BBBBBB"> </span><span style="color: #D8DEE9">color</span><span style="color: #999999">:</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">green;</span><span style="color: #BBBBBB"> </span><span style="color: #999999">}</span></span></code></pre>
+</div>
+
+<p>Nu komt dit bij de browser binnen, hij denkt: <em>‘Hé, je het is een echte link’</em>
+en vervolgens stijlt hij de link naar <code class="highlighter-shiki">color: red;</code>. Nu leest hij verder en
+denkt hij: <em>‘Ja, hij is er al een keer eerder op geweest’</em> vervolgens
+overrulled hij de stijlen van <code class="highlighter-shiki">:link</code> in die van <code class="highlighter-shiki">:visited</code> en wordt de link
+<code class="highlighter-shiki">green</code>.</p>
+
+<p>Stel dat we nu <code class="highlighter-shiki">:link</code> en <code class="highlighter-shiki">:visited</code> omdraaien. Dan komt de browser eerst
+visited tegen, hij weet dat je hem al een keer eerder hebt bezocht en begint
+de anchor <code class="highlighter-shiki">color: green;</code> mee te geven.  Vervolgens komt hij bij de volgende
+en denkt, ja het is een echte link. Nu worden de visited stijlen overrulled
+door de link stijlen en wordt de link dus <code class="highlighter-shiki">color: red;</code>. Het gevolg is dus dat
+alle stijlen van visited overrulled worden.</p>
+
+<p>Om dit te voorkomen moeten we een goede volgorde aan houden. Deze volgorde is
+de volgorde waarin ik in het begin deze pseudo classes heb genoemd. Laten we
+nu eens kijken wat er allemaal gestijld wordt als we op een link klikken die
+we al eens hebben bezocht:</p>
+
+<ol>
+  <li>Het browser komt bij <code class="highlighter-shiki">:link</code> en stijlt de link naar deze stijlen</li>
+  <li>Het browser komt bij <code class="highlighter-shiki">:visited</code> en denkt, <em>ja, dit ook</em>, en overrulled de
+stijlen van <code class="highlighter-shiki">:link</code></li>
+  <li>Het browser komt bij <code class="highlighter-shiki">:hover</code> en ja, je gaat er met je muis over. Dus deze
+stijlen overrullen de vorige</li>
+  <li>Het browser komt bij <code class="highlighter-shiki">:active</code> en ja, je klikt er ook nog eens op. Dus ook
+deze stijlen worden toegevoegd.</li>
+</ol>
+
+<p>Uiteindelijk krijgt je link dus 4 verschillende stijlen mee die elkaar
+allemaal overrullen.</p>
+    
+      <h2 id="een-ezelsbruggetje">
+        
+        
+          <a href="#een-ezelsbruggetje" class="section-link"></a> Een ezelsbruggetje
+        
+        
+      </h2>
+
+<p>Om deze volgorde te onthouden is er een ezelsbruggetje uitgevonden die je hier
+al een keer bent tegen gekomen, namelijk:
+<strong>L</strong>o<strong>V</strong>e <strong>HA</strong>te de dik gedrukte
+hoofdletters vormen hier de beginletters van de pseudo classes.</p>
+
+        </div>
+    </div>
+</article>
+
+    </main><footer class="page__footer">
+    <p>&copy; Copyright 2012 - 2022 Wouter de Jong</p>
+</footer>
+</body>
+
+</html>

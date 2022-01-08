@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang=""><head>
+    <meta charset=utf-8>
+
+    <title>Stabilizing Symfony: Testing out the pre-release ~ Wouter J</title>
+
+    <meta http-equiv=X-UA-Compatible content="IE=edge">
+    <meta name=viewport content="width=device-width, initial-scale=1">
+    <meta name=theme-color content=#cc3333>
+
+    <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Serif:400,400i,700|Oswald|Inconsolata" rel="stylesheet">
+    <link rel=stylesheet href="/assets/main.css">
+    <link rel=icon type=image/png href=/img/css/favicon.png sizes=96x96><link type="application/atom+xml" rel="alternate" href="https://wouterj.nl/feed.xml" title="Wouter J" /><meta content="Wouter J" property="og:site_name">
+    
+      <meta content="Stabilizing Symfony: Testing out the pre-release" property="og:title">
+      <meta content="article" property="og:type">
+      <meta content="Symfony has a very rigid release schedule since Symfony 3.0.
+Predictable releases are often mentioned as a major advantage. Did you
+know that this schedule also includes a 2 month “stabilization phase”?
+This phase gives time to all libraries and bundles to catch up. Testing
+pre-releases is one of the best and least time consuming contributions
+you can make to Symfony. Let’s see how you can help Symfony by reservering
+30 minutes during these 2 months!
+
+" property="og:description">
+      <meta content="2021-06-17T00:00:00+00:00" property="article:published_time">
+      <meta content="https://wouterj.nl/2021/06/stabilizing-symfony-test-out-pre-releases" property="og:url">
+      <meta content="https://wouterj.nl/img/og/stabilizing-symfony-test-out-pre-releases.png?1" property="og:image">
+    <script>if(!sessionStorage.getItem("_swa")){fetch("https://counter.dev/track?"+new URLSearchParams({referrer:document.referrer.indexOf(location.protocol+"//"+location.host)!==0?document.referrer:'',screen:screen.width+"x"+screen.height,user:"wouterj",utcoffset:"2"}),{headers:{"X-Referer":"https://wouterj.nl/2021/06/stabilizing-symfony-test-out-pre-releases","Content-Type":"text/plain"}})};sessionStorage.setItem("_swa","1");</script></head>
+<body class="page  page--post" itemscope itemtype="http://schema.org/WebPage"><header class=page__header>
+    <hgroup class=page__headline>
+        <h1 class="site-title" itemprop="name"><a href="/">Wouter J</a></h1>
+    </hgroup><!--<nav class=page__nav>
+        <ul class="nav  nav--block"><li class="nav__item  "><a href="/categories/article/index.html"><i class=icon>&#xF139;</i> <span class="button__text">Articles</span></a></li><li class="nav__item  "><a href="/categories/experiment/index.html"><i class=icon>&#xF051;</i> <span class="button__text">Experiments</span></a></li><li class="nav__item  "><a href="/categories/links/index.html"><i class=icon>&#xF10E;</i> <span class="button__text">Links</span></a></li></ul>
+    </nav>-->
+  </div>
+</header>
+<div class=page__body itemscope itemtype="http://schema.org/Blog">
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+        <span class="post__category">
+        <time class="dt-published" datetime="2021-06-17T00:00:00+00:00" itemprop="datePublished">
+            JUN '21
+        </time>
+        
+        
+        &#xf139;
+        
+        </span>
+    
+
+    <h1 class="post__heading" itemprop="headline">Stabilizing Symfony: Testing out the pre-release</h1>
+
+    
+
+    <div itemprop="articleBody">
+        <div class="post__entry--excerpt">
+            
+            <p>Symfony has a very rigid <a href="https://symfony.com/releases">release schedule</a> since Symfony 3.0.
+Predictable releases are often mentioned as a major advantage. Did you
+know that this schedule also includes a 2 month “stabilization phase”?
+This phase gives time to all libraries and bundles to catch up. Testing
+pre-releases is one of the best and least time consuming contributions
+you can make to Symfony. Let’s see how you can help Symfony by reservering
+30 minutes during these 2 months!</p></div><div class="post__entry">
+      <h2 id="a-quick-introduction-to-the-backwards-compatibility-promise">
+        
+        
+          <a href="#a-quick-introduction-to-the-backwards-compatibility-promise" class="section-link"></a> A quick Introduction to the Backwards Compatibility Promise
+        
+        
+      </h2>
+
+<p>It’s important to understand the <a href="https://symfony.com/bc">backwards compatibility promise</a>.
+Projects used by many applications can’t simply change behavior of
+features. Applications (and its developers) rely on stability of the
+framework. In short, Symfony’s promise is that your application should
+be able to upgrade from x.0 to x.4 <em>without any code changing efforts</em>.</p>
+
+<aside class="side" data-type="BC Promise">
+  <p>The <a href="https://symfony.com/bc">promise</a> does define some boundaries of the backwards
+compatibility. For instance, if you use internal classes or an
+experimental feature, there is a chance you need to make changes when
+upgrading.</p>
+</aside>
+
+<p>Before releasing a new minor version (e.g. 5.3.0), the Symfony Core team
+needs to make sure 2 conditions are true:</p>
+
+<ul>
+  <li>All changes to existing features are backwards compatible</li>
+  <li>All new features must be stable.</li>
+</ul>
+
+<p>The last point is important: Once a feature lands in a stable release,
+it’s no longer possible to change its behavior.</p>
+
+<p>Now you know the main challenges Symfony is facing when releasing a new
+minor version, let’s see how you can help!</p>
+    
+      <h2 id="reporting-issues-during-stabilization">
+        
+        
+          <a href="#reporting-issues-during-stabilization" class="section-link"></a> Reporting Issues during Stabilization
+        
+        
+      </h2>
+
+<p>New features are often tested in little demo applications. As we all
+know, small demo applications often work much better than real life
+applications. This is why bugs and backwards compatibility breaks
+sometimes go completely unnoticed until real life applications start
+upgrading.</p>
+
+<p>Receiving feedback from real life applications is crucial: Symfony’s
+only goal is to help you make real stuff in your daily jobs. It’s great
+to receive bug reports, at all times. Yet, it’s significantly more
+difficult to fix backwards compatibility breaks or bugs after a stable
+release.</p>
+
+<p>Imagine there is a backwards compatibility break (BC break) that
+resulted in a PHP error. Applications that already upgraded fixed their
+code to remove this error. This means that removing the BC break is also
+a BC break in itself!</p>
+
+<p>This is why testing pre-releases are critical. Pre-releases are not
+covered by the BC promise. If you find a problem, we can fix the break
+without yet another deprecation layer.</p>
+    
+      <h2 id="how-to-test-pre-releases">
+        
+        
+          <a href="#how-to-test-pre-releases" class="section-link"></a> How to Test Pre-Releases
+        
+        
+      </h2>
+
+<p>I hope by now, you understand the value of pre-release testing. But now,
+how do you do this? Is it really just 30 minutes?</p>
+    
+      <h3 id="testing-pre-releases-in-applications">
+        
+        
+          <a href="#testing-pre-releases-in-applications" class="section-link"></a> Testing Pre-Releases in Applications
+        
+        
+      </h3>
+
+<p>Most people maintain Symfony applications: private projects using the
+Symfony framework as a base. These projects can test pre-releases in 3
+steps:</p>
+
+<aside class="side" data-type="Quick note on stability flags">
+  <p>During stabilization, Symfony releases a beta or RC (Release Candidate)
+release almost on a weekly basis. Seeing the first beta release is great
+indicator that Symfony has started with the stabilization phase.</p>
+
+  <p>The RC releases are almost stable: They will probably no longer break
+compatibility and the big issues are fixed.</p>
+
+  <p>However, as bugs are continously fixed during the stabilization phase,
+the dev branch is more stable than a pre-release made a couple days ago.
+It’s often a great idea to use <code class="highlighter-shiki">@dev</code> instead of <code class="highlighter-shiki">@beta</code> or <code class="highlighter-shiki">@rc</code>.</p>
+</aside>
+
+<ol>
+  <li>Update your <code class="highlighter-shiki">composer.json</code> to allow the next dev release. E.g.
+change <code class="highlighter-shiki">5.3.*</code> to <code class="highlighter-shiki">5.4.*@dev</code> for all <code class="highlighter-shiki">symfony/*</code> packages to test
+Symfony 5.4. 
+Make sure to also update the <code class="highlighter-shiki">extra.symfony.require</code> key if it’s
+present</li>
+  <li>Add <code class="highlighter-shiki">&quot;minimum-stability&quot;: &quot;dev&quot;</code> and <code class="highlighter-shiki">&quot;prefer-stable&quot;: true</code> to your
+<code class="highlighter-shiki">composer.json</code> file. This tells Composer to install dev versions,
+but use stable versions for all your non-Symfony packages</li>
+  <li>Update your dependencies and run your test suite</li>
+</ol>
+
+<p>Hopefully, your tests will pass. If they don’t, it means there is a BC
+break or bug in the upcoming release.
+In that case, you can <a href="https://symfony.com/doc/current/contributing/code/bugs.html">report a bug</a> to Symfony. It’s great
+to also provide a reproducer: some code that allows everyone to
+experience the bug you found. It’s hard to fix a bug if you don’t
+experience it ;)</p>
+
+<p>There is also a great benefit for you: You already tested your
+application with the upcoming version. You may find yourself fixing some
+deprecations on a boring Friday afternoon. Before you know it, your
+applications is ready for the next release!</p>
+    
+      <h3 id="testing-pre-releases-in-packages">
+        
+        
+          <a href="#testing-pre-releases-in-packages" class="section-link"></a> Testing Pre-Releases in Packages
+        
+        
+      </h3>
+
+<p>Open source packages often test against multiple versions of their
+dependencies (e.g. they test support for Symfony 4 and 5).</p>
+
+<p>You can also add a “dev” version to test your package with the next
+version of your dependencies. When running the dev tests, you can use
+<code class="highlighter-shiki">composer config</code> to allow dev dependencies:</p>
+
+<div class="language-bash highlighter-shiki"><pre class="shiki-gutter">1
+</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #BBBBBB">composer config minimum-stability dev</span></span></code></pre>
+</div>
+
+<p>This means your package now also tests against the dev dependencies.
+This is a great way to see if you support upcoming versions, as well as
+discovering bugs in your dependencies early. Depending on the stability
+of your dependencies, it can be a good idea to allow the dev tests to
+fail (e.g. using <code class="highlighter-shiki">allow_failures</code> in Travis CI).</p>
+
+<p>I’ve used this technique in my own packages, which you can use as an
+example:</p>
+
+<ul>
+  <li><a href="https://github.com/wouterj/WouterJEloquentBundle/blob/2.x/.github/workflows/tests.yml#L68-L74">GitHub Actions</a></li>
+  <li><a href="https://github.com/wouterj/WouterJEloquentBundle/blob/4284b3c56c1f04bc9faf31783e702d292afc455f/.travis.yml#L37-L40">Travis CI</a></li>
+</ul>
+    
+      <h2 id="take-homes">
+        
+        
+          <a href="#take-homes" class="section-link"></a> Take Homes
+        
+        
+      </h2>
+
+<ul>
+  <li>Contributing to Symfony doesn’t only include writing code</li>
+  <li>Bugs are much more easily fixed in a pre-release</li>
+  <li>Please test pre-releases (of any software) and report issues you find</li>
+</ul>
+
+        </div>
+    </div>
+</article>
+
+    </main><footer class="page__footer">
+    <p>&copy; Copyright 2012 - 2022 Wouter de Jong</p>
+</footer>
+</body>
+
+</html>

@@ -1,0 +1,362 @@
+<!doctype html>
+<html lang=""><head>
+    <meta charset=utf-8>
+
+    <title>Werken met Composer ~ Wouter J</title>
+
+    <meta http-equiv=X-UA-Compatible content="IE=edge">
+    <meta name=viewport content="width=device-width, initial-scale=1">
+    <meta name=theme-color content=#cc3333>
+
+    <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Serif:400,400i,700|Oswald|Inconsolata" rel="stylesheet">
+    <link rel=stylesheet href="/assets/main.css">
+    <link rel=icon type=image/png href=/img/css/favicon.png sizes=96x96><link type="application/atom+xml" rel="alternate" href="https://wouterj.nl/feed.xml" title="Wouter J" /><meta content="Wouter J" property="og:site_name">
+    
+      <meta content="Werken met Composer" property="og:title">
+      <meta content="article" property="og:type">
+      <meta content="Je hebt vast wel eens gewerkt met Ruby of Node.js en je hebt vast wel eens
+gedroomd hoe geweldig het niet zal zijn om een Gem (ruby) of Npm (node.js) te
+hebben voor PHP. Nu is het tijd om je dromen werkelijkheid te maken!
+
+" property="og:description">
+      <meta content="2012-07-13T00:00:00+00:00" property="article:published_time">
+      <meta content="https://wouterj.nl/2012/07/werken-met-composer" property="og:url">
+      <meta content="https://wouterj.nl/img/og/werken-met-composer.png?1" property="og:image">
+    <script>if(!sessionStorage.getItem("_swa")){fetch("https://counter.dev/track?"+new URLSearchParams({referrer:document.referrer.indexOf(location.protocol+"//"+location.host)!==0?document.referrer:'',screen:screen.width+"x"+screen.height,user:"wouterj",utcoffset:"2"}),{headers:{"X-Referer":"https://wouterj.nl/2012/07/werken-met-composer","Content-Type":"text/plain"}})};sessionStorage.setItem("_swa","1");</script></head>
+<body class="page  page--post" itemscope itemtype="http://schema.org/WebPage"><header class=page__header>
+    <hgroup class=page__headline>
+        <h1 class="site-title" itemprop="name"><a href="/">Wouter J</a></h1>
+    </hgroup><!--<nav class=page__nav>
+        <ul class="nav  nav--block"><li class="nav__item  "><a href="/categories/article/index.html"><i class=icon>&#xF139;</i> <span class="button__text">Articles</span></a></li><li class="nav__item  "><a href="/categories/experiment/index.html"><i class=icon>&#xF051;</i> <span class="button__text">Experiments</span></a></li><li class="nav__item  "><a href="/categories/links/index.html"><i class=icon>&#xF10E;</i> <span class="button__text">Links</span></a></li></ul>
+    </nav>-->
+  </div>
+</header>
+<div class=page__body itemscope itemtype="http://schema.org/Blog">
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+        <span class="post__category">
+        <time class="dt-published" datetime="2012-07-13T00:00:00+00:00" itemprop="datePublished">
+            JUL '12
+        </time>
+        
+        
+        &#xf139;
+        
+        </span>
+    
+
+    <h1 class="post__heading" itemprop="headline">Werken met Composer</h1>
+
+    
+    <img src="https://wouterj.nl/img/composer-thumb.png" class="post__thumbnail  img--stripe  img--short  img--right" itemprop="thumbnailUrl">
+    
+
+    <div itemprop="articleBody">
+        <div class="post__entry--excerpt">
+            
+            <p>Je hebt vast wel eens gewerkt met Ruby of Node.js en je hebt vast wel eens
+gedroomd hoe geweldig het niet zal zijn om een Gem (ruby) of Npm (node.js) te
+hebben voor PHP. Nu is het tijd om je dromen werkelijkheid te maken!</p></div><div class="post__entry">
+      <h2 id="wat-is-een-dependency-manager">
+        
+        
+          <a href="#wat-is-een-dependency-manager" class="section-link"></a> Wat is een dependency manager?
+        
+        
+      </h2>
+
+<p>Met een dependency manager kun je makkelijk en snel libaries, die je project
+gebruikt, inladen. Deze libaries worden vaak third-party libaries genoemd. Het
+Symfony Framework gebruikt bijv. voor het mailen Swiftmailer, dat is een
+third-party libary. Als je een website maakt met jQuery dan is jQuery een
+third-party libary voor jou website.</p>
+
+<p>Deze libaries moest je eerst altijd handmatig downloaden en dan in je project
+plaatsen. Als je een nieuwe versie wilde moest je het weer opnieuw downloaden
+en die andere verwijderen.</p>
+
+<p>Een dependency manager helpt je hierbij, nouja helpen, je hoeft er eigenlijk
+bijna niks meer voor te doen. Als je een project maakt maak je een
+<code class="highlighter-shiki">composer.json</code> bestand waarin je schrijft welke third-party libaries je wilt
+en welke versie. Vervolgens hoef je alleen maar <code class="highlighter-shiki">composer install</code> uit te
+voeren en je hebt alle benodigde libaries.</p>
+    
+      <h2 id="composer-installeren-windows">
+        
+        
+          <a href="#composer-installeren-windows" class="section-link"></a> Composer installeren (windows)
+        
+        
+      </h2>
+
+<p>Als eerst moeten we natuurlijk composer installeren. Dat doen we door naar de
+<a href="http://getcomposer.org/download/">download pagina</a> te gaan en de laatste
+versie te downloaden.</p>
+
+<p>Als je het hebt gedownload kun je composer gebruiken via het command panel
+(cmd). Als je hier nog nooit mee hebt gewerkt even een korte tutorial:</p>
+    <hr />
+
+<p>Als je het cmd opent (ga naar Start en vul bij zoekopdracht starten cmd in)
+zie je een zwart scherm voor je. Je ziet hier eerst het path waar we inzitten
+en daarna een <code class="highlighter-shiki">&gt;</code> en daarna kan je typen.</p>
+
+<p>Het CMD werkt met commands om alles te doen. Stel we zijn nu in <code class="highlighter-shiki">C:\Users\Acme</code>
+en we willen naar <code class="highlighter-shiki">C:\Users\Acme\projects</code> dan doen we:</p>
+
+<div class="highlighter-shiki"><pre class="shiki language-none"><code>C:\Users\Acme&gt; cd projects
+</code></pre>
+</div>
+
+<p>Stel we willen naar <code class="highlighter-shiki">E:\wamp\www\myProject</code> dan moet dat in 2 stappen: Eerst
+moeten we naar de andere schrijf (E) en daarna gaan we naar de juiste map:</p>
+
+<div class="highlighter-shiki"><pre class="shiki language-none"><code>C:\Users\Acme\projects&gt; e:
+E:\&gt; cd wamp/www/myProject
+</code></pre>
+</div>
+
+<p>Dit spreekt wel voorzich denk ik. Als je nu wilt weten welke bestanden er in
+deze map zitten gebruik je het ls command:</p>
+
+<div class="highlighter-shiki"><pre class="shiki language-none"><code>E:\wamp\www\myProject&gt; ls
+css         img         js
+index.php   .htaccess
+</code></pre>
+</div><hr />
+
+<p>I.p.v. de standaard command (cd, ls, enz.) kun je ook programmas toevoegen als
+command. Dit doe je door dat programma aan de omgevingsvariabele PATH toe te
+voegen.</p>
+      <h3 id="php">
+        
+        
+          <a href="#php" class="section-link"></a> PHP
+        
+        
+      </h3>
+
+<p>Het is nu nodig dat we PHP toevoegen als programma. Eerst zoeken we de locatie
+op van php.exe (in mijn geval E:\wamp\bin\php\php5.4.0\php.exe). Nu klikken we
+met de rechtermuisknop op Computer en dan eigenschappen &gt; Geavanceerde
+systeeminstellingen &gt; Geavanceerd &gt; Omgevingsvariabelen Daarin klikken we
+dubbel op PATH en dan voegen we onze map (dus zonder bestandsnaam) toe aan deze
+variabele door deze te scheiden met de vorige map met een <code class="highlighter-shiki">;</code>.</p>
+
+<p>Nu kunnen we in ons CMD PHP gebruiken. Stel we hebben het composer.phar bestand
+gedownload in <code class="highlighter-shiki">C:\Programs</code>. Dan kunnen we nu het composer bestand aanroepen
+met PHP:</p>
+
+<p>E:\wamp\www\myProject&gt; php C:\Programs\composer.phar install</p>
+    
+      <h3 id="composer-shortcut">
+        
+        
+          <a href="#composer-shortcut" class="section-link"></a> Composer shortcut
+        
+        
+      </h3>
+
+<p>Maar dat is zoveel typewerk vind je niet? Daarom gaan we dit wat verbeteren. We
+verplaatsen composer.phar even naar een map die wat logischer is, in mijn geval
+heb ik het in dezelfde map als PHP gezet. In dezelfde map maken we een
+bestandje genaamd <code class="highlighter-shiki">composer.bat</code>. Hierin plaatsen we het volgende:</p>
+
+<div class="highlighter-shiki"><pre class="shiki language-none"><code>@echo off
+php &quot;E:\wamp\bin\php\php5.4.0\composer.phar&quot; %*
+</code></pre>
+</div>
+
+<p>Wat dit doet is dat we ons php command aanroepen (<code class="highlighter-shiki">php</code> op regel 2) vervolgens
+roepen we ons composer.phar bestandje aan en dan met <code class="highlighter-shiki">%*</code> geven we aan dat alle
+argumenten worden overgenomen en doorgegeven aan composer.phar.</p>
+
+<p>We moeten vervolgens deze map, mocht dat nog niet zo zijn, weer toevoegen aan
+de omgevingsvariabelen.</p>
+
+<p>We hebben nu dus eigenlijk een bestandje gemaakt met een shortcut erin, i.p.v.
+<code class="highlighter-shiki">php E:\wamp\bin\php\php5.4.0\composer.phar install</code> hoeven we nu alleen
+<code class="highlighter-shiki">composer install</code> te gebruiken. Er wordt dan het bestandje <code class="highlighter-shiki">composer.bat</code>
+aangeroepen die vervolgens weer ons oude command aanroept en het argument
+<code class="highlighter-shiki">install</code> doorgeeft aan de composer.phar.</p>
+    
+      <h3 id="git">
+        
+        
+          <a href="#git" class="section-link"></a> GIT
+        
+        
+      </h3>
+
+<p>Composer werkt met GIT, mocht je dat dus niet op je computer hebben staan dan
+moet je dat installeren (lees
+<a href="http://git-scm.com/book/en/Getting-Started-Installing-Git#Installing-on-Windows">hier</a>
+hoe) en vervolgens weer het path naar sh.exe in je omgevingsvariabele
+toevoegen.</p>
+    
+      <h2 id="aan-het-werk">
+        
+        
+          <a href="#aan-het-werk" class="section-link"></a> Aan het werk
+        
+        
+      </h2>
+
+<p>Nou dan kunnen we eindelijk aan de slag. We gaan naar ons project en maken een
+<code class="highlighter-shiki">composer.json</code> bestand aan waarin we in JSON allemaal settings kunnen
+instellen.</p>
+
+<p>Stel ik heb nu een project en nu wil ik Swiftmailer gebruiken. Dan moeten we
+eerst kijken hoe de Swiftmailer package heet (een third-party libary heet in
+Composer een package). Hiervoor gaan we naar
+<a href="http://packagist.org/">packagist.org</a>, de site met alle packages voor
+composer. We zoeken hier op Swiftmailer en krijgen swiftmailer/swiftmailer als
+resultaat, dat is de gene die we zoeken. Een package naam bestaat altijd uit
+een organisatienaam en een project naam (organisatie/project). Als jij bijv.
+een Swiftmailer extensie schrijft en die als package openstelt wordt dat
+JouNaam\Swiftmailer-extension.</p>
+
+<p>Nu klikken we op deze package en we zien dan wat informatie over deze package
+met onder anderen de versies. Bij het instellen welke package we willen moeten
+we ook altijd een versie instellen. Deze versie kun je op verschillende
+manieren opbouwen:</p>
+
+<div class="highlighter-shiki"><pre class="shiki language-none"><code>2.1.*
+&gt;= 2.1.0, &lt;2.2.5
+2.1.13
+</code></pre>
+</div>
+
+<p>In het eerste geval gebruiken we de <code class="highlighter-shiki">*</code> wildchart, dat staat voor elk getal. In
+ons geval betekend 2.1.* dus dat het 2.1.0 kan zijn, maar ook 2.1.29, enz.
+Zolang het maar begint met 2.1.</p>
+
+<p>Je kan ook een range selecteren. In het tweede geval doen we dat, we zeggen pak
+op zijn minst versie 2.1.0, maar niet hoger dan versie 2.2.5. In het 3e geval
+hebben we gewoon een exacte versie ingevuld.</p>
+
+<p>Nu we de versie weten (we gaan voor 4.2.*) kunnen we het instellen zodat
+composer het gaat inladen. Dat doen we door in <code class="highlighter-shiki">composer.json</code> de require
+parameter in te vullen:</p>
+
+<div class="highlighter-shiki"><pre class="shiki language-none"><code>{
+    &quot;require&quot; : {
+        &quot;swiftmailer\swiftmailer&quot; : &quot;4.2.*&quot;
+    }
+}
+</code></pre>
+</div>
+
+<p>Stel dat we nu ook nog Propel willen inladen. Dan gaan we weer zoeken op propel
+en vinden we de propel\propel package. Deze heeft maar 1 versie en dus gaan we
+die er ook bij zetten:</p>
+
+<div class="highlighter-shiki"><pre class="shiki language-none"><code>{
+    &quot;require&quot; : {
+        &quot;swiftmailer\swiftmailer&quot; : &quot;4.2.*&quot;,
+        &quot;propel\propel&quot; : &quot;dev-master&quot;
+    }
+}
+</code></pre>
+</div>
+
+<p>Nu we alle packages hebben gedefinieerd kunnen we ze gaan installeren door de
+composer command aan te roepen:</p>
+
+<div class="highlighter-shiki"><pre class="shiki language-none"><code>cd path/to/myProject
+composer install
+</code></pre>
+</div>
+
+<p>De packages worden nu in de vendor map gezet, vendors is weer zon andere naam
+voor third-party libaries.</p>
+    
+      <h3 id="autoloader">
+        
+        
+          <a href="#autoloader" class="section-link"></a> Autoloader
+        
+        
+      </h3>
+
+<p>Als je vaak met klassen werkt en projecten/libaries zul je merken dat elk
+project zijn eigen autoloader hebt. Je hebt dan in ons geval 3 autoloaders
+geregistreerd. Dat is natuurlijk iets teveel van het goede en daarom komt
+Composer met zijn eigen autoloader. Deze kun je includen en dan wordt alles
+automatisch goed geladen.</p>
+
+<p>Aangezien je naast de packages ook nog je eigen klassen hebt die ingeladen
+moeten worden kun je de autoloader instellen waar hij naar jou klassen moet
+gaan zoeken. Ik plaats bijv. alles in een <code class="highlighter-shiki">src</code> map, we geven dan aan dat hij
+naar klassen kan zoeken in de src map:</p>
+
+<div class="highlighter-shiki"><pre class="shiki language-none"><code>{
+    &quot;require&quot; : {
+        &quot;swiftmailer\swiftmailer&quot; : &quot;4.2.*&quot;,
+        &quot;propel\propel&quot; : &quot;dev-master&quot;
+    },
+    &quot;autoload&quot; : {
+        &quot;psr-0&quot; : { &quot;&quot; : &quot;src/&quot; }
+    }
+}
+</code></pre>
+</div>
+
+<p>Dit komt wellicht wat vaag over, maar PSR-0 is de standaard waaraan alle
+klassenamen zich moeten houden en we kunnen dan aangeven dat er naar een
+bepaalde namespace gezocht moet worden in een bepaalde map. In dit geval hebben
+we een lege namespace, wat staat voor alle namespaces, en die kunnen gezocht
+worden in de src map.</p>
+
+<p>Je kan nog veel meer met het composer.json bestand. Daarom raad ik je aan <a href="http://getcomposer.org/doc/">de documentatie van composer</a> uitgebreid
+te lezen en wat online voorbeelden te zoeken. Een voorbeeld die ik heb gemaakt
+is <a href="https://github.com/WouterJ/Decres">Decres</a> of kijk bijv. eens
+naar <a href="https://github.com/symfony/symfony">Symfony</a>.</p>
+    
+      <h2 id="packages-updaten">
+        
+        
+          <a href="#packages-updaten" class="section-link"></a> Packages updaten
+        
+        
+      </h2>
+
+<p>Als je je packages eenmaal hebt geïnstalleerd wordt er een composer.lock
+bestand aangemaakt die aangeeft welke versies er nu zijn geïnstalleerd.</p>
+
+<p>Stel dat Swiftmailer een nieuwe versie heeft (bijv. 4.2.5) en die wil jij ook
+hebben, dan hoef je alleen maar <code class="highlighter-shiki">composer update</code> uit te voeren en de packages
+worden geüpdatet.</p>
+    
+      <h2 id="en-nu-kan-je">
+        
+        
+          <a href="#en-nu-kan-je" class="section-link"></a> en nu kan je
+        
+        
+      </h2>
+
+<p>Na deze les heb je geleerd hoe composer werkt en hoe je hem kan installeren. Nu
+kun je hier natuurlijk wat problemen mee krijgen, laat dan even een reactie
+achter dan zal ik je zo goed mogelijk proberen te helpen.</p>
+
+<p>Maar deze tutorial heb ik niet zomaar geplaatst, ik ben namelijk bezig met het
+schrijven van een tutorial over het Symfony Framework. Blijf me volgen en
+misschien kom je halverwege deze vakantie wel de eerste berichten tegen. Om je
+alvast warm te maken en een idee te geven hoe makkelijk het is om Symfony te
+downloaden met composer:</p>
+
+<div class="highlighter-shiki"><pre class="shiki language-none"><code>composer create-project symfony/framework-standard-edition
+</code></pre>
+</div>
+
+        </div>
+    </div>
+</article>
+
+    </main><footer class="page__footer">
+    <p>&copy; Copyright 2012 - 2022 Wouter de Jong</p>
+</footer>
+</body>
+
+</html>

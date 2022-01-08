@@ -1,0 +1,359 @@
+<!doctype html>
+<html lang=""><head>
+    <meta charset=utf-8>
+
+    <title>Git Introductie ~ Wouter J</title>
+
+    <meta http-equiv=X-UA-Compatible content="IE=edge">
+    <meta name=viewport content="width=device-width, initial-scale=1">
+    <meta name=theme-color content=#cc3333>
+
+    <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Serif:400,400i,700|Oswald|Inconsolata" rel="stylesheet">
+    <link rel=stylesheet href="/assets/main.css">
+    <link rel=icon type=image/png href=/img/css/favicon.png sizes=96x96><link type="application/atom+xml" rel="alternate" href="https://wouterj.nl/feed.xml" title="Wouter J" /><meta content="Wouter J" property="og:site_name">
+    
+      <meta content="Git Introductie" property="og:title">
+      <meta content="article" property="og:type">
+      <meta content="Vandaag installeren we GIT op onze computer en krijg je een introductie in GIT.
+Hoe werkt het, wat moet je weten, enz. En aan het eind gaan we misschien
+eindelijk echte code maken.
+
+" property="og:description">
+      <meta content="2012-04-20T00:00:00+00:00" property="article:published_time">
+      <meta content="https://wouterj.nl/2012/04/git-intro" property="og:url">
+      <meta content="https://wouterj.nl/img/og/git-intro.png?1" property="og:image">
+    <script>if(!sessionStorage.getItem("_swa")){fetch("https://counter.dev/track?"+new URLSearchParams({referrer:document.referrer.indexOf(location.protocol+"//"+location.host)!==0?document.referrer:'',screen:screen.width+"x"+screen.height,user:"wouterj",utcoffset:"2"}),{headers:{"X-Referer":"https://wouterj.nl/2012/04/git-intro","Content-Type":"text/plain"}})};sessionStorage.setItem("_swa","1");</script></head>
+<body class="page  page--post" itemscope itemtype="http://schema.org/WebPage"><header class=page__header>
+    <hgroup class=page__headline>
+        <h1 class="site-title" itemprop="name"><a href="/">Wouter J</a></h1>
+    </hgroup><!--<nav class=page__nav>
+        <ul class="nav  nav--block"><li class="nav__item  "><a href="/categories/article/index.html"><i class=icon>&#xF139;</i> <span class="button__text">Articles</span></a></li><li class="nav__item  "><a href="/categories/experiment/index.html"><i class=icon>&#xF051;</i> <span class="button__text">Experiments</span></a></li><li class="nav__item  "><a href="/categories/links/index.html"><i class=icon>&#xF10E;</i> <span class="button__text">Links</span></a></li></ul>
+    </nav>-->
+  </div>
+</header>
+<div class=page__body itemscope itemtype="http://schema.org/Blog">
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+        <span class="post__category">
+        <time class="dt-published" datetime="2012-04-20T00:00:00+00:00" itemprop="datePublished">
+            APR '12
+        </time>
+        
+        
+        &#xf139;
+        
+        </span>
+    
+
+    <h1 class="post__heading" itemprop="headline">Git Introductie</h1>
+
+    
+
+    <div itemprop="articleBody">
+        <div class="post__entry--excerpt">
+            
+            <p>Vandaag installeren we GIT op onze computer en krijg je een introductie in GIT.
+Hoe werkt het, wat moet je weten, enz. En aan het eind gaan we misschien
+eindelijk echte code maken.</p></div><div class="post__entry">
+      <h2 id="git-installeren">
+        
+        
+          <a href="#git-installeren" class="section-link"></a> GIT installeren
+        
+        
+      </h2>
+
+<p>Ik bespreek hier alleen hoe je GIT moet installeren op Windows, omdat de
+meeste bezoekers windows gebruiken. Voor de Macs en Linux gebruikers zijn er
+handige tutorials te vinden op github:</p>
+
+<ul>
+  <li><a href="http://help.github.com/mac-set-up-git/">mac</a></li>
+  <li><a href="http://help.github.com/linux-set-up-git/">linux</a></li>
+</ul>
+    
+      <h3 id="git-voor-windows">
+        
+        
+          <a href="#git-voor-windows" class="section-link"></a> GIT voor Windows
+        
+        
+      </h3>
+
+<p>GIT installeren op Windows is eigenlijk heel erg makkelijk. GIT heeft een
+Windows versie die, heel toepasselijk, <a href="http://msysgit.github.com/">GIT for windows</a>
+heet. We downloaden de nieuwste versie, bij tijd van schrijven van dit artikel
+is dat GIT-1.7.10.  Vervolgens voeren we het bestandje uit en kunnen we de
+stappen volgen. Er wordt ons opgegeven moment gevraagd of we alleen de Git
+Bash willen gebruiken of ook via de Windows Command Prompt. Ik heb er zelf
+voor gekozen om alleen de GIT bash te gebruiken (die ik vervolgens aan mijn
+cmd heb gekoppeld) i.p.v. de windows command prompt, omdat het niet helemaal
+lekker loopt. Als er wordt gevraagd om PuTTY te gebruiken moet je het niet
+doen, we gaan nu alleen maar SSH gebruiken.</p>
+    
+      <h2 id="even-voorstellen-aan-git">
+        
+        
+          <a href="#even-voorstellen-aan-git" class="section-link"></a> Even voorstellen aan GIT
+        
+        
+      </h2>
+
+<p>Vervolgens moeten we ons gaan voorstellen aan GIT, wie zijn we eigenlijk? En
+wat is ons mail adres? Dit is later handig voor als je samen gaat werken met
+GitHub of andere GIT-sites, want dan hebben we dit nodig.</p>
+
+<p>Open je eerst GIT bash (<code class="highlighter-shiki">Windows &gt; start &gt; alle programma&#39;s &gt; git &gt; GIT
+bash</code>). GIT bash is eigenlijk de gewone CMD command prompt met wat extra
+GIT functies. Als je het Command Prompt nog bijna nooit gebruikt hebt even een
+spoed cursus:</p>
+
+<p>Met <code class="highlighter-shiki">cd</code> navigeer je van map naar map. Bijv:</p>
+
+<div class="language-bash highlighter-shiki"><pre class="shiki-gutter">1
+2
+</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #BBBBBB">$ </span><span style="color: #C7C8D2">cd</span><span style="color: #BBBBBB"> My-Project</span></span>
+<span class="line" data-linenr="2"><span style="color: #BBBBBB">C:</span><span style="color: #EBCB8B">\U</span><span style="color: #BBBBBB">sers</span><span style="color: #EBCB8B">\W</span><span style="color: #BBBBBB">outer</span><span style="color: #EBCB8B">\M</span><span style="color: #BBBBBB">y-Project</span></span></code></pre>
+</div>
+
+<p>Als je naar een andere schrijf navigeert moet je doormiddel van de naam van de
+schrijf + <code class="highlighter-shiki">:</code> ernaar toe navigeren:</p>
+
+<div class="language-bash highlighter-shiki"><pre class="shiki-gutter">1
+2
+3
+</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #BBBBBB">$ </span><span style="color: #C7C8D2">cd</span><span style="color: #BBBBBB"> D:</span><span style="color: #EBCB8B">\W</span><span style="color: #BBBBBB">amp</span><span style="color: #EBCB8B">\w</span><span style="color: #BBBBBB">ww</span><span style="color: #EBCB8B">\M</span><span style="color: #BBBBBB">y-Project</span></span>
+<span class="line" data-linenr="2"><span style="color: #BBBBBB">$ d:</span></span>
+<span class="line" data-linenr="3"><span style="color: #BBBBBB">D:</span><span style="color: #EBCB8B">\W</span><span style="color: #BBBBBB">amp</span><span style="color: #EBCB8B">\w</span><span style="color: #BBBBBB">ww</span><span style="color: #EBCB8B">\M</span><span style="color: #BBBBBB">y-Project</span></span></code></pre>
+</div>
+
+<p>Nu gaan we weer verder met waar we gebleven zijn. We hebben onze GIT Bash
+geopend en nu gaan we ons voorstellen. Dit doen we als volgt:</p>
+
+<div class="language-bash highlighter-shiki"><pre class="shiki-gutter">1
+2
+</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #BBBBBB">$ git config --global user.name </span><span style="color: #999999">&quot;</span><span style="color: #7CC64A">Wouter J</span><span style="color: #999999">&quot;</span></span>
+<span class="line" data-linenr="2"><span style="color: #BBBBBB">$ git config --global user.email </span><span style="color: #999999">&quot;</span><span style="color: #7CC64A">my@email.com</span><span style="color: #999999">&quot;</span></span></code></pre>
+</div>
+
+<p>Nu hebben we ons voorgesteld!</p>
+    
+      <h2 id="tijd-om-te-beginnen">
+        
+        
+          <a href="#tijd-om-te-beginnen" class="section-link"></a> Tijd om te beginnen
+        
+        
+      </h2>
+
+<p>Ja, dan gaan we eindelijk beginnen. Al dat gepraat, daar houd een developer
+natuurlijk niet van, dus nu gaan we wat codes schrijven.</p>
+
+<p>We maken een heel simpel projectje aan op onze computer. Ik download de
+<a href="http://html5boilerplate.com/">HTML5 boilerplate</a> en zet die in
+<code class="highlighter-shiki">D:\Wamp\www\My-Project\</code>. Nu openen we weer onze Bash en gaan we naar deze
+locatie toe:</p>
+
+<div class="language-bash highlighter-shiki"><pre class="shiki-gutter">1
+</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #BBBBBB">$ </span><span style="color: #C7C8D2">cd</span><span style="color: #BBBBBB"> </span><span style="color: #EBCB8B">\d\w</span><span style="color: #BBBBBB">amp</span><span style="color: #EBCB8B">\w</span><span style="color: #BBBBBB">ww</span><span style="color: #EBCB8B">\m</span><span style="color: #BBBBBB">y-project\</span></span></code></pre>
+</div>
+
+<p>(in de bash gaat het iets anders dan in de command prompt)</p>
+
+<p>Nu gaan we GIT aanzetten in dit project. Dit doe je met het <code class="highlighter-shiki">git init</code>
+command. Alles commands van GIT beginnen met <code class="highlighter-shiki">git</code> gevolgt door en spatie en
+hun naam. Als je informatie wilt over een bepaald command gebruik je `git help</p>
+<command naam="" />
+<p>`.</p>
+
+<div class="language-bash highlighter-shiki"><pre class="shiki-gutter">1
+</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #BBBBBB">$ git init</span></span></code></pre>
+</div>
+
+<p>Zo nu kunnen we aan de slag! Per verandering gaan we een nieuwe versie
+aanmaken, dit noemen we vanaf nu een commit. Je moet hierbij niet denken aan
+de versies in bijv. jQuery. Met een versie bedoelen we dat GIT onthoud hoe het
+project er op dat tijdstip uitziet.</p>
+    
+      <h3 id="de-opbouw-van-git">
+        
+        
+          <a href="#de-opbouw-van-git" class="section-link"></a> De opbouw van GIT
+        
+        
+      </h3>
+
+<p>GIT werkt met 3 area’s, zoals je ook al in de eerste blogpost hebt gelezen.
+Deze area’s hebben allemaal een eigen taak:</p>
+    
+      <h4 id="werk-area">
+        
+        
+          <a href="#werk-area" class="section-link"></a> Werk area
+        
+        
+      </h4>
+
+<p>Dit is de map die op de computer staat. Alles wat je dus in de bestanden
+aanpast en welke bestanden toegevoegd worden zie je direct veranderen.</p>
+    
+      <h4 id="staging-area">
+        
+        
+          <a href="#staging-area" class="section-link"></a> Staging area
+        
+        
+      </h4>
+
+<p>Dit is een geniaal iets in GIT. Voordat je iets commit moet je de bestanden
+die je wilt commiten in de staging area zetten. Hierdoor hoef je niet alle
+wijzigen uit de werk area direct om te zetten in de staging area.</p>
+    
+      <h4 id="repository-area">
+        
+        
+          <a href="#repository-area" class="section-link"></a> Repository area
+        
+        
+      </h4>
+
+<p>Als je een commit doet wordt de commit + de status van de bestanden opgeslagen
+in de git repository (kortweg repo).</p>
+    
+      <h3 id="bestanden-in-de-staging-zetten">
+        
+        
+          <a href="#bestanden-in-de-staging-zetten" class="section-link"></a> Bestanden in de staging zetten
+        
+        
+      </h3>
+
+<p>Zo nu gaan we eerst de bestanden in de staging zetten. Dat doe je met de <code class="highlighter-shiki">git
+add</code> method. Deze method verwacht minimaal 1 parameter: de naam/path van het
+bestand. Door spaties tussen de bestandnamen te laten kun je meerdere
+bestanden tegelijkertijd in de staging zetten.  Maar in ons geval willen we
+alle bestanden hebben. Waarom zouden we ze dan allemaal apart typen? Hiervoor
+heeft GIT het <code class="highlighter-shiki">.</code> teken uitgevonden, dit betekend alle bestanden. Dus laten we
+dat maar doen:</p>
+
+<div class="language-bash highlighter-shiki"><pre class="shiki-gutter">1
+</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #BBBBBB">$ git add </span><span style="color: #C7C8D2">.</span></span></code></pre>
+</div>
+    
+      <h3 id="tijd-voor-de-commit">
+        
+        
+          <a href="#tijd-voor-de-commit" class="section-link"></a> Tijd voor de commit
+        
+        
+      </h3>
+
+<p>Nu we hebben geselecteerd wat we willen commiten is het tijd om de commit te
+doen. Hiervoor heeft GIT de <code class="highlighter-shiki">git commit</code> method. Als je dit command runt
+probeerd GIT Vim te openen, dit is een editor die in de command prompt werkt.
+Mocht je dit niet willen moet je de vlag <code class="highlighter-shiki">-m</code> gebruiken. Dan kun je de
+parameter als de naam gebruiken. Maar normaal wordt het dus:</p>
+
+<div class="language-bash highlighter-shiki"><pre class="shiki-gutter">1
+</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #BBBBBB">$ git commit</span></span></code></pre>
+</div>
+
+<p>Nu wordt er in je command prompt Vim geopend. Vervolgens staat vim in de
+visual mode, door <code class="highlighter-shiki">i</code> in te drukken (of <code class="highlighter-shiki">a</code>) ga je naar insert mode (de mode
+waarin je kan typen). Nu typ je de commit naam (in ons geval ‘Getting
+Started’) en nu klik je op <code class="highlighter-shiki">Ctrl + [</code> hiermee ga je weer naar visual mode en
+dan doe je <code class="highlighter-shiki">:wq</code> dit <strong>w</strong>rite (opslaan) de naam en vervolgens
+<strong>q</strong>uit (sluit) Vim. Nu ben je weer terug en is je commit
+opgeslagen. In het schermpje waar je nu bent kun je zien welke bestanden er
+zijn toegevoegd, aan welke branch (hierover de volgende keer meer) en wat er
+precies is veranderd.</p>
+    
+      <h2 id="checken">
+        
+        
+          <a href="#checken" class="section-link"></a> Checken
+        
+        
+      </h2>
+
+<p>Nu willen we kijken of alles gelukt is. Dit doen we met <code class="highlighter-shiki">git log</code>, dit laat
+alle recente commits zien. In ons geval staat er maar 1. Laten we eens kijken
+wat erin staat</p>
+
+<div class="language-none highlighter-shiki"><pre class="shiki language-none"><code>commit 0935a1f33c8e75ab7356c3e94f27f397ffd7b472
+Author: WouterJ &lt;my @email.com&gt;
+Date:   Thu Apr 12 15:49:27 2012 +0200
+    Getting Started
+</code></pre>
+</div>
+
+<p>We zien hier een hash (die lange tekenreeks) dat ‘de versie’ voorstelt. Het
+voordeel van zo’n hash ten opzichte van een simpele versie nummer is dat deze
+altijd uniek is. Als we de volgende keer aan de slag gaan met commits zul je
+zien dat alleen de eerste 7 tekens hiervan belangrijk zijn.</p>
+
+<p>Dan komt de gegevens over wie de commit heeft gedaan (handig als je in een
+team werkt) en de datum waarop. Vervolgens zie je de korte commit
+beschrijving.</p>
+    
+      <h2 id="aanpassen">
+        
+        
+          <a href="#aanpassen" class="section-link"></a> Aanpassen
+        
+        
+      </h2>
+
+<p>Oké, we hebben nu heel veel dingen aangepast aan ons project. Tijd voor de
+volgende commit. We willen dingen apart commiten, eerst de HTML veranderingen,
+dan de CSS veranderingen en dan JS. Eerst wil ik weten welke bestanden er
+allemaal sinds de laatste commit gewijzigd zijn, dit doen we met de <code class="highlighter-shiki">git
+status</code> command. Nu krijg je een overzicht van bestanden/mappen die aangepast
+zijn. Vervolgens voegen we weer alle HTML bestanden toe aan de staging area:</p>
+
+<div class="language-bash highlighter-shiki"><pre class="shiki-gutter">1
+</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #BBBBBB">$ git add index.html</span></span></code></pre>
+</div>
+
+<p>Hierdoor voegen we index.html toe aan de pagina. Stel dat we nu alle bestanden
+die eindigen op <code class="highlighter-shiki">.html</code> willen toevoegen gebruiken we <code class="highlighter-shiki">*.html</code> de * wordt dan
+door de bestandsnaam vervangen. Nu kunnen we weer onze commit uitvoeren</p>
+
+<div class="language-bash highlighter-shiki"><pre class="shiki-gutter">1
+</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #BBBBBB">$ git commit -m </span><span style="color: #999999">&#39;</span><span style="color: #7CC64A">[HTML] Added header</span><span style="color: #999999">&#39;</span></span></code></pre>
+</div>
+
+<p>En we voegen heel de css directory toe aan de staging area, voor de volgende commit:</p>
+
+<div class="language-bash highlighter-shiki"><pre class="shiki-gutter">1
+2
+</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #BBBBBB">$ git add css/.</span></span>
+<span class="line" data-linenr="2"><span style="color: #BBBBBB">$ git commit -m </span><span style="color: #999999">&#39;</span><span style="color: #7CC64A">[CSS] Changed RESET and added header</span><span style="color: #999999">&#39;`</span><span style="color: #E5673D">&lt;</span><span style="color: #7CC64A">/pre</span><span style="color: #E5673D">&gt;</span></span></code></pre>
+</div>
+
+<p>Met <code class="highlighter-shiki">css/.</code> voeg je alle bestanden in de css map toe aan de commit.</p>
+
+<p>En zo doen we het ook voor de andere commits.</p>
+    
+      <h2 id="je-kan-nog-veel-meer">
+        
+        
+          <a href="#je-kan-nog-veel-meer" class="section-link"></a> Je kan nog veel meer
+        
+        
+      </h2>
+
+<p>Maar je kan nog veel meer met commits. De volgende keer ga ik daarop in en ook
+op wat andere dingen die je met GIT kunt doen zoals branches, gitignore en
+meer!</p>
+
+        </div>
+    </div>
+</article>
+
+    </main><footer class="page__footer">
+    <p>&copy; Copyright 2012 - 2022 Wouter de Jong</p>
+</footer>
+</body>
+
+</html>

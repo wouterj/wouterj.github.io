@@ -1,0 +1,482 @@
+<!doctype html>
+<html lang=""><head>
+    <meta charset=utf-8>
+
+    <title>Grant on Permissions, not Roles ~ Wouter J</title>
+
+    <meta http-equiv=X-UA-Compatible content="IE=edge">
+    <meta name=viewport content="width=device-width, initial-scale=1">
+    <meta name=theme-color content=#cc3333>
+
+    <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Serif:400,400i,700|Oswald|Inconsolata" rel="stylesheet">
+    <link rel=stylesheet href="/assets/main.css">
+    <link rel=icon type=image/png href=/img/css/favicon.png sizes=96x96><link type="application/atom+xml" rel="alternate" href="https://wouterj.nl/feed.xml" title="Wouter J" /><meta content="Wouter J" property="og:site_name">
+    
+      <meta content="Grant on Permissions, not Roles" property="og:title">
+      <meta content="article" property="og:type">
+      <meta content="Symfony uses a very flexible voter approach to grant access for a user.
+As this is often based on domain-specific requirements and decisions,
+the voters that come with Symfony are very basic. I would even argue
+that it’s better if you not use them, and only rely on custom security
+voters.
+
+" property="og:description">
+      <meta content="2020-01-14T00:00:00+00:00" property="article:published_time">
+      <meta content="https://wouterj.nl/2020/01/grant-on-permissions-not-roles" property="og:url">
+      <meta content="https://wouterj.nl/img/og/grant-on-permissions-not-roles.png?1" property="og:image">
+    <script>if(!sessionStorage.getItem("_swa")){fetch("https://counter.dev/track?"+new URLSearchParams({referrer:document.referrer.indexOf(location.protocol+"//"+location.host)!==0?document.referrer:'',screen:screen.width+"x"+screen.height,user:"wouterj",utcoffset:"2"}),{headers:{"X-Referer":"https://wouterj.nl/2020/01/grant-on-permissions-not-roles","Content-Type":"text/plain"}})};sessionStorage.setItem("_swa","1");</script></head>
+<body class="page  page--post" itemscope itemtype="http://schema.org/WebPage"><header class=page__header>
+    <hgroup class=page__headline>
+        <h1 class="site-title" itemprop="name"><a href="/">Wouter J</a></h1>
+    </hgroup><!--<nav class=page__nav>
+        <ul class="nav  nav--block"><li class="nav__item  "><a href="/categories/article/index.html"><i class=icon>&#xF139;</i> <span class="button__text">Articles</span></a></li><li class="nav__item  "><a href="/categories/experiment/index.html"><i class=icon>&#xF051;</i> <span class="button__text">Experiments</span></a></li><li class="nav__item  "><a href="/categories/links/index.html"><i class=icon>&#xF10E;</i> <span class="button__text">Links</span></a></li></ul>
+    </nav>-->
+  </div>
+</header>
+<div class=page__body itemscope itemtype="http://schema.org/Blog">
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+        <span class="post__category">
+        <time class="dt-published" datetime="2020-01-14T00:00:00+00:00" itemprop="datePublished">
+            JAN '20
+        </time>
+        
+        
+        &#xf139;
+        
+        </span>
+    
+
+    <h1 class="post__heading" itemprop="headline">Grant on Permissions, not Roles</h1>
+
+    
+
+    <div itemprop="articleBody">
+        <div class="post__entry--excerpt">
+            
+            <p>Symfony uses a very flexible voter approach to grant access for a user.
+As this is often based on domain-specific requirements and decisions,
+the voters that come with Symfony are very basic. I would even argue
+that it’s better if you not use them, and only rely on custom security
+voters.</p></div><div class="post__entry">
+      <h2 id="terminology">
+        
+        
+          <a href="#terminology" class="section-link"></a> Terminology
+        
+        
+      </h2>
+
+<p>In Symfony security, the string <code class="highlighter-shiki">ROLE_USER</code> can actually mean a lot of
+things, let’s first establish a common meaning:</p>
+
+<p>What you pass into <code class="highlighter-shiki">isGranted()</code> calls is a <em>security attribute</em>. It
+<em>can</em> start with <code class="highlighter-shiki">ROLE_</code>, but any other text is possible as well.</p>
+
+<p>A user has <em>security roles</em>. These are returned by <code class="highlighter-shiki">UserInterface#getRoles()</code>
+and always start with <code class="highlighter-shiki">ROLE_</code>.</p>
+
+<p>The <code class="highlighter-shiki">roles</code> setting in your access control is passed into
+<code class="highlighter-shiki">AccessDecisionManager#decide()</code> (which is also what <code class="highlighter-shiki">isGranted()</code>
+uses). While the setting is named “roles”, this is actually a
+<em>security attribute</em>.</p>
+    
+      <h2 id="meet-the-role-voters">
+        
+        
+          <a href="#meet-the-role-voters" class="section-link"></a> Meet the Role Voters
+        
+        
+      </h2>
+
+<aside class="side" data-type="Vote strategy">
+  <p>By default, Symfony’s election is “affirmative”. This means that if one voter
+votes for GRANT, the user is granted. This strategy can be changed using
+<a href=""><code class="highlighter-shiki">security.access_control_manager.strategy</code></a>.</p>
+</aside>
+
+<p>If you call <code class="highlighter-shiki">isGranted()</code> in some way, a small election organized by Symfony
+Security takes place. Each voter votes GRANT, DENY or ABSTAIN. Voters
+vote for a specific <em>security attribute</em>, with some optional context
+(the 2nd argument of <code class="highlighter-shiki">isGranted()</code>).</p>
+
+<p>Voters are powerful, but, as said in the intro, often depent on lots of
+business logic. This is why Symfony cannot provide many voters. To make
+the security system work, it comes with two very primitive voters:
+<code class="highlighter-shiki">RoleVoter</code> and <code class="highlighter-shiki">RoleHierarchyVoter</code>.</p>
+
+<p>These voters activate as soon as the <em>security attribute</em> starts with
+<code class="highlighter-shiki">ROLE_</code> (e.g. <code class="highlighter-shiki">isGranted(&#39;ROLE_USER&#39;)</code> or <code class="highlighter-shiki">isGranted(&#39;ROLE_ADMIN&#39;)</code>).
+They check if the current user has this role (or if the
+<a href="https://symfony.com/doc/current/security.html#security-role-hierarchy">role hierarchy</a> contains this role).</p>
+    
+      <h2 id="whats-wrong-with-voting-based-on-roles">
+        
+        
+          <a href="#whats-wrong-with-voting-based-on-roles" class="section-link"></a> What’s wrong With Voting based on Roles?
+        
+        
+      </h2>
+
+<p>Voting on a role is very easy: It’s supported by default and gets the job done.
+Yet, it doesn’t add any flexibility. Also, complex cases result in a
+lots of code in a controller and often code duplication.</p>
+
+<p><strong>Roles belong to authentication (identification), rather than
+authorization.</strong></p>
+
+<p><img src="/img/security-roles-as-identification.png" alt="roles groups users" /></p>
+
+<p>Roles defines the role (or function/task) of this user on the website.
+Someone might be the “moderator” on this forum, just a regular visitor or
+some premium plan member. That’s their role. <em>Roles allows your
+application to group different users together. This makes granting
+permissions easier.</em> For instance, it’s difficult to describe that users
+John, Mary and William are allowed to edit all posts. It’s easier to
+group them as being “the moderators” of this website. You can then grant
+the permissions “edit all posts” to the “moderators” role.</p>
+
+<p>So rather than using roles as permissions, you relate permissions to
+specific roles. These permissions are then voted on by a custom voter.
+This allows you to change permissions throughout your code base easier
+and keep your controllers thin.</p>
+    
+      <h2 id="grant-access-for-permissions">
+        
+        
+          <a href="#grant-access-for-permissions" class="section-link"></a> Grant Access for Permissions
+        
+        
+      </h2>
+
+<p>For this example, let’s create a voter for a blog post. We want to end
+up with a call like <code class="highlighter-shiki">isGranted(&quot;POST_EDIT&quot;, $blogPost)</code>. The voter
+should then decide if the current user is allowed to edit the blog post.
+They should be allowed if any of these is true:</p>
+
+<ul>
+  <li>If it’s a <em>user</em>, it should be the author of the post</li>
+  <li>If it’s a <em>moderator</em>, it should always be allowed</li>
+  <li>If it’s a <em>senior user</em>, it should be senior for that specific topic</li>
+</ul>
+
+<p>Do you see how we now relate the <em>role of the user</em> to the <em>specific
+permission of editing a blog post</em>?</p>
+    
+      <h2 id="creating-the-voter">
+        
+        
+          <a href="#creating-the-voter" class="section-link"></a> Creating the Voter
+        
+        
+      </h2>
+
+<aside class="side" data-type="Without MakerBundle">
+  <p>If you don’t have the maker bundle, either install it or create a PHP
+class that extends the <code class="highlighter-shiki">Voter</code> class.</p>
+</aside>
+
+<p>So the solution is to create your own voter. It’s a PHP class
+implementing Symfony’s <code class="highlighter-shiki">VoterInterface</code>. For easy usage, there is an
+abstract class named <code class="highlighter-shiki">Voter</code>. If you have the <a href="">MakerBundle</a> installed,
+you’re lucky:</p>
+
+<div class="language-bash highlighter-shiki"><pre class="shiki-gutter">1
+</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #BBBBBB">$ bin/console make:voter</span></span></code></pre>
+</div>
+    
+      <h3 id="specify-if-the-voter-supports-this-call">
+        
+        
+          <a href="#specify-if-the-voter-supports-this-call" class="section-link"></a> Specify if the Voter Supports this Call
+        
+        
+      </h3>
+
+<p>The <code class="highlighter-shiki">Voter#supports()</code> returns a boolean, depending on whether it wants
+to join the election for this <em>security attribute</em> and <em>context</em>. In
+this example, the security attribute should be <code class="highlighter-shiki">POST_EDIT</code> and the
+entity should be instance of <code class="highlighter-shiki">BlogPost</code>:</p>
+
+<div class="language-php highlighter-shiki"><pre class="shiki-gutter">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #6B90C0; font-style: italic">// ...</span></span>
+<span class="line" data-linenr="2"><span style="color: #E5673D">class</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">BlogPostVoter</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">extends</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">Voter</span></span>
+<span class="line" data-linenr="3"><span style="color: #999999">{</span></span>
+<span class="line" data-linenr="4"><span style="color: #BBBBBB">    </span><span style="color: #E5673D">protected</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">function</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">supports</span><span style="color: #999999">(</span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">attribute</span><span style="color: #999999">,</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">subject</span><span style="color: #999999">)</span></span>
+<span class="line" data-linenr="5"><span style="color: #BBBBBB">    </span><span style="color: #999999">{</span></span>
+<span class="line" data-linenr="6"><span style="color: #BBBBBB">        </span><span style="color: #E5673D">return</span><span style="color: #BBBBBB"> </span><span style="color: #999999">&#39;</span><span style="color: #7CC64A">POST_EDIT</span><span style="color: #999999">&#39;</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">===</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">attribute</span></span>
+<span class="line" data-linenr="7"><span style="color: #BBBBBB">            </span><span style="color: #E5673D">&amp;&amp;</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">subject</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">instanceof</span><span style="color: #BBBBBB"> </span><span style="color: #999999">\</span><span style="color: #BBBBBB">App</span><span style="color: #999999">\</span><span style="color: #BBBBBB">Entity</span><span style="color: #999999">\</span><span style="color: #C7C8D2">BlogPost</span><span style="color: #E5673D">;</span></span>
+<span class="line" data-linenr="8"><span style="color: #BBBBBB">    </span><span style="color: #999999">}</span></span>
+<span class="line" data-linenr="9"></span>
+<span class="line" data-linenr="10"><span style="color: #999999">    </span><span style="color: #6B90C0; font-style: italic">// ...</span></span>
+<span class="line" data-linenr="11"><span style="color: #999999">}</span></span></code></pre>
+</div>
+    
+      <h3 id="write-the-decision-logic">
+        
+        
+          <a href="#write-the-decision-logic" class="section-link"></a> Write the Decision Logic
+        
+        
+      </h3>
+
+<p>If the voter indicated that it supported this call,
+<code class="highlighter-shiki">Voter#voteOnAttribute()</code> is called. This method implements the
+permission logic:</p>
+
+<div class="language-php highlighter-shiki"><pre class="shiki-gutter">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #6B90C0; font-style: italic">// ...</span></span>
+<span class="line" data-linenr="2"><span style="color: #E5673D">class</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">BlogPostVoter</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">extends</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">Voter</span></span>
+<span class="line" data-linenr="3"><span style="color: #999999">{</span></span>
+<span class="line" data-linenr="4"><span style="color: #BBBBBB">    </span><span style="color: #E5673D">private</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">decisionManager</span><span style="color: #E5673D">;</span></span>
+<span class="line" data-linenr="5"></span>
+<span class="line" data-linenr="6"><span style="color: #BBBBBB">    </span><span style="color: #E5673D">public</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">function</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">__construct</span><span style="color: #999999">(</span><span style="color: #C7C8D2">AccessDecisionManager</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">decisionManager</span><span style="color: #999999">)</span></span>
+<span class="line" data-linenr="7"><span style="color: #BBBBBB">    </span><span style="color: #999999">{</span></span>
+<span class="line" data-linenr="8"><span style="color: #BBBBBB">        </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">this</span><span style="color: #E5673D">-&gt;</span><span style="color: #D8DEE9">decisionManager</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">=</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">decisionManager</span><span style="color: #E5673D">;</span></span>
+<span class="line" data-linenr="9"><span style="color: #BBBBBB">    </span><span style="color: #999999">}</span></span>
+<span class="line" data-linenr="10"></span>
+<span class="line" data-linenr="11"><span style="color: #999999">    </span><span style="color: #6B90C0; font-style: italic">// ...</span></span>
+<span class="line" data-linenr="12"></span>
+<span class="line" data-linenr="13"><span style="color: #BBBBBB">    </span><span style="color: #6B90C0; font-style: italic">/**</span></span>
+<span class="line" data-linenr="14"><span style="color: #6B90C0; font-style: italic">     * @param </span><span style="color: #C7C8D2; font-style: italic">BlogPost</span><span style="color: #6B90C0; font-style: italic"> $blogPost</span></span>
+<span class="line" data-linenr="15"><span style="color: #6B90C0; font-style: italic">     */</span></span>
+<span class="line" data-linenr="16"><span style="color: #BBBBBB">    </span><span style="color: #E5673D">protected</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">function</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">voteOnAttribute</span><span style="color: #999999">(</span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">attribute</span><span style="color: #999999">,</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">blogPost</span><span style="color: #999999">,</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">TokenInterface</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">token</span><span style="color: #999999">)</span></span>
+<span class="line" data-linenr="17"><span style="color: #BBBBBB">    </span><span style="color: #999999">{</span></span>
+<span class="line" data-linenr="18"><span style="color: #BBBBBB">        </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">user</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">=</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">token</span><span style="color: #E5673D">-&gt;</span><span style="color: #C7C8D2">getUser</span><span style="color: #999999">()</span><span style="color: #E5673D">;</span></span>
+<span class="line" data-linenr="19"><span style="color: #999999">        </span><span style="color: #6B90C0; font-style: italic">// if the user is anonymous, do not grant access</span></span>
+<span class="line" data-linenr="20"><span style="color: #BBBBBB">        </span><span style="color: #E5673D">if</span><span style="color: #BBBBBB"> </span><span style="color: #999999">(</span><span style="color: #E5673D">!$</span><span style="color: #D8DEE9">user</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">instanceof</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">UserInterface</span><span style="color: #999999">)</span><span style="color: #BBBBBB"> </span><span style="color: #999999">{</span></span>
+<span class="line" data-linenr="21"><span style="color: #BBBBBB">            </span><span style="color: #E5673D">return</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">false;</span></span>
+<span class="line" data-linenr="22"><span style="color: #BBBBBB">        </span><span style="color: #999999">}</span></span>
+<span class="line" data-linenr="23"></span>
+<span class="line" data-linenr="24"><span style="color: #999999">        </span><span style="color: #6B90C0; font-style: italic">// if the user is a moderator, always allow</span></span>
+<span class="line" data-linenr="25"><span style="color: #BBBBBB">        </span><span style="color: #E5673D">if</span><span style="color: #BBBBBB"> </span><span style="color: #999999">(</span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">this</span><span style="color: #E5673D">-&gt;</span><span style="color: #D8DEE9">decisionManager</span><span style="color: #E5673D">-&gt;</span><span style="color: #C7C8D2">decide</span><span style="color: #999999">(</span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">token</span><span style="color: #999999">,</span><span style="color: #BBBBBB"> </span><span style="color: #999999">[</span><span style="color: #999999">&#39;</span><span style="color: #7CC64A">ROLE_MODERATOR</span><span style="color: #999999">&#39;</span><span style="color: #999999">]))</span><span style="color: #BBBBBB"> </span><span style="color: #999999">{</span></span>
+<span class="line" data-linenr="26"><span style="color: #BBBBBB">            </span><span style="color: #E5673D">return</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">true;</span></span>
+<span class="line" data-linenr="27"><span style="color: #BBBBBB">        </span><span style="color: #999999">}</span></span>
+<span class="line" data-linenr="28"></span>
+<span class="line" data-linenr="29"><span style="color: #999999">        </span><span style="color: #6B90C0; font-style: italic">// Allow if the user is senior on this topic</span></span>
+<span class="line" data-linenr="30"><span style="color: #BBBBBB">        </span><span style="color: #E5673D">if</span><span style="color: #BBBBBB"> </span><span style="color: #999999">(</span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">user</span><span style="color: #E5673D">-&gt;</span><span style="color: #C7C8D2">isSeniorIn</span><span style="color: #999999">(</span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">blogPost</span><span style="color: #E5673D">-&gt;</span><span style="color: #C7C8D2">getTopic</span><span style="color: #999999">())</span><span style="color: #BBBBBB"> </span><span style="color: #999999">{</span></span>
+<span class="line" data-linenr="31"><span style="color: #BBBBBB">            </span><span style="color: #E5673D">return</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">true;</span></span>
+<span class="line" data-linenr="32"><span style="color: #BBBBBB">        </span><span style="color: #999999">}</span></span>
+<span class="line" data-linenr="33"></span>
+<span class="line" data-linenr="34"><span style="color: #999999">        </span><span style="color: #6B90C0; font-style: italic">// Allow if the user wrote this post</span></span>
+<span class="line" data-linenr="35"><span style="color: #BBBBBB">        </span><span style="color: #E5673D">if</span><span style="color: #BBBBBB"> </span><span style="color: #999999">(</span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">blogPost</span><span style="color: #E5673D">-&gt;</span><span style="color: #C7C8D2">getAuthor</span><span style="color: #999999">()</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">===</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">user</span><span style="color: #999999">)</span><span style="color: #BBBBBB"> </span><span style="color: #999999">{</span></span>
+<span class="line" data-linenr="36"><span style="color: #BBBBBB">            </span><span style="color: #E5673D">return</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">true;</span></span>
+<span class="line" data-linenr="37"><span style="color: #BBBBBB">        </span><span style="color: #999999">}</span></span>
+<span class="line" data-linenr="38"></span>
+<span class="line" data-linenr="39"><span style="color: #999999">        </span><span style="color: #6B90C0; font-style: italic">// Otherwise, deny access</span></span>
+<span class="line" data-linenr="40"><span style="color: #BBBBBB">        </span><span style="color: #E5673D">return</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">false;</span></span>
+<span class="line" data-linenr="41"><span style="color: #BBBBBB">    }</span></span>
+<span class="line" data-linenr="42"><span style="color: #BBBBBB">}</span></span></code></pre>
+</div>
+
+<p>As you see, in the voter we do call <code class="highlighter-shiki">decide()</code> with a role. But that’s
+fine, this class is meant to relate permissions (<code class="highlighter-shiki">POST_EDIT</code>) to a
+user’s role on the website.</p>
+
+<p>We can now use <code class="highlighter-shiki">isGranted(&#39;POST_EDIT&#39;, $blogPost)</code> in our application to
+check if the user is allowed to edit the blog post. The access decision
+manager will call our custom voter to decide on this. If we ever need
+more complex logic to check, we only have to update the code in the
+voter.</p>
+
+<p>It’s often a good idea to create one voter per entity. This voter can be
+extended to also vote on <code class="highlighter-shiki">POST_CREATE</code>, <code class="highlighter-shiki">POST_DELETE</code>, etc. To check if
+a Create button should be shown, I recommend passing the FQCN as context
+as there is no object yet (e.g.
+<code class="highlighter-shiki">is_granted(&#39;POST_CREATE&#39;, &#39;App\Entity\BlogPost&#39;)</code>).</p>
+    
+      <h2 id="make-your-voters-dynamic-access-logic-in-the-database">
+        
+        
+          <a href="#make-your-voters-dynamic-access-logic-in-the-database" class="section-link"></a> Make your Voters Dynamic (Access Logic in the Database)
+        
+        
+      </h2>
+
+<p>Instead of hardcoding all your permissions in the voters, you can also
+read information from the database inside your voter. This allows you to
+persist permissions in the database, which can then be managed by users
+in an admin panel or the like.</p>
+
+<aside class="side" data-type="Caution">
+  <p>This example is just to illustrate the flexibility of the Voter
+principle. It isn’t necessarily battle-tested or recommended for
+production usage.</p>
+</aside>
+
+<p>In the most generic way, you can create a <code class="highlighter-shiki">Permission</code> entity that
+specifies which roles are required for a specific security attribute. It
+may also use Symfony’s <a href="https://symfony.com/doc/current/security/expressions.html">ExpressionLanguage component</a>) to
+check additional conditions:</p>
+
+<div class="language-php highlighter-shiki"><pre class="shiki-gutter">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #E5673D">class</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">PermissionVoter</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">implements</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">VoterInterface</span></span>
+<span class="line" data-linenr="2"><span style="color: #999999">{</span></span>
+<span class="line" data-linenr="3"><span style="color: #999999">    </span><span style="color: #6B90C0; font-style: italic">// ...</span></span>
+<span class="line" data-linenr="4"></span>
+<span class="line" data-linenr="5"><span style="color: #999999">    </span><span style="color: #6B90C0; font-style: italic">// this vote() method is the only required method of VoterInterface</span></span>
+<span class="line" data-linenr="6"><span style="color: #999999">    </span><span style="color: #6B90C0; font-style: italic">// it should return ACCESS_ABSTAIN (i.e. not supported),</span></span>
+<span class="line" data-linenr="7"><span style="color: #999999">    </span><span style="color: #6B90C0; font-style: italic">// ACCESS_GRANTED or ACCESS_DENIED.</span></span>
+<span class="line" data-linenr="8"><span style="color: #BBBBBB">    </span><span style="color: #E5673D">protected</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">function</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">vote</span><span style="color: #999999">(</span><span style="color: #C7C8D2">TokenInterface</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">token</span><span style="color: #999999">,</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">subject</span><span style="color: #999999">,</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">array</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">attributes</span><span style="color: #999999">)</span></span>
+<span class="line" data-linenr="9"><span style="color: #BBBBBB">    </span><span style="color: #999999">{</span></span>
+<span class="line" data-linenr="10"><span style="color: #BBBBBB">        </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">attribute</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">=</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">attributes</span><span style="color: #999999">[</span><span style="color: #B48EAD">0</span><span style="color: #999999">]</span><span style="color: #E5673D">;</span></span>
+<span class="line" data-linenr="11"></span>
+<span class="line" data-linenr="12"><span style="color: #999999">        </span><span style="color: #6B90C0; font-style: italic">// find all stored permissions for this attribute and subject</span></span>
+<span class="line" data-linenr="13"><span style="color: #BBBBBB">        </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">permissions</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">=</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">this</span><span style="color: #E5673D">-&gt;</span><span style="color: #D8DEE9">permissionRepository</span><span style="color: #E5673D">-&gt;</span><span style="color: #C7C8D2">findBy</span><span style="color: #999999">([</span></span>
+<span class="line" data-linenr="14"><span style="color: #BBBBBB">            </span><span style="color: #999999">&#39;</span><span style="color: #7CC64A">attribute</span><span style="color: #999999">&#39;</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">=&gt;</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">attribute</span><span style="color: #999999">,</span></span>
+<span class="line" data-linenr="15"><span style="color: #BBBBBB">            </span><span style="color: #999999">&#39;</span><span style="color: #7CC64A">subject</span><span style="color: #999999">&#39;</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">=&gt;</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">subject</span><span style="color: #999999">,</span></span>
+<span class="line" data-linenr="16"><span style="color: #BBBBBB">        </span><span style="color: #999999">])</span><span style="color: #E5673D">;</span></span>
+<span class="line" data-linenr="17"></span>
+<span class="line" data-linenr="18"><span style="color: #999999">        </span><span style="color: #6B90C0; font-style: italic">// do not deny/grant if there is no permission for this</span></span>
+<span class="line" data-linenr="19"><span style="color: #999999">        </span><span style="color: #6B90C0; font-style: italic">// attribute and subject</span></span>
+<span class="line" data-linenr="20"><span style="color: #BBBBBB">        </span><span style="color: #E5673D">if</span><span style="color: #BBBBBB"> </span><span style="color: #999999">(</span><span style="color: #B48EAD">0</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">===</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">count</span><span style="color: #999999">(</span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">permissions</span><span style="color: #999999">))</span><span style="color: #BBBBBB"> </span><span style="color: #999999">{</span></span>
+<span class="line" data-linenr="21"><span style="color: #BBBBBB">            </span><span style="color: #E5673D">return</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">self::</span><span style="color: #BBBBBB">ACCESS_ABSTAIN</span><span style="color: #E5673D">;</span></span>
+<span class="line" data-linenr="22"><span style="color: #BBBBBB">        </span><span style="color: #999999">}</span></span>
+<span class="line" data-linenr="23"></span>
+<span class="line" data-linenr="24"><span style="color: #BBBBBB">        </span><span style="color: #E5673D">foreach</span><span style="color: #BBBBBB"> </span><span style="color: #999999">(</span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">permissions</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">as</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">permission</span><span style="color: #999999">)</span><span style="color: #BBBBBB"> </span><span style="color: #999999">{</span></span>
+<span class="line" data-linenr="25"><span style="color: #999999">            </span><span style="color: #6B90C0; font-style: italic">// continue if the role of the user does not match the role</span></span>
+<span class="line" data-linenr="26"><span style="color: #999999">            </span><span style="color: #6B90C0; font-style: italic">// of this permission</span></span>
+<span class="line" data-linenr="27"><span style="color: #BBBBBB">            </span><span style="color: #E5673D">if</span><span style="color: #BBBBBB"> </span><span style="color: #999999">(</span><span style="color: #E5673D">!$</span><span style="color: #D8DEE9">this</span><span style="color: #E5673D">-&gt;</span><span style="color: #D8DEE9">decisionManager</span><span style="color: #E5673D">-&gt;</span><span style="color: #C7C8D2">decide</span><span style="color: #999999">(</span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">token</span><span style="color: #999999">,</span><span style="color: #BBBBBB"> </span><span style="color: #999999">[</span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">permission</span><span style="color: #E5673D">-&gt;</span><span style="color: #C7C8D2">getRole</span><span style="color: #999999">()]))</span><span style="color: #BBBBBB"> </span><span style="color: #999999">{</span></span>
+<span class="line" data-linenr="28"><span style="color: #BBBBBB">                </span><span style="color: #E5673D">continue;</span></span>
+<span class="line" data-linenr="29"><span style="color: #BBBBBB">            </span><span style="color: #999999">}</span></span>
+<span class="line" data-linenr="30"></span>
+<span class="line" data-linenr="31"><span style="color: #999999">            </span><span style="color: #6B90C0; font-style: italic">// if the permission has an extra expression, verify this is</span></span>
+<span class="line" data-linenr="32"><span style="color: #999999">            </span><span style="color: #6B90C0; font-style: italic">// true, otherwise grant access directly</span></span>
+<span class="line" data-linenr="33"><span style="color: #BBBBBB">            </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">expr</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">=</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">permission</span><span style="color: #E5673D">-&gt;</span><span style="color: #C7C8D2">getExpression</span><span style="color: #999999">()</span><span style="color: #E5673D">;</span></span>
+<span class="line" data-linenr="34"><span style="color: #BBBBBB">            </span><span style="color: #E5673D">if</span><span style="color: #BBBBBB"> </span><span style="color: #999999">(</span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">expr</span><span style="color: #999999">)</span><span style="color: #BBBBBB"> </span><span style="color: #999999">{</span></span>
+<span class="line" data-linenr="35"><span style="color: #BBBBBB">                </span><span style="color: #E5673D">if</span><span style="color: #BBBBBB"> </span><span style="color: #999999">(</span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">this</span><span style="color: #E5673D">-&gt;</span><span style="color: #D8DEE9">decisionManager</span><span style="color: #E5673D">-&gt;</span><span style="color: #C7C8D2">decide</span><span style="color: #999999">(</span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">token</span><span style="color: #999999">,</span><span style="color: #BBBBBB"> </span><span style="color: #999999">[</span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">expr</span><span style="color: #999999">]))</span><span style="color: #BBBBBB"> </span><span style="color: #999999">{</span></span>
+<span class="line" data-linenr="36"><span style="color: #BBBBBB">                    </span><span style="color: #E5673D">return</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">self::</span><span style="color: #BBBBBB">ACCESS_GRANTED</span><span style="color: #E5673D">;</span></span>
+<span class="line" data-linenr="37"><span style="color: #BBBBBB">                </span><span style="color: #999999">}</span></span>
+<span class="line" data-linenr="38"><span style="color: #BBBBBB">            </span><span style="color: #999999">}</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">else</span><span style="color: #BBBBBB"> </span><span style="color: #999999">{</span></span>
+<span class="line" data-linenr="39"><span style="color: #BBBBBB">                </span><span style="color: #E5673D">return</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">self::</span><span style="color: #BBBBBB">ACCESS_GRANTED</span><span style="color: #E5673D">;</span></span>
+<span class="line" data-linenr="40"><span style="color: #BBBBBB">            </span><span style="color: #999999">}</span></span>
+<span class="line" data-linenr="41"><span style="color: #BBBBBB">        </span><span style="color: #999999">}</span></span>
+<span class="line" data-linenr="42"></span>
+<span class="line" data-linenr="43"><span style="color: #999999">        </span><span style="color: #6B90C0; font-style: italic">// in any other case, deny access</span></span>
+<span class="line" data-linenr="44"><span style="color: #BBBBBB">        </span><span style="color: #E5673D">return</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">self::</span><span style="color: #BBBBBB">ACCESS_DENIED</span><span style="color: #E5673D">;</span></span>
+<span class="line" data-linenr="45"><span style="color: #BBBBBB">    </span><span style="color: #999999">}</span></span>
+<span class="line" data-linenr="46"><span style="color: #999999">}</span></span></code></pre>
+</div>
+    
+      <h2 id="take-homes">
+        
+        
+          <a href="#take-homes" class="section-link"></a> Take Home’s
+        
+        
+      </h2>
+
+<ul>
+  <li>Roles are identification: They allow your application to group
+similar types of users</li>
+  <li>Voters relate roles to specific permissions</li>
+  <li>Avoid granting access based on roles in your application, consider
+writing a custom voter for them</li>
+</ul>
+
+        </div>
+    </div>
+</article>
+
+    </main><footer class="page__footer">
+    <p>&copy; Copyright 2012 - 2022 Wouter de Jong</p>
+</footer>
+</body>
+
+</html>

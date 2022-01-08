@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang=""><head>
+    <meta charset=utf-8>
+
+    <title>Using the SecurityBundle in Symfony 6 ~ Wouter J</title>
+
+    <meta http-equiv=X-UA-Compatible content="IE=edge">
+    <meta name=viewport content="width=device-width, initial-scale=1">
+    <meta name=theme-color content=#cc3333>
+
+    <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Serif:400,400i,700|Oswald|Inconsolata" rel="stylesheet">
+    <link rel=stylesheet href="/assets/main.css">
+    <link rel=icon type=image/png href=/img/css/favicon.png sizes=96x96><link type="application/atom+xml" rel="alternate" href="https://wouterj.nl/feed.xml" title="Wouter J" /><meta content="Wouter J" property="og:site_name">
+    
+      <meta content="Using the SecurityBundle in Symfony 6" property="og:title">
+      <meta content="article" property="og:type">
+      <meta content="At SymfonyWorld Winter 2021, I talked about using the new Symfony
+authentication system in your applications in Symfony 6. We discussed
+the important changes to the Security component, what we tried to
+improve with each change, and how you can use these to make a more
+secure application quicker.
+
+" property="og:description">
+      <meta content="2021-12-10T00:00:00+00:00" property="article:published_time">
+      <meta content="https://wouterj.nl/2021/12/security-winterworld21" property="og:url">
+      <meta content="https://wouterj.nl/img/og/security-winterworld21.png?1" property="og:image">
+    <script>if(!sessionStorage.getItem("_swa")){fetch("https://counter.dev/track?"+new URLSearchParams({referrer:document.referrer.indexOf(location.protocol+"//"+location.host)!==0?document.referrer:'',screen:screen.width+"x"+screen.height,user:"wouterj",utcoffset:"2"}),{headers:{"X-Referer":"https://wouterj.nl/2021/12/security-winterworld21","Content-Type":"text/plain"}})};sessionStorage.setItem("_swa","1");</script></head>
+<body class="page  page--post" itemscope itemtype="http://schema.org/WebPage"><header class=page__header>
+    <hgroup class=page__headline>
+        <h1 class="site-title" itemprop="name"><a href="/">Wouter J</a></h1>
+    </hgroup><!--<nav class=page__nav>
+        <ul class="nav  nav--block"><li class="nav__item  "><a href="/categories/article/index.html"><i class=icon>&#xF139;</i> <span class="button__text">Articles</span></a></li><li class="nav__item  "><a href="/categories/experiment/index.html"><i class=icon>&#xF051;</i> <span class="button__text">Experiments</span></a></li><li class="nav__item  "><a href="/categories/links/index.html"><i class=icon>&#xF10E;</i> <span class="button__text">Links</span></a></li></ul>
+    </nav>-->
+  </div>
+</header>
+<div class=page__body itemscope itemtype="http://schema.org/Blog">
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+        <span class="post__category">
+        <time class="dt-published" datetime="2021-12-10T00:00:00+00:00" itemprop="datePublished">
+            DEC '21
+        </time>
+        
+        
+        </span>
+    
+
+    <h1 class="post__heading" itemprop="headline">Using the SecurityBundle in Symfony 6</h1>
+
+    
+
+    <div itemprop="articleBody">
+        <div class="post__entry--excerpt">
+            
+            <p>At SymfonyWorld Winter 2021, I talked about using the new Symfony
+authentication system in your applications in Symfony 6. We discussed
+the important changes to the Security component, what we tried to
+improve with each change, and how you can use these to make a more
+secure application quicker.</p></div><div class="post__entry">
+
+<embed src="/assets/uploads/sfwinterworld21-talk.pdf" class="post__slides" />
+      <h2 id="references--features">
+        
+        
+          <a href="#references--features" class="section-link"></a> References &amp; Features
+        
+        
+      </h2>
+
+<ul>
+  <li>The security makers in <a href="https://symfony.com/bundles/SymfonyMakerBundle/current/index.html">Symfony MakerBundle</a></li>
+  <li><a href="https://symfony.com/doc/current/security/#the-user">Minimalized <code class="highlighter-shiki">UserInterface</code></a></li>
+  <li>SymfonyCasts <a href="https://github.com/SymfonyCasts/verify-email-bundle">VerifyEmailBundle</a>
+and <a href="https://github.com/SymfonyCasts/reset-password-bundle">ResetPasswordBundle</a></li>
+  <li>Built-in <a href="https://symfony.com/doc/current/security/#form-login">form login authenticator</a> and
+<a href="https://symfony.com/doc/current/security/#json-login">json login authenticator</a>
+(<a href="https://symfony.com/doc/current/security.html#authenticating-users">all built-in authenticators</a>)</li>
+  <li>The new Security profiler</li>
+  <li><a href="https://github.com/lexik/LexikJWTAuthenticationBundle">LexikJWTAuthenticationBundle</a>,
+<a href="https://github.com/hslavich/OneloginSamlBundle">OneloginSamlBundle</a>,
+<a href="https://github.com/web-auth/webauthn-symfony-bundle">WebauthnSymfonyBundle</a>,
+<a href="https://github.com/knpuniversity/oauth2-client-bundle">KnpUOauth2ClientBundle</a> and
+<a href="https://symfony.com/bundles/SchebTwoFactorBundle/current/index.html">SchebTwoFactorBundle</a></li>
+  <li>The new <a href="https://symfony.com/doc/current/security/#security-events">Security event cycle</a></li>
+  <li>The new <a href="https://symfony.com/blog/new-in-symfony-5-4-profiler-improvements#more-security-information-in-the-profiler"><code class="highlighter-shiki">debug:firewall</code> command</a></li>
+  <li>Symfony <a href="https://symfony.com/doc/current/security/custom_authenticator.html#security-passport">security Passports</a></li>
+  <li>The new <code class="highlighter-shiki">required_badges</code> setting</li>
+  <li>Implementing <a href="https://symfony.com/doc/current/security/custom_authenticator.html">custom authenticators</a></li>
+  <li><a href="https://symfony.com/doc/5.2/security/experimental_authenticators.html">Using the new authentication system in Symfony 5</a></li>
+  <li>All code of this talk in an example application: <a href="https://github.com/wouterj-nl/security-winterworld21">https://github.com/wouterj-nl/security-winterworld21</a></li>
+</ul>
+
+        </div>
+    </div>
+</article>
+
+    </main><footer class="page__footer">
+    <p>&copy; Copyright 2012 - 2022 Wouter de Jong</p>
+</footer>
+</body>
+
+</html>
