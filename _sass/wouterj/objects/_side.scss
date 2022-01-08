@@ -5,7 +5,11 @@
     @include media-query(desk){
         position:absolute;
         right:-75px;
-        width:calc((100% - 600px) / 2);
+        width:180px;
+    }
+    @media only screen and (min-width:1300px) {
+        right:-150px;
+        width:250px;
     }
     @include media-query(portable){
         margin:$base-spacing-unit 0;
