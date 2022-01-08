@@ -15,7 +15,7 @@
     background:$dividers;
     
     color:mix($dark, $light, 77%);
-    font-size:$milli-size;
+    font-size:$h6-size;
 
     p{margin-bottom:$half-spacing-unit;}
     p:last-child{margin-bottom:0;}
@@ -24,7 +24,6 @@
 
         display:block;
 
-        @include font-size($h6-size);
         text-transform:uppercase;
         font-family:$title-face;
     }

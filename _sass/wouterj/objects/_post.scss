@@ -37,6 +37,7 @@
                     left:-2ch;
                 }
                 color:$secondaryText;
+                padding-right:1ex;
             }
         }
     }
@@ -81,12 +82,18 @@
             width:calc(120% + 5ex);
             margin-left:calc(-10% - 5ex);
         }
+        @include media-query(portable) {
+            background:#1b1f28;
+
+            .shiki-gutter{
+                background:#242830;
+            }
+        }
 
         .shiki-gutter{
             float:left;
             width:5ex;
-            padding-top:$half-spacing-unit;
-            padding-right:$half-spacing-unit;
+            padding:$half-spacing-unit $half-spacing-unit/2 $half-spacing-unit;
 
             color:$secondaryText;
             text-align:right;
@@ -104,7 +111,13 @@
             }
         }
     }
-    .language-bash .shiki-gutter { visibility:hidden; }
+    .language-bash .shiki-gutter {
+        visibility:hidden;
+
+        @include media-query(portable) {
+            display:none;
+        }
+    }
 }
     .post__heading{
         padding-right:100px;
