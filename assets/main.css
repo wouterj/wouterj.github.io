@@ -2695,7 +2695,11 @@ h6 .section-link {
     .side {
       position: absolute;
       right: -75px;
-      width: calc((100% - 600px) / 2); } }
+      width: 180px; } }
+  @media only screen and (min-width: 1300px) {
+    .side {
+      right: -150px;
+      width: 250px; } }
   @media only screen and (max-width: 1149px) {
     .side {
       margin: 32px 0; } }
