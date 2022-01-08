@@ -160,17 +160,17 @@ compatibility and the big issues are fixed.</p>
 
   <p>However, as bugs are continously fixed during the stabilization phase,
 the dev branch is more stable than a pre-release made a couple days ago.
-It’s often a great idea to use <code class="highlighter-rouge">@dev</code> instead of <code class="highlighter-rouge">@beta</code> or <code class="highlighter-rouge">@rc</code>.</p>
+It’s often a great idea to use <code class="highlighter-shiki">@dev</code> instead of <code class="highlighter-shiki">@beta</code> or <code class="highlighter-shiki">@rc</code>.</p>
 </aside>
 
 <ol>
-  <li>Update your <code class="highlighter-rouge">composer.json</code> to allow the next dev release. E.g.
-change <code class="highlighter-rouge">5.3.*</code> to <code class="highlighter-rouge">5.4.*@dev</code> for all <code class="highlighter-rouge">symfony/*</code> packages to test
+  <li>Update your <code class="highlighter-shiki">composer.json</code> to allow the next dev release. E.g.
+change <code class="highlighter-shiki">5.3.*</code> to <code class="highlighter-shiki">5.4.*@dev</code> for all <code class="highlighter-shiki">symfony/*</code> packages to test
 Symfony 5.4. 
-Make sure to also update the <code class="highlighter-rouge">extra.symfony.require</code> key if it’s
+Make sure to also update the <code class="highlighter-shiki">extra.symfony.require</code> key if it’s
 present</li>
-  <li>Add <code class="highlighter-rouge">"minimum-stability": "dev"</code> and <code class="highlighter-rouge">"prefer-stable": true</code> to your
-<code class="highlighter-rouge">composer.json</code> file. This tells Composer to install dev versions,
+  <li>Add <code class="highlighter-shiki">&quot;minimum-stability&quot;: &quot;dev&quot;</code> and <code class="highlighter-shiki">&quot;prefer-stable&quot;: true</code> to your
+<code class="highlighter-shiki">composer.json</code> file. This tells Composer to install dev versions,
 but use stable versions for all your non-Symfony packages</li>
   <li>Update your dependencies and run your test suite</li>
 </ol>
@@ -200,17 +200,17 @@ dependencies (e.g. they test support for Symfony 4 and 5).</p>
 
 <p>You can also add a “dev” version to test your package with the next
 version of your dependencies. When running the dev tests, you can use
-<code class="highlighter-rouge">composer config</code> to allow dev dependencies:</p>
+<code class="highlighter-shiki">composer config</code> to allow dev dependencies:</p>
 
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-</pre></td><td class="rouge-code"><pre>composer config minimum-stability dev
-</pre></td></tr></tbody></table></code></pre></div></div>
+<div class="language-bash highlighter-shiki"><pre class="shiki-gutter">1
+</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #BBBBBB">composer config minimum-stability dev</span></span></code></pre>
+</div>
 
 <p>This means your package now also tests against the dev dependencies.
 This is a great way to see if you support upcoming versions, as well as
 discovering bugs in your dependencies early. Depending on the stability
 of your dependencies, it can be a good idea to allow the dev tests to
-fail (e.g. using <code class="highlighter-rouge">allow_failures</code> in Travis CI).</p>
+fail (e.g. using <code class="highlighter-shiki">allow_failures</code> in Travis CI).</p>
 
 <p>I’ve used this technique in my own packages, which you can use as an
 example:</p>

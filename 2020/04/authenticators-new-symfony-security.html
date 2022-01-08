@@ -64,7 +64,7 @@ excited as I am and help realising the full potential with us!</p></div><div cla
 
 <aside class="side" data-type="Try it yourself!">
   <p>If you’re using Symfony 5.1, the SecurityBundle comes with all tools you
-need! Set <code class="highlighter-rouge">security.enable_authenticator_manager</code> to <code class="highlighter-rouge">true</code> to enable the
+need! Set <code class="highlighter-shiki">security.enable_authenticator_manager</code> to <code class="highlighter-shiki">true</code> to enable the
 new system!</p>
 
   <p>Please be aware that this new system in experimental. It may contain
@@ -172,22 +172,22 @@ This made many parts of the component quite hard to extend or customize.
 That’s why this new system is built around 3 main events:</p>
 
 <dl>
-  <dt><code class="highlighter-rouge">VerifyAuthenticatorCredentialsEvent</code></dt>
+  <dt><code class="highlighter-shiki">VerifyAuthenticatorCredentialsEvent</code></dt>
   <dd>This is the most important event. Its listeners validate any
 credentials returned from the authenticator (e.g. a password or CSRF
 token).</dd>
-  <dt><code class="highlighter-rouge">LoginSuccessEvent</code></dt>
+  <dt><code class="highlighter-shiki">LoginSuccessEvent</code></dt>
   <dd>If all credentials were valid, this event is dispatched. The core
 system uses this to e.g. create a remember me cookie or upgrade the
 password hash.</dd>
-  <dt><code class="highlighter-rouge">LoginFailureEvent</code></dt>
+  <dt><code class="highlighter-shiki">LoginFailureEvent</code></dt>
   <dd>If there was an error or credentials are not correct, this event is
 dispatched.</dd>
 </dl>
 
 <p>All core logic is now executed as listener on these events. E.g. if an
 authenticator requires a password to be validated, a listener on
-<code class="highlighter-rouge">VerifyAuthenticatorCredentialsEvent</code> will do this for you. Things like
+<code class="highlighter-shiki">VerifyAuthenticatorCredentialsEvent</code> will do this for you. Things like
 user checkers, session strategies, remember me cookies, password
 upgrading are all done inside event listeners.</p>
     
@@ -215,26 +215,26 @@ Symfony core:</p>
 introduced to provide a better extension point for Security. The new
 system started with this exact Guard interface as a base. The event
 based logic introduced a centralized credentials checking. This removed
-the need for a <code class="highlighter-rouge">checkCredentials()</code> method in the Guard interface. Later
+the need for a <code class="highlighter-shiki">checkCredentials()</code> method in the Guard interface. Later
 on, we introduced some more changes to the interface: The next generation
-<code class="highlighter-rouge">AuthenticatorInterface</code> was born!</p>
+<code class="highlighter-shiki">AuthenticatorInterface</code> was born!</p>
 
 <p>The big change from the Guard interface you may know is that
-<code class="highlighter-rouge">getCredentials()</code> and <code class="highlighter-rouge">getUser()</code> are merged into one method:
-<code class="highlighter-rouge">authenticate(Request $request)</code>. And, as mentioned before,
-<code class="highlighter-rouge">checkCredentials()</code> is gone.</p>
+<code class="highlighter-shiki">getCredentials()</code> and <code class="highlighter-shiki">getUser()</code> are merged into one method:
+<code class="highlighter-shiki">authenticate(Request $request)</code>. And, as mentioned before,
+<code class="highlighter-shiki">checkCredentials()</code> is gone.</p>
 
-<p>This new <code class="highlighter-rouge">authenticate()</code> method creates a <em>Security Passport</em>. This is
+<p>This new <code class="highlighter-shiki">authenticate()</code> method creates a <em>Security Passport</em>. This is
 a new concept in authenticators. <strong>A passport contains the user and any
 credentials needed to authenticate.</strong> This extra information is provided
 using <em>Passport Badges</em>. Listeners on the
-<code class="highlighter-rouge">VerifyAuthenticatorCredentialsEvent</code> will validate and check the
+<code class="highlighter-shiki">VerifyAuthenticatorCredentialsEvent</code> will validate and check the
 passport and all its badges. If <em>all</em> badges are resolved, the user is
 succesfully authenticated.</p>
 
 <p>Let’s see the passport in action. Assume we’re building a form login:</p>
 
-<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<div class="language-php highlighter-shiki"><pre class="shiki-gutter">1
 2
 3
 4
@@ -274,47 +274,47 @@ succesfully authenticated.</p>
 38
 39
 40
-</pre></td><td class="rouge-code"><pre><span class="c1">// ...</span>
-<span class="kn">use</span> <span class="nc">Symfony\Component\HttpFoundation\Request</span><span class="p">;</span>
-<span class="kn">use</span> <span class="nc">Symfony\Component\Security\Core\Exception\UsernameNotFoundException</span><span class="p">;</span>
-<span class="kn">use</span> <span class="nc">Symfony\Component\Security\Http\Authenticator\AuthenticatorInterface</span><span class="p">;</span>
-<span class="kn">use</span> <span class="nc">Symfony\Component\Security\Http\Authenticator\Passport\Badge\CsrfTokenBadge</span><span class="p">;</span>
-<span class="kn">use</span> <span class="nc">Symfony\Component\Security\Http\Authenticator\Passport\Credentials\PasswordCredentials</span><span class="p">;</span>
-<span class="kn">use</span> <span class="nc">Symfony\Component\Security\Http\Authenticator\Passport\Passport</span><span class="p">;</span>
-<span class="kn">use</span> <span class="nc">Symfony\Component\Security\Http\Authenticator\Passport\PassportInterface</span><span class="p">;</span>
-
-<span class="kd">class</span> <span class="nc">FormAuthenticator</span> <span class="kd">implements</span> <span class="nc">AuthenticatorInterface</span>
-<span class="p">{</span>
-    <span class="c1">// ...</span>
-
-    <span class="k">public</span> <span class="k">function</span> <span class="n">authenticate</span><span class="p">(</span><span class="kt">Request</span> <span class="nv">$request</span><span class="p">):</span> <span class="kt">PassportInterface</span>
-    <span class="p">{</span>
-        <span class="c1">// find a user based on an "email" form field</span>
-        <span class="nv">$user</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="n">userRepository</span><span class="o">-&gt;</span><span class="nf">findOneByEmail</span><span class="p">(</span><span class="nv">$request</span><span class="o">-&gt;</span><span class="nf">get</span><span class="p">(</span><span class="s1">'email'</span><span class="p">));</span>
-        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nv">$user</span><span class="p">)</span> <span class="p">{</span>
-            <span class="k">throw</span> <span class="k">new</span> <span class="nc">UsernameNotFoundException</span><span class="p">();</span>
-        <span class="p">}</span>
-
-        <span class="c1">// return the Security passport</span>
-        <span class="k">return</span> <span class="k">new</span> <span class="nc">Passport</span><span class="p">(</span>
-            <span class="c1">// add the user we've just found</span>
-            <span class="nv">$user</span><span class="p">,</span>
-            <span class="c1">// add credentials from the "password" form field</span>
-            <span class="k">new</span> <span class="nc">PasswordCredentials</span><span class="p">(</span><span class="nv">$request</span><span class="o">-&gt;</span><span class="nf">get</span><span class="p">(</span><span class="s1">'password'</span><span class="p">)),</span>
-            <span class="p">[</span>
-                <span class="c1">// and CSRF protection using a "csrf_token" field</span>
-                <span class="k">new</span> <span class="nc">CsrfTokenBadge</span><span class="p">(</span><span class="s1">'loginform'</span><span class="p">,</span> <span class="nv">$request</span><span class="o">-&gt;</span><span class="nf">get</span><span class="p">(</span><span class="s1">'csrf_token'</span><span class="p">))</span>
-
-                <span class="c1">// and add support for upgrading the password hash</span>
-                <span class="k">new</span> <span class="nc">PasswordUpgradeBadge</span><span class="p">(</span>
-                    <span class="nv">$request</span><span class="o">-&gt;</span><span class="nf">get</span><span class="p">(</span><span class="s1">'password'</span><span class="p">),</span>
-                    <span class="nv">$this</span><span class="o">-&gt;</span><span class="n">userRepository</span>
-                <span class="p">)</span>
-            <span class="p">]</span>
-        <span class="p">);</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</pre></td></tr></tbody></table></code></pre></div></div>
+</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #6B90C0; font-style: italic">// ...</span></span>
+<span class="line" data-linenr="2"><span style="color: #E5673D">use</span><span style="color: #BBBBBB"> Symfony</span><span style="color: #999999">\</span><span style="color: #BBBBBB">Component</span><span style="color: #999999">\</span><span style="color: #BBBBBB">HttpFoundation</span><span style="color: #999999">\</span><span style="color: #C7C8D2">Request</span><span style="color: #E5673D">;</span></span>
+<span class="line" data-linenr="3"><span style="color: #E5673D">use</span><span style="color: #BBBBBB"> Symfony</span><span style="color: #999999">\</span><span style="color: #BBBBBB">Component</span><span style="color: #999999">\</span><span style="color: #BBBBBB">Security</span><span style="color: #999999">\</span><span style="color: #BBBBBB">Core</span><span style="color: #999999">\</span><span style="color: #BBBBBB">Exception</span><span style="color: #999999">\</span><span style="color: #C7C8D2">UsernameNotFoundException</span><span style="color: #E5673D">;</span></span>
+<span class="line" data-linenr="4"><span style="color: #E5673D">use</span><span style="color: #BBBBBB"> Symfony</span><span style="color: #999999">\</span><span style="color: #BBBBBB">Component</span><span style="color: #999999">\</span><span style="color: #BBBBBB">Security</span><span style="color: #999999">\</span><span style="color: #BBBBBB">Http</span><span style="color: #999999">\</span><span style="color: #BBBBBB">Authenticator</span><span style="color: #999999">\</span><span style="color: #C7C8D2">AuthenticatorInterface</span><span style="color: #E5673D">;</span></span>
+<span class="line" data-linenr="5"><span style="color: #E5673D">use</span><span style="color: #BBBBBB"> Symfony</span><span style="color: #999999">\</span><span style="color: #BBBBBB">Component</span><span style="color: #999999">\</span><span style="color: #BBBBBB">Security</span><span style="color: #999999">\</span><span style="color: #BBBBBB">Http</span><span style="color: #999999">\</span><span style="color: #BBBBBB">Authenticator</span><span style="color: #999999">\</span><span style="color: #BBBBBB">Passport</span><span style="color: #999999">\</span><span style="color: #BBBBBB">Badge</span><span style="color: #999999">\</span><span style="color: #C7C8D2">CsrfTokenBadge</span><span style="color: #E5673D">;</span></span>
+<span class="line" data-linenr="6"><span style="color: #E5673D">use</span><span style="color: #BBBBBB"> Symfony</span><span style="color: #999999">\</span><span style="color: #BBBBBB">Component</span><span style="color: #999999">\</span><span style="color: #BBBBBB">Security</span><span style="color: #999999">\</span><span style="color: #BBBBBB">Http</span><span style="color: #999999">\</span><span style="color: #BBBBBB">Authenticator</span><span style="color: #999999">\</span><span style="color: #BBBBBB">Passport</span><span style="color: #999999">\</span><span style="color: #BBBBBB">Credentials</span><span style="color: #999999">\</span><span style="color: #C7C8D2">PasswordCredentials</span><span style="color: #E5673D">;</span></span>
+<span class="line" data-linenr="7"><span style="color: #E5673D">use</span><span style="color: #BBBBBB"> Symfony</span><span style="color: #999999">\</span><span style="color: #BBBBBB">Component</span><span style="color: #999999">\</span><span style="color: #BBBBBB">Security</span><span style="color: #999999">\</span><span style="color: #BBBBBB">Http</span><span style="color: #999999">\</span><span style="color: #BBBBBB">Authenticator</span><span style="color: #999999">\</span><span style="color: #BBBBBB">Passport</span><span style="color: #999999">\</span><span style="color: #C7C8D2">Passport</span><span style="color: #E5673D">;</span></span>
+<span class="line" data-linenr="8"><span style="color: #E5673D">use</span><span style="color: #BBBBBB"> Symfony</span><span style="color: #999999">\</span><span style="color: #BBBBBB">Component</span><span style="color: #999999">\</span><span style="color: #BBBBBB">Security</span><span style="color: #999999">\</span><span style="color: #BBBBBB">Http</span><span style="color: #999999">\</span><span style="color: #BBBBBB">Authenticator</span><span style="color: #999999">\</span><span style="color: #BBBBBB">Passport</span><span style="color: #999999">\</span><span style="color: #C7C8D2">PassportInterface</span><span style="color: #E5673D">;</span></span>
+<span class="line" data-linenr="9"></span>
+<span class="line" data-linenr="10"><span style="color: #E5673D">class</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">FormAuthenticator</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">implements</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">AuthenticatorInterface</span></span>
+<span class="line" data-linenr="11"><span style="color: #999999">{</span></span>
+<span class="line" data-linenr="12"><span style="color: #999999">    </span><span style="color: #6B90C0; font-style: italic">// ...</span></span>
+<span class="line" data-linenr="13"></span>
+<span class="line" data-linenr="14"><span style="color: #BBBBBB">    </span><span style="color: #E5673D">public</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">function</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">authenticate</span><span style="color: #999999">(</span><span style="color: #C7C8D2">Request</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">request</span><span style="color: #999999">)</span><span style="color: #E5673D">:</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">PassportInterface</span></span>
+<span class="line" data-linenr="15"><span style="color: #BBBBBB">    </span><span style="color: #999999">{</span></span>
+<span class="line" data-linenr="16"><span style="color: #999999">        </span><span style="color: #6B90C0; font-style: italic">// find a user based on an &quot;email&quot; form field</span></span>
+<span class="line" data-linenr="17"><span style="color: #BBBBBB">        </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">user</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">=</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">this</span><span style="color: #E5673D">-&gt;</span><span style="color: #D8DEE9">userRepository</span><span style="color: #E5673D">-&gt;</span><span style="color: #C7C8D2">findOneByEmail</span><span style="color: #999999">(</span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">request</span><span style="color: #E5673D">-&gt;</span><span style="color: #C7C8D2">get</span><span style="color: #999999">(</span><span style="color: #999999">&#39;</span><span style="color: #7CC64A">email</span><span style="color: #999999">&#39;</span><span style="color: #999999">))</span><span style="color: #E5673D">;</span></span>
+<span class="line" data-linenr="18"><span style="color: #BBBBBB">        </span><span style="color: #E5673D">if</span><span style="color: #BBBBBB"> </span><span style="color: #999999">(</span><span style="color: #E5673D">!$</span><span style="color: #D8DEE9">user</span><span style="color: #999999">)</span><span style="color: #BBBBBB"> </span><span style="color: #999999">{</span></span>
+<span class="line" data-linenr="19"><span style="color: #BBBBBB">            </span><span style="color: #E5673D">throw</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">new</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">UsernameNotFoundException</span><span style="color: #999999">()</span><span style="color: #E5673D">;</span></span>
+<span class="line" data-linenr="20"><span style="color: #BBBBBB">        </span><span style="color: #999999">}</span></span>
+<span class="line" data-linenr="21"></span>
+<span class="line" data-linenr="22"><span style="color: #999999">        </span><span style="color: #6B90C0; font-style: italic">// return the Security passport</span></span>
+<span class="line" data-linenr="23"><span style="color: #BBBBBB">        </span><span style="color: #E5673D">return</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">new</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">Passport</span><span style="color: #999999">(</span></span>
+<span class="line" data-linenr="24"><span style="color: #999999">            </span><span style="color: #6B90C0; font-style: italic">// add the user we&#39;ve just found</span></span>
+<span class="line" data-linenr="25"><span style="color: #BBBBBB">            </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">user</span><span style="color: #999999">,</span></span>
+<span class="line" data-linenr="26"><span style="color: #999999">            </span><span style="color: #6B90C0; font-style: italic">// add credentials from the &quot;password&quot; form field</span></span>
+<span class="line" data-linenr="27"><span style="color: #BBBBBB">            </span><span style="color: #E5673D">new</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">PasswordCredentials</span><span style="color: #999999">(</span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">request</span><span style="color: #E5673D">-&gt;</span><span style="color: #C7C8D2">get</span><span style="color: #999999">(</span><span style="color: #999999">&#39;</span><span style="color: #7CC64A">password</span><span style="color: #999999">&#39;</span><span style="color: #999999">)),</span></span>
+<span class="line" data-linenr="28"><span style="color: #BBBBBB">            </span><span style="color: #999999">[</span></span>
+<span class="line" data-linenr="29"><span style="color: #999999">                </span><span style="color: #6B90C0; font-style: italic">// and CSRF protection using a &quot;csrf_token&quot; field</span></span>
+<span class="line" data-linenr="30"><span style="color: #BBBBBB">                </span><span style="color: #E5673D">new</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">CsrfTokenBadge</span><span style="color: #999999">(</span><span style="color: #999999">&#39;</span><span style="color: #7CC64A">loginform</span><span style="color: #999999">&#39;</span><span style="color: #999999">,</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">request</span><span style="color: #E5673D">-&gt;</span><span style="color: #C7C8D2">get</span><span style="color: #999999">(</span><span style="color: #999999">&#39;</span><span style="color: #7CC64A">csrf_token</span><span style="color: #999999">&#39;</span><span style="color: #999999">))</span></span>
+<span class="line" data-linenr="31"></span>
+<span class="line" data-linenr="32"><span style="color: #999999">                </span><span style="color: #6B90C0; font-style: italic">// and add support for upgrading the password hash</span></span>
+<span class="line" data-linenr="33"><span style="color: #BBBBBB">                </span><span style="color: #E5673D">new</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">PasswordUpgradeBadge</span><span style="color: #999999">(</span></span>
+<span class="line" data-linenr="34"><span style="color: #BBBBBB">                    </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">request</span><span style="color: #E5673D">-&gt;</span><span style="color: #C7C8D2">get</span><span style="color: #999999">(</span><span style="color: #999999">&#39;</span><span style="color: #7CC64A">password</span><span style="color: #999999">&#39;</span><span style="color: #999999">),</span></span>
+<span class="line" data-linenr="35"><span style="color: #BBBBBB">                    </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">this</span><span style="color: #E5673D">-&gt;</span><span style="color: #D8DEE9">userRepository</span></span>
+<span class="line" data-linenr="36"><span style="color: #BBBBBB">                </span><span style="color: #999999">)</span></span>
+<span class="line" data-linenr="37"><span style="color: #BBBBBB">            </span><span style="color: #999999">]</span></span>
+<span class="line" data-linenr="38"><span style="color: #BBBBBB">        </span><span style="color: #999999">)</span><span style="color: #E5673D">;</span></span>
+<span class="line" data-linenr="39"><span style="color: #BBBBBB">    </span><span style="color: #999999">}</span></span>
+<span class="line" data-linenr="40"><span style="color: #999999">}</span></span></code></pre>
+</div>
 
 <aside class="side" data-type="Here's how you can help">
   <p>I’ve talked before on <a href="/2019/03/security-removing-user">removing the User object from Security</a>.
@@ -329,8 +329,8 @@ vunerable, as security leaks will be fixed by the Symfony Security
 team. You can also write your own listener to resolve a badge before a
 listener of Symfony, to customize the checks.</p>
 
-<p>There also is a <code class="highlighter-rouge">CustomCredentials</code> class that you can use to call a
-custom method to check credentials and a <code class="highlighter-rouge">SelfCheckingPassport</code> in case
+<p>There also is a <code class="highlighter-shiki">CustomCredentials</code> class that you can use to call a
+custom method to check credentials and a <code class="highlighter-shiki">SelfCheckingPassport</code> in case
 you don’t need Symfony to check any credentials (e.g. when using API tokens).</p>
     
       <h2 id="next-up">

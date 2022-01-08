@@ -92,13 +92,13 @@ components).</p>
 possible are brand-new. Please install 5.4-dev now and let us <a href="https://github.com/symfony/symfony/issues/new/choose">know about
 any issue</a>.</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<div class="language-bash highlighter-shiki"><pre class="shiki-gutter">1
 2
 3
-</pre></td><td class="rouge-code"><pre><span class="nv">$ </span>composer config minimum-stability dev
-<span class="c"># now, modify all Symfony constraints to "^5.4" in "composer.json", then:</span>
-<span class="nv">$ </span>composer update <span class="s1">'symfony/*'</span>
-</pre></td></tr></tbody></table></code></pre></div></div>
+</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #BBBBBB">$ composer config minimum-stability dev</span></span>
+<span class="line" data-linenr="2"><span style="color: #6B90C0; font-style: italic"># now, modify all Symfony constraints to &quot;^5.4&quot; in &quot;composer.json&quot;, then:</span></span>
+<span class="line" data-linenr="3"><span style="color: #BBBBBB">$ composer update </span><span style="color: #999999">&#39;</span><span style="color: #7CC64A">symfony/*</span><span style="color: #999999">&#39;</span></span></code></pre>
+</div>
     
       <h3 id="when-upgrading-to-symfony-54">
         
@@ -114,7 +114,7 @@ you also need to fix some type declarations.</p>
 <p>In PHP, it is possible to define a return type when the parent
 declaration doesn’t define it (yet):</p>
 
-<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<div class="language-php highlighter-shiki"><pre class="shiki-gutter">1
 2
 3
 4
@@ -127,46 +127,46 @@ declaration doesn’t define it (yet):</p>
 11
 12
 13
-</pre></td><td class="rouge-code"><pre><span class="kd">interface</span> <span class="nc">UserInterface</span>
-<span class="p">{</span>
-    <span class="k">public</span> <span class="k">function</span> <span class="n">getRoles</span><span class="p">();</span>
-<span class="p">}</span>
-
-<span class="kd">class</span> <span class="nc">User</span> <span class="kd">implements</span> <span class="nc">UserInterface</span>
-<span class="p">{</span>
-    <span class="c1">// valid!</span>
-    <span class="k">public</span> <span class="k">function</span> <span class="n">getRoles</span><span class="p">():</span> <span class="kt">array</span>
-    <span class="p">{</span>
-        <span class="c1">// ...</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</pre></td></tr></tbody></table></code></pre></div></div>
+</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #E5673D">interface</span><span style="color: #BBBBBB"> UserInterface</span></span>
+<span class="line" data-linenr="2"><span style="color: #999999">{</span></span>
+<span class="line" data-linenr="3"><span style="color: #BBBBBB">    </span><span style="color: #E5673D">public</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">function</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">getRoles</span><span style="color: #999999">()</span><span style="color: #E5673D">;</span></span>
+<span class="line" data-linenr="4"><span style="color: #999999">}</span></span>
+<span class="line" data-linenr="5"></span>
+<span class="line" data-linenr="6"><span style="color: #E5673D">class</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">User</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">implements</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">UserInterface</span></span>
+<span class="line" data-linenr="7"><span style="color: #999999">{</span></span>
+<span class="line" data-linenr="8"><span style="color: #999999">    </span><span style="color: #6B90C0; font-style: italic">// valid!</span></span>
+<span class="line" data-linenr="9"><span style="color: #BBBBBB">    </span><span style="color: #E5673D">public</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">function</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">getRoles</span><span style="color: #999999">()</span><span style="color: #E5673D">:</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">array</span></span>
+<span class="line" data-linenr="10"><span style="color: #BBBBBB">    </span><span style="color: #999999">{</span></span>
+<span class="line" data-linenr="11"><span style="color: #999999">        </span><span style="color: #6B90C0; font-style: italic">// ...</span></span>
+<span class="line" data-linenr="12"><span style="color: #BBBBBB">    </span><span style="color: #999999">}</span></span>
+<span class="line" data-linenr="13"><span style="color: #999999">}</span></span></code></pre>
+</div>
 
 <p>At the other hand, you must define a return type if your parent does
 (remember, Symfony 6 will define return types!). This means that 5.4 is
 your time to add return types to all methods (especially those
 overriding or implementing methods from Symfony).</p>
 
-<p>Symfony provides a small utility in the <a href="https://symfony.com/components/ErrorHandler"><code class="highlighter-rouge">symfony/error-handler</code> component</a>
+<p>Symfony provides a small utility in the <a href="https://symfony.com/components/ErrorHandler"><code class="highlighter-shiki">symfony/error-handler</code> component</a>
 to automatically add the required return types. First, generate a
 complete classmap of your application using Composer. Then, run the
 utility:</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<div class="language-bash highlighter-shiki"><pre class="shiki-gutter">1
 2
 3
 4
 5
 6
 7
-</pre></td><td class="rouge-code"><pre><span class="c"># (1) Make sure "exclude-from-classmap" is not set in your "composer.json"</span>
-
-<span class="c"># (2) Generate the classmap ("-o" is important!)</span>
-<span class="nv">$ </span>composer dump-autoload <span class="nt">-o</span>
-
-<span class="c"># (3) Run the patch script</span>
-<span class="nv">$ </span>./vendor/bin/patch-type-declarations
-</pre></td></tr></tbody></table></code></pre></div></div>
+</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #6B90C0; font-style: italic"># (1) Make sure &quot;exclude-from-classmap&quot; is not set in your &quot;composer.json&quot;</span></span>
+<span class="line" data-linenr="2"></span>
+<span class="line" data-linenr="3"><span style="color: #6B90C0; font-style: italic"># (2) Generate the classmap (&quot;-o&quot; is important!)</span></span>
+<span class="line" data-linenr="4"><span style="color: #BBBBBB">$ composer dump-autoload -o</span></span>
+<span class="line" data-linenr="5"></span>
+<span class="line" data-linenr="6"><span style="color: #6B90C0; font-style: italic"># (3) Run the patch script</span></span>
+<span class="line" data-linenr="7"><span style="color: #BBBBBB">$ ./vendor/bin/patch-type-declarations</span></span></code></pre>
+</div>
 
 <p>Once you’ve fixed them (and running this script above will do it all for
 you), you’re ready to upgrade to Symfony 6!</p>
@@ -184,7 +184,7 @@ Parameter type compatibility is inverted compared to return types: a
 child may not set the type if the parent already does, but a child
 cannot set the type before the parent:</p>
 
-<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<div class="language-php highlighter-shiki"><pre class="shiki-gutter">1
 2
 3
 4
@@ -197,20 +197,20 @@ cannot set the type before the parent:</p>
 11
 12
 13
-</pre></td><td class="rouge-code"><pre><span class="kd">interface</span> <span class="nc">FormTypeGuesserInterface</span>
-<span class="p">{</span>
-    <span class="k">public</span> <span class="k">function</span> <span class="n">guessType</span><span class="p">(</span><span class="nv">$class</span><span class="p">,</span> <span class="nv">$property</span><span class="p">);</span>
-<span class="p">}</span>
-
-<span class="kd">class</span> <span class="nc">CustomTypeGuesser</span> <span class="kd">implements</span> <span class="nc">UserInterface</span>
-<span class="p">{</span>
-    <span class="c1">// error!</span>
-    <span class="k">public</span> <span class="k">function</span> <span class="n">guessType</span><span class="p">(</span><span class="kt">string</span> <span class="nv">$class</span><span class="p">,</span> <span class="kt">string</span> <span class="nv">$property</span><span class="p">)</span>
-    <span class="p">{</span>
-        <span class="c1">// ...</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</pre></td></tr></tbody></table></code></pre></div></div>
+</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #E5673D">interface</span><span style="color: #BBBBBB"> FormTypeGuesserInterface</span></span>
+<span class="line" data-linenr="2"><span style="color: #999999">{</span></span>
+<span class="line" data-linenr="3"><span style="color: #BBBBBB">    </span><span style="color: #E5673D">public</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">function</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">guessType</span><span style="color: #999999">(</span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">class</span><span style="color: #999999">,</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">property</span><span style="color: #999999">)</span><span style="color: #E5673D">;</span></span>
+<span class="line" data-linenr="4"><span style="color: #999999">}</span></span>
+<span class="line" data-linenr="5"></span>
+<span class="line" data-linenr="6"><span style="color: #E5673D">class</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">CustomTypeGuesser</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">implements</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">UserInterface</span></span>
+<span class="line" data-linenr="7"><span style="color: #999999">{</span></span>
+<span class="line" data-linenr="8"><span style="color: #999999">    </span><span style="color: #6B90C0; font-style: italic">// error!</span></span>
+<span class="line" data-linenr="9"><span style="color: #BBBBBB">    </span><span style="color: #E5673D">public</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">function</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">guessType</span><span style="color: #999999">(</span><span style="color: #E5673D">string</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">class</span><span style="color: #999999">,</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">string</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">property</span><span style="color: #999999">)</span></span>
+<span class="line" data-linenr="10"><span style="color: #BBBBBB">    </span><span style="color: #999999">{</span></span>
+<span class="line" data-linenr="11"><span style="color: #999999">        </span><span style="color: #6B90C0; font-style: italic">// ...</span></span>
+<span class="line" data-linenr="12"><span style="color: #BBBBBB">    </span><span style="color: #999999">}</span></span>
+<span class="line" data-linenr="13"><span style="color: #999999">}</span></span></code></pre>
+</div>
 
 <p>For this reason, you cannot add these parameter types in 5.4.</p>
     
@@ -241,28 +241,28 @@ that should not be extended by users of your package. The patch tool
 from Symfony defines safe methods as any method that:</p>
 
 <ul>
-  <li>Is in the <code class="highlighter-rouge">Tests</code> namespace</li>
-  <li>Is <code class="highlighter-rouge">final</code> or <code class="highlighter-rouge">@final</code> (or its class)</li>
-  <li>Is <code class="highlighter-rouge">@internal</code> (or its class)</li>
-  <li>Is <code class="highlighter-rouge">private</code></li>
+  <li>Is in the <code class="highlighter-shiki">Tests</code> namespace</li>
+  <li>Is <code class="highlighter-shiki">final</code> or <code class="highlighter-shiki">@final</code> (or its class)</li>
+  <li>Is <code class="highlighter-shiki">@internal</code> (or its class)</li>
+  <li>Is <code class="highlighter-shiki">private</code></li>
 </ul>
 
-<p>Use <code class="highlighter-rouge">force=1</code> to only patch types for these safe methods:</p>
+<p>Use <code class="highlighter-shiki">force=1</code> to only patch types for these safe methods:</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<div class="language-bash highlighter-shiki"><pre class="shiki-gutter">1
 2
 3
-</pre></td><td class="rouge-code"><pre><span class="c"># you can set the minimum PHP version, e.g. "static" won't be added</span>
-<span class="c"># as a return type for 7.4</span>
-<span class="nv">$ SYMFONY_PATCH_TYPE_DECLARATIONS</span><span class="o">=</span><span class="s2">"force=1&amp;php=7.4"</span> ./vendor/bin/patch-type-declarations
-</pre></td></tr></tbody></table></code></pre></div></div>
+</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #6B90C0; font-style: italic"># you can set the minimum PHP version, e.g. &quot;static&quot; won&#39;t be added</span></span>
+<span class="line" data-linenr="2"><span style="color: #6B90C0; font-style: italic"># as a return type for 7.4</span></span>
+<span class="line" data-linenr="3"><span style="color: #BBBBBB">$ SYMFONY_PATCH_TYPE_DECLARATIONS=</span><span style="color: #999999">&quot;</span><span style="color: #7CC64A">force=1&amp;php=7.4</span><span style="color: #999999">&quot;</span><span style="color: #BBBBBB"> ./vendor/bin/patch-type-declarations</span></span></code></pre>
+</div>
 
 <p>Now, you have to check if there are any methods that would produce an
 error in Symfony 6. The quickest way to do this is running the same
 script again. Any deprecation in the output is an incompatible method.</p>
 
 <p>If you don’t see any deprecation: Congratulations! You are compatible with
-Symfony 6 and can allow <code class="highlighter-rouge">^6.0</code> to your Symfony dependencies without having
+Symfony 6 and can allow <code class="highlighter-shiki">^6.0</code> to your Symfony dependencies without having
 to break compatibility for your users.</p>
     
       <h3 id="fix-all-return-types">
@@ -279,14 +279,14 @@ compatibility break, you probably don’t want to do this in a minor
 release.</p>
 
 <p>Instead, make sure you properly document the correct return type using
-the <code class="highlighter-rouge">@return</code> PHPDoc. This will create the useful deprecations for your
+the <code class="highlighter-shiki">@return</code> PHPDoc. This will create the useful deprecations for your
 users to know they have to update their PHP return types. The patch
 script can add this PHPDoc for methods that implement/override from
 third party classes/interfaces:</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-</pre></td><td class="rouge-code"><pre><span class="nv">$ SYMFONY_PATCH_TYPE_DECLARATIONS</span><span class="o">=</span><span class="nv">force</span><span class="o">=</span>phpdoc ./vendor/bin/patch-type-declarations
-</pre></td></tr></tbody></table></code></pre></div></div>
+<div class="language-bash highlighter-shiki"><pre class="shiki-gutter">1
+</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #BBBBBB">$ SYMFONY_PATCH_TYPE_DECLARATIONS=force=phpdoc ./vendor/bin/patch-type-declarations</span></span></code></pre>
+</div>
 
 <p>After this minor release with all deprecations, you can safely add all
 the missing return types in the next major version.</p>
@@ -315,8 +315,8 @@ causing you to break compatibility in your package. You can do so in
 <p>We don’t promise anything, but based on the feedback we might postpone
 some return types to Symfony 7 (to give you 2 more years to release a
 new major version). We’ve already done so for some common methods found
-in the Symfony bundles (e.g. <code class="highlighter-rouge">Command::execute(): int</code> and
-<code class="highlighter-rouge">VoterInterface::vote(): int</code>).</p>
+in the Symfony bundles (e.g. <code class="highlighter-shiki">Command::execute(): int</code> and
+<code class="highlighter-shiki">VoterInterface::vote(): int</code>).</p>
     
       <h2 id="take-homes">
         
@@ -328,7 +328,7 @@ in the Symfony bundles (e.g. <code class="highlighter-rouge">Command::execute():
 
 <ul>
   <li>Symfony 6 will be type safe</li>
-  <li>There is a <a href="https://symfony.com/doc/5.4/setup/upgrade_major.html#upgrading-to-symfony-6-add-native-return-types"><code class="highlighter-rouge">patch-type-declarations</code> script</a> in Symfony 5.4+ that
+  <li>There is a <a href="https://symfony.com/doc/5.4/setup/upgrade_major.html#upgrading-to-symfony-6-add-native-return-types"><code class="highlighter-shiki">patch-type-declarations</code> script</a> in Symfony 5.4+ that
 automatically makes your code compatible</li>
   <li>Open source maintainers have 2.5 months to <a href="https://github.com/symfony/symfony/issues/43021">help us reduce the
 impact</a> of this change</li>

@@ -77,8 +77,8 @@ en die andere verwijderen.</p>
 
 <p>Een dependency manager helpt je hierbij, nouja helpen, je hoeft er eigenlijk
 bijna niks meer voor te doen. Als je een project maakt maak je een
-<code class="highlighter-rouge">composer.json</code> bestand waarin je schrijft welke third-party libaries je wilt
-en welke versie. Vervolgens hoef je alleen maar <code class="highlighter-rouge">composer install</code> uit te
+<code class="highlighter-shiki">composer.json</code> bestand waarin je schrijft welke third-party libaries je wilt
+en welke versie. Vervolgens hoef je alleen maar <code class="highlighter-shiki">composer install</code> uit te
 voeren en je hebt alle benodigde libaries.</p>
     
       <h2 id="composer-installeren-windows">
@@ -99,34 +99,31 @@ versie te downloaden.</p>
 
 <p>Als je het cmd opent (ga naar Start en vul bij zoekopdracht starten cmd in)
 zie je een zwart scherm voor je. Je ziet hier eerst het path waar we inzitten
-en daarna een <code class="highlighter-rouge">&gt;</code> en daarna kan je typen.</p>
+en daarna een <code class="highlighter-shiki">&gt;</code> en daarna kan je typen.</p>
 
-<p>Het CMD werkt met commands om alles te doen. Stel we zijn nu in <code class="highlighter-rouge">C:\Users\Acme</code>
-en we willen naar <code class="highlighter-rouge">C:\Users\Acme\projects</code> dan doen we:</p>
+<p>Het CMD werkt met commands om alles te doen. Stel we zijn nu in <code class="highlighter-shiki">C:\Users\Acme</code>
+en we willen naar <code class="highlighter-shiki">C:\Users\Acme\projects</code> dan doen we:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-</pre></td><td class="rouge-code"><pre>C:\Users\Acme&gt; cd projects
-</pre></td></tr></tbody></table></code></pre></div></div>
+<div class="highlighter-shiki"><pre class="shiki language-none"><code>C:\Users\Acme&gt; cd projects
+</code></pre>
+</div>
 
-<p>Stel we willen naar <code class="highlighter-rouge">E:\wamp\www\myProject</code> dan moet dat in 2 stappen: Eerst
+<p>Stel we willen naar <code class="highlighter-shiki">E:\wamp\www\myProject</code> dan moet dat in 2 stappen: Eerst
 moeten we naar de andere schrijf (E) en daarna gaan we naar de juiste map:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-</pre></td><td class="rouge-code"><pre>C:\Users\Acme\projects&gt; e:
+<div class="highlighter-shiki"><pre class="shiki language-none"><code>C:\Users\Acme\projects&gt; e:
 E:\&gt; cd wamp/www/myProject
-</pre></td></tr></tbody></table></code></pre></div></div>
+</code></pre>
+</div>
 
 <p>Dit spreekt wel voorzich denk ik. Als je nu wilt weten welke bestanden er in
 deze map zitten gebruik je het ls command:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-</pre></td><td class="rouge-code"><pre>E:\wamp\www\myProject&gt; ls
+<div class="highlighter-shiki"><pre class="shiki language-none"><code>E:\wamp\www\myProject&gt; ls
 css         img         js
 index.php   .htaccess
-</pre></td></tr></tbody></table></code></pre></div></div><hr />
+</code></pre>
+</div><hr />
 
 <p>I.p.v. de standaard command (cd, ls, enz.) kun je ook programmas toevoegen als
 command. Dit doe je door dat programma aan de omgevingsvariabele PATH toe te
@@ -144,10 +141,10 @@ op van php.exe (in mijn geval E:\wamp\bin\php\php5.4.0\php.exe). Nu klikken we
 met de rechtermuisknop op Computer en dan eigenschappen &gt; Geavanceerde
 systeeminstellingen &gt; Geavanceerd &gt; Omgevingsvariabelen Daarin klikken we
 dubbel op PATH en dan voegen we onze map (dus zonder bestandsnaam) toe aan deze
-variabele door deze te scheiden met de vorige map met een <code class="highlighter-rouge">;</code>.</p>
+variabele door deze te scheiden met de vorige map met een <code class="highlighter-shiki">;</code>.</p>
 
 <p>Nu kunnen we in ons CMD PHP gebruiken. Stel we hebben het composer.phar bestand
-gedownload in <code class="highlighter-rouge">C:\Programs</code>. Dan kunnen we nu het composer bestand aanroepen
+gedownload in <code class="highlighter-shiki">C:\Programs</code>. Dan kunnen we nu het composer bestand aanroepen
 met PHP:</p>
 
 <p>E:\wamp\www\myProject&gt; php C:\Programs\composer.phar install</p>
@@ -163,26 +160,25 @@ met PHP:</p>
 <p>Maar dat is zoveel typewerk vind je niet? Daarom gaan we dit wat verbeteren. We
 verplaatsen composer.phar even naar een map die wat logischer is, in mijn geval
 heb ik het in dezelfde map als PHP gezet. In dezelfde map maken we een
-bestandje genaamd <code class="highlighter-rouge">composer.bat</code>. Hierin plaatsen we het volgende:</p>
+bestandje genaamd <code class="highlighter-shiki">composer.bat</code>. Hierin plaatsen we het volgende:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-</pre></td><td class="rouge-code"><pre>@echo off
-php "E:\wamp\bin\php\php5.4.0\composer.phar" %*
-</pre></td></tr></tbody></table></code></pre></div></div>
+<div class="highlighter-shiki"><pre class="shiki language-none"><code>@echo off
+php &quot;E:\wamp\bin\php\php5.4.0\composer.phar&quot; %*
+</code></pre>
+</div>
 
-<p>Wat dit doet is dat we ons php command aanroepen (<code class="highlighter-rouge">php</code> op regel 2) vervolgens
-roepen we ons composer.phar bestandje aan en dan met <code class="highlighter-rouge">%*</code> geven we aan dat alle
+<p>Wat dit doet is dat we ons php command aanroepen (<code class="highlighter-shiki">php</code> op regel 2) vervolgens
+roepen we ons composer.phar bestandje aan en dan met <code class="highlighter-shiki">%*</code> geven we aan dat alle
 argumenten worden overgenomen en doorgegeven aan composer.phar.</p>
 
 <p>We moeten vervolgens deze map, mocht dat nog niet zo zijn, weer toevoegen aan
 de omgevingsvariabelen.</p>
 
 <p>We hebben nu dus eigenlijk een bestandje gemaakt met een shortcut erin, i.p.v.
-<code class="highlighter-rouge">php E:\wamp\bin\php\php5.4.0\composer.phar install</code> hoeven we nu alleen
-<code class="highlighter-rouge">composer install</code> te gebruiken. Er wordt dan het bestandje <code class="highlighter-rouge">composer.bat</code>
+<code class="highlighter-shiki">php E:\wamp\bin\php\php5.4.0\composer.phar install</code> hoeven we nu alleen
+<code class="highlighter-shiki">composer install</code> te gebruiken. Er wordt dan het bestandje <code class="highlighter-shiki">composer.bat</code>
 aangeroepen die vervolgens weer ons oude command aanroept en het argument
-<code class="highlighter-rouge">install</code> doorgeeft aan de composer.phar.</p>
+<code class="highlighter-shiki">install</code> doorgeeft aan de composer.phar.</p>
     
       <h3 id="git">
         
@@ -207,7 +203,7 @@ toevoegen.</p>
       </h2>
 
 <p>Nou dan kunnen we eindelijk aan de slag. We gaan naar ons project en maken een
-<code class="highlighter-rouge">composer.json</code> bestand aan waarin we in JSON allemaal settings kunnen
+<code class="highlighter-shiki">composer.json</code> bestand aan waarin we in JSON allemaal settings kunnen
 instellen.</p>
 
 <p>Stel ik heb nu een project en nu wil ik Swiftmailer gebruiken. Dan moeten we
@@ -225,15 +221,13 @@ met onder anderen de versies. Bij het instellen welke package we willen moeten
 we ook altijd een versie instellen. Deze versie kun je op verschillende
 manieren opbouwen:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-</pre></td><td class="rouge-code"><pre>2.1.*
+<div class="highlighter-shiki"><pre class="shiki language-none"><code>2.1.*
 &gt;= 2.1.0, &lt;2.2.5
 2.1.13
-</pre></td></tr></tbody></table></code></pre></div></div>
+</code></pre>
+</div>
 
-<p>In het eerste geval gebruiken we de <code class="highlighter-rouge">*</code> wildchart, dat staat voor elk getal. In
+<p>In het eerste geval gebruiken we de <code class="highlighter-shiki">*</code> wildchart, dat staat voor elk getal. In
 ons geval betekend 2.1.* dus dat het 2.1.0 kan zijn, maar ook 2.1.29, enz.
 Zolang het maar begint met 2.1.</p>
 
@@ -242,47 +236,37 @@ op zijn minst versie 2.1.0, maar niet hoger dan versie 2.2.5. In het 3e geval
 hebben we gewoon een exacte versie ingevuld.</p>
 
 <p>Nu we de versie weten (we gaan voor 4.2.*) kunnen we het instellen zodat
-composer het gaat inladen. Dat doen we door in <code class="highlighter-rouge">composer.json</code> de require
+composer het gaat inladen. Dat doen we door in <code class="highlighter-shiki">composer.json</code> de require
 parameter in te vullen:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-4
-5
-</pre></td><td class="rouge-code"><pre>{
-    "require" : {
-        "swiftmailer\swiftmailer" : "4.2.*"
+<div class="highlighter-shiki"><pre class="shiki language-none"><code>{
+    &quot;require&quot; : {
+        &quot;swiftmailer\swiftmailer&quot; : &quot;4.2.*&quot;
     }
 }
-</pre></td></tr></tbody></table></code></pre></div></div>
+</code></pre>
+</div>
 
 <p>Stel dat we nu ook nog Propel willen inladen. Dan gaan we weer zoeken op propel
 en vinden we de propel\propel package. Deze heeft maar 1 versie en dus gaan we
 die er ook bij zetten:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-4
-5
-6
-</pre></td><td class="rouge-code"><pre>{
-    "require" : {
-        "swiftmailer\swiftmailer" : "4.2.*",
-        "propel\propel" : "dev-master"
+<div class="highlighter-shiki"><pre class="shiki language-none"><code>{
+    &quot;require&quot; : {
+        &quot;swiftmailer\swiftmailer&quot; : &quot;4.2.*&quot;,
+        &quot;propel\propel&quot; : &quot;dev-master&quot;
     }
 }
-</pre></td></tr></tbody></table></code></pre></div></div>
+</code></pre>
+</div>
 
 <p>Nu we alle packages hebben gedefinieerd kunnen we ze gaan installeren door de
 composer command aan te roepen:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-</pre></td><td class="rouge-code"><pre>cd path/to/myProject
+<div class="highlighter-shiki"><pre class="shiki language-none"><code>cd path/to/myProject
 composer install
-</pre></td></tr></tbody></table></code></pre></div></div>
+</code></pre>
+</div>
 
 <p>De packages worden nu in de vendor map gezet, vendors is weer zon andere naam
 voor third-party libaries.</p>
@@ -303,28 +287,20 @@ automatisch goed geladen.</p>
 
 <p>Aangezien je naast de packages ook nog je eigen klassen hebt die ingeladen
 moeten worden kun je de autoloader instellen waar hij naar jou klassen moet
-gaan zoeken. Ik plaats bijv. alles in een <code class="highlighter-rouge">src</code> map, we geven dan aan dat hij
+gaan zoeken. Ik plaats bijv. alles in een <code class="highlighter-shiki">src</code> map, we geven dan aan dat hij
 naar klassen kan zoeken in de src map:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-4
-5
-6
-7
-8
-9
-</pre></td><td class="rouge-code"><pre>{
-    "require" : {
-        "swiftmailer\swiftmailer" : "4.2.*",
-        "propel\propel" : "dev-master"
+<div class="highlighter-shiki"><pre class="shiki language-none"><code>{
+    &quot;require&quot; : {
+        &quot;swiftmailer\swiftmailer&quot; : &quot;4.2.*&quot;,
+        &quot;propel\propel&quot; : &quot;dev-master&quot;
     },
-    "autoload" : {
-        "psr-0" : { "" : "src/" }
+    &quot;autoload&quot; : {
+        &quot;psr-0&quot; : { &quot;&quot; : &quot;src/&quot; }
     }
 }
-</pre></td></tr></tbody></table></code></pre></div></div>
+</code></pre>
+</div>
 
 <p>Dit komt wellicht wat vaag over, maar PSR-0 is de standaard waaraan alle
 klassenamen zich moeten houden en we kunnen dan aangeven dat er naar een
@@ -349,7 +325,7 @@ naar <a href="https://github.com/symfony/symfony">Symfony</a>.</p>
 bestand aangemaakt die aangeeft welke versies er nu zijn geïnstalleerd.</p>
 
 <p>Stel dat Swiftmailer een nieuwe versie heeft (bijv. 4.2.5) en die wil jij ook
-hebben, dan hoef je alleen maar <code class="highlighter-rouge">composer update</code> uit te voeren en de packages
+hebben, dan hoef je alleen maar <code class="highlighter-shiki">composer update</code> uit te voeren en de packages
 worden geüpdatet.</p>
     
       <h2 id="en-nu-kan-je">
@@ -370,9 +346,9 @@ misschien kom je halverwege deze vakantie wel de eerste berichten tegen. Om je
 alvast warm te maken en een idee te geven hoe makkelijk het is om Symfony te
 downloaden met composer:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-</pre></td><td class="rouge-code"><pre>composer create-project symfony/framework-standard-edition
-</pre></td></tr></tbody></table></code></pre></div></div>
+<div class="highlighter-shiki"><pre class="shiki language-none"><code>composer create-project symfony/framework-standard-edition
+</code></pre>
+</div>
 
         </div>
     </div>

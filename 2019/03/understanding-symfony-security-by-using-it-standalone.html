@@ -98,13 +98,13 @@ identified in (1) is allowed to do the action he wants to do</li>
 the directory, we’ll use <a href="https://getcomposer.org/">Composer</a> to install the
 Security Core component:</p>
 
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<div class="language-bash highlighter-shiki"><pre class="shiki-gutter">1
 2
 3
-</pre></td><td class="rouge-code"><pre><span class="nv">$ </span><span class="nb">mkdir </span>security-101
-<span class="nv">$ </span><span class="nb">cd </span>security-101
-<span class="nv">$ </span>composer require symfony/security-core
-</pre></td></tr></tbody></table></code></pre></div></div>
+</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #BBBBBB">$ mkdir security-101</span></span>
+<span class="line" data-linenr="2"><span style="color: #BBBBBB">$ </span><span style="color: #C7C8D2">cd</span><span style="color: #BBBBBB"> security-101</span></span>
+<span class="line" data-linenr="3"><span style="color: #BBBBBB">$ composer require symfony/security-core</span></span></code></pre>
+</div>
 
 <p>Security contains a couple sub components: Core, Http, Guard, Csrf. In this
 post, we’ll focus on the core only. In a funny plot twist, you’ll directly
@@ -126,35 +126,35 @@ the input from user world.</p>
 
 <aside class="side" data-type="Symfony internals">
   <p>The HTTP Security component uses listeners attached to
-<a href="https://symfony.com/doc/current/reference/events.html#kernel-request"><code class="highlighter-rouge">kernel.request</code></a>
+<a href="https://symfony.com/doc/current/reference/events.html#kernel-request"><code class="highlighter-shiki">kernel.request</code></a>
 to create tokens. For instance, the
-<a href="https://github.com/symfony/security/blob/88588499b5c3ed78becea8e0c4ec8d81e0e4f483/Http/Firewall/UsernamePasswordFormAuthenticationListener.php"><code class="highlighter-rouge">UsernamePasswordFormAuthenticationListener</code></a>
-creates a <code class="highlighter-rouge">UsernamePasswordToken</code> based on the login form submit.</p>
+<a href="https://github.com/symfony/security/blob/88588499b5c3ed78becea8e0c4ec8d81e0e4f483/Http/Firewall/UsernamePasswordFormAuthenticationListener.php"><code class="highlighter-shiki">UsernamePasswordFormAuthenticationListener</code></a>
+creates a <code class="highlighter-shiki">UsernamePasswordToken</code> based on the login form submit.</p>
 </aside>
 
 <p>As our goal is just to write one working PHP file, we’ll use static strings as
 “input from the user”:</p>
 
-<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<div class="language-php highlighter-shiki"><pre class="shiki-gutter">1
 2
 3
 4
 5
 6
 7
-</pre></td><td class="rouge-code"><pre><span class="cp">&lt;?php</span> <span class="c1">// secure.php</span>
-
-<span class="k">require_once</span> <span class="s1">'vendor/autoload.php'</span><span class="p">;</span>
-
-<span class="kn">use</span> <span class="nc">Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken</span><span class="p">;</span>
-
-<span class="nv">$token</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">UsernamePasswordToken</span><span class="p">(</span><span class="s1">'wouter'</span><span class="p">,</span> <span class="s1">'pa$$word'</span><span class="p">,</span> <span class="s1">'default'</span><span class="p">);</span>
-</pre></td></tr></tbody></table></code></pre></div></div>
+</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #E5673D">&lt;?</span><span style="color: #BBBBBB">php </span><span style="color: #6B90C0; font-style: italic">// secure.php</span></span>
+<span class="line" data-linenr="2"></span>
+<span class="line" data-linenr="3"><span style="color: #E5673D">require_once</span><span style="color: #BBBBBB"> </span><span style="color: #999999">&#39;</span><span style="color: #7CC64A">vendor/autoload.php</span><span style="color: #999999">&#39;</span><span style="color: #E5673D">;</span></span>
+<span class="line" data-linenr="4"></span>
+<span class="line" data-linenr="5"><span style="color: #E5673D">use</span><span style="color: #BBBBBB"> Symfony</span><span style="color: #999999">\</span><span style="color: #BBBBBB">Component</span><span style="color: #999999">\</span><span style="color: #BBBBBB">Security</span><span style="color: #999999">\</span><span style="color: #BBBBBB">Core</span><span style="color: #999999">\</span><span style="color: #BBBBBB">Authentication</span><span style="color: #999999">\</span><span style="color: #BBBBBB">Token</span><span style="color: #999999">\</span><span style="color: #C7C8D2">UsernamePasswordToken</span><span style="color: #E5673D">;</span></span>
+<span class="line" data-linenr="6"></span>
+<span class="line" data-linenr="7"><span style="color: #E5673D">$</span><span style="color: #D8DEE9">token</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">=</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">new</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">UsernamePasswordToken</span><span style="color: #999999">(</span><span style="color: #999999">&#39;</span><span style="color: #7CC64A">wouter</span><span style="color: #999999">&#39;</span><span style="color: #999999">,</span><span style="color: #BBBBBB"> </span><span style="color: #999999">&#39;</span><span style="color: #7CC64A">pa$$word</span><span style="color: #999999">&#39;</span><span style="color: #999999">,</span><span style="color: #BBBBBB"> </span><span style="color: #999999">&#39;</span><span style="color: #7CC64A">default</span><span style="color: #999999">&#39;</span><span style="color: #999999">)</span><span style="color: #E5673D">;</span></span></code></pre>
+</div>
 
 <p>This type of token is most often used in traditional applications, it holds a
 username and a password (ignore that third argument for the moment). Other
-tokens are for instance a <code class="highlighter-rouge">RememberMeToken</code>, which uses a browser cookie, or
-you can create an <code class="highlighter-rouge">BearerToken</code> that contains a header used for API requests.</p>
+tokens are for instance a <code class="highlighter-shiki">RememberMeToken</code>, which uses a browser cookie, or
+you can create an <code class="highlighter-shiki">BearerToken</code> that contains a header used for API requests.</p>
     
       <h3 id="lets-authenticate-the-token-meet-the-authenticationmanager">
         
@@ -165,24 +165,24 @@ you can create an <code class="highlighter-rouge">BearerToken</code> that contai
       </h3>
 
 <p>Now we have the token representing the user input, it’s time to authenticate
-it. The Security component provides an <code class="highlighter-rouge">AuthenticationManagerInterface</code> for this.
+it. The Security component provides an <code class="highlighter-shiki">AuthenticationManagerInterface</code> for this.
 By default, only one implementation of this interface is provided: The
-<code class="highlighter-rouge">AuthenticationProviderManager</code>. Its name is quite confusing, it’s not managing
+<code class="highlighter-shiki">AuthenticationProviderManager</code>. Its name is quite confusing, it’s not managing
 <em>authentication providers</em>, but it is the <em>authentication manager</em> based on
 <em>authentication providers</em>.</p>
 
-<p><code class="highlighter-rouge">AuthenticationProviderInterface</code> classes do the hard work for this manager:
+<p><code class="highlighter-shiki">AuthenticationProviderInterface</code> classes do the hard work for this manager:
 They transform an unauthenticated token into an authenticated token. In other
 words, they transform user input into a security identity.</p>
 
 <aside class="side" data-type="Symfony internals">
   <p><a href="https://github.com/symfony/security/tree/88588499b5c3ed78becea8e0c4ec8d81e0e4f483/Core/Authentication/Provider">Other authentication providers</a>
-are for instance a <code class="highlighter-rouge">RememberMeAuthenticationProvider</code> (authenticating a remember-me
-cookie) and an <code class="highlighter-rouge">AnonymousAuthenticationProvider</code> (which always returns a token
+are for instance a <code class="highlighter-shiki">RememberMeAuthenticationProvider</code> (authenticating a remember-me
+cookie) and an <code class="highlighter-shiki">AnonymousAuthenticationProvider</code> (which always returns a token
 representing an anonymous user).</p>
 </aside>
 
-<p>The most commonly used provider is the <code class="highlighter-rouge">DaoAuthenticationProvider</code> (<strong>D</strong>ata
+<p>The most commonly used provider is the <code class="highlighter-shiki">DaoAuthenticationProvider</code> (<strong>D</strong>ata
 <strong>A</strong>ccess <strong>O</strong>bject). It uses a <em>user provider</em> to find a user matching the
 input from somewhere and then matches the password (using a <em>password encoder</em>).</p>
     
@@ -195,7 +195,7 @@ input from somewhere and then matches the password (using a <em>password encoder
       </h3>
 
 <p>To get things working, we first define a class able to load users from “some
-resource”. In this case, we use the <code class="highlighter-rouge">InMemoryUserProvider</code> that fetches users
+resource”. In this case, we use the <code class="highlighter-shiki">InMemoryUserProvider</code> that fetches users
 from a PHP array.</p>
 
 <aside class="side" data-type="Symfony internals">
@@ -203,7 +203,7 @@ from a PHP array.</p>
 load users from a database or LDAP servers.</p>
 </aside>
 
-<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<div class="language-php highlighter-shiki"><pre class="shiki-gutter">1
 2
 3
 4
@@ -216,20 +216,20 @@ load users from a database or LDAP servers.</p>
 11
 12
 13
-</pre></td><td class="rouge-code"><pre><span class="c1">// secure.php</span>
-<span class="kn">use</span> <span class="nc">Symfony\Component\Security\Core\User\InMemoryUserProvider</span><span class="p">;</span>
-<span class="c1">// ...</span>
-
-<span class="nv">$userProvider</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">InMemoryUserProvider</span><span class="p">([</span>
-    <span class="s1">'wouter'</span> <span class="o">=&gt;</span> <span class="p">[</span>
-        <span class="s1">'password'</span> <span class="o">=&gt;</span> <span class="s1">'pa$$word'</span><span class="p">,</span>
-        <span class="s1">'roles'</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">'TITLE_SUPERVISOR'</span><span class="p">]</span>
-    <span class="p">],</span>
-<span class="p">]);</span>
-
-<span class="c1">// As an example of this class, let's find the user:</span>
-<span class="nv">$wouterUser</span> <span class="o">=</span> <span class="nv">$userProvider</span><span class="o">-&gt;</span><span class="nf">loadUserByUsername</span><span class="p">(</span><span class="s1">'wouter'</span><span class="p">);</span>
-</pre></td></tr></tbody></table></code></pre></div></div>
+</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #6B90C0; font-style: italic">// secure.php</span></span>
+<span class="line" data-linenr="2"><span style="color: #E5673D">use</span><span style="color: #BBBBBB"> Symfony</span><span style="color: #999999">\</span><span style="color: #BBBBBB">Component</span><span style="color: #999999">\</span><span style="color: #BBBBBB">Security</span><span style="color: #999999">\</span><span style="color: #BBBBBB">Core</span><span style="color: #999999">\</span><span style="color: #BBBBBB">User</span><span style="color: #999999">\</span><span style="color: #C7C8D2">InMemoryUserProvider</span><span style="color: #E5673D">;</span></span>
+<span class="line" data-linenr="3"><span style="color: #6B90C0; font-style: italic">// ...</span></span>
+<span class="line" data-linenr="4"></span>
+<span class="line" data-linenr="5"><span style="color: #E5673D">$</span><span style="color: #D8DEE9">userProvider</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">=</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">new</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">InMemoryUserProvider</span><span style="color: #999999">([</span></span>
+<span class="line" data-linenr="6"><span style="color: #BBBBBB">    </span><span style="color: #999999">&#39;</span><span style="color: #7CC64A">wouter</span><span style="color: #999999">&#39;</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">=&gt;</span><span style="color: #BBBBBB"> </span><span style="color: #999999">[</span></span>
+<span class="line" data-linenr="7"><span style="color: #BBBBBB">        </span><span style="color: #999999">&#39;</span><span style="color: #7CC64A">password</span><span style="color: #999999">&#39;</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">=&gt;</span><span style="color: #BBBBBB"> </span><span style="color: #999999">&#39;</span><span style="color: #7CC64A">pa$$word</span><span style="color: #999999">&#39;</span><span style="color: #999999">,</span></span>
+<span class="line" data-linenr="8"><span style="color: #BBBBBB">        </span><span style="color: #999999">&#39;</span><span style="color: #7CC64A">roles</span><span style="color: #999999">&#39;</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">=&gt;</span><span style="color: #BBBBBB"> </span><span style="color: #999999">[</span><span style="color: #999999">&#39;</span><span style="color: #7CC64A">TITLE_SUPERVISOR</span><span style="color: #999999">&#39;</span><span style="color: #999999">]</span></span>
+<span class="line" data-linenr="9"><span style="color: #BBBBBB">    </span><span style="color: #999999">],</span></span>
+<span class="line" data-linenr="10"><span style="color: #999999">])</span><span style="color: #E5673D">;</span></span>
+<span class="line" data-linenr="11"></span>
+<span class="line" data-linenr="12"><span style="color: #6B90C0; font-style: italic">// As an example of this class, let&#39;s find the user:</span></span>
+<span class="line" data-linenr="13"><span style="color: #E5673D">$</span><span style="color: #D8DEE9">wouterUser</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">=</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">userProvider</span><span style="color: #E5673D">-&gt;</span><span style="color: #C7C8D2">loadUserByUsername</span><span style="color: #999999">(</span><span style="color: #999999">&#39;</span><span style="color: #7CC64A">wouter</span><span style="color: #999999">&#39;</span><span style="color: #999999">)</span><span style="color: #E5673D">;</span></span></code></pre>
+</div>
     
       <h3 id="safety-first-encrypted-user-passwords">
         
@@ -244,7 +244,7 @@ encoded using for instance bcrypt or sha256. This is abstracted in <em>password
 encoders</em>. They are able to encode a plain text password and check whether the
 password entered by the user was valid:</p>
 
-<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<div class="language-php highlighter-shiki"><pre class="shiki-gutter">1
 2
 3
 4
@@ -260,23 +260,23 @@ password entered by the user was valid:</p>
 14
 15
 16
-</pre></td><td class="rouge-code"><pre><span class="c1">// secure.php</span>
-<span class="kn">use</span> <span class="nc">Symfony\Component\Security\Core\Encoder\EncoderFactory</span><span class="p">;</span>
-<span class="kn">use</span> <span class="nc">Symfony\Component\Security\Core\Encoder\PlaintextPasswordEncoder</span><span class="p">;</span>
-<span class="kn">use</span> <span class="nc">Symfony\Component\Security\Core\User\User</span><span class="p">;</span>
-<span class="c1">// ...</span>
-
-<span class="nv">$encoderFactory</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">EncoderFactory</span><span class="p">([</span>
-    <span class="c1">// we take the easiest road: plain text passwords</span>
-    <span class="nc">User</span><span class="o">::</span><span class="n">class</span> <span class="o">=&gt;</span> <span class="k">new</span> <span class="nc">PlaintextPasswordEncoder</span><span class="p">(),</span>
-<span class="p">]);</span>
-
-<span class="c1">// First, get the encoder associated with our user (other users</span>
-<span class="c1">// can use other encoders).</span>
-<span class="nv">$encoderFactory</span><span class="o">-&gt;</span><span class="nf">getEncoder</span><span class="p">(</span><span class="nc">User</span><span class="o">::</span><span class="n">class</span><span class="p">)</span>
-    <span class="c1">// Then, check whether some input matches our user's password:</span>
-    <span class="o">-&gt;</span><span class="nf">isPasswordValid</span><span class="p">(</span><span class="nv">$wouterUser</span><span class="o">-&gt;</span><span class="nf">getPassword</span><span class="p">(),</span> <span class="s1">'pa$$word'</span><span class="p">,</span> <span class="s1">''</span><span class="p">);</span>
-</pre></td></tr></tbody></table></code></pre></div></div>
+</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #6B90C0; font-style: italic">// secure.php</span></span>
+<span class="line" data-linenr="2"><span style="color: #E5673D">use</span><span style="color: #BBBBBB"> Symfony</span><span style="color: #999999">\</span><span style="color: #BBBBBB">Component</span><span style="color: #999999">\</span><span style="color: #BBBBBB">Security</span><span style="color: #999999">\</span><span style="color: #BBBBBB">Core</span><span style="color: #999999">\</span><span style="color: #BBBBBB">Encoder</span><span style="color: #999999">\</span><span style="color: #C7C8D2">EncoderFactory</span><span style="color: #E5673D">;</span></span>
+<span class="line" data-linenr="3"><span style="color: #E5673D">use</span><span style="color: #BBBBBB"> Symfony</span><span style="color: #999999">\</span><span style="color: #BBBBBB">Component</span><span style="color: #999999">\</span><span style="color: #BBBBBB">Security</span><span style="color: #999999">\</span><span style="color: #BBBBBB">Core</span><span style="color: #999999">\</span><span style="color: #BBBBBB">Encoder</span><span style="color: #999999">\</span><span style="color: #C7C8D2">PlaintextPasswordEncoder</span><span style="color: #E5673D">;</span></span>
+<span class="line" data-linenr="4"><span style="color: #E5673D">use</span><span style="color: #BBBBBB"> Symfony</span><span style="color: #999999">\</span><span style="color: #BBBBBB">Component</span><span style="color: #999999">\</span><span style="color: #BBBBBB">Security</span><span style="color: #999999">\</span><span style="color: #BBBBBB">Core</span><span style="color: #999999">\</span><span style="color: #BBBBBB">User</span><span style="color: #999999">\</span><span style="color: #C7C8D2">User</span><span style="color: #E5673D">;</span></span>
+<span class="line" data-linenr="5"><span style="color: #6B90C0; font-style: italic">// ...</span></span>
+<span class="line" data-linenr="6"></span>
+<span class="line" data-linenr="7"><span style="color: #E5673D">$</span><span style="color: #D8DEE9">encoderFactory</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">=</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">new</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">EncoderFactory</span><span style="color: #999999">([</span></span>
+<span class="line" data-linenr="8"><span style="color: #999999">    </span><span style="color: #6B90C0; font-style: italic">// we take the easiest road: plain text passwords</span></span>
+<span class="line" data-linenr="9"><span style="color: #BBBBBB">    </span><span style="color: #C7C8D2">User</span><span style="color: #E5673D">::class</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">=&gt;</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">new</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">PlaintextPasswordEncoder</span><span style="color: #999999">(),</span></span>
+<span class="line" data-linenr="10"><span style="color: #999999">])</span><span style="color: #E5673D">;</span></span>
+<span class="line" data-linenr="11"></span>
+<span class="line" data-linenr="12"><span style="color: #6B90C0; font-style: italic">// First, get the encoder associated with our user (other users</span></span>
+<span class="line" data-linenr="13"><span style="color: #6B90C0; font-style: italic">// can use other encoders).</span></span>
+<span class="line" data-linenr="14"><span style="color: #E5673D">$</span><span style="color: #D8DEE9">encoderFactory</span><span style="color: #E5673D">-&gt;</span><span style="color: #C7C8D2">getEncoder</span><span style="color: #999999">(</span><span style="color: #C7C8D2">User</span><span style="color: #E5673D">::class</span><span style="color: #999999">)</span></span>
+<span class="line" data-linenr="15"><span style="color: #999999">    </span><span style="color: #6B90C0; font-style: italic">// Then, check whether some input matches our user&#39;s password:</span></span>
+<span class="line" data-linenr="16"><span style="color: #BBBBBB">    </span><span style="color: #E5673D">-&gt;</span><span style="color: #C7C8D2">isPasswordValid</span><span style="color: #999999">(</span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">wouterUser</span><span style="color: #E5673D">-&gt;</span><span style="color: #C7C8D2">getPassword</span><span style="color: #999999">(),</span><span style="color: #BBBBBB"> </span><span style="color: #999999">&#39;</span><span style="color: #7CC64A">pa$$word</span><span style="color: #999999">&#39;</span><span style="color: #999999">,</span><span style="color: #BBBBBB"> </span><span style="color: #999999">&#39;&#39;</span><span style="color: #999999">)</span><span style="color: #E5673D">;</span></span></code></pre>
+</div>
     
       <h3 id="instantiating-the-authentication-manager">
         
@@ -287,16 +287,16 @@ password entered by the user was valid:</p>
       </h3>
 
 <p>Yay, it took quite some effort, but we’re ready to create the
-<code class="highlighter-rouge">AuthenticationProviderManager</code>!</p>
+<code class="highlighter-shiki">AuthenticationProviderManager</code>!</p>
 
 <aside class="side" data-type="Symfony internals">
-  <p>If you look closely, the <code class="highlighter-rouge">'default'</code> string is equal to the one provided in the
+  <p>If you look closely, the <code class="highlighter-shiki">&#39;default&#39;</code> string is equal to the one provided in the
 token: This is the <em>provider key</em>. It is used to make sure the token is from
 our application and also to know which provided should handle the token
-(multiple providers might be able to handle a <code class="highlighter-rouge">UsernamePasswordToken</code>).</p>
+(multiple providers might be able to handle a <code class="highlighter-shiki">UsernamePasswordToken</code>).</p>
 </aside>
 
-<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<div class="language-php highlighter-shiki"><pre class="shiki-gutter">1
 2
 3
 4
@@ -310,23 +310,23 @@ our application and also to know which provided should handle the token
 12
 13
 14
-</pre></td><td class="rouge-code"><pre><span class="c1">// secure.php</span>
-<span class="kn">use</span> <span class="nc">Symfony\Component\Security\Core\Authentication\AuthenticationProviderManager</span><span class="p">;</span>
-<span class="kn">use</span> <span class="nc">Symfony\Component\Security\Core\Authentication\Provider\DaoAuthenticationProvider</span><span class="p">;</span>
-<span class="kn">use</span> <span class="nc">Symfony\Component\Security\Core\User\UserChecker</span><span class="p">;</span>
-<span class="c1">// ...</span>
+</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #6B90C0; font-style: italic">// secure.php</span></span>
+<span class="line" data-linenr="2"><span style="color: #E5673D">use</span><span style="color: #BBBBBB"> Symfony</span><span style="color: #999999">\</span><span style="color: #BBBBBB">Component</span><span style="color: #999999">\</span><span style="color: #BBBBBB">Security</span><span style="color: #999999">\</span><span style="color: #BBBBBB">Core</span><span style="color: #999999">\</span><span style="color: #BBBBBB">Authentication</span><span style="color: #999999">\</span><span style="color: #C7C8D2">AuthenticationProviderManager</span><span style="color: #E5673D">;</span></span>
+<span class="line" data-linenr="3"><span style="color: #E5673D">use</span><span style="color: #BBBBBB"> Symfony</span><span style="color: #999999">\</span><span style="color: #BBBBBB">Component</span><span style="color: #999999">\</span><span style="color: #BBBBBB">Security</span><span style="color: #999999">\</span><span style="color: #BBBBBB">Core</span><span style="color: #999999">\</span><span style="color: #BBBBBB">Authentication</span><span style="color: #999999">\</span><span style="color: #BBBBBB">Provider</span><span style="color: #999999">\</span><span style="color: #C7C8D2">DaoAuthenticationProvider</span><span style="color: #E5673D">;</span></span>
+<span class="line" data-linenr="4"><span style="color: #E5673D">use</span><span style="color: #BBBBBB"> Symfony</span><span style="color: #999999">\</span><span style="color: #BBBBBB">Component</span><span style="color: #999999">\</span><span style="color: #BBBBBB">Security</span><span style="color: #999999">\</span><span style="color: #BBBBBB">Core</span><span style="color: #999999">\</span><span style="color: #BBBBBB">User</span><span style="color: #999999">\</span><span style="color: #C7C8D2">UserChecker</span><span style="color: #E5673D">;</span></span>
+<span class="line" data-linenr="5"><span style="color: #6B90C0; font-style: italic">// ...</span></span>
+<span class="line" data-linenr="6"></span>
+<span class="line" data-linenr="7"><span style="color: #E5673D">$</span><span style="color: #D8DEE9">authenticationManager</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">=</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">new</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">AuthenticationProviderManager</span><span style="color: #999999">([</span></span>
+<span class="line" data-linenr="8"><span style="color: #BBBBBB">    </span><span style="color: #E5673D">new</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">DaoAuthenticationProvider</span><span style="color: #999999">(</span></span>
+<span class="line" data-linenr="9"><span style="color: #BBBBBB">        </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">userProvider</span><span style="color: #999999">,</span></span>
+<span class="line" data-linenr="10"><span style="color: #BBBBBB">        </span><span style="color: #E5673D">new</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">UserChecker</span><span style="color: #999999">(),</span></span>
+<span class="line" data-linenr="11"><span style="color: #BBBBBB">        </span><span style="color: #999999">&#39;</span><span style="color: #7CC64A">default</span><span style="color: #999999">&#39;</span><span style="color: #999999">,</span></span>
+<span class="line" data-linenr="12"><span style="color: #BBBBBB">        </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">encoderFactory</span></span>
+<span class="line" data-linenr="13"><span style="color: #BBBBBB">    </span><span style="color: #999999">),</span></span>
+<span class="line" data-linenr="14"><span style="color: #999999">])</span><span style="color: #E5673D">;</span></span></code></pre>
+</div>
 
-<span class="nv">$authenticationManager</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">AuthenticationProviderManager</span><span class="p">([</span>
-    <span class="k">new</span> <span class="nc">DaoAuthenticationProvider</span><span class="p">(</span>
-        <span class="nv">$userProvider</span><span class="p">,</span>
-        <span class="k">new</span> <span class="nc">UserChecker</span><span class="p">(),</span>
-        <span class="s1">'default'</span><span class="p">,</span>
-        <span class="nv">$encoderFactory</span>
-    <span class="p">),</span>
-<span class="p">]);</span>
-</pre></td></tr></tbody></table></code></pre></div></div>
-
-<p>As you see, there is one more class: The <code class="highlighter-rouge">UserChecker</code>. It checks some “user
+<p>As you see, there is one more class: The <code class="highlighter-shiki">UserChecker</code>. It checks some “user
 flags” after it is fetched from the user provider. This includes for instance
 whether the user is activated, banned, etc.</p>
     
@@ -341,27 +341,27 @@ whether the user is activated, banned, etc.</p>
 <aside class="side" data-type="Symfony internals">
   <p>The firewall listeners of Http security also call the authenticate method
 directly. See for instance the
-<a href="https://github.com/symfony/security/blob/88588499b5c3ed78becea8e0c4ec8d81e0e4f483/Http/Firewall/UsernamePasswordFormAuthenticationListener.php#L100"><code class="highlighter-rouge">UsernamePasswordFormAuthenticationListener</code></a>.</p>
+<a href="https://github.com/symfony/security/blob/88588499b5c3ed78becea8e0c4ec8d81e0e4f483/Http/Firewall/UsernamePasswordFormAuthenticationListener.php#L100"><code class="highlighter-shiki">UsernamePasswordFormAuthenticationListener</code></a>.</p>
 </aside>
 
 <p>Finally – we’re more than halfway the post now – we are able to authenticate
 the token we created:</p>
 
-<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<div class="language-php highlighter-shiki"><pre class="shiki-gutter">1
 2
 3
 4
 5
 6
 7
-</pre></td><td class="rouge-code"><pre><span class="c1">// secure.php</span>
-
-<span class="c1">// ...</span>
-
-<span class="nv">$authenticatedToken</span> <span class="o">=</span> <span class="nv">$authenticationManager</span><span class="o">-&gt;</span><span class="nf">authenticate</span><span class="p">(</span><span class="nv">$inputToken</span><span class="p">);</span>
-
-<span class="k">echo</span> <span class="s1">'Hello '</span><span class="mf">.</span><span class="nv">$authenticatedToken</span><span class="o">-&gt;</span><span class="nf">getUsername</span><span class="p">()</span><span class="mf">.</span><span class="s1">'!'</span><span class="p">;</span>
-</pre></td></tr></tbody></table></code></pre></div></div>
+</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #6B90C0; font-style: italic">// secure.php</span></span>
+<span class="line" data-linenr="2"></span>
+<span class="line" data-linenr="3"><span style="color: #6B90C0; font-style: italic">// ...</span></span>
+<span class="line" data-linenr="4"></span>
+<span class="line" data-linenr="5"><span style="color: #E5673D">$</span><span style="color: #D8DEE9">authenticatedToken</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">=</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">authenticationManager</span><span style="color: #E5673D">-&gt;</span><span style="color: #C7C8D2">authenticate</span><span style="color: #999999">(</span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">inputToken</span><span style="color: #999999">)</span><span style="color: #E5673D">;</span></span>
+<span class="line" data-linenr="6"></span>
+<span class="line" data-linenr="7"><span style="color: #E5673D">echo</span><span style="color: #BBBBBB"> </span><span style="color: #999999">&#39;</span><span style="color: #7CC64A">Hello </span><span style="color: #999999">&#39;</span><span style="color: #E5673D">.</span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">authenticatedToken</span><span style="color: #E5673D">-&gt;</span><span style="color: #C7C8D2">getUsername</span><span style="color: #999999">()</span><span style="color: #E5673D">.</span><span style="color: #999999">&#39;</span><span style="color: #7CC64A">!</span><span style="color: #999999">&#39;</span><span style="color: #E5673D">;</span></span></code></pre>
+</div>
     
       <h2 id="authorize-actions-the-accessdecisionmanager">
         
@@ -380,7 +380,7 @@ documentations to understand Security!</p>
 
 <p>Now we’ve authenticated the user input and the Security system validated our
 input, it’s time to answer the <em>Are you allowe to do this?</em> question. Let me
-introduce you to yet another “manager”: <code class="highlighter-rouge">AccessDecisionManagerInterface</code>.</p>
+introduce you to yet another “manager”: <code class="highlighter-shiki">AccessDecisionManagerInterface</code>.</p>
 
 <p>The default implementation uses “Security voters” to decide whether the user is
 allowed to execute an action. These voters are provided with an <em>attribute</em>
@@ -388,39 +388,39 @@ allowed to execute an action. These voters are provided with an <em>attribute</e
 action).</p>
 
 <aside class="side" data-type="Symfony internals">
-  <p>In the Http component, an <a href="https://github.com/symfony/security/blob/88588499b5c3ed78becea8e0c4ec8d81e0e4f483/Http/Firewall/AccessListener.php"><code class="highlighter-rouge">AccessListener</code></a>
-checks access using this manager based on the configured <code class="highlighter-rouge">access_control</code>
+  <p>In the Http component, an <a href="https://github.com/symfony/security/blob/88588499b5c3ed78becea8e0c4ec8d81e0e4f483/Http/Firewall/AccessListener.php"><code class="highlighter-shiki">AccessListener</code></a>
+checks access using this manager based on the configured <code class="highlighter-shiki">access_control</code>
 rules.</p>
 </aside>
 
-<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<div class="language-php highlighter-shiki"><pre class="shiki-gutter">1
 2
 3
 4
 5
 6
 7
-</pre></td><td class="rouge-code"><pre><span class="c1">// secure.php</span>
-<span class="kn">use</span> <span class="nc">Symfony\Component\Security\Core\Authorization\AccessDecisionManager</span><span class="p">;</span>
-<span class="c1">// ...</span>
-
-<span class="nv">$accessDecisionManager</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">AccessDecisionManager</span><span class="p">([</span>
-    <span class="c1">// ... voters</span>
-<span class="p">]);</span>
-</pre></td></tr></tbody></table></code></pre></div></div>
+</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #6B90C0; font-style: italic">// secure.php</span></span>
+<span class="line" data-linenr="2"><span style="color: #E5673D">use</span><span style="color: #BBBBBB"> Symfony</span><span style="color: #999999">\</span><span style="color: #BBBBBB">Component</span><span style="color: #999999">\</span><span style="color: #BBBBBB">Security</span><span style="color: #999999">\</span><span style="color: #BBBBBB">Core</span><span style="color: #999999">\</span><span style="color: #BBBBBB">Authorization</span><span style="color: #999999">\</span><span style="color: #C7C8D2">AccessDecisionManager</span><span style="color: #E5673D">;</span></span>
+<span class="line" data-linenr="3"><span style="color: #6B90C0; font-style: italic">// ...</span></span>
+<span class="line" data-linenr="4"></span>
+<span class="line" data-linenr="5"><span style="color: #E5673D">$</span><span style="color: #D8DEE9">accessDecisionManager</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">=</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">new</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">AccessDecisionManager</span><span style="color: #999999">([</span></span>
+<span class="line" data-linenr="6"><span style="color: #999999">    </span><span style="color: #6B90C0; font-style: italic">// ... voters</span></span>
+<span class="line" data-linenr="7"><span style="color: #999999">])</span><span style="color: #E5673D">;</span></span></code></pre>
+</div>
 
 <p>The default voters of Symfony are a bit strange, they don’t validate an action,
-but validate the user’s identity. One of them is the <code class="highlighter-rouge">RoleVoter</code>. It checks
-whether <code class="highlighter-rouge">User#getRoles()</code> contains the provided attribute:</p>
+but validate the user’s identity. One of them is the <code class="highlighter-shiki">RoleVoter</code>. It checks
+whether <code class="highlighter-shiki">User#getRoles()</code> contains the provided attribute:</p>
 
 <aside class="side" data-type="Symfony internals">
-  <p>A <code class="highlighter-rouge">RoleHierarchyVoter</code> is also provided, which understands hierarchies in
+  <p>A <code class="highlighter-shiki">RoleHierarchyVoter</code> is also provided, which understands hierarchies in
 roles (i.e. “admin is a user”). <a href="https://github.com/symfony/security/tree/88588499b5c3ed78becea8e0c4ec8d81e0e4f483/Core/Authorization/Voter">Another default voter</a>
-is the <code class="highlighter-rouge">AuthenticatedVoter</code>, which checks if the token is fully authenticated,
+is the <code class="highlighter-shiki">AuthenticatedVoter</code>, which checks if the token is fully authenticated,
 anonymous, etc.</p>
 </aside>
 
-<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<div class="language-php highlighter-shiki"><pre class="shiki-gutter">1
 2
 3
 4
@@ -444,31 +444,31 @@ anonymous, etc.</p>
 22
 23
 24
-</pre></td><td class="rouge-code"><pre><span class="c1">// secure.php</span>
-<span class="kn">use</span> <span class="nc">Symfony\Component\Security\Core\Authorization\Voter\RoleVoter</span><span class="p">;</span>
-<span class="c1">// ...</span>
-
-<span class="nv">$accessDecisionManager</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">AccessDecisionManager</span><span class="p">([</span>
-    <span class="c1">// TITLE_ is the prefix an attribute must have in order to be</span>
-    <span class="c1">// managed by this voter</span>
-    <span class="k">new</span> <span class="nc">RoleVoter</span><span class="p">(</span><span class="s1">'TITLE_'</span><span class="p">),</span>
-<span class="p">]);</span>
-
-<span class="c1">// now we can use the access decision manager to see if the</span>
-<span class="c1">// authenticated token has the "supervisor" role:</span>
-<span class="nv">$isSupervisor</span> <span class="o">=</span> <span class="nv">$accessDecisionManager</span><span class="o">-&gt;</span><span class="nf">decide</span><span class="p">(</span>
-    <span class="nv">$authenticatedToken</span><span class="p">,</span>
-    <span class="p">[</span><span class="s1">'TITLE_SUPERVISOR'</span><span class="p">]</span>
-<span class="p">);</span>
-
-<span class="c1">// If we add a custom voter, we would be able to i.e. test if we are</span>
-<span class="c1">// able to view a user's profile:</span>
-<span class="nv">$canViewProfile</span> <span class="o">=</span> <span class="nv">$accessDecisionManager</span><span class="o">-&gt;</span><span class="nf">decide</span><span class="p">(</span>
-    <span class="nv">$authenticatedToken</span><span class="p">,</span>
-    <span class="p">[</span><span class="s1">'VIEW'</span><span class="p">],</span>
-    <span class="nv">$authenticatedToken</span><span class="o">-&gt;</span><span class="nf">getUser</span><span class="p">()</span> <span class="c1">// some context for the "view" action</span>
-<span class="p">);</span>
-</pre></td></tr></tbody></table></code></pre></div></div>
+</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #6B90C0; font-style: italic">// secure.php</span></span>
+<span class="line" data-linenr="2"><span style="color: #E5673D">use</span><span style="color: #BBBBBB"> Symfony</span><span style="color: #999999">\</span><span style="color: #BBBBBB">Component</span><span style="color: #999999">\</span><span style="color: #BBBBBB">Security</span><span style="color: #999999">\</span><span style="color: #BBBBBB">Core</span><span style="color: #999999">\</span><span style="color: #BBBBBB">Authorization</span><span style="color: #999999">\</span><span style="color: #BBBBBB">Voter</span><span style="color: #999999">\</span><span style="color: #C7C8D2">RoleVoter</span><span style="color: #E5673D">;</span></span>
+<span class="line" data-linenr="3"><span style="color: #6B90C0; font-style: italic">// ...</span></span>
+<span class="line" data-linenr="4"></span>
+<span class="line" data-linenr="5"><span style="color: #E5673D">$</span><span style="color: #D8DEE9">accessDecisionManager</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">=</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">new</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">AccessDecisionManager</span><span style="color: #999999">([</span></span>
+<span class="line" data-linenr="6"><span style="color: #999999">    </span><span style="color: #6B90C0; font-style: italic">// TITLE_ is the prefix an attribute must have in order to be</span></span>
+<span class="line" data-linenr="7"><span style="color: #999999">    </span><span style="color: #6B90C0; font-style: italic">// managed by this voter</span></span>
+<span class="line" data-linenr="8"><span style="color: #BBBBBB">    </span><span style="color: #E5673D">new</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">RoleVoter</span><span style="color: #999999">(</span><span style="color: #999999">&#39;</span><span style="color: #7CC64A">TITLE_</span><span style="color: #999999">&#39;</span><span style="color: #999999">),</span></span>
+<span class="line" data-linenr="9"><span style="color: #999999">])</span><span style="color: #E5673D">;</span></span>
+<span class="line" data-linenr="10"></span>
+<span class="line" data-linenr="11"><span style="color: #6B90C0; font-style: italic">// now we can use the access decision manager to see if the</span></span>
+<span class="line" data-linenr="12"><span style="color: #6B90C0; font-style: italic">// authenticated token has the &quot;supervisor&quot; role:</span></span>
+<span class="line" data-linenr="13"><span style="color: #E5673D">$</span><span style="color: #D8DEE9">isSupervisor</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">=</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">accessDecisionManager</span><span style="color: #E5673D">-&gt;</span><span style="color: #C7C8D2">decide</span><span style="color: #999999">(</span></span>
+<span class="line" data-linenr="14"><span style="color: #BBBBBB">    </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">authenticatedToken</span><span style="color: #999999">,</span></span>
+<span class="line" data-linenr="15"><span style="color: #BBBBBB">    </span><span style="color: #999999">[</span><span style="color: #999999">&#39;</span><span style="color: #7CC64A">TITLE_SUPERVISOR</span><span style="color: #999999">&#39;</span><span style="color: #999999">]</span></span>
+<span class="line" data-linenr="16"><span style="color: #999999">)</span><span style="color: #E5673D">;</span></span>
+<span class="line" data-linenr="17"></span>
+<span class="line" data-linenr="18"><span style="color: #6B90C0; font-style: italic">// If we add a custom voter, we would be able to i.e. test if we are</span></span>
+<span class="line" data-linenr="19"><span style="color: #6B90C0; font-style: italic">// able to view a user&#39;s profile:</span></span>
+<span class="line" data-linenr="20"><span style="color: #E5673D">$</span><span style="color: #D8DEE9">canViewProfile</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">=</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">accessDecisionManager</span><span style="color: #E5673D">-&gt;</span><span style="color: #C7C8D2">decide</span><span style="color: #999999">(</span></span>
+<span class="line" data-linenr="21"><span style="color: #BBBBBB">    </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">authenticatedToken</span><span style="color: #999999">,</span></span>
+<span class="line" data-linenr="22"><span style="color: #BBBBBB">    </span><span style="color: #999999">[</span><span style="color: #999999">&#39;</span><span style="color: #7CC64A">VIEW</span><span style="color: #999999">&#39;</span><span style="color: #999999">],</span></span>
+<span class="line" data-linenr="23"><span style="color: #BBBBBB">    </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">authenticatedToken</span><span style="color: #E5673D">-&gt;</span><span style="color: #C7C8D2">getUser</span><span style="color: #999999">()</span><span style="color: #BBBBBB"> </span><span style="color: #6B90C0; font-style: italic">// some context for the &quot;view&quot; action</span></span>
+<span class="line" data-linenr="24"><span style="color: #999999">)</span><span style="color: #E5673D">;</span></span></code></pre>
+</div>
     
       <h2 id="relation-with-the-symfony-framework">
         
@@ -481,7 +481,7 @@ anonymous, etc.</p>
 <p>Now, if we take a look at the configuration for the SecurityBundle, we’ll find
 many relations with the architecture used above:</p>
 
-<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<div class="language-yaml highlighter-shiki"><pre class="shiki-gutter">1
 2
 3
 4
@@ -514,40 +514,40 @@ many relations with the architecture used above:</p>
 31
 32
 33
-</pre></td><td class="rouge-code"><pre><span class="na">security</span><span class="pi">:</span>
-    <span class="c1"># Providers: UserProvider classes</span>
-    <span class="na">providers</span><span class="pi">:</span>
-        <span class="na">in_memory</span><span class="pi">:</span>
-            <span class="c1"># indicating the InMemoryUserProvider</span>
-            <span class="na">memory</span><span class="pi">:</span> <span class="s">~</span>
-
-    <span class="c1"># The UserPasswordEncoders</span>
-    <span class="na">encoders</span><span class="pi">:</span>
-        <span class="s">Symfony\Component\Security\Core\User\UserInterface</span><span class="pi">:</span> <span class="s">plaintext</span>
-
-    <span class="c1"># Firewalls are listeners of the HTTP component that</span>
-    <span class="c1"># execute authentication based on paths</span>
-    <span class="na">firewalls</span><span class="pi">:</span>
-        <span class="c1"># ...</span>
-
-        <span class="c1"># Each firewall configures a list of authentication providers</span>
-        <span class="c1"># used for this AuthenticationProviderManager. I.e. all</span>
-        <span class="c1"># firewalls are one AuthenticationProviderManager (and thus,</span>
-        <span class="c1"># one security system).</span>
-        <span class="na">main</span><span class="pi">:</span>
-            <span class="c1"># AnonymousAuthenticationProvider</span>
-            <span class="na">anonymous</span><span class="pi">:</span> <span class="no">true</span>
-
-            <span class="c1"># Use UsernamePasswordToken and DaoAuthenticationProvider</span>
-            <span class="na">http_basic</span><span class="pi">:</span> <span class="no">true</span>
-            <span class="na">form_login</span><span class="pi">:</span> <span class="no">true</span>
-
-    <span class="c1"># Relate to AccessDecisionManager#isGranted() calls for</span>
-    <span class="c1"># specific paths</span>
-    <span class="na">access_control</span><span class="pi">:</span>
-        <span class="pi">-</span> <span class="pi">{</span> <span class="nv">path</span><span class="pi">:</span> <span class="nv">^/admin</span><span class="pi">,</span> <span class="nv">roles</span><span class="pi">:</span> <span class="nv">ROLE_ADMIN</span> <span class="pi">}</span>
-        <span class="pi">-</span> <span class="pi">{</span> <span class="nv">path</span><span class="pi">:</span> <span class="nv">^/profile</span><span class="pi">,</span> <span class="nv">roles</span><span class="pi">:</span> <span class="nv">ROLE_USER</span> <span class="pi">}</span>
-</pre></td></tr></tbody></table></code></pre></div></div>
+</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #C7C8D2">security</span><span style="color: #999999">:</span></span>
+<span class="line" data-linenr="2"><span style="color: #999999">    </span><span style="color: #6B90C0; font-style: italic"># Providers: UserProvider classes</span></span>
+<span class="line" data-linenr="3"><span style="color: #BBBBBB">    </span><span style="color: #C7C8D2">providers</span><span style="color: #999999">:</span></span>
+<span class="line" data-linenr="4"><span style="color: #BBBBBB">        </span><span style="color: #C7C8D2">in_memory</span><span style="color: #999999">:</span></span>
+<span class="line" data-linenr="5"><span style="color: #999999">            </span><span style="color: #6B90C0; font-style: italic"># indicating the InMemoryUserProvider</span></span>
+<span class="line" data-linenr="6"><span style="color: #BBBBBB">            </span><span style="color: #C7C8D2">memory</span><span style="color: #999999">:</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">~</span></span>
+<span class="line" data-linenr="7"></span>
+<span class="line" data-linenr="8"><span style="color: #999999">    </span><span style="color: #6B90C0; font-style: italic"># The UserPasswordEncoders</span></span>
+<span class="line" data-linenr="9"><span style="color: #BBBBBB">    </span><span style="color: #C7C8D2">encoders</span><span style="color: #999999">:</span></span>
+<span class="line" data-linenr="10"><span style="color: #BBBBBB">        </span><span style="color: #C7C8D2">Symfony\Component\Security\Core\User\UserInterface</span><span style="color: #999999">:</span><span style="color: #BBBBBB"> </span><span style="color: #7CC64A">plaintext</span></span>
+<span class="line" data-linenr="11"></span>
+<span class="line" data-linenr="12"><span style="color: #999999">    </span><span style="color: #6B90C0; font-style: italic"># Firewalls are listeners of the HTTP component that</span></span>
+<span class="line" data-linenr="13"><span style="color: #999999">    </span><span style="color: #6B90C0; font-style: italic"># execute authentication based on paths</span></span>
+<span class="line" data-linenr="14"><span style="color: #BBBBBB">    </span><span style="color: #C7C8D2">firewalls</span><span style="color: #999999">:</span></span>
+<span class="line" data-linenr="15"><span style="color: #999999">        </span><span style="color: #6B90C0; font-style: italic"># ...</span></span>
+<span class="line" data-linenr="16"></span>
+<span class="line" data-linenr="17"><span style="color: #999999">        </span><span style="color: #6B90C0; font-style: italic"># Each firewall configures a list of authentication providers</span></span>
+<span class="line" data-linenr="18"><span style="color: #999999">        </span><span style="color: #6B90C0; font-style: italic"># used for this AuthenticationProviderManager. I.e. all</span></span>
+<span class="line" data-linenr="19"><span style="color: #999999">        </span><span style="color: #6B90C0; font-style: italic"># firewalls are one AuthenticationProviderManager (and thus,</span></span>
+<span class="line" data-linenr="20"><span style="color: #999999">        </span><span style="color: #6B90C0; font-style: italic"># one security system).</span></span>
+<span class="line" data-linenr="21"><span style="color: #BBBBBB">        </span><span style="color: #C7C8D2">main</span><span style="color: #999999">:</span></span>
+<span class="line" data-linenr="22"><span style="color: #999999">            </span><span style="color: #6B90C0; font-style: italic"># AnonymousAuthenticationProvider</span></span>
+<span class="line" data-linenr="23"><span style="color: #BBBBBB">            </span><span style="color: #C7C8D2">anonymous</span><span style="color: #999999">:</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">true</span></span>
+<span class="line" data-linenr="24"></span>
+<span class="line" data-linenr="25"><span style="color: #999999">            </span><span style="color: #6B90C0; font-style: italic"># Use UsernamePasswordToken and DaoAuthenticationProvider</span></span>
+<span class="line" data-linenr="26"><span style="color: #BBBBBB">            </span><span style="color: #C7C8D2">http_basic</span><span style="color: #999999">:</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">true</span></span>
+<span class="line" data-linenr="27"><span style="color: #BBBBBB">            </span><span style="color: #C7C8D2">form_login</span><span style="color: #999999">:</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">true</span></span>
+<span class="line" data-linenr="28"></span>
+<span class="line" data-linenr="29"><span style="color: #999999">    </span><span style="color: #6B90C0; font-style: italic"># Relate to AccessDecisionManager#isGranted() calls for</span></span>
+<span class="line" data-linenr="30"><span style="color: #999999">    </span><span style="color: #6B90C0; font-style: italic"># specific paths</span></span>
+<span class="line" data-linenr="31"><span style="color: #BBBBBB">    </span><span style="color: #C7C8D2">access_control</span><span style="color: #999999">:</span></span>
+<span class="line" data-linenr="32"><span style="color: #BBBBBB">        </span><span style="color: #999999">-</span><span style="color: #BBBBBB"> </span><span style="color: #999999">{</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">path</span><span style="color: #999999">:</span><span style="color: #BBBBBB"> </span><span style="color: #7CC64A">^/admin</span><span style="color: #999999">,</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">roles</span><span style="color: #999999">:</span><span style="color: #BBBBBB"> </span><span style="color: #7CC64A">ROLE_ADMIN</span><span style="color: #BBBBBB"> </span><span style="color: #999999">}</span></span>
+<span class="line" data-linenr="33"><span style="color: #BBBBBB">        </span><span style="color: #999999">-</span><span style="color: #BBBBBB"> </span><span style="color: #999999">{</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">path</span><span style="color: #999999">:</span><span style="color: #BBBBBB"> </span><span style="color: #7CC64A">^/profile</span><span style="color: #999999">,</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">roles</span><span style="color: #999999">:</span><span style="color: #BBBBBB"> </span><span style="color: #7CC64A">ROLE_USER</span><span style="color: #BBBBBB"> </span><span style="color: #999999">}</span></span></code></pre>
+</div>
     
       <h2 id="take-homes">
         

@@ -90,7 +90,7 @@ libraries were very restricted in how they could evolve.</p>
       <h2 id="why-php-developers-are-afraid-of-any-e_-being-reported">
         
         
-          <a href="#why-php-developers-are-afraid-of-any-e_-being-reported" class="section-link"></a> Why PHP Developers are Afraid of any <code class="highlighter-rouge">E_*</code> being Reported
+          <a href="#why-php-developers-are-afraid-of-any-e_-being-reported" class="section-link"></a> Why PHP Developers are Afraid of any <code class="highlighter-shiki">E_*</code> being Reported
         
         
       </h2>
@@ -98,7 +98,7 @@ libraries were very restricted in how they could evolve.</p>
 <p>PHP had a habit of trying to “fix” incorrect code. Forgot the quotes
 around a string? No worries, <a href="https://3v4l.org/m0l3p">PHP still interpreted it as a
 string</a> if the constant wasn’t found. It
-triggered an <code class="highlighter-rouge">E_NOTICE</code> to let you know that PHP found something
+triggered an <code class="highlighter-shiki">E_NOTICE</code> to let you know that PHP found something
 unexpected but tried to continue.</p>
 
 <p>This can produce unexpected behavior (e.g. what if you meant a constant,
@@ -107,8 +107,8 @@ careful with anything being reported. Even though it’s not a direct fatal
 error, many of us correctly consider notices to be something that must
 be fixed.</p>
 
-<p>However, this also makes us very careful with <code class="highlighter-rouge">E_DEPRECATED</code>. After all,
-it’s reported and it starts with <code class="highlighter-rouge">E_</code>. That MUST be fixed as soon as
+<p>However, this also makes us very careful with <code class="highlighter-shiki">E_DEPRECATED</code>. After all,
+it’s reported and it starts with <code class="highlighter-shiki">E_</code>. That MUST be fixed as soon as
 possible, right? …right?</p>
     
       <h2 id="why-deprecations-are-different">
@@ -207,15 +207,15 @@ version months before it’s even released.</p>
 
 <p>If you are using the default PHP error handler, you’re left to either
 hide deprecations or output them like all other errors. Symfony has a
-small <a href="https://github.com/symfony/error-handler"><code class="highlighter-rouge">symfony/error-handler</code></a>
+small <a href="https://github.com/symfony/error-handler"><code class="highlighter-shiki">symfony/error-handler</code></a>
 package that allows you to register <a href="https://php-fig.org/psr/psr-3/">PSR-3 loggers</a>
 for a specific error level. Besides, it automatically hides
 deprecations from the normal output.</p>
 
-<p>Using this code, all deprecations are logged to <code class="highlighter-rouge">deprecation.log</code> and
+<p>Using this code, all deprecations are logged to <code class="highlighter-shiki">deprecation.log</code> and
 the normal error handler is used for all other errors:</p>
 
-<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<div class="language-php highlighter-shiki"><pre class="shiki-gutter">1
 2
 3
 4
@@ -243,35 +243,35 @@ the normal error handler is used for all other errors:</p>
 26
 27
 28
-</pre></td><td class="rouge-code"><pre><span class="cp">&lt;?php</span>
-
-<span class="k">require_once</span> <span class="s1">'vendor/autoload.php'</span><span class="p">;</span>
-
-<span class="kn">use</span> <span class="nc">Psr\Log\AbstractLogger</span><span class="p">;</span>
-<span class="kn">use</span> <span class="nc">Symfony\Component\ErrorHandler\ErrorHandler</span><span class="p">;</span>
-
-<span class="nc">ErrorHandler</span><span class="o">::</span><span class="nf">register</span><span class="p">()</span>
-    <span class="o">-&gt;</span><span class="nf">setDefaultLogger</span><span class="p">(</span><span class="k">new</span> <span class="kd">class</span> <span class="kd">extends</span> <span class="nc">AbstractLogger</span> <span class="p">{</span>
-        <span class="k">public</span> <span class="k">function</span> <span class="n">log</span><span class="p">(</span><span class="nv">$level</span><span class="p">,</span> <span class="kt">string</span><span class="o">|</span><span class="err">\</span><span class="nc">Stringable</span> <span class="nv">$message</span><span class="p">,</span> <span class="k">array</span> <span class="nv">$context</span> <span class="o">=</span> <span class="p">[])</span><span class="o">:</span> <span class="n">void</span>
-        <span class="p">{</span>
-            <span class="nv">$formattedLogLine</span> <span class="o">=</span> <span class="nb">sprintf</span><span class="p">(</span>
-                <span class="s1">'[%s] %s: %s%s'</span><span class="mf">.</span><span class="kc">PHP_EOL</span><span class="p">,</span>
-                <span class="nb">date</span><span class="p">(</span><span class="s1">'Y-m-dTH:i:s.uP'</span><span class="p">),</span>
-                <span class="nv">$level</span><span class="p">,</span>
-                <span class="p">(</span><span class="n">string</span><span class="p">)</span> <span class="nv">$message</span><span class="p">,</span>
-                <span class="p">(</span><span class="nv">$context</span><span class="p">[</span><span class="s1">'exception'</span><span class="p">]</span> <span class="o">??</span> <span class="kc">false</span><span class="p">)</span> <span class="k">instanceof</span> <span class="err">\</span><span class="nc">Throwable</span>
-                    <span class="o">?</span> <span class="nb">sprintf</span><span class="p">(</span><span class="s1">' in %s:%s'</span><span class="p">,</span> <span class="nv">$context</span><span class="p">[</span><span class="s1">'exception'</span><span class="p">]</span><span class="o">-&gt;</span><span class="nf">getFile</span><span class="p">(),</span> <span class="nv">$context</span><span class="p">[</span><span class="s1">'exception'</span><span class="p">]</span><span class="o">-&gt;</span><span class="nf">getLine</span><span class="p">())</span>
-                    <span class="o">:</span> <span class="s1">''</span>
-            <span class="p">);</span>
-
-            <span class="nb">file_put_contents</span><span class="p">(</span><span class="k">__DIR__</span><span class="mf">.</span><span class="s1">'/deprecations.log'</span><span class="p">,</span> <span class="nv">$formattedLogLine</span><span class="p">,</span> <span class="err">\</span><span class="no">FILE_APPEND</span><span class="p">);</span>
-        <span class="p">}</span>
-    <span class="p">},</span> <span class="err">\</span><span class="kc">E_DEPRECATED</span> <span class="o">|</span> <span class="err">\</span><span class="kc">E_USER_DEPRECATED</span><span class="p">)</span>
-<span class="p">;</span>
-
-<span class="c1">// "null" argument deprecated as of PHP 8.1</span>
-<span class="nb">var_dump</span><span class="p">(</span><span class="nf">str_contains</span><span class="p">(</span><span class="s1">'foo'</span><span class="p">,</span> <span class="kc">null</span><span class="p">));</span>
-</pre></td></tr></tbody></table></code></pre></div></div>
+</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #E5673D">&lt;?</span><span style="color: #BBBBBB">php</span></span>
+<span class="line" data-linenr="2"></span>
+<span class="line" data-linenr="3"><span style="color: #E5673D">require_once</span><span style="color: #BBBBBB"> </span><span style="color: #999999">&#39;</span><span style="color: #7CC64A">vendor/autoload.php</span><span style="color: #999999">&#39;</span><span style="color: #E5673D">;</span></span>
+<span class="line" data-linenr="4"></span>
+<span class="line" data-linenr="5"><span style="color: #E5673D">use</span><span style="color: #BBBBBB"> Psr</span><span style="color: #999999">\</span><span style="color: #BBBBBB">Log</span><span style="color: #999999">\</span><span style="color: #C7C8D2">AbstractLogger</span><span style="color: #E5673D">;</span></span>
+<span class="line" data-linenr="6"><span style="color: #E5673D">use</span><span style="color: #BBBBBB"> Symfony</span><span style="color: #999999">\</span><span style="color: #BBBBBB">Component</span><span style="color: #999999">\</span><span style="color: #BBBBBB">ErrorHandler</span><span style="color: #999999">\</span><span style="color: #C7C8D2">ErrorHandler</span><span style="color: #E5673D">;</span></span>
+<span class="line" data-linenr="7"></span>
+<span class="line" data-linenr="8"><span style="color: #C7C8D2">ErrorHandler</span><span style="color: #E5673D">::</span><span style="color: #C7C8D2">register</span><span style="color: #999999">()</span></span>
+<span class="line" data-linenr="9"><span style="color: #BBBBBB">    </span><span style="color: #E5673D">-&gt;</span><span style="color: #C7C8D2">setDefaultLogger</span><span style="color: #999999">(</span><span style="color: #E5673D">new</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">class</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">extends</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">AbstractLogger</span><span style="color: #BBBBBB"> </span><span style="color: #999999">{</span></span>
+<span class="line" data-linenr="10"><span style="color: #BBBBBB">        </span><span style="color: #E5673D">public</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">function</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">log</span><span style="color: #999999">(</span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">level</span><span style="color: #999999">,</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">string</span><span style="color: #999999">|\</span><span style="color: #C7C8D2">Stringable</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">message</span><span style="color: #999999">,</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">array</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">context</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">=</span><span style="color: #BBBBBB"> </span><span style="color: #999999">[])</span><span style="color: #E5673D">:</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">void</span></span>
+<span class="line" data-linenr="11"><span style="color: #BBBBBB">        </span><span style="color: #999999">{</span></span>
+<span class="line" data-linenr="12"><span style="color: #BBBBBB">            </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">formattedLogLine</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">=</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">sprintf</span><span style="color: #999999">(</span></span>
+<span class="line" data-linenr="13"><span style="color: #C7C8D2">                </span><span style="color: #999999">&#39;</span><span style="color: #7CC64A">[%s] %s: %s%s</span><span style="color: #999999">&#39;</span><span style="color: #E5673D">.</span><span style="color: #E5673D">PHP_EOL</span><span style="color: #999999">,</span></span>
+<span class="line" data-linenr="14"><span style="color: #C7C8D2">                date</span><span style="color: #999999">(</span><span style="color: #999999">&#39;</span><span style="color: #7CC64A">Y-m-dTH:i:s.uP</span><span style="color: #999999">&#39;</span><span style="color: #999999">),</span></span>
+<span class="line" data-linenr="15"><span style="color: #C7C8D2">                </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">level</span><span style="color: #999999">,</span></span>
+<span class="line" data-linenr="16"><span style="color: #C7C8D2">                </span><span style="color: #999999">(</span><span style="color: #E5673D">string</span><span style="color: #999999">)</span><span style="color: #C7C8D2"> </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">message</span><span style="color: #999999">,</span></span>
+<span class="line" data-linenr="17"><span style="color: #C7C8D2">                </span><span style="color: #999999">(</span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">context</span><span style="color: #999999">[</span><span style="color: #999999">&#39;</span><span style="color: #7CC64A">exception</span><span style="color: #999999">&#39;</span><span style="color: #999999">]</span><span style="color: #C7C8D2"> </span><span style="color: #E5673D">??</span><span style="color: #C7C8D2"> </span><span style="color: #E5673D">false</span><span style="color: #999999">)</span><span style="color: #C7C8D2"> </span><span style="color: #E5673D">instanceof</span><span style="color: #C7C8D2"> </span><span style="color: #999999">\</span><span style="color: #C7C8D2">Throwable</span></span>
+<span class="line" data-linenr="18"><span style="color: #C7C8D2">                    </span><span style="color: #E5673D">?</span><span style="color: #C7C8D2"> </span><span style="color: #C7C8D2">sprintf</span><span style="color: #999999">(</span><span style="color: #999999">&#39;</span><span style="color: #7CC64A"> in %s:%s</span><span style="color: #999999">&#39;</span><span style="color: #999999">,</span><span style="color: #C7C8D2"> </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">context</span><span style="color: #999999">[</span><span style="color: #999999">&#39;</span><span style="color: #7CC64A">exception</span><span style="color: #999999">&#39;</span><span style="color: #999999">]</span><span style="color: #E5673D">-&gt;</span><span style="color: #C7C8D2">getFile</span><span style="color: #999999">(),</span><span style="color: #C7C8D2"> </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">context</span><span style="color: #999999">[</span><span style="color: #999999">&#39;</span><span style="color: #7CC64A">exception</span><span style="color: #999999">&#39;</span><span style="color: #999999">]</span><span style="color: #E5673D">-&gt;</span><span style="color: #C7C8D2">getLine</span><span style="color: #999999">())</span></span>
+<span class="line" data-linenr="19"><span style="color: #C7C8D2">                    </span><span style="color: #E5673D">:</span><span style="color: #C7C8D2"> </span><span style="color: #999999">&#39;&#39;</span></span>
+<span class="line" data-linenr="20"><span style="color: #C7C8D2">            </span><span style="color: #999999">)</span><span style="color: #E5673D">;</span></span>
+<span class="line" data-linenr="21"></span>
+<span class="line" data-linenr="22"><span style="color: #BBBBBB">            </span><span style="color: #C7C8D2">file_put_contents</span><span style="color: #999999">(</span><span style="color: #E5673D">__DIR__</span><span style="color: #E5673D">.</span><span style="color: #999999">&#39;</span><span style="color: #7CC64A">/deprecations.log</span><span style="color: #999999">&#39;</span><span style="color: #999999">,</span><span style="color: #C7C8D2"> </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">formattedLogLine</span><span style="color: #999999">,</span><span style="color: #C7C8D2"> </span><span style="color: #999999">\</span><span style="color: #E5673D">FILE_APPEND</span><span style="color: #999999">)</span><span style="color: #E5673D">;</span></span>
+<span class="line" data-linenr="23"><span style="color: #BBBBBB">        </span><span style="color: #999999">}</span></span>
+<span class="line" data-linenr="24"><span style="color: #BBBBBB">    </span><span style="color: #999999">},</span><span style="color: #BBBBBB"> </span><span style="color: #999999">\</span><span style="color: #E5673D">E_DEPRECATED</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">|</span><span style="color: #BBBBBB"> </span><span style="color: #999999">\</span><span style="color: #E5673D">E_USER_DEPRECATED</span><span style="color: #999999">)</span></span>
+<span class="line" data-linenr="25"><span style="color: #E5673D">;</span></span>
+<span class="line" data-linenr="26"></span>
+<span class="line" data-linenr="27"><span style="color: #6B90C0; font-style: italic">// &quot;null&quot; argument deprecated as of PHP 8.1</span></span>
+<span class="line" data-linenr="28"><span style="color: #C7C8D2">var_dump</span><span style="color: #999999">(</span><span style="color: #C7C8D2">str_contains</span><span style="color: #999999">(</span><span style="color: #999999">&#39;</span><span style="color: #7CC64A">foo</span><span style="color: #999999">&#39;</span><span style="color: #999999">,</span><span style="color: #C7C8D2"> </span><span style="color: #E5673D">null</span><span style="color: #999999">))</span><span style="color: #E5673D">;</span></span></code></pre>
+</div>
     
       <h2 id="take-homes">
         

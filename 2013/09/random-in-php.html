@@ -74,31 +74,31 @@ compilen kun je wat dingen doe die PHP niet kan. Bijv. het gebruik van
 defines. Defines zijn woorden die worden omgezet in de waarde die je er aan
 meegeeft. Laten we beginnen met een simpele constante:</p>
 
-<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-</pre></td><td class="rouge-code"><pre><span class="cp">#define M_PI 3.14159265358979323846
-</span></pre></td></tr></tbody></table></code></pre></div></div>
+<div class="language-c highlighter-shiki"><pre class="shiki-gutter">1
+</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #5E81AC; font-weight: bold">#</span><span style="color: #E5673D">define</span><span style="color: #5E81AC"> </span><span style="color: #C7C8D2">M_PI</span><span style="color: #5E81AC"> </span><span style="color: #B48EAD">3.14159265358979323846</span></span></code></pre>
+</div>
 
-<p>Wanneer we nu in onze code <code class="highlighter-rouge">M_PI</code> gebruiken wordt dit vervangen door dit
+<p>Wanneer we nu in onze code <code class="highlighter-shiki">M_PI</code> gebruiken wordt dit vervangen door dit
 getal:</p>
 
-<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-</pre></td><td class="rouge-code"><pre><span class="kt">long</span> <span class="n">omtrek</span> <span class="o">=</span> <span class="n">M_PI</span> <span class="o">*</span> <span class="mi">4</span><span class="p">;</span>
-</pre></td></tr></tbody></table></code></pre></div></div>
+<div class="language-c highlighter-shiki"><pre class="shiki-gutter">1
+</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #E5673D">long</span><span style="color: #BBBBBB"> omtrek </span><span style="color: #E5673D">=</span><span style="color: #BBBBBB"> M_PI </span><span style="color: #E5673D">*</span><span style="color: #BBBBBB"> </span><span style="color: #B48EAD">4</span><span style="color: #E5673D">;</span></span></code></pre>
+</div>
 
 <p>Hier staat na het compilen eigenlijk:</p>
 
-<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-</pre></td><td class="rouge-code"><pre><span class="kt">long</span> <span class="n">omtrek</span> <span class="o">=</span> <span class="mi">3</span><span class="p">.</span><span class="mi">14159265358979323846</span> <span class="o">*</span> <span class="mi">4</span><span class="p">;</span>
-</pre></td></tr></tbody></table></code></pre></div></div>
+<div class="language-c highlighter-shiki"><pre class="shiki-gutter">1
+</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #E5673D">long</span><span style="color: #BBBBBB"> omtrek </span><span style="color: #E5673D">=</span><span style="color: #BBBBBB"> </span><span style="color: #B48EAD">3.14159265358979323846</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">*</span><span style="color: #BBBBBB"> </span><span style="color: #B48EAD">4</span><span style="color: #E5673D">;</span></span></code></pre>
+</div>
 
 <p>Naast het invullen van getallen of strings kun je ook macro’s definiëren.
 Bijvoorbeeld deze macro:</p>
 
-<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-</pre></td><td class="rouge-code"><pre><span class="cp">#define INCREMENT(x) x++
-</span></pre></td></tr></tbody></table></code></pre></div></div>
+<div class="language-c highlighter-shiki"><pre class="shiki-gutter">1
+</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #5E81AC; font-weight: bold">#</span><span style="color: #E5673D">define</span><span style="color: #5E81AC"> </span><span style="color: #C7C8D2">INCREMENT</span><span style="color: #999999">(</span><span style="color: #D8DEE9">x</span><span style="color: #999999">)</span><span style="color: #5E81AC"> x</span><span style="color: #E5673D">++</span></span></code></pre>
+</div>
 
-<p>Nu zal <code class="highlighter-rouge">INCREMENT(5)</code> worden omgezet in <code class="highlighter-rouge">6</code>.</p>
+<p>Nu zal <code class="highlighter-shiki">INCREMENT(5)</code> worden omgezet in <code class="highlighter-shiki">6</code>.</p>
     
       <h2 id="random-getallen">
         
@@ -125,20 +125,20 @@ je dus nooit dezelfde random reeks getallen.</p>
       <h2 id="de-rand-functie">
         
         
-          <a href="#de-rand-functie" class="section-link"></a> De <code class="highlighter-rouge">rand</code> functie
+          <a href="#de-rand-functie" class="section-link"></a> De <code class="highlighter-shiki">rand</code> functie
         
         
       </h2>
 
 <p>Nu je de basiskennis hebt gaan we kijken in de PHP source code. De meeste
-functies worden aangemaakt door <code class="highlighter-rouge">PHP_FUNCTION(rand)</code>. Als we opzoek willen
-naar de <code class="highlighter-rouge">rand</code> functie zoeken we op <code class="highlighter-rouge">"PHP_FUNCTION rand"</code> (vergeet de quotes
-niet). In de <a href="http://lxr.php.net/search?q=%22PHP_FUNCTION+rand%22&amp;defs=&amp;refs=&amp;path=&amp;hist=&amp;project=PHP_5_4">resultaten</a> krijgen we dan 2 bestanden: <code class="highlighter-rouge">php_math.h</code> en
-<code class="highlighter-rouge">rand.c</code>. De <code class="highlighter-rouge">*.h</code> bestanden zijn header bestanden, die vertellen wat er
-allemaal in de <code class="highlighter-rouge">*.c</code> bestanden staat. De <code class="highlighter-rouge">*.c</code> bestanden bevatten de echte
+functies worden aangemaakt door <code class="highlighter-shiki">PHP_FUNCTION(rand)</code>. Als we opzoek willen
+naar de <code class="highlighter-shiki">rand</code> functie zoeken we op <code class="highlighter-shiki">&quot;PHP_FUNCTION rand&quot;</code> (vergeet de quotes
+niet). In de <a href="http://lxr.php.net/search?q=%22PHP_FUNCTION+rand%22&amp;defs=&amp;refs=&amp;path=&amp;hist=&amp;project=PHP_5_4">resultaten</a> krijgen we dan 2 bestanden: <code class="highlighter-shiki">php_math.h</code> en
+<code class="highlighter-shiki">rand.c</code>. De <code class="highlighter-shiki">*.h</code> bestanden zijn header bestanden, die vertellen wat er
+allemaal in de <code class="highlighter-shiki">*.c</code> bestanden staat. De <code class="highlighter-shiki">*.c</code> bestanden bevatten de echte
 code. We klikken dus op die link en navigeren naar <a href="http://lxr.php.net/xref/PHP_5_4/ext/standard/rand.c#290">regel 290</a>:</p>
 
-<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<div class="language-c highlighter-shiki"><pre class="shiki-gutter">1
 2
 3
 4
@@ -155,24 +155,24 @@ code. We klikken dus op die link en navigeren naar <a href="http://lxr.php.net/x
 15
 16
 17
-</pre></td><td class="rouge-code"><pre><span class="n">PHP_FUNCTION</span><span class="p">(</span><span class="n">rand</span><span class="p">)</span>
-<span class="p">{</span>
-    <span class="kt">long</span> <span class="n">min</span><span class="p">;</span>
-    <span class="kt">long</span> <span class="n">max</span><span class="p">;</span>
-    <span class="kt">long</span> <span class="n">number</span><span class="p">;</span>
-    <span class="kt">int</span>  <span class="n">argc</span> <span class="o">=</span> <span class="n">ZEND_NUM_ARGS</span><span class="p">();</span>
-
-    <span class="k">if</span> <span class="p">(</span><span class="n">argc</span> <span class="o">!=</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">zend_parse_parameters</span><span class="p">(</span><span class="n">argc</span> <span class="n">TSRMLS_CC</span><span class="p">,</span> <span class="s">"ll"</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">min</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">max</span><span class="p">)</span> <span class="o">==</span> <span class="n">FAILURE</span><span class="p">)</span>
-        <span class="k">return</span><span class="p">;</span>
-
-    <span class="n">number</span> <span class="o">=</span> <span class="n">php_rand</span><span class="p">(</span><span class="n">TSRMLS_C</span><span class="p">);</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">argc</span> <span class="o">==</span> <span class="mi">2</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">RAND_RANGE</span><span class="p">(</span><span class="n">number</span><span class="p">,</span> <span class="n">min</span><span class="p">,</span> <span class="n">max</span><span class="p">,</span> <span class="n">PHP_RAND_MAX</span><span class="p">);</span>
-    <span class="p">}</span>
-
-    <span class="n">RETURN_LONG</span><span class="p">(</span><span class="n">number</span><span class="p">);</span>
-<span class="p">}</span>
-</pre></td></tr></tbody></table></code></pre></div></div>
+</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #C7C8D2">PHP_FUNCTION</span><span style="color: #999999">(</span><span style="color: #BBBBBB">rand</span><span style="color: #999999">)</span></span>
+<span class="line" data-linenr="2"><span style="color: #999999">{</span></span>
+<span class="line" data-linenr="3"><span style="color: #BBBBBB">    </span><span style="color: #E5673D">long</span><span style="color: #BBBBBB"> min</span><span style="color: #E5673D">;</span></span>
+<span class="line" data-linenr="4"><span style="color: #BBBBBB">    </span><span style="color: #E5673D">long</span><span style="color: #BBBBBB"> max</span><span style="color: #E5673D">;</span></span>
+<span class="line" data-linenr="5"><span style="color: #BBBBBB">    </span><span style="color: #E5673D">long</span><span style="color: #BBBBBB"> number</span><span style="color: #E5673D">;</span></span>
+<span class="line" data-linenr="6"><span style="color: #BBBBBB">    </span><span style="color: #E5673D">int</span><span style="color: #BBBBBB">  argc </span><span style="color: #E5673D">=</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">ZEND_NUM_ARGS</span><span style="color: #999999">()</span><span style="color: #E5673D">;</span></span>
+<span class="line" data-linenr="7"></span>
+<span class="line" data-linenr="8"><span style="color: #BBBBBB">    </span><span style="color: #E5673D">if</span><span style="color: #BBBBBB"> </span><span style="color: #999999">(</span><span style="color: #BBBBBB">argc </span><span style="color: #E5673D">!=</span><span style="color: #BBBBBB"> </span><span style="color: #B48EAD">0</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">&amp;&amp;</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">zend_parse_parameters</span><span style="color: #999999">(</span><span style="color: #BBBBBB">argc TSRMLS_CC</span><span style="color: #999999">,</span><span style="color: #BBBBBB"> </span><span style="color: #999999">&quot;</span><span style="color: #7CC64A">ll</span><span style="color: #999999">&quot;</span><span style="color: #999999">,</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">&amp;</span><span style="color: #BBBBBB">min</span><span style="color: #999999">,</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">&amp;</span><span style="color: #BBBBBB">max</span><span style="color: #999999">)</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">==</span><span style="color: #BBBBBB"> FAILURE</span><span style="color: #999999">)</span></span>
+<span class="line" data-linenr="9"><span style="color: #BBBBBB">        </span><span style="color: #E5673D">return;</span></span>
+<span class="line" data-linenr="10"></span>
+<span class="line" data-linenr="11"><span style="color: #BBBBBB">    number </span><span style="color: #E5673D">=</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">php_rand</span><span style="color: #999999">(</span><span style="color: #BBBBBB">TSRMLS_C</span><span style="color: #999999">)</span><span style="color: #E5673D">;</span></span>
+<span class="line" data-linenr="12"><span style="color: #BBBBBB">    </span><span style="color: #E5673D">if</span><span style="color: #BBBBBB"> </span><span style="color: #999999">(</span><span style="color: #BBBBBB">argc </span><span style="color: #E5673D">==</span><span style="color: #BBBBBB"> </span><span style="color: #B48EAD">2</span><span style="color: #999999">)</span><span style="color: #BBBBBB"> </span><span style="color: #999999">{</span></span>
+<span class="line" data-linenr="13"><span style="color: #BBBBBB">        </span><span style="color: #C7C8D2">RAND_RANGE</span><span style="color: #999999">(</span><span style="color: #BBBBBB">number</span><span style="color: #999999">,</span><span style="color: #BBBBBB"> min</span><span style="color: #999999">,</span><span style="color: #BBBBBB"> max</span><span style="color: #999999">,</span><span style="color: #BBBBBB"> PHP_RAND_MAX</span><span style="color: #999999">)</span><span style="color: #E5673D">;</span></span>
+<span class="line" data-linenr="14"><span style="color: #BBBBBB">    </span><span style="color: #999999">}</span></span>
+<span class="line" data-linenr="15"></span>
+<span class="line" data-linenr="16"><span style="color: #BBBBBB">    </span><span style="color: #C7C8D2">RETURN_LONG</span><span style="color: #999999">(</span><span style="color: #BBBBBB">number</span><span style="color: #999999">)</span><span style="color: #E5673D">;</span></span>
+<span class="line" data-linenr="17"><span style="color: #999999">}</span></span></code></pre>
+</div>
 
 <p>En dat is de functie!</p>
     
@@ -186,36 +186,36 @@ code. We klikken dus op die link en navigeren naar <a href="http://lxr.php.net/x
 
 <p>Als eerst zien we dat er 4 variabelen gedeclareerd worden:</p>
 
-<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<div class="language-c highlighter-shiki"><pre class="shiki-gutter">1
 2
 3
 4
-</pre></td><td class="rouge-code"><pre><span class="kt">long</span> <span class="n">min</span><span class="p">;</span>
-<span class="kt">long</span> <span class="n">max</span><span class="p">;</span>
-<span class="kt">long</span> <span class="n">number</span><span class="p">;</span>
-<span class="kt">int</span>  <span class="n">argc</span> <span class="o">=</span> <span class="n">ZEND_NUM_ARGS</span><span class="p">();</span>
-</pre></td></tr></tbody></table></code></pre></div></div>
+</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #E5673D">long</span><span style="color: #BBBBBB"> min</span><span style="color: #E5673D">;</span></span>
+<span class="line" data-linenr="2"><span style="color: #E5673D">long</span><span style="color: #BBBBBB"> max</span><span style="color: #E5673D">;</span></span>
+<span class="line" data-linenr="3"><span style="color: #E5673D">long</span><span style="color: #BBBBBB"> number</span><span style="color: #E5673D">;</span></span>
+<span class="line" data-linenr="4"><span style="color: #E5673D">int</span><span style="color: #BBBBBB">  argc </span><span style="color: #E5673D">=</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">ZEND_NUM_ARGS</span><span style="color: #999999">()</span><span style="color: #E5673D">;</span></span></code></pre>
+</div>
 
 <p>De eerste 3 variabelen zijn of argumenten of variabele die we verder in de
-functie gaan gebruiken. De 4e variabele, <code class="highlighter-rouge">argc</code>, is het aantal argumenten.
-Zend is de engine achter PHP en we kunnen wel raden wat <code class="highlighter-rouge">ZEND_NUM_ARGS()</code>
+functie gaan gebruiken. De 4e variabele, <code class="highlighter-shiki">argc</code>, is het aantal argumenten.
+Zend is de engine achter PHP en we kunnen wel raden wat <code class="highlighter-shiki">ZEND_NUM_ARGS()</code>
 doet, we gaan dus niet naar die source code kijken.</p>
 
 <p>Dan krijgen we een check voor de argumenten:</p>
 
-<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<div class="language-c highlighter-shiki"><pre class="shiki-gutter">1
 2
-</pre></td><td class="rouge-code"><pre><span class="k">if</span> <span class="p">(</span><span class="n">argc</span> <span class="o">!=</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">zend_parse_parameters</span><span class="p">(</span><span class="n">argc</span> <span class="n">TSRMLS_CC</span><span class="p">,</span> <span class="s">"ll"</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">min</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">max</span><span class="p">)</span> <span class="o">==</span> <span class="n">FAILURE</span><span class="p">)</span>
-    <span class="k">return</span><span class="p">;</span>
-</pre></td></tr></tbody></table></code></pre></div></div>
+</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #E5673D">if</span><span style="color: #BBBBBB"> </span><span style="color: #999999">(</span><span style="color: #BBBBBB">argc </span><span style="color: #E5673D">!=</span><span style="color: #BBBBBB"> </span><span style="color: #B48EAD">0</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">&amp;&amp;</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">zend_parse_parameters</span><span style="color: #999999">(</span><span style="color: #BBBBBB">argc </span><span style="color: #D8DEE9">TSRMLS_CC</span><span style="color: #999999">,</span><span style="color: #BBBBBB"> </span><span style="color: #999999">&quot;</span><span style="color: #7CC64A">ll</span><span style="color: #999999">&quot;</span><span style="color: #999999">,</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">&amp;</span><span style="color: #D8DEE9">min</span><span style="color: #999999">,</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">&amp;</span><span style="color: #D8DEE9">max</span><span style="color: #999999">)</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">==</span><span style="color: #BBBBBB"> FAILURE</span><span style="color: #999999">)</span></span>
+<span class="line" data-linenr="2"><span style="color: #BBBBBB">    </span><span style="color: #E5673D">return;</span></span></code></pre>
+</div>
 
-<p>De check <code class="highlighter-rouge">argc != 0</code> betekend dat we pas argumenten gaan checken als er
-argumenten zijn, dit komt omdat de <code class="highlighter-rouge">rand</code> functie ook zonder argumenten
+<p>De check <code class="highlighter-shiki">argc != 0</code> betekend dat we pas argumenten gaan checken als er
+argumenten zijn, dit komt omdat de <code class="highlighter-shiki">rand</code> functie ook zonder argumenten
 aangeroepen kan worden. Zodra er wel argumenten zijn moeten er meteen 2 zijn.
-Met <code class="highlighter-rouge">zend_parse_parameters</code> parsen we de argumenten. We zien <code class="highlighter-rouge">"ll"</code>, dit
-betekend dat beide argumenten <code class="highlighter-rouge">long</code> (een soort float) zijn. Daarachter zien
-we <code class="highlighter-rouge">&amp;min</code> en <code class="highlighter-rouge">&amp;max</code>, dit betekend dat de waarde van de argumenten worden mee
-gegeven aan de variabelen <code class="highlighter-rouge">min</code> en <code class="highlighter-rouge">max</code> (die we hiervoor al gedeclareerd
+Met <code class="highlighter-shiki">zend_parse_parameters</code> parsen we de argumenten. We zien <code class="highlighter-shiki">&quot;ll&quot;</code>, dit
+betekend dat beide argumenten <code class="highlighter-shiki">long</code> (een soort float) zijn. Daarachter zien
+we <code class="highlighter-shiki">&amp;min</code> en <code class="highlighter-shiki">&amp;max</code>, dit betekend dat de waarde van de argumenten worden mee
+gegeven aan de variabelen <code class="highlighter-shiki">min</code> en <code class="highlighter-shiki">max</code> (die we hiervoor al gedeclareerd
 hadden).</p>
     
       <h3 id="het-maken-van-de-seed">
@@ -228,18 +228,18 @@ hadden).</p>
 
 <p>Dan gaan we de seed maken:</p>
 
-<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-</pre></td><td class="rouge-code"><pre><span class="n">number</span> <span class="o">=</span> <span class="n">php_rand</span><span class="p">(</span><span class="n">TSRMLS_C</span><span class="p">);</span>
-</pre></td></tr></tbody></table></code></pre></div></div>
+<div class="language-c highlighter-shiki"><pre class="shiki-gutter">1
+</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #BBBBBB">number </span><span style="color: #E5673D">=</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">php_rand</span><span style="color: #999999">(</span><span style="color: #BBBBBB">TSRMLS_C</span><span style="color: #999999">)</span><span style="color: #E5673D">;</span></span></code></pre>
+</div>
 
-<p>In deze regel roepen we de functie <code class="highlighter-rouge">php_rand</code> (een interne functie die niet in
+<p>In deze regel roepen we de functie <code class="highlighter-shiki">php_rand</code> (een interne functie die niet in
 PHP bestaat) aan. Die geven we ook weer een waarde mee, die is voor nu even
 niet interessant.</p>
 
 <p>Wat wel interessant is hoe PHP die random seed maakt. Dus klikken we op de
-functie <code class="highlighter-rouge">php_rand</code> om die source te bekijken:</p>
+functie <code class="highlighter-shiki">php_rand</code> om die source te bekijken:</p>
 
-<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<div class="language-c highlighter-shiki"><pre class="shiki-gutter">1
 2
 3
 4
@@ -261,32 +261,32 @@ functie <code class="highlighter-rouge">php_rand</code> om die source te bekijke
 20
 21
 22
-</pre></td><td class="rouge-code"><pre><span class="n">PHPAPI</span> <span class="kt">long</span> <span class="nf">php_rand</span><span class="p">(</span><span class="n">TSRMLS_D</span><span class="p">)</span>
-<span class="p">{</span>
-    <span class="kt">long</span> <span class="n">ret</span><span class="p">;</span>
-
-    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">BG</span><span class="p">(</span><span class="n">rand_is_seeded</span><span class="p">))</span> <span class="p">{</span>
-        <span class="n">php_srand</span><span class="p">(</span><span class="n">GENERATE_SEED</span><span class="p">()</span> <span class="n">TSRMLS_CC</span><span class="p">);</span>
-    <span class="p">}</span>
-
-<span class="cp">#ifdef ZTS
-</span>    <span class="n">ret</span> <span class="o">=</span> <span class="n">php_rand_r</span><span class="p">(</span><span class="o">&amp;</span><span class="n">BG</span><span class="p">(</span><span class="n">rand_seed</span><span class="p">));</span>
-<span class="cp">#else
-# if defined(HAVE_RANDOM)
-</span>    <span class="n">ret</span> <span class="o">=</span> <span class="n">random</span><span class="p">();</span>
-<span class="cp"># elif defined(HAVE_LRAND48)
-</span>    <span class="n">ret</span> <span class="o">=</span> <span class="n">lrand48</span><span class="p">();</span>
-<span class="cp"># else
-</span>    <span class="n">ret</span> <span class="o">=</span> <span class="n">rand</span><span class="p">();</span>
-<span class="cp"># endif
-#endif
-</span>
-    <span class="k">return</span> <span class="n">ret</span><span class="p">;</span>
-<span class="p">}</span>
-</pre></td></tr></tbody></table></code></pre></div></div>
+</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #BBBBBB">PHPAPI </span><span style="color: #E5673D">long</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">php_rand</span><span style="color: #999999">(</span><span style="color: #BBBBBB">TSRMLS_D</span><span style="color: #999999">)</span></span>
+<span class="line" data-linenr="2"><span style="color: #999999">{</span></span>
+<span class="line" data-linenr="3"><span style="color: #BBBBBB">    </span><span style="color: #E5673D">long</span><span style="color: #BBBBBB"> ret</span><span style="color: #E5673D">;</span></span>
+<span class="line" data-linenr="4"></span>
+<span class="line" data-linenr="5"><span style="color: #BBBBBB">    </span><span style="color: #E5673D">if</span><span style="color: #BBBBBB"> </span><span style="color: #999999">(</span><span style="color: #E5673D">!</span><span style="color: #C7C8D2">BG</span><span style="color: #999999">(</span><span style="color: #BBBBBB">rand_is_seeded</span><span style="color: #999999">))</span><span style="color: #BBBBBB"> </span><span style="color: #999999">{</span></span>
+<span class="line" data-linenr="6"><span style="color: #BBBBBB">        </span><span style="color: #C7C8D2">php_srand</span><span style="color: #999999">(</span><span style="color: #C7C8D2">GENERATE_SEED</span><span style="color: #999999">()</span><span style="color: #BBBBBB"> TSRMLS_CC</span><span style="color: #999999">)</span><span style="color: #E5673D">;</span></span>
+<span class="line" data-linenr="7"><span style="color: #BBBBBB">    </span><span style="color: #999999">}</span></span>
+<span class="line" data-linenr="8"></span>
+<span class="line" data-linenr="9"><span style="color: #5E81AC; font-weight: bold">#ifdef</span><span style="color: #5E81AC"> </span><span style="color: #C7C8D2">ZTS</span></span>
+<span class="line" data-linenr="10"><span style="color: #BBBBBB">    ret </span><span style="color: #E5673D">=</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">php_rand_r</span><span style="color: #999999">(</span><span style="color: #E5673D">&amp;</span><span style="color: #C7C8D2">BG</span><span style="color: #999999">(</span><span style="color: #BBBBBB">rand_seed</span><span style="color: #999999">))</span><span style="color: #E5673D">;</span></span>
+<span class="line" data-linenr="11"><span style="color: #5E81AC; font-weight: bold">#else</span></span>
+<span class="line" data-linenr="12"><span style="color: #5E81AC; font-weight: bold"># if</span><span style="color: #5E81AC"> </span><span style="color: #5E81AC; font-weight: bold">defined</span><span style="color: #999999">(</span><span style="color: #C7C8D2">HAVE_RANDOM</span><span style="color: #999999">)</span></span>
+<span class="line" data-linenr="13"><span style="color: #BBBBBB">    ret </span><span style="color: #E5673D">=</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">random</span><span style="color: #999999">()</span><span style="color: #E5673D">;</span></span>
+<span class="line" data-linenr="14"><span style="color: #5E81AC; font-weight: bold"># elif</span><span style="color: #5E81AC"> </span><span style="color: #5E81AC; font-weight: bold">defined</span><span style="color: #999999">(</span><span style="color: #C7C8D2">HAVE_LRAND48</span><span style="color: #999999">)</span></span>
+<span class="line" data-linenr="15"><span style="color: #BBBBBB">    ret </span><span style="color: #E5673D">=</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">lrand48</span><span style="color: #999999">()</span><span style="color: #E5673D">;</span></span>
+<span class="line" data-linenr="16"><span style="color: #5E81AC; font-weight: bold"># else</span></span>
+<span class="line" data-linenr="17"><span style="color: #BBBBBB">    ret </span><span style="color: #E5673D">=</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">rand</span><span style="color: #999999">()</span><span style="color: #E5673D">;</span></span>
+<span class="line" data-linenr="18"><span style="color: #5E81AC; font-weight: bold"># endif</span></span>
+<span class="line" data-linenr="19"><span style="color: #5E81AC; font-weight: bold">#endif</span></span>
+<span class="line" data-linenr="20"></span>
+<span class="line" data-linenr="21"><span style="color: #BBBBBB">    </span><span style="color: #E5673D">return</span><span style="color: #BBBBBB"> ret</span><span style="color: #E5673D">;</span></span>
+<span class="line" data-linenr="22"><span style="color: #999999">}</span></span></code></pre>
+</div>
 
 <p>Wat we hier heel in het kort zien is dat de functie, afhankelijk van bepaalde
-instellingen, de C functies <code class="highlighter-rouge">rand</code>, <code class="highlighter-rouge">lrand48</code> of <code class="highlighter-rouge">random</code> gebruikt.</p>
+instellingen, de C functies <code class="highlighter-shiki">rand</code>, <code class="highlighter-shiki">lrand48</code> of <code class="highlighter-shiki">random</code> gebruikt.</p>
     
       <h3 id="het-maken-van-het-random-getal">
         
@@ -296,32 +296,32 @@ instellingen, de C functies <code class="highlighter-rouge">rand</code>, <code c
         
       </h3>
 
-<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<div class="language-c highlighter-shiki"><pre class="shiki-gutter">1
 2
 3
-</pre></td><td class="rouge-code"><pre><span class="k">if</span> <span class="p">(</span><span class="n">argc</span> <span class="o">==</span> <span class="mi">2</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">RAND_RANGE</span><span class="p">(</span><span class="n">number</span><span class="p">,</span> <span class="n">min</span><span class="p">,</span> <span class="n">max</span><span class="p">,</span> <span class="n">PHP_RAND_MAX</span><span class="p">);</span>
-<span class="p">}</span>
-</pre></td></tr></tbody></table></code></pre></div></div>
+</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #E5673D">if</span><span style="color: #BBBBBB"> </span><span style="color: #999999">(</span><span style="color: #BBBBBB">argc </span><span style="color: #E5673D">==</span><span style="color: #BBBBBB"> </span><span style="color: #B48EAD">2</span><span style="color: #999999">)</span><span style="color: #BBBBBB"> </span><span style="color: #999999">{</span></span>
+<span class="line" data-linenr="2"><span style="color: #BBBBBB">    </span><span style="color: #C7C8D2">RAND_RANGE</span><span style="color: #999999">(</span><span style="color: #BBBBBB">number</span><span style="color: #999999">,</span><span style="color: #BBBBBB"> min</span><span style="color: #999999">,</span><span style="color: #BBBBBB"> max</span><span style="color: #999999">,</span><span style="color: #BBBBBB"> PHP_RAND_MAX</span><span style="color: #999999">)</span><span style="color: #E5673D">;</span></span>
+<span class="line" data-linenr="3"><span style="color: #999999">}</span></span></code></pre>
+</div>
 
-<p>Zodra er 2 argumenten zijn gegeven wordt de <code class="highlighter-rouge">RAND_RANGE</code> define functie
+<p>Zodra er 2 argumenten zijn gegeven wordt de <code class="highlighter-shiki">RAND_RANGE</code> define functie
 gebruikt om het random nummer tussen 2 waardes te maken. Zodra je dus geen
 argumenten geeft, krijg je gewoon de seed terug.</p>
 
 <p>Nu zijn we natuurlijk benieuwd wat voor algoritme PHP gebruikt voor het maken
 van het random getal, dus klikken we erop en gaan we naar een
-<a href="http://lxr.php.net/xref/PHP_5_4/ext/standard/php_rand.h#43"><code class="highlighter-rouge">php_rand.h</code></a> bestand:</p>
+<a href="http://lxr.php.net/xref/PHP_5_4/ext/standard/php_rand.h#43"><code class="highlighter-shiki">php_rand.h</code></a> bestand:</p>
 
-<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<div class="language-c highlighter-shiki"><pre class="shiki-gutter">1
 2
-</pre></td><td class="rouge-code"><pre><span class="cp">#define RAND_RANGE(__n, __min, __max, __tmax) \
-    (__n) = (__min) + (long) ((double) ( (double) (__max) - (__min) + 1.0) * ((__n) / ((__tmax) + 1.0)))
-</span></pre></td></tr></tbody></table></code></pre></div></div>
+</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #5E81AC; font-weight: bold">#</span><span style="color: #E5673D">define</span><span style="color: #5E81AC"> </span><span style="color: #C7C8D2">RAND_RANGE</span><span style="color: #999999">(</span><span style="color: #D8DEE9">__n</span><span style="color: #999999">,</span><span style="color: #5E81AC"> </span><span style="color: #D8DEE9">__min</span><span style="color: #999999">,</span><span style="color: #5E81AC"> </span><span style="color: #D8DEE9">__max</span><span style="color: #999999">,</span><span style="color: #5E81AC"> </span><span style="color: #D8DEE9">__tmax</span><span style="color: #999999">)</span><span style="color: #5E81AC"> </span><span style="color: #EBCB8B">\</span></span>
+<span class="line" data-linenr="2"><span style="color: #5E81AC">    </span><span style="color: #999999">(</span><span style="color: #5E81AC">__n</span><span style="color: #999999">)</span><span style="color: #5E81AC"> </span><span style="color: #E5673D">=</span><span style="color: #5E81AC"> </span><span style="color: #999999">(</span><span style="color: #5E81AC">__min</span><span style="color: #999999">)</span><span style="color: #5E81AC"> </span><span style="color: #E5673D">+</span><span style="color: #5E81AC"> </span><span style="color: #999999">(</span><span style="color: #E5673D">long</span><span style="color: #999999">)</span><span style="color: #5E81AC"> </span><span style="color: #999999">((</span><span style="color: #E5673D">double</span><span style="color: #999999">)</span><span style="color: #5E81AC"> </span><span style="color: #999999">(</span><span style="color: #5E81AC"> </span><span style="color: #999999">(</span><span style="color: #E5673D">double</span><span style="color: #999999">)</span><span style="color: #5E81AC"> </span><span style="color: #999999">(</span><span style="color: #5E81AC">__max</span><span style="color: #999999">)</span><span style="color: #5E81AC"> </span><span style="color: #E5673D">-</span><span style="color: #5E81AC"> </span><span style="color: #999999">(</span><span style="color: #5E81AC">__min</span><span style="color: #999999">)</span><span style="color: #5E81AC"> </span><span style="color: #E5673D">+</span><span style="color: #5E81AC"> </span><span style="color: #B48EAD">1.0</span><span style="color: #999999">)</span><span style="color: #5E81AC"> </span><span style="color: #E5673D">*</span><span style="color: #5E81AC"> </span><span style="color: #999999">((</span><span style="color: #5E81AC">__n</span><span style="color: #999999">)</span><span style="color: #5E81AC"> </span><span style="color: #E5673D">/</span><span style="color: #5E81AC"> </span><span style="color: #999999">((</span><span style="color: #5E81AC">__tmax</span><span style="color: #999999">)</span><span style="color: #5E81AC"> </span><span style="color: #E5673D">+</span><span style="color: #5E81AC"> </span><span style="color: #B48EAD">1.0</span><span style="color: #999999">)))</span></span></code></pre>
+</div>
 
-<p>En dat is de magische formule achter PHP’s <code class="highlighter-rouge">rand</code> functie! Er wordt mooi
-gespeelt met wat afronden (de <code class="highlighter-rouge">(long)</code>’s en <code class="highlighter-rouge">(double)</code>’s in de code), de min
-en max (<code class="highlighter-rouge">__min</code> en <code class="highlighter-rouge">__max</code>) worden een paar keer gebruikt en ook onze seed
-(<code class="highlighter-rouge">__n</code>) wordt gebruikt. Vervolgens zien we ook <code class="highlighter-rouge">(__n) = ...</code>, waardoor onze
+<p>En dat is de magische formule achter PHP’s <code class="highlighter-shiki">rand</code> functie! Er wordt mooi
+gespeelt met wat afronden (de <code class="highlighter-shiki">(long)</code>’s en <code class="highlighter-shiki">(double)</code>’s in de code), de min
+en max (<code class="highlighter-shiki">__min</code> en <code class="highlighter-shiki">__max</code>) worden een paar keer gebruikt en ook onze seed
+(<code class="highlighter-shiki">__n</code>) wordt gebruikt. Vervolgens zien we ook <code class="highlighter-shiki">(__n) = ...</code>, waardoor onze
 seed dus weer vernieuwd wordt door het gegenereerde random getal.</p>
     
       <h3 id="het-returnen-van-het-getal">
@@ -332,11 +332,11 @@ seed dus weer vernieuwd wordt door het gegenereerde random getal.</p>
         
       </h3>
 
-<p>Het enige dat ons nog rest is het returnen van de gemaakt <code class="highlighter-rouge">long</code>:</p>
+<p>Het enige dat ons nog rest is het returnen van de gemaakt <code class="highlighter-shiki">long</code>:</p>
 
-<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-</pre></td><td class="rouge-code"><pre><span class="n">RETURN_LONG</span><span class="p">(</span><span class="n">number</span><span class="p">);</span>
-</pre></td></tr></tbody></table></code></pre></div></div>
+<div class="language-c highlighter-shiki"><pre class="shiki-gutter">1
+</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #C7C8D2">RETURN_LONG</span><span style="color: #999999">(</span><span style="color: #BBBBBB">number</span><span style="color: #999999">)</span><span style="color: #E5673D">;</span></span></code></pre>
+</div>
 
 <p>Achter deze simpele regel zit weer heel wat zend gedoe, maar daar bemoeien we
 ons vandaag niet mee.</p>

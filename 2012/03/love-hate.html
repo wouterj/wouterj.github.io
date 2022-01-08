@@ -54,7 +54,7 @@ zijn, maar ook heel irritant. Vooral bij het stijlen van anchor element
             
             <p>CSS is een taal die veel geeft om volgordes en rangen. Dit kan heel handig
 zijn, maar ook heel irritant. Vooral bij het stijlen van anchor element
-(<code class="highlighter-rouge">&lt;a&gt;</code>) is dit een ramp, omdat je je dan aan een aparte volgorde moet houden.</p></div><div class="post__entry">
+(<code class="highlighter-shiki">&lt;a&gt;</code>) is dit een ramp, omdat je je dan aan een aparte volgorde moet houden.</p></div><div class="post__entry">
       <h2 id="basis-van-volgordes-in-css">
         
         
@@ -75,13 +75,13 @@ voor.</li>
 
 <p>Met regel 3 bedoel ik:</p>
 
-<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<div class="language-css highlighter-shiki"><pre class="shiki-gutter">1
 2
-</pre></td><td class="rouge-code"><pre><span class="nf">#box</span> <span class="p">{</span> <span class="nl">background</span><span class="p">:</span> <span class="no">red</span><span class="p">;</span>   <span class="p">}</span>
-<span class="nf">#box</span> <span class="p">{</span> <span class="nl">background</span><span class="p">:</span> <span class="no">green</span><span class="p">;</span> <span class="p">}</span>
-</pre></td></tr></tbody></table></code></pre></div></div>
+</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #999999">#</span><span style="color: #C7C8D2">box</span><span style="color: #BBBBBB"> </span><span style="color: #999999">{</span><span style="color: #BBBBBB"> </span><span style="color: #D8DEE9">background</span><span style="color: #999999">:</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">red;</span><span style="color: #BBBBBB">   </span><span style="color: #999999">}</span></span>
+<span class="line" data-linenr="2"><span style="color: #999999">#</span><span style="color: #C7C8D2">box</span><span style="color: #BBBBBB"> </span><span style="color: #999999">{</span><span style="color: #BBBBBB"> </span><span style="color: #D8DEE9">background</span><span style="color: #999999">:</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">green;</span><span style="color: #BBBBBB"> </span><span style="color: #999999">}</span></span></code></pre>
+</div>
 
-<p>Dan wordt de background green van <code class="highlighter-rouge">#box</code>. Deze regel is erg belangrijk voor
+<p>Dan wordt de background green van <code class="highlighter-shiki">#box</code>. Deze regel is erg belangrijk voor
 het verloop van deze tutorial.</p>
     
       <h2 id="link-condities">
@@ -95,22 +95,22 @@ het verloop van deze tutorial.</p>
 <p>Een link heeft verschillende condities die je kunt stijlen met CSS:</p>
 
 <ul>
-  <li><code class="highlighter-rouge">:link</code> - Als de link een echte link is en dus een href attribuut bevat</li>
-  <li><code class="highlighter-rouge">:visited</code> - Als je de link al een keer eerder hebt bezocht</li>
-  <li><code class="highlighter-rouge">:hover</code> - Als je met de muis over de link gaat</li>
-  <li><code class="highlighter-rouge">:active</code> - Het moment dat je op de link klikt</li>
+  <li><code class="highlighter-shiki">:link</code> - Als de link een echte link is en dus een href attribuut bevat</li>
+  <li><code class="highlighter-shiki">:visited</code> - Als je de link al een keer eerder hebt bezocht</li>
+  <li><code class="highlighter-shiki">:hover</code> - Als je met de muis over de link gaat</li>
+  <li><code class="highlighter-shiki">:active</code> - Het moment dat je op de link klikt</li>
 </ul>
 
 <p>Deze condities kun je allemaal een aparte stijl meegeven. Bijvoorbeeld:</p>
 
-<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<div class="language-css highlighter-shiki"><pre class="shiki-gutter">1
 2
-</pre></td><td class="rouge-code"><pre><span class="nt">a</span>       <span class="p">{</span> <span class="nl">text-decoration</span><span class="p">:</span> <span class="nb">none</span><span class="p">;</span>      <span class="p">}</span>
-<span class="nt">a</span><span class="nd">:hover</span> <span class="p">{</span> <span class="nl">text-decoration</span><span class="p">:</span> <span class="nb">underline</span><span class="p">;</span> <span class="p">}</span>
-</pre></td></tr></tbody></table></code></pre></div></div>
+</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #E5673D">a</span><span style="color: #BBBBBB">       </span><span style="color: #999999">{</span><span style="color: #BBBBBB"> </span><span style="color: #D8DEE9">text-decoration</span><span style="color: #999999">:</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">none;</span><span style="color: #BBBBBB">      </span><span style="color: #999999">}</span></span>
+<span class="line" data-linenr="2"><span style="color: #E5673D">a</span><span style="color: #999999">:</span><span style="color: #C7C8D2">hover</span><span style="color: #BBBBBB"> </span><span style="color: #999999">{</span><span style="color: #BBBBBB"> </span><span style="color: #D8DEE9">text-decoration</span><span style="color: #999999">:</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">underline;</span><span style="color: #BBBBBB"> </span><span style="color: #999999">}</span></span></code></pre>
+</div>
 
 <p>Nu zal er een lijn onder de tekst komen als je er met je muis overheen gaat.
-Even voor de geïnteresseerden, alles in CSS met <code class="highlighter-rouge">:*</code> heten pseudo classes.</p>
+Even voor de geïnteresseerden, alles in CSS met <code class="highlighter-shiki">:*</code> heten pseudo classes.</p>
     
       <h2 id="het-probleem">
         
@@ -127,23 +127,23 @@ overrulled en dat je daardoor nooit de echte stijl ziet.</p>
 <p>Stel we hebben een link waarop je al een keer bent geweest en we hebben de
 volgende CSS:</p>
 
-<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<div class="language-css highlighter-shiki"><pre class="shiki-gutter">1
 2
-</pre></td><td class="rouge-code"><pre><span class="nt">a</span><span class="nd">:link</span>    <span class="p">{</span> <span class="nl">color</span><span class="p">:</span> <span class="no">red</span><span class="p">;</span>   <span class="p">}</span>
-<span class="nt">a</span><span class="nd">:visited</span> <span class="p">{</span> <span class="nl">color</span><span class="p">:</span> <span class="no">green</span><span class="p">;</span> <span class="p">}</span>
-</pre></td></tr></tbody></table></code></pre></div></div>
+</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #E5673D">a</span><span style="color: #999999">:</span><span style="color: #C7C8D2">link</span><span style="color: #BBBBBB">    </span><span style="color: #999999">{</span><span style="color: #BBBBBB"> </span><span style="color: #D8DEE9">color</span><span style="color: #999999">:</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">red;</span><span style="color: #BBBBBB">   </span><span style="color: #999999">}</span></span>
+<span class="line" data-linenr="2"><span style="color: #E5673D">a</span><span style="color: #999999">:</span><span style="color: #C7C8D2">visited</span><span style="color: #BBBBBB"> </span><span style="color: #999999">{</span><span style="color: #BBBBBB"> </span><span style="color: #D8DEE9">color</span><span style="color: #999999">:</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">green;</span><span style="color: #BBBBBB"> </span><span style="color: #999999">}</span></span></code></pre>
+</div>
 
 <p>Nu komt dit bij de browser binnen, hij denkt: <em>‘Hé, je het is een echte link’</em>
-en vervolgens stijlt hij de link naar <code class="highlighter-rouge">color: red;</code>. Nu leest hij verder en
+en vervolgens stijlt hij de link naar <code class="highlighter-shiki">color: red;</code>. Nu leest hij verder en
 denkt hij: <em>‘Ja, hij is er al een keer eerder op geweest’</em> vervolgens
-overrulled hij de stijlen van <code class="highlighter-rouge">:link</code> in die van <code class="highlighter-rouge">:visited</code> en wordt de link
-<code class="highlighter-rouge">green</code>.</p>
+overrulled hij de stijlen van <code class="highlighter-shiki">:link</code> in die van <code class="highlighter-shiki">:visited</code> en wordt de link
+<code class="highlighter-shiki">green</code>.</p>
 
-<p>Stel dat we nu <code class="highlighter-rouge">:link</code> en <code class="highlighter-rouge">:visited</code> omdraaien. Dan komt de browser eerst
+<p>Stel dat we nu <code class="highlighter-shiki">:link</code> en <code class="highlighter-shiki">:visited</code> omdraaien. Dan komt de browser eerst
 visited tegen, hij weet dat je hem al een keer eerder hebt bezocht en begint
-de anchor <code class="highlighter-rouge">color: green;</code> mee te geven.  Vervolgens komt hij bij de volgende
+de anchor <code class="highlighter-shiki">color: green;</code> mee te geven.  Vervolgens komt hij bij de volgende
 en denkt, ja het is een echte link. Nu worden de visited stijlen overrulled
-door de link stijlen en wordt de link dus <code class="highlighter-rouge">color: red;</code>. Het gevolg is dus dat
+door de link stijlen en wordt de link dus <code class="highlighter-shiki">color: red;</code>. Het gevolg is dus dat
 alle stijlen van visited overrulled worden.</p>
 
 <p>Om dit te voorkomen moeten we een goede volgorde aan houden. Deze volgorde is
@@ -152,12 +152,12 @@ nu eens kijken wat er allemaal gestijld wordt als we op een link klikken die
 we al eens hebben bezocht:</p>
 
 <ol>
-  <li>Het browser komt bij <code class="highlighter-rouge">:link</code> en stijlt de link naar deze stijlen</li>
-  <li>Het browser komt bij <code class="highlighter-rouge">:visited</code> en denkt, <em>ja, dit ook</em>, en overrulled de
-stijlen van <code class="highlighter-rouge">:link</code></li>
-  <li>Het browser komt bij <code class="highlighter-rouge">:hover</code> en ja, je gaat er met je muis over. Dus deze
+  <li>Het browser komt bij <code class="highlighter-shiki">:link</code> en stijlt de link naar deze stijlen</li>
+  <li>Het browser komt bij <code class="highlighter-shiki">:visited</code> en denkt, <em>ja, dit ook</em>, en overrulled de
+stijlen van <code class="highlighter-shiki">:link</code></li>
+  <li>Het browser komt bij <code class="highlighter-shiki">:hover</code> en ja, je gaat er met je muis over. Dus deze
 stijlen overrullen de vorige</li>
-  <li>Het browser komt bij <code class="highlighter-rouge">:active</code> en ja, je klikt er ook nog eens op. Dus ook
+  <li>Het browser komt bij <code class="highlighter-shiki">:active</code> en ja, je klikt er ook nog eens op. Dus ook
 deze stijlen worden toegevoegd.</li>
 </ol>
 

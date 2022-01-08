@@ -60,10 +60,10 @@ code-base. Yet, creating thin controller can be quite a challenge. Hostnet’s
 <a href="https://github.com/hostnet/form-handler-bundle">FormHandlerBundle</a> can help you quite a bit. Let’s have a
 deeper look!</p></div><div class="post__entry">
 
-<p>In this post, I’ll be using the <code class="highlighter-rouge">BlogController#commentNewAction()</code> controller
+<p>In this post, I’ll be using the <code class="highlighter-shiki">BlogController#commentNewAction()</code> controller
 of the <a href="https://github.com/symfony/symfony-demo#installation">Symfony demo</a>:</p>
 
-<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<div class="language-php highlighter-shiki"><pre class="shiki-gutter">1
 2
 3
 4
@@ -90,34 +90,34 @@ of the <a href="https://github.com/symfony/symfony-demo#installation">Symfony de
 25
 26
 27
-</pre></td><td class="rouge-code"><pre><span class="c1">// src/AppBundle/Controller/BlogController.php</span>
-
-<span class="c1">// ...</span>
-<span class="k">public</span> <span class="k">function</span> <span class="n">commentNewAction</span><span class="p">(</span><span class="kt">Request</span> <span class="nv">$request</span><span class="p">,</span> <span class="kt">Post</span> <span class="nv">$post</span><span class="p">)</span>
-<span class="p">{</span>
-    <span class="nv">$form</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="nf">createForm</span><span class="p">(</span><span class="nc">CommentType</span><span class="o">::</span><span class="n">class</span><span class="p">);</span>
-
-    <span class="nv">$form</span><span class="o">-&gt;</span><span class="nf">handleRequest</span><span class="p">(</span><span class="nv">$request</span><span class="p">);</span>
-
-    <span class="k">if</span> <span class="p">(</span><span class="nv">$form</span><span class="o">-&gt;</span><span class="nf">isSubmitted</span><span class="p">()</span> <span class="o">&amp;&amp;</span> <span class="nv">$form</span><span class="o">-&gt;</span><span class="nf">isValid</span><span class="p">())</span> <span class="p">{</span>
-        <span class="cd">/** @var Comment $comment */</span>
-        <span class="nv">$comment</span> <span class="o">=</span> <span class="nv">$form</span><span class="o">-&gt;</span><span class="nf">getData</span><span class="p">();</span>
-        <span class="nv">$comment</span><span class="o">-&gt;</span><span class="nf">setAuthorEmail</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="nf">getUser</span><span class="p">()</span><span class="o">-&gt;</span><span class="nf">getEmail</span><span class="p">());</span>
-        <span class="nv">$comment</span><span class="o">-&gt;</span><span class="nf">setPost</span><span class="p">(</span><span class="nv">$post</span><span class="p">);</span>
-
-        <span class="nv">$entityManager</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="nf">getDoctrine</span><span class="p">()</span><span class="o">-&gt;</span><span class="nf">getManager</span><span class="p">();</span>
-        <span class="nv">$entityManager</span><span class="o">-&gt;</span><span class="nf">persist</span><span class="p">(</span><span class="nv">$comment</span><span class="p">);</span>
-        <span class="nv">$entityManager</span><span class="o">-&gt;</span><span class="nb">flush</span><span class="p">();</span>
-
-        <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="nf">redirectToRoute</span><span class="p">(</span><span class="s1">'blog_post'</span><span class="p">,</span> <span class="p">[</span><span class="s1">'slug'</span> <span class="o">=&gt;</span> <span class="nv">$post</span><span class="o">-&gt;</span><span class="nf">getSlug</span><span class="p">()]);</span>
-    <span class="p">}</span>
-
-    <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="nf">render</span><span class="p">(</span><span class="s1">'blog/comment_form_error.html.twig'</span><span class="p">,</span> <span class="p">[</span>
-        <span class="s1">'post'</span> <span class="o">=&gt;</span> <span class="nv">$post</span><span class="p">,</span>
-        <span class="s1">'form'</span> <span class="o">=&gt;</span> <span class="nv">$form</span><span class="o">-&gt;</span><span class="nf">createView</span><span class="p">(),</span>
-    <span class="p">]);</span>
-<span class="p">}</span>
-</pre></td></tr></tbody></table></code></pre></div></div>
+</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #6B90C0; font-style: italic">// src/AppBundle/Controller/BlogController.php</span></span>
+<span class="line" data-linenr="2"></span>
+<span class="line" data-linenr="3"><span style="color: #6B90C0; font-style: italic">// ...</span></span>
+<span class="line" data-linenr="4"><span style="color: #E5673D">public</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">function</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">commentNewAction</span><span style="color: #999999">(</span><span style="color: #C7C8D2">Request</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">request</span><span style="color: #999999">,</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">Post</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">post</span><span style="color: #999999">)</span></span>
+<span class="line" data-linenr="5"><span style="color: #999999">{</span></span>
+<span class="line" data-linenr="6"><span style="color: #BBBBBB">    </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">form</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">=</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">this</span><span style="color: #E5673D">-&gt;</span><span style="color: #C7C8D2">createForm</span><span style="color: #999999">(</span><span style="color: #C7C8D2">CommentType</span><span style="color: #E5673D">::class</span><span style="color: #999999">)</span><span style="color: #E5673D">;</span></span>
+<span class="line" data-linenr="7"></span>
+<span class="line" data-linenr="8"><span style="color: #BBBBBB">    </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">form</span><span style="color: #E5673D">-&gt;</span><span style="color: #C7C8D2">handleRequest</span><span style="color: #999999">(</span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">request</span><span style="color: #999999">)</span><span style="color: #E5673D">;</span></span>
+<span class="line" data-linenr="9"></span>
+<span class="line" data-linenr="10"><span style="color: #BBBBBB">    </span><span style="color: #E5673D">if</span><span style="color: #BBBBBB"> </span><span style="color: #999999">(</span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">form</span><span style="color: #E5673D">-&gt;</span><span style="color: #C7C8D2">isSubmitted</span><span style="color: #999999">()</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">&amp;&amp;</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">form</span><span style="color: #E5673D">-&gt;</span><span style="color: #C7C8D2">isValid</span><span style="color: #999999">())</span><span style="color: #BBBBBB"> </span><span style="color: #999999">{</span></span>
+<span class="line" data-linenr="11"><span style="color: #BBBBBB">        </span><span style="color: #6B90C0; font-style: italic">/** @var </span><span style="color: #C7C8D2; font-style: italic">Comment</span><span style="color: #6B90C0; font-style: italic"> $comment */</span></span>
+<span class="line" data-linenr="12"><span style="color: #BBBBBB">        </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">comment</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">=</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">form</span><span style="color: #E5673D">-&gt;</span><span style="color: #C7C8D2">getData</span><span style="color: #999999">()</span><span style="color: #E5673D">;</span></span>
+<span class="line" data-linenr="13"><span style="color: #BBBBBB">        </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">comment</span><span style="color: #E5673D">-&gt;</span><span style="color: #C7C8D2">setAuthorEmail</span><span style="color: #999999">(</span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">this</span><span style="color: #E5673D">-&gt;</span><span style="color: #C7C8D2">getUser</span><span style="color: #999999">()</span><span style="color: #E5673D">-&gt;</span><span style="color: #C7C8D2">getEmail</span><span style="color: #999999">())</span><span style="color: #E5673D">;</span></span>
+<span class="line" data-linenr="14"><span style="color: #BBBBBB">        </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">comment</span><span style="color: #E5673D">-&gt;</span><span style="color: #C7C8D2">setPost</span><span style="color: #999999">(</span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">post</span><span style="color: #999999">)</span><span style="color: #E5673D">;</span></span>
+<span class="line" data-linenr="15"></span>
+<span class="line" data-linenr="16"><span style="color: #BBBBBB">        </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">entityManager</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">=</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">this</span><span style="color: #E5673D">-&gt;</span><span style="color: #C7C8D2">getDoctrine</span><span style="color: #999999">()</span><span style="color: #E5673D">-&gt;</span><span style="color: #C7C8D2">getManager</span><span style="color: #999999">()</span><span style="color: #E5673D">;</span></span>
+<span class="line" data-linenr="17"><span style="color: #BBBBBB">        </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">entityManager</span><span style="color: #E5673D">-&gt;</span><span style="color: #C7C8D2">persist</span><span style="color: #999999">(</span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">comment</span><span style="color: #999999">)</span><span style="color: #E5673D">;</span></span>
+<span class="line" data-linenr="18"><span style="color: #BBBBBB">        </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">entityManager</span><span style="color: #E5673D">-&gt;</span><span style="color: #C7C8D2">flush</span><span style="color: #999999">()</span><span style="color: #E5673D">;</span></span>
+<span class="line" data-linenr="19"></span>
+<span class="line" data-linenr="20"><span style="color: #BBBBBB">        </span><span style="color: #E5673D">return</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">this</span><span style="color: #E5673D">-&gt;</span><span style="color: #C7C8D2">redirectToRoute</span><span style="color: #999999">(</span><span style="color: #999999">&#39;</span><span style="color: #7CC64A">blog_post</span><span style="color: #999999">&#39;</span><span style="color: #999999">,</span><span style="color: #BBBBBB"> </span><span style="color: #999999">[</span><span style="color: #999999">&#39;</span><span style="color: #7CC64A">slug</span><span style="color: #999999">&#39;</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">=&gt;</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">post</span><span style="color: #E5673D">-&gt;</span><span style="color: #C7C8D2">getSlug</span><span style="color: #999999">()])</span><span style="color: #E5673D">;</span></span>
+<span class="line" data-linenr="21"><span style="color: #BBBBBB">    </span><span style="color: #999999">}</span></span>
+<span class="line" data-linenr="22"></span>
+<span class="line" data-linenr="23"><span style="color: #BBBBBB">    </span><span style="color: #E5673D">return</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">this</span><span style="color: #E5673D">-&gt;</span><span style="color: #C7C8D2">render</span><span style="color: #999999">(</span><span style="color: #999999">&#39;</span><span style="color: #7CC64A">blog/comment_form_error.html.twig</span><span style="color: #999999">&#39;</span><span style="color: #999999">,</span><span style="color: #BBBBBB"> </span><span style="color: #999999">[</span></span>
+<span class="line" data-linenr="24"><span style="color: #BBBBBB">        </span><span style="color: #999999">&#39;</span><span style="color: #7CC64A">post</span><span style="color: #999999">&#39;</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">=&gt;</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">post</span><span style="color: #999999">,</span></span>
+<span class="line" data-linenr="25"><span style="color: #BBBBBB">        </span><span style="color: #999999">&#39;</span><span style="color: #7CC64A">form</span><span style="color: #999999">&#39;</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">=&gt;</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">form</span><span style="color: #E5673D">-&gt;</span><span style="color: #C7C8D2">createView</span><span style="color: #999999">(),</span></span>
+<span class="line" data-linenr="26"><span style="color: #BBBBBB">    </span><span style="color: #999999">])</span><span style="color: #E5673D">;</span></span>
+<span class="line" data-linenr="27"><span style="color: #999999">}</span></span></code></pre>
+</div>
 
 <aside class="side" data-type="example">
   <p>You can check out the final working version at <a href="https://github.com/wouterj-nl/form-handler">github</a>.</p>
@@ -138,13 +138,13 @@ move this to a service as well!</p>
 handlers</em>. These handle form submissions through the request. Install the
 bundle using Composer:</p>
 
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-</pre></td><td class="rouge-code"><pre><span class="nv">$ </span>composer require hostnet/form-handler-bundle
-</pre></td></tr></tbody></table></code></pre></div></div>
+<div class="language-bash highlighter-shiki"><pre class="shiki-gutter">1
+</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #BBBBBB">$ composer require hostnet/form-handler-bundle</span></span></code></pre>
+</div>
 
 <p>…and enable it:</p>
 
-<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<div class="language-php highlighter-shiki"><pre class="shiki-gutter">1
 2
 3
 4
@@ -156,19 +156,19 @@ bundle using Composer:</p>
 10
 11
 12
-</pre></td><td class="rouge-code"><pre><span class="c1">// app/AppKernel.php</span>
-
-<span class="c1">// ...</span>
-<span class="k">public</span> <span class="k">function</span> <span class="n">registerBundles</span><span class="p">()</span>
-<span class="p">{</span>
-    <span class="nv">$bundles</span> <span class="o">=</span> <span class="p">[</span>
-        <span class="c1">// ...</span>
-        <span class="k">new</span> <span class="nc">Hostnet\Bundle\FormHandlerBundle\FormHandlerBundle</span><span class="p">(),</span>
-    <span class="p">];</span>
-
-    <span class="c1">// ...</span>
-<span class="p">}</span>
-</pre></td></tr></tbody></table></code></pre></div></div>
+</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #6B90C0; font-style: italic">// app/AppKernel.php</span></span>
+<span class="line" data-linenr="2"></span>
+<span class="line" data-linenr="3"><span style="color: #6B90C0; font-style: italic">// ...</span></span>
+<span class="line" data-linenr="4"><span style="color: #E5673D">public</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">function</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">registerBundles</span><span style="color: #999999">()</span></span>
+<span class="line" data-linenr="5"><span style="color: #999999">{</span></span>
+<span class="line" data-linenr="6"><span style="color: #BBBBBB">    </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">bundles</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">=</span><span style="color: #BBBBBB"> </span><span style="color: #999999">[</span></span>
+<span class="line" data-linenr="7"><span style="color: #999999">        </span><span style="color: #6B90C0; font-style: italic">// ...</span></span>
+<span class="line" data-linenr="8"><span style="color: #BBBBBB">        </span><span style="color: #E5673D">new</span><span style="color: #BBBBBB"> Hostnet</span><span style="color: #999999">\</span><span style="color: #BBBBBB">Bundle</span><span style="color: #999999">\</span><span style="color: #BBBBBB">FormHandlerBundle</span><span style="color: #999999">\</span><span style="color: #C7C8D2">FormHandlerBundle</span><span style="color: #999999">(),</span></span>
+<span class="line" data-linenr="9"><span style="color: #BBBBBB">    </span><span style="color: #999999">]</span><span style="color: #E5673D">;</span></span>
+<span class="line" data-linenr="10"></span>
+<span class="line" data-linenr="11"><span style="color: #999999">    </span><span style="color: #6B90C0; font-style: italic">// ...</span></span>
+<span class="line" data-linenr="12"><span style="color: #999999">}</span></span></code></pre>
+</div>
     
       <h3 id="creating-a-comment-form-handler">
         
@@ -181,7 +181,7 @@ bundle using Composer:</p>
 <p>Now we can extract the form handling part from the controller. First things
 first, the form has to be rendered:</p>
 
-<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<div class="language-php highlighter-shiki"><pre class="shiki-gutter">1
 2
 3
 4
@@ -204,37 +204,37 @@ first, the form has to be rendered:</p>
 21
 22
 23
-</pre></td><td class="rouge-code"><pre><span class="c1">// src/AppBundle/Form/CommentFormHandler.php</span>
-<span class="kn">namespace</span> <span class="nn">AppBundle\Form</span><span class="p">;</span>
+</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #6B90C0; font-style: italic">// src/AppBundle/Form/CommentFormHandler.php</span></span>
+<span class="line" data-linenr="2"><span style="color: #E5673D">namespace</span><span style="color: #BBBBBB"> AppBundle</span><span style="color: #999999">\</span><span style="color: #BBBBBB">Form</span><span style="color: #E5673D">;</span></span>
+<span class="line" data-linenr="3"></span>
+<span class="line" data-linenr="4"><span style="color: #E5673D">use</span><span style="color: #BBBBBB"> Hostnet</span><span style="color: #999999">\</span><span style="color: #BBBBBB">Component</span><span style="color: #999999">\</span><span style="color: #BBBBBB">Form</span><span style="color: #999999">\</span><span style="color: #C7C8D2">AbstractFormHandler</span><span style="color: #E5673D">;</span></span>
+<span class="line" data-linenr="5"></span>
+<span class="line" data-linenr="6"><span style="color: #6B90C0; font-style: italic">// Handlers must implement FormHandlerInterface, but extending the</span></span>
+<span class="line" data-linenr="7"><span style="color: #6B90C0; font-style: italic">// AbstractFormHandler makes things much easier.</span></span>
+<span class="line" data-linenr="8"><span style="color: #E5673D">class</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">CommentFormHandler</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">extends</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">AbstractFormHandler</span></span>
+<span class="line" data-linenr="9"><span style="color: #999999">{</span></span>
+<span class="line" data-linenr="10"><span style="color: #BBBBBB">    </span><span style="color: #E5673D">public</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">function</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">getData</span><span style="color: #999999">()</span></span>
+<span class="line" data-linenr="11"><span style="color: #BBBBBB">    </span><span style="color: #999999">{</span></span>
+<span class="line" data-linenr="12"><span style="color: #999999">        </span><span style="color: #6B90C0; font-style: italic">// returns the initial form data (e.g. a new entity).</span></span>
+<span class="line" data-linenr="13"><span style="color: #999999">        </span><span style="color: #6B90C0; font-style: italic">// As the CommentType constructs the initial data itself using the</span></span>
+<span class="line" data-linenr="14"><span style="color: #999999">        </span><span style="color: #6B90C0; font-style: italic">// data_class option, we don&#39;t return anything here</span></span>
+<span class="line" data-linenr="15"><span style="color: #BBBBBB">        </span><span style="color: #E5673D">return</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">null;</span></span>
+<span class="line" data-linenr="16"><span style="color: #BBBBBB">    </span><span style="color: #999999">}</span></span>
+<span class="line" data-linenr="17"></span>
+<span class="line" data-linenr="18"><span style="color: #BBBBBB">    </span><span style="color: #E5673D">public</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">function</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">getType</span><span style="color: #999999">()</span></span>
+<span class="line" data-linenr="19"><span style="color: #BBBBBB">    </span><span style="color: #999999">{</span></span>
+<span class="line" data-linenr="20"><span style="color: #999999">        </span><span style="color: #6B90C0; font-style: italic">// the FQCN of the form type related to this handler</span></span>
+<span class="line" data-linenr="21"><span style="color: #BBBBBB">        </span><span style="color: #E5673D">return</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">CommentType</span><span style="color: #E5673D">::class;</span></span>
+<span class="line" data-linenr="22"><span style="color: #BBBBBB">    </span><span style="color: #999999">}</span></span>
+<span class="line" data-linenr="23"><span style="color: #999999">}</span></span></code></pre>
+</div>
 
-<span class="kn">use</span> <span class="nc">Hostnet\Component\Form\AbstractFormHandler</span><span class="p">;</span>
+<p>This handler is now capable of creating the required <code class="highlighter-shiki">CommentType</code> form.</p>
 
-<span class="c1">// Handlers must implement FormHandlerInterface, but extending the</span>
-<span class="c1">// AbstractFormHandler makes things much easier.</span>
-<span class="kd">class</span> <span class="nc">CommentFormHandler</span> <span class="kd">extends</span> <span class="nc">AbstractFormHandler</span>
-<span class="p">{</span>
-    <span class="k">public</span> <span class="k">function</span> <span class="n">getData</span><span class="p">()</span>
-    <span class="p">{</span>
-        <span class="c1">// returns the initial form data (e.g. a new entity).</span>
-        <span class="c1">// As the CommentType constructs the initial data itself using the</span>
-        <span class="c1">// data_class option, we don't return anything here</span>
-        <span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
-    <span class="p">}</span>
-
-    <span class="k">public</span> <span class="k">function</span> <span class="n">getType</span><span class="p">()</span>
-    <span class="p">{</span>
-        <span class="c1">// the FQCN of the form type related to this handler</span>
-        <span class="k">return</span> <span class="nc">CommentType</span><span class="o">::</span><span class="n">class</span><span class="p">;</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</pre></td></tr></tbody></table></code></pre></div></div>
-
-<p>This handler is now capable of creating the required <code class="highlighter-rouge">CommentType</code> form.</p>
-
-<p>In a controller, pass this form handler to the <code class="highlighter-rouge">form_handler.provider.simple</code>
+<p>In a controller, pass this form handler to the <code class="highlighter-shiki">form_handler.provider.simple</code>
 service to handle the form:</p>
 
-<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<div class="language-php highlighter-shiki"><pre class="shiki-gutter">1
 2
 3
 4
@@ -248,23 +248,23 @@ service to handle the form:</p>
 12
 13
 14
-</pre></td><td class="rouge-code"><pre><span class="kn">use</span> <span class="nc">AppBundle\Form\CommentFormHandler</span><span class="p">;</span>
+</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #E5673D">use</span><span style="color: #BBBBBB"> AppBundle</span><span style="color: #999999">\</span><span style="color: #BBBBBB">Form</span><span style="color: #999999">\</span><span style="color: #C7C8D2">CommentFormHandler</span><span style="color: #E5673D">;</span></span>
+<span class="line" data-linenr="2"></span>
+<span class="line" data-linenr="3"><span style="color: #6B90C0; font-style: italic">// ...</span></span>
+<span class="line" data-linenr="4"><span style="color: #E5673D">public</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">function</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">commentNewAction</span><span style="color: #999999">(</span><span style="color: #C7C8D2">Request</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">request</span><span style="color: #999999">,</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">Post</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">post</span><span style="color: #999999">)</span></span>
+<span class="line" data-linenr="5"><span style="color: #999999">{</span></span>
+<span class="line" data-linenr="6"><span style="color: #BBBBBB">    </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">handler</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">=</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">new</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">CommentFormHandler</span><span style="color: #999999">()</span><span style="color: #E5673D">;</span></span>
+<span class="line" data-linenr="7"></span>
+<span class="line" data-linenr="8"><span style="color: #BBBBBB">    </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">this</span><span style="color: #E5673D">-&gt;</span><span style="color: #C7C8D2">get</span><span style="color: #999999">(</span><span style="color: #999999">&#39;</span><span style="color: #7CC64A">form_handler.provider.simple</span><span style="color: #999999">&#39;</span><span style="color: #999999">)</span><span style="color: #E5673D">-&gt;</span><span style="color: #C7C8D2">handle</span><span style="color: #999999">(</span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">request</span><span style="color: #999999">,</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">handler</span><span style="color: #999999">)</span><span style="color: #E5673D">;</span></span>
+<span class="line" data-linenr="9"></span>
+<span class="line" data-linenr="10"><span style="color: #BBBBBB">    </span><span style="color: #E5673D">return</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">this</span><span style="color: #E5673D">-&gt;</span><span style="color: #C7C8D2">render</span><span style="color: #999999">(</span><span style="color: #999999">&#39;</span><span style="color: #7CC64A">blog/comment_form_error.html.twig</span><span style="color: #999999">&#39;</span><span style="color: #999999">,</span><span style="color: #BBBBBB"> </span><span style="color: #999999">[</span></span>
+<span class="line" data-linenr="11"><span style="color: #BBBBBB">        </span><span style="color: #999999">&#39;</span><span style="color: #7CC64A">post</span><span style="color: #999999">&#39;</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">=&gt;</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">post</span><span style="color: #999999">,</span></span>
+<span class="line" data-linenr="12"><span style="color: #BBBBBB">        </span><span style="color: #999999">&#39;</span><span style="color: #7CC64A">form</span><span style="color: #999999">&#39;</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">=&gt;</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">handler</span><span style="color: #E5673D">-&gt;</span><span style="color: #C7C8D2">getForm</span><span style="color: #999999">()</span><span style="color: #E5673D">-&gt;</span><span style="color: #C7C8D2">createView</span><span style="color: #999999">(),</span></span>
+<span class="line" data-linenr="13"><span style="color: #BBBBBB">    </span><span style="color: #999999">])</span><span style="color: #E5673D">;</span></span>
+<span class="line" data-linenr="14"><span style="color: #999999">}</span></span></code></pre>
+</div>
 
-<span class="c1">// ...</span>
-<span class="k">public</span> <span class="k">function</span> <span class="n">commentNewAction</span><span class="p">(</span><span class="kt">Request</span> <span class="nv">$request</span><span class="p">,</span> <span class="kt">Post</span> <span class="nv">$post</span><span class="p">)</span>
-<span class="p">{</span>
-    <span class="nv">$handler</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">CommentFormHandler</span><span class="p">();</span>
-
-    <span class="nv">$this</span><span class="o">-&gt;</span><span class="nf">get</span><span class="p">(</span><span class="s1">'form_handler.provider.simple'</span><span class="p">)</span><span class="o">-&gt;</span><span class="nf">handle</span><span class="p">(</span><span class="nv">$request</span><span class="p">,</span> <span class="nv">$handler</span><span class="p">);</span>
-
-    <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="nf">render</span><span class="p">(</span><span class="s1">'blog/comment_form_error.html.twig'</span><span class="p">,</span> <span class="p">[</span>
-        <span class="s1">'post'</span> <span class="o">=&gt;</span> <span class="nv">$post</span><span class="p">,</span>
-        <span class="s1">'form'</span> <span class="o">=&gt;</span> <span class="nv">$handler</span><span class="o">-&gt;</span><span class="nf">getForm</span><span class="p">()</span><span class="o">-&gt;</span><span class="nf">createView</span><span class="p">(),</span>
-    <span class="p">]);</span>
-<span class="p">}</span>
-</pre></td></tr></tbody></table></code></pre></div></div>
-
-<p>The form provider will now create the form based on <code class="highlighter-rouge">getType()</code> and handle it
+<p>The form provider will now create the form based on <code class="highlighter-shiki">getType()</code> and handle it
 using the passed request.</p>
     
       <h2 id="handle-successful-form-submissions">
@@ -275,11 +275,11 @@ using the passed request.</p>
         
       </h2>
 
-<p>To actually handle the form, we have to implement <code class="highlighter-rouge">FormSuccesHandlerInterface</code>
-and its <code class="highlighter-rouge">onSuccess()</code> method. This method is executed when the form is
+<p>To actually handle the form, we have to implement <code class="highlighter-shiki">FormSuccesHandlerInterface</code>
+and its <code class="highlighter-shiki">onSuccess()</code> method. This method is executed when the form is
 submitted and valid.</p>
 
-<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<div class="language-php highlighter-shiki"><pre class="shiki-gutter">1
 2
 3
 4
@@ -321,69 +321,69 @@ submitted and valid.</p>
 40
 41
 42
-</pre></td><td class="rouge-code"><pre><span class="c1">// ...</span>
-<span class="kn">use</span> <span class="nc">Hostnet\Component\Form\FormSuccesHandlerInterface</span><span class="p">;</span>
-<span class="kn">use</span> <span class="nc">Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface</span><span class="p">;</span>
-<span class="kn">use</span> <span class="nc">Symfony\Component\HttpFoundation\Request</span><span class="p">;</span>
-<span class="kn">use</span> <span class="nc">Doctrine\Common\Persistence\ObjectManager</span><span class="p">;</span>
-<span class="kn">use</span> <span class="nc">AppBundle\Entity\Comment</span><span class="p">;</span>
-
-<span class="c1">// ...</span>
-<span class="kd">class</span> <span class="nc">CommentFormHandler</span> <span class="kd">extends</span> <span class="nc">AbstractFormHandler</span> <span class="kd">implements</span> <span class="nc">FormSuccesHandlerInterface</span>
-<span class="p">{</span>
-    <span class="cd">/** @var ObjectManager **/</span>
-    <span class="k">private</span> <span class="nv">$entityManager</span><span class="p">;</span>
-    <span class="cd">/** @var TokenStorageInterface **/</span>
-    <span class="k">private</span> <span class="nv">$tokenStorage</span><span class="p">;</span>
-
-    <span class="k">public</span> <span class="k">function</span> <span class="n">__construct</span><span class="p">(</span><span class="kt">ObjectManager</span> <span class="nv">$manager</span><span class="p">,</span> <span class="kt">TokenStorageInterface</span> <span class="nv">$tokenStorage</span><span class="p">)</span>
-    <span class="p">{</span>
-        <span class="nv">$this</span><span class="o">-&gt;</span><span class="n">entityManager</span> <span class="o">=</span> <span class="nv">$manager</span><span class="p">;</span>
-        <span class="nv">$this</span><span class="o">-&gt;</span><span class="n">tokenStorage</span>  <span class="o">=</span> <span class="nv">$tokenStorage</span><span class="p">;</span>
-    <span class="p">}</span>
-    
-    <span class="k">public</span> <span class="k">function</span> <span class="n">onSuccess</span><span class="p">(</span><span class="kt">Request</span> <span class="nv">$request</span><span class="p">)</span>
-    <span class="p">{</span>
-        <span class="nv">$currentUser</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="n">tokenStorage</span><span class="o">-&gt;</span><span class="nf">getToken</span><span class="p">()</span><span class="o">-&gt;</span><span class="nf">getUser</span><span class="p">();</span>
-        <span class="nv">$post</span> <span class="o">=</span> <span class="mf">...</span><span class="p">;</span>
-
-        <span class="c1">// get the form data (Comment entity) after success</span>
-        <span class="cd">/** @var Comment $comment */</span>
-        <span class="nv">$comment</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="nf">getForm</span><span class="p">()</span><span class="o">-&gt;</span><span class="nf">getData</span><span class="p">();</span>
-        <span class="nv">$comment</span><span class="o">-&gt;</span><span class="nf">setAuthorEmail</span><span class="p">(</span><span class="nv">$currentUser</span><span class="o">-&gt;</span><span class="nf">getEmail</span><span class="p">());</span>
-        <span class="nv">$comment</span><span class="o">-&gt;</span><span class="nf">setPost</span><span class="p">(</span><span class="nv">$post</span><span class="p">);</span>
-
-        <span class="c1">// persist the new Comment entity</span>
-        <span class="nv">$this</span><span class="o">-&gt;</span><span class="n">entityManager</span><span class="o">-&gt;</span><span class="nf">persist</span><span class="p">(</span><span class="nv">$comment</span><span class="p">);</span>
-        <span class="nv">$this</span><span class="o">-&gt;</span><span class="n">entityManager</span><span class="o">-&gt;</span><span class="nb">flush</span><span class="p">(</span><span class="nv">$comment</span><span class="p">);</span>
-
-        <span class="c1">// this is passed to the controller</span>
-        <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
-    <span class="p">}</span>
-
-    <span class="c1">// ...</span>
-<span class="p">}</span>
-</pre></td></tr></tbody></table></code></pre></div></div>
+</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #6B90C0; font-style: italic">// ...</span></span>
+<span class="line" data-linenr="2"><span style="color: #E5673D">use</span><span style="color: #BBBBBB"> Hostnet</span><span style="color: #999999">\</span><span style="color: #BBBBBB">Component</span><span style="color: #999999">\</span><span style="color: #BBBBBB">Form</span><span style="color: #999999">\</span><span style="color: #C7C8D2">FormSuccesHandlerInterface</span><span style="color: #E5673D">;</span></span>
+<span class="line" data-linenr="3"><span style="color: #E5673D">use</span><span style="color: #BBBBBB"> Symfony</span><span style="color: #999999">\</span><span style="color: #BBBBBB">Component</span><span style="color: #999999">\</span><span style="color: #BBBBBB">Security</span><span style="color: #999999">\</span><span style="color: #BBBBBB">Core</span><span style="color: #999999">\</span><span style="color: #BBBBBB">Authentication</span><span style="color: #999999">\</span><span style="color: #BBBBBB">Token</span><span style="color: #999999">\</span><span style="color: #BBBBBB">Storage</span><span style="color: #999999">\</span><span style="color: #C7C8D2">TokenStorageInterface</span><span style="color: #E5673D">;</span></span>
+<span class="line" data-linenr="4"><span style="color: #E5673D">use</span><span style="color: #BBBBBB"> Symfony</span><span style="color: #999999">\</span><span style="color: #BBBBBB">Component</span><span style="color: #999999">\</span><span style="color: #BBBBBB">HttpFoundation</span><span style="color: #999999">\</span><span style="color: #C7C8D2">Request</span><span style="color: #E5673D">;</span></span>
+<span class="line" data-linenr="5"><span style="color: #E5673D">use</span><span style="color: #BBBBBB"> Doctrine</span><span style="color: #999999">\</span><span style="color: #BBBBBB">Common</span><span style="color: #999999">\</span><span style="color: #BBBBBB">Persistence</span><span style="color: #999999">\</span><span style="color: #C7C8D2">ObjectManager</span><span style="color: #E5673D">;</span></span>
+<span class="line" data-linenr="6"><span style="color: #E5673D">use</span><span style="color: #BBBBBB"> AppBundle</span><span style="color: #999999">\</span><span style="color: #BBBBBB">Entity</span><span style="color: #999999">\</span><span style="color: #C7C8D2">Comment</span><span style="color: #E5673D">;</span></span>
+<span class="line" data-linenr="7"></span>
+<span class="line" data-linenr="8"><span style="color: #6B90C0; font-style: italic">// ...</span></span>
+<span class="line" data-linenr="9"><span style="color: #E5673D">class</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">CommentFormHandler</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">extends</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">AbstractFormHandler</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">implements</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">FormSuccesHandlerInterface</span></span>
+<span class="line" data-linenr="10"><span style="color: #999999">{</span></span>
+<span class="line" data-linenr="11"><span style="color: #BBBBBB">    </span><span style="color: #6B90C0; font-style: italic">/** @var </span><span style="color: #C7C8D2; font-style: italic">ObjectManager</span><span style="color: #6B90C0; font-style: italic"> **/</span></span>
+<span class="line" data-linenr="12"><span style="color: #BBBBBB">    </span><span style="color: #E5673D">private</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">entityManager</span><span style="color: #E5673D">;</span></span>
+<span class="line" data-linenr="13"><span style="color: #BBBBBB">    </span><span style="color: #6B90C0; font-style: italic">/** @var </span><span style="color: #C7C8D2; font-style: italic">TokenStorageInterface</span><span style="color: #6B90C0; font-style: italic"> **/</span></span>
+<span class="line" data-linenr="14"><span style="color: #BBBBBB">    </span><span style="color: #E5673D">private</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">tokenStorage</span><span style="color: #E5673D">;</span></span>
+<span class="line" data-linenr="15"></span>
+<span class="line" data-linenr="16"><span style="color: #BBBBBB">    </span><span style="color: #E5673D">public</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">function</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">__construct</span><span style="color: #999999">(</span><span style="color: #C7C8D2">ObjectManager</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">manager</span><span style="color: #999999">,</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">TokenStorageInterface</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">tokenStorage</span><span style="color: #999999">)</span></span>
+<span class="line" data-linenr="17"><span style="color: #BBBBBB">    </span><span style="color: #999999">{</span></span>
+<span class="line" data-linenr="18"><span style="color: #BBBBBB">        </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">this</span><span style="color: #E5673D">-&gt;</span><span style="color: #D8DEE9">entityManager</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">=</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">manager</span><span style="color: #E5673D">;</span></span>
+<span class="line" data-linenr="19"><span style="color: #BBBBBB">        </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">this</span><span style="color: #E5673D">-&gt;</span><span style="color: #D8DEE9">tokenStorage</span><span style="color: #BBBBBB">  </span><span style="color: #E5673D">=</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">tokenStorage</span><span style="color: #E5673D">;</span></span>
+<span class="line" data-linenr="20"><span style="color: #BBBBBB">    </span><span style="color: #999999">}</span></span>
+<span class="line" data-linenr="21"><span style="color: #BBBBBB">    </span></span>
+<span class="line" data-linenr="22"><span style="color: #BBBBBB">    </span><span style="color: #E5673D">public</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">function</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">onSuccess</span><span style="color: #999999">(</span><span style="color: #C7C8D2">Request</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">request</span><span style="color: #999999">)</span></span>
+<span class="line" data-linenr="23"><span style="color: #BBBBBB">    </span><span style="color: #999999">{</span></span>
+<span class="line" data-linenr="24"><span style="color: #BBBBBB">        </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">currentUser</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">=</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">this</span><span style="color: #E5673D">-&gt;</span><span style="color: #D8DEE9">tokenStorage</span><span style="color: #E5673D">-&gt;</span><span style="color: #C7C8D2">getToken</span><span style="color: #999999">()</span><span style="color: #E5673D">-&gt;</span><span style="color: #C7C8D2">getUser</span><span style="color: #999999">()</span><span style="color: #E5673D">;</span></span>
+<span class="line" data-linenr="25"><span style="color: #BBBBBB">        </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">post</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">=</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">...;</span></span>
+<span class="line" data-linenr="26"></span>
+<span class="line" data-linenr="27"><span style="color: #999999">        </span><span style="color: #6B90C0; font-style: italic">// get the form data (Comment entity) after success</span></span>
+<span class="line" data-linenr="28"><span style="color: #BBBBBB">        </span><span style="color: #6B90C0; font-style: italic">/** @var </span><span style="color: #C7C8D2; font-style: italic">Comment</span><span style="color: #6B90C0; font-style: italic"> $comment */</span></span>
+<span class="line" data-linenr="29"><span style="color: #BBBBBB">        </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">comment</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">=</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">this</span><span style="color: #E5673D">-&gt;</span><span style="color: #C7C8D2">getForm</span><span style="color: #999999">()</span><span style="color: #E5673D">-&gt;</span><span style="color: #C7C8D2">getData</span><span style="color: #999999">()</span><span style="color: #E5673D">;</span></span>
+<span class="line" data-linenr="30"><span style="color: #BBBBBB">        </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">comment</span><span style="color: #E5673D">-&gt;</span><span style="color: #C7C8D2">setAuthorEmail</span><span style="color: #999999">(</span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">currentUser</span><span style="color: #E5673D">-&gt;</span><span style="color: #C7C8D2">getEmail</span><span style="color: #999999">())</span><span style="color: #E5673D">;</span></span>
+<span class="line" data-linenr="31"><span style="color: #BBBBBB">        </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">comment</span><span style="color: #E5673D">-&gt;</span><span style="color: #C7C8D2">setPost</span><span style="color: #999999">(</span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">post</span><span style="color: #999999">)</span><span style="color: #E5673D">;</span></span>
+<span class="line" data-linenr="32"></span>
+<span class="line" data-linenr="33"><span style="color: #999999">        </span><span style="color: #6B90C0; font-style: italic">// persist the new Comment entity</span></span>
+<span class="line" data-linenr="34"><span style="color: #BBBBBB">        </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">this</span><span style="color: #E5673D">-&gt;</span><span style="color: #D8DEE9">entityManager</span><span style="color: #E5673D">-&gt;</span><span style="color: #C7C8D2">persist</span><span style="color: #999999">(</span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">comment</span><span style="color: #999999">)</span><span style="color: #E5673D">;</span></span>
+<span class="line" data-linenr="35"><span style="color: #BBBBBB">        </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">this</span><span style="color: #E5673D">-&gt;</span><span style="color: #D8DEE9">entityManager</span><span style="color: #E5673D">-&gt;</span><span style="color: #C7C8D2">flush</span><span style="color: #999999">(</span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">comment</span><span style="color: #999999">)</span><span style="color: #E5673D">;</span></span>
+<span class="line" data-linenr="36"></span>
+<span class="line" data-linenr="37"><span style="color: #999999">        </span><span style="color: #6B90C0; font-style: italic">// this is passed to the controller</span></span>
+<span class="line" data-linenr="38"><span style="color: #BBBBBB">        </span><span style="color: #E5673D">return</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">true;</span></span>
+<span class="line" data-linenr="39"><span style="color: #BBBBBB">    </span><span style="color: #999999">}</span></span>
+<span class="line" data-linenr="40"></span>
+<span class="line" data-linenr="41"><span style="color: #999999">    </span><span style="color: #6B90C0; font-style: italic">// ...</span></span>
+<span class="line" data-linenr="42"><span style="color: #999999">}</span></span></code></pre>
+</div>
 
 <p>As the handler now has some dependencies, create a service to manage it:</p>
 
-<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<div class="language-yaml highlighter-shiki"><pre class="shiki-gutter">1
 2
 3
 4
 5
 6
-</pre></td><td class="rouge-code"><pre><span class="c1"># app/config/services.yml</span>
-<span class="na">services</span><span class="pi">:</span>
-    <span class="s">app.comment_form_handler</span><span class="pi">:</span>
-        <span class="na">class</span><span class="pi">:</span>    <span class="s">AppBundle\Form\CommentFormHandler</span>
-        <span class="na">shared</span><span class="pi">:</span>   <span class="no">false</span> <span class="c1"># form handlers are statefull, never share them.</span>
-        <span class="na">autowire</span><span class="pi">:</span> <span class="no">true</span>  <span class="c1"># we're lazy, let the container figure out all class dependencies</span>
-</pre></td></tr></tbody></table></code></pre></div></div>
+</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #6B90C0; font-style: italic"># app/config/services.yml</span></span>
+<span class="line" data-linenr="2"><span style="color: #C7C8D2">services</span><span style="color: #999999">:</span></span>
+<span class="line" data-linenr="3"><span style="color: #BBBBBB">    </span><span style="color: #C7C8D2">app.comment_form_handler</span><span style="color: #999999">:</span></span>
+<span class="line" data-linenr="4"><span style="color: #BBBBBB">        </span><span style="color: #C7C8D2">class</span><span style="color: #999999">:</span><span style="color: #BBBBBB">    </span><span style="color: #7CC64A">AppBundle\Form\CommentFormHandler</span></span>
+<span class="line" data-linenr="5"><span style="color: #BBBBBB">        </span><span style="color: #C7C8D2">shared</span><span style="color: #999999">:</span><span style="color: #BBBBBB">   </span><span style="color: #E5673D">false</span><span style="color: #BBBBBB"> </span><span style="color: #6B90C0; font-style: italic"># form handlers are statefull, never share them.</span></span>
+<span class="line" data-linenr="6"><span style="color: #BBBBBB">        </span><span style="color: #C7C8D2">autowire</span><span style="color: #999999">:</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">true</span><span style="color: #BBBBBB">  </span><span style="color: #6B90C0; font-style: italic"># we&#39;re lazy, let the container figure out all class dependencies</span></span></code></pre>
+</div>
 
 <p>And slightly tweak the controller to use this service:</p>
 
-<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<div class="language-php highlighter-shiki"><pre class="shiki-gutter">1
 2
 3
 4
@@ -402,26 +402,26 @@ submitted and valid.</p>
 17
 18
 19
-</pre></td><td class="rouge-code"><pre><span class="c1">// ...</span>
-<span class="k">public</span> <span class="k">function</span> <span class="n">commentNewAction</span><span class="p">(</span><span class="kt">Request</span> <span class="nv">$request</span><span class="p">,</span> <span class="kt">Post</span> <span class="nv">$post</span><span class="p">)</span>
-<span class="p">{</span>
-    <span class="c1">// get the handler service</span>
-    <span class="nv">$handler</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="nf">get</span><span class="p">(</span><span class="s1">'app.comment_form_handler'</span><span class="p">);</span>
-
-    <span class="nv">$result</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="nf">get</span><span class="p">(</span><span class="s1">'form_handler.provider.simple'</span><span class="p">)</span><span class="o">-&gt;</span><span class="nf">handle</span><span class="p">(</span><span class="nv">$request</span><span class="p">,</span> <span class="nv">$handler</span><span class="p">);</span>
-    <span class="k">if</span> <span class="p">(</span><span class="nv">$result</span><span class="p">)</span> <span class="p">{</span>
-        <span class="c1">// the form handler returns true, which means the form is handled</span>
-        <span class="c1">// successfully</span>
-        <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="nf">redirectToRoute</span><span class="p">(</span><span class="s1">'blog_post'</span><span class="p">,</span> <span class="p">[</span><span class="s1">'slug'</span> <span class="o">=&gt;</span> <span class="nv">$post</span><span class="o">-&gt;</span><span class="nf">getSlug</span><span class="p">()]);</span>
-    <span class="p">}</span>
-
-    <span class="c1">// the form is not submitted or not valid, render the page again</span>
-    <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="nf">render</span><span class="p">(</span><span class="s1">'blog/comment_form_error.html.twig'</span><span class="p">,</span> <span class="p">[</span>
-        <span class="s1">'post'</span> <span class="o">=&gt;</span> <span class="nv">$post</span><span class="p">,</span>
-        <span class="s1">'form'</span> <span class="o">=&gt;</span> <span class="nv">$handler</span><span class="o">-&gt;</span><span class="nf">getForm</span><span class="p">()</span><span class="o">-&gt;</span><span class="nf">createView</span><span class="p">(),</span>
-    <span class="p">]);</span>
-<span class="p">}</span>
-</pre></td></tr></tbody></table></code></pre></div></div>
+</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #6B90C0; font-style: italic">// ...</span></span>
+<span class="line" data-linenr="2"><span style="color: #E5673D">public</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">function</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">commentNewAction</span><span style="color: #999999">(</span><span style="color: #C7C8D2">Request</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">request</span><span style="color: #999999">,</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">Post</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">post</span><span style="color: #999999">)</span></span>
+<span class="line" data-linenr="3"><span style="color: #999999">{</span></span>
+<span class="line" data-linenr="4"><span style="color: #999999">    </span><span style="color: #6B90C0; font-style: italic">// get the handler service</span></span>
+<span class="line" data-linenr="5"><span style="color: #BBBBBB">    </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">handler</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">=</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">this</span><span style="color: #E5673D">-&gt;</span><span style="color: #C7C8D2">get</span><span style="color: #999999">(</span><span style="color: #999999">&#39;</span><span style="color: #7CC64A">app.comment_form_handler</span><span style="color: #999999">&#39;</span><span style="color: #999999">)</span><span style="color: #E5673D">;</span></span>
+<span class="line" data-linenr="6"></span>
+<span class="line" data-linenr="7"><span style="color: #BBBBBB">    </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">result</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">=</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">this</span><span style="color: #E5673D">-&gt;</span><span style="color: #C7C8D2">get</span><span style="color: #999999">(</span><span style="color: #999999">&#39;</span><span style="color: #7CC64A">form_handler.provider.simple</span><span style="color: #999999">&#39;</span><span style="color: #999999">)</span><span style="color: #E5673D">-&gt;</span><span style="color: #C7C8D2">handle</span><span style="color: #999999">(</span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">request</span><span style="color: #999999">,</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">handler</span><span style="color: #999999">)</span><span style="color: #E5673D">;</span></span>
+<span class="line" data-linenr="8"><span style="color: #BBBBBB">    </span><span style="color: #E5673D">if</span><span style="color: #BBBBBB"> </span><span style="color: #999999">(</span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">result</span><span style="color: #999999">)</span><span style="color: #BBBBBB"> </span><span style="color: #999999">{</span></span>
+<span class="line" data-linenr="9"><span style="color: #999999">        </span><span style="color: #6B90C0; font-style: italic">// the form handler returns true, which means the form is handled</span></span>
+<span class="line" data-linenr="10"><span style="color: #999999">        </span><span style="color: #6B90C0; font-style: italic">// successfully</span></span>
+<span class="line" data-linenr="11"><span style="color: #BBBBBB">        </span><span style="color: #E5673D">return</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">this</span><span style="color: #E5673D">-&gt;</span><span style="color: #C7C8D2">redirectToRoute</span><span style="color: #999999">(</span><span style="color: #999999">&#39;</span><span style="color: #7CC64A">blog_post</span><span style="color: #999999">&#39;</span><span style="color: #999999">,</span><span style="color: #BBBBBB"> </span><span style="color: #999999">[</span><span style="color: #999999">&#39;</span><span style="color: #7CC64A">slug</span><span style="color: #999999">&#39;</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">=&gt;</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">post</span><span style="color: #E5673D">-&gt;</span><span style="color: #C7C8D2">getSlug</span><span style="color: #999999">()])</span><span style="color: #E5673D">;</span></span>
+<span class="line" data-linenr="12"><span style="color: #BBBBBB">    </span><span style="color: #999999">}</span></span>
+<span class="line" data-linenr="13"></span>
+<span class="line" data-linenr="14"><span style="color: #999999">    </span><span style="color: #6B90C0; font-style: italic">// the form is not submitted or not valid, render the page again</span></span>
+<span class="line" data-linenr="15"><span style="color: #BBBBBB">    </span><span style="color: #E5673D">return</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">this</span><span style="color: #E5673D">-&gt;</span><span style="color: #C7C8D2">render</span><span style="color: #999999">(</span><span style="color: #999999">&#39;</span><span style="color: #7CC64A">blog/comment_form_error.html.twig</span><span style="color: #999999">&#39;</span><span style="color: #999999">,</span><span style="color: #BBBBBB"> </span><span style="color: #999999">[</span></span>
+<span class="line" data-linenr="16"><span style="color: #BBBBBB">        </span><span style="color: #999999">&#39;</span><span style="color: #7CC64A">post</span><span style="color: #999999">&#39;</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">=&gt;</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">post</span><span style="color: #999999">,</span></span>
+<span class="line" data-linenr="17"><span style="color: #BBBBBB">        </span><span style="color: #999999">&#39;</span><span style="color: #7CC64A">form</span><span style="color: #999999">&#39;</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">=&gt;</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">handler</span><span style="color: #E5673D">-&gt;</span><span style="color: #C7C8D2">getForm</span><span style="color: #999999">()</span><span style="color: #E5673D">-&gt;</span><span style="color: #C7C8D2">createView</span><span style="color: #999999">(),</span></span>
+<span class="line" data-linenr="18"><span style="color: #BBBBBB">    </span><span style="color: #999999">])</span><span style="color: #E5673D">;</span></span>
+<span class="line" data-linenr="19"><span style="color: #999999">}</span></span></code></pre>
+</div>
     
       <h2 id="getting-the-current-post-in-the-handler">
         
@@ -432,11 +432,11 @@ submitted and valid.</p>
       </h2>
 
 <p>There is one missing bit in the form handler: It has to be aware of the post
-we’re commenting on. To fix this, add a new <code class="highlighter-rouge">$post</code> property and setter in the
+we’re commenting on. To fix this, add a new <code class="highlighter-shiki">$post</code> property and setter in the
 handler. Form handlers are already statefull. This means adding another
 statefull property wouldn’t harm anyone.</p>
 
-<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<div class="language-php highlighter-shiki"><pre class="shiki-gutter">1
 2
 3
 4
@@ -456,31 +456,31 @@ statefull property wouldn’t harm anyone.</p>
 18
 19
 20
-</pre></td><td class="rouge-code"><pre><span class="kn">use</span> <span class="nc">AppBundle\Entity\Post</span><span class="p">;</span>
-<span class="c1">// ...</span>
-
-<span class="kd">class</span> <span class="nc">CommentFormHandler</span> <span class="kd">extends</span> <span class="nc">AbstractFormHandler</span> <span class="kd">implements</span> <span class="nc">FormSuccesHandlerInterface</span>
-<span class="p">{</span>
-    <span class="cd">/** @var Post **/</span>
-    <span class="k">private</span> <span class="nv">$post</span><span class="p">;</span>
-
-    <span class="c1">// ...   </span>
-    <span class="k">public</span> <span class="k">function</span> <span class="n">setPost</span><span class="p">(</span><span class="kt">Post</span> <span class="nv">$post</span><span class="p">)</span>
-    <span class="p">{</span>
-        <span class="nv">$this</span><span class="o">-&gt;</span><span class="n">post</span> <span class="o">=</span> <span class="nv">$post</span><span class="p">;</span>
-    <span class="p">}</span>
-
-    <span class="k">public</span> <span class="k">function</span> <span class="n">onSuccess</span><span class="p">(</span><span class="kt">Request</span> <span class="nv">$request</span><span class="p">)</span>
-    <span class="p">{</span>
-        <span class="nv">$post</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="n">post</span><span class="p">;</span>
-        <span class="c1">// ...</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</pre></td></tr></tbody></table></code></pre></div></div>
+</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #E5673D">use</span><span style="color: #BBBBBB"> AppBundle</span><span style="color: #999999">\</span><span style="color: #BBBBBB">Entity</span><span style="color: #999999">\</span><span style="color: #C7C8D2">Post</span><span style="color: #E5673D">;</span></span>
+<span class="line" data-linenr="2"><span style="color: #6B90C0; font-style: italic">// ...</span></span>
+<span class="line" data-linenr="3"></span>
+<span class="line" data-linenr="4"><span style="color: #E5673D">class</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">CommentFormHandler</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">extends</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">AbstractFormHandler</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">implements</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">FormSuccesHandlerInterface</span></span>
+<span class="line" data-linenr="5"><span style="color: #999999">{</span></span>
+<span class="line" data-linenr="6"><span style="color: #BBBBBB">    </span><span style="color: #6B90C0; font-style: italic">/** @var </span><span style="color: #C7C8D2; font-style: italic">Post</span><span style="color: #6B90C0; font-style: italic"> **/</span></span>
+<span class="line" data-linenr="7"><span style="color: #BBBBBB">    </span><span style="color: #E5673D">private</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">post</span><span style="color: #E5673D">;</span></span>
+<span class="line" data-linenr="8"></span>
+<span class="line" data-linenr="9"><span style="color: #999999">    </span><span style="color: #6B90C0; font-style: italic">// ...   </span></span>
+<span class="line" data-linenr="10"><span style="color: #BBBBBB">    </span><span style="color: #E5673D">public</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">function</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">setPost</span><span style="color: #999999">(</span><span style="color: #C7C8D2">Post</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">post</span><span style="color: #999999">)</span></span>
+<span class="line" data-linenr="11"><span style="color: #BBBBBB">    </span><span style="color: #999999">{</span></span>
+<span class="line" data-linenr="12"><span style="color: #BBBBBB">        </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">this</span><span style="color: #E5673D">-&gt;</span><span style="color: #D8DEE9">post</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">=</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">post</span><span style="color: #E5673D">;</span></span>
+<span class="line" data-linenr="13"><span style="color: #BBBBBB">    </span><span style="color: #999999">}</span></span>
+<span class="line" data-linenr="14"></span>
+<span class="line" data-linenr="15"><span style="color: #BBBBBB">    </span><span style="color: #E5673D">public</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">function</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">onSuccess</span><span style="color: #999999">(</span><span style="color: #C7C8D2">Request</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">request</span><span style="color: #999999">)</span></span>
+<span class="line" data-linenr="16"><span style="color: #BBBBBB">    </span><span style="color: #999999">{</span></span>
+<span class="line" data-linenr="17"><span style="color: #BBBBBB">        </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">post</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">=</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">this</span><span style="color: #E5673D">-&gt;</span><span style="color: #D8DEE9">post</span><span style="color: #E5673D">;</span></span>
+<span class="line" data-linenr="18"><span style="color: #999999">        </span><span style="color: #6B90C0; font-style: italic">// ...</span></span>
+<span class="line" data-linenr="19"><span style="color: #BBBBBB">    </span><span style="color: #999999">}</span></span>
+<span class="line" data-linenr="20"><span style="color: #999999">}</span></span></code></pre>
+</div>
 
 <p>Now, from inside the controller, pass the current post to the handler:</p>
 
-<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<div class="language-php highlighter-shiki"><pre class="shiki-gutter">1
 2
 3
 4
@@ -488,15 +488,15 @@ statefull property wouldn’t harm anyone.</p>
 6
 7
 8
-</pre></td><td class="rouge-code"><pre><span class="c1">// ...</span>
-<span class="k">public</span> <span class="k">function</span> <span class="n">commentNewAction</span><span class="p">(</span><span class="kt">Request</span> <span class="nv">$request</span><span class="p">,</span> <span class="kt">Post</span> <span class="nv">$post</span><span class="p">)</span>
-<span class="p">{</span>
-    <span class="nv">$handler</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="nf">get</span><span class="p">(</span><span class="s1">'app.comment_form_handler'</span><span class="p">);</span>
-    <span class="nv">$handler</span><span class="o">-&gt;</span><span class="nf">setPost</span><span class="p">(</span><span class="nv">$post</span><span class="p">);</span>
-
-    <span class="c1">// ...</span>
-<span class="p">}</span>
-</pre></td></tr></tbody></table></code></pre></div></div>
+</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #6B90C0; font-style: italic">// ...</span></span>
+<span class="line" data-linenr="2"><span style="color: #E5673D">public</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">function</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">commentNewAction</span><span style="color: #999999">(</span><span style="color: #C7C8D2">Request</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">request</span><span style="color: #999999">,</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">Post</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">post</span><span style="color: #999999">)</span></span>
+<span class="line" data-linenr="3"><span style="color: #999999">{</span></span>
+<span class="line" data-linenr="4"><span style="color: #BBBBBB">    </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">handler</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">=</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">this</span><span style="color: #E5673D">-&gt;</span><span style="color: #C7C8D2">get</span><span style="color: #999999">(</span><span style="color: #999999">&#39;</span><span style="color: #7CC64A">app.comment_form_handler</span><span style="color: #999999">&#39;</span><span style="color: #999999">)</span><span style="color: #E5673D">;</span></span>
+<span class="line" data-linenr="5"><span style="color: #BBBBBB">    </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">handler</span><span style="color: #E5673D">-&gt;</span><span style="color: #C7C8D2">setPost</span><span style="color: #999999">(</span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">post</span><span style="color: #999999">)</span><span style="color: #E5673D">;</span></span>
+<span class="line" data-linenr="6"></span>
+<span class="line" data-linenr="7"><span style="color: #999999">    </span><span style="color: #6B90C0; font-style: italic">// ...</span></span>
+<span class="line" data-linenr="8"><span style="color: #999999">}</span></span></code></pre>
+</div>
 
 <p>Cool, that’s it! All form handling stuff is now managed in a form handler. This
 makes it easy to reuse. The final controller contains 15 lines (compared to the

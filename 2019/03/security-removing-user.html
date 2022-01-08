@@ -72,20 +72,20 @@ needs fixing! <em>What can we do?</em></p>
       </h2>
 
 <p>Users are <em>your</em> domain logic. Yet, the component forces your user to implement
-<code class="highlighter-rouge">UserInterface</code>. This requires you to define a <em>salt</em> (mostly empty),
-<em>username</em> (probably <code class="highlighter-rouge">return $this-&gt;getEmail();</code>) and <em>password</em> (I hope you
+<code class="highlighter-shiki">UserInterface</code>. This requires you to define a <em>salt</em> (mostly empty),
+<em>username</em> (probably <code class="highlighter-shiki">return $this-&gt;getEmail();</code>) and <em>password</em> (I hope you
 aren’t using tokens in your API?).</p>
 
 <aside class="side" data-type="Reference">
-  <p>In the blogpost, Iltar van der Berg uses two objects: A domain <code class="highlighter-rouge">User</code> and
-<code class="highlighter-rouge">SecurityUser</code>. The security user provider creates a <code class="highlighter-rouge">SecurityUser</code> based on
-information from the domain <code class="highlighter-rouge">User</code>. This way, the domain <code class="highlighter-rouge">User</code> becomes
+  <p>In the blogpost, Iltar van der Berg uses two objects: A domain <code class="highlighter-shiki">User</code> and
+<code class="highlighter-shiki">SecurityUser</code>. The security user provider creates a <code class="highlighter-shiki">SecurityUser</code> based on
+information from the domain <code class="highlighter-shiki">User</code>. This way, the domain <code class="highlighter-shiki">User</code> becomes
 decoupled from the Security component.</p>
 </aside>
 
 <p>You can <a href="https://stovepipe.systems/post/decoupling-your-security-user">decouple the security user from your domain one</a>.
 Yet, doing so means that you have to write a custom service to get the
-domain user in your controller/services. All Security <code class="highlighter-rouge">getUser()</code> methods will
+domain user in your controller/services. All Security <code class="highlighter-shiki">getUser()</code> methods will
 return the Security user and not the domain one. That means writing custom core
 functionality to fix a problem in the component.</p>
     
@@ -141,7 +141,7 @@ shown what other unique identifer Security has besides the User object: Tokens.
 Actually, everything Security needs is already in these tokens, so no need for
 user objects in the component!</p>
 
-<p>However, being able to typehint for <code class="highlighter-rouge">UserInterface</code> in the controller is great.
+<p>However, being able to typehint for <code class="highlighter-shiki">UserInterface</code> in the controller is great.
 Removing users from the component make this is impossible: The Security
 component can no longer relate the token with a user object that you created.</p>
 
@@ -171,7 +171,7 @@ Security component.</p>
         
       </h4>
 
-<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<div class="language-php highlighter-shiki"><pre class="shiki-gutter">1
 2
 3
 4
@@ -206,42 +206,42 @@ Security component.</p>
 33
 34
 35
-</pre></td><td class="rouge-code"><pre><span class="kn">use</span> <span class="nc">Symfony\Component\Security\Core\User\UserInterface</span><span class="p">;</span>
-
-<span class="kd">class</span> <span class="nc">ApiUser</span> <span class="kd">implements</span> <span class="nc">UserInterface</span>
-<span class="p">{</span>
-    <span class="k">private</span> <span class="nv">$email</span><span class="p">;</span>
-    <span class="k">private</span> <span class="nv">$roles</span><span class="p">;</span>
-
-    <span class="k">public</span> <span class="k">function</span> <span class="n">__construct</span><span class="p">(</span><span class="nv">$email</span><span class="p">,</span> <span class="kt">array</span> <span class="nv">$roles</span><span class="p">)</span>
-    <span class="p">{</span>
-        <span class="nv">$this</span><span class="o">-&gt;</span><span class="n">email</span> <span class="o">=</span> <span class="nv">$email</span><span class="p">;</span>
-        <span class="nv">$this</span><span class="o">-&gt;</span><span class="n">roles</span> <span class="o">=</span> <span class="nv">$roles</span><span class="p">;</span>
-    <span class="p">}</span>
-
-    <span class="k">public</span> <span class="k">function</span> <span class="n">getUsername</span><span class="p">()</span>
-    <span class="p">{</span>
-        <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="n">email</span><span class="p">;</span>
-    <span class="p">}</span>
-
-    <span class="k">public</span> <span class="k">function</span> <span class="n">getPassword</span><span class="p">()</span>
-    <span class="p">{</span>
-        <span class="k">return</span> <span class="s1">'none'</span><span class="p">;</span>
-    <span class="p">}</span>
-
-    <span class="k">public</span> <span class="k">function</span> <span class="n">getSalt</span><span class="p">()</span>
-    <span class="p">{</span>
-        <span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
-    <span class="p">}</span>
-
-    <span class="k">public</span> <span class="k">function</span> <span class="n">getRoles</span><span class="p">()</span>
-    <span class="p">{</span>
-        <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="n">roles</span><span class="p">;</span>
-    <span class="p">}</span>
-
-    <span class="c1">// ...</span>
-<span class="p">}</span>
-</pre></td></tr></tbody></table></code></pre></div></div>
+</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #E5673D">use</span><span style="color: #BBBBBB"> Symfony</span><span style="color: #999999">\</span><span style="color: #BBBBBB">Component</span><span style="color: #999999">\</span><span style="color: #BBBBBB">Security</span><span style="color: #999999">\</span><span style="color: #BBBBBB">Core</span><span style="color: #999999">\</span><span style="color: #BBBBBB">User</span><span style="color: #999999">\</span><span style="color: #C7C8D2">UserInterface</span><span style="color: #E5673D">;</span></span>
+<span class="line" data-linenr="2"></span>
+<span class="line" data-linenr="3"><span style="color: #E5673D">class</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">ApiUser</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">implements</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">UserInterface</span></span>
+<span class="line" data-linenr="4"><span style="color: #999999">{</span></span>
+<span class="line" data-linenr="5"><span style="color: #BBBBBB">    </span><span style="color: #E5673D">private</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">email</span><span style="color: #E5673D">;</span></span>
+<span class="line" data-linenr="6"><span style="color: #BBBBBB">    </span><span style="color: #E5673D">private</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">roles</span><span style="color: #E5673D">;</span></span>
+<span class="line" data-linenr="7"></span>
+<span class="line" data-linenr="8"><span style="color: #BBBBBB">    </span><span style="color: #E5673D">public</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">function</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">__construct</span><span style="color: #999999">(</span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">email</span><span style="color: #999999">,</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">array</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">roles</span><span style="color: #999999">)</span></span>
+<span class="line" data-linenr="9"><span style="color: #BBBBBB">    </span><span style="color: #999999">{</span></span>
+<span class="line" data-linenr="10"><span style="color: #BBBBBB">        </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">this</span><span style="color: #E5673D">-&gt;</span><span style="color: #D8DEE9">email</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">=</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">email</span><span style="color: #E5673D">;</span></span>
+<span class="line" data-linenr="11"><span style="color: #BBBBBB">        </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">this</span><span style="color: #E5673D">-&gt;</span><span style="color: #D8DEE9">roles</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">=</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">roles</span><span style="color: #E5673D">;</span></span>
+<span class="line" data-linenr="12"><span style="color: #BBBBBB">    </span><span style="color: #999999">}</span></span>
+<span class="line" data-linenr="13"></span>
+<span class="line" data-linenr="14"><span style="color: #BBBBBB">    </span><span style="color: #E5673D">public</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">function</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">getUsername</span><span style="color: #999999">()</span></span>
+<span class="line" data-linenr="15"><span style="color: #BBBBBB">    </span><span style="color: #999999">{</span></span>
+<span class="line" data-linenr="16"><span style="color: #BBBBBB">        </span><span style="color: #E5673D">return</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">this</span><span style="color: #E5673D">-&gt;</span><span style="color: #D8DEE9">email</span><span style="color: #E5673D">;</span></span>
+<span class="line" data-linenr="17"><span style="color: #BBBBBB">    </span><span style="color: #999999">}</span></span>
+<span class="line" data-linenr="18"></span>
+<span class="line" data-linenr="19"><span style="color: #BBBBBB">    </span><span style="color: #E5673D">public</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">function</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">getPassword</span><span style="color: #999999">()</span></span>
+<span class="line" data-linenr="20"><span style="color: #BBBBBB">    </span><span style="color: #999999">{</span></span>
+<span class="line" data-linenr="21"><span style="color: #BBBBBB">        </span><span style="color: #E5673D">return</span><span style="color: #BBBBBB"> </span><span style="color: #999999">&#39;</span><span style="color: #7CC64A">none</span><span style="color: #999999">&#39;</span><span style="color: #E5673D">;</span></span>
+<span class="line" data-linenr="22"><span style="color: #BBBBBB">    </span><span style="color: #999999">}</span></span>
+<span class="line" data-linenr="23"></span>
+<span class="line" data-linenr="24"><span style="color: #BBBBBB">    </span><span style="color: #E5673D">public</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">function</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">getSalt</span><span style="color: #999999">()</span></span>
+<span class="line" data-linenr="25"><span style="color: #BBBBBB">    </span><span style="color: #999999">{</span></span>
+<span class="line" data-linenr="26"><span style="color: #BBBBBB">        </span><span style="color: #E5673D">return</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">null;</span></span>
+<span class="line" data-linenr="27"><span style="color: #BBBBBB">    </span><span style="color: #999999">}</span></span>
+<span class="line" data-linenr="28"></span>
+<span class="line" data-linenr="29"><span style="color: #BBBBBB">    </span><span style="color: #E5673D">public</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">function</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">getRoles</span><span style="color: #999999">()</span></span>
+<span class="line" data-linenr="30"><span style="color: #BBBBBB">    </span><span style="color: #999999">{</span></span>
+<span class="line" data-linenr="31"><span style="color: #BBBBBB">        </span><span style="color: #E5673D">return</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">this</span><span style="color: #E5673D">-&gt;</span><span style="color: #D8DEE9">roles</span><span style="color: #E5673D">;</span></span>
+<span class="line" data-linenr="32"><span style="color: #BBBBBB">    </span><span style="color: #999999">}</span></span>
+<span class="line" data-linenr="33"></span>
+<span class="line" data-linenr="34"><span style="color: #999999">    </span><span style="color: #6B90C0; font-style: italic">// ...</span></span>
+<span class="line" data-linenr="35"><span style="color: #999999">}</span></span></code></pre>
+</div>
     
       <h4 id="after">
         
@@ -251,7 +251,7 @@ Security component.</p>
         
       </h4>
 
-<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<div class="language-php highlighter-shiki"><pre class="shiki-gutter">1
 2
 3
 4
@@ -272,33 +272,33 @@ Security component.</p>
 19
 20
 21
-</pre></td><td class="rouge-code"><pre><span class="kd">class</span> <span class="nc">User</span>
-<span class="p">{</span>
-    <span class="k">private</span> <span class="nv">$email</span><span class="p">;</span>
-    <span class="k">private</span> <span class="nv">$roles</span><span class="p">;</span>
+</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #E5673D">class</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">User</span></span>
+<span class="line" data-linenr="2"><span style="color: #999999">{</span></span>
+<span class="line" data-linenr="3"><span style="color: #BBBBBB">    </span><span style="color: #E5673D">private</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">email</span><span style="color: #E5673D">;</span></span>
+<span class="line" data-linenr="4"><span style="color: #BBBBBB">    </span><span style="color: #E5673D">private</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">roles</span><span style="color: #E5673D">;</span></span>
+<span class="line" data-linenr="5"></span>
+<span class="line" data-linenr="6"><span style="color: #BBBBBB">    </span><span style="color: #E5673D">public</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">function</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">__construct</span><span style="color: #999999">(</span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">email</span><span style="color: #999999">,</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">roles</span><span style="color: #999999">)</span></span>
+<span class="line" data-linenr="7"><span style="color: #BBBBBB">    </span><span style="color: #999999">{</span></span>
+<span class="line" data-linenr="8"><span style="color: #BBBBBB">        </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">this</span><span style="color: #E5673D">-&gt;</span><span style="color: #D8DEE9">email</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">=</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">email</span><span style="color: #E5673D">;</span></span>
+<span class="line" data-linenr="9"><span style="color: #BBBBBB">        </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">this</span><span style="color: #E5673D">-&gt;</span><span style="color: #D8DEE9">roles</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">=</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">roles</span><span style="color: #E5673D">;</span></span>
+<span class="line" data-linenr="10"><span style="color: #BBBBBB">    </span><span style="color: #999999">}</span></span>
+<span class="line" data-linenr="11"></span>
+<span class="line" data-linenr="12"><span style="color: #BBBBBB">    </span><span style="color: #E5673D">public</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">function</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">getEmail</span><span style="color: #999999">()</span></span>
+<span class="line" data-linenr="13"><span style="color: #BBBBBB">    </span><span style="color: #999999">{</span></span>
+<span class="line" data-linenr="14"><span style="color: #BBBBBB">        </span><span style="color: #E5673D">return</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">this</span><span style="color: #E5673D">-&gt;</span><span style="color: #D8DEE9">email</span><span style="color: #E5673D">;</span></span>
+<span class="line" data-linenr="15"><span style="color: #BBBBBB">    </span><span style="color: #999999">}</span></span>
+<span class="line" data-linenr="16"></span>
+<span class="line" data-linenr="17"><span style="color: #BBBBBB">    </span><span style="color: #E5673D">public</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">function</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">getRoles</span><span style="color: #999999">()</span></span>
+<span class="line" data-linenr="18"><span style="color: #BBBBBB">    </span><span style="color: #999999">{</span></span>
+<span class="line" data-linenr="19"><span style="color: #BBBBBB">        </span><span style="color: #E5673D">return</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">this</span><span style="color: #E5673D">-&gt;</span><span style="color: #D8DEE9">roles</span><span style="color: #E5673D">;</span></span>
+<span class="line" data-linenr="20"><span style="color: #BBBBBB">    </span><span style="color: #999999">}</span></span>
+<span class="line" data-linenr="21"><span style="color: #999999">}</span></span></code></pre>
+</div>
 
-    <span class="k">public</span> <span class="k">function</span> <span class="n">__construct</span><span class="p">(</span><span class="nv">$email</span><span class="p">,</span> <span class="nv">$roles</span><span class="p">)</span>
-    <span class="p">{</span>
-        <span class="nv">$this</span><span class="o">-&gt;</span><span class="n">email</span> <span class="o">=</span> <span class="nv">$email</span><span class="p">;</span>
-        <span class="nv">$this</span><span class="o">-&gt;</span><span class="n">roles</span> <span class="o">=</span> <span class="nv">$roles</span><span class="p">;</span>
-    <span class="p">}</span>
-
-    <span class="k">public</span> <span class="k">function</span> <span class="n">getEmail</span><span class="p">()</span>
-    <span class="p">{</span>
-        <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="n">email</span><span class="p">;</span>
-    <span class="p">}</span>
-
-    <span class="k">public</span> <span class="k">function</span> <span class="n">getRoles</span><span class="p">()</span>
-    <span class="p">{</span>
-        <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="n">roles</span><span class="p">;</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</pre></td></tr></tbody></table></code></pre></div></div>
-
-<p>When you want to use <code class="highlighter-rouge">getUser()</code> functions, you only have to implement a simple
+<p>When you want to use <code class="highlighter-shiki">getUser()</code> functions, you only have to implement a simple
 interface:</p>
 
-<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<div class="language-php highlighter-shiki"><pre class="shiki-gutter">1
 2
 3
 4
@@ -309,18 +309,18 @@ interface:</p>
 9
 10
 11
-</pre></td><td class="rouge-code"><pre><span class="kn">use</span> <span class="nc">Symfony\Component\Security\Core\IdentityInterface</span><span class="p">;</span>
-
-<span class="kd">class</span> <span class="nc">User</span> <span class="kd">implements</span> <span class="nc">IdentityInterface</span>
-<span class="p">{</span>
-    <span class="c1">// ...</span>
-
-    <span class="k">public</span> <span class="k">function</span> <span class="n">getIdentifier</span><span class="p">()</span>
-    <span class="p">{</span>
-        <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="n">id</span><span class="p">;</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</pre></td></tr></tbody></table></code></pre></div></div>
+</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #E5673D">use</span><span style="color: #BBBBBB"> Symfony</span><span style="color: #999999">\</span><span style="color: #BBBBBB">Component</span><span style="color: #999999">\</span><span style="color: #BBBBBB">Security</span><span style="color: #999999">\</span><span style="color: #BBBBBB">Core</span><span style="color: #999999">\</span><span style="color: #C7C8D2">IdentityInterface</span><span style="color: #E5673D">;</span></span>
+<span class="line" data-linenr="2"></span>
+<span class="line" data-linenr="3"><span style="color: #E5673D">class</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">User</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">implements</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">IdentityInterface</span></span>
+<span class="line" data-linenr="4"><span style="color: #999999">{</span></span>
+<span class="line" data-linenr="5"><span style="color: #999999">    </span><span style="color: #6B90C0; font-style: italic">// ...</span></span>
+<span class="line" data-linenr="6"></span>
+<span class="line" data-linenr="7"><span style="color: #BBBBBB">    </span><span style="color: #E5673D">public</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">function</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">getIdentifier</span><span style="color: #999999">()</span></span>
+<span class="line" data-linenr="8"><span style="color: #BBBBBB">    </span><span style="color: #999999">{</span></span>
+<span class="line" data-linenr="9"><span style="color: #BBBBBB">        </span><span style="color: #E5673D">return</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">this</span><span style="color: #E5673D">-&gt;</span><span style="color: #D8DEE9">id</span><span style="color: #E5673D">;</span></span>
+<span class="line" data-linenr="10"><span style="color: #BBBBBB">    </span><span style="color: #999999">}</span></span>
+<span class="line" data-linenr="11"><span style="color: #999999">}</span></span></code></pre>
+</div>
 
 <p>As you can see, this all becomes way more flexible. Your user only needs to
 have some unique identifier and all other information is in the tokens.</p>

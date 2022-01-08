@@ -103,38 +103,38 @@ doen, we gaan nu alleen maar SSH gebruiken.</p>
 wat is ons mail adres? Dit is later handig voor als je samen gaat werken met
 GitHub of andere GIT-sites, want dan hebben we dit nodig.</p>
 
-<p>Open je eerst GIT bash (<code class="highlighter-rouge">Windows &gt; start &gt; alle programma's &gt; git &gt; GIT
+<p>Open je eerst GIT bash (<code class="highlighter-shiki">Windows &gt; start &gt; alle programma&#39;s &gt; git &gt; GIT
 bash</code>). GIT bash is eigenlijk de gewone CMD command prompt met wat extra
 GIT functies. Als je het Command Prompt nog bijna nooit gebruikt hebt even een
 spoed cursus:</p>
 
-<p>Met <code class="highlighter-rouge">cd</code> navigeer je van map naar map. Bijv:</p>
+<p>Met <code class="highlighter-shiki">cd</code> navigeer je van map naar map. Bijv:</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<div class="language-bash highlighter-shiki"><pre class="shiki-gutter">1
 2
-</pre></td><td class="rouge-code"><pre><span class="nv">$ </span><span class="nb">cd </span>My-Project
-C:<span class="se">\U</span>sers<span class="se">\W</span>outer<span class="se">\M</span>y-Project
-</pre></td></tr></tbody></table></code></pre></div></div>
+</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #BBBBBB">$ </span><span style="color: #C7C8D2">cd</span><span style="color: #BBBBBB"> My-Project</span></span>
+<span class="line" data-linenr="2"><span style="color: #BBBBBB">C:</span><span style="color: #EBCB8B">\U</span><span style="color: #BBBBBB">sers</span><span style="color: #EBCB8B">\W</span><span style="color: #BBBBBB">outer</span><span style="color: #EBCB8B">\M</span><span style="color: #BBBBBB">y-Project</span></span></code></pre>
+</div>
 
 <p>Als je naar een andere schrijf navigeert moet je doormiddel van de naam van de
-schrijf + <code class="highlighter-rouge">:</code> ernaar toe navigeren:</p>
+schrijf + <code class="highlighter-shiki">:</code> ernaar toe navigeren:</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<div class="language-bash highlighter-shiki"><pre class="shiki-gutter">1
 2
 3
-</pre></td><td class="rouge-code"><pre><span class="nv">$ </span><span class="nb">cd </span>D:<span class="se">\W</span>amp<span class="se">\w</span>ww<span class="se">\M</span>y-Project
-<span class="nv">$ </span>d:
-D:<span class="se">\W</span>amp<span class="se">\w</span>ww<span class="se">\M</span>y-Project
-</pre></td></tr></tbody></table></code></pre></div></div>
+</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #BBBBBB">$ </span><span style="color: #C7C8D2">cd</span><span style="color: #BBBBBB"> D:</span><span style="color: #EBCB8B">\W</span><span style="color: #BBBBBB">amp</span><span style="color: #EBCB8B">\w</span><span style="color: #BBBBBB">ww</span><span style="color: #EBCB8B">\M</span><span style="color: #BBBBBB">y-Project</span></span>
+<span class="line" data-linenr="2"><span style="color: #BBBBBB">$ d:</span></span>
+<span class="line" data-linenr="3"><span style="color: #BBBBBB">D:</span><span style="color: #EBCB8B">\W</span><span style="color: #BBBBBB">amp</span><span style="color: #EBCB8B">\w</span><span style="color: #BBBBBB">ww</span><span style="color: #EBCB8B">\M</span><span style="color: #BBBBBB">y-Project</span></span></code></pre>
+</div>
 
 <p>Nu gaan we weer verder met waar we gebleven zijn. We hebben onze GIT Bash
 geopend en nu gaan we ons voorstellen. Dit doen we als volgt:</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<div class="language-bash highlighter-shiki"><pre class="shiki-gutter">1
 2
-</pre></td><td class="rouge-code"><pre><span class="nv">$ </span>git config <span class="nt">--global</span> user.name <span class="s2">"Wouter J"</span>
-<span class="nv">$ </span>git config <span class="nt">--global</span> user.email <span class="s2">"my@email.com"</span>
-</pre></td></tr></tbody></table></code></pre></div></div>
+</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #BBBBBB">$ git config --global user.name </span><span style="color: #999999">&quot;</span><span style="color: #7CC64A">Wouter J</span><span style="color: #999999">&quot;</span></span>
+<span class="line" data-linenr="2"><span style="color: #BBBBBB">$ git config --global user.email </span><span style="color: #999999">&quot;</span><span style="color: #7CC64A">my@email.com</span><span style="color: #999999">&quot;</span></span></code></pre>
+</div>
 
 <p>Nu hebben we ons voorgesteld!</p>
     
@@ -151,24 +151,24 @@ natuurlijk niet van, dus nu gaan we wat codes schrijven.</p>
 
 <p>We maken een heel simpel projectje aan op onze computer. Ik download de
 <a href="http://html5boilerplate.com/">HTML5 boilerplate</a> en zet die in
-<code class="highlighter-rouge">D:\Wamp\www\My-Project\</code>. Nu openen we weer onze Bash en gaan we naar deze
+<code class="highlighter-shiki">D:\Wamp\www\My-Project\</code>. Nu openen we weer onze Bash en gaan we naar deze
 locatie toe:</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-</pre></td><td class="rouge-code"><pre><span class="nv">$ </span><span class="nb">cd</span> <span class="se">\d\w</span>amp<span class="se">\w</span>ww<span class="se">\m</span>y-project<span class="se">\</span>
-</pre></td></tr></tbody></table></code></pre></div></div>
+<div class="language-bash highlighter-shiki"><pre class="shiki-gutter">1
+</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #BBBBBB">$ </span><span style="color: #C7C8D2">cd</span><span style="color: #BBBBBB"> </span><span style="color: #EBCB8B">\d\w</span><span style="color: #BBBBBB">amp</span><span style="color: #EBCB8B">\w</span><span style="color: #BBBBBB">ww</span><span style="color: #EBCB8B">\m</span><span style="color: #BBBBBB">y-project\</span></span></code></pre>
+</div>
 
 <p>(in de bash gaat het iets anders dan in de command prompt)</p>
 
-<p>Nu gaan we GIT aanzetten in dit project. Dit doe je met het <code class="highlighter-rouge">git init</code>
-command. Alles commands van GIT beginnen met <code class="highlighter-rouge">git</code> gevolgt door en spatie en
+<p>Nu gaan we GIT aanzetten in dit project. Dit doe je met het <code class="highlighter-shiki">git init</code>
+command. Alles commands van GIT beginnen met <code class="highlighter-shiki">git</code> gevolgt door en spatie en
 hun naam. Als je informatie wilt over een bepaald command gebruik je `git help</p>
 <command naam="" />
 <p>`.</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-</pre></td><td class="rouge-code"><pre><span class="nv">$ </span>git init
-</pre></td></tr></tbody></table></code></pre></div></div>
+<div class="language-bash highlighter-shiki"><pre class="shiki-gutter">1
+</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #BBBBBB">$ git init</span></span></code></pre>
+</div>
 
 <p>Zo nu kunnen we aan de slag! Per verandering gaan we een nieuwe versie
 aanmaken, dit noemen we vanaf nu een commit. Je moet hierbij niet denken aan
@@ -228,17 +228,17 @@ in de git repository (kortweg repo).</p>
         
       </h3>
 
-<p>Zo nu gaan we eerst de bestanden in de staging zetten. Dat doe je met de <code class="highlighter-rouge">git
+<p>Zo nu gaan we eerst de bestanden in de staging zetten. Dat doe je met de <code class="highlighter-shiki">git
 add</code> method. Deze method verwacht minimaal 1 parameter: de naam/path van het
 bestand. Door spaties tussen de bestandnamen te laten kun je meerdere
 bestanden tegelijkertijd in de staging zetten.  Maar in ons geval willen we
 alle bestanden hebben. Waarom zouden we ze dan allemaal apart typen? Hiervoor
-heeft GIT het <code class="highlighter-rouge">.</code> teken uitgevonden, dit betekend alle bestanden. Dus laten we
+heeft GIT het <code class="highlighter-shiki">.</code> teken uitgevonden, dit betekend alle bestanden. Dus laten we
 dat maar doen:</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-</pre></td><td class="rouge-code"><pre><span class="nv">$ </span>git add <span class="nb">.</span>
-</pre></td></tr></tbody></table></code></pre></div></div>
+<div class="language-bash highlighter-shiki"><pre class="shiki-gutter">1
+</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #BBBBBB">$ git add </span><span style="color: #C7C8D2">.</span></span></code></pre>
+</div>
     
       <h3 id="tijd-voor-de-commit">
         
@@ -249,20 +249,20 @@ dat maar doen:</p>
       </h3>
 
 <p>Nu we hebben geselecteerd wat we willen commiten is het tijd om de commit te
-doen. Hiervoor heeft GIT de <code class="highlighter-rouge">git commit</code> method. Als je dit command runt
+doen. Hiervoor heeft GIT de <code class="highlighter-shiki">git commit</code> method. Als je dit command runt
 probeerd GIT Vim te openen, dit is een editor die in de command prompt werkt.
-Mocht je dit niet willen moet je de vlag <code class="highlighter-rouge">-m</code> gebruiken. Dan kun je de
+Mocht je dit niet willen moet je de vlag <code class="highlighter-shiki">-m</code> gebruiken. Dan kun je de
 parameter als de naam gebruiken. Maar normaal wordt het dus:</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-</pre></td><td class="rouge-code"><pre><span class="nv">$ </span>git commit
-</pre></td></tr></tbody></table></code></pre></div></div>
+<div class="language-bash highlighter-shiki"><pre class="shiki-gutter">1
+</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #BBBBBB">$ git commit</span></span></code></pre>
+</div>
 
 <p>Nu wordt er in je command prompt Vim geopend. Vervolgens staat vim in de
-visual mode, door <code class="highlighter-rouge">i</code> in te drukken (of <code class="highlighter-rouge">a</code>) ga je naar insert mode (de mode
+visual mode, door <code class="highlighter-shiki">i</code> in te drukken (of <code class="highlighter-shiki">a</code>) ga je naar insert mode (de mode
 waarin je kan typen). Nu typ je de commit naam (in ons geval ‘Getting
-Started’) en nu klik je op <code class="highlighter-rouge">Ctrl + [</code> hiermee ga je weer naar visual mode en
-dan doe je <code class="highlighter-rouge">:wq</code> dit <strong>w</strong>rite (opslaan) de naam en vervolgens
+Started’) en nu klik je op <code class="highlighter-shiki">Ctrl + [</code> hiermee ga je weer naar visual mode en
+dan doe je <code class="highlighter-shiki">:wq</code> dit <strong>w</strong>rite (opslaan) de naam en vervolgens
 <strong>q</strong>uit (sluit) Vim. Nu ben je weer terug en is je commit
 opgeslagen. In het schermpje waar je nu bent kun je zien welke bestanden er
 zijn toegevoegd, aan welke branch (hierover de volgende keer meer) en wat er
@@ -276,15 +276,16 @@ precies is veranderd.</p>
         
       </h2>
 
-<p>Nu willen we kijken of alles gelukt is. Dit doen we met <code class="highlighter-rouge">git log</code>, dit laat
+<p>Nu willen we kijken of alles gelukt is. Dit doen we met <code class="highlighter-shiki">git log</code>, dit laat
 alle recente commits zien. In ons geval staat er maar 1. Laten we eens kijken
 wat erin staat</p>
 
-<pre><code class="language-none">commit 0935a1f33c8e75ab7356c3e94f27f397ffd7b472
+<div class="language-none highlighter-shiki"><pre class="shiki language-none"><code>commit 0935a1f33c8e75ab7356c3e94f27f397ffd7b472
 Author: WouterJ &lt;my @email.com&gt;
 Date:   Thu Apr 12 15:49:27 2012 +0200
     Getting Started
 </code></pre>
+</div>
 
 <p>We zien hier een hash (die lange tekenreeks) dat ‘de versie’ voorstelt. Het
 voordeel van zo’n hash ten opzichte van een simpele versie nummer is dat deze
@@ -306,31 +307,31 @@ beschrijving.</p>
 <p>Oké, we hebben nu heel veel dingen aangepast aan ons project. Tijd voor de
 volgende commit. We willen dingen apart commiten, eerst de HTML veranderingen,
 dan de CSS veranderingen en dan JS. Eerst wil ik weten welke bestanden er
-allemaal sinds de laatste commit gewijzigd zijn, dit doen we met de <code class="highlighter-rouge">git
+allemaal sinds de laatste commit gewijzigd zijn, dit doen we met de <code class="highlighter-shiki">git
 status</code> command. Nu krijg je een overzicht van bestanden/mappen die aangepast
 zijn. Vervolgens voegen we weer alle HTML bestanden toe aan de staging area:</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-</pre></td><td class="rouge-code"><pre><span class="nv">$ </span>git add index.html
-</pre></td></tr></tbody></table></code></pre></div></div>
+<div class="language-bash highlighter-shiki"><pre class="shiki-gutter">1
+</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #BBBBBB">$ git add index.html</span></span></code></pre>
+</div>
 
 <p>Hierdoor voegen we index.html toe aan de pagina. Stel dat we nu alle bestanden
-die eindigen op <code class="highlighter-rouge">.html</code> willen toevoegen gebruiken we <code class="highlighter-rouge">*.html</code> de * wordt dan
+die eindigen op <code class="highlighter-shiki">.html</code> willen toevoegen gebruiken we <code class="highlighter-shiki">*.html</code> de * wordt dan
 door de bestandsnaam vervangen. Nu kunnen we weer onze commit uitvoeren</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-</pre></td><td class="rouge-code"><pre><span class="nv">$ </span>git commit <span class="nt">-m</span> <span class="s1">'[HTML] Added header'</span>
-</pre></td></tr></tbody></table></code></pre></div></div>
+<div class="language-bash highlighter-shiki"><pre class="shiki-gutter">1
+</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #BBBBBB">$ git commit -m </span><span style="color: #999999">&#39;</span><span style="color: #7CC64A">[HTML] Added header</span><span style="color: #999999">&#39;</span></span></code></pre>
+</div>
 
 <p>En we voegen heel de css directory toe aan de staging area, voor de volgende commit:</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<div class="language-bash highlighter-shiki"><pre class="shiki-gutter">1
 2
-</pre></td><td class="rouge-code"><pre><span class="nv">$ </span>git add css/.
-<span class="nv">$ </span>git commit <span class="nt">-m</span> <span class="s1">'[CSS] Changed RESET and added header'</span><span class="sb">`</span>&lt;/pre&gt;
-</pre></td></tr></tbody></table></code></pre></div></div>
+</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #BBBBBB">$ git add css/.</span></span>
+<span class="line" data-linenr="2"><span style="color: #BBBBBB">$ git commit -m </span><span style="color: #999999">&#39;</span><span style="color: #7CC64A">[CSS] Changed RESET and added header</span><span style="color: #999999">&#39;`</span><span style="color: #E5673D">&lt;</span><span style="color: #7CC64A">/pre</span><span style="color: #E5673D">&gt;</span></span></code></pre>
+</div>
 
-<p>Met <code class="highlighter-rouge">css/.</code> voeg je alle bestanden in de css map toe aan de commit.</p>
+<p>Met <code class="highlighter-shiki">css/.</code> voeg je alle bestanden in de css map toe aan de commit.</p>
 
 <p>En zo doen we het ook voor de andere commits.</p>
     

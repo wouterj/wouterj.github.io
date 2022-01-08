@@ -65,7 +65,7 @@ jullie delen.</p></div><div class="post__entry">
   <li><a href="#compass">SASS + Compass</a></li>
   <li><a href="#prefix-free">-Prefix-free</a></li>
   <li><a href="#css3-please">CSS3 Please</a></li>
-  <li><a href="#webkit-in-moz">Waarom niet alleen <code class="highlighter-rouge">-webkit-</code>?</a></li>
+  <li><a href="#webkit-in-moz">Waarom niet alleen <code class="highlighter-shiki">-webkit-</code>?</a></li>
 </ol>
       <h2 id="prefixr">
         
@@ -81,7 +81,7 @@ jullie delen.</p></div><div class="post__entry">
 een geweldig simpele tool met een uitgebreid API systeem waarbij je alle CSS3
 properties automatisch kunt prefixen. Stel we hebben het volgende:</p>
 
-<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<div class="language-css highlighter-shiki"><pre class="shiki-gutter">1
 2
 3
 4
@@ -93,25 +93,25 @@ properties automatisch kunt prefixen. Stel we hebben het volgende:</p>
 10
 11
 12
-</pre></td><td class="rouge-code"><pre><span class="nf">#box</span> <span class="p">{</span>
-    <span class="nl">width</span><span class="p">:</span><span class="m">100px</span><span class="p">;</span>
-    <span class="nl">height</span><span class="p">:</span><span class="m">100px</span><span class="p">;</span>
-    <span class="nl">background</span><span class="p">:</span><span class="no">red</span><span class="p">;</span>
-    <span class="nl">background</span><span class="p">:</span><span class="n">-webkit-linear-gradient</span><span class="p">(</span>
-        <span class="nb">top</span><span class="p">,</span>
-        <span class="m">#000</span><span class="p">,</span>
-        <span class="m">#555</span>
-    <span class="p">);</span>
-    <span class="nl">-moz-border-radius</span><span class="p">:</span><span class="m">5em</span><span class="p">;</span>
-    <span class="nl">box-shadow</span><span class="p">:</span><span class="m">2px</span> <span class="m">3px</span> <span class="m">4px</span> <span class="m">#2d2d2d</span><span class="p">;</span>
-<span class="p">}</span>
-</pre></td></tr></tbody></table></code></pre></div></div>
+</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #999999">#</span><span style="color: #C7C8D2">box</span><span style="color: #BBBBBB"> </span><span style="color: #999999">{</span></span>
+<span class="line" data-linenr="2"><span style="color: #BBBBBB">    </span><span style="color: #D8DEE9">width</span><span style="color: #999999">:</span><span style="color: #B48EAD">100</span><span style="color: #E5673D">px;</span></span>
+<span class="line" data-linenr="3"><span style="color: #BBBBBB">    </span><span style="color: #D8DEE9">height</span><span style="color: #999999">:</span><span style="color: #B48EAD">100</span><span style="color: #E5673D">px;</span></span>
+<span class="line" data-linenr="4"><span style="color: #BBBBBB">    </span><span style="color: #D8DEE9">background</span><span style="color: #999999">:</span><span style="color: #E5673D">red;</span></span>
+<span class="line" data-linenr="5"><span style="color: #BBBBBB">    </span><span style="color: #D8DEE9">background</span><span style="color: #999999">:</span><span style="color: #C7C8D2">-webkit-linear-gradient</span><span style="color: #999999">(</span></span>
+<span class="line" data-linenr="6"><span style="color: #C7C8D2">        </span><span style="color: #E5673D">top</span><span style="color: #999999">,</span></span>
+<span class="line" data-linenr="7"><span style="color: #C7C8D2">        </span><span style="color: #999999">#</span><span style="color: #B48EAD">000</span><span style="color: #999999">,</span></span>
+<span class="line" data-linenr="8"><span style="color: #C7C8D2">        </span><span style="color: #999999">#</span><span style="color: #B48EAD">555</span></span>
+<span class="line" data-linenr="9"><span style="color: #C7C8D2">    </span><span style="color: #999999">)</span><span style="color: #E5673D">;</span></span>
+<span class="line" data-linenr="10"><span style="color: #BBBBBB">    </span><span style="color: #C7C8D2">-moz-border-radius</span><span style="color: #999999">:</span><span style="color: #B48EAD">5</span><span style="color: #E5673D">em;</span></span>
+<span class="line" data-linenr="11"><span style="color: #BBBBBB">    </span><span style="color: #D8DEE9">box-shadow</span><span style="color: #999999">:</span><span style="color: #B48EAD">2</span><span style="color: #E5673D">px</span><span style="color: #C7C8D2"> </span><span style="color: #B48EAD">3</span><span style="color: #E5673D">px</span><span style="color: #C7C8D2"> </span><span style="color: #B48EAD">4</span><span style="color: #E5673D">px</span><span style="color: #C7C8D2"> </span><span style="color: #999999">#</span><span style="color: #B48EAD">2d2d2d</span><span style="color: #E5673D">;</span></span>
+<span class="line" data-linenr="12"><span style="color: #999999">}</span></span></code></pre>
+</div>
 
 <p>Nu hebben we maar 1 prefix per CSS3 propertie en bij de laatste zelfs helemaal
 geen één. Als we deze code in Prefixr stoppen en op Prefixize klikken krijgen
 we daaruit deze code:</p>
 
-<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<div class="language-css highlighter-shiki"><pre class="shiki-gutter">1
 2
 3
 4
@@ -130,26 +130,26 @@ we daaruit deze code:</p>
 17
 18
 19
-</pre></td><td class="rouge-code"><pre><span class="nf">#box</span> <span class="p">{</span>
-    <span class="nl">width</span><span class="p">:</span> <span class="m">100px</span><span class="p">;</span>
-    <span class="nl">height</span><span class="p">:</span> <span class="m">100px</span><span class="p">;</span>
-    <span class="nl">background</span><span class="p">:</span> <span class="no">red</span><span class="p">;</span>
-
-    <span class="nl">background</span><span class="p">:</span> <span class="n">-webkit-linear-gradient</span><span class="p">(</span> <span class="nb">top</span><span class="p">,</span> <span class="m">#000</span><span class="p">,</span> <span class="m">#555</span> <span class="p">);</span>
-    <span class="nl">background</span><span class="p">:</span> <span class="n">-moz-linear-gradient</span><span class="p">(</span> <span class="nb">top</span><span class="p">,</span> <span class="m">#000</span><span class="p">,</span> <span class="m">#555</span> <span class="p">);</span>
-    <span class="nl">background</span><span class="p">:</span> <span class="n">-o-linear-gradient</span><span class="p">(</span> <span class="nb">top</span><span class="p">,</span> <span class="m">#000</span><span class="p">,</span> <span class="m">#555</span> <span class="p">);</span>
-    <span class="nl">background</span><span class="p">:</span> <span class="n">-ms-linear-gradient</span><span class="p">(</span> <span class="nb">top</span><span class="p">,</span> <span class="m">#000</span><span class="p">,</span> <span class="m">#555</span> <span class="p">);</span>
-    <span class="nl">background</span><span class="p">:</span> <span class="n">linear-gradient</span><span class="p">(</span> <span class="nb">top</span><span class="p">,</span> <span class="m">#000</span><span class="p">,</span> <span class="m">#555</span> <span class="p">);</span>
-
-    <span class="nl">-webkit-border-radius</span><span class="p">:</span> <span class="m">5em</span><span class="p">;</span>
-    <span class="nl">-moz-border-radius</span><span class="p">:</span> <span class="m">5em</span><span class="p">;</span>
-    <span class="nl">border-radius</span><span class="p">:</span> <span class="m">5em</span><span class="p">;</span>
-
-    <span class="nl">-webkit-box-shadow</span><span class="p">:</span> <span class="m">2px</span> <span class="m">3px</span> <span class="m">4px</span> <span class="m">#2d2d2d</span><span class="p">;</span>
-    <span class="nl">-moz-box-shadow</span><span class="p">:</span> <span class="m">2px</span> <span class="m">3px</span> <span class="m">4px</span> <span class="m">#2d2d2d</span><span class="p">;</span>
-    <span class="nl">box-shadow</span><span class="p">:</span> <span class="m">2px</span> <span class="m">3px</span> <span class="m">4px</span> <span class="m">#2d2d2d</span><span class="p">;</span>
-<span class="p">}</span>
-</pre></td></tr></tbody></table></code></pre></div></div>
+</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #999999">#</span><span style="color: #C7C8D2">box</span><span style="color: #BBBBBB"> </span><span style="color: #999999">{</span></span>
+<span class="line" data-linenr="2"><span style="color: #BBBBBB">    </span><span style="color: #D8DEE9">width</span><span style="color: #999999">:</span><span style="color: #BBBBBB"> </span><span style="color: #B48EAD">100</span><span style="color: #E5673D">px;</span></span>
+<span class="line" data-linenr="3"><span style="color: #BBBBBB">    </span><span style="color: #D8DEE9">height</span><span style="color: #999999">:</span><span style="color: #BBBBBB"> </span><span style="color: #B48EAD">100</span><span style="color: #E5673D">px;</span></span>
+<span class="line" data-linenr="4"><span style="color: #BBBBBB">    </span><span style="color: #D8DEE9">background</span><span style="color: #999999">:</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">red;</span></span>
+<span class="line" data-linenr="5"></span>
+<span class="line" data-linenr="6"><span style="color: #BBBBBB">    </span><span style="color: #D8DEE9">background</span><span style="color: #999999">:</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">-webkit-linear-gradient</span><span style="color: #999999">(</span><span style="color: #C7C8D2"> </span><span style="color: #E5673D">top</span><span style="color: #999999">,</span><span style="color: #C7C8D2"> </span><span style="color: #999999">#</span><span style="color: #B48EAD">000</span><span style="color: #999999">,</span><span style="color: #C7C8D2"> </span><span style="color: #999999">#</span><span style="color: #B48EAD">555</span><span style="color: #C7C8D2"> </span><span style="color: #999999">)</span><span style="color: #E5673D">;</span></span>
+<span class="line" data-linenr="7"><span style="color: #BBBBBB">    </span><span style="color: #D8DEE9">background</span><span style="color: #999999">:</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">-moz-linear-gradient</span><span style="color: #999999">(</span><span style="color: #C7C8D2"> </span><span style="color: #E5673D">top</span><span style="color: #999999">,</span><span style="color: #C7C8D2"> </span><span style="color: #999999">#</span><span style="color: #B48EAD">000</span><span style="color: #999999">,</span><span style="color: #C7C8D2"> </span><span style="color: #999999">#</span><span style="color: #B48EAD">555</span><span style="color: #C7C8D2"> </span><span style="color: #999999">)</span><span style="color: #E5673D">;</span></span>
+<span class="line" data-linenr="8"><span style="color: #BBBBBB">    </span><span style="color: #D8DEE9">background</span><span style="color: #999999">:</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">-o-linear-gradient</span><span style="color: #999999">(</span><span style="color: #C7C8D2"> </span><span style="color: #E5673D">top</span><span style="color: #999999">,</span><span style="color: #C7C8D2"> </span><span style="color: #999999">#</span><span style="color: #B48EAD">000</span><span style="color: #999999">,</span><span style="color: #C7C8D2"> </span><span style="color: #999999">#</span><span style="color: #B48EAD">555</span><span style="color: #C7C8D2"> </span><span style="color: #999999">)</span><span style="color: #E5673D">;</span></span>
+<span class="line" data-linenr="9"><span style="color: #BBBBBB">    </span><span style="color: #D8DEE9">background</span><span style="color: #999999">:</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">-ms-linear-gradient</span><span style="color: #C7C8D2">( </span><span style="color: #E5673D">top</span><span style="color: #999999">,</span><span style="color: #C7C8D2"> </span><span style="color: #999999">#</span><span style="color: #B48EAD">000</span><span style="color: #999999">,</span><span style="color: #C7C8D2"> </span><span style="color: #999999">#</span><span style="color: #B48EAD">555</span><span style="color: #BBBBBB"> )</span><span style="color: #E5673D">;</span></span>
+<span class="line" data-linenr="10"><span style="color: #BBBBBB">    </span><span style="color: #D8DEE9">background</span><span style="color: #999999">:</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">linear-gradient</span><span style="color: #999999">(</span><span style="color: #C7C8D2"> </span><span style="color: #E5673D">top</span><span style="color: #999999">,</span><span style="color: #C7C8D2"> </span><span style="color: #999999">#</span><span style="color: #B48EAD">000</span><span style="color: #999999">,</span><span style="color: #C7C8D2"> </span><span style="color: #999999">#</span><span style="color: #B48EAD">555</span><span style="color: #C7C8D2"> </span><span style="color: #999999">)</span><span style="color: #E5673D">;</span></span>
+<span class="line" data-linenr="11"></span>
+<span class="line" data-linenr="12"><span style="color: #BBBBBB">    </span><span style="color: #C7C8D2">-webkit-border-radius</span><span style="color: #999999">:</span><span style="color: #BBBBBB"> </span><span style="color: #B48EAD">5</span><span style="color: #E5673D">em;</span></span>
+<span class="line" data-linenr="13"><span style="color: #BBBBBB">    </span><span style="color: #C7C8D2">-moz-border-radius</span><span style="color: #999999">:</span><span style="color: #BBBBBB"> </span><span style="color: #B48EAD">5</span><span style="color: #E5673D">em;</span></span>
+<span class="line" data-linenr="14"><span style="color: #BBBBBB">    </span><span style="color: #D8DEE9">border-radius</span><span style="color: #999999">:</span><span style="color: #BBBBBB"> </span><span style="color: #B48EAD">5</span><span style="color: #E5673D">em;</span></span>
+<span class="line" data-linenr="15"></span>
+<span class="line" data-linenr="16"><span style="color: #BBBBBB">    </span><span style="color: #C7C8D2">-webkit-box-shadow</span><span style="color: #999999">:</span><span style="color: #BBBBBB"> </span><span style="color: #B48EAD">2</span><span style="color: #E5673D">px</span><span style="color: #C7C8D2"> </span><span style="color: #B48EAD">3</span><span style="color: #E5673D">px</span><span style="color: #C7C8D2"> </span><span style="color: #B48EAD">4</span><span style="color: #E5673D">px</span><span style="color: #C7C8D2"> </span><span style="color: #999999">#</span><span style="color: #B48EAD">2d2d2d</span><span style="color: #E5673D">;</span></span>
+<span class="line" data-linenr="17"><span style="color: #BBBBBB">    </span><span style="color: #C7C8D2">-moz-box-shadow</span><span style="color: #999999">:</span><span style="color: #BBBBBB"> </span><span style="color: #B48EAD">2</span><span style="color: #E5673D">px</span><span style="color: #C7C8D2"> </span><span style="color: #B48EAD">3</span><span style="color: #E5673D">px</span><span style="color: #C7C8D2"> </span><span style="color: #B48EAD">4</span><span style="color: #E5673D">px</span><span style="color: #C7C8D2"> </span><span style="color: #999999">#</span><span style="color: #B48EAD">2d2d2d</span><span style="color: #E5673D">;</span></span>
+<span class="line" data-linenr="18"><span style="color: #BBBBBB">    </span><span style="color: #D8DEE9">box-shadow</span><span style="color: #999999">:</span><span style="color: #BBBBBB"> </span><span style="color: #B48EAD">2</span><span style="color: #E5673D">px</span><span style="color: #C7C8D2"> </span><span style="color: #B48EAD">3</span><span style="color: #E5673D">px</span><span style="color: #C7C8D2"> </span><span style="color: #B48EAD">4</span><span style="color: #E5673D">px</span><span style="color: #C7C8D2"> </span><span style="color: #999999">#</span><span style="color: #B48EAD">2d2d2d</span><span style="color: #E5673D">;</span></span>
+<span class="line" data-linenr="19"><span style="color: #999999">}</span></span></code></pre>
+</div>
 
 <p>Deze bevat alle mogelijke prefixen voor de properties, helaas wordt de oude
 gradient syntax van webkit er niet in gestopt.</p>
@@ -178,9 +178,9 @@ je editor kan gebruiken. Een overzicht van al hun API’s kun je op hun
 krijgen is door alle onnodige whitespace weg te halen. Als je Compress My Code
 aanzet wordt dit automatisch gedaan. De bovenstaande code wordt dan:</p>
 
-<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-</pre></td><td class="rouge-code"><pre><span class="nf">#box</span><span class="p">{</span><span class="nl">width</span><span class="p">:</span><span class="m">100px</span><span class="p">;</span><span class="nl">height</span><span class="p">:</span><span class="m">100px</span><span class="p">;</span><span class="nl">background</span><span class="p">:</span><span class="no">red</span><span class="p">;</span><span class="nl">background</span><span class="p">:</span><span class="n">-webkit-linear-gradient</span><span class="p">(</span> <span class="nb">top</span><span class="p">,</span> <span class="m">#000</span><span class="p">,</span> <span class="m">#555</span> <span class="p">);</span><span class="nl">background</span><span class="p">:</span><span class="n">-moz-linear-gradient</span><span class="p">(</span> <span class="nb">top</span><span class="p">,</span> <span class="m">#000</span><span class="p">,</span> <span class="m">#555</span> <span class="p">);</span><span class="nl">background</span><span class="p">:</span><span class="n">-o-linear-gradient</span><span class="p">(</span> <span class="nb">top</span><span class="p">,</span> <span class="m">#000</span><span class="p">,</span> <span class="m">#555</span> <span class="p">);</span><span class="nl">background</span><span class="p">:</span><span class="n">-ms-linear-gradient</span><span class="p">(</span> <span class="nb">top</span><span class="p">,</span> <span class="m">#000</span><span class="p">,</span> <span class="m">#555</span> <span class="p">);</span><span class="nl">background</span><span class="p">:</span><span class="n">linear-gradient</span><span class="p">(</span> <span class="nb">top</span><span class="p">,</span> <span class="m">#000</span><span class="p">,</span> <span class="m">#555</span> <span class="p">);</span><span class="nl">-webkit-border-radius</span><span class="p">:</span><span class="m">5em</span><span class="p">;</span><span class="nl">-moz-border-radius</span><span class="p">:</span><span class="m">5em</span><span class="p">;</span><span class="nl">border-radius</span><span class="p">:</span><span class="m">5em</span><span class="p">;</span><span class="nl">-webkit-box-shadow</span><span class="p">:</span><span class="m">2px</span> <span class="m">3px</span> <span class="m">4px</span> <span class="m">#2d2d2d</span><span class="p">;</span><span class="nl">-moz-box-shadow</span><span class="p">:</span><span class="m">2px</span> <span class="m">3px</span> <span class="m">4px</span> <span class="m">#2d2d2d</span><span class="p">;</span><span class="nl">box-shadow</span><span class="p">:</span><span class="m">2px</span> <span class="m">3px</span> <span class="m">4px</span> <span class="m">#2d2d2d</span><span class="p">;}</span>
-</pre></td></tr></tbody></table></code></pre></div></div>
+<div class="language-css highlighter-shiki"><pre class="shiki-gutter">1
+</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #999999">#</span><span style="color: #C7C8D2">box</span><span style="color: #999999">{</span><span style="color: #D8DEE9">width</span><span style="color: #999999">:</span><span style="color: #B48EAD">100</span><span style="color: #E5673D">px;</span><span style="color: #D8DEE9">height</span><span style="color: #999999">:</span><span style="color: #B48EAD">100</span><span style="color: #E5673D">px;</span><span style="color: #D8DEE9">background</span><span style="color: #999999">:</span><span style="color: #E5673D">red;</span><span style="color: #D8DEE9">background</span><span style="color: #999999">:</span><span style="color: #C7C8D2">-webkit-linear-gradient</span><span style="color: #999999">(</span><span style="color: #C7C8D2"> </span><span style="color: #E5673D">top</span><span style="color: #999999">,</span><span style="color: #C7C8D2"> </span><span style="color: #999999">#</span><span style="color: #B48EAD">000</span><span style="color: #999999">,</span><span style="color: #C7C8D2"> </span><span style="color: #999999">#</span><span style="color: #B48EAD">555</span><span style="color: #C7C8D2"> </span><span style="color: #999999">)</span><span style="color: #E5673D">;</span><span style="color: #D8DEE9">background</span><span style="color: #999999">:</span><span style="color: #C7C8D2">-moz-linear-gradient</span><span style="color: #999999">(</span><span style="color: #C7C8D2"> </span><span style="color: #E5673D">top</span><span style="color: #999999">,</span><span style="color: #C7C8D2"> </span><span style="color: #999999">#</span><span style="color: #B48EAD">000</span><span style="color: #999999">,</span><span style="color: #C7C8D2"> </span><span style="color: #999999">#</span><span style="color: #B48EAD">555</span><span style="color: #C7C8D2"> </span><span style="color: #999999">)</span><span style="color: #E5673D">;</span><span style="color: #D8DEE9">background</span><span style="color: #999999">:</span><span style="color: #C7C8D2">-o-linear-gradient</span><span style="color: #999999">(</span><span style="color: #C7C8D2"> </span><span style="color: #E5673D">top</span><span style="color: #999999">,</span><span style="color: #C7C8D2"> </span><span style="color: #999999">#</span><span style="color: #B48EAD">000</span><span style="color: #999999">,</span><span style="color: #C7C8D2"> </span><span style="color: #999999">#</span><span style="color: #B48EAD">555</span><span style="color: #C7C8D2"> </span><span style="color: #999999">)</span><span style="color: #E5673D">;</span><span style="color: #D8DEE9">background</span><span style="color: #999999">:</span><span style="color: #E5673D">-ms-linear-gradient</span><span style="color: #C7C8D2">( </span><span style="color: #E5673D">top</span><span style="color: #999999">,</span><span style="color: #C7C8D2"> </span><span style="color: #999999">#</span><span style="color: #B48EAD">000</span><span style="color: #999999">,</span><span style="color: #C7C8D2"> </span><span style="color: #999999">#</span><span style="color: #B48EAD">555</span><span style="color: #BBBBBB"> )</span><span style="color: #E5673D">;</span><span style="color: #D8DEE9">background</span><span style="color: #999999">:</span><span style="color: #C7C8D2">linear-gradient</span><span style="color: #999999">(</span><span style="color: #C7C8D2"> </span><span style="color: #E5673D">top</span><span style="color: #999999">,</span><span style="color: #C7C8D2"> </span><span style="color: #999999">#</span><span style="color: #B48EAD">000</span><span style="color: #999999">,</span><span style="color: #C7C8D2"> </span><span style="color: #999999">#</span><span style="color: #B48EAD">555</span><span style="color: #C7C8D2"> </span><span style="color: #999999">)</span><span style="color: #E5673D">;</span><span style="color: #C7C8D2">-webkit-border-radius</span><span style="color: #999999">:</span><span style="color: #B48EAD">5</span><span style="color: #E5673D">em;</span><span style="color: #C7C8D2">-moz-border-radius</span><span style="color: #999999">:</span><span style="color: #B48EAD">5</span><span style="color: #E5673D">em;</span><span style="color: #D8DEE9">border-radius</span><span style="color: #999999">:</span><span style="color: #B48EAD">5</span><span style="color: #E5673D">em;</span><span style="color: #C7C8D2">-webkit-box-shadow</span><span style="color: #999999">:</span><span style="color: #B48EAD">2</span><span style="color: #E5673D">px</span><span style="color: #C7C8D2"> </span><span style="color: #B48EAD">3</span><span style="color: #E5673D">px</span><span style="color: #C7C8D2"> </span><span style="color: #B48EAD">4</span><span style="color: #E5673D">px</span><span style="color: #C7C8D2"> </span><span style="color: #999999">#</span><span style="color: #B48EAD">2d2d2d</span><span style="color: #E5673D">;</span><span style="color: #C7C8D2">-moz-box-shadow</span><span style="color: #999999">:</span><span style="color: #B48EAD">2</span><span style="color: #E5673D">px</span><span style="color: #C7C8D2"> </span><span style="color: #B48EAD">3</span><span style="color: #E5673D">px</span><span style="color: #C7C8D2"> </span><span style="color: #B48EAD">4</span><span style="color: #E5673D">px</span><span style="color: #C7C8D2"> </span><span style="color: #999999">#</span><span style="color: #B48EAD">2d2d2d</span><span style="color: #E5673D">;</span><span style="color: #D8DEE9">box-shadow</span><span style="color: #999999">:</span><span style="color: #B48EAD">2</span><span style="color: #E5673D">px</span><span style="color: #C7C8D2"> </span><span style="color: #B48EAD">3</span><span style="color: #E5673D">px</span><span style="color: #C7C8D2"> </span><span style="color: #B48EAD">4</span><span style="color: #E5673D">px</span><span style="color: #C7C8D2"> </span><span style="color: #999999">#</span><span style="color: #B48EAD">2d2d2d</span><span style="color: #E5673D">;</span><span style="color: #999999">}</span></span></code></pre>
+</div>
     
       <h3 id="exclude">
         
@@ -202,7 +202,7 @@ welke prefixes er niet moeten worden toegepast.</p>
 <p>Prefixr begint zelfs steeds meer te lijken op een CSS precompessor (als SASS
 of Stylus) en kan zelfs werken met variabelen:</p>
 
-<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<div class="language-css highlighter-shiki"><pre class="shiki-gutter">1
 2
 3
 4
@@ -213,22 +213,22 @@ of Stylus) en kan zelfs werken met variabelen:</p>
 9
 10
 11
-</pre></td><td class="rouge-code"><pre><span class="k">@variables</span> <span class="p">{</span>
-    <span class="py">main_color</span><span class="p">:</span><span class="no">red</span><span class="p">;</span>  
-<span class="p">}</span>
-<span class="nf">#box</span> <span class="p">{</span>
-    <span class="c">/* ... */</span>
-    <span class="nl">background</span><span class="p">:</span><span class="n">var</span><span class="p">(</span><span class="n">main_color</span><span class="p">);</span>  
-<span class="p">}</span>
-<span class="nf">#container</span> <span class="p">{</span>
-    <span class="c">/* ... */</span>
-    <span class="nl">border-color</span><span class="p">:</span><span class="n">var</span><span class="p">(</span><span class="n">main_color</span><span class="p">);</span>
-<span class="p">}</span>
-</pre></td></tr></tbody></table></code></pre></div></div>
+</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #E5673D">@variables</span><span style="color: #BBBBBB"> </span><span style="color: #999999">{</span></span>
+<span class="line" data-linenr="2"><span style="color: #BBBBBB">    main_color:red;  </span></span>
+<span class="line" data-linenr="3"><span style="color: #BBBBBB">}</span></span>
+<span class="line" data-linenr="4"><span style="color: #999999">#</span><span style="color: #C7C8D2">box</span><span style="color: #BBBBBB"> </span><span style="color: #999999">{</span></span>
+<span class="line" data-linenr="5"><span style="color: #BBBBBB">    </span><span style="color: #6B90C0; font-style: italic">/* ... */</span></span>
+<span class="line" data-linenr="6"><span style="color: #BBBBBB">    </span><span style="color: #D8DEE9">background</span><span style="color: #999999">:</span><span style="color: #C7C8D2">var</span><span style="color: #999999">(</span><span style="color: #C7C8D2">main_color</span><span style="color: #999999">)</span><span style="color: #E5673D">;</span><span style="color: #BBBBBB">  </span></span>
+<span class="line" data-linenr="7"><span style="color: #999999">}</span></span>
+<span class="line" data-linenr="8"><span style="color: #999999">#</span><span style="color: #C7C8D2">container</span><span style="color: #BBBBBB"> </span><span style="color: #999999">{</span></span>
+<span class="line" data-linenr="9"><span style="color: #BBBBBB">    </span><span style="color: #6B90C0; font-style: italic">/* ... */</span></span>
+<span class="line" data-linenr="10"><span style="color: #BBBBBB">    </span><span style="color: #D8DEE9">border-color</span><span style="color: #999999">:</span><span style="color: #C7C8D2">var</span><span style="color: #999999">(</span><span style="color: #C7C8D2">main_color</span><span style="color: #999999">)</span><span style="color: #E5673D">;</span></span>
+<span class="line" data-linenr="11"><span style="color: #999999">}</span></span></code></pre>
+</div>
 
 <p>Wordt:</p>
 
-<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<div class="language-css highlighter-shiki"><pre class="shiki-gutter">1
 2
 3
 4
@@ -236,15 +236,15 @@ of Stylus) en kan zelfs werken met variabelen:</p>
 6
 7
 8
-</pre></td><td class="rouge-code"><pre><span class="nf">#box</span> <span class="p">{</span>
-    <span class="c">/* ... */</span>
-    <span class="nl">background</span><span class="p">:</span> <span class="no">red</span><span class="p">;</span>
-<span class="p">}</span>
-<span class="nf">#container</span> <span class="p">{</span>
-    <span class="c">/* ... */</span>
-    <span class="nl">border-color</span><span class="p">:</span> <span class="no">red</span><span class="p">;</span>
-<span class="p">}</span>
-</pre></td></tr></tbody></table></code></pre></div></div>
+</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #999999">#</span><span style="color: #C7C8D2">box</span><span style="color: #BBBBBB"> </span><span style="color: #999999">{</span></span>
+<span class="line" data-linenr="2"><span style="color: #BBBBBB">    </span><span style="color: #6B90C0; font-style: italic">/* ... */</span></span>
+<span class="line" data-linenr="3"><span style="color: #BBBBBB">    </span><span style="color: #D8DEE9">background</span><span style="color: #999999">:</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">red;</span></span>
+<span class="line" data-linenr="4"><span style="color: #999999">}</span></span>
+<span class="line" data-linenr="5"><span style="color: #999999">#</span><span style="color: #C7C8D2">container</span><span style="color: #BBBBBB"> </span><span style="color: #999999">{</span></span>
+<span class="line" data-linenr="6"><span style="color: #BBBBBB">    </span><span style="color: #6B90C0; font-style: italic">/* ... */</span></span>
+<span class="line" data-linenr="7"><span style="color: #BBBBBB">    </span><span style="color: #D8DEE9">border-color</span><span style="color: #999999">:</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">red;</span></span>
+<span class="line" data-linenr="8"><span style="color: #999999">}</span></span></code></pre>
+</div>
     
       <h2 id="compass">
         
@@ -277,46 +277,46 @@ waarmee je niet telkens alle prefixes hoeft te schrijven.</p>
       </h3>
 
 <p>Compass bevat heel wat mooie modules, maar de CSS3 module is degene waar we
-vandaag naar kijken. Laten we eens zien hoe we een <code class="highlighter-rouge">box-shadow</code> in Compass
+vandaag naar kijken. Laten we eens zien hoe we een <code class="highlighter-shiki">box-shadow</code> in Compass
 maken. Ik neem aan dat we SASS kennen en kunt omgaan met Compass, zo niet
 dan raad ik je aan dit eerst te gaan leren.</p>
 
 <p>Nu nemen we een kijkje in <a href="http://compass-style.org/reference/compass/css3/box_shadow/">de documentatie over
 box-shadow</a>, we
-zien hier dat we het bestand <code class="highlighter-rouge">compass/css3/box-shadow</code> moeten includen en dan
-kunnen we de <code class="highlighter-rouge">box-shadow</code> mixin gebruiken. Deze werkt als volgt:</p>
+zien hier dat we het bestand <code class="highlighter-shiki">compass/css3/box-shadow</code> moeten includen en dan
+kunnen we de <code class="highlighter-shiki">box-shadow</code> mixin gebruiken. Deze werkt als volgt:</p>
 
-<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<div class="language-css highlighter-shiki"><pre class="shiki-gutter">1
 2
 3
 4
 5
 6
-</pre></td><td class="rouge-code"><pre><span class="k">@import</span> <span class="s1">"compass/css3/box-shadow"</span><span class="p">;</span>
-<span class="nf">#box</span> <span class="p">{</span>
-    <span class="nl">width</span><span class="p">:</span><span class="m">100px</span><span class="p">;</span>
-    <span class="nl">height</span><span class="p">:</span><span class="m">100px</span><span class="p">;</span>
-    <span class="err">@include</span> <span class="err">box-shadow(2px</span> <span class="err">3px</span> <span class="err">5px</span> <span class="err">#2d2d2d);</span>
-<span class="p">}</span>
-</pre></td></tr></tbody></table></code></pre></div></div>
+</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #E5673D">@import</span><span style="color: #BBBBBB"> </span><span style="color: #999999">&quot;</span><span style="color: #7CC64A">compass/css3/box-shadow</span><span style="color: #999999">&quot;</span><span style="color: #E5673D">;</span></span>
+<span class="line" data-linenr="2"><span style="color: #999999">#</span><span style="color: #C7C8D2">box</span><span style="color: #BBBBBB"> </span><span style="color: #999999">{</span></span>
+<span class="line" data-linenr="3"><span style="color: #BBBBBB">    </span><span style="color: #D8DEE9">width</span><span style="color: #999999">:</span><span style="color: #B48EAD">100</span><span style="color: #E5673D">px;</span></span>
+<span class="line" data-linenr="4"><span style="color: #BBBBBB">    </span><span style="color: #D8DEE9">height</span><span style="color: #999999">:</span><span style="color: #B48EAD">100</span><span style="color: #E5673D">px;</span></span>
+<span class="line" data-linenr="5"><span style="color: #BBBBBB">    @include </span><span style="color: #D8DEE9">box-shadow</span><span style="color: #BBBBBB">(2px 3px 5px #2d2d2d)</span><span style="color: #E5673D">;</span></span>
+<span class="line" data-linenr="6"><span style="color: #999999">}</span></span></code></pre>
+</div>
 
 <p>Wordt:</p>
 
-<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<div class="language-css highlighter-shiki"><pre class="shiki-gutter">1
 2
 3
 4
 5
 6
 7
-</pre></td><td class="rouge-code"><pre><span class="nf">#box</span> <span class="p">{</span>
-    <span class="nl">width</span><span class="p">:</span><span class="m">100px</span><span class="p">;</span>
-    <span class="nl">height</span><span class="p">:</span><span class="m">100px</span><span class="p">;</span>
-    <span class="nl">-webkit-box-shadow</span><span class="p">:</span><span class="m">2px</span> <span class="m">3px</span> <span class="m">5px</span> <span class="m">#2d2d2d</span><span class="p">;</span>
-    <span class="nl">-moz-box-shadow</span><span class="p">:</span><span class="m">2px</span> <span class="m">3px</span> <span class="m">5px</span> <span class="m">#2d2d2d</span><span class="p">;</span>
-    <span class="nl">box-shadow</span><span class="p">:</span><span class="m">2px</span> <span class="m">3px</span> <span class="m">5px</span> <span class="m">#2d2d2d</span><span class="p">;</span>
-<span class="p">}</span>
-</pre></td></tr></tbody></table></code></pre></div></div>
+</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #999999">#</span><span style="color: #C7C8D2">box</span><span style="color: #BBBBBB"> </span><span style="color: #999999">{</span></span>
+<span class="line" data-linenr="2"><span style="color: #BBBBBB">    </span><span style="color: #D8DEE9">width</span><span style="color: #999999">:</span><span style="color: #B48EAD">100</span><span style="color: #E5673D">px;</span></span>
+<span class="line" data-linenr="3"><span style="color: #BBBBBB">    </span><span style="color: #D8DEE9">height</span><span style="color: #999999">:</span><span style="color: #B48EAD">100</span><span style="color: #E5673D">px;</span></span>
+<span class="line" data-linenr="4"><span style="color: #BBBBBB">    </span><span style="color: #C7C8D2">-webkit-box-shadow</span><span style="color: #999999">:</span><span style="color: #B48EAD">2</span><span style="color: #E5673D">px</span><span style="color: #C7C8D2"> </span><span style="color: #B48EAD">3</span><span style="color: #E5673D">px</span><span style="color: #C7C8D2"> </span><span style="color: #B48EAD">5</span><span style="color: #E5673D">px</span><span style="color: #C7C8D2"> </span><span style="color: #999999">#</span><span style="color: #B48EAD">2d2d2d</span><span style="color: #E5673D">;</span></span>
+<span class="line" data-linenr="5"><span style="color: #BBBBBB">    </span><span style="color: #C7C8D2">-moz-box-shadow</span><span style="color: #999999">:</span><span style="color: #B48EAD">2</span><span style="color: #E5673D">px</span><span style="color: #C7C8D2"> </span><span style="color: #B48EAD">3</span><span style="color: #E5673D">px</span><span style="color: #C7C8D2"> </span><span style="color: #B48EAD">5</span><span style="color: #E5673D">px</span><span style="color: #C7C8D2"> </span><span style="color: #999999">#</span><span style="color: #B48EAD">2d2d2d</span><span style="color: #E5673D">;</span></span>
+<span class="line" data-linenr="6"><span style="color: #BBBBBB">    </span><span style="color: #D8DEE9">box-shadow</span><span style="color: #999999">:</span><span style="color: #B48EAD">2</span><span style="color: #E5673D">px</span><span style="color: #C7C8D2"> </span><span style="color: #B48EAD">3</span><span style="color: #E5673D">px</span><span style="color: #C7C8D2"> </span><span style="color: #B48EAD">5</span><span style="color: #E5673D">px</span><span style="color: #C7C8D2"> </span><span style="color: #999999">#</span><span style="color: #B48EAD">2d2d2d</span><span style="color: #E5673D">;</span></span>
+<span class="line" data-linenr="7"><span style="color: #999999">}</span></span></code></pre>
+</div>
     
       <h2 id="prefix-free">
         
@@ -342,7 +342,7 @@ en goed werkt, daarom bespreek ik hem hier ook.</p>
       </h3>
 
 <p>Prefix-free is een JS API die, als de pagina geladen wordt, alle stylesheets
-in de <code class="highlighter-rouge">link</code> elementen en alle <code class="highlighter-rouge">style</code> elementen aanpast zodat hij alle
+in de <code class="highlighter-shiki">link</code> elementen en alle <code class="highlighter-shiki">style</code> elementen aanpast zodat hij alle
 prefixen erin zet. Je hoeft in je stylesheet dus alleen maar de officiële
 versie (dus zonder prefixen) te gebruiken.</p>
 
@@ -350,11 +350,11 @@ versie (dus zonder prefixen) te gebruiken.</p>
 <a href="http://leaverou.github.com/prefixfree/">Homepagina van Prefix-free</a>
 te gaan en dan op de download button te klikken. Dit bestand kun je vervolgens
 opslaan in je webhost, of je kunt gewoon direct naar dit scriptfile linken. De
-url voeg je dan toe doormiddel van een <code class="highlighter-rouge">script</code> element:</p>
+url voeg je dan toe doormiddel van een <code class="highlighter-shiki">script</code> element:</p>
 
-<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-</pre></td><td class="rouge-code"><pre><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"https://raw.github.com/LeaVerou/prefixfree/master/prefixfree.min.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
-</pre></td></tr></tbody></table></code></pre></div></div>
+<div class="language-html highlighter-shiki"><pre class="shiki-gutter">1
+</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #E5673D">&lt;script</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">src</span><span style="color: #999999">=</span><span style="color: #999999">&quot;</span><span style="color: #7CC64A">https://raw.github.com/LeaVerou/prefixfree/master/prefixfree.min.js</span><span style="color: #999999">&quot;</span><span style="color: #E5673D">&gt;&lt;/script&gt;</span></span></code></pre>
+</div>
 
 <p>Nu ben je al klaar en werkt het!</p>
     
@@ -388,31 +388,31 @@ stijlen. Je kunt van 1 propertie de waardes veranderen en dan veranderd het
 automatisch ook bij de andere prefixen. Tevens is de box die links bovenin
 staat een live voorbeeld van de code die je maakt.</p>
 
-<p>Laten we eens beginnen met het maken van <code class="highlighter-rouge">border-radius</code>. We willen een radius
-van <code class="highlighter-rouge">15px</code>. De bovenste code op de pagina is die voor een <code class="highlighter-rouge">border-radius</code>. De
-standaard CSS3 please waarde is <code class="highlighter-rouge">12px</code> om dit te wijzigen klik je op deze
+<p>Laten we eens beginnen met het maken van <code class="highlighter-shiki">border-radius</code>. We willen een radius
+van <code class="highlighter-shiki">15px</code>. De bovenste code op de pagina is die voor een <code class="highlighter-shiki">border-radius</code>. De
+standaard CSS3 please waarde is <code class="highlighter-shiki">12px</code> om dit te wijzigen klik je op deze
 onderstreepte waarde en vul je jou waarde in. Als we nu eens iets heel groots
 in vullen zien we dat de box ernaast meteen ook van radius veranderd. Als je
-het goed vind kun je op <code class="highlighter-rouge">[to clipboard]</code> klikken en de code in je stylesheet
+het goed vind kun je op <code class="highlighter-shiki">[to clipboard]</code> klikken en de code in je stylesheet
 plakken. Maar we zien nog wat anders, CSS3 please voegt deze regel ook nog toe
 aan de class:</p>
 
-<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<div class="language-css highlighter-shiki"><pre class="shiki-gutter">1
 2
-</pre></td><td class="rouge-code"><pre><span class="c">/* useful if you don't want a bg color from leaking outside the border: */</span>
-<span class="nt">-moz-background-clip</span><span class="o">:</span> <span class="nt">padding</span><span class="o">;</span> <span class="nt">-webkit-background-clip</span><span class="o">:</span> <span class="nt">padding-box</span><span class="o">;</span> <span class="nt">background-clip</span><span class="o">:</span> <span class="nt">padding-box</span><span class="o">;</span>
-</pre></td></tr></tbody></table></code></pre></div></div>
+</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #6B90C0; font-style: italic">/* useful if you don&#39;t want a bg color from leaking outside the border: */</span></span>
+<span class="line" data-linenr="2"><span style="color: #BBBBBB">-moz-background-clip: padding; -webkit-background-clip: </span><span style="color: #E5673D">padding-box</span><span style="color: #BBBBBB">; </span><span style="color: #E5673D">background-clip</span><span style="color: #BBBBBB">: </span><span style="color: #E5673D">padding-box</span><span style="color: #BBBBBB">;</span></span></code></pre>
+</div>
 
 <p>Hiermee zorgen we dat de bug dat de background geen radius krijgt opgelost is.</p>
 
 <p>Maar wat als we nou bijv. geen border-radius op de box willen zien? Dan kunnen
-we heel makkelijk op <code class="highlighter-rouge">[toggle rule off]</code> klikken dan wordt de code omvangen door
+we heel makkelijk op <code class="highlighter-shiki">[toggle rule off]</code> klikken dan wordt de code omvangen door
 een comment en is die niet meer zichtbaar.</p>
     
       <h2 id="webkit-in-moz">
         
         
-          <a href="#webkit-in-moz" class="section-link"></a> Waarom niet alleen <code class="highlighter-rouge">-webkit-</code>?
+          <a href="#webkit-in-moz" class="section-link"></a> Waarom niet alleen <code class="highlighter-shiki">-webkit-</code>?
         
         
       </h2>
