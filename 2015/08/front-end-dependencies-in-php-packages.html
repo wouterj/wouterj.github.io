@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang=""><head>
+    <meta charset=utf-8>
+
+    <title>How to Manage Front-end Dependencies in PHP Packages ~ Wouter J</title>
+
+    <meta http-equiv=X-UA-Compatible content="IE=edge">
+    <meta name=viewport content="width=device-width, initial-scale=1">
+    <meta name=theme-color content=#cc3333>
+
+    <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Serif:400,400i,700|Oswald|Inconsolata" rel="stylesheet">
+    <link rel=stylesheet href="/assets/main.css">
+    <link rel=icon type=image/png href=/img/css/favicon.png sizes=96x96><link type="application/atom+xml" rel="alternate" href="https://wouterj.nl/feed.xml" title="Wouter J" /><meta content="Wouter J" property="og:site_name">
+    
+      <meta content="How to Manage Front-end Dependencies in PHP Packages" property="og:title">
+      <meta content="article" property="og:type">
+      <meta content="In this era of decoupling, lots of features are seperated into smaller
+libraries. If your bundle uses a PHP library, adding it to composer.json
+is quite easy. But what about frontend dependencies, like jQuery?
+
+" property="og:description">
+      <meta content="2015-08-23T00:00:00+00:00" property="article:published_time">
+      <meta content="https://wouterj.nl/2015/08/front-end-dependencies-in-php-packages" property="og:url">
+      <meta content="https://wouterj.nl/img/og/front-end-dependencies-in-php-packages.png?1" property="og:image">
+    <script>if(!sessionStorage.getItem("_swa")){fetch("https://counter.dev/track?"+new URLSearchParams({referrer:document.referrer.indexOf(location.protocol+"//"+location.host)!==0?document.referrer:'',screen:screen.width+"x"+screen.height,user:"wouterj",utcoffset:"2"}),{headers:{"X-Referer":"https://wouterj.nl/2015/08/front-end-dependencies-in-php-packages","Content-Type":"text/plain"}})};sessionStorage.setItem("_swa","1");</script></head>
+<body class="page  page--post" itemscope itemtype="http://schema.org/WebPage"><header class=page__header>
+    <hgroup class=page__headline>
+        <h1 class="site-title" itemprop="name"><a href="/">Wouter J</a></h1>
+    </hgroup><!--<nav class=page__nav>
+        <ul class="nav  nav--block"><li class="nav__item  "><a href="/categories/article/index.html"><i class=icon>&#xF139;</i> <span class="button__text">Articles</span></a></li><li class="nav__item  "><a href="/categories/experiment/index.html"><i class=icon>&#xF051;</i> <span class="button__text">Experiments</span></a></li><li class="nav__item  "><a href="/categories/links/index.html"><i class=icon>&#xF10E;</i> <span class="button__text">Links</span></a></li></ul>
+    </nav>-->
+  </div>
+</header>
+<div class=page__body itemscope itemtype="http://schema.org/Blog">
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+        <span class="post__category">
+        <time class="dt-published" datetime="2015-08-23T00:00:00+00:00" itemprop="datePublished">
+            AUG '15
+        </time>
+        
+        
+        &#xf139;
+        
+        </span>
+    
+
+    <h1 class="post__heading" itemprop="headline">How to Manage Front-end Dependencies in PHP Packages</h1>
+
+    
+
+    <div itemprop="articleBody">
+        <div class="post__entry--excerpt">
+            
+            <p>In this era of decoupling, lots of features are seperated into smaller
+libraries. If your bundle uses a PHP library, adding it to <code class="highlighter-shiki">composer.json</code>
+is quite easy. But what about frontend dependencies, like jQuery?</p></div><div class="post__entry">
+
+<p>Well, that’s easy too!</p>
+      <h2 id="meet-bower">
+        
+        
+          <a href="#meet-bower" class="section-link"></a> Meet Bower
+        
+        
+      </h2>
+
+<p><a href="http://bower.io/">Bower</a> is a simple package manager for web dependencies, just like what
+Composer is doing for PHP.</p>
+
+<p>To install it, make sure you have NodeJS and NPM installed and then install the
+bower package:</p>
+
+<div class="language-bash highlighter-shiki"></div>
+
+<p>For information about using Bower in Symfony, read <a href="https://symfony.com/doc/current/cookbook/frontend/bower.html">the official Symfony
+docs</a>.</p>
+    
+      <h2 id="how-to-use-bower-in-a-php-project">
+        
+        
+          <a href="#how-to-use-bower-in-a-php-project" class="section-link"></a> How to use Bower in a PHP Project?
+        
+        
+      </h2>
+
+<p>Let’s assume someone installs your bundle into their project. They would do
+this using Composer. So when running <code class="highlighter-shiki">bower install</code> in the Symfony project, it
+isn’t aware of the <code class="highlighter-shiki">bower.json</code> file somewhere hidden in the <code class="highlighter-shiki">vendor</code> directory.</p>
+
+<p>To solve this problem, you can create a <em>virtual bower package</em> for your PHP
+package. This virtual package will just contain a <code class="highlighter-shiki">bower.json</code> file and will
+have the same versions as the Composer package of the bundle. When installing a
+bundle, users can add the virtual package as dependency in their <code class="highlighter-shiki">bower.json</code>.
+After that, when running <code class="highlighter-shiki">bower install</code>, Bower recognizes the new requirement
+in the application’s <code class="highlighter-shiki">bower.json</code> file and resolves/installs all depedencies.</p>
+
+<p>“So I need to maintain 2 repositories?”, you would say. Good news: You don’t
+have to, continue reading!</p>
+    
+      <h2 id="create-a-bowerjson-file-for-your-bundle">
+        
+        
+          <a href="#create-a-bowerjson-file-for-your-bundle" class="section-link"></a> Create a <code class="highlighter-shiki">bower.json</code> File for your Bundle
+        
+        
+      </h2>
+
+<p>First things first, let’s make a <code class="highlighter-shiki">bower.json</code> file by running the init command:</p>
+
+<div class="language-bash highlighter-shiki"></div>
+
+<p>Your <code class="highlighter-shiki">bower.json</code> file looks something like this:</p>
+
+<div class="language-json highlighter-shiki"></div>
+
+<p>The <code class="highlighter-shiki">ignore</code> option might be new to you. This is caused by the differences
+between JS and PHP development. In JS, most of the source directories aren’t
+used, only a minified file is used. Bower wants to be nice and tries to remove
+as much unneeded files and directories as possible. So, after downloading the
+dependency, it removes everything that matches the glob patterns in the
+<code class="highlighter-shiki">ignore</code> option.</p>
+
+<p>Imagine what happends if we only have one ignore pattern: <code class="highlighter-shiki">[&quot;*&quot;]</code>: Everything
+will be ignored. Isn’t that exactly what we want for the bundle? We can add the
+<code class="highlighter-shiki">bower.json</code> file in the PHP repository and just let it ignore all files in
+there.</p>
+    
+      <h2 id="registering-the-packages">
+        
+        
+          <a href="#registering-the-packages" class="section-link"></a> Registering the packages
+        
+        
+      </h2>
+
+<p>Now you can register both packages:</p>
+
+<ul>
+  <li>Register your repository as a Composer PHP package (your bundle)</li>
+  <li>Register the same repository as a Bower package (the frontend dependencies)</li>
+</ul>
+
+<p>Assume your bundle is called <code class="highlighter-shiki">acme/blog-bundle</code>, your Bower package might be
+called <code class="highlighter-shiki">acme-blog-bundle</code>. Installation now consists of 2 steps:</p>
+
+<div class="language-bash highlighter-shiki"></div>
+    
+      <h2 id="extra-being-open-for-people-that-dont-use-bower">
+        
+        
+          <a href="#extra-being-open-for-people-that-dont-use-bower" class="section-link"></a> Extra: Being open for people that don’t use Bower
+        
+        
+      </h2>
+
+<p>The current set-up requires people to use Bower. Forcing people to use new
+tools isn’t good, especially if it’s about a Node dependency (although there is
+a <a href="http://bowerphp.org/">PHP port of Bower</a>).</p>
+
+<p>To solve this problem, commit the front-end dependencies in the bundle. This
+means that people always get a working bundle. If they want to have the latest
+versions of their frontend dependencies, they could add the virtual package in
+their Bower dependencies, as explained above.</p>
+
+<p>But this means a bundle has to support 2 different paths for the dependencies:</p>
+
+<ul>
+  <li><code class="highlighter-shiki">bundles/acmeblog/vendor</code> when Bower isn’t used in the project</li>
+  <li><code class="highlighter-shiki">bower_packages</code> (or any other configured URL) when the user used the
+virtual Bower package</li>
+</ul>
+
+<p>In the CmfTreeBrowserBundle, we solved this problem by having a
+<code class="highlighter-shiki">scripts.html.twig</code> template like this:</p>
+
+<div class="language-twig highlighter-shiki"></div>
+
+<p>You see the <code class="highlighter-shiki">assetsBasePath</code> variable in front of the path, this can be set to
+the path to the frontend dependencies. The main template file now looks like:</p>
+
+<div class="language-twig highlighter-shiki"></div>
+
+<p>This will retrieve the files installed with the bundle. When a user uses Bower,
+they override this file with the new base path:</p>
+
+<div class="language-twig highlighter-shiki"></div>
+
+<p>This will pick the scripts from <code class="highlighter-shiki">/web/bower_packages/jquery/dist/jquery.min.js</code>
+and you’re ready to upgrade jQuery whenever you want in your app!</p>
+
+        </div>
+    </div>
+</article>
+
+    </main><footer class="page__footer">
+    <p>&copy; Copyright 2012 - 2022 Wouter de Jong</p>
+</footer>
+</body>
+
+</html>

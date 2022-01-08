@@ -1,0 +1,292 @@
+<!doctype html>
+<html lang=""><head>
+    <meta charset=utf-8>
+
+    <title>OO: Eens goed nadenken in objecten ~ Wouter J</title>
+
+    <meta http-equiv=X-UA-Compatible content="IE=edge">
+    <meta name=viewport content="width=device-width, initial-scale=1">
+    <meta name=theme-color content=#cc3333>
+
+    <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Serif:400,400i,700|Oswald|Inconsolata" rel="stylesheet">
+    <link rel=stylesheet href="/assets/main.css">
+    <link rel=icon type=image/png href=/img/css/favicon.png sizes=96x96><link type="application/atom+xml" rel="alternate" href="https://wouterj.nl/feed.xml" title="Wouter J" /><meta content="Wouter J" property="og:site_name">
+    
+      <meta content="OO: Eens goed nadenken in objecten" property="og:title">
+      <meta content="article" property="og:type">
+      <meta content="OOP is vooral het denken in objecten. Daar beginnen heel veel OOP
+tutorials mee. Maar wat nou precies dat denken in objecten is dat wordt vaak
+heel vaag uitgelegd. En hoe je dat moet doen is vaak al helemaal niet
+uitgelegd. Tijd om daar eens verandering in te brengen.
+
+" property="og:description">
+      <meta content="2012-05-11T00:00:00+00:00" property="article:published_time">
+      <meta content="https://wouterj.nl/2012/05/nadenken-in-objecten" property="og:url">
+      <meta content="https://wouterj.nl/img/og/nadenken-in-objecten.png?1" property="og:image">
+    <script>if(!sessionStorage.getItem("_swa")){fetch("https://counter.dev/track?"+new URLSearchParams({referrer:document.referrer.indexOf(location.protocol+"//"+location.host)!==0?document.referrer:'',screen:screen.width+"x"+screen.height,user:"wouterj",utcoffset:"2"}),{headers:{"X-Referer":"https://wouterj.nl/2012/05/nadenken-in-objecten","Content-Type":"text/plain"}})};sessionStorage.setItem("_swa","1");</script></head>
+<body class="page  page--post" itemscope itemtype="http://schema.org/WebPage"><header class=page__header>
+    <hgroup class=page__headline>
+        <h1 class="site-title" itemprop="name"><a href="/">Wouter J</a></h1>
+    </hgroup><!--<nav class=page__nav>
+        <ul class="nav  nav--block"><li class="nav__item  "><a href="/categories/article/index.html"><i class=icon>&#xF139;</i> <span class="button__text">Articles</span></a></li><li class="nav__item  "><a href="/categories/experiment/index.html"><i class=icon>&#xF051;</i> <span class="button__text">Experiments</span></a></li><li class="nav__item  "><a href="/categories/links/index.html"><i class=icon>&#xF10E;</i> <span class="button__text">Links</span></a></li></ul>
+    </nav>-->
+  </div>
+</header>
+<div class=page__body itemscope itemtype="http://schema.org/Blog">
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+        <span class="post__category">
+        <time class="dt-published" datetime="2012-05-11T00:00:00+00:00" itemprop="datePublished">
+            MAY '12
+        </time>
+        
+        
+        &#xf139;
+        
+        </span>
+    
+
+    <h1 class="post__heading" itemprop="headline">OO: Eens goed nadenken in objecten</h1>
+
+    
+    <img src="https://wouterj.nl/img/oop-nadenken-thumb.png" class="post__thumbnail  img--stripe  img--short  img--right" itemprop="thumbnailUrl">
+    
+
+    <div itemprop="articleBody">
+        <div class="post__entry--excerpt">
+            
+            <p>OOP is vooral het denken in objecten. Daar beginnen heel veel OOP
+tutorials mee. Maar wat nou precies dat denken in objecten is dat wordt vaak
+heel vaag uitgelegd. En hoe je dat moet doen is vaak al helemaal niet
+uitgelegd. Tijd om daar eens verandering in te brengen.</p></div><div class="post__entry">
+
+<p>In deze tutorial raken we geen 1 stukje code aan. Dat betekend dat het uit kan
+lopen op een saaie theorie les, maar dat probeer ik te voorkomen. Het betekend
+ook dat iedereen, in welke taal je ook script, deze tutorial kan volgen en dus
+is dit voor iedereen geschikt.</p>
+      <h2 id="object-georiënteerd">
+        
+        
+          <a href="#object-georiënteerd" class="section-link"></a> Object Georiënteerd
+        
+        
+      </h2>
+
+<p>Laten we eerst eens dit moeilijke begrip uitpluizen. Dat georiënteerd begrijp
+je waarschijnlijk wel. Maar wat bedoelen we nou met programmeren naar een
+Object? Wat de van dale over een object zegt:</p>
+
+<blockquote>
+  <p>obj<u>e</u>ct het; o -en voorwerp (1, 2)</p>
+</blockquote>
+
+<p>En wat is dan een voorwerp?</p>
+
+<blockquote>
+  <p>voorwerp het; o -en 1 iets dat men waarneemt, aanvat, bewerkt, liefheeft,
+haat enz. 2 (taalk) naam van dat zinsdeel dat een persoon, zaak enz. noemt
+die naast het onderwerp bij het gebeuren betrokken is (…)</p>
+</blockquote>
+
+<p>Een voorwerp is dus gewoon alles wat je kan vastpakken, aanraken, zien, enz.
+Dit lijkt waarschijnlijk erg logisch, maar deze basis kennis komt straks nog
+goed van pas!</p>
+    
+      <h2 id="nadenken-in-objecten">
+        
+        
+          <a href="#nadenken-in-objecten" class="section-link"></a> Nadenken in objecten
+        
+        
+      </h2>
+
+<p>Tja en dat straks van de vorige paragraaf kun je wel weglaten. We beginnen nu
+meteen al met dat begrip. Een object is dus alles wat je kan aanraken zien
+enz. Laat ik het eens op mijn bureau houden:</p>
+
+<ul>
+  <li>laptop</li>
+  <li>pen</li>
+  <li>kladblok</li>
+  <li>papier</li>
+  <li>boek</li>
+</ul>
+
+<p>En zo kunnen we nog even doorgaan. Merk op dat een kladblok uit papieren
+bestaat en dat kladblok en papier dus op sommige momenten aan elkaar gekoppeld
+zijn, maar papier kan ook alleen voorkomen.</p>
+
+<p>En nu gaan we het wat meer naar programmeren betrekken. Wat zien we hier op
+mijn website nou voor objecten?</p>
+
+<ul>
+  <li>artikel</li>
+  <li>website</li>
+  <li>header</li>
+  <li>logo</li>
+  <li>Reactie</li>
+</ul>
+
+<p>En zo kunnen we ook weer door gaan. Leuk is dat we hier veel child relaties
+vinden. Een header is een child van de website, het logo weer een child van de
+header (maar misschien ook van de footer).</p>
+
+<p>Maar in de wereld van programmeren hebben we helaas ook objecten die je niet
+kan zien maar die er wel zijn. Denk bijv. aan een user (dat ben ik, maar jij
+bijv. ook).</p>
+    
+      <h3 id="objecten-hebben-eigenschappen">
+        
+        
+          <a href="#objecten-hebben-eigenschappen" class="section-link"></a> Objecten hebben eigenschappen
+        
+        
+      </h3>
+
+<p>Objecten hebben eigenschappen dat is 1 van de regels die er zijn in moeder
+natuur. Zonder eigenschappen kunnen we een object niet zien, voelen, enz. en
+is het dus geen object. We noemen eens wat eigenschappen op van mijn bureau:</p>
+
+<ul>
+  <li>laptop is van Toshiba en draait op Windows Vista</li>
+  <li>Papier is wit en is 210 mm bij 297 mm</li>
+  <li>Kladblok bevat 100 paginas, gekoppeld door een ringband</li>
+  <li>Een pen heeft een blauwe kleur vulling en is 15 cm lang</li>
+</ul>
+
+<p>Maar ook onze objecten in het web hebben eigenschappen:</p>
+
+<ul>
+  <li>Een artikel heeft een titel, auteur, tekst, thumbnail en publish datum</li>
+  <li>Een website bevat een header, content en footer ook heeft het een titel</li>
+  <li>Een header bevat een menu, sitenaam, slogan, slider</li>
+  <li>Een logo heeft een afbeelding als eigenschap</li>
+  <li>Een user heeft een naam, wachtwoord, geboortedatum, biografie</li>
+</ul>
+
+<p>Merk op dat sommige eigenschappen op het web ook weer een object zijn. Bijv.
+de auteur is een User.</p>
+
+<p>Nu hebben we dus uit deze ene webpagina al een hele boel objecten gehaald en
+bij die objecten zo een hele lijst eigenschappen opgenoemd. Probeer nu eens
+zelf nog wat objecten uit deze pagina te halen, met hun eigenschappen. Zo leer
+je kijken naar een project in objecten.</p>
+    
+      <h3 id="eigenschappen-veranderen">
+        
+        
+          <a href="#eigenschappen-veranderen" class="section-link"></a> Eigenschappen veranderen
+        
+        
+      </h3>
+
+<p>Nu kunnen die eigenschappen veranderen. Op mijn laptop kan ik Windows 8
+installeren, dan veranderd dus die eigenschap. Ook kan ik het papier
+doormidden scheuren en ga zo maar verder.</p>
+
+<p>In het web is dit ook zo. De naam van deze site kan veranderen, er kunnen menu
+items bij komen en afgaan. Ik kan de tekst van dit bericht veranderen. En zo
+kun je ook verder gaan.</p>
+    
+      <h2 id="flexibel-denken">
+        
+        
+          <a href="#flexibel-denken" class="section-link"></a> Flexibel denken
+        
+        
+      </h2>
+
+<p>Maar we zijn er nog niet. Naast het denken in objecten is flexibel denken ook
+heel belangrijk. Je moet straks je script zo hebben gescript dat je alles met
+minimale wijzigingen kunt aanpassen. Bijv. je hebt een aantal users opgeslagen
+in een database. Je heb een User object waarmee je een user uit de database
+haalt en wanneer je hem uit de database haalt vul je met de gegevens van de
+database de eigenschappen in.</p>
+
+<p>Klinkt allemaal geweldig OO vind je niet? Toch is het niet OO. Het is goed als
+je hetzelfde dacht, want meer had je nog niet uitgelegd, maar niet goed OO.
+Wat als we nu dit project op een host zetten zonder database (erg dom, maar
+stel je voor). Dan zullen we het hele user object moeten aanpassen zodat het
+met een XML file(oid) kan werken. En dit moeten we straks met grotere
+projecten niet alleen voor de User doen, maar ook voor de artikelen, sitenaam,
+enz. Kortom: niet echt flexibel. Om een script flexibel te maken moeten we ons
+houden aan één van de basisregels van OO:</p>
+
+<p><strong>Een object mag slechts 1 functionaliteit hebben, wanneer er meer zijn behoort
+het in 2 aparte objecten gesplitst te worden</strong></p>
+
+<p>In ons geval doet het User object 2 dingen: Het haalt zorgt voor de connectie
+tussen DB en script en het zorgt voor het vasthouden van eigenschappen. Dat is
+er dus 1 teveel. De oplossing is het opdelen in 2 objecten. Nu gaan we het
+moeilijk krijgen we moeten nu voor het beste resultaat een object aanmaken dat
+niet echt bestaat. Het kost nu dus waarschijnlijk dus wat fantasie.</p>
+
+<p>We houden ons User object deze gaat alleen dienen voor het vasthouden van
+gegevens zodat we 1 vaste plek hebben om onze gegevens in te stoppen en 1
+vaste plek om gegevens van de User op te halen.</p>
+
+<p>Nu maken we nog een object die we UserMapper noemen (waarom we dit zo noemen
+krijg je in latere tutorials te horen). Deze UserMapper object zorgt voor de
+connectie tussen ons ophaalpunt en het User object.</p>
+
+<p>Waarom zo moeilijk doen? Nou eigenlijk zorg je nu dat je het jezelf heel
+makkelijk maakt. Stel je voor dat je de switch van database naar XML file
+moeten maken. Dan hoeven we maar 1 bestand (het UserMapper bestand) aan te
+passen en de rest blijft gewoon werken. Ideaal toch?</p>
+    
+      <h2 id="gedachte-uittekenen">
+        
+        
+          <a href="#gedachte-uittekenen" class="section-link"></a> Gedachte uittekenen
+        
+        
+      </h2>
+
+<p>We kunnen wel uren per project gaan nadenken, maar daar schieten we niks mee
+op als we het niet kunnen uittekenen. Voor het uittekenen van onze ideeën
+gebruiken we in OOP de UML (Undefined Modeling Language) diagrammen. Een
+voorbeeld van ons bovenstaande idee over het User en het UserMapper object:</p>
+
+<p><img src="/img/2012/05/oop-nadenken-uml-usermapper.png" alt="Wees gerust, zo moeilijk is het niet wat hier staat." /></p>
+
+<p>We zien hier 2 blokken elk blok stelt 1 object voor. We hebben dus een
+UserMapper object en een User object. Vervolgens heeft elk blok een naam
+(dikgedrukt bovenin). Dit is de naam van elk object. Dan komen de
+eigenschappen. Bij de UserMapper zijn dit <code class="highlighter-shiki">db</code> en <code class="highlighter-shiki">table</code> en bij de User zijn
+het <code class="highlighter-shiki">name</code>, <code class="highlighter-shiki">password</code> en <code class="highlighter-shiki">id</code>. Het geen er achter de dubbele punt staat is
+welk type ze moeten zijn, maar daar ga ik verder niet op in.</p>
+
+<p>Vervolgens zien we nog iets wat we nog niet zijn tegengekomen. Die namen die
+eronder staan gevolgt door een () met soms iets erin en soms niet. Dit zijn
+functies waarmee we eigenschappen van een object kunnen veranderen/opgevragen.
+Bijv. getName in het User object zorgt ervoor dat we de naam kunnen opvragen.
+Soms staan er wat dingen tussen () dit zijn parameters die we gebruiken. Bijv.
+bij setPass dan hebben we een parameter pass die we gaan opslaan in de
+password eigenschap.</p>
+    
+      <h2 id="laten-we-stoppen">
+        
+        
+          <a href="#laten-we-stoppen" class="section-link"></a> Laten we stoppen
+        
+        
+      </h2>
+<p>Waarschijnlijk slaan je hersens nu op hol. Zoveel heb je hier nu gelezen en
+daar moet je toch nog eens goed over nadenken. Ook ik hou het nu niet lang
+meer vol. Ik kan nu niet meer verder praten over OOP zonder code te plaatsen.
+Dat gaan we de volgende les ook doen.</p>
+
+<p>Veel succes met het vaker lezen van dit artikel en denk eraan. Als je iets nog
+niet snapt is het niet erg het gaat erom dat je nu de basis van het nadenken
+door hebt.</p>
+
+        </div>
+    </div>
+</article>
+
+    </main><footer class="page__footer">
+    <p>&copy; Copyright 2012 - 2022 Wouter de Jong</p>
+</footer>
+</body>
+
+</html>

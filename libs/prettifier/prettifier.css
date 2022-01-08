@@ -1,0 +1,70 @@
+/*-----------------------------------*\
+    $PRETTIFIER
+\*-----------------------------------*/
+/**
+ * The syntax highlighting styles for Google Code Prettifier, based
+ * on the Symfony website.
+ */
+.str  { color:#59db3a;                    }
+.kwd  { color:#ff8400;                    }
+.var  { color:#ffffff;                    }
+.fun  { color:#ffffff;                    }
+.com  { color:#b729d9; font-style:italic; }
+.typ  { color:#ff8400;                    }
+.lit  { color:#1299da;                    }
+.pun,
+.opn,
+.clo  { color:#999999;                    }
+.pln  { color:#ffffff;                    }
+.tag  { color:#999999;                    }
+.atn  { color:#ffffff;                    }
+.atv  { color:#59db3a;                    }
+.dec  { color:#1299da;                    }
+
+@media screen{
+    pre.prettyprint{
+        border:1px solid #ddd;
+        background:#ececec;
+    }
+
+    pre.prettyprint ul,
+    pre.prettyprint ol{
+        margin:0;
+        padding:0;
+        background:#232125;
+    }
+    pre.prettyprint:not(.linenums){
+        padding:10px;
+        background:#232125;
+    }
+    code.prettyprint{
+        padding:4px;
+        background:#232125;
+    }
+
+    pre.prettyprint .linenums{
+        padding:10px;
+        margin-left:40px;
+        color:#aaa;
+    }
+}
+
+@media print, projection{
+	.str  { color:#060;                    }
+    .kwd  { color:#006; font-weight:bold;  }
+    .com  { color:#600; font-style:italic; }
+    .typ  { color:#404; font-weight:bold;  }
+    .lit  { color:#044;                    }
+    .pun,
+    .opn,
+    .clo  { color:#440;                    }
+    .tag  { color:#006; font-weight:bold;  }
+    .atn  { color:#404;                    }
+    .atv  { color:#060;                    }
+}
+
+@media print{
+	pre.prettyprint{
+        border:1px solid #232125;
+    }
+}

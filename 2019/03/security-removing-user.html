@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang=""><head>
+    <meta charset=utf-8>
+
+    <title>Symfony Security: Is Security about User management? ~ Wouter J</title>
+
+    <meta http-equiv=X-UA-Compatible content="IE=edge">
+    <meta name=viewport content="width=device-width, initial-scale=1">
+    <meta name=theme-color content=#cc3333>
+
+    <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Serif:400,400i,700|Oswald|Inconsolata" rel="stylesheet">
+    <link rel=stylesheet href="/assets/main.css">
+    <link rel=icon type=image/png href=/img/css/favicon.png sizes=96x96><link type="application/atom+xml" rel="alternate" href="https://wouterj.nl/feed.xml" title="Wouter J" /><meta content="Wouter J" property="og:site_name">
+    
+      <meta content="Symfony Security: Is Security about User management?" property="og:title">
+      <meta content="article" property="og:type">
+      <meta content="Symfony 2 completely renewed Symfony. Symfony 3 gave us a completely refactored
+and improved Form component. Symfony 4 gave us a renewed dependency injection
+experience. Let’s fix Security in Symfony 5! To start with: The concept of
+users in security.
+
+" property="og:description">
+      <meta content="2019-03-11T00:00:00+00:00" property="article:published_time">
+      <meta content="https://wouterj.nl/2019/03/security-removing-user" property="og:url">
+      <meta content="https://wouterj.nl/img/og/security-removing-user.png?1" property="og:image">
+    <script>if(!sessionStorage.getItem("_swa")){fetch("https://counter.dev/track?"+new URLSearchParams({referrer:document.referrer.indexOf(location.protocol+"//"+location.host)!==0?document.referrer:'',screen:screen.width+"x"+screen.height,user:"wouterj",utcoffset:"2"}),{headers:{"X-Referer":"https://wouterj.nl/2019/03/security-removing-user","Content-Type":"text/plain"}})};sessionStorage.setItem("_swa","1");</script></head>
+<body class="page  page--post" itemscope itemtype="http://schema.org/WebPage"><header class=page__header>
+    <hgroup class=page__headline>
+        <h1 class="site-title" itemprop="name"><a href="/">Wouter J</a></h1>
+    </hgroup><!--<nav class=page__nav>
+        <ul class="nav  nav--block"><li class="nav__item  "><a href="/categories/article/index.html"><i class=icon>&#xF139;</i> <span class="button__text">Articles</span></a></li><li class="nav__item  "><a href="/categories/experiment/index.html"><i class=icon>&#xF051;</i> <span class="button__text">Experiments</span></a></li><li class="nav__item  "><a href="/categories/links/index.html"><i class=icon>&#xF10E;</i> <span class="button__text">Links</span></a></li></ul>
+    </nav>-->
+  </div>
+</header>
+<div class=page__body itemscope itemtype="http://schema.org/Blog">
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+        <span class="post__category">
+        <time class="dt-published" datetime="2019-03-11T00:00:00+00:00" itemprop="datePublished">
+            MAR '19
+        </time>
+        
+        
+        &#xf051;
+        
+        </span>
+    
+
+    <h1 class="post__heading" itemprop="headline">Symfony Security: Is Security about User management?</h1>
+
+    
+
+    <div itemprop="articleBody">
+        <div class="post__entry--excerpt">
+            
+            <p>Symfony 2 completely renewed Symfony. Symfony 3 gave us a completely refactored
+and improved Form component. Symfony 4 gave us a renewed dependency injection
+experience. Let’s fix Security in Symfony 5! To start with: The concept of
+users in security.</p></div><div class="post__entry">
+
+<p>The Security guide has 36 official documentation articles. This means it’s
+by far record holder. The Dependency Injection component is on place two with
+just 26 articles. Also, a book about Security is in <a href="https://leanpub.com/bookstore/type/book/sort/lifetime_earnings?search=symfony">leanpub’s top selling
+Symfony list</a> (congratz <a href="https://leanpub.com/u/jaytaph">Joshua</a>!). The Security component
+needs fixing! <em>What can we do?</em></p>
+      <h2 id="whats-the-problem">
+        
+        
+          <a href="#whats-the-problem" class="section-link"></a> What’s the problem?
+        
+        
+      </h2>
+
+<p>Users are <em>your</em> domain logic. Yet, the component forces your user to implement
+<code class="highlighter-shiki">UserInterface</code>. This requires you to define a <em>salt</em> (mostly empty),
+<em>username</em> (probably <code class="highlighter-shiki">return $this-&gt;getEmail();</code>) and <em>password</em> (I hope you
+aren’t using tokens in your API?).</p>
+
+<aside class="side" data-type="Reference">
+  <p>In the blogpost, Iltar van der Berg uses two objects: A domain <code class="highlighter-shiki">User</code> and
+<code class="highlighter-shiki">SecurityUser</code>. The security user provider creates a <code class="highlighter-shiki">SecurityUser</code> based on
+information from the domain <code class="highlighter-shiki">User</code>. This way, the domain <code class="highlighter-shiki">User</code> becomes
+decoupled from the Security component.</p>
+</aside>
+
+<p>You can <a href="https://stovepipe.systems/post/decoupling-your-security-user">decouple the security user from your domain one</a>.
+Yet, doing so means that you have to write a custom service to get the
+domain user in your controller/services. All Security <code class="highlighter-shiki">getUser()</code> methods will
+return the Security user and not the domain one. That means writing custom core
+functionality to fix a problem in the component.</p>
+    
+      <h3 id="what-is-security-without-a-user">
+        
+        
+          <a href="#what-is-security-without-a-user" class="section-link"></a> What is Security without a User?
+        
+        
+      </h3>
+
+<p>A lot actually. The core of the Security component needs no users. <em>Token</em>
+objects (not related to API tokens) contain all necessary information about the
+user. After authentication, the user object is saved in this token, together
+with the credentials and the roles.</p>
+
+<p><img src="/img/security1-current-uml.png" alt="User and Token UML diagram" /></p>
+
+<aside class="side" data-type="Symfony internals">
+  <p>The Security component consists of separate layers. The <em>Core
+subcomponent</em> contains the generic Security objects and abstractions. The <em>Http
+subcomponent</em> integrates this Core system with the HTTP world of requests,
+sessions and login forms. Learn more about this in <a href="https://www.youtube.com/watch?v=xQyEXzug7P8">this great talk from Kris
+Wallsmith</a>.</p>
+</aside>
+
+<p>At this point, you might wonder why there are two objects: Token and User.
+They both contain the username, user roles and password… I agree, we can
+remove one of the two concepts.</p>
+
+<p>The user object also creates another problem: The user object is part of the
+authenticated token. This means it’s serialized when the token is stored in the
+session. This means your user object has to be serializable: It needs to remove
+plain text passwords, resources and other stuff you don’t want to serialize.</p>
+    
+      <h2 id="is-there-a-way-to-fix-it">
+        
+        
+          <a href="#is-there-a-way-to-fix-it" class="section-link"></a> Is there a way to fix it?
+        
+        
+      </h2>
+
+<p>Yes: remove users. Wait, whaat?! Security is all about getting a user, right?
+Well, I don’t think so. Security is about securing your resources (pages,
+files, etc.). That’s all security should provide as a base. To do this, a
+unique identifier is needed to identify who is asking permission to access.
+This means we get the user feature as a very nice bonus, but it isn’t the main
+goal of Security.</p>
+
+<p>With that in mind, I’ve described why users cause problems. I’ve also already
+shown what other unique identifer Security has besides the User object: Tokens.
+Actually, everything Security needs is already in these tokens, so no need for
+user objects in the component!</p>
+
+<p>However, being able to typehint for <code class="highlighter-shiki">UserInterface</code> in the controller is great.
+Removing users from the component make this is impossible: The Security
+component can no longer relate the token with a user object that you created.</p>
+
+<p>To fix this, tokens can save a plain text identifier for the user. You can set
+this to the id of your domain user. The component can provide some automatic
+loaders of this Client entity based on the ID, like the current user
+providers.</p>
+
+<p><img src="/img/security1-proposed-uml.png" alt="Proposed UML diagram" /></p>
+    
+      <h2 id="how-does-this-impact-my-code">
+        
+        
+          <a href="#how-does-this-impact-my-code" class="section-link"></a> How does this Impact my Code?
+        
+        
+      </h2>
+
+<p>As a base, this means your user object does no longer contain anything from the
+Security component.</p>
+    
+      <h4 id="before">
+        
+        
+          <a href="#before" class="section-link"></a> Before
+        
+        
+      </h4>
+
+<div class="language-php highlighter-shiki"></div>
+    
+      <h4 id="after">
+        
+        
+          <a href="#after" class="section-link"></a> After
+        
+        
+      </h4>
+
+<div class="language-php highlighter-shiki"></div>
+
+<p>When you want to use <code class="highlighter-shiki">getUser()</code> functions, you only have to implement a simple
+interface:</p>
+
+<div class="language-php highlighter-shiki"></div>
+
+<p>As you can see, this all becomes way more flexible. Your user only needs to
+have some unique identifier and all other information is in the tokens.</p>
+
+<p>The benefit of this is that the Security component only needs to serialize the token
+in the session. This means your user object or whatsoever doesn’t need to be
+serializable, doesn’t need to erase credentials, cetera.</p>
+    
+      <h2 id="take-homes">
+        
+        
+          <a href="#take-homes" class="section-link"></a> Take Home’s
+        
+        
+      </h2>
+
+<ul>
+  <li>Security isn’t about the user</li>
+  <li>Users are <em>your domain</em>, a framework should not interfere with that</li>
+  <li>Identifiers link objects with the same meaning</li>
+</ul>
+
+<p>Of course, this post is just proposing ideas. I’m sure there will be
+difficulties to integrate this into the Symfony code. But I believe it is
+necessary to rethink what’s needed in the Symfony Security component.
+Integrating the Security component should be easier. Reducing classes that need
+to be modified to use Security helps with this.</p>
+
+        </div>
+    </div>
+</article>
+
+    </main><footer class="page__footer">
+    <p>&copy; Copyright 2012 - 2022 Wouter de Jong</p>
+</footer>
+</body>
+
+</html>

@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang=""><head>
+    <meta charset=utf-8>
+
+    <title>Repositories are just Collections ~ Wouter J</title>
+
+    <meta http-equiv=X-UA-Compatible content="IE=edge">
+    <meta name=viewport content="width=device-width, initial-scale=1">
+    <meta name=theme-color content=#cc3333>
+
+    <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Serif:400,400i,700|Oswald|Inconsolata" rel="stylesheet">
+    <link rel=stylesheet href="/assets/main.css">
+    <link rel=icon type=image/png href=/img/css/favicon.png sizes=96x96><link type="application/atom+xml" rel="alternate" href="https://wouterj.nl/feed.xml" title="Wouter J" /><meta content="Wouter J" property="og:site_name">
+    
+      <meta content="Repositories are just Collections" property="og:title">
+      <meta content="article" property="og:type">
+      <meta content="Repositories are just collections of things. A post repository is a collection
+of posts, a user repository a collection of users. They allow to abstract away
+all the persistence details. Yet, many people think of Doctrine repositories as
+purely related to Doctrine, leading to strange abstractions. Let’s create a
+normal collection with Symfony and Doctrine today!
+
+" property="og:description">
+      <meta content="2016-12-15T00:00:00+00:00" property="article:published_time">
+      <meta content="https://wouterj.nl/2016/12/repositories-are-collections" property="og:url">
+      <meta content="https://wouterj.nl/img/og/repositories-are-collections.png?1" property="og:image">
+    <script>if(!sessionStorage.getItem("_swa")){fetch("https://counter.dev/track?"+new URLSearchParams({referrer:document.referrer.indexOf(location.protocol+"//"+location.host)!==0?document.referrer:'',screen:screen.width+"x"+screen.height,user:"wouterj",utcoffset:"2"}),{headers:{"X-Referer":"https://wouterj.nl/2016/12/repositories-are-collections","Content-Type":"text/plain"}})};sessionStorage.setItem("_swa","1");</script></head>
+<body class="page  page--post" itemscope itemtype="http://schema.org/WebPage"><header class=page__header>
+    <hgroup class=page__headline>
+        <h1 class="site-title" itemprop="name"><a href="/">Wouter J</a></h1>
+    </hgroup><!--<nav class=page__nav>
+        <ul class="nav  nav--block"><li class="nav__item  "><a href="/categories/article/index.html"><i class=icon>&#xF139;</i> <span class="button__text">Articles</span></a></li><li class="nav__item  "><a href="/categories/experiment/index.html"><i class=icon>&#xF051;</i> <span class="button__text">Experiments</span></a></li><li class="nav__item  "><a href="/categories/links/index.html"><i class=icon>&#xF10E;</i> <span class="button__text">Links</span></a></li></ul>
+    </nav>-->
+  </div>
+</header>
+<div class=page__body itemscope itemtype="http://schema.org/Blog">
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+        <span class="post__category">
+        <time class="dt-published" datetime="2016-12-15T00:00:00+00:00" itemprop="datePublished">
+            DEC '16
+        </time>
+        
+        
+        &#xf139;
+        
+        </span>
+    
+
+    <h1 class="post__heading" itemprop="headline">Repositories are just Collections</h1>
+
+    
+
+    <div itemprop="articleBody">
+        <div class="post__entry--excerpt">
+            
+            <p>Repositories are just collections of things. A post repository is a collection
+of posts, a user repository a collection of users. They allow to abstract away
+all the persistence details. Yet, many people think of Doctrine repositories as
+purely related to Doctrine, leading to strange abstractions. Let’s create a
+normal collection with Symfony and Doctrine today!</p></div><div class="post__entry">
+      <h2 id="it-all-starts-with-the-interface">
+        
+        
+          <a href="#it-all-starts-with-the-interface" class="section-link"></a> It all starts with the Interface
+        
+        
+      </h2>
+
+<p>When designing your application, start with designing your interfaces. If you
+like your interfaces, the implementation will probably be nice as well. In this
+post, we’re going to design a collection of products. The interface first
+contains some basic collection methods:</p>
+
+<div class="language-php highlighter-shiki"></div>
+
+<p>We can now count the number of products in the collection, get all products in
+the collection and check if a product is included in the collection. Now, let’s
+add two simple methods for more specific operations on this collection:</p>
+
+<div class="language-php highlighter-shiki"></div>
+    
+      <h2 id="a-basic-implementation">
+        
+        
+          <a href="#a-basic-implementation" class="section-link"></a> A Basic Implementation
+        
+        
+      </h2>
+
+<p>The most straight-forward way to implement collections in PHP is by using
+arrays. Let’s create an array based product collection:</p>
+
+<div class="language-php highlighter-shiki"></div>
+
+<p>Most of the methods in the interface can be mapped to simple PHP array
+methods. This repository can be defined as a service:</p>
+
+<div class="language-yaml highlighter-shiki"></div>
+
+<p>Then you can probably imagine how we would use this product collection in a
+controller:</p>
+
+<div class="language-php highlighter-shiki"></div>
+    
+      <h2 id="using-doctrine">
+        
+        
+          <a href="#using-doctrine" class="section-link"></a> Using Doctrine
+        
+        
+      </h2>
+
+<p>So far, we’ve only looked at normal repositories. I hope this brought the point
+across that repositories are just collections. The nice thing about
+repositories is that we can implement all sort of different backends for our
+collections. As this post is also about Doctrine, let’s create a product
+collection based on Doctrine.</p>
+
+<p>The <code class="highlighter-shiki">EntityRepository</code> shipped with the Doctrine ORM is a simple wrapper class
+around the entity manager and the unit of work. The class isn’t used in
+Doctrine itself, it’s purely an easy starting point for the users. This means
+we can completely drop it and base our doctrine collection on top of the entity
+manager:</p>
+
+<div class="language-php highlighter-shiki"></div>
+
+<p>As you can see, the code in here is just a bit more complex than using the
+array repository. Even better, the usage of this repository has not changed a
+single bit when comparing it with the <code class="highlighter-shiki">ArrayBasedProductRepository</code>. So we only
+have to update the service definitions to use doctrine:</p>
+
+<div class="language-yaml highlighter-shiki"></div>
+    
+      <h2 id="treat-repositories-as-collections">
+        
+        
+          <a href="#treat-repositories-as-collections" class="section-link"></a> Treat Repositories as Collections
+        
+        
+      </h2>
+
+<p>As I tried to show in this post, treating repositories as collections has some
+significant advantages:</p>
+
+<ul>
+  <li>The collection implementation is abstracted away, not much hassle with
+Doctrine anymore</li>
+  <li>All collection methods are located in one class/service. This means you
+never has to rely on both the entity repository and manager (in order to
+fetch and persist) anymore</li>
+  <li>Working with Doctrine as if it’s a collection makes programming easier to
+follow</li>
+</ul>
+
+<p>My last warning of this post is to not add non-collection related methods in
+the repository. I sometimes see people adding <code class="highlighter-shiki">getXxxQuery()</code> methods in the
+repository, as e.g. the form type requires you to set a query. These methods
+tell something about the implementation. They are no longer related to
+collections (try to think what this method should return in the
+<code class="highlighter-shiki">ArrayBasedProductRepository</code>).</p>
+    
+      <h2 id="take-homes">
+        
+        
+          <a href="#take-homes" class="section-link"></a> Take Home’s
+        
+        
+      </h2>
+
+<ul>
+  <li>The <code class="highlighter-shiki">EntityRepository</code> class shipped by Doctrine is purely to ease usage,
+it’s not mandatory at all</li>
+  <li>Writing your own repositories allow you to abstract away Doctrine almost
+completely from your services and controllers</li>
+  <li>Repositories are just collections, please treat them as such</li>
+</ul>
+
+        </div>
+    </div>
+</article>
+
+    </main><footer class="page__footer">
+    <p>&copy; Copyright 2012 - 2022 Wouter de Jong</p>
+</footer>
+</body>
+
+</html>

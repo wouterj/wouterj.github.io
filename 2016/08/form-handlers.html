@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang=""><head>
+    <meta charset=utf-8>
+
+    <title>Trimming your Controllers using Form Handlers ~ Wouter J</title>
+
+    <meta http-equiv=X-UA-Compatible content="IE=edge">
+    <meta name=viewport content="width=device-width, initial-scale=1">
+    <meta name=theme-color content=#cc3333>
+
+    <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Serif:400,400i,700|Oswald|Inconsolata" rel="stylesheet">
+    <link rel=stylesheet href="/assets/main.css">
+    <link rel=icon type=image/png href=/img/css/favicon.png sizes=96x96><link type="application/atom+xml" rel="alternate" href="https://wouterj.nl/feed.xml" title="Wouter J" /><meta content="Wouter J" property="og:site_name">
+    
+      <meta content="Trimming your Controllers using Form Handlers" property="og:title">
+      <meta content="article" property="og:type">
+      <meta content="“Your application should have thin controllers!” It’s one of the most common
+statements in framework-world. It’s the basis of creating a decoupled
+code-base. Yet, creating thin controller can be quite a challenge. Hostnet’s
+FormHandlerBundle can help you quite a bit. Let’s have a
+deeper look!
+
+" property="og:description">
+      <meta content="2016-08-22T00:00:00+00:00" property="article:published_time">
+      <meta content="https://wouterj.nl/2016/08/form-handlers" property="og:url">
+      <meta content="https://wouterj.nl/img/og/form-handlers.png?1" property="og:image">
+    <script>if(!sessionStorage.getItem("_swa")){fetch("https://counter.dev/track?"+new URLSearchParams({referrer:document.referrer.indexOf(location.protocol+"//"+location.host)!==0?document.referrer:'',screen:screen.width+"x"+screen.height,user:"wouterj",utcoffset:"2"}),{headers:{"X-Referer":"https://wouterj.nl/2016/08/form-handlers","Content-Type":"text/plain"}})};sessionStorage.setItem("_swa","1");</script></head>
+<body class="page  page--post" itemscope itemtype="http://schema.org/WebPage"><header class=page__header>
+    <hgroup class=page__headline>
+        <h1 class="site-title" itemprop="name"><a href="/">Wouter J</a></h1>
+    </hgroup><!--<nav class=page__nav>
+        <ul class="nav  nav--block"><li class="nav__item  "><a href="/categories/article/index.html"><i class=icon>&#xF139;</i> <span class="button__text">Articles</span></a></li><li class="nav__item  "><a href="/categories/experiment/index.html"><i class=icon>&#xF051;</i> <span class="button__text">Experiments</span></a></li><li class="nav__item  "><a href="/categories/links/index.html"><i class=icon>&#xF10E;</i> <span class="button__text">Links</span></a></li></ul>
+    </nav>-->
+  </div>
+</header>
+<div class=page__body itemscope itemtype="http://schema.org/Blog">
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+        <span class="post__category">
+        <time class="dt-published" datetime="2016-08-22T00:00:00+00:00" itemprop="datePublished">
+            AUG '16
+        </time>
+        
+        
+        &#xf139;
+        
+        </span>
+    
+
+    <h1 class="post__heading" itemprop="headline">Trimming your Controllers using Form Handlers</h1>
+
+    
+
+    <div itemprop="articleBody">
+        <div class="post__entry--excerpt">
+            
+            <p>“Your application should have thin controllers!” It’s one of the most common
+statements in framework-world. It’s the basis of creating a decoupled
+code-base. Yet, creating thin controller can be quite a challenge. Hostnet’s
+<a href="https://github.com/hostnet/form-handler-bundle">FormHandlerBundle</a> can help you quite a bit. Let’s have a
+deeper look!</p></div><div class="post__entry">
+
+<p>In this post, I’ll be using the <code class="highlighter-shiki">BlogController#commentNewAction()</code> controller
+of the <a href="https://github.com/symfony/symfony-demo#installation">Symfony demo</a>:</p>
+
+<div class="language-php highlighter-shiki"></div>
+
+<aside class="side" data-type="example">
+  <p>You can check out the final working version at <a href="https://github.com/wouterj-nl/form-handler">github</a>.</p>
+</aside>
+
+<p>While the controller doesn’t do a lot of things, it’s impossible to call it
+thin. The main reason? It manages one big task: Handling form submission. Let’s
+move this to a service as well!</p>
+      <h2 id="meet-the-hostnetformhandlerbundle">
+        
+        
+          <a href="#meet-the-hostnetformhandlerbundle" class="section-link"></a> Meet the HostnetFormHandlerBundle
+        
+        
+      </h2>
+
+<p>The <a href="https://github.com/hostnet/form-handler-bundle">HostnetFormHandlerBundle</a> introduces the concept of <em>form
+handlers</em>. These handle form submissions through the request. Install the
+bundle using Composer:</p>
+
+<div class="language-bash highlighter-shiki"></div>
+
+<p>…and enable it:</p>
+
+<div class="language-php highlighter-shiki"></div>
+    
+      <h3 id="creating-a-comment-form-handler">
+        
+        
+          <a href="#creating-a-comment-form-handler" class="section-link"></a> Creating a Comment Form Handler
+        
+        
+      </h3>
+
+<p>Now we can extract the form handling part from the controller. First things
+first, the form has to be rendered:</p>
+
+<div class="language-php highlighter-shiki"></div>
+
+<p>This handler is now capable of creating the required <code class="highlighter-shiki">CommentType</code> form.</p>
+
+<p>In a controller, pass this form handler to the <code class="highlighter-shiki">form_handler.provider.simple</code>
+service to handle the form:</p>
+
+<div class="language-php highlighter-shiki"></div>
+
+<p>The form provider will now create the form based on <code class="highlighter-shiki">getType()</code> and handle it
+using the passed request.</p>
+    
+      <h2 id="handle-successful-form-submissions">
+        
+        
+          <a href="#handle-successful-form-submissions" class="section-link"></a> Handle Successful Form Submissions
+        
+        
+      </h2>
+
+<p>To actually handle the form, we have to implement <code class="highlighter-shiki">FormSuccesHandlerInterface</code>
+and its <code class="highlighter-shiki">onSuccess()</code> method. This method is executed when the form is
+submitted and valid.</p>
+
+<div class="language-php highlighter-shiki"></div>
+
+<p>As the handler now has some dependencies, create a service to manage it:</p>
+
+<div class="language-yaml highlighter-shiki"></div>
+
+<p>And slightly tweak the controller to use this service:</p>
+
+<div class="language-php highlighter-shiki"></div>
+    
+      <h2 id="getting-the-current-post-in-the-handler">
+        
+        
+          <a href="#getting-the-current-post-in-the-handler" class="section-link"></a> Getting the current Post in the Handler
+        
+        
+      </h2>
+
+<p>There is one missing bit in the form handler: It has to be aware of the post
+we’re commenting on. To fix this, add a new <code class="highlighter-shiki">$post</code> property and setter in the
+handler. Form handlers are already statefull. This means adding another
+statefull property wouldn’t harm anyone.</p>
+
+<div class="language-php highlighter-shiki"></div>
+
+<p>Now, from inside the controller, pass the current post to the handler:</p>
+
+<div class="language-php highlighter-shiki"></div>
+
+<p>Cool, that’s it! All form handling stuff is now managed in a form handler. This
+makes it easy to reuse. The final controller contains 15 lines (compared to the
+original 23 lines). More importantly, the form handling logic is now delegated
+to a reusable service.</p>
+    
+      <h2 id="take-homes">
+        
+        
+          <a href="#take-homes" class="section-link"></a> Take Home’s
+        
+        
+      </h2>
+
+<ul>
+  <li>Controllers shouldn’t contain much logic</li>
+  <li>Hostnet’s FormHandlerBundle helps you extract form handling logic</li>
+</ul>
+
+<p>On top of these features, the bundle provides a param converter to pass form
+handlers as controller arguments. If you find this usefull, checkout the
+<a href="https://github.com/hostnet/form-handler-bundle#usage">docs</a>.</p>
+
+        </div>
+    </div>
+</article>
+
+    </main><footer class="page__footer">
+    <p>&copy; Copyright 2012 - 2022 Wouter de Jong</p>
+</footer>
+</body>
+
+</html>
