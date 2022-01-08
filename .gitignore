@@ -1,4 +1,6 @@
 /_site/
-.sass-cache
-.jekyll-metadata
+/.sass-cache
+/.shiki-cache
+/.jekyll-metadata
 /_drafts/
+/node_modules/
