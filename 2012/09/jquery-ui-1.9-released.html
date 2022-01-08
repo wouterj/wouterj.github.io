@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang=""><head>
+    <meta charset=utf-8>
+
+    <title>Eindelijk is jQuery UI 1.9 een feit ~ Wouter J</title>
+
+    <meta http-equiv=X-UA-Compatible content="IE=edge">
+    <meta name=viewport content="width=device-width, initial-scale=1">
+    <meta name=theme-color content=#cc3333>
+
+    <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Serif:400,400i,700|Oswald|Inconsolata" rel="stylesheet">
+    <link rel=stylesheet href="/assets/main.css">
+    <link rel=icon type=image/png href=/img/css/favicon.png sizes=96x96><link type="application/atom+xml" rel="alternate" href="https://wouterj.nl/feed.xml" title="Wouter J" /><meta content="Wouter J" property="og:site_name">
+    
+      <meta content="Eindelijk is jQuery UI 1.9 een feit" property="og:title">
+      <meta content="article" property="og:type">
+      <meta content="Er is lang op gewacht, maar vandaag is hij uitgekomen:
+versie 1.9 van jQuery UI.
+Het is een grote stap richting het doel voor een duidelijkere API.
+
+" property="og:description">
+      <meta content="2012-09-08T00:00:00+00:00" property="article:published_time">
+      <meta content="https://wouterj.nl/2012/09/jquery-ui-1.9-released" property="og:url">
+      <meta content="https://wouterj.nl/img/og/jquery-ui-1.9-released.png?1" property="og:image">
+    <script>if(!sessionStorage.getItem("_swa")){fetch("https://counter.dev/track?"+new URLSearchParams({referrer:document.referrer.indexOf(location.protocol+"//"+location.host)!==0?document.referrer:'',screen:screen.width+"x"+screen.height,user:"wouterj",utcoffset:"2"}),{headers:{"X-Referer":"https://wouterj.nl/2012/09/jquery-ui-1.9-released","Content-Type":"text/plain"}})};sessionStorage.setItem("_swa","1");</script></head>
+<body class="page  page--post" itemscope itemtype="http://schema.org/WebPage"><header class=page__header>
+    <hgroup class=page__headline>
+        <h1 class="site-title" itemprop="name"><a href="/">Wouter J</a></h1>
+    </hgroup><!--<nav class=page__nav>
+        <ul class="nav  nav--block"><li class="nav__item  "><a href="/categories/article/index.html"><i class=icon>&#xF139;</i> <span class="button__text">Articles</span></a></li><li class="nav__item  "><a href="/categories/experiment/index.html"><i class=icon>&#xF051;</i> <span class="button__text">Experiments</span></a></li><li class="nav__item  "><a href="/categories/links/index.html"><i class=icon>&#xF10E;</i> <span class="button__text">Links</span></a></li></ul>
+    </nav>-->
+  </div>
+</header>
+<div class=page__body itemscope itemtype="http://schema.org/Blog">
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+        <span class="post__category">
+        <time class="dt-published" datetime="2012-09-08T00:00:00+00:00" itemprop="datePublished">
+            SEP '12
+        </time>
+        
+        
+        </span>
+    
+
+    <h1 class="post__heading" itemprop="headline">Eindelijk is jQuery UI 1.9 een feit</h1>
+
+    
+
+    <div itemprop="articleBody">
+        <div class="post__entry--excerpt">
+            
+            <p>Er is lang op gewacht, maar vandaag is hij uitgekomen:
+<a href="http://blog.jqueryui.com/2012/10/jquery-ui-1-9-0/">versie 1.9 van jQuery UI</a>.
+Het is een grote stap richting het doel voor een duidelijkere API.</p></div><div class="post__entry">
+      <h2 id="wat-is-jquery-ui">
+        
+        
+          <a href="#wat-is-jquery-ui" class="section-link"></a> Wat is jQuery UI?
+        
+        
+      </h2>
+
+<p>Voor de lezers die jQuery UI niet kennen, het is de User Interface API van
+jQuery. Het is een uitbereiding van de jQuery libary met een aantal handige
+functies en een stylesheet voor standaard stijlen. Sommige veel gebruikte
+jQuery plugins zijn verbeterd en geplaatst in deze UI API. Hierdoor bevat het
+geweldige functies voor accordion menus, demos, effecten en veel meer.</p>
+    
+      <h2 id="het-redesingen-van-de-api">
+        
+        
+          <a href="#het-redesingen-van-de-api" class="section-link"></a> Het redesingen van de API
+        
+        
+      </h2>
+
+<p>Zoals je net las is de API ontstaan uit verschillende bronnen. Hierdoor was de
+API rommelig en waren er verschillen tussen dingen waar geen verschil hoorden
+te zijn.
+<a href="http://blog.jqueryui.com/2011/03/api-redesigns-the-past-present-and-future/">Het jQuery UI team</a>
+stelde zelf een doel deze API gelijk te maken en te zorgen dat hij zo
+gebruikersvriendelijk als mogelijk is.</p>
+
+<p>In versie 1.9 is hier veel aandacht aan besteed en daardoor zijn de APIs van
+<a href="http://forum.jquery.com/topic/accordion-api-redesign">de accordion</a>,
+<a href="http://forum.jquery.com/topic/tabs-api-redesign">taps</a> en
+<a href="http://forum.jquery.com/topic/position-api-redesign">position</a> compleet
+herschreven.</p>
+    
+      <h3 id="deprecated">
+        
+        
+          <a href="#deprecated" class="section-link"></a> Deprecated
+        
+        
+      </h3>
+
+<p>Herschrijven van functies zorgt ervoor dat de oude niet meer gebruikt moeten
+worden. Vele functies zijn dan ook deprecated. In jQuery UI 1.9 wordt je dan
+gewaarschuwd als je een van die functies gebruikt, maar het zal nog gewoon
+werken. Vanaf jQuery 1.10 zullen de functies verwijderd worden. Hierdoor kun je
+je scripts nu al klaar maken voor jQuery 1.10.</p>
+
+<p>Mocht je de flags niet willen kun je deze uitzetten kun je deze code gebruiken,
+waarbij je zelf de juiste paden naar de code moet neerzetten:</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre></td><td class="rouge-code"><pre><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">".../jquery.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+<span class="nt">&lt;script&gt;</span><span class="nx">$</span><span class="p">.</span><span class="nx">uiBackCompat</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span><span class="nt">&lt;/script&gt;</span>
+<span class="nt">&lt;script </span><span class="na">src=</span><span class="s">".../jquery-ui.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+    
+      <h2 id="nieuwe-functies">
+        
+        
+          <a href="#nieuwe-functies" class="section-link"></a> Nieuwe functies
+        
+        
+      </h2>
+
+<p>En natuurlijk zijn er ook een aantal functies toegevoegd:</p>
+    
+      <h3 id="menu">
+        
+        
+          <a href="#menu" class="section-link"></a> <a href="http://jqueryui.com/menu/">Menu</a>
+        
+        
+      </h3>
+
+<p>De Menu API zat al in de vorige versie, maar hij was verborgen. Vanaf 1.9 is
+hij makkelijk te vinden en te gebruiken en wordt hij ook gedocumenteerd.</p>
+    
+      <h3 id="spinner">
+        
+        
+          <a href="#spinner" class="section-link"></a> <a href="http://jqueryui.com/spinner">Spinner</a>
+        
+        
+      </h3>
+
+<p>HTML5 leverde een <code class="highlighter-rouge">&lt;input type=number&gt;</code> type waarde. Dit is de JavaScript
+versie daarvan voor browsers die dit nog niet ondersteunen.</p>
+    
+      <h3 id="tooltip">
+        
+        
+          <a href="#tooltip" class="section-link"></a> <a href="http://jqueryui.com/tooltip">Tooltip</a>
+        
+        
+      </h3>
+
+<p>De tooltip is iets wat makkelijk zelf te bouwen is, maar jQuery UI heeft deze
+zelfgebouwde versies verbeterd tot het maximum met vele handige extras.</p>
+    
+      <h2 id="documentatie-website">
+        
+        
+          <a href="#documentatie-website" class="section-link"></a> Documentatie website
+        
+        
+      </h2>
+
+<p>Een minpunt van jQuery UI was altijd de ontbrekende documentatie. Sinds 1.9
+heeft jQuery UI eindelijk een documentatie die te bereiken is op
+<a href="http://api.jqueryui.com/">api.jqueryui.com</a></p>
+    
+      <h2 id="nieuwe-website">
+        
+        
+          <a href="#nieuwe-website" class="section-link"></a> Nieuwe website
+        
+        
+      </h2>
+
+<p>Ook het design van de jqueryui website zelf is vernieuwd, het is zelfs
+responsive gemaakt. Dit alles voor een betere gebruikersvriendelijkheid, een
+woord dat centraal staat in deze update.</p>
+    
+      <h2 id="verdere-veranderingen">
+        
+        
+          <a href="#verdere-veranderingen" class="section-link"></a> Verdere veranderingen
+        
+        
+      </h2>
+
+<p>Natuurlijk is er nog veel meer veranderd, lees nu
+<a href="http://jqueryui.com/upgrade-guide/1.9/">de upgrade guide</a> voor alle informatie
+hoe je je jQuery UI 1.8 scripts kunt omzetten in 1.9.</p>
+
+        </div>
+    </div>
+</article>
+
+    </main><footer class="page__footer">
+    <p>&copy; Copyright 2012 - 2022 Wouter de Jong</p>
+</footer>
+</body>
+
+</html>

@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang=""><head>
+    <meta charset=utf-8>
+
+    <title>Hoe leer ik Symfony2? ~ Wouter J</title>
+
+    <meta http-equiv=X-UA-Compatible content="IE=edge">
+    <meta name=viewport content="width=device-width, initial-scale=1">
+    <meta name=theme-color content=#cc3333>
+
+    <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Serif:400,400i,700|Oswald|Inconsolata" rel="stylesheet">
+    <link rel=stylesheet href="/assets/main.css">
+    <link rel=icon type=image/png href=/img/css/favicon.png sizes=96x96><link type="application/atom+xml" rel="alternate" href="https://wouterj.nl/feed.xml" title="Wouter J" /><meta content="Wouter J" property="og:site_name">
+    
+      <meta content="Hoe leer ik Symfony2?" property="og:title">
+      <meta content="article" property="og:type">
+      <meta content="Symfony2, ik ben er een groot fan van. Deze blogpost bevat een makkelijk weg
+om Symfony2 te leren als je alleen nog maar PHP ervaring hebt.
+
+" property="og:description">
+      <meta content="2012-12-28T00:00:00+00:00" property="article:published_time">
+      <meta content="https://wouterj.nl/2012/12/hoe-leer-ik-symfony2" property="og:url">
+      <meta content="https://wouterj.nl/img/og/hoe-leer-ik-symfony2.png?1" property="og:image">
+    <script>if(!sessionStorage.getItem("_swa")){fetch("https://counter.dev/track?"+new URLSearchParams({referrer:document.referrer.indexOf(location.protocol+"//"+location.host)!==0?document.referrer:'',screen:screen.width+"x"+screen.height,user:"wouterj",utcoffset:"2"}),{headers:{"X-Referer":"https://wouterj.nl/2012/12/hoe-leer-ik-symfony2","Content-Type":"text/plain"}})};sessionStorage.setItem("_swa","1");</script></head>
+<body class="page  page--post" itemscope itemtype="http://schema.org/WebPage"><header class=page__header>
+    <hgroup class=page__headline>
+        <h1 class="site-title" itemprop="name"><a href="/">Wouter J</a></h1>
+    </hgroup><!--<nav class=page__nav>
+        <ul class="nav  nav--block"><li class="nav__item  "><a href="/categories/article/index.html"><i class=icon>&#xF139;</i> <span class="button__text">Articles</span></a></li><li class="nav__item  "><a href="/categories/experiment/index.html"><i class=icon>&#xF051;</i> <span class="button__text">Experiments</span></a></li><li class="nav__item  "><a href="/categories/links/index.html"><i class=icon>&#xF10E;</i> <span class="button__text">Links</span></a></li></ul>
+    </nav>-->
+  </div>
+</header>
+<div class=page__body itemscope itemtype="http://schema.org/Blog">
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+        <span class="post__category">
+        <time class="dt-published" datetime="2012-12-28T00:00:00+00:00" itemprop="datePublished">
+            DEC '12
+        </time>
+        
+        
+        &#xf139;
+        
+        </span>
+    
+
+    <h1 class="post__heading" itemprop="headline">Hoe leer ik Symfony2?</h1>
+
+    
+    <img src="https://wouterj.nl/img/symfony-leren-thumb.png" class="post__thumbnail  img--stripe  img--short  img--right" itemprop="thumbnailUrl">
+    
+
+    <div itemprop="articleBody">
+        <div class="post__entry--excerpt">
+            
+            <p>Symfony2, ik ben er een groot fan van. Deze blogpost bevat een makkelijk weg
+om Symfony2 te leren als je alleen nog maar PHP ervaring hebt.</p></div><div class="post__entry">
+      <h2 id="stappen">
+        
+        
+          <a href="#stappen" class="section-link"></a> Stappen
+        
+        
+      </h2>
+
+<p>Symfony2 leer je in stappen. Je begint met een introductie, vervolgens kun je
+beslissen of je door wilt gaan, dan ga je wat dieper de stof in en kun je al
+beginnen met je eerste Symfony2 applicaties. Daarna kun je nog dieper de stof
+in, extra dingen leren en zelfs de Symfony2 code in kijken.</p>
+    
+      <h2 id="voorkennis">
+        
+        
+          <a href="#voorkennis" class="section-link"></a> Voorkennis
+        
+        
+      </h2>
+
+<p>Het is goed om al OO kennis te hebben. De OO syntax in PHP moet je sowieso goed
+beheersen, maar het OO denken kan ook goed van pas komen.</p>
+
+<p>Symfony2 maakt gebruik van de nieuwste methodes en technieken, sommige zul je
+gaandeweg wel leren (zoals Dependency Injection), maar andere moet nu al paraat
+hebben. De belangrijkste daarvan is de namespaces ondersteuning in PHP.</p>
+
+<p>Als je compleet nieuw bent in OO raad ik je aan Symfony2 nog even weg te
+leggen. Leer eerst <a href="http://wouterj.nl/serie/orienteer-je-in-objecten/">het OO denken</a>
+en <a href="http://phptuts.nl/view/45/">de OO syntax</a>. Daarna moet je eerst daarmee wat
+gaan spelen. Lees ook eens
+<a href="http://symfony.com/doc/2.0/book/from_flat_php_to_symfony2.html">From flat PHP to Symfony2</a>,
+hierin laten we je de concrete voordelen zien van een framework.</p>
+
+<p>Als je net begint met frameworks zul je het gevoel hebben dat je door het
+framework erg beperkt wordt in wat je kan (dit is natuurlijk niet zo). Daarom
+kan het soms beter zijn om een stapje terug te doen en te gaan werken met een
+Micro framework. Ik raad dan aan om <a href="http://silex.sensiolabs.org">Silex</a> te
+gaan gebruiken. Deze is erg simpel en gemaakt door het Symfony2 team. Hierdoor
+kom je al in aanraking met componenten en technieken in Symfony2, waardoor de
+overstap naar Symfony2 makkelijker wordt.</p>
+    
+      <h2 id="stap-1-de-kennismaking">
+        
+        
+          <a href="#stap-1-de-kennismaking" class="section-link"></a> Stap 1: De kennismaking
+        
+        
+      </h2>
+
+<p>Oké, je bent klaar om te beginnen met Symfony2. Tijd om Symfony2 eens voor te
+stellen en te beslissen of je het een leuk framework vindt. Lees hiervoor de
+<a href="http://symfony.com/doc/current/quick_tour/">quick tour</a> in de Symfony2
+documentatie.  Deze serie bestaat uit 4 hoofdstukken van ong. 10 minuten
+leestijd. Daarin wordt je alle basis uitgelegd die je nodig hebt voor een
+Symfony2 applicatie.  Je kunt na deze tutorial al beginnen aan je eigen
+applicatie.</p>
+    
+      <h2 id="stap-2-dieper-in-de-stof">
+        
+        
+          <a href="#stap-2-dieper-in-de-stof" class="section-link"></a> Stap 2: Dieper in de stof
+        
+        
+      </h2>
+
+<p>Nu je hebt besloten door te gaan met Symfony2 kun je beginnen aan
+“<a href="http://symfony.com/doc/current/book/">the book</a>”. Dit is de bijbel voor
+Symfony2 developers, dit legt echt alles uit wat je nodig hebt tot het maken
+van volledige applicaties. Het is een ideale serie voor beginners, maar ook
+experts verwijzen er nog regelmatig even naar om even je kennis op te frissen.</p>
+
+<p>Lees deze serie zeker niet in 1 keer door. Begin met het lezen van het eerste
+hoofdstuk, <em>“Symfony2 and HTTP fundamentals”</em> en lees alle volgende
+hoofdstukken wanneer je het nodig hebt.</p>
+
+<p>Begin bijv. met het maken van een pastbin systeem. Dan moet je eerst Symfony2
+installeren, hiervoor lees je <em>“Installing and Configuring Symfony”</em>.
+Nadat je dit hebt gedaan ga je aan de slag met je eerste pagina, je leest dan
+<em>“Creating Pages in Symfony2”</em>. Daarvoor heb je routing en controller
+kennis voor nodig, lees die pagina’s ook. Ook moet je templates kunnen maken,
+dus begin je ook aan die pagina. Ga zo langzamerhand de hele serie af.</p>
+    
+      <h2 id="stap-3-klaar-voor-het-echte-werk">
+        
+        
+          <a href="#stap-3-klaar-voor-het-echte-werk" class="section-link"></a> Stap 3: Klaar voor het echte werk!
+        
+        
+      </h2>
+
+<p>Nu je eerste applicatie af is en je alle nuttige hoofdstukken van <em>The book</em>
+hebt gelezen kun je ook nog de andere hoofdstukken lezen, vooral <em>“Service
+Container”</em> en <em>“Testing”</em> raad ik aan te lezen.</p>
+
+<p>Nu kun je in principe beginnen aan het echte werk. Begin met je eigen projecten
+en kijk hoever je komt. De Symfony2 documentatie bevat nog een laatste serie
+waar je zeker nog even naar moet kijken:
+“<a href="http://symfony.com/doc/current/cookbook/">The cookbook</a>”. Hierin staat
+allemaal side-informatie, allemaal dingen die je kunt doen met Symfony2, extra
+tips en nog veel meer.</p>
+    
+      <h2 id="stap-4-duik-de-code-in">
+        
+        
+          <a href="#stap-4-duik-de-code-in" class="section-link"></a> Stap 4: Duik de code in
+        
+        
+      </h2>
+
+<p>Als laatste raad ik je aan de code in te duiken. Functies gebruiken zonder te
+weten wat er nou eigenlijk gebeurd is iets wat ik verafschuw. De Symfony2 code
+staat onder <code class="highlighter-rouge">vendor/symfony/symfony/src/Symfony</code>. Symfony2 bevat 3
+verschillende typen klassen:</p>
+
+<ul>
+  <li>
+    <p><strong>Componenten</strong> - Dit zijn losse componenten die je kunt gebruiken in alle
+applicaties, deze zijn niet gebouwd voor Symfony2 alleen. Je zult zien dat het
+meeste deel van Symfony2 bestaat uit deze componenten. Om alles te leren over
+deze componenten kun je kijken in
+“<a href="http://symfony.com/doc/current/components/">The components</a>” serie.</p>
+  </li>
+  <li>
+    <p><strong>Bridges</strong> - Vervolgens heb je de bridge klassen. Dit zijn klassen die een
+component of 3th party library implementeren in Symfony2. Zo heb je bijv. een
+TwigBridge die voor Twig ondersteuning in Symfony2 zorgt.</p>
+  </li>
+  <li>
+    <p><strong>Bundles</strong> - Dan heb je nog de core bundles, met als belangrijkste de
+SymfonyFrameworkBundle. Deze zorgen dat de Bridges en Componenten gecombineerd
+worden tot 1 geweldig framework: Symfony2.</p>
+  </li>
+</ul>
+    
+      <h2 id="extra-tips">
+        
+        
+          <a href="#extra-tips" class="section-link"></a> Extra tips
+        
+        
+      </h2>
+
+<p>Na 1.5 jaar werken met Symfony2 heb ik hier nog wat extra tips voor je:</p>
+
+<ul>
+  <li>
+    <p>Composer is de tool die je moet gebruiken met Symfony2. Leer meer van deze
+tool in “<a href="http://wouterj.nl/php/werken-met-composer/509/">Werken met Composer</a>”.</p>
+  </li>
+  <li>
+    <p>Gebruik bundles. Je kan zelf alles maken, maar waarom het wiel uitvinden als
+er al geweldige bundles voor gemaakt zijn? Zoek eens op
+<a href="http://knpbundles.com/">KnpBundles</a> naar bundles, daar staan hele goede
+tussen.
+Enkele die ik bijna in elke applicatie gebruik zijn
+<a href="http://knpbundles.com/KnpLabs/KnpMenuBundle">KnpMenuBundle</a>,
+<a href="http://knpbundles.com/FriendsOfSymfony/FOSUserBundle">FOSUserBundle</a> en
+<a href="http://knpbundles.com/sonata-project/SonataAdminBundle">SonataAdminBundle</a>.</p>
+
+    <p>Enkele teams die vaak terugkomen en bekend staan om hun bundles zijn KnpLabs
+(Knp), Friend Of Symfony (FOS), Sonata Project (Sonata) en Johannes Schmitt
+(Jms).</p>
+  </li>
+</ul>
+    
+      <h2 id="veel-succes">
+        
+        
+          <a href="#veel-succes" class="section-link"></a> Veel succes!
+        
+        
+      </h2>
+
+<p>Nu ben je helemaal klaar om te beginnen met het leren van Symfony2, doe het
+rustig aan, doe het goed en je leerd de mooie kant van PHP kennen. Het is bijna
+zeker dat je vragen zult krijgen. Deze kun je altijd op diverse plekken vragen:</p>
+
+<ul>
+  <li>De <a href="https://groups.google.com/forum/?fromgroups=#!forum/symfony2">Symfony2 User Group</a></li>
+  <li>Op <a href="http://stackoverflow.com/questions/tagged/symfony2">Stackoverflow</a> (vergeet niet je vraag te taggen met <em>symfony2</em>)</li>
+  <li>Op <a href="http://phphulp.nl/">PHPhulp</a></li>
+  <li>En natuurlijk door een mailtje te sturen naar wouter{at}wouterj{dot}nl of
+door mij te contacteren via PHPhulp.</li>
+</ul>
+
+        </div>
+    </div>
+</article>
+
+    </main><footer class="page__footer">
+    <p>&copy; Copyright 2012 - 2022 Wouter de Jong</p>
+</footer>
+</body>
+
+</html>

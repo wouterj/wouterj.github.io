@@ -1,0 +1,346 @@
+<!doctype html>
+<html lang=""><head>
+    <meta charset=utf-8>
+
+    <title>Symfony 6: PHP 8 Native Types & Why we Need YOU ~ Wouter J</title>
+
+    <meta http-equiv=X-UA-Compatible content="IE=edge">
+    <meta name=viewport content="width=device-width, initial-scale=1">
+    <meta name=theme-color content=#cc3333>
+
+    <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Serif:400,400i,700|Oswald|Inconsolata" rel="stylesheet">
+    <link rel=stylesheet href="/assets/main.css">
+    <link rel=icon type=image/png href=/img/css/favicon.png sizes=96x96><link type="application/atom+xml" rel="alternate" href="https://wouterj.nl/feed.xml" title="Wouter J" /><meta content="Wouter J" property="og:site_name">
+    
+      <meta content="Symfony 6: PHP 8 Native Types & Why we Need YOU" property="og:title">
+      <meta content="article" property="og:type">
+      <meta content="A very exciting time is coming with the biggest change for Symfony since
+Symfony 2.0: Symfony 6 has native PHP types on all its methods where it
+is possible. This will be a great push towards type safety in the PHP
+open source communities! Nicolas and
+Alexander have been working on and off for 2 years to create
+the best upgrade experience possible.
+Now, 2.5 months before the stable release, it is YOUR time to shine!
+Especially if you maintain any open source project (not even directly
+linked to Symfony), we would love to hear from you to make sure the
+upgrade isn’t dramatically hard.
+
+" property="og:description">
+      <meta content="2021-09-10T00:00:00+00:00" property="article:published_time">
+      <meta content="https://wouterj.nl/2021/09/symfony-6-native-typing" property="og:url">
+      <meta content="https://wouterj.nl/img/og/symfony-6-native-typing.png?1" property="og:image">
+    <script>if(!sessionStorage.getItem("_swa")){fetch("https://counter.dev/track?"+new URLSearchParams({referrer:document.referrer.indexOf(location.protocol+"//"+location.host)!==0?document.referrer:'',screen:screen.width+"x"+screen.height,user:"wouterj",utcoffset:"2"}),{headers:{"X-Referer":"https://wouterj.nl/2021/09/symfony-6-native-typing","Content-Type":"text/plain"}})};sessionStorage.setItem("_swa","1");</script></head>
+<body class="page  page--post" itemscope itemtype="http://schema.org/WebPage"><header class=page__header>
+    <hgroup class=page__headline>
+        <h1 class="site-title" itemprop="name"><a href="/">Wouter J</a></h1>
+    </hgroup><!--<nav class=page__nav>
+        <ul class="nav  nav--block"><li class="nav__item  "><a href="/categories/article/index.html"><i class=icon>&#xF139;</i> <span class="button__text">Articles</span></a></li><li class="nav__item  "><a href="/categories/experiment/index.html"><i class=icon>&#xF051;</i> <span class="button__text">Experiments</span></a></li><li class="nav__item  "><a href="/categories/links/index.html"><i class=icon>&#xF10E;</i> <span class="button__text">Links</span></a></li></ul>
+    </nav>-->
+  </div>
+</header>
+<div class=page__body itemscope itemtype="http://schema.org/Blog">
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+        <span class="post__category">
+        <time class="dt-published" datetime="2021-09-10T00:00:00+00:00" itemprop="datePublished">
+            SEP '21
+        </time>
+        
+        
+        &#xf139;
+        
+        </span>
+    
+
+    <h1 class="post__heading" itemprop="headline">Symfony 6: PHP 8 Native Types &amp; Why we Need YOU</h1>
+
+    
+
+    <div itemprop="articleBody">
+        <div class="post__entry--excerpt">
+            
+            <p>A very exciting time is coming with the biggest change for Symfony since
+Symfony 2.0: Symfony 6 has native PHP types on all its methods where it
+is possible. This will be a great push towards type safety in the PHP
+open source communities! <a href="https://github.com/sponsors/nicolas-grekas">Nicolas</a> and
+<a href="https://github.com/derrabus">Alexander</a> have been working on and off for 2 years to create
+the best upgrade experience possible.<br />
+Now, 2.5 months before the stable release, it is <em>YOUR</em> time to shine!
+Especially if you maintain any open source project (not even directly
+linked to Symfony), we would love to hear from you to make sure the
+upgrade isn’t dramatically hard.</p></div><div class="post__entry">
+
+<p>As of Symfony 5.4, the debug class loader (which is used in Symfony
+applications in the dev/test env) will check return type compatibility
+and warn you if a method is incompatible. Even more… it can fix it
+automatically for you! <a href="https://symfony.com/doc/5.4/setup/upgrade_major.html#upgrading-to-symfony-6-add-native-return-types">Read more about this feature in the Symfony
+docs.</a></p>
+      <h2 id="symfony-applications-upgrade-plan">
+        
+        
+          <a href="#symfony-applications-upgrade-plan" class="section-link"></a> Symfony Applications Upgrade Plan
+        
+        
+      </h2>
+
+<p>The upgrade plan is slightly different for open source packages and
+applications. This section describes your upgrade plan if you’re
+building applications using the Symfony framework (or only some
+components).</p>
+
+<p>The techniques and tools created to make this experience as smooth as
+possible are brand-new. Please install 5.4-dev now and let us <a href="https://github.com/symfony/symfony/issues/new/choose">know about
+any issue</a>.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre></td><td class="rouge-code"><pre><span class="nv">$ </span>composer config minimum-stability dev
+<span class="c"># now, modify all Symfony constraints to "^5.4" in "composer.json", then:</span>
+<span class="nv">$ </span>composer update <span class="s1">'symfony/*'</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+    
+      <h3 id="when-upgrading-to-symfony-54">
+        
+        
+          <a href="#when-upgrading-to-symfony-54" class="section-link"></a> When upgrading to Symfony 5.4
+        
+        
+      </h3>
+
+<p>First, upgrade to Symfony 5.4. Besides fixing all “normal” deprecations,
+you also need to fix some type declarations.</p>
+
+<p>In PHP, it is possible to define a return type when the parent
+declaration doesn’t define it (yet):</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+</pre></td><td class="rouge-code"><pre><span class="kd">interface</span> <span class="nc">UserInterface</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="n">getRoles</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="kd">class</span> <span class="nc">User</span> <span class="kd">implements</span> <span class="nc">UserInterface</span>
+<span class="p">{</span>
+    <span class="c1">// valid!</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="n">getRoles</span><span class="p">():</span> <span class="kt">array</span>
+    <span class="p">{</span>
+        <span class="c1">// ...</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>At the other hand, you must define a return type if your parent does
+(remember, Symfony 6 will define return types!). This means that 5.4 is
+your time to add return types to all methods (especially those
+overriding or implementing methods from Symfony).</p>
+
+<p>Symfony provides a small utility in the <a href="https://symfony.com/components/ErrorHandler"><code class="highlighter-rouge">symfony/error-handler</code> component</a>
+to automatically add the required return types. First, generate a
+complete classmap of your application using Composer. Then, run the
+utility:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+</pre></td><td class="rouge-code"><pre><span class="c"># (1) Make sure "exclude-from-classmap" is not set in your "composer.json"</span>
+
+<span class="c"># (2) Generate the classmap ("-o" is important!)</span>
+<span class="nv">$ </span>composer dump-autoload <span class="nt">-o</span>
+
+<span class="c"># (3) Run the patch script</span>
+<span class="nv">$ </span>./vendor/bin/patch-type-declarations
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>Once you’ve fixed them (and running this script above will do it all for
+you), you’re ready to upgrade to Symfony 6!</p>
+    
+      <h3 id="when-using-symfony-6x">
+        
+        
+          <a href="#when-using-symfony-6x" class="section-link"></a> When using Symfony 6.x
+        
+        
+      </h3>
+
+<p>After upgrading to Symfony 6.0, you can start adding parameter types.
+Parameter type compatibility is inverted compared to return types: a
+child may not set the type if the parent already does, but a child
+cannot set the type before the parent:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+</pre></td><td class="rouge-code"><pre><span class="kd">interface</span> <span class="nc">FormTypeGuesserInterface</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="n">guessType</span><span class="p">(</span><span class="nv">$class</span><span class="p">,</span> <span class="nv">$property</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kd">class</span> <span class="nc">CustomTypeGuesser</span> <span class="kd">implements</span> <span class="nc">UserInterface</span>
+<span class="p">{</span>
+    <span class="c1">// error!</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="n">guessType</span><span class="p">(</span><span class="kt">string</span> <span class="nv">$class</span><span class="p">,</span> <span class="kt">string</span> <span class="nv">$property</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="c1">// ...</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>For this reason, you cannot add these parameter types in 5.4.</p>
+    
+      <h2 id="symfony-bundle-maintainers-compatibility-plan">
+        
+        
+          <a href="#symfony-bundle-maintainers-compatibility-plan" class="section-link"></a> Symfony Bundle Maintainers Compatibility Plan
+        
+        
+      </h2>
+
+<p>Unfortunately, open source maintainers can experience some more trouble
+when adding return types. This is because you probably care about not
+breaking backwards compatibility. And, as noted before, defining a
+return type means all users overriding/implementing the method must
+define it as well.</p>
+    
+      <h3 id="document-the-return-type">
+        
+        
+          <a href="#document-the-return-type" class="section-link"></a> Document the Return Type
+        
+        
+      </h3>
+
+<p>First, you can add return types only on safe methods. These are methods
+that should not be extended by users of your package. The patch tool
+from Symfony defines safe methods as any method that:</p>
+
+<ul>
+  <li>Is in the <code class="highlighter-rouge">Tests</code> namespace</li>
+  <li>Is <code class="highlighter-rouge">final</code> or <code class="highlighter-rouge">@final</code> (or its class)</li>
+  <li>Is <code class="highlighter-rouge">@internal</code> (or its class)</li>
+  <li>Is <code class="highlighter-rouge">private</code></li>
+</ul>
+
+<p>Use <code class="highlighter-rouge">force=1</code> to only patch types for these safe methods:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre></td><td class="rouge-code"><pre><span class="c"># you can set the minimum PHP version, e.g. "static" won't be added</span>
+<span class="c"># as a return type for 7.4</span>
+<span class="nv">$ SYMFONY_PATCH_TYPE_DECLARATIONS</span><span class="o">=</span><span class="s2">"force=1&amp;php=7.4"</span> ./vendor/bin/patch-type-declarations
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>Now, you have to check if there are any methods that would produce an
+error in Symfony 6. The quickest way to do this is running the same
+script again. Any deprecation in the output is an incompatible method.</p>
+
+<p>If you don’t see any deprecation: Congratulations! You are compatible with
+Symfony 6 and can allow <code class="highlighter-rouge">^6.0</code> to your Symfony dependencies without having
+to break compatibility for your users.</p>
+    
+      <h3 id="fix-all-return-types">
+        
+        
+          <a href="#fix-all-return-types" class="section-link"></a> Fix all Return Types
+        
+        
+      </h3>
+
+<p>Some bundles may discover that they need to add return types to methods
+that might be overridden or implemented. As this causes a backwards
+compatibility break, you probably don’t want to do this in a minor
+release.</p>
+
+<p>Instead, make sure you properly document the correct return type using
+the <code class="highlighter-rouge">@return</code> PHPDoc. This will create the useful deprecations for your
+users to know they have to update their PHP return types. The patch
+script can add this PHPDoc for methods that implement/override from
+third party classes/interfaces:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre><span class="nv">$ SYMFONY_PATCH_TYPE_DECLARATIONS</span><span class="o">=</span><span class="nv">force</span><span class="o">=</span>phpdoc ./vendor/bin/patch-type-declarations
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>After this minor release with all deprecations, you can safely add all
+the missing return types in the next major version.</p>
+
+<p>The downside of this process is that you cannot support Symfony 6 until
+this major release of your own package. Make sure you keep on reading to
+know how you can maybe even avoid this!</p>
+    
+      <h2 id="we-need-you-to-make-everyones-life-better">
+        
+        
+          <a href="#we-need-you-to-make-everyones-life-better" class="section-link"></a> We need YOU to make everyone’s life better
+        
+        
+      </h2>
+
+<p>As you can see in this post, adding return types can have quite an
+impact on the community. Some return types might cause many packages to
+release a new major version, potentially messing up any roadmaps or
+other processes.</p>
+
+<p>This is why we welcome you to report any return type deprecation that is
+causing you to break compatibility in your package. You can do so in
+<a href="https://github.com/symfony/symfony/issues/43021">this GitHub issue</a>.</p>
+
+<p>We don’t promise anything, but based on the feedback we might postpone
+some return types to Symfony 7 (to give you 2 more years to release a
+new major version). We’ve already done so for some common methods found
+in the Symfony bundles (e.g. <code class="highlighter-rouge">Command::execute(): int</code> and
+<code class="highlighter-rouge">VoterInterface::vote(): int</code>).</p>
+    
+      <h2 id="take-homes">
+        
+        
+          <a href="#take-homes" class="section-link"></a> Take Home’s
+        
+        
+      </h2>
+
+<ul>
+  <li>Symfony 6 will be type safe</li>
+  <li>There is a <a href="https://symfony.com/doc/5.4/setup/upgrade_major.html#upgrading-to-symfony-6-add-native-return-types"><code class="highlighter-rouge">patch-type-declarations</code> script</a> in Symfony 5.4+ that
+automatically makes your code compatible</li>
+  <li>Open source maintainers have 2.5 months to <a href="https://github.com/symfony/symfony/issues/43021">help us reduce the
+impact</a> of this change</li>
+</ul>
+
+        </div>
+    </div>
+</article>
+
+    </main><footer class="page__footer">
+    <p>&copy; Copyright 2012 - 2022 Wouter de Jong</p>
+</footer>
+</body>
+
+</html>

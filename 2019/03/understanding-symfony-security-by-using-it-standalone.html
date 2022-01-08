@@ -1,0 +1,590 @@
+<!doctype html>
+<html lang=""><head>
+    <meta charset=utf-8>
+
+    <title>Understanding Symfony Security by Using it Standalone ~ Wouter J</title>
+
+    <meta http-equiv=X-UA-Compatible content="IE=edge">
+    <meta name=viewport content="width=device-width, initial-scale=1">
+    <meta name=theme-color content=#cc3333>
+
+    <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Serif:400,400i,700|Oswald|Inconsolata" rel="stylesheet">
+    <link rel=stylesheet href="/assets/main.css">
+    <link rel=icon type=image/png href=/img/css/favicon.png sizes=96x96><link type="application/atom+xml" rel="alternate" href="https://wouterj.nl/feed.xml" title="Wouter J" /><meta content="Wouter J" property="og:site_name">
+    
+      <meta content="Understanding Symfony Security by Using it Standalone" property="og:title">
+      <meta content="article" property="og:type">
+      <meta content="Setting up big Symfony components in a blank PHP project helps a lot to
+understand it. You’ll grasp the main architecture of the component much easier
+this way. Let’s try to understand Symfony Security by doing exactly this!
+
+" property="og:description">
+      <meta content="2019-03-20T00:00:00+00:00" property="article:published_time">
+      <meta content="https://wouterj.nl/2019/03/understanding-symfony-security-by-using-it-standalone" property="og:url">
+      <meta content="https://wouterj.nl/img/og/understanding-symfony-security-by-using-it-standalone.png?1" property="og:image">
+    <script>if(!sessionStorage.getItem("_swa")){fetch("https://counter.dev/track?"+new URLSearchParams({referrer:document.referrer.indexOf(location.protocol+"//"+location.host)!==0?document.referrer:'',screen:screen.width+"x"+screen.height,user:"wouterj",utcoffset:"2"}),{headers:{"X-Referer":"https://wouterj.nl/2019/03/understanding-symfony-security-by-using-it-standalone","Content-Type":"text/plain"}})};sessionStorage.setItem("_swa","1");</script></head>
+<body class="page  page--post" itemscope itemtype="http://schema.org/WebPage"><header class=page__header>
+    <hgroup class=page__headline>
+        <h1 class="site-title" itemprop="name"><a href="/">Wouter J</a></h1>
+    </hgroup><!--<nav class=page__nav>
+        <ul class="nav  nav--block"><li class="nav__item  "><a href="/categories/article/index.html"><i class=icon>&#xF139;</i> <span class="button__text">Articles</span></a></li><li class="nav__item  "><a href="/categories/experiment/index.html"><i class=icon>&#xF051;</i> <span class="button__text">Experiments</span></a></li><li class="nav__item  "><a href="/categories/links/index.html"><i class=icon>&#xF10E;</i> <span class="button__text">Links</span></a></li></ul>
+    </nav>-->
+  </div>
+</header>
+<div class=page__body itemscope itemtype="http://schema.org/Blog">
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+        <span class="post__category">
+        <time class="dt-published" datetime="2019-03-20T00:00:00+00:00" itemprop="datePublished">
+            MAR '19
+        </time>
+        
+        
+        &#xf139;
+        
+        </span>
+    
+
+    <h1 class="post__heading" itemprop="headline">Understanding Symfony Security by Using it Standalone</h1>
+
+    
+
+    <div itemprop="articleBody">
+        <div class="post__entry--excerpt">
+            
+            <p>Setting up big Symfony components in a blank PHP project helps a lot to
+understand it. You’ll grasp the main architecture of the component much easier
+this way. Let’s try to understand Symfony Security by doing exactly this!</p></div><div class="post__entry">
+      <h2 id="security-101">
+        
+        
+          <a href="#security-101" class="section-link"></a> Security 101
+        
+        
+      </h2>
+
+<p>On almost all platforms, security consists of two phases: Authentication and
+Authorization. Let’s quickly discuss them before digging deep into Symfony
+security:</p>
+
+<p><img src="/img/security-phases.png" alt="Authentication and Authorization" /></p>
+
+<ol>
+  <li><strong>Who are you?</strong> is the main question of <em>Authentication</em>. Every HTTP request
+again, we have to find out who the requester is. At first visit to a site,
+this is usually a login form. A second request often uses a session stored
+after logging in to find out who you are. An API call often uses API tokens</li>
+  <li><strong>Are you allowed to do this?</strong> is the question answered during
+<em>Authorization</em>. Every request involves an action. For instance, you are
+reading this blog article, I’m editing it at the moment, over 10 years I’ll
+probably delete it, etc. During authorization, we find out if the person
+identified in (1) is allowed to do the action he wants to do</li>
+</ol>
+    
+      <h2 id="set-up-our-blank-project">
+        
+        
+          <a href="#set-up-our-blank-project" class="section-link"></a> Set-up our Blank Project
+        
+        
+      </h2>
+
+<aside class="side" data-type="example">
+  <p>The final project of this blogpost can be found at
+<a href="https://github.com/wouterj-nl/security-standalone">github</a>.</p>
+</aside>
+
+<p>Setting up a blank project is nothing more than creating a new directory. In
+the directory, we’ll use <a href="https://getcomposer.org/">Composer</a> to install the
+Security Core component:</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre></td><td class="rouge-code"><pre><span class="nv">$ </span><span class="nb">mkdir </span>security-101
+<span class="nv">$ </span><span class="nb">cd </span>security-101
+<span class="nv">$ </span>composer require symfony/security-core
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>Security contains a couple sub components: Core, Http, Guard, Csrf. In this
+post, we’ll focus on the core only. In a funny plot twist, you’ll directly
+discover what HTTP is doing if you’re reading the side notes!</p>
+    
+      <h2 id="authentication-input-the-token">
+        
+        
+          <a href="#authentication-input-the-token" class="section-link"></a> Authentication Input: The token
+        
+        
+      </h2>
+
+<p>The question “who are you?” can only be answered if we have input from the user
+world (there must be a “you”). This input can be anything. As already
+explained, the values of the login form upon login is one example of this
+input. In all requests after the user logged in, a browser session represents
+the input from user world.</p>
+
+<aside class="side" data-type="Symfony internals">
+  <p>The HTTP Security component uses listeners attached to
+<a href="https://symfony.com/doc/current/reference/events.html#kernel-request"><code class="highlighter-rouge">kernel.request</code></a>
+to create tokens. For instance, the
+<a href="https://github.com/symfony/security/blob/88588499b5c3ed78becea8e0c4ec8d81e0e4f483/Http/Firewall/UsernamePasswordFormAuthenticationListener.php"><code class="highlighter-rouge">UsernamePasswordFormAuthenticationListener</code></a>
+creates a <code class="highlighter-rouge">UsernamePasswordToken</code> based on the login form submit.</p>
+</aside>
+
+<p>As our goal is just to write one working PHP file, we’ll use static strings as
+“input from the user”:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+</pre></td><td class="rouge-code"><pre><span class="cp">&lt;?php</span> <span class="c1">// secure.php</span>
+
+<span class="k">require_once</span> <span class="s1">'vendor/autoload.php'</span><span class="p">;</span>
+
+<span class="kn">use</span> <span class="nc">Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken</span><span class="p">;</span>
+
+<span class="nv">$token</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">UsernamePasswordToken</span><span class="p">(</span><span class="s1">'wouter'</span><span class="p">,</span> <span class="s1">'pa$$word'</span><span class="p">,</span> <span class="s1">'default'</span><span class="p">);</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>This type of token is most often used in traditional applications, it holds a
+username and a password (ignore that third argument for the moment). Other
+tokens are for instance a <code class="highlighter-rouge">RememberMeToken</code>, which uses a browser cookie, or
+you can create an <code class="highlighter-rouge">BearerToken</code> that contains a header used for API requests.</p>
+    
+      <h3 id="lets-authenticate-the-token-meet-the-authenticationmanager">
+        
+        
+          <a href="#lets-authenticate-the-token-meet-the-authenticationmanager" class="section-link"></a> Let’s Authenticate the Token: Meet the AuthenticationManager
+        
+        
+      </h3>
+
+<p>Now we have the token representing the user input, it’s time to authenticate
+it. The Security component provides an <code class="highlighter-rouge">AuthenticationManagerInterface</code> for this.
+By default, only one implementation of this interface is provided: The
+<code class="highlighter-rouge">AuthenticationProviderManager</code>. Its name is quite confusing, it’s not managing
+<em>authentication providers</em>, but it is the <em>authentication manager</em> based on
+<em>authentication providers</em>.</p>
+
+<p><code class="highlighter-rouge">AuthenticationProviderInterface</code> classes do the hard work for this manager:
+They transform an unauthenticated token into an authenticated token. In other
+words, they transform user input into a security identity.</p>
+
+<aside class="side" data-type="Symfony internals">
+  <p><a href="https://github.com/symfony/security/tree/88588499b5c3ed78becea8e0c4ec8d81e0e4f483/Core/Authentication/Provider">Other authentication providers</a>
+are for instance a <code class="highlighter-rouge">RememberMeAuthenticationProvider</code> (authenticating a remember-me
+cookie) and an <code class="highlighter-rouge">AnonymousAuthenticationProvider</code> (which always returns a token
+representing an anonymous user).</p>
+</aside>
+
+<p>The most commonly used provider is the <code class="highlighter-rouge">DaoAuthenticationProvider</code> (<strong>D</strong>ata
+<strong>A</strong>ccess <strong>O</strong>bject). It uses a <em>user provider</em> to find a user matching the
+input from somewhere and then matches the password (using a <em>password encoder</em>).</p>
+    
+      <h3 id="set-up-some-user-resources-the-userprovider">
+        
+        
+          <a href="#set-up-some-user-resources-the-userprovider" class="section-link"></a> Set-up some User Resources: The UserProvider
+        
+        
+      </h3>
+
+<p>To get things working, we first define a class able to load users from “some
+resource”. In this case, we use the <code class="highlighter-rouge">InMemoryUserProvider</code> that fetches users
+from a PHP array.</p>
+
+<aside class="side" data-type="Symfony internals">
+  <p><a href="https://github.com/symfony/security/tree/88588499b5c3ed78becea8e0c4ec8d81e0e4f483/Core/User">Other user providers</a>
+load users from a database or LDAP servers.</p>
+</aside>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+</pre></td><td class="rouge-code"><pre><span class="c1">// secure.php</span>
+<span class="kn">use</span> <span class="nc">Symfony\Component\Security\Core\User\InMemoryUserProvider</span><span class="p">;</span>
+<span class="c1">// ...</span>
+
+<span class="nv">$userProvider</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">InMemoryUserProvider</span><span class="p">([</span>
+    <span class="s1">'wouter'</span> <span class="o">=&gt;</span> <span class="p">[</span>
+        <span class="s1">'password'</span> <span class="o">=&gt;</span> <span class="s1">'pa$$word'</span><span class="p">,</span>
+        <span class="s1">'roles'</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">'TITLE_SUPERVISOR'</span><span class="p">]</span>
+    <span class="p">],</span>
+<span class="p">]);</span>
+
+<span class="c1">// As an example of this class, let's find the user:</span>
+<span class="nv">$wouterUser</span> <span class="o">=</span> <span class="nv">$userProvider</span><span class="o">-&gt;</span><span class="nf">loadUserByUsername</span><span class="p">(</span><span class="s1">'wouter'</span><span class="p">);</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+    
+      <h3 id="safety-first-encrypted-user-passwords">
+        
+        
+          <a href="#safety-first-encrypted-user-passwords" class="section-link"></a> Safety first: Encrypted User Passwords
+        
+        
+      </h3>
+
+<p>Saving plain texts passwords is a no-go for web applications. They are often
+encoded using for instance bcrypt or sha256. This is abstracted in <em>password
+encoders</em>. They are able to encode a plain text password and check whether the
+password entered by the user was valid:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+</pre></td><td class="rouge-code"><pre><span class="c1">// secure.php</span>
+<span class="kn">use</span> <span class="nc">Symfony\Component\Security\Core\Encoder\EncoderFactory</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nc">Symfony\Component\Security\Core\Encoder\PlaintextPasswordEncoder</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nc">Symfony\Component\Security\Core\User\User</span><span class="p">;</span>
+<span class="c1">// ...</span>
+
+<span class="nv">$encoderFactory</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">EncoderFactory</span><span class="p">([</span>
+    <span class="c1">// we take the easiest road: plain text passwords</span>
+    <span class="nc">User</span><span class="o">::</span><span class="n">class</span> <span class="o">=&gt;</span> <span class="k">new</span> <span class="nc">PlaintextPasswordEncoder</span><span class="p">(),</span>
+<span class="p">]);</span>
+
+<span class="c1">// First, get the encoder associated with our user (other users</span>
+<span class="c1">// can use other encoders).</span>
+<span class="nv">$encoderFactory</span><span class="o">-&gt;</span><span class="nf">getEncoder</span><span class="p">(</span><span class="nc">User</span><span class="o">::</span><span class="n">class</span><span class="p">)</span>
+    <span class="c1">// Then, check whether some input matches our user's password:</span>
+    <span class="o">-&gt;</span><span class="nf">isPasswordValid</span><span class="p">(</span><span class="nv">$wouterUser</span><span class="o">-&gt;</span><span class="nf">getPassword</span><span class="p">(),</span> <span class="s1">'pa$$word'</span><span class="p">,</span> <span class="s1">''</span><span class="p">);</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+    
+      <h3 id="instantiating-the-authentication-manager">
+        
+        
+          <a href="#instantiating-the-authentication-manager" class="section-link"></a> Instantiating the Authentication Manager
+        
+        
+      </h3>
+
+<p>Yay, it took quite some effort, but we’re ready to create the
+<code class="highlighter-rouge">AuthenticationProviderManager</code>!</p>
+
+<aside class="side" data-type="Symfony internals">
+  <p>If you look closely, the <code class="highlighter-rouge">'default'</code> string is equal to the one provided in the
+token: This is the <em>provider key</em>. It is used to make sure the token is from
+our application and also to know which provided should handle the token
+(multiple providers might be able to handle a <code class="highlighter-rouge">UsernamePasswordToken</code>).</p>
+</aside>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+</pre></td><td class="rouge-code"><pre><span class="c1">// secure.php</span>
+<span class="kn">use</span> <span class="nc">Symfony\Component\Security\Core\Authentication\AuthenticationProviderManager</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nc">Symfony\Component\Security\Core\Authentication\Provider\DaoAuthenticationProvider</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nc">Symfony\Component\Security\Core\User\UserChecker</span><span class="p">;</span>
+<span class="c1">// ...</span>
+
+<span class="nv">$authenticationManager</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">AuthenticationProviderManager</span><span class="p">([</span>
+    <span class="k">new</span> <span class="nc">DaoAuthenticationProvider</span><span class="p">(</span>
+        <span class="nv">$userProvider</span><span class="p">,</span>
+        <span class="k">new</span> <span class="nc">UserChecker</span><span class="p">(),</span>
+        <span class="s1">'default'</span><span class="p">,</span>
+        <span class="nv">$encoderFactory</span>
+    <span class="p">),</span>
+<span class="p">]);</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>As you see, there is one more class: The <code class="highlighter-rouge">UserChecker</code>. It checks some “user
+flags” after it is fetched from the user provider. This includes for instance
+whether the user is activated, banned, etc.</p>
+    
+      <h3 id="authenticating-the-token">
+        
+        
+          <a href="#authenticating-the-token" class="section-link"></a> Authenticating the Token
+        
+        
+      </h3>
+
+<aside class="side" data-type="Symfony internals">
+  <p>The firewall listeners of Http security also call the authenticate method
+directly. See for instance the
+<a href="https://github.com/symfony/security/blob/88588499b5c3ed78becea8e0c4ec8d81e0e4f483/Http/Firewall/UsernamePasswordFormAuthenticationListener.php#L100"><code class="highlighter-rouge">UsernamePasswordFormAuthenticationListener</code></a>.</p>
+</aside>
+
+<p>Finally – we’re more than halfway the post now – we are able to authenticate
+the token we created:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+</pre></td><td class="rouge-code"><pre><span class="c1">// secure.php</span>
+
+<span class="c1">// ...</span>
+
+<span class="nv">$authenticatedToken</span> <span class="o">=</span> <span class="nv">$authenticationManager</span><span class="o">-&gt;</span><span class="nf">authenticate</span><span class="p">(</span><span class="nv">$inputToken</span><span class="p">);</span>
+
+<span class="k">echo</span> <span class="s1">'Hello '</span><span class="mf">.</span><span class="nv">$authenticatedToken</span><span class="o">-&gt;</span><span class="nf">getUsername</span><span class="p">()</span><span class="mf">.</span><span class="s1">'!'</span><span class="p">;</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+    
+      <h2 id="authorize-actions-the-accessdecisionmanager">
+        
+        
+          <a href="#authorize-actions-the-accessdecisionmanager" class="section-link"></a> Authorize Actions: The AccessDecisionManager
+        
+        
+      </h2>
+
+<aside class="side" data-type="Symfony internals">
+  <p>Symfony security started as a direct port of JAVA’s <a href="https://spring.io/projects/spring-security">Spring
+Security</a>. This is why the naming
+is often quite different from the rest of Symfony. It however, gives you two
+documentations to understand Security!</p>
+</aside>
+
+<p>Now we’ve authenticated the user input and the Security system validated our
+input, it’s time to answer the <em>Are you allowe to do this?</em> question. Let me
+introduce you to yet another “manager”: <code class="highlighter-rouge">AccessDecisionManagerInterface</code>.</p>
+
+<p>The default implementation uses “Security voters” to decide whether the user is
+allowed to execute an action. These voters are provided with an <em>attribute</em>
+(representing the action) and optionally some context (i.e. the subject of the
+action).</p>
+
+<aside class="side" data-type="Symfony internals">
+  <p>In the Http component, an <a href="https://github.com/symfony/security/blob/88588499b5c3ed78becea8e0c4ec8d81e0e4f483/Http/Firewall/AccessListener.php"><code class="highlighter-rouge">AccessListener</code></a>
+checks access using this manager based on the configured <code class="highlighter-rouge">access_control</code>
+rules.</p>
+</aside>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+</pre></td><td class="rouge-code"><pre><span class="c1">// secure.php</span>
+<span class="kn">use</span> <span class="nc">Symfony\Component\Security\Core\Authorization\AccessDecisionManager</span><span class="p">;</span>
+<span class="c1">// ...</span>
+
+<span class="nv">$accessDecisionManager</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">AccessDecisionManager</span><span class="p">([</span>
+    <span class="c1">// ... voters</span>
+<span class="p">]);</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>The default voters of Symfony are a bit strange, they don’t validate an action,
+but validate the user’s identity. One of them is the <code class="highlighter-rouge">RoleVoter</code>. It checks
+whether <code class="highlighter-rouge">User#getRoles()</code> contains the provided attribute:</p>
+
+<aside class="side" data-type="Symfony internals">
+  <p>A <code class="highlighter-rouge">RoleHierarchyVoter</code> is also provided, which understands hierarchies in
+roles (i.e. “admin is a user”). <a href="https://github.com/symfony/security/tree/88588499b5c3ed78becea8e0c4ec8d81e0e4f483/Core/Authorization/Voter">Another default voter</a>
+is the <code class="highlighter-rouge">AuthenticatedVoter</code>, which checks if the token is fully authenticated,
+anonymous, etc.</p>
+</aside>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+</pre></td><td class="rouge-code"><pre><span class="c1">// secure.php</span>
+<span class="kn">use</span> <span class="nc">Symfony\Component\Security\Core\Authorization\Voter\RoleVoter</span><span class="p">;</span>
+<span class="c1">// ...</span>
+
+<span class="nv">$accessDecisionManager</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">AccessDecisionManager</span><span class="p">([</span>
+    <span class="c1">// TITLE_ is the prefix an attribute must have in order to be</span>
+    <span class="c1">// managed by this voter</span>
+    <span class="k">new</span> <span class="nc">RoleVoter</span><span class="p">(</span><span class="s1">'TITLE_'</span><span class="p">),</span>
+<span class="p">]);</span>
+
+<span class="c1">// now we can use the access decision manager to see if the</span>
+<span class="c1">// authenticated token has the "supervisor" role:</span>
+<span class="nv">$isSupervisor</span> <span class="o">=</span> <span class="nv">$accessDecisionManager</span><span class="o">-&gt;</span><span class="nf">decide</span><span class="p">(</span>
+    <span class="nv">$authenticatedToken</span><span class="p">,</span>
+    <span class="p">[</span><span class="s1">'TITLE_SUPERVISOR'</span><span class="p">]</span>
+<span class="p">);</span>
+
+<span class="c1">// If we add a custom voter, we would be able to i.e. test if we are</span>
+<span class="c1">// able to view a user's profile:</span>
+<span class="nv">$canViewProfile</span> <span class="o">=</span> <span class="nv">$accessDecisionManager</span><span class="o">-&gt;</span><span class="nf">decide</span><span class="p">(</span>
+    <span class="nv">$authenticatedToken</span><span class="p">,</span>
+    <span class="p">[</span><span class="s1">'VIEW'</span><span class="p">],</span>
+    <span class="nv">$authenticatedToken</span><span class="o">-&gt;</span><span class="nf">getUser</span><span class="p">()</span> <span class="c1">// some context for the "view" action</span>
+<span class="p">);</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+    
+      <h2 id="relation-with-the-symfony-framework">
+        
+        
+          <a href="#relation-with-the-symfony-framework" class="section-link"></a> Relation with the Symfony Framework
+        
+        
+      </h2>
+
+<p>Now, if we take a look at the configuration for the SecurityBundle, we’ll find
+many relations with the architecture used above:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+</pre></td><td class="rouge-code"><pre><span class="na">security</span><span class="pi">:</span>
+    <span class="c1"># Providers: UserProvider classes</span>
+    <span class="na">providers</span><span class="pi">:</span>
+        <span class="na">in_memory</span><span class="pi">:</span>
+            <span class="c1"># indicating the InMemoryUserProvider</span>
+            <span class="na">memory</span><span class="pi">:</span> <span class="s">~</span>
+
+    <span class="c1"># The UserPasswordEncoders</span>
+    <span class="na">encoders</span><span class="pi">:</span>
+        <span class="s">Symfony\Component\Security\Core\User\UserInterface</span><span class="pi">:</span> <span class="s">plaintext</span>
+
+    <span class="c1"># Firewalls are listeners of the HTTP component that</span>
+    <span class="c1"># execute authentication based on paths</span>
+    <span class="na">firewalls</span><span class="pi">:</span>
+        <span class="c1"># ...</span>
+
+        <span class="c1"># Each firewall configures a list of authentication providers</span>
+        <span class="c1"># used for this AuthenticationProviderManager. I.e. all</span>
+        <span class="c1"># firewalls are one AuthenticationProviderManager (and thus,</span>
+        <span class="c1"># one security system).</span>
+        <span class="na">main</span><span class="pi">:</span>
+            <span class="c1"># AnonymousAuthenticationProvider</span>
+            <span class="na">anonymous</span><span class="pi">:</span> <span class="no">true</span>
+
+            <span class="c1"># Use UsernamePasswordToken and DaoAuthenticationProvider</span>
+            <span class="na">http_basic</span><span class="pi">:</span> <span class="no">true</span>
+            <span class="na">form_login</span><span class="pi">:</span> <span class="no">true</span>
+
+    <span class="c1"># Relate to AccessDecisionManager#isGranted() calls for</span>
+    <span class="c1"># specific paths</span>
+    <span class="na">access_control</span><span class="pi">:</span>
+        <span class="pi">-</span> <span class="pi">{</span> <span class="nv">path</span><span class="pi">:</span> <span class="nv">^/admin</span><span class="pi">,</span> <span class="nv">roles</span><span class="pi">:</span> <span class="nv">ROLE_ADMIN</span> <span class="pi">}</span>
+        <span class="pi">-</span> <span class="pi">{</span> <span class="nv">path</span><span class="pi">:</span> <span class="nv">^/profile</span><span class="pi">,</span> <span class="nv">roles</span><span class="pi">:</span> <span class="nv">ROLE_USER</span> <span class="pi">}</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+    
+      <h2 id="take-homes">
+        
+        
+          <a href="#take-homes" class="section-link"></a> Take Home’s
+        
+        
+      </h2>
+
+<p>I hope this posts has provided you some insights in how the Security component
+works.</p>
+
+<ul>
+  <li>Security HTTP is only a small layer converting HTTP requests into input for
+the Security system</li>
+  <li>There are many similarities between the config in the Symfony framework and
+the workings of the Security Core component</li>
+  <li>A complete working implementation of the Security component can be achieved
+in 20 lines of PHP</li>
+</ul>
+
+<p>In this posts, you might have also observed some weird things. I’ll go into
+further detail on them in later posts.</p>
+
+<ul>
+  <li>There is no build-in authorization for API tokens</li>
+  <li>The token representing user input is the same as the authenticated token</li>
+  <li>Authorization by default is on the <em>identity</em> rather than the <em>action</em></li>
+</ul>
+
+        </div>
+    </div>
+</article>
+
+    </main><footer class="page__footer">
+    <p>&copy; Copyright 2012 - 2022 Wouter de Jong</p>
+</footer>
+</body>
+
+</html>

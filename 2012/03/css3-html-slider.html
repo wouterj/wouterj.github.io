@@ -1,0 +1,459 @@
+<!doctype html>
+<html lang=""><head>
+    <meta charset=utf-8>
+
+    <title>Pure CSS3 en HTML slider ~ Wouter J</title>
+
+    <meta http-equiv=X-UA-Compatible content="IE=edge">
+    <meta name=viewport content="width=device-width, initial-scale=1">
+    <meta name=theme-color content=#cc3333>
+
+    <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Serif:400,400i,700|Oswald|Inconsolata" rel="stylesheet">
+    <link rel=stylesheet href="/assets/main.css">
+    <link rel=icon type=image/png href=/img/css/favicon.png sizes=96x96><link type="application/atom+xml" rel="alternate" href="https://wouterj.nl/feed.xml" title="Wouter J" /><meta content="Wouter J" property="og:site_name">
+    
+      <meta content="Pure CSS3 en HTML slider" property="og:title">
+      <meta content="article" property="og:type">
+      <meta content="Op 10 nov. 2011 zei
+Jeffrey Way op Google+:
+“So here’s what I came up with for my simple CSS3-only slider. Not
+practical yet - but as a proof of concept… http://jsfiddle.net/8TYm3/2/”
+
+" property="og:description">
+      <meta content="2012-03-24T00:00:00+00:00" property="article:published_time">
+      <meta content="https://wouterj.nl/2012/03/css3-html-slider" property="og:url">
+      <meta content="https://wouterj.nl/img/og/css3-html-slider.png?1" property="og:image">
+    <script>if(!sessionStorage.getItem("_swa")){fetch("https://counter.dev/track?"+new URLSearchParams({referrer:document.referrer.indexOf(location.protocol+"//"+location.host)!==0?document.referrer:'',screen:screen.width+"x"+screen.height,user:"wouterj",utcoffset:"2"}),{headers:{"X-Referer":"https://wouterj.nl/2012/03/css3-html-slider","Content-Type":"text/plain"}})};sessionStorage.setItem("_swa","1");</script></head>
+<body class="page  page--post" itemscope itemtype="http://schema.org/WebPage"><header class=page__header>
+    <hgroup class=page__headline>
+        <h1 class="site-title" itemprop="name"><a href="/">Wouter J</a></h1>
+    </hgroup><!--<nav class=page__nav>
+        <ul class="nav  nav--block"><li class="nav__item  "><a href="/categories/article/index.html"><i class=icon>&#xF139;</i> <span class="button__text">Articles</span></a></li><li class="nav__item  "><a href="/categories/experiment/index.html"><i class=icon>&#xF051;</i> <span class="button__text">Experiments</span></a></li><li class="nav__item  "><a href="/categories/links/index.html"><i class=icon>&#xF10E;</i> <span class="button__text">Links</span></a></li></ul>
+    </nav>-->
+  </div>
+</header>
+<div class=page__body itemscope itemtype="http://schema.org/Blog">
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+        <span class="post__category">
+        <time class="dt-published" datetime="2012-03-24T00:00:00+00:00" itemprop="datePublished">
+            MAR '12
+        </time>
+        
+        
+        &#xf051;
+        
+        </span>
+    
+
+    <h1 class="post__heading" itemprop="headline">Pure CSS3 en HTML slider</h1>
+
+    
+    <img src="https://wouterj.nl/img/css3-slider-thumb.jpg" class="post__thumbnail  img--stripe  img--short  img--right" itemprop="thumbnailUrl">
+    
+
+    <div itemprop="articleBody">
+        <div class="post__entry--excerpt">
+            
+            <p>Op 10 nov. 2011 zei
+<a href="https://plus.google.com/117682024645575752797/posts/dRQApCxohW1">Jeffrey Way op Google+</a>:
+<em>“So here’s what I came up with for my simple CSS3-only slider. Not
+practical yet - but as a proof of concept… http://jsfiddle.net/8TYm3/2/”</em></p></div><div class="post__entry">
+
+<p>Dit heeft mij aan het denken gezet om ook een CSS3 slider te maken, die een
+mooie HTML heeft en makkelijk te bedienen is. In dit bericht wil ik graag
+laten zien wat het resultaat is geworden en hoe je tot zoiets komt.</p>
+      <h2 id="css3-animations">
+        
+        
+          <a href="#css3-animations" class="section-link"></a> CSS3 Animations
+        
+        
+      </h2>
+
+<p>Allereerst kun je zoiets natuurlijk niet met CSS2 af. Je zult CSS3 technieken
+moeten gebruiken, animations om exact te zijn. Dit betekend dat het momenteel
+alleen zal werken in Chrome of FireFox.</p>
+
+<p>Helaas, maar dit is natuurlijk ook alleen als test en oefening, het is
+momenteel nog niet serieus te gebruiken.</p>
+    
+      <h2 id="het-concept">
+        
+        
+          <a href="#het-concept" class="section-link"></a> Het concept
+        
+        
+      </h2>
+
+<p>Wat vaak het beste werkt als je met iets nieuws begint is je computer
+afsluiten of je lap top dichtklappen en een kladblok, potlood en gum te
+pakken. Vervolgens ga je al je ideeën opschreven en kijk je of ze wel mogelijk
+zijn.</p>
+
+<p>Deze techniek heb ik deze keer ook gebruikt, alleen vandaag heb ik nog wat
+extra’s erbij gepakt: Wat lijm en een schaar. Vervolgens heb ik hier wat
+zitten knippen en plakken en ben zo tot het basis concept gekomen.</p>
+    
+      <h3 id="probleem-1-hoe-beweeg-je-de-afbeeldingen">
+        
+        
+          <a href="#probleem-1-hoe-beweeg-je-de-afbeeldingen" class="section-link"></a> Probleem 1: Hoe beweeg je de afbeeldingen?
+        
+        
+      </h3>
+
+<p>Dit probleem lijkt, als je CSS3 animations doorhebt, in het begin makkelijk.
+Maar dat is schijn. Want je kan moeilijk per afbeelding een animatie frame
+maken. Laten we eerst eens kijken hoe we dit willen gebruiken als HTML code.
+Wat zou de beste manier zijn om iets semantisch correct en makkelijk
+handelbaar te krijgen?</p>
+
+<p>Het eerste idee:</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+</pre></td><td class="rouge-code"><pre><span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"slider"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;img</span> <span class="na">src=</span><span class="s">"img/slide1.png"</span> <span class="na">alt=</span><span class="s">"some text"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;img</span> <span class="na">src=</span><span class="s">"img/slide2.png"</span> <span class="na">alt=</span><span class="s">"some other text"</span><span class="nt">&gt;</span>
+    <span class="c">&lt;!-- ... --&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>Ziet er niet verkeerd uit, zo werken de meeste jQuery sliders ook. Alleen hoe
+gaan we deze nou bewegen? We kunnen moeilijk de hele slider <code class="highlighter-rouge">div</code> gaan bewegen
+en een ander element die alle slides omringt hebben we niet…  Laat ik hier
+stoppen en bedenk eerst zelf een oplossen voordat je verder scrolled.</p>
+    
+      <h4 id="oplossing">
+        
+        
+          <a href="#oplossing" class="section-link"></a> Oplossing
+        
+        
+      </h4>
+
+<p>Als we nou eens de slides zien als een lijst van afbeeldingen (slides)? Dan
+kunnen we de <code class="highlighter-rouge">ul</code> als overkoepelende element gebruiken en de li’s daarmee
+animeren. Ook qua semantisch opzicht is het te verdedigen en zeker niet fout.
+De code wordt dus zoiets:</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+</pre></td><td class="rouge-code"><pre><span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"slider"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;ul&gt;</span>
+    <span class="nt">&lt;li&gt;&lt;img</span> <span class="na">src=</span><span class="s">"img/slide1.png"</span> <span class="na">alt=</span><span class="s">"some text"</span><span class="nt">&gt;&lt;/li&gt;</span>
+    <span class="nt">&lt;li&gt;&lt;img</span> <span class="na">src=</span><span class="s">"img/slide2.png"</span> <span class="na">alt=</span><span class="s">"some other text"</span><span class="nt">&gt;&lt;/li&gt;</span>
+<span class="nt">&lt;/ul&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+    
+      <h3 id="probleem-2-hoe-verbergen-we-de-andere-afbeeldingen">
+        
+        
+          <a href="#probleem-2-hoe-verbergen-we-de-andere-afbeeldingen" class="section-link"></a> Probleem 2: Hoe verbergen we de andere afbeeldingen?
+        
+        
+      </h3>
+
+<p>Je wilt per keer maar 1 afbeelding laten zien, dus de andere moet je zien te
+verbergen. Nu heb ik ooit een jQuery scriptje gemaakt waarbij je een soort
+spotlight effect creëerde. Als je met de muis over de afbeelding bewoog werd
+alles donker behalve een cirkel met een diameter van ong. 10px rond je muis.
+Daar moest ik hierbij als eerst aan denken. Ik gebruikte hiervoor destijds een
+gigantisch grote (qua formaat) donkere afbeelding met in het midden een
+doorzicht cirkeltje. Als we dit nu ook toepassen in dit voorbeeld? Helaas, is
+dit niet praktisch (en dat is nou juist niet wat we willen). Want:</p>
+
+<ol>
+  <li>Je moet het formaat van het doorzichtige gat telkens aanpassen als je het
+slider-formaat veranderd</li>
+  <li>Je moet het niet doorzichtige gedeelte telkens aanpassen aan de kleur die
+je als achtergrond op de pagina wilt hebben.</li>
+</ol>
+
+<p>Wat kan dan wel de oplossing zijn? Denk eerst zelf wat na en ga wat knippen en
+plakken, zo kun je hier nog wat van leren, of bekijk meteen het filmpje waarin
+ik (helaas zonder geluid) laat zien hoe je het kan oplossen:</p>
+
+<p>Even kort beschreven de oplossing is dat we <code class="highlighter-rouge">#slider</code> <code class="highlighter-rouge">overflow: hidden;</code>
+meegeven en de breedte en hoogte van de slides.  Hierdoor zie je telkens maar
+1 afbeelding.</p>
+    
+      <h2 id="uitvoering">
+        
+        
+          <a href="#uitvoering" class="section-link"></a> Uitvoering
+        
+        
+      </h2>
+
+<p>Tot zover het verkennen van de mogelijkheden en het uitwerken van het idee. Nu
+moeten we de CSS gaan schrijven. Laten we weer bij het begin beginnen:</p>
+    
+      <h3 id="afbeeldingen-in-ul-naast-elkaar-krijgen">
+        
+        
+          <a href="#afbeeldingen-in-ul-naast-elkaar-krijgen" class="section-link"></a> Afbeeldingen in <code class="highlighter-rouge">ul</code> naast elkaar krijgen
+        
+        
+      </h3>
+
+<p>Eerst moeten we de slides naast elkaar krijgen. Dit doen we heel simpel door
+<code class="highlighter-rouge">float: left;</code> mee te geven aan <code class="highlighter-rouge">li</code>. NOTE: Gebruik <strong>geen</strong> <code class="highlighter-rouge">display: inline-block;</code>
+hiervoor, dit is onjuist. Waarom dat zo is schrijf ik misschien nog wel een
+bericht over.</p>
+    
+      <h3 id="slider-opmaken">
+        
+        
+          <a href="#slider-opmaken" class="section-link"></a> <code class="highlighter-rouge">#slider</code> opmaken
+        
+        
+      </h3>
+
+<p>Vervolgens gaan we de <code class="highlighter-rouge">#slider</code> opmaken. De oplossing voor het 2e
+probleem was dat we deze <code class="highlighter-rouge">overflow: hidden;</code> en de hoogte en
+breedte van de afbeelding meegeven. Nou, laten we dat dan maar gaan doen:</p>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+</pre></td><td class="rouge-code"><pre><span class="nf">#slider</span><span class="p">{</span>
+    <span class="nl">width</span><span class="p">:</span><span class="m">610px</span><span class="p">;</span>
+    <span class="nl">height</span><span class="p">:</span><span class="m">244px</span><span class="p">;</span>
+    <span class="nl">overflow</span><span class="p">:</span><span class="nb">hidden</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+    
+      <h3 id="de-animatie">
+        
+        
+          <a href="#de-animatie" class="section-link"></a> De animatie
+        
+        
+      </h3>
+
+<p>En dan komt nu het moeilijkste onderdeel: De CSS3 animatie. Omdat dit voor
+veel mensen die dit lezen nieuw zal zijn zal ik dit stap voor stap doen, zodat
+je het kunt begrijpen.</p>
+
+<p>Elke animatie heeft een animatie frame (keyframe genoemd). Dit is niet een
+HTML frame, maar in CSS. Met dit keyframe geef je aan wat de animatie precies
+is. Dus de keyframe bevat een gedetailleerde overzicht van de animatie. Als we
+bijv. een animatie willen maken die de achtergrondkleur van rood naar blauw
+veranderd doen we:</p>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+</pre></td><td class="rouge-code"><pre><span class="k">@keyframes</span> <span class="n">changeBgColor</span> <span class="p">{</span>
+    <span class="nt">from</span> <span class="p">{</span> 
+        <span class="nl">background</span><span class="p">:</span><span class="no">red</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="nt">to</span> <span class="p">{</span>
+        <span class="nl">background</span><span class="p">:</span><span class="no">green</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>Merk wel op dat het geen je hier ziet alleen de animatie zelf is. We moeten
+deze animatie nog toevoegen aan een element. Dit doen we met <code class="highlighter-rouge">animation</code> en
+omdat het nog in de test fase is moeten hier nog de prefixen (bijv. <code class="highlighter-rouge">-webkit-</code>
+en <code class="highlighter-rouge">-moz-</code>) toegevoegd worden.  Als waardes verwacht <code class="highlighter-rouge">animation</code> als eerste de
+naam van het keyframe, deze is <em>changeBgColor</em> in het voorbeeld hierboven. Als
+2e waarde wordt de duration verwacht, of te wel de snelheid van de animatie.
+Dit kan van alles zijn. Vervolgens kun je er andere opties bijzetten. Welke
+opties en meer informatie kun je vinden op de 
+<a href="http://www.w3.org/TR/2009/WD-css3-animations-20090320/">CSS Animations Module level 3</a>
+specificaties.</p>
+    
+      <h3 id="terug-naar-onze-code">
+        
+        
+          <a href="#terug-naar-onze-code" class="section-link"></a> Terug naar onze code
+        
+        
+      </h3>
+
+<p>In ons geval willen we een animatie maken die de ul steeds de breedte van 1
+slide opschuift en als hij bij het eind is weer terug gaat. Voordat we een
+keyframe kunnen maken moeten we weten hoeveel slides we hebben  en hoe groot
+deze slides zijn en als extra hoelang de slide duurt (het glijden van de
+afbeeldingen). In mijn voorbeeld heb ik 4 slides van ong. 620px breed.</p>
+
+<p>I.p.v. een keyframe te gebruiken met <code class="highlighter-rouge">from</code> en <code class="highlighter-rouge">to</code> kun je ze ook met
+procenten gebruiken en zelfs combineren. In dit voorbeeld gebruiken we het
+laatste. We gaan de ul doormiddel van <code class="highlighter-rouge">margin-left</code> bewegen, zodat de
+afbeeldingen sliden. Om ervoor te zorgen dat alle slides even lang duren doen
+we <code class="highlighter-rouge">100% / aantal slides - 0.5</code> om tot het antwoord te komen. In dit
+geval wordt dat <code class="highlighter-rouge">100% / (4 -0.5)</code> en dan krijg je het geweldige antwoord van
+28.57% met nog heel wat decimalen erachter. Vervolgens kunnen we dit gebruiken
+voor de keyframes. We beginnen bij 0%, wat gelijk is aan from, en hierbij is
+de <code class="highlighter-rouge">margin-left</code> ook 0. Vervolgens gaan we naar de eerste stap, 28%, waarbij
+de <code class="highlighter-rouge">margin-left</code> de negatieve waarde van de breedte van onze slide heeft, in
+dit geval dus <code class="highlighter-rouge">-620px</code>. De tweede stap is op 56% met de waarde van 2 slides
+dus <code class="highlighter-rouge">-1240px</code>. En zo ga je door met 74% en 100% (to), waarbij deze beide een
+waarde van <code class="highlighter-rouge">-1860px</code> hebben. De totale code wordt dus zoiets:</p>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+</pre></td><td class="rouge-code"><pre><span class="k">@keyframes</span> <span class="n">slider</span>
+<span class="p">{</span>
+    <span class="nt">from</span>     <span class="p">{</span> <span class="nl">margin-left</span><span class="p">:</span><span class="m">0</span><span class="p">;</span>          <span class="p">}</span>
+    <span class="err">28</span><span class="o">%</span>      <span class="p">{</span> <span class="nl">margin-left</span><span class="p">:</span><span class="m">-620px</span><span class="p">;</span>     <span class="p">}</span>
+    <span class="err">56</span><span class="o">%</span>      <span class="p">{</span> <span class="nl">margin-left</span><span class="p">:</span><span class="m">-1240px</span><span class="p">;</span>    <span class="p">}</span>
+    <span class="err">74</span><span class="o">%,</span> <span class="nt">to</span>  <span class="p">{</span> <span class="nl">margin-left</span><span class="p">:</span><span class="m">-1860px</span><span class="p">;</span>    <span class="p">}</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>Nu moeten we alleen de ul nog deze keyframe meegeven, een tijd en wat extra
+opties, en we hebben onze slider af. De aanroep in <code class="highlighter-rouge">#slider ul</code> wordt:</p>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre><span class="nt">animation</span><span class="o">:</span> <span class="nt">slider</span> <span class="err">10</span><span class="nt">s</span> <span class="nt">linear</span> <span class="nt">infinite</span> <span class="nt">alternate</span><span class="o">;</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>Even een uitleg:</p>
+
+<ul>
+  <li><strong>slider</strong>, dit is de keyframe die we gebruiken</li>
+  <li><strong>10s</strong>, een slideshow van de eerste tot de laatste slide duurt 10 seconden
+(dit kun je aanpassen)</li>
+  <li><strong>linear</strong>, er is niks van vertraging of effect in de slide</li>
+  <li><strong>infinite</strong>, herhaal de animatie oneindig</li>
+  <li><strong>alternate</strong>, voer de keyframe de eerste keer van from naar to uit en de
+2e keer van to naar from, zodat het mooi blijft doorlopen.</li>
+</ul>
+    
+      <h3 id="helaas-sliders-zijn-niet-makkelijk">
+        
+        
+          <a href="#helaas-sliders-zijn-niet-makkelijk" class="section-link"></a> Helaas, sliders zijn niet makkelijk
+        
+        
+      </h3>
+
+<p>Het leek zo simpel en ik wou zo graag nu al het eind resultaat laten zien,
+maar dit werkt nog niet. Dit komt door weer 2 problemen:</p>
+    
+      <h4 id="prefixen">
+        
+        
+          <a href="#prefixen" class="section-link"></a> Prefixen
+        
+        
+      </h4>
+
+<p>Zowel de animatie aanroepen en de prefixen in de <code class="highlighter-rouge">@keyframes</code> moeten worden
+toegevoegd. Aangezien dit alleen in Chrome en FireFox werkt hoeven we maar 2
+prefixen toe te voegen: <code class="highlighter-rouge">@-webkit-keyframes</code> en <code class="highlighter-rouge">@-moz-keyframes</code> en
+<code class="highlighter-rouge">-webkit-animation</code> en <code class="highlighter-rouge">-moz-animation</code>. Hou de officiële properties, dus
+zonder prefixen, er altijd ook gewoon in.</p>
+    
+      <h4 id="ruimte-voor-de-slide">
+        
+        
+          <a href="#ruimte-voor-de-slide" class="section-link"></a> Ruimte voor de slide
+        
+        
+      </h4>
+
+<p>Het zal nu in 1 keer van links tot rechts doorlopen. We hebben namelijk niet
+aangegeven wat er tussen 0% en 28% zit en dus zal hij telkens tussen deze 2
+waardes een stapje opschuiven. We moeten dus aangeven dat hij voor 28% nog
+steeds op <code class="highlighter-rouge">0px</code> zet. Dus doen we dit:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+</pre></td><td class="rouge-code"><pre>[css]
+@keyframes slider
+{
+    from,27% { margin-left:0;          }
+    28%, 55% { margin-left:-620px;     }
+    56%, 73% { margin-left:-1240px;    }
+    74%, to  { margin-left:-1860px;    }
+}
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>Hierbij kan CSS nog niks animaten en begin het pas met sliden bij 27% en dan
+bij 28% stopt het weer tot 56% en zo gaat het door.</p>
+
+<p>Weer een probleem, de slides duren nu veel te kort en we moeten dus de CSS
+slide tijd verlengen. Ik stel voor dat we een slide tijd hebben van 6%. Dit
+betekend dat er 3% vanaf gaat en 3% bij komt. We krijgen dus uiteindelijk
+zoiets:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+</pre></td><td class="rouge-code"><pre>[css]
+@keyframes slider
+{
+    from, 24% { margin-left:0;         }
+    31%, 53%  { margin-left:-620px;    }
+    59%, 71%  { margin-left:-1240px;   }
+    77%, to   { margin-left:-1860px;   }
+}
+</pre></td></tr></tbody></table></code></pre></div></div>
+    
+      <h3 id="feestje">
+        
+        
+          <a href="#feestje" class="section-link"></a> Feestje?
+        
+        
+      </h3>
+
+<p>Ja, eindelijk is het zo ver! Onze slider werkt en is
+<a href="http://wouterj.nl/demos/css3-slider/">hier</a> te aanschouwen met de juiste
+prefixen en met nog een slide optie met alleen CSS3 en HTML.</p>
+
+<p>Ik hoop dat je van deze tutorial hebt geleerd hoe je iets van een idee tot een
+CSS en HTML code kunt omtoveren en dat je warm bent gemaakt dingen uit te
+proberen met CSS3 en dan vooral het geweldige animations.</p>
+
+<p>Mocht je net zo’n animatie hebben gemaakt als
+<a href="http://www.optimum7.com/css3-man/">Anthony Calzadilla</a>&lt;/a&gt; of vind je dat je
+iets geweldigs hebt gemaakt? Deel het met ons in de reacties!</p>
+
+        </div>
+    </div>
+</article>
+
+    </main><footer class="page__footer">
+    <p>&copy; Copyright 2012 - 2022 Wouter de Jong</p>
+</footer>
+</body>
+
+</html>

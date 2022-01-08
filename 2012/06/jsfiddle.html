@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang=""><head>
+    <meta charset=utf-8>
+
+    <title>Deel je scripts makkelijk met JSFiddle ~ Wouter J</title>
+
+    <meta http-equiv=X-UA-Compatible content="IE=edge">
+    <meta name=viewport content="width=device-width, initial-scale=1">
+    <meta name=theme-color content=#cc3333>
+
+    <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Serif:400,400i,700|Oswald|Inconsolata" rel="stylesheet">
+    <link rel=stylesheet href="/assets/main.css">
+    <link rel=icon type=image/png href=/img/css/favicon.png sizes=96x96><link type="application/atom+xml" rel="alternate" href="https://wouterj.nl/feed.xml" title="Wouter J" /><meta content="Wouter J" property="og:site_name">
+    
+      <meta content="Deel je scripts makkelijk met JSFiddle" property="og:title">
+      <meta content="article" property="og:type">
+      <meta content="Soms heb je op forums hulp nodig. Je wilt dan wat code laten zien en een live
+voorbeeld waar mensen aan kunnen sleutelen. Helaas heb je geen host of heb je
+geen zin/tijd om het op je host te zetten. Wat doe je dan?
+
+" property="og:description">
+      <meta content="2012-06-15T00:00:00+00:00" property="article:published_time">
+      <meta content="https://wouterj.nl/2012/06/jsfiddle" property="og:url">
+      <meta content="https://wouterj.nl/img/og/jsfiddle.png?1" property="og:image">
+    <script>if(!sessionStorage.getItem("_swa")){fetch("https://counter.dev/track?"+new URLSearchParams({referrer:document.referrer.indexOf(location.protocol+"//"+location.host)!==0?document.referrer:'',screen:screen.width+"x"+screen.height,user:"wouterj",utcoffset:"2"}),{headers:{"X-Referer":"https://wouterj.nl/2012/06/jsfiddle","Content-Type":"text/plain"}})};sessionStorage.setItem("_swa","1");</script></head>
+<body class="page  page--post" itemscope itemtype="http://schema.org/WebPage"><header class=page__header>
+    <hgroup class=page__headline>
+        <h1 class="site-title" itemprop="name"><a href="/">Wouter J</a></h1>
+    </hgroup><!--<nav class=page__nav>
+        <ul class="nav  nav--block"><li class="nav__item  "><a href="/categories/article/index.html"><i class=icon>&#xF139;</i> <span class="button__text">Articles</span></a></li><li class="nav__item  "><a href="/categories/experiment/index.html"><i class=icon>&#xF051;</i> <span class="button__text">Experiments</span></a></li><li class="nav__item  "><a href="/categories/links/index.html"><i class=icon>&#xF10E;</i> <span class="button__text">Links</span></a></li></ul>
+    </nav>-->
+  </div>
+</header>
+<div class=page__body itemscope itemtype="http://schema.org/Blog">
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+        <span class="post__category">
+        <time class="dt-published" datetime="2012-06-15T00:00:00+00:00" itemprop="datePublished">
+            JUN '12
+        </time>
+        
+        
+        &#xf139;
+        
+        </span>
+    
+
+    <h1 class="post__heading" itemprop="headline">Deel je scripts makkelijk met JSFiddle</h1>
+
+    
+    <img src="https://wouterj.nl/img/jsfiddle-thumb.png" class="post__thumbnail  img--stripe  img--short  img--right" itemprop="thumbnailUrl">
+    
+
+    <div itemprop="articleBody">
+        <div class="post__entry--excerpt">
+            
+            <p>Soms heb je op forums hulp nodig. Je wilt dan wat code laten zien en een live
+voorbeeld waar mensen aan kunnen sleutelen. Helaas heb je geen host of heb je
+geen zin/tijd om het op je host te zetten. Wat doe je dan?</p></div><div class="post__entry">
+      <h2 id="jsfiddle">
+        
+        
+          <a href="#jsfiddle" class="section-link"></a> JSfiddle
+        
+        
+      </h2>
+
+<p><a href="http://jsfiddle.net">JSfiddle</a> is slechts een van die vele ‘playgrounds voor
+developers’ waarmee je scripts en live voorbeelden kunt delen. Anderen zijn
+bijv. <a href="http://tinkerbin.com">tinkerbin</a>, <a href="http://jsbin.com">JSbin</a>,
+<a href="http://cssdesk.com/">CSSdesk</a> en <a href="http://codepen.io/">codepen</a>. Met JSfiddle
+heb je 4 grote inputvelden: HTML, CSS, JS en Result. Je kan zo wel zien waar ze
+voor zijn.</p>
+
+<p>JSfiddle heeft standaard al een HTML documentje klaar, dit betekend dat je
+alleen het geen in de body in het HTML veld moet stoppen. In de CSS stop je
+gewoon je stylesheet en in JS je script file.</p>
+
+<p>Als je op <em>Run</em> klikt (of <code class="highlighter-rouge">Ctrl</code> + <code class="highlighter-rouge">Enter</code>) zal JSfiddle het samenvoegen en in
+een iFrame tonen in het Result panel. JSfiddle voegt zelf een doctype, html,
+head + children en body element in. Hierdoor hoef je echt alleen maar de basis
+in te voegen en JSfiddle maakt er een website van.</p>
+    
+      <h2 id="choose-framework">
+        
+        
+          <a href="#choose-framework" class="section-link"></a> Choose Framework
+        
+        
+      </h2>
+    
+      <h3 id="de-plaats-van-invoegen">
+        
+        
+          <a href="#de-plaats-van-invoegen" class="section-link"></a> De plaats van invoegen
+        
+        
+      </h3>
+
+<p>JavaScript kun je op 2 plaatsen invoegen: In de head of vlak voor <code class="highlighter-rouge">&lt;/body&gt;</code>.
+Dat zijn de eerste 2 opties. Vervolgens kun je ook nog kiezen voor een wrap. Er
+zijn 2 wraps: <code class="highlighter-rouge">window.onload</code> en DOM ready. Wat JSfiddle dan doet is de
+JavaScript code in de head plaatsen en een window.onload of een DOM ready event
+(is iets ingewikkelder) eromheen zetten. Hierdoor voorkom je errors als DOM not
+ready.</p>
+    
+      <h3 id="frameworks">
+        
+        
+          <a href="#frameworks" class="section-link"></a> Frameworks
+        
+        
+      </h3>
+
+<p>Vervolgens kun je in een select box kiezen uit een heel scala JavaScript
+frameworks, waaronder MooTools; jQuery; Pototype; YUI; DoJo; ect. Van al deze
+frameworks kan je ook nog uit meerdere versies kiezen. Als je een framework
+kiest laad JSfiddle dit framework automatisch in, in de head. Je kan ook
+No-libary selecteren, dan wordt er niks ingeladen.</p>
+
+<p>Een input veld daaronder zie je ‘Libary tag attributes’ dit zijn eventuele
+attributen die bij de scripttag worden gevoegd waarin de libary wordt
+ingeladen:</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">http://lib.path/to/some/lib.min.js</span> <span class="err">{</span><span class="na">libary_tag_attributes</span><span class="err">}</span><span class="nt">&gt;&lt;/script&gt;</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+    
+      <h3 id="extra-libaries">
+        
+        
+          <a href="#extra-libaries" class="section-link"></a> Extra libaries
+        
+        
+      </h3>
+
+<p>De meeste JS frameworks hebben ook nog wat extra sublibaries. Als je er eentje
+uitkiest, bijv. jQuery, krijg je de mogelijkheid om dingen als jQuery UI/Mobile
+nog erbij te laden. Hierdoor hoef je dat niet zelf in je HTML code te doen en
+houd je je 3 inputs schoon.</p>
+    
+      <h3 id="normalizecss">
+        
+        
+          <a href="#normalizecss" class="section-link"></a> Normalize.css
+        
+        
+      </h3>
+
+<p>Als laatst kun je nog aangeven of je
+<a href="https://github.com/necolas/normalize.css">normalize.css</a>, een van de beste CSS
+reset stylesheets wilt gebruiken of niet.</p>
+    
+      <h2 id="panels">
+        
+        
+          <a href="#panels" class="section-link"></a> Panels
+        
+        
+      </h2>
+
+<p>Zoals je nu wel weet heb je 4 panels: HTML, CSS, JS en Result. Je kan deze ook
+aanpassen. I.p.v. CSS kun je bijv. ook SASS (een CSS pre-processor) gebruiken.
+Of i.p.v. JS coffeescript.</p>
+    
+      <h2 id="add-resources">
+        
+        
+          <a href="#add-resources" class="section-link"></a> Add Resources
+        
+        
+      </h2>
+
+<p>Soms moet je wel eens iets extra’s inladen. Denk dan bijv. aan een jQuery
+plugin of een default stylesheet. Dat kun je allemaal doen in het Add Resources
+menu. Plaats de exacte URL naar een JavaScript of CSS bestand en klik op de +.</p>
+    
+      <h2 id="info">
+        
+        
+          <a href="#info" class="section-link"></a> Info
+        
+        
+      </h2>
+
+<p>Het laatste menu wat ik met je wil bespreken is het info menu. Hierbij kun je
+wat informatie over jou fiddle plaatsen en kun je eventuele klassen toevoegen
+aan de body tag of het doctype veranderen.</p>
+    
+      <h2 id="shortcuts">
+        
+        
+          <a href="#shortcuts" class="section-link"></a> Shortcuts
+        
+        
+      </h2>
+
+<p>JSfiddle heeft een heleboel shortcuts, een paar opgesomd:</p>
+
+<ul>
+  <li><code class="highlighter-rouge">Ctrl</code> + <code class="highlighter-rouge">Enter</code> - Run jou fiddle</li>
+  <li><code class="highlighter-rouge">Ctrl</code> + <code class="highlighter-rouge">S</code> - Sla je fiddle op</li>
+  <li><code class="highlighter-rouge">Ctrl</code> + <code class="highlighter-rouge">pijl omhoog</code>/<code class="highlighter-rouge">pijl naar beneden</code> - Navigeer tussen de panels</li>
+  <li><code class="highlighter-rouge">Ctrl</code> + <code class="highlighter-rouge">Shift</code> + <code class="highlighter-rouge">pijl omhoog</code> - Toggle sidebar</li>
+</ul>
+    
+      <h2 id="je-fiddle-delen">
+        
+        
+          <a href="#je-fiddle-delen" class="section-link"></a> Je fiddle delen
+        
+        
+      </h2>
+
+<p>Om hem met iemand te delen moet je je fiddle opslaan en de link doorsturen naar
+een ander. Het opslaan doe je door op Save te klikken (of de shortcut).
+Vervolgens wordt je door gelinkt naar de link met jou fiddle. De URL kun je dan
+kopiëren en aan de ander geven. Of je klikt op share en dan op share link</p>
+
+<p>Je kan je code ook embedden (in een iFrame). Hiervoor hebben ze een speciale
+url. Namelijk jsfiddle.net/FiddleCode/embedded/panels. De FiddleCode is de code
+van jou fiddle en bij panels kun je, met spaties gescheiden, de panels invullen
+die je wilt laten zien. Elk panel is full-screen en in de bar bovenin kun je
+dan switchen tussen de panels. De panels komen in de volgorde dat jij aangeeft
+in de URL en het eerste panel wordt meteen getoond.</p>
+
+<p>Je kunt ook nog de skin aanpassen in de embedded page. Je kan kiezen uit light
+(normaal), dark of presentation (lettertype groter). Dit plaats je helemaal aan
+het eind na de panels.</p>
+    
+      <h2 id="meer-informatie">
+        
+        
+          <a href="#meer-informatie" class="section-link"></a> Meer informatie
+        
+        
+      </h2>
+
+<p>Voor meer informatie over JSfiddle en hoe je het moet gebruiken kun je terecht
+in <a href="http://doc.jsfiddle.net/">de documentatie van JSfiddle</a>.</p>
+
+        </div>
+    </div>
+</article>
+
+    </main><footer class="page__footer">
+    <p>&copy; Copyright 2012 - 2022 Wouter de Jong</p>
+</footer>
+</body>
+
+</html>

@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang=""><head>
+    <meta charset=utf-8>
+
+    <title>Experiments Archive ~ Wouter J</title>
+
+    <meta http-equiv=X-UA-Compatible content="IE=edge">
+    <meta name=viewport content="width=device-width, initial-scale=1">
+    <meta name=theme-color content=#cc3333>
+
+    <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Serif:400,400i,700|Oswald|Inconsolata" rel="stylesheet">
+    <link rel=stylesheet href="/assets/main.css">
+    <link rel=icon type=image/png href=/img/css/favicon.png sizes=96x96><link type="application/atom+xml" rel="alternate" href="https://wouterj.nl/feed.xml" title="Wouter J" /><meta content="Wouter J" property="og:site_name">
+    </head>
+<body class="page  " itemscope itemtype="http://schema.org/WebPage"><header class=page__header>
+    <hgroup class=page__headline>
+        <h1 class="site-title" itemprop="name"><a href="/">Wouter J</a></h1>
+    </hgroup><!--<nav class=page__nav>
+        <ul class="nav  nav--block"><li class="nav__item  "><a href="/categories/article/index.html"><i class=icon>&#xF139;</i> <span class="button__text">Articles</span></a></li><li class="nav__item  nav__item--current"><a href="/categories/experiment/index.html"><i class=icon>&#xF051;</i> <span class="button__text">Experiments</span></a></li><li class="nav__item  "><a href="/categories/links/index.html"><i class=icon>&#xF10E;</i> <span class="button__text">Links</span></a></li></ul>
+    </nav>-->
+  </div>
+</header>
+<div class=page__body itemscope itemtype="http://schema.org/Blog">
+        <ul class="gw post-list" id="js-posts"><!--
+    
+    
+    --><li class="g  one-whole  desk-half lap-half">
+        <article class="post  post--featured" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+            
+            <span class="post__category">
+            
+            
+            &#xf051;
+            
+            </span>
+            
+
+            <h1 class="post__heading  post__heading--gamma" itemprop="headline"><a href="/2019/03/security-removing-user" itemprop="url">Symfony Security: Is Security about User management?</a></h1>
+            
+            <div class="post__entry  post__entry--excerpt" itemprop="description">
+                <p>Symfony 2 completely renewed Symfony. Symfony 3 gave us a completely refactored
+and improved Form component. Symfony 4 gave us a renewed dependency injection
+experience. Let’s fix Security in Symfony 5! To start with: The concept of
+users in security.</p>
+
+
+            </div>
+        </article>
+    </li><!--    
+    
+    --><li class="g  one-whole  desk-half lap-half">
+        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+            
+            <span class="post__category">
+            
+            
+            &#xf051;
+            
+            </span>
+            
+
+            <h1 class="post__heading  post__heading--gamma" itemprop="headline"><a href="/2012/03/css3-html-slider" itemprop="url">Pure CSS3 en HTML slider</a></h1>
+            <img src="https://wouterj.nl/img/css3-slider-thumb.jpg" class="post__thumbnail  img--stripe  img--short  post__thumbnail--home  img--left" itemprop="thumbnailUrl">
+            <div class="post__entry  post__entry--excerpt" itemprop="description">
+                <p>Op 10 nov. 2011 zei
+<a href="https://plus.google.com/117682024645575752797/posts/dRQApCxohW1">Jeffrey Way op Google+</a>:
+<em>“So here’s what I came up with for my simple CSS3-only slider. Not
+practical yet - but as a proof of concept… http://jsfiddle.net/8TYm3/2/”</em></p>
+
+
+            </div>
+        </article>
+    </li><!--    
+
+    --><li class="g  one-half"></li>
+</ul>
+
+<nav>
+
+</nav>
+
+<script>
+(function ($, $$) {
+    var posts = $$('.desk-one-half');
+    for (var i = 0; (i + 1) < posts.length; i++) {
+        var fst = $('.post', posts[i]);
+        var snd = $('.post', posts[++i]);
+
+        var fstHeight = parseFloat(window.getComputedStyle(fst)['height']);
+        var sndHeight = parseFloat(window.getComputedStyle(snd)['height']);
+
+        if (fstHeight > sndHeight) {
+            snd.style.height = fstHeight + 'px';
+        } else {
+            fst.style.height = sndHeight + 'px';
+        }
+    }
+})(
+    function (selector, elem) { return (elem || document).querySelector(selector); },
+    function (selector, elem) { return (elem || document).querySelectorAll(selector); }
+);
+</script>
+
+    </main><footer class="page__footer">
+    <p>&copy; Copyright 2012 - 2022 Wouter de Jong</p>
+</footer>
+</body>
+
+</html>
