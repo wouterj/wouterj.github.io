@@ -7,6 +7,7 @@ tags:
 - symfony
 - doctrine
 - oop
+star: true
 
 ---
 Repositories are just collections of things. A post repository is a collection

@@ -3,6 +3,7 @@ layout: post
 title: 'Stabilizing Symfony: Testing out the pre-release'
 categories: article
 tags: symfony contribute pre-release
+star: true
 
 ---
 Symfony has a very rigid [release schedule][releases] since Symfony 3.0.

@@ -30,7 +30,7 @@ layout: default
                     {{ post.excerpt }}
                 </div>
             </article>
-        {% elsif forloop.index < 6 %}
+        {% elsif forloop.index < 4 %}
             {% if forloop.index == 2 %}<ul class="gw">{% endif %}
                 <li class="g  one-whole  desk-one-half"><article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
                 {% if post.categories %}
@@ -57,13 +57,12 @@ layout: default
                     {{ post.excerpt }}
                 </div>
             </article></li>
-            {% if forloop.index == 5 %}</ul>{% endif %}
+            {% if forloop.index == 3 %}</ul>{% endif %}
         {% else %}
-            {% if forloop.index == 6 %}<ul class="post-list--titles">{% endif %}
-            <li class="post--summary">
-                <h4 class="post__heading  post__heading--gamma" itemprop="headline"><a href="{{ post.url }}" itemprop="url">{{ post.title }}</a></h4>
-
-                <span class="post__category">
+            {% if forloop.index == 4 %}<ul class="post-list--titles">{% endif %}
+                <li class="post--summary {% if post.star %}post--starred{% endif %}">
+                <h4 class="post__heading  post__heading--beta" itemprop="headline"><a href="{{ post.url }}" itemprop="url">{{ post.title }}</a></h4><!--
+                --><span class="post__category">
                     <time class="dt-published" datetime="{{ post.date | date_to_xmlschema }}" itemprop="datePublished">
                         {{ post.date | date: "%^b '%y" }}
                     </time>

@@ -3,6 +3,7 @@ layout: post
 title: 'Grant on Permissions, not Roles'
 categories: article
 tags: symfony security
+star: true
 
 ---
 Symfony uses a very flexible voter approach to grant access for a user.

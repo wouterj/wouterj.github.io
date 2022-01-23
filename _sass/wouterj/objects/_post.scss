@@ -254,34 +254,50 @@
     margin-left:0;
     padding-top:14px;
     border-top:5px solid $primary1;
+
+    text-align:justify;
 }
     .post--summary{
         list-style:none;
         display:inline;
+        
+        color:lighten($text, 10%);
+        &.post--starred{
+            color:$text;
+
+            .post__heading{
+                font-weight:600;
+            }
+        }
 
         .post__heading{
             display:inline;
             padding-right:0;
             font-weight:400;
             font-family:$title-face;
-            line-height:1.5;
+            line-height:1.8;
+
+            a {
+                color:inherit;
+            }
         }
 
         .post__category{
-            position:initial;
+            position:relative;
             float:none;
             display:inline-block;
             background:none;
-            color:$secondaryText;
+            opacity:0.6;
             margin:0 $half-spacing-unit;
             line-height:$base-line-height;
             font-size:.8em;
             padding:0;
+            color:inherit;
 
-            @include vendor(transition, color .2s);
+            @include vendor(transition, opacity .2s);
         }
         &:hover .post__category{
-            color:$text;
+            opacity:1;
         }
     }
 
