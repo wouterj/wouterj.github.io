@@ -2572,34 +2572,43 @@ pre {
   margin-top: 16px;
   margin-left: 0;
   padding-top: 14px;
-  border-top: 5px solid #cc3333; }
+  border-top: 5px solid #cc3333;
+  text-align: justify; }
 
 .post--summary {
   list-style: none;
-  display: inline; }
+  display: inline;
+  color: #484848; }
+  .post--summary.post--starred {
+    color: #2e2e2e; }
+    .post--summary.post--starred .post__heading {
+      font-weight: 600; }
   .post--summary .post__heading {
     display: inline;
     padding-right: 0;
     font-weight: 400;
     font-family: "Oswald", serif;
-    line-height: 1.5; }
+    line-height: 1.8; }
+    .post--summary .post__heading a {
+      color: inherit; }
   .post--summary .post__category {
-    position: initial;
+    position: relative;
     float: none;
     display: inline-block;
     background: none;
-    color: #777777;
+    opacity: 0.6;
     margin: 0 16px;
     line-height: 32px;
     font-size: .8em;
     padding: 0;
-    -webkit-transition: color 0.2s;
-    -moz-transition: color 0.2s;
-    -ms-transition: color 0.2s;
-    -o-transition: color 0.2s;
-    transition: color 0.2s; }
+    color: inherit;
+    -webkit-transition: opacity 0.2s;
+    -moz-transition: opacity 0.2s;
+    -ms-transition: opacity 0.2s;
+    -o-transition: opacity 0.2s;
+    transition: opacity 0.2s; }
   .post--summary:hover .post__category {
-    color: #2e2e2e; }
+    opacity: 1; }
 
 .post-table {
   table-layout: fixed; }
