@@ -459,44 +459,6 @@ upgrade isn’t dramatically hard.</p>
     </ul>
 </div>
 
-<script>
-(function ($, $$) {
-    window.addEventListener("resize", resizeThrottler, false);
-
-    var resizeTimeout;
-    function resizeThrottler() {
-        // ignore resize events as long as an actualResizeHandler execution is in the queue
-        if (!resizeTimeout) {
-            resizeTimeout = setTimeout(function() {
-                resizeTimeout = null;
-                calculateHeights();
-            }, 66);
-        }
-    }
-
-    var posts = $$('.desk-one-half');
-    function calculateHeights() {
-        for (var i = 0; (i + 1) < posts.length; i++) {
-            var fst = $('.post', posts[i]);
-            var snd = $('.post', posts[++i]);
-
-            var fstHeight = parseFloat(window.getComputedStyle(fst)['height']);
-            var sndHeight = parseFloat(window.getComputedStyle(snd)['height']);
-
-            if (fstHeight > sndHeight) {
-                snd.style.height = fstHeight + 'px';
-            } else {
-                fst.style.height = sndHeight + 'px';
-            }
-        }
-    }
-    calculateHeights();
-})(
-    function (selector, elem) { return (elem || document).querySelector(selector); },
-    function (selector, elem) { return (elem || document).querySelectorAll(selector); }
-);
-</script>
-
     </main><footer class="page__footer">
     <p>&copy; Copyright 2012 - 2022 Wouter de Jong</p>
 </footer>
