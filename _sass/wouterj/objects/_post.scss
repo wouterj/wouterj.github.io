@@ -157,7 +157,7 @@
         }
     }
 
-.page--post, .post--featured{
+.page--post, .page--oss-list, .post--featured{
     .post__entry--excerpt{
         @include font-size(20px);
         line-height:1.6;

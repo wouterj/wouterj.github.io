@@ -1,0 +1,24 @@
+/*-----------------------------------*\
+    $TICKETS
+\*-----------------------------------*/
+.post .tickets-list li{
+    margin-bottom:$base-spacing-unit;
+
+    &::before{
+        font-family:Batch;
+        left:-3ch;
+    }
+    &.ticket--discuss::before   { content:'\F00A'; }
+    &.ticket--brainstorm::before{ content:'\F12D'; }
+    &.ticket--actionable::before{ content:'\F0CA'; }
+    &::after { content:''; }
+}
+    .ticket-icon-legenda{
+        font-family:Batch;
+    }
+
+.ticket__title, .ticket__project{
+    color:inherit;
+    font-weight:bold;
+    font-size:$h4-size;
+}

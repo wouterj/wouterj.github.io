@@ -1,0 +1,32 @@
+---
+layout: default
+type: oss-list
+
+---
+<article class="post">
+    <h1 class="post__heading" itemprop="headline">My Open Source Wishlist</h1>
+
+    <div itemprop="articleBody">
+        <div class="post__entry--excerpt">
+            {{ content | markdownify }}
+        </div>
+
+        <div class="post__entry">
+            <p class="zeta">
+            <span class="ticket-icon-legenda"></span>&nbsp;actionable, ready to go!
+            &nbsp;<span class="ticket-icon-legenda"></span>&nbsp;there is a rough idea, but happy to discuss further
+            <span class="ticket-icon-legenda"></span>&nbsp;this is just an idea in my mind, let's have a chat
+            </p>
+            <ul class="tickets-list">
+                {% for ticket in site.data.oss %}
+                <li class="ticket--{{ ticket.difficulty }}">
+                    <a class="ticket__title" href="{{ ticket.url }}">
+                        {{ ticket.title }} in <code class="ticket__project">{{ ticket.repo }}</code>
+                    </a>
+                    {% if ticket.notes %}{{ ticket.notes }}{% endif %}
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</article>

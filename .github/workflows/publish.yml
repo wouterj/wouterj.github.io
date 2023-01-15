@@ -14,7 +14,9 @@ jobs:
 
       - uses: actions/cache@v2
         with:
-          path: .shiki-cache
+          path: |
+            .shiki-cache
+            .gh-cache
           key: ${{ runner.os }}-shiki
 
       - name: Install Ruby
