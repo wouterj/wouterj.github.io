@@ -1,4 +1,3 @@
-@charset "UTF-8";
 /*------------------------------------*\
     YOUR-PROJECT.CSS
 \*------------------------------------*/
@@ -109,7 +108,7 @@
     $CONTENTS
 \*------------------------------------*/
 /**
- * CONTENTS............You’re reading it!
+ * CONTENTS............You're reading it!
  * WARNING.............Here be dragons!
  * IMPORTS.............Begin importing the sections below
  * 
@@ -262,11 +261,11 @@
 /**
  * Media query mixin.
  *
- * It’s not great practice to define solid breakpoints up-front, preferring to
- * modify your design when it needs it, rather than assuming you’ll want a
- * change at ‘mobile’. However, as inuit.css is required to take a hands off
+ * It's not great practice to define solid breakpoints up-front, preferring to
+ * modify your design when it needs it, rather than assuming you'll want a
+ * change at 'mobile'. However, as inuit.css is required to take a hands off
  * approach to design decisions, this is the closest we can get to baked-in
- * responsiveness. It’s flexible enough to allow you to set your own breakpoints
+ * responsiveness. It's flexible enough to allow you to set your own breakpoints
  * but solid enough to be frameworkified.
  * 
  * We define some broad breakpoints in our vars file that are picked up here
@@ -606,7 +605,7 @@ table {
  * As per: csswizardry.com/2011/10/reset-restarted
  */
 /**
-* Let’s make the box model all nice, shall we…?
+* Let's make the box model all nice, shall we...?
 */
 *, *:before, *:after {
   -webkit-box-sizing: border-box;
@@ -646,7 +645,7 @@ ins {
   border-bottom: 1px solid; }
 
 /**
- * So that `alt` text is visually offset if images don’t load.
+ * So that `alt` text is visually offset if images don't load.
  */
 img {
   font-style: italic; }
@@ -911,7 +910,7 @@ blockquote p:last-of-type:after {
  */
 blockquote {
   /**
-   * .4em is roughly equal to the width of the opening “ that we wish to hang.
+   * .4em is roughly equal to the width of the opening " that we wish to hang.
    */
   text-indent: -0.4em; }
   blockquote p:last-of-type {
@@ -921,7 +920,7 @@ blockquote {
   display: block;
   text-indent: 0; }
   .source:before {
-    content: "—"; }
+    content: "-"; }
 
 /*------------------------------------*\
     $CODE
@@ -969,7 +968,7 @@ pre mark {
  * 
  * 1. Make the list look like code.
  * 2. Give the list flush numbers with a leading zero.
- * 3. Make sure lines of code don’t wrap.
+ * 3. Make sure lines of code don't wrap.
  * 4. Give the code form by forcing the `code` to honour white-space.
  */
 .line-numbers {
@@ -1004,7 +1003,7 @@ a {
     text-decoration: underline; }
 
 /**
- * ‘Current’ states, e.g.:
+ * 'Current' states, e.g.:
  * 
    <ul class=nav>
        <li><a href=#>Home</a></li>
@@ -1437,7 +1436,7 @@ label,
    <small class=extra-help>.edu emails only</small>
  * 
  * We leave the help text in the document flow and merely set it to
- * `visibility:hidden;`. This means that it won’t interfere with anything once
+ * `visibility:hidden;`. This means that it won't interfere with anything once
  * it reappears.
  * 
  */
@@ -1844,15 +1843,15 @@ label,
   width: 91.666%; }
 
 /**
- * If you have set `$responsive` to ‘true’ in `_vars.scss` then you now have
- * access to these classes. You can define at which breakpoing you’d like an
+ * If you have set `$responsive` to 'true' in `_vars.scss` then you now have
+ * access to these classes. You can define at which breakpoing you'd like an
  * element to be a certain size, e.g.:
  *
  * `<div class="g  one-quarter  lap-one-half  palm-one-whole"> ... </div>`
  *
- * This would create a `div` that, at ‘desktop’ sizes, takes up a quarter of the
- * horizontal space, a half of that space at ‘tablet’ sizes, and goes full width
- * at ‘mobile’ sizes.
+ * This would create a `div` that, at 'desktop' sizes, takes up a quarter of the
+ * horizontal space, a half of that space at 'tablet' sizes, and goes full width
+ * at 'mobile' sizes.
  *
  * Demo: jsfiddle.net/inuitcss/WS4Ge
  *
@@ -2273,7 +2272,7 @@ label,
   color: #cc3333!important; }
 
 /**
- * She’s all yours, cap’n... Begin importing your stuff here.
+ * She's all yours, cap'n... Begin importing your stuff here.
  */
 /*------------------------------------*\
     $COLORS
@@ -2398,6 +2397,9 @@ pre {
     .page__footer p {
       margin: 0; } }
 
+.page--wish-list .page__body {
+  border-top: 5px solid #cc3333; }
+
 /*-----------------------------------*\
     $POST
 \*-----------------------------------*/
@@ -2433,7 +2435,7 @@ pre {
             position: absolute;
             left: -2ch; } }
   .post ul li:before {
-    content: '– ';
+    content: '- ';
     font-weight: bold; }
   .post ol {
     counter-reset: list-counter; }
@@ -2506,15 +2508,15 @@ pre {
     display: block;
     margin: 0 auto; }
 
-.page--post .post__entry--excerpt, .post--featured .post__entry--excerpt {
+.page--post .post__entry--excerpt, .page--oss-list .post__entry--excerpt, .post--featured .post__entry--excerpt {
   font-size: 20px;
   font-size: 1.1111111111rem;
   line-height: 1.6;
   line-height: 1.6; }
-  .page--post .post__entry--excerpt a, .post--featured .post__entry--excerpt a {
+  .page--post .post__entry--excerpt a, .page--oss-list .post__entry--excerpt a, .post--featured .post__entry--excerpt a {
     color: #2e2e2e;
     text-decoration: underline; }
-    .page--post .post__entry--excerpt a:hover, .post--featured .post__entry--excerpt a:hover {
+    .page--post .post__entry--excerpt a:hover, .page--oss-list .post__entry--excerpt a:hover, .post--featured .post__entry--excerpt a:hover {
       color: #cc3333; }
 
 @media only screen and (max-width: 1149px) {
@@ -2767,6 +2769,31 @@ h6 .section-link {
 .pagination-nav .btn--disabled {
   box-shadow: none;
   cursor: default; }
+
+/*-----------------------------------*\
+    $TICKETS
+\*-----------------------------------*/
+.post .tickets-list li {
+  margin-bottom: 32px; }
+  .post .tickets-list li::before {
+    font-family: Batch;
+    left: -3ch; }
+  .post .tickets-list li.ticket--discuss::before {
+    content: '\F00A'; }
+  .post .tickets-list li.ticket--brainstorm::before {
+    content: '\F12D'; }
+  .post .tickets-list li.ticket--actionable::before {
+    content: '\F0CA'; }
+  .post .tickets-list li::after {
+    content: ''; }
+
+.ticket-icon-legenda {
+  font-family: Batch; }
+
+.ticket__title, .ticket__project {
+  color: inherit;
+  font-weight: bold;
+  font-size: 20px; }
 
 @-ms-viewport {
   width: device-width; }
