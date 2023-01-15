@@ -29,7 +29,7 @@ blockquote p:last-of-type:after{ content: '"'; content: close-quote; }
  */
 blockquote{
     /**
-     * .4em is roughly equal to the width of the opening “ that we wish to hang.
+     * .4em is roughly equal to the width of the opening " that we wish to hang.
      */
     text-indent:-0.4em;
     
@@ -43,6 +43,6 @@ blockquote{
     text-indent:0;
     
     &:before{
-        content:"—";
+        content:"-";
     }
 }

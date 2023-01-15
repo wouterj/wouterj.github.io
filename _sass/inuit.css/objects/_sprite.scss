@@ -2,7 +2,7 @@
     $SPRITE
 \*------------------------------------*/
 /**
- * Giving an element a class of `.s` will throw it into ‘sprite’ mode and apply
+ * Giving an element a class of `.s` will throw it into 'sprite' mode and apply
  * a background image e.g.:
  * 
    <a class="s  s--question-mark">More info&hellip;</a>
@@ -11,7 +11,7 @@
  * 
    <a href=#><i class="s  s--question-mark"></i> Help and FAQ</a>
  * 
- * Giving an element a class of `.i` will throw it into ‘icon’ mode and will
+ * Giving an element a class of `.i` will throw it into 'icon' mode and will
  * not add a background, but should be used for icon fonts and is populated
  * through a `data-char` attribute and the `:after` pseudo-element, e.g.:
  * 
@@ -21,7 +21,7 @@
  * 
    <a href=#><i class=i data-char="C"></i> View your favourites</a>
  * 
- * Where ‘C’ might map to a star in your particular font.
+ * Where 'C' might map to a star in your particular font.
  * 
  * These all require extension in your theme stylesheet.
  * 
@@ -39,7 +39,7 @@
     position:relative;
     zoom:1;
     /**
-     * So using `.i` on `i` elements doesn’t make a visual difference.
+     * So using `.i` on `i` elements doesn't make a visual difference.
      */
     font-style:normal;
     /**
