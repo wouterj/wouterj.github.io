@@ -2364,17 +2364,14 @@ pre {
 
 .page__nav {
   float: right;
-  margin-top: -88px; }
+  margin-top: -67px; }
+  .page__nav .nav {
+    margin-bottom: 0px; }
   @media only screen and (max-width: 1149px) {
     .page__nav {
-      width: 527px;
+      text-align: center;
       float: none;
       margin: 20px auto 0; } }
-  @media only screen and (max-width: 699px) {
-    .page__nav {
-      width: 200px; }
-      .page__nav .button__text {
-        display: none; } }
 
 .page__headline {
   margin-top: 28px; }
@@ -2399,6 +2396,21 @@ pre {
 
 .page--wish-list .page__body {
   border-top: 5px solid #cc3333; }
+
+/*-----------------------------------*\
+    $NAVIGATION
+\*-----------------------------------*/
+.nav__item {
+  font-size: 20px;
+  font-size: 1.1111111111rem;
+  line-height: 1.6;
+  vertical-align: bottom; }
+
+.nav__item a {
+  color: #2e2e2e; }
+
+.nav__item--current a {
+  color: #cc3333; }
 
 /*-----------------------------------*\
     $POST
