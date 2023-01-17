@@ -24,9 +24,7 @@ future: false
 permalink: /:year/:month/:title
 
 header_pages:
-    - Articles Archive
-    - Experiments Archive
-    - Links Archive
+    - Contribute to Open Source
 
 # Build settings
 markdown: kramdown

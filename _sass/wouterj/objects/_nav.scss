@@ -2,25 +2,11 @@
     $NAVIGATION
 \*-----------------------------------*/
 .nav__item{
-    @include font-size(18px);
-
-    @include vendor(transition, .1s ease);
-
-    &:hover a{
-        background:$primary1;
-        text-decoration:none;
-    }
-
-    &:active{
-        @include vendor(transform, scale(1.1, 1.1));
-    }
+    @include font-size($h4-size);
+    vertical-align: bottom;
 }
     .nav__item a{
-        color:$secondaryText;
-
-        &:hover{
-            color:$lightText;
-        }
+        color:$text;
     }
     .nav__item--current a{
         color:$primary1;

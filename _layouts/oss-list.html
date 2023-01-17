@@ -18,6 +18,14 @@ type: oss-list
             <span class="ticket-icon-legenda"></span>&nbsp;this is just an idea in my mind, let's have a chat
             </p>
             <ul class="tickets-list">
+                <li class="ticket--actionable">
+                    <span class="ticket__title">Share something you've learned this week</span>
+                    Each week you write code, you learn something. If you think
+                    it's easy, it's because you've mastered that something.
+                    Consider sharing how to do the things you think are easy,
+                    this will massively help people in your community!
+                </li>
+
                 {% for ticket in site.data.oss %}
                 <li class="ticket--{{ ticket.difficulty }}">
                     <a class="ticket__title" href="{{ ticket.url }}">

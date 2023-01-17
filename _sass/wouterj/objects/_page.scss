@@ -25,20 +25,16 @@
 }
     .page__nav{
         float:right;
-        margin-top:-88px;
+        margin-top:-67px;
 
-        @include media-query(portable){
-            width:527px;
-            float:none;
-            margin:20px auto 0;
+        .nav{
+            margin-bottom:0px;
         }
 
-        @include media-query(palm){
-            width:200px;
-
-            .button__text{
-                display:none;
-            }
+        @include media-query(portable){
+            text-align:center;
+            float:none;
+            margin:20px auto 0;
         }
     }
 
