@@ -66,22 +66,24 @@ layout: default
             {% if forloop.index == 4 %}<ul class="post-list--titles">{% endif %}
                 <li class="post--summary {% if post.star %}post--starred{% endif %}">
                 <h4 class="post__heading  post__heading--beta" itemprop="headline"><a href="{{ post.url }}" itemprop="url">{{ post.title }}</a></h4><!--
-                --><span class="post__category">
-                    <time class="dt-published" datetime="{{ post.date | date_to_xmlschema }}" itemprop="datePublished">
+                --><span class="post__metadata">
+                    <time datetime="{{ post.date | date_to_xmlschema }}" itemprop="datePublished">
                         {{ post.date | date: "%^b '%y" }}
                     </time>
-                {% assign cat = post.categories|first %}
-                {% if cat == 'article' %}
-                &#xf139;
-                {% elsif cat == 'opinion' %}
-                &#xf075;
-                {% elsif cat == 'news' %}
-                &#xf0CA;
-                {% elsif cat == 'experiment' %}
-                &#xf051;
-                {% elsif cat == 'idea' %}
-                &#xf12C;
-                {% endif %}
+                    <span class="post__category__icon">
+                    {% assign cat = post.categories|first %}
+                    {% if cat == 'article' %}
+                    &#xf139;
+                    {% elsif cat == 'opinion' %}
+                    &#xf075;
+                    {% elsif cat == 'news' %}
+                    &#xf0CA;
+                    {% elsif cat == 'experiment' %}
+                    &#xf051;
+                    {% elsif cat == 'idea' %}
+                    &#xf12C;
+                    {% endif %}
+                    </span>
                 </span>
             </li>
         {% endif %}
