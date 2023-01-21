@@ -63,17 +63,6 @@
         padding-right:20px;
     }
 
-    &:before{
-        content:'';
-        display:block;
-        position:absolute;
-        top:-5px;
-        left:0;
-        width:100%;
-        height:5px;
-        background:#c33;
-    }
-
     div.highlighter-shiki{
         @extend %sass-margin-bottom;
         line-height:1.5;
@@ -119,6 +108,22 @@
         }
     }
 }
+    .page--oss-list .post__heading, .page--post .post__heading{
+        line-height:1.5;
+        font-weight:800;
+        padding-right:0;
+
+        @include media-query(lap-and-up){
+            @include font-size($giga-size);
+        }
+
+        &::after{
+            content:'.';
+            font-size:1.5em;
+            line-height:0;
+            color:$primary1;
+        }
+    }
     .post__heading{
         padding-right:100px;
         margin-bottom:$half-spacing-unit;
@@ -172,6 +177,21 @@
         }
     }
 }
+    .post__metadata{
+        margin-bottom:$half-spacing-unit;
+    }
+        .post__published-date, .post__category{
+            cursor:default;
+
+            margin-right:.5 * $half-spacing-unit;
+            padding:1px .5 * $half-spacing-unit;
+            background:$primary1;
+            color:$light;
+        }
+            .post__category__icon{
+                font-family:Batch;
+                @include font-size($h6-size)
+            }
 
 .post__thumbnail{
     @include media-query(portable) {
@@ -186,20 +206,6 @@
 }
 .post__comments{
     padding:10px;
-}
-.post__category{
-    font-family:Batch;
-
-    position:absolute;
-    top:0;
-    right:10px;
-
-    cursor:default;
-
-    padding:.25 * $half-spacing-unit .5 * $half-spacing-unit;
-    background:$primary1;
-    float:left;
-    color:$light;
 }
 
 
@@ -219,9 +225,18 @@
 
     .post{
         margin-top:$half-spacing-unit;
-    }
-    .post:nth-child(n+1) {
-        clear:left;
+
+        &:nth-child(n+1) { clear:left; }
+        &:before{
+            content:'';
+            display:block;
+            position:absolute;
+            top:-5px;
+            left:0;
+            width:100%;
+            height:5px;
+            background:#c33;
+        }
     }
 
     .post__heading{
@@ -234,6 +249,21 @@
 
     .post__heading--beta{
         line-height:1.4;
+    }
+
+    .post__metadata{
+        position:absolute;
+        top:0;
+        right:10px;
+
+        float:left;
+        padding:1px .5 * $half-spacing-unit;
+        background:$primary1;
+        color:$light;
+
+        time{
+            @include font-size($h6-size);
+        }
     }
 
     .post__date{

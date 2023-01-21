@@ -17,7 +17,6 @@
 
 .page__header{
     position:relative;
-    margin-bottom:60px;
 
     @include media-query(palm) {
         margin-bottom:20px;

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 'Using the SecurityBundle in Symfony 6'
+title: 'Using the SecurityBundle in Symfony 6'
 categories: talk
 tags: symfony
 

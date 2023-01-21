@@ -4,23 +4,26 @@ type: post
 
 ---
 <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
-    {% if page.categories %}
-        <span class="post__category">
-        <time class="dt-published" datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">
+    <h1 class="post__heading" itemprop="headline">{{ page.title | escape }}</h1>
+
+    <div class="post__metadata">
+        <time class="post__published-date" datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">
             {{ page.date | date: "%^b '%y" }}
         </time>
-        {% assign cat = page.categories|first %}
-        {% if cat == 'article' %}
-        &#xf139;
-        {% elsif cat == 'experiment' %}
-        &#xf051;
-        {% elsif cat == 'link' %}
-        &#xF10E;
-        {% endif %}
+        {% if page.categories %}
+        <span class="post__category">
+            {% assign cat = page.categories|first %}
+            {% if cat == 'article' %}
+            <span class="post__category__icon">&#xf139;</span>
+            {% elsif cat == 'experiment' %}
+            <span class="post__category__icon">&#xf051;</span>
+            {% elsif cat == 'link' %}
+            <span class="post__category__icon">&#xF10E;</span>
+            {% endif %}
+            {{ cat }}
         </span>
-    {% endif %}
-
-    <h1 class="post__heading" itemprop="headline">{{ page.title | escape }}</h1>
+        {% endif %}
+    </div>
 
     {% if page.thumbnail %}
     <img src="{{ site.url }}/img/{{ page.thumbnail }}" class="post__thumbnail  img--stripe  img--short  img--right" itemprop="thumbnailUrl">

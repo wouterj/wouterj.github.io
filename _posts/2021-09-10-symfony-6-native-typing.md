@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 'Symfony 6: PHP 8 Native Types & Why we Need YOU'
+title: 'Symfony 6: PHP 8 Native Types & Why we Need YOU'
 categories: article
 tags: symfony pre-release contribute
 

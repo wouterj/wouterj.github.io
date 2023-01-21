@@ -6,21 +6,23 @@ layout: default
     {% for post in paginator.posts %}{% if post.hide != true %}
         {% if forloop.first %}
             <article class="post  post--featured" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
-                {% if post.categories %}
-                <span class="post__category">
-                <time class="dt-published" datetime="{{ post.date | date_to_xmlschema }}" itemprop="datePublished">
-                    {{ post.date | date: "%^b '%y" }}
-                </time>
-                {% assign cat = post.categories|first %}
-                {% if cat == 'article' %}
-                &#xf139;
-                {% elsif cat == 'experiment' %}
-                &#xf051;
-                {% elsif cat == 'link' %}
-                &#xF10E;
-                {% endif %}
+                <span class="post__metadata">
+                    <time datetime="{{ post.date | date_to_xmlschema }}" itemprop="datePublished">
+                        {{ post.date | date: "%^b '%y" }}
+                    </time>
+                    {% if post.categories %}
+                        <span class="post__category__icon">
+                            {% assign cat = post.categories|first %}
+                            {% if cat == 'article' %}
+                            &#xf139;
+                            {% elsif cat == 'experiment' %}
+                            &#xf051;
+                            {% elsif cat == 'link' %}
+                            &#xF10E;
+                            {% endif %}
+                        </span>
+                    {% endif %}
                 </span>
-                {% endif %}
 
                 <h1 class="post__heading  post__heading--alpha" itemprop="headline"><a href="{{ post.url }}" itemprop="url">{{ post.title }}</a></h1>
                 {% if post.thumbnail and i != 2 -%}
@@ -33,21 +35,23 @@ layout: default
         {% elsif forloop.index < 4 %}
             {% if forloop.index == 2 %}<ul class="gw">{% endif %}
                 <li class="g  one-whole  desk-one-half"><article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
-                {% if post.categories %}
-                <span class="post__category">
-                <time class="dt-published" datetime="{{ post.date | date_to_xmlschema }}" itemprop="datePublished">
-                    {{ post.date | date: "%^b '%y" }}
-                </time>
-                {% assign cat = post.categories|first %}
-                {% if cat == 'article' %}
-                &#xf139;
-                {% elsif cat == 'experiment' %}
-                &#xf051;
-                {% elsif cat == 'link' %}
-                &#xF10E;
-                {% endif %}
+                <span class="post__metadata">
+                    <time datetime="{{ post.date | date_to_xmlschema }}" itemprop="datePublished">
+                        {{ post.date | date: "%^b '%y" }}
+                    </time>
+                    {% if post.categories %}
+                        <span class="post__category__icon">
+                            {% assign cat = post.categories|first %}
+                            {% if cat == 'article' %}
+                            &#xf139;
+                            {% elsif cat == 'experiment' %}
+                            &#xf051;
+                            {% elsif cat == 'link' %}
+                            &#xF10E;
+                            {% endif %}
+                        </span>
+                    {% endif %}
                 </span>
-                {% endif %}
 
                 <h1 class="post__heading  post__heading--beta" itemprop="headline"><a href="{{ post.url }}" itemprop="url">{{ post.title }}</a></h1>
                 {% if post.thumbnail and i != 2 -%}
