@@ -815,9 +815,9 @@ hgroup .hN {
  * promos, etc.
  */
 .giga {
-  font-size: 96px;
-  font-size: 5.3333333333rem;
-  line-height: 1; }
+  font-size: 70px;
+  font-size: 3.8888888889rem;
+  line-height: 1.3714285714; }
 
 .mega, .site-title {
   font-size: 54px;
@@ -2356,8 +2356,7 @@ pre {
   background: #eeeeee; }
 
 .page__header {
-  position: relative;
-  margin-bottom: 60px; }
+  position: relative; }
   @media only screen and (max-width: 699px) {
     .page__header {
       margin-bottom: 20px; } }
@@ -2459,15 +2458,6 @@ pre {
     .post {
       padding-left: 20px;
       padding-right: 20px; } }
-  .post:before {
-    content: '';
-    display: block;
-    position: absolute;
-    top: -5px;
-    left: 0;
-    width: 100%;
-    height: 5px;
-    background: #c33; }
   .post div.highlighter-shiki {
     line-height: 1.5; }
     @media only screen and (min-width: 1150px) {
@@ -2498,6 +2488,21 @@ pre {
     @media only screen and (max-width: 1149px) {
       .post .language-bash .shiki-gutter {
         display: none; } }
+
+.page--oss-list .post__heading, .page--post .post__heading {
+  line-height: 1.5;
+  font-weight: 800;
+  padding-right: 0; }
+  @media only screen and (min-width: 700px) {
+    .page--oss-list .post__heading, .page--post .post__heading {
+      font-size: 70px;
+      font-size: 3.8888888889rem;
+      line-height: 1.3714285714; } }
+  .page--oss-list .post__heading::after, .page--post .post__heading::after {
+    content: '.';
+    font-size: 1.5em;
+    line-height: 0;
+    color: #cc3333; }
 
 .post__heading {
   padding-right: 100px;
@@ -2531,6 +2536,22 @@ pre {
     .page--post .post__entry--excerpt a:hover, .page--oss-list .post__entry--excerpt a:hover, .post--featured .post__entry--excerpt a:hover {
       color: #cc3333; }
 
+.post__metadata {
+  margin-bottom: 16px; }
+
+.post__published-date, .post__category {
+  cursor: default;
+  margin-right: 8px;
+  padding: 1px 8px;
+  background: #cc3333;
+  color: #eeeeee; }
+
+.post__category__icon {
+  font-family: Batch;
+  font-size: 14px;
+  font-size: 0.7777777778rem;
+  line-height: 2.2857142857; }
+
 @media only screen and (max-width: 1149px) {
   .post__thumbnail {
     max-width: 100%;
@@ -2543,17 +2564,6 @@ pre {
 .post__comments {
   padding: 10px; }
 
-.post__category {
-  font-family: Batch;
-  position: absolute;
-  top: 0;
-  right: 10px;
-  cursor: default;
-  padding: 4px 8px;
-  background: #cc3333;
-  float: left;
-  color: #eeeeee; }
-
 /*-----------------------------------*\
     $POST_LIST
 \*-----------------------------------*/
@@ -2563,14 +2573,35 @@ pre {
   margin-top: 0; }
 .post-list .post {
   margin-top: 16px; }
-.post-list .post:nth-child(n+1) {
-  clear: left; }
+  .post-list .post:nth-child(n+1) {
+    clear: left; }
+  .post-list .post:before {
+    content: '';
+    display: block;
+    position: absolute;
+    top: -5px;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: #c33; }
 .post-list .post__heading {
   padding-right: 80px; }
 .post-list time {
   font-size: 12px; }
 .post-list .post__heading--beta {
   line-height: 1.4; }
+.post-list .post__metadata {
+  position: absolute;
+  top: 0;
+  right: 10px;
+  float: left;
+  padding: 1px 8px;
+  background: #cc3333;
+  color: #eeeeee; }
+  .post-list .post__metadata time {
+    font-size: 14px;
+    font-size: 0.7777777778rem;
+    line-height: 2.2857142857; }
 .post-list .post__date {
   float: left;
   background: #fff;
