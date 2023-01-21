@@ -2636,7 +2636,7 @@ pre {
     line-height: 1.8; }
     .post--summary .post__heading a {
       color: inherit; }
-  .post--summary .post__category {
+  .post--summary .post__metadata {
     position: relative;
     float: none;
     display: inline-block;
