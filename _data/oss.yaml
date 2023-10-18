@@ -1,15 +1,13 @@
 ---
-- repo: symfony/symfony-docs
-  nr: 16895
-  difficulty: actionable
-  notes: >
-    Let's improve accessibility of the Symfony documentation by adding
-    relevant alt descriptions to our figures.
-
 - repo: symfony/symfony
   nr: 36668
   difficulty: discuss
   # security profiler
+
+- repo: scheb/2fa
+  nr: 25
+  difficulty: discuss
+  # hardware tokens
 
 - repo: symfony/symfony
   nr: 33955
@@ -26,11 +24,3 @@
   notes: >
     If we add shell completion to Symfony CLI, we can automatically integrate
     the Symfony shell completion for <code>symfony console ...</code>
-
-- repo: phpDocumentor/guides
-  nr: 16
-  difficulty: discuss
-  notes: >
-    The new reStructuredText parser currently does not support referencing
-    other sections in the docs. This is one of the major missing features
-    before using it in the Symfony documentation.

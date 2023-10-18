@@ -54,3 +54,6 @@ exclude:
   - app/
   - source/
   - wouterj/
+
+sass:
+    sass_dir: _sass
