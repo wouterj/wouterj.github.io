@@ -1,4 +1,176 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.7">Jekyll</generator><link href="https://wouterj.nl/feed.xml" rel="self" type="application/atom+xml" /><link href="https://wouterj.nl/" rel="alternate" type="text/html" /><updated>2023-01-21T15:37:43+00:00</updated><id>https://wouterj.nl/feed.xml</id><title type="html">Wouter J</title><author><name>Wouter de Jong</name></author><entry><title type="html">Using the SecurityBundle in Symfony 6</title><link href="https://wouterj.nl/2021/12/security-winterworld21" rel="alternate" type="text/html" title="Using the SecurityBundle in Symfony 6" /><published>2021-12-10T00:00:00+00:00</published><updated>2021-12-10T00:00:00+00:00</updated><id>https://wouterj.nl/2021/12/security-winterworld21</id><content type="html" xml:base="https://wouterj.nl/2021/12/security-winterworld21"><![CDATA[<p>At SymfonyWorld Winter 2021, I talked about using the new Symfony
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.7">Jekyll</generator><link href="https://wouterj.nl/feed.xml" rel="self" type="application/atom+xml" /><link href="https://wouterj.nl/" rel="alternate" type="text/html" /><updated>2023-10-19T07:05:41+00:00</updated><id>https://wouterj.nl/feed.xml</id><title type="html">Wouter J</title><author><name>Wouter de Jong</name></author><entry><title type="html">Combatting Login CSRF with Symfony</title><link href="https://wouterj.nl/2023/10/combatting-login-csrf-with-symfony" rel="alternate" type="text/html" title="Combatting Login CSRF with Symfony" /><published>2023-10-19T00:00:00+00:00</published><updated>2023-10-19T00:00:00+00:00</updated><id>https://wouterj.nl/2023/10/combatting-login-csrf-with-symfony</id><content type="html" xml:base="https://wouterj.nl/2023/10/combatting-login-csrf-with-symfony"><![CDATA[<p>Cross-site Request Forgery (CSRF) is one of the traditional vulnerabilities
+that web applications have to deal with. Every web framework - including
+Symfony - supports CSRF protection out of the box. A lesser known
+vulnerability is <em>Login CSRF</em>, a special kind of CSRF attack.</p>
+
+<h2 id="how-a-csrf-attack-works">How a CSRF Attack Works</h2>
+
+<p>A <a href="https://cheatsheetseries.owasp.org/cheatsheets/Cross-Site_Request_Forgery_Prevention_Cheat_Sheet.html">CSRF attack</a> takes advantage of the sessions in the browser. If you
+login to a website, your authentication token is stored in a session. This
+means that you’re still logged in if you switch to another page of the
+website.</p>
+
+<p>The browser also remembers this session when visiting other websites. This
+is nice, as it allows you to go back to the website and still be logged in.
+However, attackers are using this to make requests from their website to
+your website using the remembered authentication session. This means that,
+without CSRF protection, it can use your website as if it was the user.</p>
+
+<p>For instance, an attacker can trick the user into thinking they are on your
+website and show them a form that looks like the login:</p>
+
+<div class="language-html highlighter-shiki"><pre class="shiki-gutter">1
+2
+3
+4
+5
+6
+7
+8
+9
+</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #E5673D">&lt;form</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">action</span><span style="color: #999999">=</span><span style="color: #999999">&quot;</span><span style="color: #7CC64A">https://yourwebsite.com/profile/change_password</span><span style="color: #999999">&quot;</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">method</span><span style="color: #999999">=</span><span style="color: #999999">&quot;</span><span style="color: #7CC64A">POST</span><span style="color: #999999">&quot;</span><span style="color: #E5673D">&gt;</span></span>
+<span class="line" data-linenr="2"><span style="color: #BBBBBB">    </span><span style="color: #E5673D">&lt;label&gt;</span><span style="color: #BBBBBB">Username </span><span style="color: #E5673D">&lt;input</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">type</span><span style="color: #999999">=</span><span style="color: #999999">&quot;</span><span style="color: #7CC64A">text</span><span style="color: #999999">&quot;</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">name</span><span style="color: #999999">=</span><span style="color: #999999">&quot;</span><span style="color: #7CC64A">username</span><span style="color: #999999">&quot;</span><span style="color: #E5673D">&gt;&lt;/label&gt;</span></span>
+<span class="line" data-linenr="3"></span>
+<span class="line" data-linenr="4"><span style="color: #BBBBBB">    </span><span style="color: #E5673D">&lt;label&gt;</span><span style="color: #BBBBBB">Password </span><span style="color: #E5673D">&lt;input</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">type</span><span style="color: #999999">=</span><span style="color: #999999">&quot;</span><span style="color: #7CC64A">password</span><span style="color: #999999">&quot;</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">name</span><span style="color: #999999">=</span><span style="color: #999999">&quot;</span><span style="color: #7CC64A">current_password</span><span style="color: #999999">&quot;</span><span style="color: #E5673D">&gt;&lt;/label&gt;</span></span>
+<span class="line" data-linenr="5"></span>
+<span class="line" data-linenr="6"><span style="color: #BBBBBB">    </span><span style="color: #E5673D">&lt;input</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">type</span><span style="color: #999999">=</span><span style="color: #999999">&quot;</span><span style="color: #7CC64A">hidden</span><span style="color: #999999">&quot;</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">name</span><span style="color: #999999">=</span><span style="color: #999999">&quot;</span><span style="color: #7CC64A">new_password</span><span style="color: #999999">&quot;</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">value</span><span style="color: #999999">=</span><span style="color: #999999">&quot;</span><span style="color: #7CC64A">...</span><span style="color: #999999">&quot;</span><span style="color: #E5673D">&gt;</span></span>
+<span class="line" data-linenr="7"></span>
+<span class="line" data-linenr="8"><span style="color: #BBBBBB">    </span><span style="color: #E5673D">&lt;button</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">type</span><span style="color: #999999">=</span><span style="color: #999999">&quot;</span><span style="color: #7CC64A">submit</span><span style="color: #999999">&quot;</span><span style="color: #E5673D">&gt;</span><span style="color: #BBBBBB">Login</span><span style="color: #E5673D">&lt;/button&gt;</span></span>
+<span class="line" data-linenr="9"><span style="color: #E5673D">&lt;/form&gt;</span></span></code></pre>
+</div>
+
+<p>In reality (looking at the <code class="highlighter-shiki">action</code> and <code class="highlighter-shiki">type=&quot;hidden&quot;</code> input), this form
+changes the password of the user to something that is known only by the
+attacker, giving them access to their account. Attacks can also do any
+other action on your website, like buying goods or transfering money to
+their account.</p>
+
+<h2 id="how-login-csrf-attacks-are-different">How Login CSRF Attacks are Different</h2>
+
+<p>The CSRF attacks described above are <em>using the authenticated session</em> to
+act as a user. <a href="https://cheatsheetseries.owasp.org/cheatsheets/Cross-Site_Request_Forgery_Prevention_Cheat_Sheet.html#login-csrf">Login CSRF attacks</a> are the opposite: they <em>force an
+authenticated session</em> to let the user act as them.</p>
+
+<p>How does that work? When someone visits the website of an attacker, they
+make a request to <code class="highlighter-shiki">yourwebsite.com/logout</code> to force an unauthenticated
+session and then make a request to <code class="highlighter-shiki">yourwebsite.com/login</code> with
+credentials of an account that they control.</p>
+
+<aside class="side" data-type="side note">
+  <p>With the introduction of <code class="highlighter-shiki">Secure</code> and <code class="highlighter-shiki">SameSite</code> cookie flags, there has
+been a feeling that <a href="https://scotthelme.co.uk/csrf-is-really-dead/">CSRF is dead</a>. Login CSRF is a good example of a
+situation where these cookie flags won’t protect your users against a CSRF
+attack. While the web is more secure thanks to these cookie flags, CSRF
+still has its function in modern web applications.</p>
+</aside>
+
+<p>This can have serious consequences for the user, depending on the
+functionality of your website. E.g. <a href="https://seclab.stanford.edu/websec/csrf/csrf.pdf">“Robust Defenses for Cross-Site Request
+Forgery” (Barth, Jackson, Mitchell, 2008)</a> mention that this attack is
+used to let users unknowingly connect their creditcard to the PayPal
+account of the attacker. It is also used to get access to a user’s Google
+account, or using it to track the user’s search terms and locations.</p>
+
+<p>The risk of Login CSRF attacks is often considered to be lower. Most users
+are expected to notice when they are logged in to someone else’s account on
+the website (hence it’s a good idea to make this visible on all pages!).
+However, the consequences can be very high when a user doesn’t notice. If
+you’re using Symfony, protecting against them is very easy and I would
+recommend always doing this.</p>
+
+<h2 id="protecting-against-login-csrf">Protecting against Login CSRF</h2>
+
+<p>A login CSRF attack can include two steps: first a call to logout to force
+the website in a known state, and then a login with the attackers
+credentials. Let’s protect both steps!</p>
+
+<h3 id="protecting-login">Protecting Login</h3>
+
+<p>Protecting against login CSRF attacks is similar to protecting against
+other CSRF attacks. When rendering the login form, you create a randomized
+token which you submit along with the rest of the form. When handling the
+submission, this token is checked for validity.</p>
+
+<p>When using Symfony’s built-in <code class="highlighter-shiki">form_login</code> authenticator, generating and
+validating this randomized token is mostly automated for you. First, enable
+CSRF protection in the authenticator:</p>
+
+<div class="language-yaml highlighter-shiki"><pre class="shiki-gutter">1
+2
+3
+4
+5
+6
+7
+</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #C7C8D2">security</span><span style="color: #999999">:</span></span>
+<span class="line" data-linenr="2"><span style="color: #999999">    </span><span style="color: #6B90C0; font-style: italic"># ...</span></span>
+<span class="line" data-linenr="3"><span style="color: #BBBBBB">    </span><span style="color: #C7C8D2">firewalls</span><span style="color: #999999">:</span></span>
+<span class="line" data-linenr="4"><span style="color: #BBBBBB">        </span><span style="color: #C7C8D2">main</span><span style="color: #999999">:</span></span>
+<span class="line" data-linenr="5"><span style="color: #BBBBBB">            </span><span style="color: #C7C8D2">form_login</span><span style="color: #999999">:</span></span>
+<span class="line" data-linenr="6"><span style="color: #999999">                </span><span style="color: #6B90C0; font-style: italic"># ...</span></span>
+<span class="line" data-linenr="7"><span style="color: #BBBBBB">                </span><span style="color: #C7C8D2">enable_csrf</span><span style="color: #999999">:</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">true</span></span></code></pre>
+</div>
+
+<p>And then, add a hidden CSRF token to your login form template:</p>
+
+<div class="language-twig highlighter-shiki"><pre class="shiki-gutter">1
+2
+</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #6B90C0; font-style: italic">&lt;!-- csrf_token() takes care of correctly generating and storing the CSRF token --&gt;</span></span>
+<span class="line" data-linenr="2"><span style="color: #E5673D">&lt;input</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">type</span><span style="color: #BBBBBB">=</span><span style="color: #999999">&quot;</span><span style="color: #7CC64A">hidden</span><span style="color: #999999">&quot;</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">name</span><span style="color: #BBBBBB">=</span><span style="color: #999999">&quot;</span><span style="color: #7CC64A">_csrf_token</span><span style="color: #999999">&quot;</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">value</span><span style="color: #BBBBBB">=</span><span style="color: #999999">&quot;{{</span><span style="color: #7CC64A"> </span><span style="color: #C7C8D2">csrf_token</span><span style="color: #999999">(&#39;</span><span style="color: #7CC64A">authenticate</span><span style="color: #999999">&#39;)</span><span style="color: #7CC64A"> </span><span style="color: #999999">}}&quot;</span><span style="color: #E5673D">&gt;</span></span></code></pre>
+</div>
+
+<p>That’s it! Your users are safe against this attack now!</p>
+
+<p>When you’re using a custom login form authenticator, you’ll have to add
+<a href="https://symfony.com/doc/current/security/custom_authenticator.html#passport-badges">the <code class="highlighter-shiki">CsrfTokenBadge</code></a> with the CSRF token from the request. The
+security system will then validate this token for you.</p>
+
+<h3 id="protecting-logout">Protecting Logout</h3>
+
+<aside class="side" data-type="Symfony &lt;6.2">
+  <p>The <code class="highlighter-shiki">enable_csrf</code> option is new in Symfony 6.2. If you’re stuck on
+an older version, you need to use <code class="highlighter-shiki">csrf_token_generator: security.csrf.token_manager</code>
+instead. Read more about it in <a href="https://symfony.com/doc/5.4/reference/configuration/security.html#reference-security-logout-csrf">the documentation</a>.</p>
+</aside>
+
+<p>You can protect logout in a similar way by enabling CSRF protection in the
+config:</p>
+
+<div class="language-yaml highlighter-shiki"><pre class="shiki-gutter">1
+2
+3
+4
+5
+6
+7
+</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #C7C8D2">security</span><span style="color: #999999">:</span></span>
+<span class="line" data-linenr="2"><span style="color: #999999">    </span><span style="color: #6B90C0; font-style: italic"># ...</span></span>
+<span class="line" data-linenr="3"><span style="color: #BBBBBB">    </span><span style="color: #C7C8D2">firewalls</span><span style="color: #999999">:</span></span>
+<span class="line" data-linenr="4"><span style="color: #BBBBBB">        </span><span style="color: #C7C8D2">main</span><span style="color: #999999">:</span></span>
+<span class="line" data-linenr="5"><span style="color: #BBBBBB">            </span><span style="color: #C7C8D2">logout</span><span style="color: #999999">:</span></span>
+<span class="line" data-linenr="6"><span style="color: #999999">                </span><span style="color: #6B90C0; font-style: italic"># ...</span></span>
+<span class="line" data-linenr="7"><span style="color: #BBBBBB">                </span><span style="color: #C7C8D2">enable_csrf</span><span style="color: #999999">:</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">true</span></span></code></pre>
+</div>
+
+<p>If you’re already using the <code class="highlighter-shiki">logout_path()</code> Twig helper function to
+generate a URL to your logout route, this is all you had to do! The Twig
+function generates a unique CSRF token and attaches it to the URL.</p>
+
+<p>Otherwise, replace links to the logout page with this Twig function in your
+Twig templates:</p>
+
+<div class="language-twig highlighter-shiki"><pre class="shiki-gutter">1
+</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #E5673D">&lt;a</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">href</span><span style="color: #BBBBBB">=</span><span style="color: #999999">&quot;{{</span><span style="color: #7CC64A"> logout_path</span><span style="color: #999999">()</span><span style="color: #7CC64A"> </span><span style="color: #999999">}}&quot;</span><span style="color: #E5673D">&gt;</span><span style="color: #BBBBBB">Logout</span><span style="color: #E5673D">&lt;/a&gt;</span></span></code></pre>
+</div>
+
+<h2 id="take-homes">Take Homes</h2>
+
+<ul>
+  <li>Make sure your login/logout actions are also protected against CSRF
+attacks</li>
+  <li>While cookies have become more secure in recent years, CSRF protection
+still needs attention</li>
+</ul>]]></content><author><name>Wouter de Jong</name></author><category term="article" /><summary type="html"><![CDATA[Cross-site Request Forgery (CSRF) is one of the traditional vulnerabilities that web applications have to deal with. Every web framework - including Symfony - supports CSRF protection out of the box. A lesser known vulnerability is Login CSRF, a special kind of CSRF attack.]]></summary></entry><entry><title type="html">Using the SecurityBundle in Symfony 6</title><link href="https://wouterj.nl/2021/12/security-winterworld21" rel="alternate" type="text/html" title="Using the SecurityBundle in Symfony 6" /><published>2021-12-10T00:00:00+00:00</published><updated>2021-12-10T00:00:00+00:00</updated><id>https://wouterj.nl/2021/12/security-winterworld21</id><content type="html" xml:base="https://wouterj.nl/2021/12/security-winterworld21"><![CDATA[<p>At SymfonyWorld Winter 2021, I talked about using the new Symfony
 authentication system in your applications in Symfony 6. We discussed
 the important changes to the Security component, what we tried to
 improve with each change, and how you can use these to make a more
@@ -1954,373 +2126,4 @@ serializable, doesn’t need to erase credentials, cetera.</p>
 difficulties to integrate this into the Symfony code. But I believe it is
 necessary to rethink what’s needed in the Symfony Security component.
 Integrating the Security component should be easier. Reducing classes that need
-to be modified to use Security helps with this.</p>]]></content><author><name>Wouter de Jong</name></author><category term="experiment" /><category term="symfony" /><category term="security" /><summary type="html"><![CDATA[Symfony 2 completely renewed Symfony. Symfony 3 gave us a completely refactored and improved Form component. Symfony 4 gave us a renewed dependency injection experience. Let’s fix Security in Symfony 5! To start with: The concept of users in security.]]></summary></entry><entry><title type="html">Repositories are just Collections</title><link href="https://wouterj.nl/2016/12/repositories-are-collections" rel="alternate" type="text/html" title="Repositories are just Collections" /><published>2016-12-15T00:00:00+00:00</published><updated>2016-12-15T00:00:00+00:00</updated><id>https://wouterj.nl/2016/12/repositories-are-collections</id><content type="html" xml:base="https://wouterj.nl/2016/12/repositories-are-collections"><![CDATA[<p>Repositories are just collections of things. A post repository is a collection
-of posts, a user repository a collection of users. They allow to abstract away
-all the persistence details. Yet, many people think of Doctrine repositories as
-purely related to Doctrine, leading to strange abstractions. Let’s create a
-normal collection with Symfony and Doctrine today!</p>
-
-<h2 id="it-all-starts-with-the-interface">It all starts with the Interface</h2>
-
-<p>When designing your application, start with designing your interfaces. If you
-like your interfaces, the implementation will probably be nice as well. In this
-post, we’re going to design a collection of products. The interface first
-contains some basic collection methods:</p>
-
-<div class="language-php highlighter-shiki"><pre class="shiki-gutter">1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #6B90C0; font-style: italic">// src/AppBundle/Product/ProductRepository.php</span></span>
-<span class="line" data-linenr="2"><span style="color: #E5673D">namespace</span><span style="color: #BBBBBB"> AppBundle</span><span style="color: #999999">\</span><span style="color: #BBBBBB">Product</span><span style="color: #E5673D">;</span></span>
-<span class="line" data-linenr="3"></span>
-<span class="line" data-linenr="4"><span style="color: #E5673D">interface</span><span style="color: #BBBBBB"> ProductRepository </span><span style="color: #E5673D">extends</span><span style="color: #BBBBBB"> </span><span style="color: #999999">\</span><span style="color: #C7C8D2">Countable</span></span>
-<span class="line" data-linenr="5"><span style="color: #999999">{</span></span>
-<span class="line" data-linenr="6"><span style="color: #BBBBBB">    </span><span style="color: #6B90C0; font-style: italic">/** @return </span><span style="color: #C7C8D2; font-style: italic">Product</span><span style="color: #E5673D; font-style: italic">[]</span><span style="color: #6B90C0; font-style: italic"> */</span></span>
-<span class="line" data-linenr="7"><span style="color: #BBBBBB">    </span><span style="color: #E5673D">public</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">function</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">all</span><span style="color: #999999">()</span><span style="color: #E5673D">;</span></span>
-<span class="line" data-linenr="8"></span>
-<span class="line" data-linenr="9"><span style="color: #BBBBBB">    </span><span style="color: #6B90C0; font-style: italic">/** @return </span><span style="color: #E5673D; font-style: italic">bool</span><span style="color: #6B90C0; font-style: italic"> */</span></span>
-<span class="line" data-linenr="10"><span style="color: #BBBBBB">    </span><span style="color: #E5673D">public</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">function</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">includes</span><span style="color: #999999">(</span><span style="color: #C7C8D2">Product</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">product</span><span style="color: #999999">)</span><span style="color: #E5673D">;</span></span>
-<span class="line" data-linenr="11"></span>
-<span class="line" data-linenr="12"><span style="color: #BBBBBB">    </span><span style="color: #6B90C0; font-style: italic">/** @return </span><span style="color: #E5673D; font-style: italic">int</span><span style="color: #6B90C0; font-style: italic"> */</span></span>
-<span class="line" data-linenr="13"><span style="color: #BBBBBB">    </span><span style="color: #E5673D">public</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">function</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">count</span><span style="color: #999999">()</span><span style="color: #E5673D">;</span></span>
-<span class="line" data-linenr="14"><span style="color: #999999">}</span></span></code></pre>
-</div>
-
-<p>We can now count the number of products in the collection, get all products in
-the collection and check if a product is included in the collection. Now, let’s
-add two simple methods for more specific operations on this collection:</p>
-
-<div class="language-php highlighter-shiki"><pre class="shiki-gutter">1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #6B90C0; font-style: italic">// src/AppBundle/Product/ProductRepository.php</span></span>
-<span class="line" data-linenr="2"></span>
-<span class="line" data-linenr="3"><span style="color: #6B90C0; font-style: italic">// ...</span></span>
-<span class="line" data-linenr="4"><span style="color: #E5673D">interface</span><span style="color: #BBBBBB"> ProductRepository </span><span style="color: #E5673D">extends</span><span style="color: #BBBBBB"> </span><span style="color: #999999">\</span><span style="color: #C7C8D2">Countable</span></span>
-<span class="line" data-linenr="5"><span style="color: #999999">{</span></span>
-<span class="line" data-linenr="6"><span style="color: #999999">    </span><span style="color: #6B90C0; font-style: italic">// ...</span></span>
-<span class="line" data-linenr="7"><span style="color: #BBBBBB">    </span><span style="color: #E5673D">public</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">function</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">add</span><span style="color: #999999">(</span><span style="color: #C7C8D2">Product</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">product</span><span style="color: #999999">)</span><span style="color: #E5673D">;</span></span>
-<span class="line" data-linenr="8"></span>
-<span class="line" data-linenr="9"><span style="color: #BBBBBB">    </span><span style="color: #6B90C0; font-style: italic">/** @return </span><span style="color: #E5673D; font-style: italic">null</span><span style="color: #999999; font-style: italic">|</span><span style="color: #C7C8D2; font-style: italic">Product</span><span style="color: #6B90C0; font-style: italic"> */</span></span>
-<span class="line" data-linenr="10"><span style="color: #BBBBBB">    </span><span style="color: #E5673D">public</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">function</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">byId</span><span style="color: #999999">(</span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">id</span><span style="color: #999999">)</span><span style="color: #E5673D">;</span></span>
-<span class="line" data-linenr="11"><span style="color: #999999">}</span></span></code></pre>
-</div>
-
-<h2 id="a-basic-implementation">A Basic Implementation</h2>
-
-<p>The most straight-forward way to implement collections in PHP is by using
-arrays. Let’s create an array based product collection:</p>
-
-<div class="language-php highlighter-shiki"><pre class="shiki-gutter">1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-28
-29
-30
-31
-32
-33
-34
-35
-36
-</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #6B90C0; font-style: italic">// src/AppBundle/Product/ArrayBasedProductRepository.php</span></span>
-<span class="line" data-linenr="2"><span style="color: #E5673D">namespace</span><span style="color: #BBBBBB"> AppBundle</span><span style="color: #999999">\</span><span style="color: #BBBBBB">Product</span><span style="color: #E5673D">;</span></span>
-<span class="line" data-linenr="3"></span>
-<span class="line" data-linenr="4"><span style="color: #E5673D">class</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">ArrayBasedProductRepository</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">implements</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">ProductRepository</span></span>
-<span class="line" data-linenr="5"><span style="color: #999999">{</span></span>
-<span class="line" data-linenr="6"><span style="color: #BBBBBB">    </span><span style="color: #E5673D">private</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">products</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">=</span><span style="color: #BBBBBB"> </span><span style="color: #999999">[]</span><span style="color: #E5673D">;</span></span>
-<span class="line" data-linenr="7"></span>
-<span class="line" data-linenr="8"><span style="color: #BBBBBB">    </span><span style="color: #E5673D">public</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">function</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">all</span><span style="color: #999999">()</span></span>
-<span class="line" data-linenr="9"><span style="color: #BBBBBB">    </span><span style="color: #999999">{</span></span>
-<span class="line" data-linenr="10"><span style="color: #BBBBBB">        </span><span style="color: #E5673D">return</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">this</span><span style="color: #E5673D">-&gt;</span><span style="color: #D8DEE9">products</span><span style="color: #E5673D">;</span></span>
-<span class="line" data-linenr="11"><span style="color: #BBBBBB">    </span><span style="color: #999999">}</span></span>
-<span class="line" data-linenr="12"></span>
-<span class="line" data-linenr="13"><span style="color: #BBBBBB">    </span><span style="color: #E5673D">public</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">function</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">includes</span><span style="color: #999999">(</span><span style="color: #C7C8D2">Product</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">product</span><span style="color: #999999">)</span></span>
-<span class="line" data-linenr="14"><span style="color: #BBBBBB">    </span><span style="color: #999999">{</span></span>
-<span class="line" data-linenr="15"><span style="color: #BBBBBB">        </span><span style="color: #E5673D">return</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">in_array</span><span style="color: #999999">(</span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">product</span><span style="color: #999999">,</span><span style="color: #C7C8D2"> </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">this</span><span style="color: #E5673D">-&gt;</span><span style="color: #D8DEE9">products</span><span style="color: #999999">)</span><span style="color: #E5673D">;</span></span>
-<span class="line" data-linenr="16"><span style="color: #BBBBBB">    </span><span style="color: #999999">}</span></span>
-<span class="line" data-linenr="17"></span>
-<span class="line" data-linenr="18"><span style="color: #BBBBBB">    </span><span style="color: #E5673D">public</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">function</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">count</span><span style="color: #999999">()</span></span>
-<span class="line" data-linenr="19"><span style="color: #BBBBBB">    </span><span style="color: #999999">{</span></span>
-<span class="line" data-linenr="20"><span style="color: #BBBBBB">        </span><span style="color: #E5673D">return</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">count</span><span style="color: #999999">(</span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">this</span><span style="color: #E5673D">-&gt;</span><span style="color: #D8DEE9">products</span><span style="color: #999999">)</span><span style="color: #E5673D">;</span></span>
-<span class="line" data-linenr="21"><span style="color: #BBBBBB">    </span><span style="color: #999999">}</span></span>
-<span class="line" data-linenr="22"></span>
-<span class="line" data-linenr="23"><span style="color: #BBBBBB">    </span><span style="color: #E5673D">public</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">function</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">add</span><span style="color: #999999">(</span><span style="color: #C7C8D2">Product</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">product</span><span style="color: #999999">)</span></span>
-<span class="line" data-linenr="24"><span style="color: #BBBBBB">    </span><span style="color: #999999">{</span></span>
-<span class="line" data-linenr="25"><span style="color: #BBBBBB">        </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">this</span><span style="color: #E5673D">-&gt;</span><span style="color: #D8DEE9">products</span><span style="color: #999999">[</span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">product</span><span style="color: #E5673D">-&gt;</span><span style="color: #C7C8D2">getId</span><span style="color: #999999">()]</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">=</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">product</span><span style="color: #E5673D">;</span></span>
-<span class="line" data-linenr="26"><span style="color: #BBBBBB">    </span><span style="color: #999999">}</span></span>
-<span class="line" data-linenr="27"></span>
-<span class="line" data-linenr="28"><span style="color: #BBBBBB">    </span><span style="color: #E5673D">public</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">function</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">byId</span><span style="color: #999999">(</span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">id</span><span style="color: #999999">)</span></span>
-<span class="line" data-linenr="29"><span style="color: #BBBBBB">    </span><span style="color: #999999">{</span></span>
-<span class="line" data-linenr="30"><span style="color: #BBBBBB">        </span><span style="color: #E5673D">if</span><span style="color: #BBBBBB"> </span><span style="color: #999999">(</span><span style="color: #E5673D">!isset</span><span style="color: #999999">(</span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">this</span><span style="color: #E5673D">-&gt;</span><span style="color: #D8DEE9">products</span><span style="color: #999999">[</span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">id</span><span style="color: #999999">]))</span><span style="color: #BBBBBB"> </span><span style="color: #999999">{</span></span>
-<span class="line" data-linenr="31"><span style="color: #BBBBBB">            </span><span style="color: #E5673D">return</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">null;</span></span>
-<span class="line" data-linenr="32"><span style="color: #BBBBBB">        </span><span style="color: #999999">}</span></span>
-<span class="line" data-linenr="33"></span>
-<span class="line" data-linenr="34"><span style="color: #BBBBBB">        </span><span style="color: #E5673D">return</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">this</span><span style="color: #E5673D">-&gt;</span><span style="color: #D8DEE9">products</span><span style="color: #999999">[</span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">id</span><span style="color: #999999">]</span><span style="color: #E5673D">;</span></span>
-<span class="line" data-linenr="35"><span style="color: #BBBBBB">    </span><span style="color: #999999">}</span></span>
-<span class="line" data-linenr="36"><span style="color: #999999">}</span></span></code></pre>
-</div>
-
-<p>Most of the methods in the interface can be mapped to simple PHP array
-methods. This repository can be defined as a service:</p>
-
-<div class="language-yaml highlighter-shiki"><pre class="shiki-gutter">1
-2
-3
-4
-</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #6B90C0; font-style: italic"># app/config/services.yml</span></span>
-<span class="line" data-linenr="2"><span style="color: #C7C8D2">services</span><span style="color: #999999">:</span></span>
-<span class="line" data-linenr="3"><span style="color: #BBBBBB">    </span><span style="color: #C7C8D2">app.product_repository</span><span style="color: #999999">:</span></span>
-<span class="line" data-linenr="4"><span style="color: #BBBBBB">        </span><span style="color: #C7C8D2">class</span><span style="color: #999999">:</span><span style="color: #BBBBBB"> </span><span style="color: #7CC64A">AppBundle\Product\ArrayBasedProductRepository</span></span></code></pre>
-</div>
-
-<p>Then you can probably imagine how we would use this product collection in a
-controller:</p>
-
-<div class="language-php highlighter-shiki"><pre class="shiki-gutter">1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #6B90C0; font-style: italic">// src/AppBundle/Controller/ShopController.php</span></span>
-<span class="line" data-linenr="2"><span style="color: #E5673D">namespace</span><span style="color: #BBBBBB"> AppBundle</span><span style="color: #999999">\</span><span style="color: #BBBBBB">Controller</span><span style="color: #E5673D">;</span></span>
-<span class="line" data-linenr="3"></span>
-<span class="line" data-linenr="4"><span style="color: #6B90C0; font-style: italic">// ...</span></span>
-<span class="line" data-linenr="5"><span style="color: #E5673D">class</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">ShopController</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">extends</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">Controller</span></span>
-<span class="line" data-linenr="6"><span style="color: #999999">{</span></span>
-<span class="line" data-linenr="7"><span style="color: #BBBBBB">    </span><span style="color: #E5673D">public</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">function</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">listAction</span><span style="color: #999999">()</span></span>
-<span class="line" data-linenr="8"><span style="color: #BBBBBB">    </span><span style="color: #999999">{</span></span>
-<span class="line" data-linenr="9"><span style="color: #BBBBBB">        </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">products</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">=</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">this</span><span style="color: #E5673D">-&gt;</span><span style="color: #C7C8D2">get</span><span style="color: #999999">(</span><span style="color: #999999">&#39;</span><span style="color: #7CC64A">app.product_repository</span><span style="color: #999999">&#39;</span><span style="color: #999999">)</span><span style="color: #E5673D">-&gt;</span><span style="color: #C7C8D2">all</span><span style="color: #999999">()</span><span style="color: #E5673D">;</span></span>
-<span class="line" data-linenr="10"></span>
-<span class="line" data-linenr="11"><span style="color: #BBBBBB">        </span><span style="color: #E5673D">return</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">this</span><span style="color: #E5673D">-&gt;</span><span style="color: #C7C8D2">render</span><span style="color: #999999">(</span><span style="color: #999999">&#39;</span><span style="color: #7CC64A">shop/products.twig</span><span style="color: #999999">&#39;</span><span style="color: #999999">,</span><span style="color: #BBBBBB"> </span><span style="color: #999999">[</span></span>
-<span class="line" data-linenr="12"><span style="color: #BBBBBB">            </span><span style="color: #999999">&#39;</span><span style="color: #7CC64A">products</span><span style="color: #999999">&#39;</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">=&gt;</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">products</span><span style="color: #999999">,</span></span>
-<span class="line" data-linenr="13"><span style="color: #BBBBBB">        </span><span style="color: #999999">])</span><span style="color: #E5673D">;</span></span>
-<span class="line" data-linenr="14"><span style="color: #BBBBBB">    </span><span style="color: #999999">}</span></span>
-<span class="line" data-linenr="15"></span>
-<span class="line" data-linenr="16"><span style="color: #BBBBBB">    </span><span style="color: #E5673D">public</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">function</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">productInfoAction</span><span style="color: #999999">(</span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">productId</span><span style="color: #999999">)</span></span>
-<span class="line" data-linenr="17"><span style="color: #BBBBBB">    </span><span style="color: #999999">{</span></span>
-<span class="line" data-linenr="18"><span style="color: #BBBBBB">        </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">product</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">=</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">this</span><span style="color: #E5673D">-&gt;</span><span style="color: #C7C8D2">get</span><span style="color: #999999">(</span><span style="color: #999999">&#39;</span><span style="color: #7CC64A">app.product_repository</span><span style="color: #999999">&#39;</span><span style="color: #999999">)</span><span style="color: #E5673D">-&gt;</span><span style="color: #C7C8D2">byId</span><span style="color: #999999">(</span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">productId</span><span style="color: #999999">)</span><span style="color: #E5673D">;</span></span>
-<span class="line" data-linenr="19"></span>
-<span class="line" data-linenr="20"><span style="color: #BBBBBB">        </span><span style="color: #E5673D">return</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">this</span><span style="color: #E5673D">-&gt;</span><span style="color: #C7C8D2">render</span><span style="color: #999999">(</span><span style="color: #999999">&#39;</span><span style="color: #7CC64A">shop/product_info.twig</span><span style="color: #999999">&#39;</span><span style="color: #999999">,</span><span style="color: #BBBBBB"> </span><span style="color: #999999">[</span></span>
-<span class="line" data-linenr="21"><span style="color: #BBBBBB">            </span><span style="color: #999999">&#39;</span><span style="color: #7CC64A">product</span><span style="color: #999999">&#39;</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">=&gt;</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">product</span><span style="color: #999999">,</span></span>
-<span class="line" data-linenr="22"><span style="color: #BBBBBB">        </span><span style="color: #999999">])</span><span style="color: #E5673D">;</span></span>
-<span class="line" data-linenr="23"><span style="color: #BBBBBB">    </span><span style="color: #999999">}</span></span>
-<span class="line" data-linenr="24"><span style="color: #999999">}</span></span></code></pre>
-</div>
-
-<h2 id="using-doctrine">Using Doctrine</h2>
-
-<p>So far, we’ve only looked at normal repositories. I hope this brought the point
-across that repositories are just collections. The nice thing about
-repositories is that we can implement all sort of different backends for our
-collections. As this post is also about Doctrine, let’s create a product
-collection based on Doctrine.</p>
-
-<p>The <code class="highlighter-shiki">EntityRepository</code> shipped with the Doctrine ORM is a simple wrapper class
-around the entity manager and the unit of work. The class isn’t used in
-Doctrine itself, it’s purely an easy starting point for the users. This means
-we can completely drop it and base our doctrine collection on top of the entity
-manager:</p>
-
-<div class="language-php highlighter-shiki"><pre class="shiki-gutter">1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-28
-29
-30
-31
-32
-33
-34
-35
-36
-37
-38
-39
-40
-41
-42
-43
-44
-45
-</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #6B90C0; font-style: italic">// src/AppBundle/Product/DoctrineBasedProductRepository.php</span></span>
-<span class="line" data-linenr="2"><span style="color: #E5673D">namespace</span><span style="color: #BBBBBB"> AppBundle</span><span style="color: #999999">\</span><span style="color: #BBBBBB">Product</span><span style="color: #E5673D">;</span></span>
-<span class="line" data-linenr="3"></span>
-<span class="line" data-linenr="4"><span style="color: #E5673D">use</span><span style="color: #BBBBBB"> Doctrine</span><span style="color: #999999">\</span><span style="color: #BBBBBB">ORM</span><span style="color: #999999">\</span><span style="color: #C7C8D2">EntityManager</span><span style="color: #E5673D">;</span></span>
-<span class="line" data-linenr="5"></span>
-<span class="line" data-linenr="6"><span style="color: #E5673D">class</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">DoctrineBasedProductRepository</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">implements</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">ProductRepository</span></span>
-<span class="line" data-linenr="7"><span style="color: #999999">{</span></span>
-<span class="line" data-linenr="8"><span style="color: #BBBBBB">    </span><span style="color: #E5673D">private</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">entityManager</span><span style="color: #E5673D">;</span></span>
-<span class="line" data-linenr="9"></span>
-<span class="line" data-linenr="10"><span style="color: #BBBBBB">    </span><span style="color: #E5673D">public</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">function</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">__construct</span><span style="color: #999999">(</span><span style="color: #C7C8D2">EntityManager</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">entityManager</span><span style="color: #999999">)</span></span>
-<span class="line" data-linenr="11"><span style="color: #BBBBBB">    </span><span style="color: #999999">{</span></span>
-<span class="line" data-linenr="12"><span style="color: #BBBBBB">        </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">this</span><span style="color: #E5673D">-&gt;</span><span style="color: #D8DEE9">entityManager</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">=</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">entityManager</span><span style="color: #E5673D">;</span></span>
-<span class="line" data-linenr="13"><span style="color: #BBBBBB">    </span><span style="color: #999999">}</span></span>
-<span class="line" data-linenr="14"></span>
-<span class="line" data-linenr="15"><span style="color: #BBBBBB">    </span><span style="color: #E5673D">public</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">function</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">all</span><span style="color: #999999">()</span></span>
-<span class="line" data-linenr="16"><span style="color: #BBBBBB">    </span><span style="color: #999999">{</span></span>
-<span class="line" data-linenr="17"><span style="color: #999999">        </span><span style="color: #6B90C0; font-style: italic">// Create a basic DQL query to fetch all entities</span></span>
-<span class="line" data-linenr="18"><span style="color: #BBBBBB">        </span><span style="color: #E5673D">return</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">this</span><span style="color: #E5673D">-&gt;</span><span style="color: #D8DEE9">entityManager</span><span style="color: #E5673D">-&gt;</span><span style="color: #C7C8D2">createQuery</span><span style="color: #999999">(</span><span style="color: #999999">&#39;</span><span style="color: #E5673D">SELECT</span><span style="color: #7CC64A"> p </span><span style="color: #E5673D">FROM</span><span style="color: #7CC64A"> </span><span style="color: #999999">&#39;</span><span style="color: #E5673D">.</span><span style="color: #C7C8D2">Product</span><span style="color: #E5673D">::class</span><span style="color: #E5673D">.</span><span style="color: #999999">&#39;</span><span style="color: #7CC64A"> p</span><span style="color: #999999">&#39;</span><span style="color: #999999">)</span></span>
-<span class="line" data-linenr="19"><span style="color: #BBBBBB">            </span><span style="color: #E5673D">-&gt;</span><span style="color: #C7C8D2">getResult</span><span style="color: #999999">()</span><span style="color: #E5673D">;</span></span>
-<span class="line" data-linenr="20"><span style="color: #BBBBBB">    </span><span style="color: #999999">}</span></span>
-<span class="line" data-linenr="21"></span>
-<span class="line" data-linenr="22"><span style="color: #BBBBBB">    </span><span style="color: #E5673D">public</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">function</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">includes</span><span style="color: #999999">(</span><span style="color: #C7C8D2">Product</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">product</span><span style="color: #999999">)</span></span>
-<span class="line" data-linenr="23"><span style="color: #BBBBBB">    </span><span style="color: #999999">{</span></span>
-<span class="line" data-linenr="24"><span style="color: #999999">        </span><span style="color: #6B90C0; font-style: italic">// Check if the entity is managed by the entity manager</span></span>
-<span class="line" data-linenr="25"><span style="color: #BBBBBB">        </span><span style="color: #E5673D">return</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">this</span><span style="color: #E5673D">-&gt;</span><span style="color: #D8DEE9">entityManager</span><span style="color: #E5673D">-&gt;</span><span style="color: #C7C8D2">contains</span><span style="color: #999999">(</span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">product</span><span style="color: #999999">)</span><span style="color: #E5673D">;</span></span>
-<span class="line" data-linenr="26"><span style="color: #BBBBBB">    </span><span style="color: #999999">}</span></span>
-<span class="line" data-linenr="27"></span>
-<span class="line" data-linenr="28"><span style="color: #BBBBBB">    </span><span style="color: #E5673D">public</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">function</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">count</span><span style="color: #999999">()</span></span>
-<span class="line" data-linenr="29"><span style="color: #BBBBBB">    </span><span style="color: #999999">{</span></span>
-<span class="line" data-linenr="30"><span style="color: #999999">        </span><span style="color: #6B90C0; font-style: italic">// Create a basic count DQL query</span></span>
-<span class="line" data-linenr="31"><span style="color: #BBBBBB">        </span><span style="color: #E5673D">return</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">this</span><span style="color: #E5673D">-&gt;</span><span style="color: #D8DEE9">entityManager</span><span style="color: #E5673D">-&gt;</span><span style="color: #C7C8D2">createQuery</span><span style="color: #999999">(</span><span style="color: #999999">&#39;</span><span style="color: #E5673D">SELECT</span><span style="color: #7CC64A"> </span><span style="color: #C7C8D2">count</span><span style="color: #7CC64A">(p) </span><span style="color: #E5673D">FROM</span><span style="color: #7CC64A"> </span><span style="color: #999999">&#39;</span><span style="color: #E5673D">.</span><span style="color: #C7C8D2">Product</span><span style="color: #E5673D">::class</span><span style="color: #E5673D">.</span><span style="color: #999999">&#39;</span><span style="color: #7CC64A"> p</span><span style="color: #999999">&#39;</span><span style="color: #999999">)</span></span>
-<span class="line" data-linenr="32"><span style="color: #BBBBBB">            </span><span style="color: #E5673D">-&gt;</span><span style="color: #C7C8D2">getSingleScalarResult</span><span style="color: #999999">()</span><span style="color: #E5673D">;</span></span>
-<span class="line" data-linenr="33"><span style="color: #BBBBBB">    </span><span style="color: #999999">}</span></span>
-<span class="line" data-linenr="34"></span>
-<span class="line" data-linenr="35"><span style="color: #BBBBBB">    </span><span style="color: #E5673D">public</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">function</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">add</span><span style="color: #999999">(</span><span style="color: #C7C8D2">Product</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">product</span><span style="color: #999999">)</span></span>
-<span class="line" data-linenr="36"><span style="color: #BBBBBB">    </span><span style="color: #999999">{</span></span>
-<span class="line" data-linenr="37"><span style="color: #BBBBBB">        </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">this</span><span style="color: #E5673D">-&gt;</span><span style="color: #D8DEE9">entityManager</span><span style="color: #E5673D">-&gt;</span><span style="color: #C7C8D2">persist</span><span style="color: #999999">(</span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">product</span><span style="color: #999999">)</span><span style="color: #E5673D">;</span></span>
-<span class="line" data-linenr="38"><span style="color: #BBBBBB">    </span><span style="color: #999999">}</span></span>
-<span class="line" data-linenr="39"></span>
-<span class="line" data-linenr="40"><span style="color: #BBBBBB">    </span><span style="color: #E5673D">public</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">function</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">byId</span><span style="color: #999999">(</span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">id</span><span style="color: #999999">)</span></span>
-<span class="line" data-linenr="41"><span style="color: #BBBBBB">    </span><span style="color: #999999">{</span></span>
-<span class="line" data-linenr="42"><span style="color: #999999">        </span><span style="color: #6B90C0; font-style: italic">// Fetch a product by id (note: No need to use DQL or the EntityRepository here either!)</span></span>
-<span class="line" data-linenr="43"><span style="color: #BBBBBB">        </span><span style="color: #E5673D">return</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">this</span><span style="color: #E5673D">-&gt;</span><span style="color: #D8DEE9">entityManager</span><span style="color: #E5673D">-&gt;</span><span style="color: #C7C8D2">find</span><span style="color: #999999">(</span><span style="color: #C7C8D2">Product</span><span style="color: #E5673D">::class</span><span style="color: #999999">,</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">id</span><span style="color: #999999">)</span><span style="color: #E5673D">;</span></span>
-<span class="line" data-linenr="44"><span style="color: #BBBBBB">    </span><span style="color: #999999">}</span></span>
-<span class="line" data-linenr="45"><span style="color: #999999">}</span></span></code></pre>
-</div>
-
-<p>As you can see, the code in here is just a bit more complex than using the
-array repository. Even better, the usage of this repository has not changed a
-single bit when comparing it with the <code class="highlighter-shiki">ArrayBasedProductRepository</code>. So we only
-have to update the service definitions to use doctrine:</p>
-
-<div class="language-yaml highlighter-shiki"><pre class="shiki-gutter">1
-2
-3
-4
-5
-</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #6B90C0; font-style: italic"># app/config/services.yml</span></span>
-<span class="line" data-linenr="2"><span style="color: #C7C8D2">services</span><span style="color: #999999">:</span></span>
-<span class="line" data-linenr="3"><span style="color: #BBBBBB">    </span><span style="color: #C7C8D2">app.product_repository</span><span style="color: #999999">:</span></span>
-<span class="line" data-linenr="4"><span style="color: #BBBBBB">        </span><span style="color: #C7C8D2">class</span><span style="color: #999999">:</span><span style="color: #BBBBBB"> </span><span style="color: #7CC64A">AppBundle\Product\DoctrineBasedProductRepository</span></span>
-<span class="line" data-linenr="5"><span style="color: #BBBBBB">        </span><span style="color: #C7C8D2">arguments</span><span style="color: #999999">:</span><span style="color: #BBBBBB"> </span><span style="color: #999999">[</span><span style="color: #999999">&#39;</span><span style="color: #7CC64A">@doctrine.orm.entity_manager</span><span style="color: #999999">&#39;</span><span style="color: #999999">]</span></span></code></pre>
-</div>
-
-<h2 id="treat-repositories-as-collections">Treat Repositories as Collections</h2>
-
-<p>As I tried to show in this post, treating repositories as collections has some
-significant advantages:</p>
-
-<ul>
-  <li>The collection implementation is abstracted away, not much hassle with
-Doctrine anymore</li>
-  <li>All collection methods are located in one class/service. This means you
-never has to rely on both the entity repository and manager (in order to
-fetch and persist) anymore</li>
-  <li>Working with Doctrine as if it’s a collection makes programming easier to
-follow</li>
-</ul>
-
-<p>My last warning of this post is to not add non-collection related methods in
-the repository. I sometimes see people adding <code class="highlighter-shiki">getXxxQuery()</code> methods in the
-repository, as e.g. the form type requires you to set a query. These methods
-tell something about the implementation. They are no longer related to
-collections (try to think what this method should return in the
-<code class="highlighter-shiki">ArrayBasedProductRepository</code>).</p>
-
-<h2 id="take-homes">Take Home’s</h2>
-
-<ul>
-  <li>The <code class="highlighter-shiki">EntityRepository</code> class shipped by Doctrine is purely to ease usage,
-it’s not mandatory at all</li>
-  <li>Writing your own repositories allow you to abstract away Doctrine almost
-completely from your services and controllers</li>
-  <li>Repositories are just collections, please treat them as such</li>
-</ul>]]></content><author><name>Wouter de Jong</name></author><category term="article" /><category term="symfony" /><category term="doctrine" /><category term="oop" /><summary type="html"><![CDATA[Repositories are just collections of things. A post repository is a collection of posts, a user repository a collection of users. They allow to abstract away all the persistence details. Yet, many people think of Doctrine repositories as purely related to Doctrine, leading to strange abstractions. Let’s create a normal collection with Symfony and Doctrine today!]]></summary></entry></feed>
+to be modified to use Security helps with this.</p>]]></content><author><name>Wouter de Jong</name></author><category term="experiment" /><category term="symfony" /><category term="security" /><summary type="html"><![CDATA[Symfony 2 completely renewed Symfony. Symfony 3 gave us a completely refactored and improved Form component. Symfony 4 gave us a renewed dependency injection experience. Let’s fix Security in Symfony 5! To start with: The concept of users in security.]]></summary></entry></feed>

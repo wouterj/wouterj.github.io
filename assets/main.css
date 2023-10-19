@@ -2525,6 +2525,9 @@ pre {
     display: block;
     margin: 0 auto; }
 
+.post__entry--excerpt {
+  text-align: justify; }
+
 .page--post .post__entry--excerpt, .page--oss-list .post__entry--excerpt, .post--featured .post__entry--excerpt {
   font-size: 20px;
   font-size: 1.1111111111rem;

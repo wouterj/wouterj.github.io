@@ -1,13 +1,61 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!-- Generator: Adobe Illustrator 19.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
-<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 viewBox="0 0 566.9 566.9" style="enable-background:new 0 0 566.9 566.9;" xml:space="preserve">
-<style type="text/css">
+
+<svg
+   version="1.1"
+   id="Layer_1"
+   x="0px"
+   y="0px"
+   viewBox="0 0 566.9 566.9"
+   style="enable-background:new 0 0 566.9 566.9;"
+   xml:space="preserve"
+   sodipodi:docname="logo.svg"
+   inkscape:version="1.1.2 (0a00cf5339, 2022-02-04)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"><defs
+   id="defs833" /><sodipodi:namedview
+   id="namedview831"
+   pagecolor="#505050"
+   bordercolor="#ffffff"
+   borderopacity="1"
+   inkscape:pageshadow="0"
+   inkscape:pageopacity="0"
+   inkscape:pagecheckerboard="1"
+   showgrid="false"
+   inkscape:zoom="1.4482272"
+   inkscape:cx="283.45"
+   inkscape:cy="283.45"
+   inkscape:window-width="1920"
+   inkscape:window-height="1057"
+   inkscape:window-x="1920"
+   inkscape:window-y="0"
+   inkscape:window-maximized="1"
+   inkscape:current-layer="Layer_1" />
+<style
+   type="text/css"
+   id="style824">
 	.st0{fill:#CC3333;}
 	.st1{fill:#333333;}
 	.st2{font-family:'Measure';}
 	.st3{font-size:400px;}
 </style>
-<rect x="0" y="0" class="st0" width="566.9" height="566.9"/>
-<text transform="matrix(1 0 0 1 67.6694 438.8271)" class="st1 st2 st3">WJ</text>
+<rect
+   x="0"
+   y="0"
+   class="st0"
+   width="566.9"
+   height="566.9"
+   id="rect826" />
+<g
+   aria-label="WJ"
+   transform="matrix(1 0 0 1 67.6694 438.8271)"
+   id="text828"
+   class="st1 st2 st3"
+   style="font-size:400px;font-family:Measure;fill:#333333"><path
+     d="M 160,-186.8 175.6,-32 h 6 l 28.8,-282.8 h 32 L 210.4,0 h -63.6 l -15.6,-154.8 h -6.8 L 108.8,0 H 45.2 l -32,-314.8 h 32 L 74,-32 h 6 l 15.6,-154.8 z"
+     id="path1645" /><path
+     d="m 395.59952,-53.6 q 0,11.6 -4.4,22 -4.4,10 -12,17.6 -7.6,7.2 -18,11.6 -10,4.4 -21.2,4.4 h -32.8 q -11.6,0 -22,-4.4 -10,-4.4 -17.6,-11.6 -7.2,-7.6 -11.6,-17.6 -4.4,-10.4 -4.4,-22 v -57.6 h 32 v 57.6 q 0,10 6.8,16.8 6.8,6.8 16.8,6.8 h 32.8 q 9.6,0 16.4,-6.8 7.2,-6.8 7.2,-16.8 v -229.2 l -12,-4 v -28 h 44 z"
+     id="path1647" /></g>
 </svg>

@@ -1,0 +1,277 @@
+<!doctype html>
+<html lang=""><head>
+    <meta charset=utf-8>
+
+    <title>Combatting Login CSRF with Symfony ~ Wouter J</title>
+
+    <meta http-equiv=X-UA-Compatible content="IE=edge">
+    <meta name=viewport content="width=device-width, initial-scale=1">
+    <meta name=theme-color content=#cc3333>
+
+    <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Serif:400,400i,700|Oswald|Inconsolata" rel="stylesheet">
+    <link rel=stylesheet href="/assets/main.css?v2">
+    <link rel=icon type=image/png href=/img/css/favicon.png sizes=96x96>
+    <link rel="me" href="https://phpc.social/@wouterj"><link type="application/atom+xml" rel="alternate" href="https://wouterj.nl/feed.xml" title="Wouter J" /><meta content="Wouter J" property="og:site_name">
+    
+      <meta content="Combatting Login CSRF with Symfony" property="og:title">
+      <meta content="article" property="og:type">
+      <meta content="Cross-site Request Forgery (CSRF) is one of the traditional vulnerabilities
+that web applications have to deal with. Every web framework - including
+Symfony - supports CSRF protection out of the box. A lesser known
+vulnerability is Login CSRF, a special kind of CSRF attack.
+
+" property="og:description">
+      <meta content="2023-10-19T00:00:00+00:00" property="article:published_time">
+      <meta content="https://wouterj.nl/2023/10/combatting-login-csrf-with-symfony" property="og:url">
+      <meta content="https://wouterj.nl/img/og/combatting-login-csrf-with-symfony.png?1" property="og:image">
+    <script src="https://cdn.counter.dev/script.js" data-id="07663ec4-bb0d-40fb-ad71-e7b091c17341" data-utcoffset="1"></script></head>
+<body class="page  page--post" itemscope itemtype="http://schema.org/WebPage"><header class=page__header>
+    <hgroup class=page__headline>
+        <h1 class="site-title" itemprop="name"><a href="/">Wouter J</a></h1>
+    </hgroup><nav class=page__nav>
+        <ul class="nav"></ul>
+    </nav></div>
+</header>
+<div class=page__body itemscope itemtype="http://schema.org/Blog">
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+    <h1 class="post__heading" itemprop="headline">Combatting Login CSRF with Symfony</h1>
+
+    <div class="post__metadata">
+        <time class="post__published-date" datetime="2023-10-19T00:00:00+00:00" itemprop="datePublished">
+            OCT '23
+        </time>
+        
+        <span class="post__category">
+            
+            
+            <span class="post__category__icon">&#xf139;</span>
+            
+            article
+        </span>
+        
+    </div>
+
+    
+
+    <div itemprop="articleBody">
+        <div class="post__entry--excerpt">
+            
+            <p>Cross-site Request Forgery (CSRF) is one of the traditional vulnerabilities
+that web applications have to deal with. Every web framework - including
+Symfony - supports CSRF protection out of the box. A lesser known
+vulnerability is <em>Login CSRF</em>, a special kind of CSRF attack.</p></div><div class="post__entry">
+      <h2 id="how-a-csrf-attack-works">
+        
+        
+          <a href="#how-a-csrf-attack-works" class="section-link"></a> How a CSRF Attack Works
+        
+        
+      </h2>
+
+<p>A <a href="https://cheatsheetseries.owasp.org/cheatsheets/Cross-Site_Request_Forgery_Prevention_Cheat_Sheet.html">CSRF attack</a> takes advantage of the sessions in the browser. If you
+login to a website, your authentication token is stored in a session. This
+means that you’re still logged in if you switch to another page of the
+website.</p>
+
+<p>The browser also remembers this session when visiting other websites. This
+is nice, as it allows you to go back to the website and still be logged in.
+However, attackers are using this to make requests from their website to
+your website using the remembered authentication session. This means that,
+without CSRF protection, it can use your website as if it was the user.</p>
+
+<p>For instance, an attacker can trick the user into thinking they are on your
+website and show them a form that looks like the login:</p>
+
+<div class="language-html highlighter-shiki"><pre class="shiki-gutter">1
+2
+3
+4
+5
+6
+7
+8
+9
+</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #E5673D">&lt;form</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">action</span><span style="color: #999999">=</span><span style="color: #999999">&quot;</span><span style="color: #7CC64A">https://yourwebsite.com/profile/change_password</span><span style="color: #999999">&quot;</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">method</span><span style="color: #999999">=</span><span style="color: #999999">&quot;</span><span style="color: #7CC64A">POST</span><span style="color: #999999">&quot;</span><span style="color: #E5673D">&gt;</span></span>
+<span class="line" data-linenr="2"><span style="color: #BBBBBB">    </span><span style="color: #E5673D">&lt;label&gt;</span><span style="color: #BBBBBB">Username </span><span style="color: #E5673D">&lt;input</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">type</span><span style="color: #999999">=</span><span style="color: #999999">&quot;</span><span style="color: #7CC64A">text</span><span style="color: #999999">&quot;</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">name</span><span style="color: #999999">=</span><span style="color: #999999">&quot;</span><span style="color: #7CC64A">username</span><span style="color: #999999">&quot;</span><span style="color: #E5673D">&gt;&lt;/label&gt;</span></span>
+<span class="line" data-linenr="3"></span>
+<span class="line" data-linenr="4"><span style="color: #BBBBBB">    </span><span style="color: #E5673D">&lt;label&gt;</span><span style="color: #BBBBBB">Password </span><span style="color: #E5673D">&lt;input</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">type</span><span style="color: #999999">=</span><span style="color: #999999">&quot;</span><span style="color: #7CC64A">password</span><span style="color: #999999">&quot;</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">name</span><span style="color: #999999">=</span><span style="color: #999999">&quot;</span><span style="color: #7CC64A">current_password</span><span style="color: #999999">&quot;</span><span style="color: #E5673D">&gt;&lt;/label&gt;</span></span>
+<span class="line" data-linenr="5"></span>
+<span class="line" data-linenr="6"><span style="color: #BBBBBB">    </span><span style="color: #E5673D">&lt;input</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">type</span><span style="color: #999999">=</span><span style="color: #999999">&quot;</span><span style="color: #7CC64A">hidden</span><span style="color: #999999">&quot;</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">name</span><span style="color: #999999">=</span><span style="color: #999999">&quot;</span><span style="color: #7CC64A">new_password</span><span style="color: #999999">&quot;</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">value</span><span style="color: #999999">=</span><span style="color: #999999">&quot;</span><span style="color: #7CC64A">...</span><span style="color: #999999">&quot;</span><span style="color: #E5673D">&gt;</span></span>
+<span class="line" data-linenr="7"></span>
+<span class="line" data-linenr="8"><span style="color: #BBBBBB">    </span><span style="color: #E5673D">&lt;button</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">type</span><span style="color: #999999">=</span><span style="color: #999999">&quot;</span><span style="color: #7CC64A">submit</span><span style="color: #999999">&quot;</span><span style="color: #E5673D">&gt;</span><span style="color: #BBBBBB">Login</span><span style="color: #E5673D">&lt;/button&gt;</span></span>
+<span class="line" data-linenr="9"><span style="color: #E5673D">&lt;/form&gt;</span></span></code></pre>
+</div>
+
+<p>In reality (looking at the <code class="highlighter-shiki">action</code> and <code class="highlighter-shiki">type=&quot;hidden&quot;</code> input), this form
+changes the password of the user to something that is known only by the
+attacker, giving them access to their account. Attacks can also do any
+other action on your website, like buying goods or transfering money to
+their account.</p>
+    
+      <h2 id="how-login-csrf-attacks-are-different">
+        
+        
+          <a href="#how-login-csrf-attacks-are-different" class="section-link"></a> How Login CSRF Attacks are Different
+        
+        
+      </h2>
+
+<p>The CSRF attacks described above are <em>using the authenticated session</em> to
+act as a user. <a href="https://cheatsheetseries.owasp.org/cheatsheets/Cross-Site_Request_Forgery_Prevention_Cheat_Sheet.html#login-csrf">Login CSRF attacks</a> are the opposite: they <em>force an
+authenticated session</em> to let the user act as them.</p>
+
+<p>How does that work? When someone visits the website of an attacker, they
+make a request to <code class="highlighter-shiki">yourwebsite.com/logout</code> to force an unauthenticated
+session and then make a request to <code class="highlighter-shiki">yourwebsite.com/login</code> with
+credentials of an account that they control.</p>
+
+<aside class="side" data-type="side note">
+  <p>With the introduction of <code class="highlighter-shiki">Secure</code> and <code class="highlighter-shiki">SameSite</code> cookie flags, there has
+been a feeling that <a href="https://scotthelme.co.uk/csrf-is-really-dead/">CSRF is dead</a>. Login CSRF is a good example of a
+situation where these cookie flags won’t protect your users against a CSRF
+attack. While the web is more secure thanks to these cookie flags, CSRF
+still has its function in modern web applications.</p>
+</aside>
+
+<p>This can have serious consequences for the user, depending on the
+functionality of your website. E.g. <a href="https://seclab.stanford.edu/websec/csrf/csrf.pdf">“Robust Defenses for Cross-Site Request
+Forgery” (Barth, Jackson, Mitchell, 2008)</a> mention that this attack is
+used to let users unknowingly connect their creditcard to the PayPal
+account of the attacker. It is also used to get access to a user’s Google
+account, or using it to track the user’s search terms and locations.</p>
+
+<p>The risk of Login CSRF attacks is often considered to be lower. Most users
+are expected to notice when they are logged in to someone else’s account on
+the website (hence it’s a good idea to make this visible on all pages!).
+However, the consequences can be very high when a user doesn’t notice. If
+you’re using Symfony, protecting against them is very easy and I would
+recommend always doing this.</p>
+    
+      <h2 id="protecting-against-login-csrf">
+        
+        
+          <a href="#protecting-against-login-csrf" class="section-link"></a> Protecting against Login CSRF
+        
+        
+      </h2>
+
+<p>A login CSRF attack can include two steps: first a call to logout to force
+the website in a known state, and then a login with the attackers
+credentials. Let’s protect both steps!</p>
+    
+      <h3 id="protecting-login">
+        
+        
+          <a href="#protecting-login" class="section-link"></a> Protecting Login
+        
+        
+      </h3>
+
+<p>Protecting against login CSRF attacks is similar to protecting against
+other CSRF attacks. When rendering the login form, you create a randomized
+token which you submit along with the rest of the form. When handling the
+submission, this token is checked for validity.</p>
+
+<p>When using Symfony’s built-in <code class="highlighter-shiki">form_login</code> authenticator, generating and
+validating this randomized token is mostly automated for you. First, enable
+CSRF protection in the authenticator:</p>
+
+<div class="language-yaml highlighter-shiki"><pre class="shiki-gutter">1
+2
+3
+4
+5
+6
+7
+</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #C7C8D2">security</span><span style="color: #999999">:</span></span>
+<span class="line" data-linenr="2"><span style="color: #999999">    </span><span style="color: #6B90C0; font-style: italic"># ...</span></span>
+<span class="line" data-linenr="3"><span style="color: #BBBBBB">    </span><span style="color: #C7C8D2">firewalls</span><span style="color: #999999">:</span></span>
+<span class="line" data-linenr="4"><span style="color: #BBBBBB">        </span><span style="color: #C7C8D2">main</span><span style="color: #999999">:</span></span>
+<span class="line" data-linenr="5"><span style="color: #BBBBBB">            </span><span style="color: #C7C8D2">form_login</span><span style="color: #999999">:</span></span>
+<span class="line" data-linenr="6"><span style="color: #999999">                </span><span style="color: #6B90C0; font-style: italic"># ...</span></span>
+<span class="line" data-linenr="7"><span style="color: #BBBBBB">                </span><span style="color: #C7C8D2">enable_csrf</span><span style="color: #999999">:</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">true</span></span></code></pre>
+</div>
+
+<p>And then, add a hidden CSRF token to your login form template:</p>
+
+<div class="language-twig highlighter-shiki"><pre class="shiki-gutter">1
+2
+</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #6B90C0; font-style: italic">&lt;!-- csrf_token() takes care of correctly generating and storing the CSRF token --&gt;</span></span>
+<span class="line" data-linenr="2"><span style="color: #E5673D">&lt;input</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">type</span><span style="color: #BBBBBB">=</span><span style="color: #999999">&quot;</span><span style="color: #7CC64A">hidden</span><span style="color: #999999">&quot;</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">name</span><span style="color: #BBBBBB">=</span><span style="color: #999999">&quot;</span><span style="color: #7CC64A">_csrf_token</span><span style="color: #999999">&quot;</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">value</span><span style="color: #BBBBBB">=</span><span style="color: #999999">&quot;{{</span><span style="color: #7CC64A"> </span><span style="color: #C7C8D2">csrf_token</span><span style="color: #999999">(&#39;</span><span style="color: #7CC64A">authenticate</span><span style="color: #999999">&#39;)</span><span style="color: #7CC64A"> </span><span style="color: #999999">}}&quot;</span><span style="color: #E5673D">&gt;</span></span></code></pre>
+</div>
+
+<p>That’s it! Your users are safe against this attack now!</p>
+
+<p>When you’re using a custom login form authenticator, you’ll have to add
+<a href="https://symfony.com/doc/current/security/custom_authenticator.html#passport-badges">the <code class="highlighter-shiki">CsrfTokenBadge</code></a> with the CSRF token from the request. The
+security system will then validate this token for you.</p>
+    
+      <h3 id="protecting-logout">
+        
+        
+          <a href="#protecting-logout" class="section-link"></a> Protecting Logout
+        
+        
+      </h3>
+
+<aside class="side" data-type="Symfony &lt;6.2">
+  <p>The <code class="highlighter-shiki">enable_csrf</code> option is new in Symfony 6.2. If you’re stuck on
+an older version, you need to use <code class="highlighter-shiki">csrf_token_generator: security.csrf.token_manager</code>
+instead. Read more about it in <a href="https://symfony.com/doc/5.4/reference/configuration/security.html#reference-security-logout-csrf">the documentation</a>.</p>
+</aside>
+
+<p>You can protect logout in a similar way by enabling CSRF protection in the
+config:</p>
+
+<div class="language-yaml highlighter-shiki"><pre class="shiki-gutter">1
+2
+3
+4
+5
+6
+7
+</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #C7C8D2">security</span><span style="color: #999999">:</span></span>
+<span class="line" data-linenr="2"><span style="color: #999999">    </span><span style="color: #6B90C0; font-style: italic"># ...</span></span>
+<span class="line" data-linenr="3"><span style="color: #BBBBBB">    </span><span style="color: #C7C8D2">firewalls</span><span style="color: #999999">:</span></span>
+<span class="line" data-linenr="4"><span style="color: #BBBBBB">        </span><span style="color: #C7C8D2">main</span><span style="color: #999999">:</span></span>
+<span class="line" data-linenr="5"><span style="color: #BBBBBB">            </span><span style="color: #C7C8D2">logout</span><span style="color: #999999">:</span></span>
+<span class="line" data-linenr="6"><span style="color: #999999">                </span><span style="color: #6B90C0; font-style: italic"># ...</span></span>
+<span class="line" data-linenr="7"><span style="color: #BBBBBB">                </span><span style="color: #C7C8D2">enable_csrf</span><span style="color: #999999">:</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">true</span></span></code></pre>
+</div>
+
+<p>If you’re already using the <code class="highlighter-shiki">logout_path()</code> Twig helper function to
+generate a URL to your logout route, this is all you had to do! The Twig
+function generates a unique CSRF token and attaches it to the URL.</p>
+
+<p>Otherwise, replace links to the logout page with this Twig function in your
+Twig templates:</p>
+
+<div class="language-twig highlighter-shiki"><pre class="shiki-gutter">1
+</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #E5673D">&lt;a</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">href</span><span style="color: #BBBBBB">=</span><span style="color: #999999">&quot;{{</span><span style="color: #7CC64A"> logout_path</span><span style="color: #999999">()</span><span style="color: #7CC64A"> </span><span style="color: #999999">}}&quot;</span><span style="color: #E5673D">&gt;</span><span style="color: #BBBBBB">Logout</span><span style="color: #E5673D">&lt;/a&gt;</span></span></code></pre>
+</div>
+    
+      <h2 id="take-homes">
+        
+        
+          <a href="#take-homes" class="section-link"></a> Take Homes
+        
+        
+      </h2>
+
+<ul>
+  <li>Make sure your login/logout actions are also protected against CSRF
+attacks</li>
+  <li>While cookies have become more secure in recent years, CSRF protection
+still needs attention</li>
+</ul>
+
+        </div>
+    </div>
+</article>
+
+    </div><footer class="page__footer">
+    <p>&copy; Copyright 2012 - 2023 Wouter de Jong</p>
+</footer>
+</body>
+
+</html>
