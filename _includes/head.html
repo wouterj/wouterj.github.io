@@ -16,12 +16,21 @@
 
     <meta content="{{ site.title }}" property="og:site_name">
     {% if page.id %}
-      <meta content="{{ page.title }}" property="og:title">
-      <meta content="article" property="og:type">
-      <meta content="{{ page.excerpt | strip_html }}" property="og:description">
-      <meta content="{{ page.date | date_to_xmlschema }}" property="article:published_time">
-      <meta content="{{ page.url | absolute_url }}" property="og:url">
-      <meta content="{{ '/img/og/' | append: page.slug | append: '.png' | absolute_url }}?1" property="og:image">
+      <meta property="og:title" content="{{ page.title }}">
+      <meta property="og:type" content="article">
+      <meta property="og:description" content="{{ page.excerpt | strip_html }}">
+      <meta property="article:published_time" content="{{ page.date | date_to_xmlschema }}">
+      <meta property="og:url" content="{{ page.url | absolute_url }}">
+      <meta property="og:image" content="{{ '/img/og/' | append: page.slug | append: '.png' | absolute_url }}">
+      <meta property="og:image:height" content="340">
+      <meta property="og:image:width" content="680">
+
+      <meta name="twitter:card" content="summary_large_image">
+      <meta name="twitter:site" content="@wouterjnl">
+      <meta name="twitter:creator" content="@wouterjnl">
+      <meta name="twitter:title" content="{{ page.title }}">
+      <meta name="twitter:description" content="{{ page.excerpt | strip_html }}">
+      <meta name="twitter:image" content="{{ '/img/og/' | append: page.slug | append: '.png' | absolute_url }}">
     {% endif %}
 
     {%- if jekyll.environment == 'production' -%}
