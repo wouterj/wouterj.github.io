@@ -147,6 +147,13 @@
       }
     },
     {
+      "name": "Terminal command",
+      "scope": "meta.command",
+      "settings": {
+        "foreground": "#D8DEE9"
+      }
+    },
+    {
       "name": "Punctuation",
       "scope": "punctuation",
       "settings": {

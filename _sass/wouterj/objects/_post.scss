@@ -100,11 +100,13 @@
             }
         }
     }
-    .language-bash .shiki-gutter {
-        visibility:hidden;
+    .language-bash, .language-none, .language-terminal{
+        .shiki-gutter{
+            visibility:hidden;
 
-        @include media-query(portable) {
-            display:none;
+            @include media-query(portable) {
+                display:none;
+            }
         }
     }
 }
