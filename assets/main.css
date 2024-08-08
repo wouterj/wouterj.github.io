@@ -2483,10 +2483,10 @@ pre {
       word-break: break-all; }
       .post div.highlighter-shiki .shiki-code code {
         color: #c7c8d2; }
-  .post .language-bash .shiki-gutter {
+  .post .language-bash .shiki-gutter, .post .language-none .shiki-gutter, .post .language-terminal .shiki-gutter {
     visibility: hidden; }
     @media only screen and (max-width: 1149px) {
-      .post .language-bash .shiki-gutter {
+      .post .language-bash .shiki-gutter, .post .language-none .shiki-gutter, .post .language-terminal .shiki-gutter {
         display: none; } }
 
 .page--oss-list .post__heading, .page--post .post__heading {

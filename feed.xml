@@ -1,4 +1,377 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.7">Jekyll</generator><link href="https://wouterj.nl/feed.xml" rel="self" type="application/atom+xml" /><link href="https://wouterj.nl/" rel="alternate" type="text/html" /><updated>2023-10-21T11:16:34+00:00</updated><id>https://wouterj.nl/feed.xml</id><title type="html">Wouter J</title><author><name>Wouter de Jong</name></author><entry><title type="html">Combatting Login CSRF with Symfony</title><link href="https://wouterj.nl/2023/10/combatting-login-csrf-with-symfony" rel="alternate" type="text/html" title="Combatting Login CSRF with Symfony" /><published>2023-10-19T00:00:00+00:00</published><updated>2023-10-19T00:00:00+00:00</updated><id>https://wouterj.nl/2023/10/combatting-login-csrf-with-symfony</id><content type="html" xml:base="https://wouterj.nl/2023/10/combatting-login-csrf-with-symfony"><![CDATA[<p>Cross-site Request Forgery (CSRF) is one of the traditional vulnerabilities
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.7">Jekyll</generator><link href="https://wouterj.nl/feed.xml" rel="self" type="application/atom+xml" /><link href="https://wouterj.nl/" rel="alternate" type="text/html" /><updated>2024-08-08T11:56:07+00:00</updated><id>https://wouterj.nl/feed.xml</id><title type="html">Wouter J</title><author><name>Wouter de Jong</name></author><entry><title type="html">Store Code Discussions in Git using Git Notes</title><link href="https://wouterj.nl/2024/08/git-notes" rel="alternate" type="text/html" title="Store Code Discussions in Git using Git Notes" /><published>2024-08-08T00:00:00+00:00</published><updated>2024-08-08T00:00:00+00:00</updated><id>https://wouterj.nl/2024/08/git-notes</id><content type="html" xml:base="https://wouterj.nl/2024/08/git-notes"><![CDATA[<p>Code discussions contain relevant information. Isn’t it a shame that we
+keep these in the centralized GitHub/GitLab servers, far away from our
+decentralized Git code? As soon as we move provider, we’ll loose all old
+discussions! And how do you ever find the pull requests back from 5
+years ago? Symfony has implemented a lightweight solution to this problem
+years ago using a less-known feature of Git: Git Notes.</p>
+
+<h2 id="git-notes">Git Notes?</h2>
+
+<p>Meet one of Git’s unknown features: <a href="https://git-scm.com/docs/git-notes">Git notes</a>. They are hard
+to discover… and hard to use. Yet, they provide an interesting feature:
+Adding extra information to a commit, after you’ve created it.</p>
+
+<aside class="side" data-type="Git garbage collection">
+  <p>Git doesn’t immediately remove objects after a new commit replaced them.
+Often, you can still find a “deleted” commit as long as you know its hash
+(even on GitHub/GitLab servers). A separate process, called <a href="https://git-scm.com/docs/git-gc">garbage
+collection</a>, removes old unused objects. This is often run
+automatically every once in a while.</p>
+
+</aside>
+
+<p>Git stores all data using immutable objects. This means that you cannot
+change the objects after creation. For instance, when you change a commit’s
+message, Git will create a new object and remove the previous one. Git
+notes are useful when you want to preserve the existing Git object, but
+want to add extra data. Git notes have a many-to-one relationship with
+objects: one Git object (commit) can have multiple Git notes references it.</p>
+
+<p>Enough talking, let’s see it in practice!</p>
+
+<p>First, create a commit:</p>
+
+<div class="language-terminal highlighter-shiki"><pre class="shiki-gutter">1
+2
+3
+</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #999999">$ </span><span style="color: #D8DEE9">git commit --allow-empty -m </span><span style="color: #999999">&quot;</span><span style="color: #7CC64A">Playing with Git notes</span><span style="color: #999999">&quot;</span></span>
+<span class="line" data-linenr="2"><span style="color: #BBBBBB">[main a63c1ff] Playing with Git notes</span></span>
+<span class="line" data-linenr="3"><span style="color: #BBBBBB"> Date: Mon Jul 8 21:18:00 2024 +0200</span></span></code></pre>
+</div>
+
+<p>Now, we can add a note to this commit using the <code class="highlighter-shiki">git notes</code> command:</p>
+
+<div class="language-terminal highlighter-shiki"><pre class="shiki-gutter">1
+2
+3
+</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #6B90C0; font-style: italic"># &#39;a63c1ff&#39; is the object (commit) to attach this note, it defaults</span></span>
+<span class="line" data-linenr="2"><span style="color: #6B90C0; font-style: italic"># to HEAD (i.e. the latest commit on the current branch)</span></span>
+<span class="line" data-linenr="3"><span style="color: #999999">$ </span><span style="color: #D8DEE9">git notes add -m </span><span style="color: #999999">&quot;</span><span style="color: #7CC64A">Extra information of this commit</span><span style="color: #999999">&quot;</span><span style="color: #D8DEE9"> a63c1ff</span></span></code></pre>
+</div>
+
+<p>Great, we’ve added extra information to that commit! Now, we can view it by
+using the <code class="highlighter-shiki">--notes</code> option:</p>
+
+<div class="language-terminal highlighter-shiki"><pre class="shiki-gutter">1
+2
+3
+4
+5
+6
+7
+8
+9
+</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #999999">$ </span><span style="color: #D8DEE9">git log --notes</span></span>
+<span class="line" data-linenr="2"><span style="color: #BBBBBB">commit a63c1ffcf90a6ee3188a086b14eebf33087aebaa (HEAD -&gt; main)</span></span>
+<span class="line" data-linenr="3"><span style="color: #BBBBBB">Author: Wouter de Jong &lt;wouter@example.com&gt;</span></span>
+<span class="line" data-linenr="4"><span style="color: #BBBBBB">Date:   Mon Jul 8 21:18:00 2024 +0200</span></span>
+<span class="line" data-linenr="5"></span>
+<span class="line" data-linenr="6"><span style="color: #BBBBBB">    Playing with Git notes</span></span>
+<span class="line" data-linenr="7"></span>
+<span class="line" data-linenr="8"><span style="color: #BBBBBB">Notes:</span></span>
+<span class="line" data-linenr="9"><span style="color: #BBBBBB">    Extra information of this commit</span></span></code></pre>
+</div>
+
+<p>Cool! As you can see, the commit object didn’t change (the hash is the same
+as before), but we’ve attached the new note object.</p>
+
+<h3 id="multiple-git-notes-references">Multiple Git Notes References</h3>
+
+<p>By default, notes are stored in the <code class="highlighter-shiki">notes/commits</code> ref. But you can
+categorize Git notes into multiple references, allowing you to add multiple
+types of notes to a single commit.</p>
+
+<p>You can use the <code class="highlighter-shiki">--ref</code> option to specify the note tree:</p>
+
+<div class="language-terminal highlighter-shiki"><pre class="shiki-gutter">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #999999">$ </span><span style="color: #D8DEE9">git notes --ref=acceptance add -m </span><span style="color: #999999">&quot;</span><span style="color: #7CC64A">Tested-by: Jane doe &lt;jane@example.com&gt;</span><span style="color: #999999">&quot;</span></span>
+<span class="line" data-linenr="2"><span style="color: #999999">$ </span><span style="color: #D8DEE9">git log --notes=acceptance</span></span>
+<span class="line" data-linenr="3"><span style="color: #BBBBBB">commit a63c1ffcf90a6ee3188a086b14eebf33087aebaa (HEAD -&gt; main)</span></span>
+<span class="line" data-linenr="4"><span style="color: #BBBBBB">Author: Wouter de Jong &lt;wouter@example.com&gt;</span></span>
+<span class="line" data-linenr="5"><span style="color: #BBBBBB">Date:   Mon Jul 8 21:18:00 2024 +0200</span></span>
+<span class="line" data-linenr="6"></span>
+<span class="line" data-linenr="7"><span style="color: #BBBBBB">    Playing with Git notes</span></span>
+<span class="line" data-linenr="8"></span>
+<span class="line" data-linenr="9"><span style="color: #BBBBBB">Notes (acceptance):</span></span>
+<span class="line" data-linenr="10"><span style="color: #BBBBBB">    Tested-by: Jane doe &lt;jane@example.com&gt;</span></span></code></pre>
+</div>
+
+<p>The <code class="highlighter-shiki">ref/notes/acceptance</code> now holds this new note. Using multiple
+references allows us to add multiple notes to a single commit (one per
+reference):</p>
+
+<div class="language-terminal highlighter-shiki"><pre class="shiki-gutter">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #999999">$ </span><span style="color: #D8DEE9">git log --notes=commits --notes=acceptance</span></span>
+<span class="line" data-linenr="2"><span style="color: #BBBBBB">commit a63c1ffcf90a6ee3188a086b14eebf33087aebaa (HEAD -&gt; main)</span></span>
+<span class="line" data-linenr="3"><span style="color: #BBBBBB">Author: Wouter de Jong &lt;wouter@example.com&gt;</span></span>
+<span class="line" data-linenr="4"><span style="color: #BBBBBB">Date:   Mon Jul 8 21:18:00 2024 +0200</span></span>
+<span class="line" data-linenr="5"></span>
+<span class="line" data-linenr="6"><span style="color: #BBBBBB">    Let&#39;s use Git notes</span></span>
+<span class="line" data-linenr="7"></span>
+<span class="line" data-linenr="8"><span style="color: #BBBBBB">Notes:</span></span>
+<span class="line" data-linenr="9"><span style="color: #BBBBBB">    Extra information for this commit</span></span>
+<span class="line" data-linenr="10"></span>
+<span class="line" data-linenr="11"><span style="color: #BBBBBB">Notes (acceptance):</span></span>
+<span class="line" data-linenr="12"><span style="color: #BBBBBB">    Tested-by: Jane doe &lt;jane@example.com&gt;</span></span></code></pre>
+</div>
+
+<aside class="side" data-type="Git Notes in practise">
+  <p>Git developers use notes to store references to their mailing list like
+<code class="highlighter-shiki">Message-Id: &lt;1264640755-22447-1-git-send-email-szeder@ira.uka.de&gt;</code>.</p>
+
+  <p>You can also use notes to store other information, such as who reviewed or
+tested a commit. <a href="https://gerrit.googlesource.com/plugins/reviewnotes/+/refs/heads/master/src/main/resources/Documentation/refs-notes-review.md">The reviewnotes documentation</a> shows some
+examples.</p>
+
+</aside>
+
+<h2 id="how-symfony-uses-git-notes-to-store-github-discussions">How Symfony uses Git Notes to store GitHub Discussions</h2>
+
+<p>Now we know a bit about Git notes, we can look at how we can use them to
+store code discussions and reviews.</p>
+
+<p>Symfony maintainers use an internal CLI tool to merge contributions. Among
+other things it checks CI and core team approvals, and it helps us
+automatically re-target contributions to the correct version.</p>
+
+<p>After merging a branch using Git, the tool also uses the GitHub API to
+fetch all pull request comments. The comments are stored in a Git Note and
+attached to the merge commit. This way, whenever you need to find the
+discussion for a particular feature, you can look up the merge commit and
+read it. Even if Symfony decides to switch to another platform one day.</p>
+
+<h3 id="storing-github-comments-in-a-note">Storing GitHub Comments in a Note</h3>
+
+<p>First, the tool fetches the pull request comments using the <a href="https://github.com/KnpLabs/php-github-api/">GitHub API</a>
+via the <a href="https://github.com/KnpLabs/php-github-api/">KnpLabs GitHub API package</a>:</p>
+
+<div class="language-php highlighter-shiki"><pre class="shiki-gutter">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #E5673D">use</span><span style="color: #BBBBBB"> GitHub</span><span style="color: #999999">\</span><span style="color: #C7C8D2">Client</span><span style="color: #E5673D">;</span></span>
+<span class="line" data-linenr="2"></span>
+<span class="line" data-linenr="3"><span style="color: #E5673D">$</span><span style="color: #D8DEE9">github</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">=</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">new</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">Client</span><span style="color: #999999">()</span><span style="color: #E5673D">;</span></span>
+<span class="line" data-linenr="4"><span style="color: #E5673D">$</span><span style="color: #D8DEE9">resultPager</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">=</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">new</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">ResultPager</span><span style="color: #999999">(</span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">github</span><span style="color: #999999">)</span><span style="color: #E5673D">;</span></span>
+<span class="line" data-linenr="5"></span>
+<span class="line" data-linenr="6"><span style="color: #E5673D">$</span><span style="color: #D8DEE9">prComments</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">=</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">resultPager</span><span style="color: #E5673D">-&gt;</span><span style="color: #C7C8D2">fetchAll</span><span style="color: #999999">(</span></span>
+<span class="line" data-linenr="7"><span style="color: #BBBBBB">    </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">github</span><span style="color: #E5673D">-&gt;</span><span style="color: #C7C8D2">issues</span><span style="color: #999999">()</span><span style="color: #E5673D">-&gt;</span><span style="color: #C7C8D2">comments</span><span style="color: #999999">(),</span></span>
+<span class="line" data-linenr="8"><span style="color: #BBBBBB">    </span><span style="color: #999999">&#39;</span><span style="color: #7CC64A">all</span><span style="color: #999999">&#39;</span><span style="color: #999999">,</span></span>
+<span class="line" data-linenr="9"><span style="color: #BBBBBB">    </span><span style="color: #999999">[</span><span style="color: #999999">&#39;</span><span style="color: #7CC64A">symfony</span><span style="color: #999999">&#39;</span><span style="color: #999999">,</span><span style="color: #BBBBBB"> </span><span style="color: #999999">&#39;</span><span style="color: #7CC64A">symfony</span><span style="color: #999999">&#39;</span><span style="color: #999999">,</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">prNumber</span><span style="color: #999999">]</span></span>
+<span class="line" data-linenr="10"><span style="color: #999999">)</span><span style="color: #E5673D">;</span></span></code></pre>
+</div>
+
+<p>Then, it loops over all comments and puts it in a temporary file:</p>
+
+<div class="language-php highlighter-shiki"><pre class="shiki-gutter">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #E5673D">$</span><span style="color: #D8DEE9">notes</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">=</span><span style="color: #BBBBBB"> </span><span style="color: #999999">&#39;&#39;</span><span style="color: #E5673D">;</span></span>
+<span class="line" data-linenr="2"><span style="color: #E5673D">foreach</span><span style="color: #BBBBBB"> </span><span style="color: #999999">(</span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">prComments</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">as</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">comment</span><span style="color: #999999">)</span><span style="color: #BBBBBB"> </span><span style="color: #999999">{</span></span>
+<span class="line" data-linenr="3"><span style="color: #BBBBBB">    </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">notes</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">.=</span><span style="color: #BBBBBB"> </span><span style="color: #999999">&lt;&lt;&lt;</span><span style="color: #E5673D">EOF</span></span>
+<span class="line" data-linenr="4"><span style="color: #7CC64A">---------------------------------------------------------------------------</span></span>
+<span class="line" data-linenr="5"></span>
+<span class="line" data-linenr="6"><span style="color: #7CC64A">by </span><span style="color: #E5673D">{$</span><span style="color: #D8DEE9">comment</span><span style="color: #999999">[&#39;</span><span style="color: #7CC64A">user</span><span style="color: #999999">&#39;][&#39;</span><span style="color: #7CC64A">login</span><span style="color: #999999">&#39;]</span><span style="color: #E5673D">}</span><span style="color: #7CC64A"> at </span><span style="color: #E5673D">{$</span><span style="color: #D8DEE9">comment</span><span style="color: #999999">[&#39;</span><span style="color: #7CC64A">created_at</span><span style="color: #999999">&#39;]</span><span style="color: #E5673D">}</span></span>
+<span class="line" data-linenr="7"></span>
+<span class="line" data-linenr="8"><span style="color: #E5673D">{$</span><span style="color: #D8DEE9">comment</span><span style="color: #999999">[&#39;</span><span style="color: #7CC64A">body</span><span style="color: #999999">&#39;]</span><span style="color: #E5673D">}</span></span>
+<span class="line" data-linenr="9"></span>
+<span class="line" data-linenr="10"></span>
+<span class="line" data-linenr="11"><span style="color: #7CC64A">    </span><span style="color: #E5673D">EOF</span><span style="color: #E5673D">;</span></span>
+<span class="line" data-linenr="12"><span style="color: #999999">}</span></span>
+<span class="line" data-linenr="13"></span>
+<span class="line" data-linenr="14"><span style="color: #C7C8D2">file_put_contents</span><span style="color: #999999">(</span><span style="color: #C7C8D2">getcwd</span><span style="color: #999999">()</span><span style="color: #E5673D">.</span><span style="color: #999999">&#39;</span><span style="color: #7CC64A">/.notes</span><span style="color: #999999">&#39;</span><span style="color: #999999">,</span><span style="color: #C7C8D2"> </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">notes</span><span style="color: #999999">)</span><span style="color: #E5673D">;</span></span></code></pre>
+</div>
+
+<p>Now, we can create a Git note from the file contents (Symfony puts them in
+a named “github-comments” reference):</p>
+
+<div class="language-terminal highlighter-shiki"><pre class="shiki-gutter">1
+2
+3
+4
+5
+</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #6B90C0; font-style: italic"># first, replace the local github-comments ref with the upstream one</span></span>
+<span class="line" data-linenr="2"><span style="color: #999999">$ </span><span style="color: #D8DEE9">git fetch origin refs/notes/github-comments:refs/notes/github-comments</span></span>
+<span class="line" data-linenr="3"></span>
+<span class="line" data-linenr="4"><span style="color: #6B90C0; font-style: italic"># then, create the new note</span></span>
+<span class="line" data-linenr="5"><span style="color: #999999">$ </span><span style="color: #D8DEE9">git notes --ref=github-comments add --file=.notes</span></span></code></pre>
+</div>
+
+<p>Finally, we can push the notes to GitHub. Git doesn’t push notes by
+default, we have to mention the reference explicitly:</p>
+
+<div class="language-terminal highlighter-shiki"><pre class="shiki-gutter">1
+</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #999999">$ </span><span style="color: #D8DEE9">git push --no-follow-tags origin refs/notes/github-comments</span></span></code></pre>
+</div>
+
+<aside class="side" data-type="Distributed Code Reviews">
+  <p>This implementation only distributes the code discussions together with the
+code.</p>
+
+  <p>Some developers at Google took the concept one level further and created
+<a href="https://github.com/google/git-appraise">Git Appraise</a>, a distributed code review implementation
+(including requesting and reviewing itself).</p>
+
+</aside>
+
+<h3 id="reading-the-notes-back">Reading the Notes back</h3>
+
+<p>GitHub no longer shows the <code class="highlighter-shiki">refs/notes/...</code> objects anywhere. But as it is
+just another set of objects (just like the commit tree), you can still
+push and fetch it from GitHub if you reference it directly:</p>
+
+<div class="language-terminal highlighter-shiki"><pre class="shiki-gutter">1
+2
+3
+4
+</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #999999">$ </span><span style="color: #D8DEE9">git fetch origin refs/notes/github-comments:refs/notes/github-comments</span></span>
+<span class="line" data-linenr="2"></span>
+<span class="line" data-linenr="3"><span style="color: #6B90C0; font-style: italic"># or fetch all note references</span></span>
+<span class="line" data-linenr="4"><span style="color: #999999">$ </span><span style="color: #D8DEE9">git fetch origin </span><span style="color: #999999">&quot;</span><span style="color: #7CC64A">refs/notes/*:refs/notes/*</span><span style="color: #999999">&quot;</span></span></code></pre>
+</div>
+
+<p>You can also edit the <code class="highlighter-shiki">.git/config</code> file of a project to always fetch
+notes by default:</p>
+
+<div class="language-diff highlighter-shiki"><pre class="shiki-gutter">1
+2
+3
+</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #BBBBBB">  [remote &quot;origin&quot;]</span></span>
+<span class="line" data-linenr="2"><span style="color: #BBBBBB">    fetch = +refs/heads/*:refs/remotes/origin/*</span></span>
+<span class="line" data-linenr="3"><span style="color: #999999">+</span><span style="color: #7CC64A">   fetch = +refs/notes/*:refs/notes/*</span></span></code></pre>
+</div>
+
+<p>Now the notes exist locally, you can view them in the Git logs for instance:</p>
+
+<div class="language-terminal highlighter-shiki"><pre class="shiki-gutter">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #999999">$ </span><span style="color: #D8DEE9">git log --notes=github-comments</span></span>
+<span class="line" data-linenr="2"><span style="color: #BBBBBB">commit 1a16ebc32598faada074e0af12a6a698d2964a5e (HEAD -&gt; 7.2, origin/7.2)</span></span>
+<span class="line" data-linenr="3"><span style="color: #BBBBBB">Merge: 09f9eb73b6 1303cd1a56</span></span>
+<span class="line" data-linenr="4"><span style="color: #BBBBBB">Author: Nicolas Grekas &lt;nicolas.grekas@gmail.com&gt;</span></span>
+<span class="line" data-linenr="5"><span style="color: #BBBBBB">Date:   Wed Jul 10 17:23:17 2024 +0200</span></span>
+<span class="line" data-linenr="6"></span>
+<span class="line" data-linenr="7"><span style="color: #BBBBBB">    minor #57657 [Messenger] [SQS] Allow to pass `sslmode` as an option (spuf)</span></span>
+<span class="line" data-linenr="8"></span>
+<span class="line" data-linenr="9"><span style="color: #BBBBBB">    This PR was merged into the 7.2 branch.</span></span>
+<span class="line" data-linenr="10"></span>
+<span class="line" data-linenr="11"><span style="color: #BBBBBB">    Discussion</span></span>
+<span class="line" data-linenr="12"><span style="color: #BBBBBB">    ----------</span></span>
+<span class="line" data-linenr="13"></span>
+<span class="line" data-linenr="14"><span style="color: #BBBBBB">    [Messenger] [SQS] Allow to pass `sslmode` as an option</span></span>
+<span class="line" data-linenr="15"></span>
+<span class="line" data-linenr="16"><span style="color: #BBBBBB">    | Q             | A</span></span>
+<span class="line" data-linenr="17"><span style="color: #BBBBBB">    | ------------- | ---</span></span>
+<span class="line" data-linenr="18"><span style="color: #BBBBBB">    | Branch?       | 7.2</span></span>
+<span class="line" data-linenr="19"><span style="color: #BBBBBB">    | Bug fix?      | no</span></span>
+<span class="line" data-linenr="20"><span style="color: #BBBBBB">    | New feature?  | no</span></span>
+<span class="line" data-linenr="21"><span style="color: #BBBBBB">    | Deprecations? | no</span></span>
+<span class="line" data-linenr="22"><span style="color: #BBBBBB">    | Issues        |</span></span>
+<span class="line" data-linenr="23"><span style="color: #BBBBBB">    | License       | MIT</span></span>
+<span class="line" data-linenr="24"></span>
+<span class="line" data-linenr="25"><span style="color: #BBBBBB">    This is a minor. There is an option &quot;sslmode&quot; that is documented as an option but can be passed only in dsn query string.</span></span>
+<span class="line" data-linenr="26"></span>
+<span class="line" data-linenr="27"><span style="color: #BBBBBB">    Commits</span></span>
+<span class="line" data-linenr="28"><span style="color: #BBBBBB">    -------</span></span>
+<span class="line" data-linenr="29"></span>
+<span class="line" data-linenr="30"><span style="color: #BBBBBB">    1303cd1a56 [Messenger][SQS] Allow to pass sslmode as an option</span></span>
+<span class="line" data-linenr="31"></span>
+<span class="line" data-linenr="32"><span style="color: #BBBBBB">Notes (github-comments):</span></span>
+<span class="line" data-linenr="33"><span style="color: #BBBBBB">    ---------------------------------------------------------------------------</span></span>
+<span class="line" data-linenr="34"></span>
+<span class="line" data-linenr="35"><span style="color: #BBBBBB">    by carsonbot at 2024-07-04T20:10:34Z</span></span>
+<span class="line" data-linenr="36"></span>
+<span class="line" data-linenr="37"><span style="color: #BBBBBB">    Hey!</span></span>
+<span class="line" data-linenr="38"></span>
+<span class="line" data-linenr="39"><span style="color: #BBBBBB">    I see that this is your first PR. That is great! Welcome!</span></span>
+<span class="line" data-linenr="40"></span>
+<span class="line" data-linenr="41"><span style="color: #BBBBBB">    ...</span></span></code></pre>
+</div>
+
+<h2 id="summary">Summary</h2>
+
+<ul>
+  <li>It’s important to distribute more than just the code</li>
+  <li>Use Git notes to store all sorts of important information to commits</li>
+  <li>You can view old Symfony discussions offline by using the
+<code class="highlighter-shiki">github-comments</code> notes reference</li>
+</ul>]]></content><author><name>Wouter de Jong</name></author><category term="article" /><category term="documentation" /><summary type="html"><![CDATA[Code discussions contain relevant information. Isn’t it a shame that we keep these in the centralized GitHub/GitLab servers, far away from our decentralized Git code? As soon as we move provider, we’ll loose all old discussions! And how do you ever find the pull requests back from 5 years ago? Symfony has implemented a lightweight solution to this problem years ago using a less-known feature of Git: Git Notes.]]></summary></entry><entry><title type="html">Combatting Login CSRF with Symfony</title><link href="https://wouterj.nl/2023/10/combatting-login-csrf-with-symfony" rel="alternate" type="text/html" title="Combatting Login CSRF with Symfony" /><published>2023-10-19T00:00:00+00:00</published><updated>2023-10-19T00:00:00+00:00</updated><id>https://wouterj.nl/2023/10/combatting-login-csrf-with-symfony</id><content type="html" xml:base="https://wouterj.nl/2023/10/combatting-login-csrf-with-symfony"><![CDATA[<p>Cross-site Request Forgery (CSRF) is one of the traditional vulnerabilities
 that web applications have to deal with. Every web framework - including
 Symfony - supports CSRF protection out of the box. A lesser known
 vulnerability is <em>Login CSRF</em>, a special kind of CSRF attack.</p>
@@ -1873,257 +2246,4 @@ further detail on them in later posts.</p>
   <li>There is no build-in authorization for API tokens</li>
   <li>The token representing user input is the same as the authenticated token</li>
   <li>Authorization by default is on the <em>identity</em> rather than the <em>action</em></li>
-</ul>]]></content><author><name>Wouter de Jong</name></author><category term="article" /><category term="symfony" /><category term="security" /><summary type="html"><![CDATA[Setting up big Symfony components in a blank PHP project helps a lot to understand it. You’ll grasp the main architecture of the component much easier this way. Let’s try to understand Symfony Security by doing exactly this!]]></summary></entry><entry><title type="html">Symfony Security: Is Security about User management?</title><link href="https://wouterj.nl/2019/03/security-removing-user" rel="alternate" type="text/html" title="Symfony Security: Is Security about User management?" /><published>2019-03-11T00:00:00+00:00</published><updated>2019-03-11T00:00:00+00:00</updated><id>https://wouterj.nl/2019/03/security-removing-user</id><content type="html" xml:base="https://wouterj.nl/2019/03/security-removing-user"><![CDATA[<p>Symfony 2 completely renewed Symfony. Symfony 3 gave us a completely refactored
-and improved Form component. Symfony 4 gave us a renewed dependency injection
-experience. Let’s fix Security in Symfony 5! To start with: The concept of
-users in security.</p>
-
-<p>The Security guide has 36 official documentation articles. This means it’s
-by far record holder. The Dependency Injection component is on place two with
-just 26 articles. Also, a book about Security is in <a href="https://leanpub.com/bookstore/type/book/sort/lifetime_earnings?search=symfony">leanpub’s top selling
-Symfony list</a> (congratz <a href="https://leanpub.com/u/jaytaph">Joshua</a>!). The Security component
-needs fixing! <em>What can we do?</em></p>
-
-<h2 id="whats-the-problem">What’s the problem?</h2>
-
-<p>Users are <em>your</em> domain logic. Yet, the component forces your user to implement
-<code class="highlighter-shiki">UserInterface</code>. This requires you to define a <em>salt</em> (mostly empty),
-<em>username</em> (probably <code class="highlighter-shiki">return $this-&gt;getEmail();</code>) and <em>password</em> (I hope you
-aren’t using tokens in your API?).</p>
-
-<aside class="side" data-type="Reference">
-  <p>In the blogpost, Iltar van der Berg uses two objects: A domain <code class="highlighter-shiki">User</code> and
-<code class="highlighter-shiki">SecurityUser</code>. The security user provider creates a <code class="highlighter-shiki">SecurityUser</code> based on
-information from the domain <code class="highlighter-shiki">User</code>. This way, the domain <code class="highlighter-shiki">User</code> becomes
-decoupled from the Security component.</p>
-</aside>
-
-<p>You can <a href="https://stovepipe.systems/post/decoupling-your-security-user">decouple the security user from your domain one</a>.
-Yet, doing so means that you have to write a custom service to get the
-domain user in your controller/services. All Security <code class="highlighter-shiki">getUser()</code> methods will
-return the Security user and not the domain one. That means writing custom core
-functionality to fix a problem in the component.</p>
-
-<h3 id="what-is-security-without-a-user">What is Security without a User?</h3>
-
-<p>A lot actually. The core of the Security component needs no users. <em>Token</em>
-objects (not related to API tokens) contain all necessary information about the
-user. After authentication, the user object is saved in this token, together
-with the credentials and the roles.</p>
-
-<p><img src="/img/security1-current-uml.png" alt="User and Token UML diagram" /></p>
-
-<aside class="side" data-type="Symfony internals">
-  <p>The Security component consists of separate layers. The <em>Core
-subcomponent</em> contains the generic Security objects and abstractions. The <em>Http
-subcomponent</em> integrates this Core system with the HTTP world of requests,
-sessions and login forms. Learn more about this in <a href="https://www.youtube.com/watch?v=xQyEXzug7P8">this great talk from Kris
-Wallsmith</a>.</p>
-</aside>
-
-<p>At this point, you might wonder why there are two objects: Token and User.
-They both contain the username, user roles and password… I agree, we can
-remove one of the two concepts.</p>
-
-<p>The user object also creates another problem: The user object is part of the
-authenticated token. This means it’s serialized when the token is stored in the
-session. This means your user object has to be serializable: It needs to remove
-plain text passwords, resources and other stuff you don’t want to serialize.</p>
-
-<h2 id="is-there-a-way-to-fix-it">Is there a way to fix it?</h2>
-
-<p>Yes: remove users. Wait, whaat?! Security is all about getting a user, right?
-Well, I don’t think so. Security is about securing your resources (pages,
-files, etc.). That’s all security should provide as a base. To do this, a
-unique identifier is needed to identify who is asking permission to access.
-This means we get the user feature as a very nice bonus, but it isn’t the main
-goal of Security.</p>
-
-<p>With that in mind, I’ve described why users cause problems. I’ve also already
-shown what other unique identifer Security has besides the User object: Tokens.
-Actually, everything Security needs is already in these tokens, so no need for
-user objects in the component!</p>
-
-<p>However, being able to typehint for <code class="highlighter-shiki">UserInterface</code> in the controller is great.
-Removing users from the component make this is impossible: The Security
-component can no longer relate the token with a user object that you created.</p>
-
-<p>To fix this, tokens can save a plain text identifier for the user. You can set
-this to the id of your domain user. The component can provide some automatic
-loaders of this Client entity based on the ID, like the current user
-providers.</p>
-
-<p><img src="/img/security1-proposed-uml.png" alt="Proposed UML diagram" /></p>
-
-<h2 id="how-does-this-impact-my-code">How does this Impact my Code?</h2>
-
-<p>As a base, this means your user object does no longer contain anything from the
-Security component.</p>
-
-<h4 id="before">Before</h4>
-
-<div class="language-php highlighter-shiki"><pre class="shiki-gutter">1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-28
-29
-30
-31
-32
-33
-34
-35
-</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #E5673D">use</span><span style="color: #BBBBBB"> Symfony</span><span style="color: #999999">\</span><span style="color: #BBBBBB">Component</span><span style="color: #999999">\</span><span style="color: #BBBBBB">Security</span><span style="color: #999999">\</span><span style="color: #BBBBBB">Core</span><span style="color: #999999">\</span><span style="color: #BBBBBB">User</span><span style="color: #999999">\</span><span style="color: #C7C8D2">UserInterface</span><span style="color: #E5673D">;</span></span>
-<span class="line" data-linenr="2"></span>
-<span class="line" data-linenr="3"><span style="color: #E5673D">class</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">ApiUser</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">implements</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">UserInterface</span></span>
-<span class="line" data-linenr="4"><span style="color: #999999">{</span></span>
-<span class="line" data-linenr="5"><span style="color: #BBBBBB">    </span><span style="color: #E5673D">private</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">email</span><span style="color: #E5673D">;</span></span>
-<span class="line" data-linenr="6"><span style="color: #BBBBBB">    </span><span style="color: #E5673D">private</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">roles</span><span style="color: #E5673D">;</span></span>
-<span class="line" data-linenr="7"></span>
-<span class="line" data-linenr="8"><span style="color: #BBBBBB">    </span><span style="color: #E5673D">public</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">function</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">__construct</span><span style="color: #999999">(</span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">email</span><span style="color: #999999">,</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">array</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">roles</span><span style="color: #999999">)</span></span>
-<span class="line" data-linenr="9"><span style="color: #BBBBBB">    </span><span style="color: #999999">{</span></span>
-<span class="line" data-linenr="10"><span style="color: #BBBBBB">        </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">this</span><span style="color: #E5673D">-&gt;</span><span style="color: #D8DEE9">email</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">=</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">email</span><span style="color: #E5673D">;</span></span>
-<span class="line" data-linenr="11"><span style="color: #BBBBBB">        </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">this</span><span style="color: #E5673D">-&gt;</span><span style="color: #D8DEE9">roles</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">=</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">roles</span><span style="color: #E5673D">;</span></span>
-<span class="line" data-linenr="12"><span style="color: #BBBBBB">    </span><span style="color: #999999">}</span></span>
-<span class="line" data-linenr="13"></span>
-<span class="line" data-linenr="14"><span style="color: #BBBBBB">    </span><span style="color: #E5673D">public</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">function</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">getUsername</span><span style="color: #999999">()</span></span>
-<span class="line" data-linenr="15"><span style="color: #BBBBBB">    </span><span style="color: #999999">{</span></span>
-<span class="line" data-linenr="16"><span style="color: #BBBBBB">        </span><span style="color: #E5673D">return</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">this</span><span style="color: #E5673D">-&gt;</span><span style="color: #D8DEE9">email</span><span style="color: #E5673D">;</span></span>
-<span class="line" data-linenr="17"><span style="color: #BBBBBB">    </span><span style="color: #999999">}</span></span>
-<span class="line" data-linenr="18"></span>
-<span class="line" data-linenr="19"><span style="color: #BBBBBB">    </span><span style="color: #E5673D">public</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">function</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">getPassword</span><span style="color: #999999">()</span></span>
-<span class="line" data-linenr="20"><span style="color: #BBBBBB">    </span><span style="color: #999999">{</span></span>
-<span class="line" data-linenr="21"><span style="color: #BBBBBB">        </span><span style="color: #E5673D">return</span><span style="color: #BBBBBB"> </span><span style="color: #999999">&#39;</span><span style="color: #7CC64A">none</span><span style="color: #999999">&#39;</span><span style="color: #E5673D">;</span></span>
-<span class="line" data-linenr="22"><span style="color: #BBBBBB">    </span><span style="color: #999999">}</span></span>
-<span class="line" data-linenr="23"></span>
-<span class="line" data-linenr="24"><span style="color: #BBBBBB">    </span><span style="color: #E5673D">public</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">function</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">getSalt</span><span style="color: #999999">()</span></span>
-<span class="line" data-linenr="25"><span style="color: #BBBBBB">    </span><span style="color: #999999">{</span></span>
-<span class="line" data-linenr="26"><span style="color: #BBBBBB">        </span><span style="color: #E5673D">return</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">null;</span></span>
-<span class="line" data-linenr="27"><span style="color: #BBBBBB">    </span><span style="color: #999999">}</span></span>
-<span class="line" data-linenr="28"></span>
-<span class="line" data-linenr="29"><span style="color: #BBBBBB">    </span><span style="color: #E5673D">public</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">function</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">getRoles</span><span style="color: #999999">()</span></span>
-<span class="line" data-linenr="30"><span style="color: #BBBBBB">    </span><span style="color: #999999">{</span></span>
-<span class="line" data-linenr="31"><span style="color: #BBBBBB">        </span><span style="color: #E5673D">return</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">this</span><span style="color: #E5673D">-&gt;</span><span style="color: #D8DEE9">roles</span><span style="color: #E5673D">;</span></span>
-<span class="line" data-linenr="32"><span style="color: #BBBBBB">    </span><span style="color: #999999">}</span></span>
-<span class="line" data-linenr="33"></span>
-<span class="line" data-linenr="34"><span style="color: #999999">    </span><span style="color: #6B90C0; font-style: italic">// ...</span></span>
-<span class="line" data-linenr="35"><span style="color: #999999">}</span></span></code></pre>
-</div>
-
-<h4 id="after">After</h4>
-
-<div class="language-php highlighter-shiki"><pre class="shiki-gutter">1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #E5673D">class</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">User</span></span>
-<span class="line" data-linenr="2"><span style="color: #999999">{</span></span>
-<span class="line" data-linenr="3"><span style="color: #BBBBBB">    </span><span style="color: #E5673D">private</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">email</span><span style="color: #E5673D">;</span></span>
-<span class="line" data-linenr="4"><span style="color: #BBBBBB">    </span><span style="color: #E5673D">private</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">roles</span><span style="color: #E5673D">;</span></span>
-<span class="line" data-linenr="5"></span>
-<span class="line" data-linenr="6"><span style="color: #BBBBBB">    </span><span style="color: #E5673D">public</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">function</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">__construct</span><span style="color: #999999">(</span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">email</span><span style="color: #999999">,</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">roles</span><span style="color: #999999">)</span></span>
-<span class="line" data-linenr="7"><span style="color: #BBBBBB">    </span><span style="color: #999999">{</span></span>
-<span class="line" data-linenr="8"><span style="color: #BBBBBB">        </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">this</span><span style="color: #E5673D">-&gt;</span><span style="color: #D8DEE9">email</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">=</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">email</span><span style="color: #E5673D">;</span></span>
-<span class="line" data-linenr="9"><span style="color: #BBBBBB">        </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">this</span><span style="color: #E5673D">-&gt;</span><span style="color: #D8DEE9">roles</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">=</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">roles</span><span style="color: #E5673D">;</span></span>
-<span class="line" data-linenr="10"><span style="color: #BBBBBB">    </span><span style="color: #999999">}</span></span>
-<span class="line" data-linenr="11"></span>
-<span class="line" data-linenr="12"><span style="color: #BBBBBB">    </span><span style="color: #E5673D">public</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">function</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">getEmail</span><span style="color: #999999">()</span></span>
-<span class="line" data-linenr="13"><span style="color: #BBBBBB">    </span><span style="color: #999999">{</span></span>
-<span class="line" data-linenr="14"><span style="color: #BBBBBB">        </span><span style="color: #E5673D">return</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">this</span><span style="color: #E5673D">-&gt;</span><span style="color: #D8DEE9">email</span><span style="color: #E5673D">;</span></span>
-<span class="line" data-linenr="15"><span style="color: #BBBBBB">    </span><span style="color: #999999">}</span></span>
-<span class="line" data-linenr="16"></span>
-<span class="line" data-linenr="17"><span style="color: #BBBBBB">    </span><span style="color: #E5673D">public</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">function</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">getRoles</span><span style="color: #999999">()</span></span>
-<span class="line" data-linenr="18"><span style="color: #BBBBBB">    </span><span style="color: #999999">{</span></span>
-<span class="line" data-linenr="19"><span style="color: #BBBBBB">        </span><span style="color: #E5673D">return</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">this</span><span style="color: #E5673D">-&gt;</span><span style="color: #D8DEE9">roles</span><span style="color: #E5673D">;</span></span>
-<span class="line" data-linenr="20"><span style="color: #BBBBBB">    </span><span style="color: #999999">}</span></span>
-<span class="line" data-linenr="21"><span style="color: #999999">}</span></span></code></pre>
-</div>
-
-<p>When you want to use <code class="highlighter-shiki">getUser()</code> functions, you only have to implement a simple
-interface:</p>
-
-<div class="language-php highlighter-shiki"><pre class="shiki-gutter">1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #E5673D">use</span><span style="color: #BBBBBB"> Symfony</span><span style="color: #999999">\</span><span style="color: #BBBBBB">Component</span><span style="color: #999999">\</span><span style="color: #BBBBBB">Security</span><span style="color: #999999">\</span><span style="color: #BBBBBB">Core</span><span style="color: #999999">\</span><span style="color: #C7C8D2">IdentityInterface</span><span style="color: #E5673D">;</span></span>
-<span class="line" data-linenr="2"></span>
-<span class="line" data-linenr="3"><span style="color: #E5673D">class</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">User</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">implements</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">IdentityInterface</span></span>
-<span class="line" data-linenr="4"><span style="color: #999999">{</span></span>
-<span class="line" data-linenr="5"><span style="color: #999999">    </span><span style="color: #6B90C0; font-style: italic">// ...</span></span>
-<span class="line" data-linenr="6"></span>
-<span class="line" data-linenr="7"><span style="color: #BBBBBB">    </span><span style="color: #E5673D">public</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">function</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">getIdentifier</span><span style="color: #999999">()</span></span>
-<span class="line" data-linenr="8"><span style="color: #BBBBBB">    </span><span style="color: #999999">{</span></span>
-<span class="line" data-linenr="9"><span style="color: #BBBBBB">        </span><span style="color: #E5673D">return</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">this</span><span style="color: #E5673D">-&gt;</span><span style="color: #D8DEE9">id</span><span style="color: #E5673D">;</span></span>
-<span class="line" data-linenr="10"><span style="color: #BBBBBB">    </span><span style="color: #999999">}</span></span>
-<span class="line" data-linenr="11"><span style="color: #999999">}</span></span></code></pre>
-</div>
-
-<p>As you can see, this all becomes way more flexible. Your user only needs to
-have some unique identifier and all other information is in the tokens.</p>
-
-<p>The benefit of this is that the Security component only needs to serialize the token
-in the session. This means your user object or whatsoever doesn’t need to be
-serializable, doesn’t need to erase credentials, cetera.</p>
-
-<h2 id="take-homes">Take Home’s</h2>
-
-<ul>
-  <li>Security isn’t about the user</li>
-  <li>Users are <em>your domain</em>, a framework should not interfere with that</li>
-  <li>Identifiers link objects with the same meaning</li>
-</ul>
-
-<p>Of course, this post is just proposing ideas. I’m sure there will be
-difficulties to integrate this into the Symfony code. But I believe it is
-necessary to rethink what’s needed in the Symfony Security component.
-Integrating the Security component should be easier. Reducing classes that need
-to be modified to use Security helps with this.</p>]]></content><author><name>Wouter de Jong</name></author><category term="experiment" /><category term="symfony" /><category term="security" /><summary type="html"><![CDATA[Symfony 2 completely renewed Symfony. Symfony 3 gave us a completely refactored and improved Form component. Symfony 4 gave us a renewed dependency injection experience. Let’s fix Security in Symfony 5! To start with: The concept of users in security.]]></summary></entry></feed>
+</ul>]]></content><author><name>Wouter de Jong</name></author><category term="article" /><category term="symfony" /><category term="security" /><summary type="html"><![CDATA[Setting up big Symfony components in a blank PHP project helps a lot to understand it. You’ll grasp the main architecture of the component much easier this way. Let’s try to understand Symfony Security by doing exactly this!]]></summary></entry></feed>

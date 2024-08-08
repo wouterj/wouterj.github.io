@@ -120,14 +120,14 @@ en daarna een <code class="highlighter-shiki">&gt;</code> en daarna kan je typen
 <p>Het CMD werkt met commands om alles te doen. Stel we zijn nu in <code class="highlighter-shiki">C:\Users\Acme</code>
 en we willen naar <code class="highlighter-shiki">C:\Users\Acme\projects</code> dan doen we:</p>
 
-<div class="highlighter-shiki"><pre class="shiki language-none"><code>C:\Users\Acme&gt; cd projects
+<div class="highlighter-shiki"><pre class="shiki-gutter">1</pre><pre class="shiki-code"><code>C:\Users\Acme&gt; cd projects
 </code></pre>
 </div>
 
 <p>Stel we willen naar <code class="highlighter-shiki">E:\wamp\www\myProject</code> dan moet dat in 2 stappen: Eerst
 moeten we naar de andere schrijf (E) en daarna gaan we naar de juiste map:</p>
 
-<div class="highlighter-shiki"><pre class="shiki language-none"><code>C:\Users\Acme\projects&gt; e:
+<div class="highlighter-shiki"><pre class="shiki-gutter">1</pre><pre class="shiki-code"><code>C:\Users\Acme\projects&gt; e:
 E:\&gt; cd wamp/www/myProject
 </code></pre>
 </div>
@@ -135,7 +135,7 @@ E:\&gt; cd wamp/www/myProject
 <p>Dit spreekt wel voorzich denk ik. Als je nu wilt weten welke bestanden er in
 deze map zitten gebruik je het ls command:</p>
 
-<div class="highlighter-shiki"><pre class="shiki language-none"><code>E:\wamp\www\myProject&gt; ls
+<div class="highlighter-shiki"><pre class="shiki-gutter">1</pre><pre class="shiki-code"><code>E:\wamp\www\myProject&gt; ls
 css         img         js
 index.php   .htaccess
 </code></pre>
@@ -178,7 +178,7 @@ verplaatsen composer.phar even naar een map die wat logischer is, in mijn geval
 heb ik het in dezelfde map als PHP gezet. In dezelfde map maken we een
 bestandje genaamd <code class="highlighter-shiki">composer.bat</code>. Hierin plaatsen we het volgende:</p>
 
-<div class="highlighter-shiki"><pre class="shiki language-none"><code>@echo off
+<div class="highlighter-shiki"><pre class="shiki-gutter">1</pre><pre class="shiki-code"><code>@echo off
 php &quot;E:\wamp\bin\php\php5.4.0\composer.phar&quot; %*
 </code></pre>
 </div>
@@ -237,7 +237,7 @@ met onder anderen de versies. Bij het instellen welke package we willen moeten
 we ook altijd een versie instellen. Deze versie kun je op verschillende
 manieren opbouwen:</p>
 
-<div class="highlighter-shiki"><pre class="shiki language-none"><code>2.1.*
+<div class="highlighter-shiki"><pre class="shiki-gutter">1</pre><pre class="shiki-code"><code>2.1.*
 &gt;= 2.1.0, &lt;2.2.5
 2.1.13
 </code></pre>
@@ -255,7 +255,7 @@ hebben we gewoon een exacte versie ingevuld.</p>
 composer het gaat inladen. Dat doen we door in <code class="highlighter-shiki">composer.json</code> de require
 parameter in te vullen:</p>
 
-<div class="highlighter-shiki"><pre class="shiki language-none"><code>{
+<div class="highlighter-shiki"><pre class="shiki-gutter">1</pre><pre class="shiki-code"><code>{
     &quot;require&quot; : {
         &quot;swiftmailer\swiftmailer&quot; : &quot;4.2.*&quot;
     }
@@ -267,7 +267,7 @@ parameter in te vullen:</p>
 en vinden we de propel\propel package. Deze heeft maar 1 versie en dus gaan we
 die er ook bij zetten:</p>
 
-<div class="highlighter-shiki"><pre class="shiki language-none"><code>{
+<div class="highlighter-shiki"><pre class="shiki-gutter">1</pre><pre class="shiki-code"><code>{
     &quot;require&quot; : {
         &quot;swiftmailer\swiftmailer&quot; : &quot;4.2.*&quot;,
         &quot;propel\propel&quot; : &quot;dev-master&quot;
@@ -279,7 +279,7 @@ die er ook bij zetten:</p>
 <p>Nu we alle packages hebben gedefinieerd kunnen we ze gaan installeren door de
 composer command aan te roepen:</p>
 
-<div class="highlighter-shiki"><pre class="shiki language-none"><code>cd path/to/myProject
+<div class="highlighter-shiki"><pre class="shiki-gutter">1</pre><pre class="shiki-code"><code>cd path/to/myProject
 composer install
 </code></pre>
 </div>
@@ -306,7 +306,7 @@ moeten worden kun je de autoloader instellen waar hij naar jou klassen moet
 gaan zoeken. Ik plaats bijv. alles in een <code class="highlighter-shiki">src</code> map, we geven dan aan dat hij
 naar klassen kan zoeken in de src map:</p>
 
-<div class="highlighter-shiki"><pre class="shiki language-none"><code>{
+<div class="highlighter-shiki"><pre class="shiki-gutter">1</pre><pre class="shiki-code"><code>{
     &quot;require&quot; : {
         &quot;swiftmailer\swiftmailer&quot; : &quot;4.2.*&quot;,
         &quot;propel\propel&quot; : &quot;dev-master&quot;
@@ -362,7 +362,7 @@ misschien kom je halverwege deze vakantie wel de eerste berichten tegen. Om je
 alvast warm te maken en een idee te geven hoe makkelijk het is om Symfony te
 downloaden met composer:</p>
 
-<div class="highlighter-shiki"><pre class="shiki language-none"><code>composer create-project symfony/framework-standard-edition
+<div class="highlighter-shiki"><pre class="shiki-gutter">1</pre><pre class="shiki-code"><code>composer create-project symfony/framework-standard-edition
 </code></pre>
 </div>
 
@@ -371,7 +371,7 @@ downloaden met composer:</p>
 </article>
 
     </div><footer class="page__footer">
-    <p>&copy; Copyright 2012 - 2023 Wouter de Jong</p>
+    <p>&copy; Copyright 2012 - 2024 Wouter de Jong</p>
 </footer>
 </body>
 
