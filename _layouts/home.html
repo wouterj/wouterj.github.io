@@ -65,27 +65,8 @@ layout: default
         {% else %}
             {% if forloop.index == 4 %}<ul class="post-list--titles">{% endif %}
                 <li class="post--summary {% if post.star %}post--starred{% endif %}">
-                <h4 class="post__heading  post__heading--beta" itemprop="headline"><a href="{{ post.url }}" itemprop="url">{{ post.title }}</a></h4><!--
-                --><span class="post__metadata">
-                    <time datetime="{{ post.date | date_to_xmlschema }}" itemprop="datePublished">
-                        {{ post.date | date: "%^b '%y" }}
-                    </time>
-                    <span class="post__category__icon">
-                    {% assign cat = post.categories|first %}
-                    {% if cat == 'article' %}
-                    &#xf139;
-                    {% elsif cat == 'opinion' %}
-                    &#xf075;
-                    {% elsif cat == 'news' %}
-                    &#xf0CA;
-                    {% elsif cat == 'experiment' %}
-                    &#xf051;
-                    {% elsif cat == 'idea' %}
-                    &#xf12C;
-                    {% endif %}
-                    </span>
-                </span>
-            </li>
+                    <h4 class="post__heading  post__heading--beta" itemprop="headline"><a href="{{ post.url }}" itemprop="url">{{ post.title }}</a></h4>{% unless forloop.last %};{% endunless %}<!--
+            --></li>
         {% endif %}
     {% endif %}{% endfor %}
     </ul>
@@ -106,7 +87,7 @@ layout: default
                 <h1 class="post__heading  post__heading--gamma" itemprop="headline">Contact</h1>
 
                 <div class="post__entry  post__entry--excerpt" itemprop="articleBody">
-                    <p>You can contact me on <a href="https://github.com/wouterj">GitHub</a>, <a href="https://symfony.com/slack">Symfony Slack</a> or <a href="mailto:wouter@wouterj.nl">by mail</a>.</p>
+                    <p>You can contact me on <a href="https://github.com/wouterj">GitHub</a> or <a href="https://symfony.com/slack">Symfony Slack</a>.</p>
                 </div>
             </article>
         </li><!--

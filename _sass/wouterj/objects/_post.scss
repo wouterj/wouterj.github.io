@@ -291,6 +291,14 @@
     border-top:5px solid $primary1;
 
     text-align:justify;
+    font-family:$title-face;
+    @include font-size($h3-size);
+    line-height:1.5;
+
+    @include media-query(portable){
+        padding-left:20px;
+        padding-right:20px;
+    }
 }
     .post--summary{
         list-style:none;
@@ -310,7 +318,8 @@
             padding-right:0;
             font-weight:400;
             font-family:$title-face;
-            line-height:1.8;
+            font-size:inherit;
+            line-height:inherit;
 
             a {
                 color:inherit;
