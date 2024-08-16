@@ -2621,7 +2621,16 @@ pre {
   margin-left: 0;
   padding-top: 14px;
   border-top: 5px solid #cc3333;
-  text-align: justify; }
+  text-align: justify;
+  font-family: "Oswald", serif;
+  font-size: 24px;
+  font-size: 1.3333333333rem;
+  line-height: 1.3333333333;
+  line-height: 1.5; }
+  @media only screen and (max-width: 1149px) {
+    .post-list--titles {
+      padding-left: 20px;
+      padding-right: 20px; } }
 
 .post--summary {
   list-style: none;
@@ -2636,7 +2645,8 @@ pre {
     padding-right: 0;
     font-weight: 400;
     font-family: "Oswald", serif;
-    line-height: 1.8; }
+    font-size: inherit;
+    line-height: inherit; }
     .post--summary .post__heading a {
       color: inherit; }
   .post--summary .post__metadata {
