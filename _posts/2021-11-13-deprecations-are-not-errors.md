@@ -3,6 +3,7 @@ layout: post
 title: 'Deprecations are not like E_ERROR, E_WARNING, and E_NOTICE'
 categories: article
 tags: backwards-compatibility
+star: true
 
 ---
 Every now and then, there seems to be a lot of fuss in the PHP community
