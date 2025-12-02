@@ -2689,6 +2689,12 @@ pre {
       width: 120%;
       margin-left: -10%; } }
 
+@media only screen and (max-width: 1149px) {
+  .post--footer {
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-bottom: 32px; } }
+
 /*-----------------------------------*\
     $SECTION
 \*-----------------------------------*/
