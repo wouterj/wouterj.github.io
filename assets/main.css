@@ -2444,7 +2444,8 @@ pre {
           .post ul li:before,
           .post ol li:before {
             position: absolute;
-            left: -2ch; } }
+            left: -3ch;
+            text-align: right; } }
   .post ul li:before {
     content: '- ';
     font-weight: bold; }
@@ -2524,6 +2525,15 @@ pre {
   .post__entry img {
     display: block;
     margin: 0 auto; }
+  @media only screen and (min-width: 1150px) {
+    .post__entry .figure, .post__entry .img--maxed {
+      max-width: 120%;
+      margin: 0 -10%; } }
+  .post__entry .figure-1-2 p, .post__entry .figure-1-2 img {
+    width: 50%;
+    float: left; }
+    .post__entry .figure-1-2 p:first-child, .post__entry .figure-1-2 img:first-child {
+      width: 100%; }
 
 .post__entry--excerpt {
   text-align: justify; }
