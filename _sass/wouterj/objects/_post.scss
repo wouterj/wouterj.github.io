@@ -34,7 +34,8 @@
             &:before{
                 @include media-query(desk){
                     position:absolute;
-                    left:-2ch;
+                    left:-3ch;
+                    text-align:right;
                 }
                 color:$secondaryText;
                 padding-right:1ex;
@@ -161,7 +162,22 @@
         img{
             display:block;
             margin:0 auto;
+
         }
+            .figure, .img--maxed{
+              @include media-query(desk) {
+                  max-width:120%;
+                  margin:0 -10%;
+              }
+            }
+            .figure-1-2 p, .figure-1-2 img{
+                width:50%;
+                float:left;
+
+                &:first-child{
+                    width:100%;
+                }
+            }
     }
     .post__entry--excerpt{
         text-align:justify;
