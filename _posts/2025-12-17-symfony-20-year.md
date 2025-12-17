@@ -98,7 +98,7 @@ since 2012.
 </figure>
 
 In total, 340 individual contributors own 95% of the commits in 2025.
-At 6 people are responsible for 50% of the commits for years. This shows
+And 6 people are responsible for 50% of the commits for years. This shows
 the strength of Symfony and its community: It's not just a couple of
 contributors doing the work but hundreds of people working together to help
 everyone move forward!
@@ -214,12 +214,12 @@ It is however interesting to see the evolution of the most complex method
 in the codebase. For years, the [custom pluralization rules](https://github.com/symfony/symfony/blob/4.3/src/Symfony/Component/Translation/PluralizationRules.php#L33-L195)
 in the Translation component topped the list.
 
-But since migrating to the
-[ICU MessageFormat](https://symfony.com/doc/8.0/reference/formats/message_format.html),
-the [Debug Class Loader](https://github.com/symfony/symfony/blob/6.1/src/Symfony/Component/ErrorHandler/DebugClassLoader.php#L356-L662)
+Since Symfony 6.1, the [Debug Class Loader](https://github.com/symfony/symfony/blob/6.1/src/Symfony/Component/ErrorHandler/DebugClassLoader.php#L356-L662)
 has taken over. This class is responsible for most of the deprecation
 reporting for deprecated classes, changed method signatures, return types
-and new interface methods.
+and new interface methods. Symfony added a lot more deprecation notices to
+ensure a smooth upgrade path while [adding native PHP types](https://symfony.com/blog/symfony-7-0-type-declarations)
+to its codebase over the course of three major versions.
 
 Recently, the [Redis cache connection](https://github.com/symfony/symfony/blob/7.3/src/Symfony/Component/Cache/Traits/RedisTrait.php#L91-L491)
 has taken over the worst method spot, due to supporting many different
