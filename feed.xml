@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.7">Jekyll</generator><link href="https://wouterj.nl/feed.xml" rel="self" type="application/atom+xml" /><link href="https://wouterj.nl/" rel="alternate" type="text/html" /><updated>2025-12-17T10:19:39+00:00</updated><id>https://wouterj.nl/feed.xml</id><title type="html">Wouter J</title><author><name>Wouter de Jong</name></author><entry><title type="html">Symfony 20 year!</title><link href="https://wouterj.nl/2025/12/symfony-20-year" rel="alternate" type="text/html" title="Symfony 20 year!" /><published>2025-12-17T00:00:00+00:00</published><updated>2025-12-17T00:00:00+00:00</updated><id>https://wouterj.nl/2025/12/symfony-20-year</id><content type="html" xml:base="https://wouterj.nl/2025/12/symfony-20-year"><![CDATA[<p>This year, Symfony <a href="https://symfony.com/20years">celebrates its 20 year anniversary</a>.
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.7">Jekyll</generator><link href="https://wouterj.nl/feed.xml" rel="self" type="application/atom+xml" /><link href="https://wouterj.nl/" rel="alternate" type="text/html" /><updated>2025-12-17T11:08:10+00:00</updated><id>https://wouterj.nl/feed.xml</id><title type="html">Wouter J</title><author><name>Wouter de Jong</name></author><entry><title type="html">Symfony 20 year!</title><link href="https://wouterj.nl/2025/12/symfony-20-year" rel="alternate" type="text/html" title="Symfony 20 year!" /><published>2025-12-17T00:00:00+00:00</published><updated>2025-12-17T00:00:00+00:00</updated><id>https://wouterj.nl/2025/12/symfony-20-year</id><content type="html" xml:base="https://wouterj.nl/2025/12/symfony-20-year"><![CDATA[<p>This year, Symfony <a href="https://symfony.com/20years">celebrates its 20 year anniversary</a>.
 Let’s dive into some statistics of years of making web development history.</p>
 
 <aside class="side" data-type="Acknowledgement">
@@ -113,7 +113,7 @@ the strength of Symfony and its community: It’s not just a couple of
 contributors doing the work but hundreds of people working together to help
 everyone move forward!</p>
 
-<p>Interestingly, the peak in 2019-2021 is also visible
+<p>Interestingly, the peak in 2019-2021 is also visible in
 <a href="https://curl.se/dashboard1.html#authors-of-95-percent">the curl project</a>.</p>
 
 <p><a href="/img/sf-stats/firsttimers.svg" target="_blank">
