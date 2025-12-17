@@ -1,0 +1,429 @@
+<!doctype html>
+<html lang=""><head>
+    <meta charset=utf-8>
+
+    <title>Symfony 20 year! ~ Wouter J</title>
+
+    <meta http-equiv=X-UA-Compatible content="IE=edge">
+    <meta name=viewport content="width=device-width, initial-scale=1">
+    <meta name=theme-color content=#cc3333>
+
+    <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Serif:400,400i,700|Oswald|Inconsolata" rel="stylesheet">
+    <link rel=stylesheet href="/assets/main.css?v2">
+    <link rel=icon type=image/png href=/img/css/favicon.png sizes=96x96>
+    <link rel="me" href="https://phpc.social/@wouterj"><link type="application/atom+xml" rel="alternate" href="https://wouterj.nl/feed.xml" title="Wouter J" /><meta content="Wouter J" property="og:site_name">
+    
+      <meta property="og:title" content="Symfony 20 year!">
+      <meta property="og:type" content="article">
+      <meta property="og:description" content="This year, Symfony celebrates its 20 year anniversary.
+Let’s dive into some statistics of years of making web development history.
+
+">
+      <meta property="article:published_time" content="2025-12-17T00:00:00+00:00">
+      <meta property="og:url" content="https://wouterj.nl/2025/12/symfony-20-year">
+      <meta property="og:image" content="https://wouterj.nl/img/og/symfony-20-year.png">
+      <meta property="og:image:height" content="340">
+      <meta property="og:image:width" content="680">
+
+      <meta name="twitter:card" content="summary_large_image">
+      <meta name="twitter:site" content="@wouterjnl">
+      <meta name="twitter:creator" content="@wouterjnl">
+      <meta name="twitter:title" content="Symfony 20 year!">
+      <meta name="twitter:description" content="This year, Symfony celebrates its 20 year anniversary.
+Let’s dive into some statistics of years of making web development history.
+
+">
+      <meta name="twitter:image" content="https://wouterj.nl/img/og/symfony-20-year.png">
+    <script src="https://cdn.counter.dev/script.js" data-id="07663ec4-bb0d-40fb-ad71-e7b091c17341" data-utcoffset="1"></script></head>
+<body class="page  page--post" itemscope itemtype="http://schema.org/WebPage"><header class=page__header>
+    <hgroup class=page__headline>
+        <h1 class="site-title" itemprop="name"><a href="/">Wouter J</a></h1>
+    </hgroup><nav class=page__nav>
+        <ul class="nav"></ul>
+    </nav></div>
+</header>
+<div class=page__body itemscope itemtype="http://schema.org/Blog">
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+    <h1 class="post__heading" itemprop="headline">Symfony 20 year!</h1>
+
+    <div class="post__metadata">
+        <time class="post__published-date" datetime="2025-12-17T00:00:00+00:00" itemprop="datePublished">
+            DEC '25
+        </time>
+        
+        <span class="post__category">
+            
+            
+            <span class="post__category__icon">&#xf139;</span>
+            
+            article
+        </span>
+        
+    </div>
+
+    
+
+    <div itemprop="articleBody">
+        <div class="post__entry--excerpt">
+            
+            <p>This year, Symfony <a href="https://symfony.com/20years">celebrates its 20 year anniversary</a>.
+Let’s dive into some statistics of years of making web development history.</p></div><div class="post__entry">
+
+<aside class="side" data-type="Acknowledgement">
+  <p>The graphs and metrics in this post are heavily inspired and based on
+<a href="https://curl.se/dashboard.html">Daniel Stenberg’s curl dashboard</a>. If you
+enjoy data and open source project, go give that dashboard a visit.</p>
+</aside>
+
+<p>This post features graphs, with some annotations of things I remember and
+observe in the graphs. If you find any other interesting stuff, please share
+it! All data and graphs for this project are on
+<a href="https://github.com/wouterj-nl/symfony-stats">GitHub</a>. Some graph are
+better viewed in full size, clicking on a graph opens a full size window.</p>
+
+<p>Like many projects at that time, Symfony 1 started with Subversion and a
+self-hosted code platform at <a href="https://web.archive.org/web/20100419194120/http://trac.symfony-project.org/report">trac.symfony-project.org</a>.
+During the development phase of Symfony 2, the project
+<a href="https://symfony.com/blog/symfony-2-migration-to-git">moved to Git</a>. To
+keep the scope of all data extraction for this post manageable, I decided to
+focus on all statistics starting at Symfony 2.0 and only take the main
+mono-repository into account.</p>
+
+<p><a href="/img/sf-stats/release-number.svg" target="_blank">
+    <img src="/img/sf-stats/release-number.svg" alt="" class="figure" />
+</a></p>
+
+<p>As a start, let’s list all Symfony releases. Today, with 8.0.2 just over a
+week old, the project has had 699 <em>stable</em> releases (excluding
+alpha/beta/rc).</p>
+
+<p>At first, the releases were done naturally: Patch releases when enough bugs
+are fixed, and a minor release when features are stabilized.</p>
+
+<p>In October 2012, Symfony adopted <a href="https://symfony.com/blog/a-new-release-process-for-symfony">a time-based release process</a>
+that is familiar to what’s in use today. Symfony started adopting
+Semantic Versioning, deprecations and smooth upgrade paths. While gaining
+more experience with these new methodologies throughout the 2.x series, the
+release cycle <a href="https://symfony.com/blog/symfony-3-0-the-roadmap">changed a couple times</a>.</p>
+
+<p>You can see releases “stacking up” in the graph on the same day, as
+multiple minor versions were supported at the same moment. This went as
+crazy as supporting Symfony 2.7 (released in 2015 on PHP 5.3.9!), 2.8, 3.4,
+4.0 and 4.1 all at the same time in early 2019. After this, you can see the
+graph settle at the <a href="https://symfony.com/releases">steady pace we are used to today</a>.</p>
+
+<p>Other statistics in this post are calculated for every “latest” release.
+For instance, the data is generated for 4.0.0, 4.0.1, etc. until the
+release of 4.1.0, and then continues with 4.1.1, 4.1.2, etc. Eventhough 4.0
+and 4.1 were maintained at the same time, we ignore future 4.0 patch
+releases.</p>
+
+<p><a href="/img/sf-stats/components-over-time.svg" target="_blank">
+    <img src="/img/sf-stats/components-over-time.svg" alt="" class="figure" />
+</a></p>
+
+<p>Almost every minor/major Symfony version introduced a new component
+(excluding component bridges like Mailer integrations). In fact, the
+latest Symfony 7.4/8.0 release is the 3rd release without a new component!</p>
+
+<p>Symfony 2.0 packaged 32 components, almost tripled with 80 components and
+<a href="https://symfony.com/stats/downloads">308 total packages in the Symfony 8.0</a>.</p>
+
+<p><a href="/img/sf-stats/merges-over-time.svg" target="_blank">
+    <img src="/img/sf-stats/merges-over-time.svg" alt="" class="figure" />
+</a></p>
+
+<p>Since the end of 2013, Symfony uses a CLI tool to merge pull request. This
+labels every merge as “minor” (important work, but not noteworthy in a
+changelog), “bug” (a fixed bug) or “feature” (new features).</p>
+
+<p>Mapping the merges by type for each months gives a mostly chaotic graph.
+You can see a big drop in feature merges before the releases in May and
+November, especially during the release of a new major every 2 years.
+During this period, the community focuses on stabilizing the existing
+features and helping the ecosystem with adding support for the new major
+version.</p>
+
+<p>And one thing is for sure: Activity hasn’t slowed down after 11 years since
+Symfony 2.0!</p>
+      <h2 id="contributors">
+        
+        
+          <a href="#contributors" class="section-link"></a> Contributors
+        
+        
+      </h2>
+
+<p>So who are these people that make Symfony possible? Let’s take a close look
+at some contributor statistics.</p>
+
+<p><a href="/img/sf-stats/authors-per-month.svg" target="_blank">
+    <img src="/img/sf-stats/authors-per-month.svg" alt="" class="figure" />
+</a></p>
+
+<p>An average of 60 unique authors contribute code to Symfony every month.
+Over the years, this number has gone up and down but still is pretty stable
+since 2012.</p>
+
+<figure class="figure figure-1-2">
+  <p><a href="/img/sf-stats/95-percent.svg" target="_blank">
+    <img src="/img/sf-stats/95-percent.svg" alt="" class="" />
+</a></p>
+
+  <p><a href="/img/sf-stats/80-percent.svg" target="_blank">
+    <img src="/img/sf-stats/80-percent.svg" alt="" class="" />
+</a></p>
+
+  <p><a href="/img/sf-stats/50-percent.svg" target="_blank">
+    <img src="/img/sf-stats/50-percent.svg" alt="" class="" />
+</a></p>
+
+</figure>
+
+<p>In total, 340 individual contributors own 95% of the commits in 2025.
+At 6 people are responsible for 50% of the commits for years. This shows
+the strength of Symfony and its community: It’s not just a couple of
+contributors doing the work but hundreds of people working together to help
+everyone move forward!</p>
+
+<p>Interestingly, the peak in 2019-2021 is also visible
+<a href="https://curl.se/dashboard1.html#authors-of-95-percent">the curl project</a>.</p>
+
+<p><a href="/img/sf-stats/firsttimers.svg" target="_blank">
+    <img src="/img/sf-stats/firsttimers.svg" alt="" class="figure" />
+</a></p>
+
+<p>50% of the commit authors every month are new contributors that didn’t
+commit anything to the project before. It’s amazing to me how many new
+people keep finding the project and sharing new insights.</p>
+
+<p><a href="/img/sf-stats/author-remains.svg" target="_blank">
+    <img src="/img/sf-stats/author-remains.svg" alt="" class="figure" />
+</a></p>
+
+<aside class="side" data-type="Accuracy">
+  <p>This graph groups lines by commit author email. Of all metadata available
+on git commits, the author is email is probably most specific. However,
+there are still inaccuracies if for instance people changed their e-mail
+address.</p>
+</aside>
+
+<p>Of all the new work committed every month, how much individual contributors
+own at least 1 line in the current codebase? As it turns out, the answer to
+that question is 2820 different authors in 8.0.2! With many authoring more
+than 10 lines of code.</p>
+
+<p>In Symfony 8.0, 15 authors own more than 10,000 lines in the codebase, with
+2 authors more than 100,000 lines of code. Can you guess who they are?</p>
+
+<ol>
+  <li>129,747 <a href="https://github.com/fabpot">Fabien Potencier</a></li>
+  <li>119,275 <a href="https://github.com/nicolas-grekas">Nicolas Grekas</a></li>
+  <li>47,490 <a href="https://github.com/webmozart">Bernhard Schussek</a></li>
+  <li>20,639 <a href="https://github.com/derrabus">Alexander M. Turek</a></li>
+  <li>19,913 <a href="https://github.com/mtarld">Mathias Arlaud</a></li>
+  <li>17,385 <a href="https://github.com/alexandre-daubois">Alexandre Daubois</a></li>
+  <li>13,594 <a href="https://github.com/jderusse">Jérémy Derussé</a></li>
+  <li>13,518 <a href="https://github.com/lyrixx">Grégoire Pineau</a></li>
+  <li>13,104 <a href="https://github.com/wouterj">Wouter de Jong</a></li>
+  <li>13,057 <a href="https://github.com/weaverryan">Ryan Weaver</a></li>
+  <li>12,654 <a href="https://github.com/dunglas">Kévin Dunglas</a></li>
+  <li>11,929 <a href="https://github.com/keradus">Dariusz Rumiński</a></li>
+  <li>11,689 <a href="https://github.com/OskarStark">Oskar Stark</a></li>
+  <li>11,529 <a href="https://github.com/xabbuh">Christian Flothmann</a></li>
+  <li>11,124 <a href="https://github.com/fancyweb">Thomas Calvet</a></li>
+</ol>
+
+<p>A special memory to Ryan Weaver, who <a href="https://symfony.com/blog/remembering-ryan-weaver-teacher-core-team-member-friend">passed away earlier this year after
+battling with cancer</a>.
+His legacy will live on in the Symfony community in ways you can’t always
+describe, but these statistics underline it in ways we can describe.</p>
+    
+      <h2 id="code">
+        
+        
+          <a href="#code" class="section-link"></a> Code
+        
+        
+      </h2>
+
+<p>The contributors bring us to the code itself and by far my most favorite
+graph of this post!</p>
+
+<p><a href="/img/sf-stats/codeage.svg" target="_blank">
+    <img src="/img/sf-stats/codeage.svg" alt="" class="figure" />
+</a></p>
+
+<aside class="side" data-type="Accuracy">
+  <p>This graph uses all lines of code in XML and PHP files, excluding datasets
+like Intl. However, things like a namespace declaration, license file
+header, etc. are very static over the years.</p>
+</aside>
+
+<p>This graph plots how much lines of code written in any year are still
+<em>untouched</em> in the latest releases. And it contains so many details about
+the history of the framework!</p>
+
+<p>First, you can see the 2.1 release more than doubling the lines of code of
+the framework at the end of 2012. This followed a 3 year period of more
+2.x releases before releasing 3.0 at the end of 2015.</p>
+
+<p>You can see the rhythmic minor releases every 6 months. Each minor version
+brings about 50,000 new lines of code to the codebase. With Symfony 4.3
+adding the most new lines of code. This release <a href="https://symfony.com/blog/symfony-4-3-curated-new-features">introduced the Mailer, Mime
+and HttpClient components</a>.</p>
+
+<p>The little peaks every 2 years followed by a steep drop? That’s the x.4 release,
+immediately followed by the next major release removing all backwards
+compatibility layers. It surprises me that the total lines cleaned up every
+major version is worth more or less a full minor version (50k lines!). This
+shows how crucial this is in keeping the codebase manageable.</p>
+
+<p>The big change of existing lines in early 2019 is <a href="https://github.com/symfony/symfony/pull/29903">the project switching
+from oldschool <code class="highlighter-shiki">array()</code> syntax to <code class="highlighter-shiki">[]</code></a>.</p>
+
+<p>The major version released end of 2021 removed more than a minor release
+worth of code. This was the removal of <a href="https://github.com/symfony/symfony/pull/41613">the old authentication system</a>
+from the Security component.</p>
+
+<p>Symfony 8.0 packs 9 times more code than the 2.0 release. Still, thanks to
+the introduction of <a href="https://fabien.potencier.org/symfony4-workflow-automation.html">Symfony Flex</a>
+in Symfony 4, you only install the components required for your
+application.</p>
+
+<p>All in all, more than one third of the code in 8.0 is older than 6 years.
+This speaks volumes for the maturity of the framework!</p>
+
+<p><a href="/img/sf-stats/added-per-line.svg" target="_blank">
+    <img src="/img/sf-stats/added-per-line.svg" alt="" class="figure" />
+</a></p>
+
+<p>This graph plots of the relation between total lines of code at a specific
+release, and number of lines added/changed in that release. I must admit to
+not fully understand what the multiplier exactly means, but it is telling
+that this number still rises while the codebase is 9 times bigger than
+at the start.</p>
+
+<p><a href="/img/sf-stats/complexity.svg" target="_blank">
+    <img src="/img/sf-stats/complexity.svg" alt="" class="figure" />
+</a></p>
+
+<p>The cyclomatic complexity of the Symfony codebase slightly increases over
+time, although it remains mostly stable.</p>
+
+<p>It is however interesting to see the evolution of the most complex method
+in the codebase. For years, the <a href="https://github.com/symfony/symfony/blob/4.3/src/Symfony/Component/Translation/PluralizationRules.php#L33-L195">custom pluralization rules</a>
+in the Translation component topped the list.</p>
+
+<p>But since migrating to the
+<a href="https://symfony.com/doc/8.0/reference/formats/message_format.html">ICU MessageFormat</a>,
+the <a href="https://github.com/symfony/symfony/blob/6.1/src/Symfony/Component/ErrorHandler/DebugClassLoader.php#L356-L662">Debug Class Loader</a>
+has taken over. This class is responsible for most of the deprecation
+reporting for deprecated classes, changed method signatures, return types
+and new interface methods.</p>
+
+<p>Recently, the <a href="https://github.com/symfony/symfony/blob/7.3/src/Symfony/Component/Cache/Traits/RedisTrait.php#L91-L491">Redis cache connection</a>
+has taken over the worst method spot, due to supporting many different
+Redis extensions/libraries.</p>
+
+<p><a href="/img/sf-stats/comments.svg" target="_blank">
+    <img src="/img/sf-stats/comments.svg" alt="" class="figure" />
+</a></p>
+
+<p>Using a very minimalistic script, I also counted the lines of comment in
+PHP files. This includes (multi-)line doc comments, and full line comments
+starting with <code class="highlighter-shiki">//</code> or <code class="highlighter-shiki">#</code>.</p>
+
+<p>In 2.0, almost 40% of the lines of code were comments. This was in part due
+to “Captain Obvious” PHPdoc comments like <a href="https://github.com/symfony/symfony/blob/2.0/src/Symfony/Component/HttpKernel/Kernel.php#L67">“Constructor.”</a>
+at every <code class="highlighter-shiki">__construct()</code> method. Symfony also used to have a convention of
+adding PHPdoc comments containing only <code class="highlighter-shiki">{@inheritdoc}</code> when overriding a
+parent method. Over the years, practices changed the share of comments
+decreased.</p>
+
+<p>Lately, the introducing of PHP native types and attributes helped making
+even more comments redundant.</p>
+
+<p>Of course, comments also add useful context to lines of code. Maybe this is
+a metric we should focus on getting higher again in 2026!</p>
+    
+      <h2 id="documentation">
+        
+        
+          <a href="#documentation" class="section-link"></a> Documentation
+        
+        
+      </h2>
+
+<p>That brings us to my favorite corner of software: Documentation. We’ve seen
+the Symfony codebase grow immensely over the years, how does the
+documentation compare with this?</p>
+
+<p><a href="/img/sf-stats/docs-over-time.svg" target="_blank">
+    <img src="/img/sf-stats/docs-over-time.svg" alt="" class="figure" />
+</a></p>
+
+<aside class="side" data-type="Accuracy">
+  <p>The Symfony documentation uses a maximum line length around 72 characters,
+meaning the number of lines of documentation is a good indicator of words
+of documentation.</p>
+</aside>
+
+<p>While not as fast as the codebase, the Symfony documentation has grown an
+incredible 4 times since the initial 2.0 release. This is an impressive
+statistic, given the limited size of the documentation team and
+contributors. Still, the <a href="https://github.com/symfony/symfony-docs">documentation GitHub repository</a>
+is one of the top active projects (for instance double the amount of
+contributors compared to React).</p>
+
+<p>Also interesting to see some of the drops in lines of documentation with
+major releases. With the removal of XML and PHP Config Builder
+configuration formats in Symfony 8.0, a lot of code examples and
+documentation could be removed from the documentation. This not only
+reduces the size of the documentation, but also improves developer
+experience!</p>
+
+<p><a href="/img/sf-stats/lines-per-docs.svg" target="_blank">
+    <img src="/img/sf-stats/lines-per-docs.svg" alt="" class="figure" />
+</a></p>
+
+<p>It is also interesting to compare the number of documentation lines with
+1,000 lines of Symfony code.</p>
+
+<p>The initial release had relatively the most documentation, rapidly dropping
+when Symfony 2.1 doubled its code size at the end of 2012. In 2016, the
+documentation team <a href="https://symfony.com/blog/introducing-the-new-symfony-documentation">reorganized the docs</a>
+from books &amp; cookbooks to the guides we have now.
+Since then, this metric has been slowly decreasing but mostly stable.</p>
+
+<p>Less documentation does not have to be a negative metric. Over the years,
+the documentation team has gained tons of experience in writing more
+concise and favoring code examples over large walls of text.</p>
+    
+      <h2 id="conclusion">
+        
+        
+          <a href="#conclusion" class="section-link"></a> Conclusion
+        
+        
+      </h2>
+
+<p>A huge congrats to Fabien for driving the Symfony project forward for 20
+years. If these graphs proofed me anything, it is that the Symfony
+community has evolved over the many years and still is buzzing everywhere!</p>
+
+<p>If you have more ideas on data to investigate, or want to try out my (very
+hacky) scripts on other projects, go over to the scripts on
+<a href="https://github.com/wouterj-nl/symfony-stats">GitHub</a>. But be warned: the
+scripts may break at any time and running them can take a loooong time.</p>
+
+        </div>
+    </div>
+</article>
+
+    </div><footer class="page__footer">
+    <p>&copy; Copyright 2012 - 2025 Wouter de Jong</p>
+</footer>
+</body>
+
+</html>
