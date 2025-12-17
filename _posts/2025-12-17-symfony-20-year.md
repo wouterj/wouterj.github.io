@@ -103,7 +103,7 @@ the strength of Symfony and its community: It's not just a couple of
 contributors doing the work but hundreds of people working together to help
 everyone move forward!
 
-Interestingly, the peak in 2019-2021 is also visible
+Interestingly, the peak in 2019-2021 is also visible in
 [the curl project](https://curl.se/dashboard1.html#authors-of-95-percent).
 
 {% include image.html src="/img/sf-stats/firsttimers.svg" alt="" class="figure" %}
