@@ -181,7 +181,7 @@ since 2012.</p>
 </figure>
 
 <p>In total, 340 individual contributors own 95% of the commits in 2025.
-At 6 people are responsible for 50% of the commits for years. This shows
+And 6 people are responsible for 50% of the commits for years. This shows
 the strength of Symfony and its community: It’s not just a couple of
 contributors doing the work but hundreds of people working together to help
 everyone move forward!</p>
@@ -315,12 +315,12 @@ time, although it remains mostly stable.</p>
 in the codebase. For years, the <a href="https://github.com/symfony/symfony/blob/4.3/src/Symfony/Component/Translation/PluralizationRules.php#L33-L195">custom pluralization rules</a>
 in the Translation component topped the list.</p>
 
-<p>But since migrating to the
-<a href="https://symfony.com/doc/8.0/reference/formats/message_format.html">ICU MessageFormat</a>,
-the <a href="https://github.com/symfony/symfony/blob/6.1/src/Symfony/Component/ErrorHandler/DebugClassLoader.php#L356-L662">Debug Class Loader</a>
+<p>Since Symfony 6.1, the <a href="https://github.com/symfony/symfony/blob/6.1/src/Symfony/Component/ErrorHandler/DebugClassLoader.php#L356-L662">Debug Class Loader</a>
 has taken over. This class is responsible for most of the deprecation
 reporting for deprecated classes, changed method signatures, return types
-and new interface methods.</p>
+and new interface methods. Symfony added a lot more deprecation notices to
+ensure a smooth upgrade path while <a href="https://symfony.com/blog/symfony-7-0-type-declarations">adding native PHP types</a>
+to its codebase over the course of three major versions.</p>
 
 <p>Recently, the <a href="https://github.com/symfony/symfony/blob/7.3/src/Symfony/Component/Cache/Traits/RedisTrait.php#L91-L491">Redis cache connection</a>
 has taken over the worst method spot, due to supporting many different
