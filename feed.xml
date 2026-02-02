@@ -1,4 +1,112 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.7">Jekyll</generator><link href="https://wouterj.nl/feed.xml" rel="self" type="application/atom+xml" /><link href="https://wouterj.nl/" rel="alternate" type="text/html" /><updated>2026-02-01T20:12:13+00:00</updated><id>https://wouterj.nl/feed.xml</id><title type="html">Wouter J</title><author><name>Wouter de Jong</name></author><entry><title type="html">Symfony 20 year!</title><link href="https://wouterj.nl/2025/12/symfony-20-year" rel="alternate" type="text/html" title="Symfony 20 year!" /><published>2025-12-17T00:00:00+00:00</published><updated>2025-12-17T00:00:00+00:00</updated><id>https://wouterj.nl/2025/12/symfony-20-year</id><content type="html" xml:base="https://wouterj.nl/2025/12/symfony-20-year"><![CDATA[<p>This year, Symfony <a href="https://symfony.com/20years">celebrates its 20 year anniversary</a>.
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.7">Jekyll</generator><link href="https://wouterj.nl/feed.xml" rel="self" type="application/atom+xml" /><link href="https://wouterj.nl/" rel="alternate" type="text/html" /><updated>2026-02-02T07:49:40+00:00</updated><id>https://wouterj.nl/feed.xml</id><title type="html">Wouter J</title><author><name>Wouter de Jong</name></author><entry><title type="html">Manage environment variables in Kubernetes with Flux CD</title><link href="https://wouterj.nl/2026/02/manage-env-vars-with-flux" rel="alternate" type="text/html" title="Manage environment variables in Kubernetes with Flux CD" /><published>2026-02-02T00:00:00+00:00</published><updated>2026-02-02T00:00:00+00:00</updated><id>https://wouterj.nl/2026/02/manage-env-vars-with-flux</id><content type="html" xml:base="https://wouterj.nl/2026/02/manage-env-vars-with-flux"><![CDATA[<p>Following the <a href="https://12factor.net">Twelve-factor app</a> methodology, most
+web applications are (partially) configured through environment variables.
+When changing the environment variables, you don’t want to completely
+redeploy the whole application. We’re using <a href="https://fluxcd.io">Flux CD</a> to
+achieve this in Kubernetes without building a new version of the
+application’s Helm chart.</p>
+
+<p>Flux CD is a GitOps tool. It runs as an operator in the Kubernetes cluster.
+This operator synchronizes Kubernetes resources from a <em>source</em> (in our
+case, a private GitLab repository) to the cluster. Whenever you change the
+repository, the resource will change in the cluster.</p>
+
+<p>In this GitLab repository, we define the environment variables from the
+application in a ConfigMap:</p>
+
+<div class="language-yaml highlighter-shiki"><pre class="shiki-gutter">1
+2
+3
+4
+5
+6
+7
+8
+</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #C7C8D2">apiVersion</span><span style="color: #999999">:</span><span style="color: #BBBBBB"> </span><span style="color: #7CC64A">v1</span></span>
+<span class="line" data-linenr="2"><span style="color: #C7C8D2">kind</span><span style="color: #999999">:</span><span style="color: #BBBBBB"> </span><span style="color: #7CC64A">ConfigMap</span></span>
+<span class="line" data-linenr="3"><span style="color: #C7C8D2">metadata</span><span style="color: #999999">:</span></span>
+<span class="line" data-linenr="4"><span style="color: #BBBBBB">    </span><span style="color: #C7C8D2">name</span><span style="color: #999999">:</span><span style="color: #BBBBBB"> </span><span style="color: #7CC64A">gitops-our-application</span></span>
+<span class="line" data-linenr="5"><span style="color: #BBBBBB">    </span><span style="color: #C7C8D2">namespace</span><span style="color: #999999">:</span><span style="color: #BBBBBB"> </span><span style="color: #7CC64A">production</span></span>
+<span class="line" data-linenr="6"><span style="color: #C7C8D2">data</span><span style="color: #999999">:</span></span>
+<span class="line" data-linenr="7"><span style="color: #BBBBBB">    </span><span style="color: #C7C8D2">APP_ENV</span><span style="color: #999999">:</span><span style="color: #BBBBBB"> </span><span style="color: #7CC64A">prod</span></span>
+<span class="line" data-linenr="8"><span style="color: #999999">    </span><span style="color: #6B90C0; font-style: italic"># ...</span></span></code></pre>
+</div>
+
+<p>Sensitive environment variables (e.g. the database DSN) can be put in a
+Secret. Encrypt these values in the Git repository using <a href="https://getsops.io">SOPS</a>.
+Flux will automatically decrypt them when creating the Secret resource in
+the cluster.<br />
+You can of course also store sensitive config in a secret vault.</p>
+
+<p>After creating these resources, we need to import them into our
+deployments. This can be done by using <code class="highlighter-shiki">envFrom</code>, referencing the resources
+created by Flux:</p>
+
+<div class="language-yaml highlighter-shiki"><pre class="shiki-gutter">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #C7C8D2">apiVersion</span><span style="color: #999999">:</span><span style="color: #BBBBBB"> </span><span style="color: #7CC64A">apps/v1</span></span>
+<span class="line" data-linenr="2"><span style="color: #C7C8D2">kind</span><span style="color: #999999">:</span><span style="color: #BBBBBB"> </span><span style="color: #7CC64A">Deployment</span></span>
+<span class="line" data-linenr="3"><span style="color: #C7C8D2">metadata</span><span style="color: #999999">:</span></span>
+<span class="line" data-linenr="4"><span style="color: #BBBBBB">  </span><span style="color: #C7C8D2">name</span><span style="color: #999999">:</span><span style="color: #BBBBBB"> </span><span style="color: #7CC64A">our-application</span></span>
+<span class="line" data-linenr="5"><span style="color: #BBBBBB">  </span><span style="color: #C7C8D2">namespace</span><span style="color: #999999">:</span><span style="color: #BBBBBB"> </span><span style="color: #7CC64A">production</span></span>
+<span class="line" data-linenr="6"><span style="color: #C7C8D2">spec</span><span style="color: #999999">:</span></span>
+<span class="line" data-linenr="7"><span style="color: #BBBBBB">  </span><span style="color: #C7C8D2">template</span><span style="color: #999999">:</span></span>
+<span class="line" data-linenr="8"><span style="color: #BBBBBB">    </span><span style="color: #C7C8D2">spec</span><span style="color: #999999">:</span></span>
+<span class="line" data-linenr="9"><span style="color: #BBBBBB">      </span><span style="color: #C7C8D2">containers</span><span style="color: #999999">:</span></span>
+<span class="line" data-linenr="10"><span style="color: #BBBBBB">        </span><span style="color: #999999">-</span><span style="color: #BBBBBB"> </span><span style="color: #6B90C0; font-style: italic"># ...</span></span>
+<span class="line" data-linenr="11"><span style="color: #BBBBBB">          </span><span style="color: #C7C8D2">envFrom</span><span style="color: #999999">:</span></span>
+<span class="line" data-linenr="12"><span style="color: #BBBBBB">            </span><span style="color: #999999">-</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">configMapRef</span><span style="color: #999999">:</span></span>
+<span class="line" data-linenr="13"><span style="color: #BBBBBB">                </span><span style="color: #C7C8D2">name</span><span style="color: #999999">:</span><span style="color: #BBBBBB"> </span><span style="color: #7CC64A">gitops-our-application</span></span>
+<span class="line" data-linenr="14"><span style="color: #BBBBBB">            </span><span style="color: #999999">-</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">secretRef</span><span style="color: #999999">:</span></span>
+<span class="line" data-linenr="15"><span style="color: #BBBBBB">                </span><span style="color: #C7C8D2">name</span><span style="color: #999999">:</span><span style="color: #BBBBBB"> </span><span style="color: #7CC64A">gitops-our-application</span></span></code></pre>
+</div>
+
+<p>Now we’re set! Upon releasing this Helm chart, the deployment will read the
+environment variables from the ConfigMap and Secret. Whenever we change the
+files in the GitLab repository, Flux will update these in the cluster
+within minutes.</p>
+
+<p>However… Kubernetes doesn’t restart the pod when the mounted ConfigMap or
+Secret changes. When the environment variables change, the application won’t
+read the new environment variables until after a new deploy. The
+<a href="https://github.com/stakater/Reloader">Reloader</a> operator solves this, by
+forcing Kubernetes to restart the pod when the mounted ConfigMap or Secret
+changes. After installing the operator, add the appropriate annotation:</p>
+
+<div class="language-yaml highlighter-shiki"><pre class="shiki-gutter">1
+2
+3
+4
+5
+6
+7
+8
+</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #C7C8D2">kind</span><span style="color: #999999">:</span><span style="color: #BBBBBB"> </span><span style="color: #7CC64A">Deployment</span></span>
+<span class="line" data-linenr="2"><span style="color: #6B90C0; font-style: italic"># ...</span></span>
+<span class="line" data-linenr="3"><span style="color: #C7C8D2">spec</span><span style="color: #999999">:</span></span>
+<span class="line" data-linenr="4"><span style="color: #BBBBBB">  </span><span style="color: #C7C8D2">template</span><span style="color: #999999">:</span></span>
+<span class="line" data-linenr="5"><span style="color: #BBBBBB">    </span><span style="color: #C7C8D2">metadata</span><span style="color: #999999">:</span></span>
+<span class="line" data-linenr="6"><span style="color: #BBBBBB">      </span><span style="color: #C7C8D2">annotations</span><span style="color: #999999">:</span></span>
+<span class="line" data-linenr="7"><span style="color: #BBBBBB">        </span><span style="color: #C7C8D2">reloader.stakater.com/auto</span><span style="color: #999999">:</span><span style="color: #BBBBBB"> </span><span style="color: #999999">&quot;</span><span style="color: #7CC64A">true</span><span style="color: #999999">&quot;</span></span>
+<span class="line" data-linenr="8"><span style="color: #999999">  </span><span style="color: #6B90C0; font-style: italic"># ...</span></span></code></pre>
+</div>
+
+<p>Now, an update of the ConfigMap in the GitLab repository triggers Flux to
+update it in the cluster. This then triggers Reloader to force a restart of
+the pods. Within a minute after committing, the application will have the
+new config values without a complete redeploy!</p>]]></content><author><name>Wouter de Jong</name></author><category term="article" /><category term="kubernetes," /><category term="flux" /><summary type="html"><![CDATA[Following the Twelve-factor app methodology, most web applications are (partially) configured through environment variables. When changing the environment variables, you don’t want to completely redeploy the whole application. We’re using Flux CD to achieve this in Kubernetes without building a new version of the application’s Helm chart.]]></summary></entry><entry><title type="html">Symfony 20 year!</title><link href="https://wouterj.nl/2025/12/symfony-20-year" rel="alternate" type="text/html" title="Symfony 20 year!" /><published>2025-12-17T00:00:00+00:00</published><updated>2025-12-17T00:00:00+00:00</updated><id>https://wouterj.nl/2025/12/symfony-20-year</id><content type="html" xml:base="https://wouterj.nl/2025/12/symfony-20-year"><![CDATA[<p>This year, Symfony <a href="https://symfony.com/20years">celebrates its 20 year anniversary</a>.
 Let’s dive into some statistics of years of making web development history.</p>
 
 <aside class="side" data-type="Acknowledgement">
@@ -1760,28 +1868,4 @@ coming weeks. We’ll write real code for a real custom logins on both of these:
 <ul>
   <li>Writing a custom authenticator: Passwords &amp; Badges</li>
   <li>Customizing security using event listeners</li>
-</ul>]]></content><author><name>Wouter de Jong</name></author><category term="article" /><category term="symfony" /><category term="security" /><summary type="html"><![CDATA[After more than half a year of work and discussions, Symfony 5.1 ships with an experimental and revisited Security system. I’m incredibly excited about this system, as I think it opens up the component for a lot of possibilities. That’s why in the coming week, I’ll publish a series of blogposts about this new system. I hope you’ll be just as excited as I am and help realising the full potential with us!]]></summary></entry><entry><title type="html">Learn to Write more Concise</title><link href="https://wouterj.nl/2020/02/learn-to-write-more-concise" rel="alternate" type="text/html" title="Learn to Write more Concise" /><published>2020-02-10T00:00:00+00:00</published><updated>2020-02-10T00:00:00+00:00</updated><id>https://wouterj.nl/2020/02/learn-to-write-more-concise</id><content type="html" xml:base="https://wouterj.nl/2020/02/learn-to-write-more-concise"><![CDATA[<p>Ernest Hemingway is a writer from the twentieth-century know for his
-short and declarative writing style. Hemingwayapp.com is a free online
-tool that analyses your text according to this style. It also runs the
-Automated Readability Index algorithm. This makes it a perfect tool to
-write concise, short and easy to understand texts.</p>
-
-<article class="external">
-  <p><img src="/img/hemingway-app-screenshot.png" class="external__hero" /></p>
-
-  <h3 class="external__target"><a href="http://www.hemingwayapp.com/">http://www.hemingwayapp.com</a></h3>
-
-  <p class="external__description">Hemingway makes your writing bold and clear. It’s like a
-  spellchecker, but for style. It makes sure that your reader will focus
-  on your message, not your prose.
-
-  Too often, our words are like our thoughts — innumerable and
-  disorganized. Almost any bit of writing could use some cutting. Less
-  is more, etc.</p>
-</article>
-
-<p>I almost always copy-paste my writings into the tool to check and
-revisit some redundant parts and too long sentences. An average adult
-reads around the 10th grade. All development language often doesn’t have
-a good influence on your grade, but at least you are aware of the
-difficulty of your text.</p>]]></content><author><name>Wouter de Jong</name></author><category term="link" /><category term="symfony" /><category term="security" /><summary type="html"><![CDATA[Ernest Hemingway is a writer from the twentieth-century know for his short and declarative writing style. Hemingwayapp.com is a free online tool that analyses your text according to this style. It also runs the Automated Readability Index algorithm. This makes it a perfect tool to write concise, short and easy to understand texts.]]></summary></entry></feed>
+</ul>]]></content><author><name>Wouter de Jong</name></author><category term="article" /><category term="symfony" /><category term="security" /><summary type="html"><![CDATA[After more than half a year of work and discussions, Symfony 5.1 ships with an experimental and revisited Security system. I’m incredibly excited about this system, as I think it opens up the component for a lot of possibilities. That’s why in the coming week, I’ll publish a series of blogposts about this new system. I hope you’ll be just as excited as I am and help realising the full potential with us!]]></summary></entry></feed>

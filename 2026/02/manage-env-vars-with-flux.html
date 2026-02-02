@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang=""><head>
+    <meta charset=utf-8>
+
+    <title>Manage environment variables in Kubernetes with Flux CD ~ Wouter J</title>
+
+    <meta http-equiv=X-UA-Compatible content="IE=edge">
+    <meta name=viewport content="width=device-width, initial-scale=1">
+    <meta name=theme-color content=#cc3333>
+
+    <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Serif:400,400i,700|Oswald|Inconsolata" rel="stylesheet">
+    <link rel=stylesheet href="/assets/main.css?v2">
+    <link rel=icon type=image/png href=/img/css/favicon.png sizes=96x96>
+    <link rel="me" href="https://phpc.social/@wouterj"><link type="application/atom+xml" rel="alternate" href="https://wouterj.nl/feed.xml" title="Wouter J" /><meta content="Wouter J" property="og:site_name">
+    
+      <meta property="og:title" content="Manage environment variables in Kubernetes with Flux CD">
+      <meta property="og:type" content="article">
+      <meta property="og:description" content="Following the Twelve-factor app methodology, most
+web applications are (partially) configured through environment variables.
+When changing the environment variables, you don’t want to completely
+redeploy the whole application. We’re using Flux CD to
+achieve this in Kubernetes without building a new version of the
+application’s Helm chart.
+
+">
+      <meta property="article:published_time" content="2026-02-02T00:00:00+00:00">
+      <meta property="og:url" content="https://wouterj.nl/2026/02/manage-env-vars-with-flux">
+      <meta property="og:image" content="https://wouterj.nl/img/og/manage-env-vars-with-flux.png">
+      <meta property="og:image:height" content="340">
+      <meta property="og:image:width" content="680">
+
+      <meta name="twitter:card" content="summary_large_image">
+      <meta name="twitter:site" content="@wouterjnl">
+      <meta name="twitter:creator" content="@wouterjnl">
+      <meta name="twitter:title" content="Manage environment variables in Kubernetes with Flux CD">
+      <meta name="twitter:description" content="Following the Twelve-factor app methodology, most
+web applications are (partially) configured through environment variables.
+When changing the environment variables, you don’t want to completely
+redeploy the whole application. We’re using Flux CD to
+achieve this in Kubernetes without building a new version of the
+application’s Helm chart.
+
+">
+      <meta name="twitter:image" content="https://wouterj.nl/img/og/manage-env-vars-with-flux.png">
+    <script src="https://cdn.counter.dev/script.js" data-id="07663ec4-bb0d-40fb-ad71-e7b091c17341" data-utcoffset="1"></script></head>
+<body class="page  page--post" itemscope itemtype="http://schema.org/WebPage"><header class=page__header>
+    <hgroup class=page__headline>
+        <h1 class="site-title" itemprop="name"><a href="/">Wouter J</a></h1>
+    </hgroup><nav class=page__nav>
+        <ul class="nav"></ul>
+    </nav></div>
+</header>
+<div class=page__body itemscope itemtype="http://schema.org/Blog">
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+    <h1 class="post__heading" itemprop="headline">Manage environment variables in Kubernetes with Flux CD</h1>
+
+    <div class="post__metadata">
+        <time class="post__published-date" datetime="2026-02-02T00:00:00+00:00" itemprop="datePublished">
+            FEB '26
+        </time>
+        
+        <span class="post__category">
+            
+            
+            <span class="post__category__icon">&#xf139;</span>
+            
+            article
+        </span>
+        
+    </div>
+
+    
+
+    <div itemprop="articleBody">
+        <div class="post__entry--excerpt">
+            
+            <p>Following the <a href="https://12factor.net">Twelve-factor app</a> methodology, most
+web applications are (partially) configured through environment variables.
+When changing the environment variables, you don’t want to completely
+redeploy the whole application. We’re using <a href="https://fluxcd.io">Flux CD</a> to
+achieve this in Kubernetes without building a new version of the
+application’s Helm chart.</p></div><div class="post__entry">
+
+<p>Flux CD is a GitOps tool. It runs as an operator in the Kubernetes cluster.
+This operator synchronizes Kubernetes resources from a <em>source</em> (in our
+case, a private GitLab repository) to the cluster. Whenever you change the
+repository, the resource will change in the cluster.</p>
+
+<p>In this GitLab repository, we define the environment variables from the
+application in a ConfigMap:</p>
+
+<div class="language-yaml highlighter-shiki"><pre class="shiki-gutter">1
+2
+3
+4
+5
+6
+7
+8
+</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #C7C8D2">apiVersion</span><span style="color: #999999">:</span><span style="color: #BBBBBB"> </span><span style="color: #7CC64A">v1</span></span>
+<span class="line" data-linenr="2"><span style="color: #C7C8D2">kind</span><span style="color: #999999">:</span><span style="color: #BBBBBB"> </span><span style="color: #7CC64A">ConfigMap</span></span>
+<span class="line" data-linenr="3"><span style="color: #C7C8D2">metadata</span><span style="color: #999999">:</span></span>
+<span class="line" data-linenr="4"><span style="color: #BBBBBB">    </span><span style="color: #C7C8D2">name</span><span style="color: #999999">:</span><span style="color: #BBBBBB"> </span><span style="color: #7CC64A">gitops-our-application</span></span>
+<span class="line" data-linenr="5"><span style="color: #BBBBBB">    </span><span style="color: #C7C8D2">namespace</span><span style="color: #999999">:</span><span style="color: #BBBBBB"> </span><span style="color: #7CC64A">production</span></span>
+<span class="line" data-linenr="6"><span style="color: #C7C8D2">data</span><span style="color: #999999">:</span></span>
+<span class="line" data-linenr="7"><span style="color: #BBBBBB">    </span><span style="color: #C7C8D2">APP_ENV</span><span style="color: #999999">:</span><span style="color: #BBBBBB"> </span><span style="color: #7CC64A">prod</span></span>
+<span class="line" data-linenr="8"><span style="color: #999999">    </span><span style="color: #6B90C0; font-style: italic"># ...</span></span></code></pre>
+</div>
+
+<p>Sensitive environment variables (e.g. the database DSN) can be put in a
+Secret. Encrypt these values in the Git repository using <a href="https://getsops.io">SOPS</a>.
+Flux will automatically decrypt them when creating the Secret resource in
+the cluster.<br />
+You can of course also store sensitive config in a secret vault.</p>
+
+<p>After creating these resources, we need to import them into our
+deployments. This can be done by using <code class="highlighter-shiki">envFrom</code>, referencing the resources
+created by Flux:</p>
+
+<div class="language-yaml highlighter-shiki"><pre class="shiki-gutter">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #C7C8D2">apiVersion</span><span style="color: #999999">:</span><span style="color: #BBBBBB"> </span><span style="color: #7CC64A">apps/v1</span></span>
+<span class="line" data-linenr="2"><span style="color: #C7C8D2">kind</span><span style="color: #999999">:</span><span style="color: #BBBBBB"> </span><span style="color: #7CC64A">Deployment</span></span>
+<span class="line" data-linenr="3"><span style="color: #C7C8D2">metadata</span><span style="color: #999999">:</span></span>
+<span class="line" data-linenr="4"><span style="color: #BBBBBB">  </span><span style="color: #C7C8D2">name</span><span style="color: #999999">:</span><span style="color: #BBBBBB"> </span><span style="color: #7CC64A">our-application</span></span>
+<span class="line" data-linenr="5"><span style="color: #BBBBBB">  </span><span style="color: #C7C8D2">namespace</span><span style="color: #999999">:</span><span style="color: #BBBBBB"> </span><span style="color: #7CC64A">production</span></span>
+<span class="line" data-linenr="6"><span style="color: #C7C8D2">spec</span><span style="color: #999999">:</span></span>
+<span class="line" data-linenr="7"><span style="color: #BBBBBB">  </span><span style="color: #C7C8D2">template</span><span style="color: #999999">:</span></span>
+<span class="line" data-linenr="8"><span style="color: #BBBBBB">    </span><span style="color: #C7C8D2">spec</span><span style="color: #999999">:</span></span>
+<span class="line" data-linenr="9"><span style="color: #BBBBBB">      </span><span style="color: #C7C8D2">containers</span><span style="color: #999999">:</span></span>
+<span class="line" data-linenr="10"><span style="color: #BBBBBB">        </span><span style="color: #999999">-</span><span style="color: #BBBBBB"> </span><span style="color: #6B90C0; font-style: italic"># ...</span></span>
+<span class="line" data-linenr="11"><span style="color: #BBBBBB">          </span><span style="color: #C7C8D2">envFrom</span><span style="color: #999999">:</span></span>
+<span class="line" data-linenr="12"><span style="color: #BBBBBB">            </span><span style="color: #999999">-</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">configMapRef</span><span style="color: #999999">:</span></span>
+<span class="line" data-linenr="13"><span style="color: #BBBBBB">                </span><span style="color: #C7C8D2">name</span><span style="color: #999999">:</span><span style="color: #BBBBBB"> </span><span style="color: #7CC64A">gitops-our-application</span></span>
+<span class="line" data-linenr="14"><span style="color: #BBBBBB">            </span><span style="color: #999999">-</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">secretRef</span><span style="color: #999999">:</span></span>
+<span class="line" data-linenr="15"><span style="color: #BBBBBB">                </span><span style="color: #C7C8D2">name</span><span style="color: #999999">:</span><span style="color: #BBBBBB"> </span><span style="color: #7CC64A">gitops-our-application</span></span></code></pre>
+</div>
+
+<p>Now we’re set! Upon releasing this Helm chart, the deployment will read the
+environment variables from the ConfigMap and Secret. Whenever we change the
+files in the GitLab repository, Flux will update these in the cluster
+within minutes.</p>
+
+<p>However… Kubernetes doesn’t restart the pod when the mounted ConfigMap or
+Secret changes. When the environment variables change, the application won’t
+read the new environment variables until after a new deploy. The
+<a href="https://github.com/stakater/Reloader">Reloader</a> operator solves this, by
+forcing Kubernetes to restart the pod when the mounted ConfigMap or Secret
+changes. After installing the operator, add the appropriate annotation:</p>
+
+<div class="language-yaml highlighter-shiki"><pre class="shiki-gutter">1
+2
+3
+4
+5
+6
+7
+8
+</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #C7C8D2">kind</span><span style="color: #999999">:</span><span style="color: #BBBBBB"> </span><span style="color: #7CC64A">Deployment</span></span>
+<span class="line" data-linenr="2"><span style="color: #6B90C0; font-style: italic"># ...</span></span>
+<span class="line" data-linenr="3"><span style="color: #C7C8D2">spec</span><span style="color: #999999">:</span></span>
+<span class="line" data-linenr="4"><span style="color: #BBBBBB">  </span><span style="color: #C7C8D2">template</span><span style="color: #999999">:</span></span>
+<span class="line" data-linenr="5"><span style="color: #BBBBBB">    </span><span style="color: #C7C8D2">metadata</span><span style="color: #999999">:</span></span>
+<span class="line" data-linenr="6"><span style="color: #BBBBBB">      </span><span style="color: #C7C8D2">annotations</span><span style="color: #999999">:</span></span>
+<span class="line" data-linenr="7"><span style="color: #BBBBBB">        </span><span style="color: #C7C8D2">reloader.stakater.com/auto</span><span style="color: #999999">:</span><span style="color: #BBBBBB"> </span><span style="color: #999999">&quot;</span><span style="color: #7CC64A">true</span><span style="color: #999999">&quot;</span></span>
+<span class="line" data-linenr="8"><span style="color: #999999">  </span><span style="color: #6B90C0; font-style: italic"># ...</span></span></code></pre>
+</div>
+
+<p>Now, an update of the ConfigMap in the GitLab repository triggers Flux to
+update it in the cluster. This then triggers Reloader to force a restart of
+the pods. Within a minute after committing, the application will have the
+new config values without a complete redeploy!</p>
+
+        </div>
+    </div>
+</article>
+
+    </div><footer class="page__footer">
+    <p>&copy; Copyright 2012 - 2026 Wouter de Jong</p>
+</footer>
+</body>
+
+</html>
