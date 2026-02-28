@@ -3,6 +3,7 @@ layout: post
 title: Symfony 20 year!
 categories: article
 tags: php
+star: true
 
 ---
 This year, Symfony [celebrates its 20 year anniversary](https://symfony.com/20years).
