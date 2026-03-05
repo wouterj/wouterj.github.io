@@ -1,9 +1,7 @@
-/_site/
-/.bundle
-/.gh-cache
-/.sass-cache
-/.shiki-cache
+.bundle/
+.*-cache/
 /.jekyll-metadata
+/_site/
 /_drafts/
-/node_modules/
-/vendor/
+node_modules/
+vendor/

@@ -102,7 +102,7 @@ implementing Symfony's `VoterInterface`. For easy usage, there is an
 abstract class named `Voter`. If you have the [MakerBundle]() installed,
 you're lucky:
 
-```bash
+```terminal
 $ bin/console make:voter
 ```
 

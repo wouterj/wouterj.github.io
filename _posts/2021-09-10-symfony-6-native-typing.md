@@ -33,7 +33,7 @@ The techniques and tools created to make this experience as smooth as
 possible are brand-new. Please install 5.4-dev now and let us [know about
 any issue][bug].
 
-```bash
+```terminal
 $ composer config minimum-stability dev
 # now, modify all Symfony constraints to "^5.4" in "composer.json", then:
 $ composer update 'symfony/*'
@@ -73,7 +73,7 @@ to automatically add the required return types. First, generate a
 complete classmap of your application using Composer. Then, run the
 utility:
 
-```bash
+```terminal
 # (1) Make sure "exclude-from-classmap" is not set in your "composer.json"
 
 # (2) Generate the classmap ("-o" is important!)
@@ -132,7 +132,7 @@ from Symfony defines safe methods as any method that:
 
 Use ``force=1`` to only patch types for these safe methods:
 
-```bash
+```terminal
 # you can set the minimum PHP version, e.g. "static" won't be added
 # as a return type for 7.4
 $ SYMFONY_PATCH_TYPE_DECLARATIONS="force=1&php=7.4" ./vendor/bin/patch-type-declarations
@@ -159,7 +159,7 @@ users to know they have to update their PHP return types. The patch
 script can add this PHPDoc for methods that implement/override from
 third party classes/interfaces:
 
-```bash
+```terminal
 $ SYMFONY_PATCH_TYPE_DECLARATIONS=force=phpdoc ./vendor/bin/patch-type-declarations
 ```
 

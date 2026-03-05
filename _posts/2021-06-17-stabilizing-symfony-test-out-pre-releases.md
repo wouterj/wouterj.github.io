@@ -119,8 +119,8 @@ You can also add a "dev" version to test your package with the next
 version of your dependencies. When running the dev tests, you can use
 `composer config` to allow dev dependencies:
 
-```bash
-composer config minimum-stability dev
+```terminal
+$ composer config minimum-stability dev
 ```
 
 This means your package now also tests against the dev dependencies.

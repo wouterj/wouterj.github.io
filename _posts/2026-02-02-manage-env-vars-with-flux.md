@@ -52,6 +52,7 @@ spec:
     spec:
       containers:
         - # ...
+          # [!code focus:5]
           envFrom:
             - configMapRef:
                 name: gitops-our-application
@@ -77,6 +78,7 @@ kind: Deployment
 spec:
   template:
     metadata:
+      # [!code focus:2]
       annotations:
         reloader.stakater.com/auto: "true"
   # ...

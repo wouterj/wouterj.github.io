@@ -12,12 +12,12 @@ module Kramdown::Converter
         if type == :span
           CGI::escapeHTML(text)
         else
-          self.render_shiki(text, lang)
+          self.render_shiki(text, lang || 'none')
         end
       end
 
       def self.render_shiki(text, lang)
-        hash = Digest::SHA1.hexdigest "#{text}-#{lang}"
+        hash = "#{lang}-#{Digest::SHA1.hexdigest text}"
         cacheFile = File.join(@@cacheDir, hash)
         if File.exists? cacheFile
           return File.read cacheFile
@@ -30,7 +30,7 @@ module Kramdown::Converter
 
       def self.call_shiki(text, lang)
           text = Shellwords.shellescape(text)
-          `node _plugins/shiki.js #{text} #{lang}`
+          `node _plugins/shiki/index.mjs #{text} #{lang}`
       end
     end
   end

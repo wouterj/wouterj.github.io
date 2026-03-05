@@ -46,20 +46,26 @@ en daarna een `>` en daarna kan je typen.
 Het CMD werkt met commands om alles te doen. Stel we zijn nu in `C:\Users\Acme`
 en we willen naar `C:\Users\Acme\projects` dan doen we: 
 
-    C:\Users\Acme> cd projects
+```terminal
+C:\Users\Acme> cd projects
+```
 
 Stel we willen naar `E:\wamp\www\myProject` dan moet dat in 2 stappen: Eerst
 moeten we naar de andere schrijf (E) en daarna gaan we naar de juiste map:
 
-    C:\Users\Acme\projects> e:
-    E:\> cd wamp/www/myProject
+```terminal
+C:\Users\Acme\projects> e:
+E:\> cd wamp/www/myProject
+```
 
 Dit spreekt wel voorzich denk ik. Als je nu wilt weten welke bestanden er in
 deze map zitten gebruik je het ls command:
 
-    E:\wamp\www\myProject> ls
-    css         img         js
-    index.php   .htaccess
+```terminal
+E:\wamp\www\myProject> ls
+css         img         js
+index.php   .htaccess
+```
 
 ---
 
@@ -80,7 +86,9 @@ Nu kunnen we in ons CMD PHP gebruiken. Stel we hebben het composer.phar bestand
 gedownload in `C:\Programs`. Dan kunnen we nu het composer bestand aanroepen
 met PHP:
 
+```terminal
 E:\wamp\www\myProject> php C:\Programs\composer.phar install
+```
 
 ### Composer shortcut
 
@@ -89,8 +97,10 @@ verplaatsen composer.phar even naar een map die wat logischer is, in mijn geval
 heb ik het in dezelfde map als PHP gezet. In dezelfde map maken we een
 bestandje genaamd `composer.bat`. Hierin plaatsen we het volgende:
 
-    @echo off
-    php "E:\wamp\bin\php\php5.4.0\composer.phar" %*
+```bat
+@echo off
+php "E:\wamp\bin\php\php5.4.0\composer.phar" %*
+```
 
 Wat dit doet is dat we ons php command aanroepen (`php` op regel 2) vervolgens
 roepen we ons composer.phar bestandje aan en dan met `%*` geven we aan dat alle
@@ -134,9 +144,11 @@ met onder anderen de versies. Bij het instellen welke package we willen moeten
 we ook altijd een versie instellen. Deze versie kun je op verschillende
 manieren opbouwen:
 
-    2.1.*
-    >= 2.1.0, <2.2.5
-    2.1.13
+```
+2.1.*
+>= 2.1.0, <2.2.5
+2.1.13
+```
 
 In het eerste geval gebruiken we de `*` wildchart, dat staat voor elk getal. In
 ons geval betekend 2.1.\* dus dat het 2.1.0 kan zijn, maar ook 2.1.29, enz.
@@ -150,28 +162,34 @@ Nu we de versie weten (we gaan voor 4.2.\*) kunnen we het instellen zodat
 composer het gaat inladen. Dat doen we door in `composer.json` de require
 parameter in te vullen:
 
-    {
-        "require" : {
-            "swiftmailer\swiftmailer" : "4.2.*"
-        }
+```json
+{
+    "require" : {
+        "swiftmailer\swiftmailer" : "4.2.*"
     }
+}
+```
 
 Stel dat we nu ook nog Propel willen inladen. Dan gaan we weer zoeken op propel
 en vinden we de propel\propel package. Deze heeft maar 1 versie en dus gaan we
 die er ook bij zetten:
 
-    {
-        "require" : {
-            "swiftmailer\swiftmailer" : "4.2.*",
-            "propel\propel" : "dev-master"
-        }
+```json
+{
+    "require" : {
+        "swiftmailer\swiftmailer" : "4.2.*",
+        "propel\propel" : "dev-master"
     }
+}
+```
 
 Nu we alle packages hebben gedefinieerd kunnen we ze gaan installeren door de
 composer command aan te roepen:
 
-    cd path/to/myProject
-    composer install
+```terminal
+cd path/to/myProject
+composer install
+```
 
 De packages worden nu in de vendor map gezet, vendors is weer zon andere naam
 voor third-party libaries.
@@ -189,15 +207,17 @@ moeten worden kun je de autoloader instellen waar hij naar jou klassen moet
 gaan zoeken. Ik plaats bijv. alles in een `src` map, we geven dan aan dat hij
 naar klassen kan zoeken in de src map:
 
-    {
-        "require" : {
-            "swiftmailer\swiftmailer" : "4.2.*",
-            "propel\propel" : "dev-master"
-        },
-        "autoload" : {
-            "psr-0" : { "" : "src/" }
-        }
+```json
+{
+    "require" : {
+        "swiftmailer\swiftmailer" : "4.2.*",
+        "propel\propel" : "dev-master"
+    },
+    "autoload" : {
+        "psr-0" : { "" : "src/" }
     }
+}
+```
 
 Dit komt wellicht wat vaag over, maar PSR-0 is de standaard waaraan alle
 klassenamen zich moeten houden en we kunnen dan aangeven dat er naar een
@@ -232,4 +252,6 @@ misschien kom je halverwege deze vakantie wel de eerste berichten tegen. Om je
 alvast warm te maken en een idee te geven hoe makkelijk het is om Symfony te
 downloaden met composer:
 
-    composer create-project symfony/framework-standard-edition
+```terminal
+composer create-project symfony/framework-standard-edition
+```

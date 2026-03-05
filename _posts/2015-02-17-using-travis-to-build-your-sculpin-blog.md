@@ -17,9 +17,9 @@ site:
 
 ```bash
 # build site
-$ sass source/css/wouterj.scss:source/css/wouterj.css --style compressed --no-cache
-$ ./vendor/bin/sculpin generate --env prod
-$ touch output_prod/.nojekyll
+sass source/css/wouterj.scss:source/css/wouterj.css --style compressed --no-cache
+./vendor/bin/sculpin generate --env prod
+touch output_prod/.nojekyll
 ```
 
 As this site uses Sass, it first needs to compile the sass code into a css
@@ -53,9 +53,10 @@ Docker environment, etc. The lines after this install Sass and the dependencies
 (yes, I commit `composer.lock`). The real Travis script executes the `publish.sh`
 file.
 
-    [note]
-    Sculpin is added as a dependency in `composer.json` as shown under "Download
-    via Composer" on the [download page][6].
+<aside class="side" data-type="Note">
+Sculpin is added as a dependency in `composer.json` as shown under "Download
+via Composer" on the [download page][6].
+</aside>
 
 ## The Branching Strategy
 
@@ -154,14 +155,15 @@ works for your repository. This way, you're the only person who can use this
 token. Download the [Travis command line app][5] and use the `travis encrypt`
 command to encrypt your public token to an environment variable:
 
-```bash
+```terminal
 $ travis encrypt --add GH_TOKEN=XXX
 ```
 
 (`XXX` is your github token here).
 
-    [caution]
-    Be sure to execute this when your in the directory of your blog repository.
+<aside class="side" data-type="Caution">
+Be sure to execute this when your in the directory of your blog repository.
+</aside>
 
 As the `--add` option was added, the encrypted string is added to your
 `.travis.yml` configuration. Using this directly like

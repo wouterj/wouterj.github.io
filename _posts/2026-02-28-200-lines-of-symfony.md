@@ -233,6 +233,7 @@ trait MicroKernelTrait
     // ...
     public function registerBundles(): iterable
     {
+        // [!code focus:5]
         if (!is_file($bundlesPath = $this->getBundlesPath())) {
             yield new FrameworkBundle();
 
@@ -269,6 +270,7 @@ class Kernel extends BaseKernel
 {
     use MicroKernelTrait;
 
+    // [!code focus:9]
     private function configureContainer(ContainerConfigurator $container, LoaderInterface $loader, ContainerBuilder $builder): void
     {
         $container->services()
@@ -298,6 +300,7 @@ However, `loadRoutes()` has one more trick:
 private function configureRoutes(RoutingConfigurator $routes): void
 {
     // ...
+    // [!code focus:3]
     if (false !== ($fileName = (new \ReflectionObject($this))->getFileName())) {
         $routes->import($fileName, 'attribute');
     }
@@ -319,6 +322,7 @@ class Kernel extends BaseKernel
 {
     // ...
 
+    // [!code focus:11]
     #[Route('/')]
     public function home(): Response
     {
@@ -386,6 +390,7 @@ use Symfony\Bundle\FrameworkBundle\Console\Application;
 
 require_once __DIR__.'/vendor/autoload_runtime.php';
 
+// [!code focus:5]
 return function (array $context) {
     $kernel = new Kernel($context['APP_ENV'], (bool) $context['APP_DEBUG']);
 

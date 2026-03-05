@@ -1,0 +1,7 @@
+{
+    "type": "module",
+    "dependencies": {
+        "shiki": "^3.0",
+        "@shikijs/transformers": "^4.0.1"
+    }
+}

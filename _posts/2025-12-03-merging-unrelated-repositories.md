@@ -19,7 +19,7 @@ can just point to the local repository! Then, instruct Git to merge even
 though both branches don't share any common ancestors in the commit tree
 using a special flag.
 
-```bash
+```terminal
 # add a remote, pointing at the new Git project on my local filesystem
 $ git remote add local ~/projects/github.com/wouterj/docs-builder-new
 $ git fetch local

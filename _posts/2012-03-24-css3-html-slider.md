@@ -227,14 +227,15 @@ aangegeven wat er tussen 0% en 28% zit en dus zal hij telkens tussen deze 2
 waardes een stapje opschuiven. We moeten dus aangeven dat hij voor 28% nog
 steeds op `0px` zet. Dus doen we dit:
 
-    [css]
-    @keyframes slider
-    {
-        from,27% { margin-left:0;          }
-        28%, 55% { margin-left:-620px;     }
-        56%, 73% { margin-left:-1240px;    }
-        74%, to  { margin-left:-1860px;    }
-    }
+```css
+@keyframes slider
+{
+    from,27% { margin-left:0;          }
+    28%, 55% { margin-left:-620px;     }
+    56%, 73% { margin-left:-1240px;    }
+    74%, to  { margin-left:-1860px;    }
+}
+```
 
 Hierbij kan CSS nog niks animaten en begin het pas met sliden bij 27% en dan
 bij 28% stopt het weer tot 56% en zo gaat het door.
@@ -244,14 +245,15 @@ slide tijd verlengen. Ik stel voor dat we een slide tijd hebben van 6%. Dit
 betekend dat er 3% vanaf gaat en 3% bij komt. We krijgen dus uiteindelijk
 zoiets:
 
-    [css]
-    @keyframes slider
-    {
-        from, 24% { margin-left:0;         }
-        31%, 53%  { margin-left:-620px;    }
-        59%, 71%  { margin-left:-1240px;   }
-        77%, to   { margin-left:-1860px;   }
-    }
+```css
+@keyframes slider
+{
+    from, 24% { margin-left:0;         }
+    31%, 53%  { margin-left:-620px;    }
+    59%, 71%  { margin-left:-1240px;   }
+    77%, to   { margin-left:-1860px;   }
+}
+```
 
 ### Feestje?
 

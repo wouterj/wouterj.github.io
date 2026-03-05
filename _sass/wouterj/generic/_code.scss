@@ -11,6 +11,15 @@ pre{
     font-size:1em;
 }
 
+.shiki-code.has-focused{
+    .line{
+        filter:saturate(0) brightness(.9);
+        transition:ease filter .1s;
+    }
+    .line.focused,
+    &:hover .line { filter:saturate(1); }
+}
+
 .code__annotation{
     height:31px;
     color:#aaa;

@@ -197,10 +197,9 @@ waarschijnlijk `post--latest`:
 </article>
 ```
 
-    [note]
-    Een opmerkzame lezer zal zien dat ik 2 spaties tussen de classnamen heb
-    geplaatst. Hierdoor kun je snel zien wat de classnamen zijn, met 1 spatie
-    staan ze te dicht op elkaar om het snel te kunnen zien.
+Een opmerkzame lezer zal zien dat ik 2 spaties tussen de classnamen heb
+geplaatst. Hierdoor kun je snel zien wat de classnamen zijn, met 1 spatie
+staan ze te dicht op elkaar om het snel te kunnen zien.
 
 ## Harry Roberts en Inuit.css
 
