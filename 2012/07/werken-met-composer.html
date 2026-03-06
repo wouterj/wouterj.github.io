@@ -120,25 +120,25 @@ en daarna een <code class="highlighter-shiki">&gt;</code> en daarna kan je typen
 <p>Het CMD werkt met commands om alles te doen. Stel we zijn nu in <code class="highlighter-shiki">C:\Users\Acme</code>
 en we willen naar <code class="highlighter-shiki">C:\Users\Acme\projects</code> dan doen we:</p>
 
-<div class="highlighter-shiki"><pre class="shiki-gutter">1</pre><pre class="shiki-code"><code>C:\Users\Acme&gt; cd projects
-</code></pre>
+<div class="language-terminal highlighter-shiki"><div><pre class="shiki-gutter">1</pre><pre class="shiki wouterj shiki-code" style="background-color:#1e1e1e;color:#bbbbbb" tabindex="0"><code><span class="line" data-linenr="1"><span style="color:#999999">C:\Users\Acme></span><span style="color:#D8DEE9"> cd projects</span></span></code></pre></div>
 </div>
 
 <p>Stel we willen naar <code class="highlighter-shiki">E:\wamp\www\myProject</code> dan moet dat in 2 stappen: Eerst
 moeten we naar de andere schrijf (E) en daarna gaan we naar de juiste map:</p>
 
-<div class="highlighter-shiki"><pre class="shiki-gutter">1</pre><pre class="shiki-code"><code>C:\Users\Acme\projects&gt; e:
-E:\&gt; cd wamp/www/myProject
-</code></pre>
+<div class="language-terminal highlighter-shiki"><div><pre class="shiki-gutter">1
+2</pre><pre class="shiki wouterj shiki-code" style="background-color:#1e1e1e;color:#bbbbbb" tabindex="0"><code><span class="line" data-linenr="1"><span style="color:#999999">C:\Users\Acme\projects></span><span style="color:#D8DEE9"> e:</span></span>
+<span class="line" data-linenr="2"><span style="color:#BBBBBB">E:\> cd wamp/www/myProject</span></span></code></pre></div>
 </div>
 
 <p>Dit spreekt wel voorzich denk ik. Als je nu wilt weten welke bestanden er in
 deze map zitten gebruik je het ls command:</p>
 
-<div class="highlighter-shiki"><pre class="shiki-gutter">1</pre><pre class="shiki-code"><code>E:\wamp\www\myProject&gt; ls
-css         img         js
-index.php   .htaccess
-</code></pre>
+<div class="language-terminal highlighter-shiki"><div><pre class="shiki-gutter">1
+2
+3</pre><pre class="shiki wouterj shiki-code" style="background-color:#1e1e1e;color:#bbbbbb" tabindex="0"><code><span class="line" data-linenr="1"><span style="color:#999999">E:\wamp\www\myProject></span><span style="color:#D8DEE9"> ls</span></span>
+<span class="line" data-linenr="2"><span style="color:#BBBBBB">css         img         js</span></span>
+<span class="line" data-linenr="3"><span style="color:#BBBBBB">index.php   .htaccess</span></span></code></pre></div>
 </div><hr />
 
 <p>I.p.v. de standaard command (cd, ls, enz.) kun je ook programmas toevoegen als
@@ -163,7 +163,8 @@ variabele door deze te scheiden met de vorige map met een <code class="highlight
 gedownload in <code class="highlighter-shiki">C:\Programs</code>. Dan kunnen we nu het composer bestand aanroepen
 met PHP:</p>
 
-<p>E:\wamp\www\myProject&gt; php C:\Programs\composer.phar install</p>
+<div class="language-terminal highlighter-shiki"><div><pre class="shiki-gutter">1</pre><pre class="shiki wouterj shiki-code" style="background-color:#1e1e1e;color:#bbbbbb" tabindex="0"><code><span class="line" data-linenr="1"><span style="color:#999999">E:\wamp\www\myProject></span><span style="color:#D8DEE9"> php C:</span><span style="color:#EBCB8B">\P</span><span style="color:#D8DEE9">rograms</span><span style="color:#EBCB8B">\c</span><span style="color:#D8DEE9">omposer.phar install</span></span></code></pre></div>
+</div>
     
       <h3 id="composer-shortcut">
         
@@ -178,9 +179,9 @@ verplaatsen composer.phar even naar een map die wat logischer is, in mijn geval
 heb ik het in dezelfde map als PHP gezet. In dezelfde map maken we een
 bestandje genaamd <code class="highlighter-shiki">composer.bat</code>. Hierin plaatsen we het volgende:</p>
 
-<div class="highlighter-shiki"><pre class="shiki-gutter">1</pre><pre class="shiki-code"><code>@echo off
-php &quot;E:\wamp\bin\php\php5.4.0\composer.phar&quot; %*
-</code></pre>
+<div class="language-bat highlighter-shiki"><div><pre class="shiki-gutter">1
+2</pre><pre class="shiki wouterj shiki-code" style="background-color:#1e1e1e;color:#bbbbbb" tabindex="0"><code><span class="line" data-linenr="1"><span style="color:#E5673D">@echo</span><span style="color:#E5673D"> off</span></span>
+<span class="line" data-linenr="2"><span style="color:#BBBBBB">php </span><span style="color:#999999">"</span><span style="color:#7CC64A">E:\wamp\bin\php\php5.4.0\composer.phar</span><span style="color:#999999">"</span><span style="color:#E5673D"> %</span><span style="color:#D8DEE9">*</span></span></code></pre></div>
 </div>
 
 <p>Wat dit doet is dat we ons php command aanroepen (<code class="highlighter-shiki">php</code> op regel 2) vervolgens
@@ -237,10 +238,11 @@ met onder anderen de versies. Bij het instellen welke package we willen moeten
 we ook altijd een versie instellen. Deze versie kun je op verschillende
 manieren opbouwen:</p>
 
-<div class="highlighter-shiki"><pre class="shiki-gutter">1</pre><pre class="shiki-code"><code>2.1.*
-&gt;= 2.1.0, &lt;2.2.5
-2.1.13
-</code></pre>
+<div class="highlighter-shiki"><div><pre class="shiki-gutter">1
+2
+3</pre><pre class="shiki wouterj shiki-code" style="background-color:#1e1e1e;color:#bbbbbb" tabindex="0"><code><span class="line" data-linenr="1"><span>2.1.*</span></span>
+<span class="line" data-linenr="2"><span>>= 2.1.0, &#x3C;2.2.5</span></span>
+<span class="line" data-linenr="3"><span>2.1.13</span></span></code></pre></div>
 </div>
 
 <p>In het eerste geval gebruiken we de <code class="highlighter-shiki">*</code> wildchart, dat staat voor elk getal. In
@@ -255,33 +257,40 @@ hebben we gewoon een exacte versie ingevuld.</p>
 composer het gaat inladen. Dat doen we door in <code class="highlighter-shiki">composer.json</code> de require
 parameter in te vullen:</p>
 
-<div class="highlighter-shiki"><pre class="shiki-gutter">1</pre><pre class="shiki-code"><code>{
-    &quot;require&quot; : {
-        &quot;swiftmailer\swiftmailer&quot; : &quot;4.2.*&quot;
-    }
-}
-</code></pre>
+<div class="language-json highlighter-shiki"><div><pre class="shiki-gutter">1
+2
+3
+4
+5</pre><pre class="shiki wouterj shiki-code" style="background-color:#1e1e1e;color:#bbbbbb" tabindex="0"><code><span class="line" data-linenr="1"><span style="color:#999999">{</span></span>
+<span class="line" data-linenr="2"><span style="color:#999999">    "</span><span style="color:#C7C8D2">require</span><span style="color:#999999">"</span><span style="color:#999999"> :</span><span style="color:#999999"> {</span></span>
+<span class="line" data-linenr="3"><span style="color:#999999">        "</span><span style="color:#C7C8D2">swiftmailer\swiftmailer</span><span style="color:#999999">"</span><span style="color:#999999"> :</span><span style="color:#999999"> "</span><span style="color:#7CC64A">4.2.*</span><span style="color:#999999">"</span></span>
+<span class="line" data-linenr="4"><span style="color:#999999">    }</span></span>
+<span class="line" data-linenr="5"><span style="color:#999999">}</span></span></code></pre></div>
 </div>
 
 <p>Stel dat we nu ook nog Propel willen inladen. Dan gaan we weer zoeken op propel
 en vinden we de propel\propel package. Deze heeft maar 1 versie en dus gaan we
 die er ook bij zetten:</p>
 
-<div class="highlighter-shiki"><pre class="shiki-gutter">1</pre><pre class="shiki-code"><code>{
-    &quot;require&quot; : {
-        &quot;swiftmailer\swiftmailer&quot; : &quot;4.2.*&quot;,
-        &quot;propel\propel&quot; : &quot;dev-master&quot;
-    }
-}
-</code></pre>
+<div class="language-json highlighter-shiki"><div><pre class="shiki-gutter">1
+2
+3
+4
+5
+6</pre><pre class="shiki wouterj shiki-code" style="background-color:#1e1e1e;color:#bbbbbb" tabindex="0"><code><span class="line" data-linenr="1"><span style="color:#999999">{</span></span>
+<span class="line" data-linenr="2"><span style="color:#999999">    "</span><span style="color:#C7C8D2">require</span><span style="color:#999999">"</span><span style="color:#999999"> :</span><span style="color:#999999"> {</span></span>
+<span class="line" data-linenr="3"><span style="color:#999999">        "</span><span style="color:#C7C8D2">swiftmailer\swiftmailer</span><span style="color:#999999">"</span><span style="color:#999999"> :</span><span style="color:#999999"> "</span><span style="color:#7CC64A">4.2.*</span><span style="color:#999999">"</span><span style="color:#999999">,</span></span>
+<span class="line" data-linenr="4"><span style="color:#999999">        "</span><span style="color:#C7C8D2">propel\propel</span><span style="color:#999999">"</span><span style="color:#999999"> :</span><span style="color:#999999"> "</span><span style="color:#7CC64A">dev-master</span><span style="color:#999999">"</span></span>
+<span class="line" data-linenr="5"><span style="color:#999999">    }</span></span>
+<span class="line" data-linenr="6"><span style="color:#999999">}</span></span></code></pre></div>
 </div>
 
 <p>Nu we alle packages hebben gedefinieerd kunnen we ze gaan installeren door de
 composer command aan te roepen:</p>
 
-<div class="highlighter-shiki"><pre class="shiki-gutter">1</pre><pre class="shiki-code"><code>cd path/to/myProject
-composer install
-</code></pre>
+<div class="language-terminal highlighter-shiki"><div><pre class="shiki-gutter">1
+2</pre><pre class="shiki wouterj shiki-code" style="background-color:#1e1e1e;color:#bbbbbb" tabindex="0"><code><span class="line" data-linenr="1"><span style="color:#BBBBBB">cd path/to/myProject</span></span>
+<span class="line" data-linenr="2"><span style="color:#BBBBBB">composer install</span></span></code></pre></div>
 </div>
 
 <p>De packages worden nu in de vendor map gezet, vendors is weer zon andere naam
@@ -306,16 +315,23 @@ moeten worden kun je de autoloader instellen waar hij naar jou klassen moet
 gaan zoeken. Ik plaats bijv. alles in een <code class="highlighter-shiki">src</code> map, we geven dan aan dat hij
 naar klassen kan zoeken in de src map:</p>
 
-<div class="highlighter-shiki"><pre class="shiki-gutter">1</pre><pre class="shiki-code"><code>{
-    &quot;require&quot; : {
-        &quot;swiftmailer\swiftmailer&quot; : &quot;4.2.*&quot;,
-        &quot;propel\propel&quot; : &quot;dev-master&quot;
-    },
-    &quot;autoload&quot; : {
-        &quot;psr-0&quot; : { &quot;&quot; : &quot;src/&quot; }
-    }
-}
-</code></pre>
+<div class="language-json highlighter-shiki"><div><pre class="shiki-gutter">1
+2
+3
+4
+5
+6
+7
+8
+9</pre><pre class="shiki wouterj shiki-code" style="background-color:#1e1e1e;color:#bbbbbb" tabindex="0"><code><span class="line" data-linenr="1"><span style="color:#999999">{</span></span>
+<span class="line" data-linenr="2"><span style="color:#999999">    "</span><span style="color:#C7C8D2">require</span><span style="color:#999999">"</span><span style="color:#999999"> :</span><span style="color:#999999"> {</span></span>
+<span class="line" data-linenr="3"><span style="color:#999999">        "</span><span style="color:#C7C8D2">swiftmailer\swiftmailer</span><span style="color:#999999">"</span><span style="color:#999999"> :</span><span style="color:#999999"> "</span><span style="color:#7CC64A">4.2.*</span><span style="color:#999999">"</span><span style="color:#999999">,</span></span>
+<span class="line" data-linenr="4"><span style="color:#999999">        "</span><span style="color:#C7C8D2">propel\propel</span><span style="color:#999999">"</span><span style="color:#999999"> :</span><span style="color:#999999"> "</span><span style="color:#7CC64A">dev-master</span><span style="color:#999999">"</span></span>
+<span class="line" data-linenr="5"><span style="color:#999999">    },</span></span>
+<span class="line" data-linenr="6"><span style="color:#999999">    "</span><span style="color:#C7C8D2">autoload</span><span style="color:#999999">"</span><span style="color:#999999"> :</span><span style="color:#999999"> {</span></span>
+<span class="line" data-linenr="7"><span style="color:#999999">        "</span><span style="color:#C7C8D2">psr-0</span><span style="color:#999999">"</span><span style="color:#999999"> :</span><span style="color:#999999"> {</span><span style="color:#999999"> ""</span><span style="color:#999999"> :</span><span style="color:#999999"> "</span><span style="color:#7CC64A">src/</span><span style="color:#999999">"</span><span style="color:#999999"> }</span></span>
+<span class="line" data-linenr="8"><span style="color:#999999">    }</span></span>
+<span class="line" data-linenr="9"><span style="color:#999999">}</span></span></code></pre></div>
 </div>
 
 <p>Dit komt wellicht wat vaag over, maar PSR-0 is de standaard waaraan alle
@@ -362,8 +378,7 @@ misschien kom je halverwege deze vakantie wel de eerste berichten tegen. Om je
 alvast warm te maken en een idee te geven hoe makkelijk het is om Symfony te
 downloaden met composer:</p>
 
-<div class="highlighter-shiki"><pre class="shiki-gutter">1</pre><pre class="shiki-code"><code>composer create-project symfony/framework-standard-edition
-</code></pre>
+<div class="language-terminal highlighter-shiki"><div><pre class="shiki-gutter">1</pre><pre class="shiki wouterj shiki-code" style="background-color:#1e1e1e;color:#bbbbbb" tabindex="0"><code><span class="line" data-linenr="1"><span style="color:#BBBBBB">composer create-project symfony/framework-standard-edition</span></span></code></pre></div>
 </div>
 
         </div>

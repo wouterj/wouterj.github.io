@@ -120,42 +120,67 @@ follows the steps in this post.</p>
 <p>Create a new project with this skeleton using <code class="highlighter-shiki">composer create-project</code> or
 <a href="https://symfony.com/download">the <code class="highlighter-shiki">symfony</code> CLI</a>:</p>
 
-<div class="language-terminal highlighter-shiki"><pre class="shiki-gutter">1
-</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #999999">$ </span><span style="color: #D8DEE9">symfony new symfony-onefile</span></span></code></pre>
+<div class="language-terminal highlighter-shiki"><div><pre class="shiki-gutter">1</pre><pre class="shiki wouterj shiki-code" style="background-color:#1e1e1e;color:#bbbbbb" tabindex="0"><code><span class="line" data-linenr="1"><span style="color:#999999">$ </span><span style="color:#D8DEE9">symfony new symfony-onefile</span></span></code></pre></div>
 </div>
 
 <p>This gives us a great starting point for the challenge, but Symfony Flex
 gave us a lot more files!</p>
 
-<div class="language-text highlighter-shiki"><pre class="shiki-gutter">1
-</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: undefined">symfony-onefile/
-├── bin/
-│   └── console
-├── config/
-│   ├── bundles.php
-│   ├── packages/
-│   │   ├── cache.yaml
-│   │   ├── framework.yaml
-│   │   └── routing.yaml
-│   ├── preload.php
-│   ├── routes/
-│   │   └── framework.yaml
-│   ├── routes.yaml
-│   └── services.yaml
-├── public/
-│   └── index.php
-├── src/
-│   ├── Controller/
-│   │   └── .gitignore
-│   └── Kernel.php
-├── var/
-├── vendor/
-├── .editorconfig
-├── .env
-├── .env.dev
-├── composer.json
-├── composer.lock
-└── symfony.lock</span></span></code></pre>
+<div class="language-text highlighter-shiki"><div><pre class="shiki-gutter">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28</pre><pre class="shiki wouterj shiki-code" style="background-color:#1e1e1e;color:#bbbbbb" tabindex="0"><code><span class="line" data-linenr="1"><span>symfony-onefile/</span></span>
+<span class="line" data-linenr="2"><span>├── bin/</span></span>
+<span class="line" data-linenr="3"><span>│   └── console</span></span>
+<span class="line" data-linenr="4"><span>├── config/</span></span>
+<span class="line" data-linenr="5"><span>│   ├── bundles.php</span></span>
+<span class="line" data-linenr="6"><span>│   ├── packages/</span></span>
+<span class="line" data-linenr="7"><span>│   │   ├── cache.yaml</span></span>
+<span class="line" data-linenr="8"><span>│   │   ├── framework.yaml</span></span>
+<span class="line" data-linenr="9"><span>│   │   └── routing.yaml</span></span>
+<span class="line" data-linenr="10"><span>│   ├── preload.php</span></span>
+<span class="line" data-linenr="11"><span>│   ├── routes/</span></span>
+<span class="line" data-linenr="12"><span>│   │   └── framework.yaml</span></span>
+<span class="line" data-linenr="13"><span>│   ├── routes.yaml</span></span>
+<span class="line" data-linenr="14"><span>│   └── services.yaml</span></span>
+<span class="line" data-linenr="15"><span>├── public/</span></span>
+<span class="line" data-linenr="16"><span>│   └── index.php</span></span>
+<span class="line" data-linenr="17"><span>├── src/</span></span>
+<span class="line" data-linenr="18"><span>│   ├── Controller/</span></span>
+<span class="line" data-linenr="19"><span>│   │   └── .gitignore</span></span>
+<span class="line" data-linenr="20"><span>│   └── Kernel.php</span></span>
+<span class="line" data-linenr="21"><span>├── var/</span></span>
+<span class="line" data-linenr="22"><span>├── vendor/</span></span>
+<span class="line" data-linenr="23"><span>├── .editorconfig</span></span>
+<span class="line" data-linenr="24"><span>├── .env</span></span>
+<span class="line" data-linenr="25"><span>├── .env.dev</span></span>
+<span class="line" data-linenr="26"><span>├── composer.json</span></span>
+<span class="line" data-linenr="27"><span>├── composer.lock</span></span>
+<span class="line" data-linenr="28"><span>└── symfony.lock</span></span></code></pre></div>
 </div>
     
       <h2 id="default-configuration">
@@ -178,7 +203,7 @@ be useful. Let’s remove the commented configuration.</p>
 configuration. This application is going minimal instead of production
 ready, so we’re not interested in these other environments.</p>
 
-<div class="language-diff highlighter-shiki"><pre class="shiki-gutter">1
+<div class="language-diff highlighter-shiki"><div><pre class="shiki-gutter">1
 2
 3
 4
@@ -197,30 +222,29 @@ ready, so we’re not interested in these other environments.</p>
 17
 18
 19
-20
-</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #BBBBBB"> # config/packages/cache.yaml</span></span>
-<span class="line" data-linenr="2"><span style="color: #BBBBBB"> framework:</span></span>
-<span class="line" data-linenr="3"><span style="color: #BBBBBB">     cache:</span></span>
-<span class="line" data-linenr="4"><span style="color: #999999">-</span><span style="color: #BF616A">        # Unique name of your app: used to compute stable namespaces for cache keys.</span></span>
-<span class="line" data-linenr="5"><span style="color: #999999">-</span><span style="color: #BF616A">        #prefix_seed: your_vendor_name/app_name</span></span>
-<span class="line" data-linenr="6"><span style="color: #999999">-</span></span>
-<span class="line" data-linenr="7"><span style="color: #999999">-</span><span style="color: #BF616A">        # The &quot;app&quot; cache stores to the filesystem by default.</span></span>
-<span class="line" data-linenr="8"><span style="color: #999999">-</span><span style="color: #BF616A">        # The data in this cache should persist between deploys.</span></span>
-<span class="line" data-linenr="9"><span style="color: #999999">-</span><span style="color: #BF616A">        # Other options include:</span></span>
-<span class="line" data-linenr="10"><span style="color: #999999">-</span></span>
-<span class="line" data-linenr="11"><span style="color: #999999">-</span><span style="color: #BF616A">        # Redis</span></span>
-<span class="line" data-linenr="12"><span style="color: #999999">-</span><span style="color: #BF616A">        #app: cache.adapter.redis</span></span>
-<span class="line" data-linenr="13"><span style="color: #999999">-</span><span style="color: #BF616A">        #default_redis_provider: redis://localhost</span></span>
-<span class="line" data-linenr="14"><span style="color: #999999">-</span></span>
-<span class="line" data-linenr="15"><span style="color: #999999">-</span><span style="color: #BF616A">        # APCu (not recommended with heavy random-write workloads as memory fragmentation can cause perf issues)</span></span>
-<span class="line" data-linenr="16"><span style="color: #999999">-</span><span style="color: #BF616A">        #app: cache.adapter.apcu</span></span>
-<span class="line" data-linenr="17"><span style="color: #999999">-</span></span>
-<span class="line" data-linenr="18"><span style="color: #999999">-</span><span style="color: #BF616A">        # Namespaced pools use the above &quot;app&quot; backend by default</span></span>
-<span class="line" data-linenr="19"><span style="color: #999999">-</span><span style="color: #BF616A">        #pools:</span></span>
-<span class="line" data-linenr="20"><span style="color: #999999">-</span><span style="color: #BF616A">            #my.dedicated.cache: null</span></span></code></pre>
+20</pre><pre class="shiki wouterj shiki-code" style="background-color:#1e1e1e;color:#bbbbbb" tabindex="0"><code><span class="line" data-linenr="1"><span style="color:#BBBBBB"> # config/packages/cache.yaml</span></span>
+<span class="line" data-linenr="2"><span style="color:#BBBBBB"> framework:</span></span>
+<span class="line" data-linenr="3"><span style="color:#BBBBBB">     cache:</span></span>
+<span class="line" data-linenr="4"><span style="color:#999999">-</span><span style="color:#BF616A">        # Unique name of your app: used to compute stable namespaces for cache keys.</span></span>
+<span class="line" data-linenr="5"><span style="color:#999999">-</span><span style="color:#BF616A">        #prefix_seed: your_vendor_name/app_name</span></span>
+<span class="line" data-linenr="6"><span style="color:#999999">-</span></span>
+<span class="line" data-linenr="7"><span style="color:#999999">-</span><span style="color:#BF616A">        # The "app" cache stores to the filesystem by default.</span></span>
+<span class="line" data-linenr="8"><span style="color:#999999">-</span><span style="color:#BF616A">        # The data in this cache should persist between deploys.</span></span>
+<span class="line" data-linenr="9"><span style="color:#999999">-</span><span style="color:#BF616A">        # Other options include:</span></span>
+<span class="line" data-linenr="10"><span style="color:#999999">-</span></span>
+<span class="line" data-linenr="11"><span style="color:#999999">-</span><span style="color:#BF616A">        # Redis</span></span>
+<span class="line" data-linenr="12"><span style="color:#999999">-</span><span style="color:#BF616A">        #app: cache.adapter.redis</span></span>
+<span class="line" data-linenr="13"><span style="color:#999999">-</span><span style="color:#BF616A">        #default_redis_provider: redis://localhost</span></span>
+<span class="line" data-linenr="14"><span style="color:#999999">-</span></span>
+<span class="line" data-linenr="15"><span style="color:#999999">-</span><span style="color:#BF616A">        # APCu (not recommended with heavy random-write workloads as memory fragmentation can cause perf issues)</span></span>
+<span class="line" data-linenr="16"><span style="color:#999999">-</span><span style="color:#BF616A">        #app: cache.adapter.apcu</span></span>
+<span class="line" data-linenr="17"><span style="color:#999999">-</span></span>
+<span class="line" data-linenr="18"><span style="color:#999999">-</span><span style="color:#BF616A">        # Namespaced pools use the above "app" backend by default</span></span>
+<span class="line" data-linenr="19"><span style="color:#999999">-</span><span style="color:#BF616A">        #pools:</span></span>
+<span class="line" data-linenr="20"><span style="color:#999999">-</span><span style="color:#BF616A">            #my.dedicated.cache: null</span></span></code></pre></div>
 </div>
 
-<div class="language-diff highlighter-shiki"><pre class="shiki-gutter">1
+<div class="language-diff highlighter-shiki"><div><pre class="shiki-gutter">1
 2
 3
 4
@@ -235,26 +259,25 @@ ready, so we’re not interested in these other environments.</p>
 13
 14
 15
-16
-</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #BBBBBB"> # config/packages/framework.yaml</span></span>
-<span class="line" data-linenr="2"><span style="color: #999999">-</span><span style="color: #BF616A"># see https://symfony.com/doc/current/reference/configuration/framework.html</span></span>
-<span class="line" data-linenr="3"><span style="color: #BBBBBB"> framework:</span></span>
-<span class="line" data-linenr="4"><span style="color: #BBBBBB">     secret: &#39;%env(APP_SECRET)%&#39;</span></span>
-<span class="line" data-linenr="5"><span style="color: #999999">-</span></span>
-<span class="line" data-linenr="6"><span style="color: #999999">-</span><span style="color: #BF616A">    # Note that the session will be started ONLY if you read or write from it.</span></span>
-<span class="line" data-linenr="7"><span style="color: #BBBBBB">     session: true</span></span>
-<span class="line" data-linenr="8"><span style="color: #999999">-</span></span>
-<span class="line" data-linenr="9"><span style="color: #999999">-</span><span style="color: #BF616A">    #esi: true</span></span>
-<span class="line" data-linenr="10"><span style="color: #999999">-</span><span style="color: #BF616A">    #fragments: true</span></span>
-<span class="line" data-linenr="11"><span style="color: #999999">-</span></span>
-<span class="line" data-linenr="12"><span style="color: #999999">-</span><span style="color: #BF616A">when@test:</span></span>
-<span class="line" data-linenr="13"><span style="color: #999999">-</span><span style="color: #BF616A">    framework:</span></span>
-<span class="line" data-linenr="14"><span style="color: #999999">-</span><span style="color: #BF616A">        test: true</span></span>
-<span class="line" data-linenr="15"><span style="color: #999999">-</span><span style="color: #BF616A">        session:</span></span>
-<span class="line" data-linenr="16"><span style="color: #999999">-</span><span style="color: #BF616A">            storage_factory_id: session.storage.factory.mock_file</span></span></code></pre>
+16</pre><pre class="shiki wouterj shiki-code" style="background-color:#1e1e1e;color:#bbbbbb" tabindex="0"><code><span class="line" data-linenr="1"><span style="color:#BBBBBB"> # config/packages/framework.yaml</span></span>
+<span class="line" data-linenr="2"><span style="color:#999999">-</span><span style="color:#BF616A"># see https://symfony.com/doc/current/reference/configuration/framework.html</span></span>
+<span class="line" data-linenr="3"><span style="color:#BBBBBB"> framework:</span></span>
+<span class="line" data-linenr="4"><span style="color:#BBBBBB">     secret: '%env(APP_SECRET)%'</span></span>
+<span class="line" data-linenr="5"><span style="color:#999999">-</span></span>
+<span class="line" data-linenr="6"><span style="color:#999999">-</span><span style="color:#BF616A">    # Note that the session will be started ONLY if you read or write from it.</span></span>
+<span class="line" data-linenr="7"><span style="color:#BBBBBB">     session: true</span></span>
+<span class="line" data-linenr="8"><span style="color:#999999">-</span></span>
+<span class="line" data-linenr="9"><span style="color:#999999">-</span><span style="color:#BF616A">    #esi: true</span></span>
+<span class="line" data-linenr="10"><span style="color:#999999">-</span><span style="color:#BF616A">    #fragments: true</span></span>
+<span class="line" data-linenr="11"><span style="color:#999999">-</span></span>
+<span class="line" data-linenr="12"><span style="color:#999999">-</span><span style="color:#BF616A">when@test:</span></span>
+<span class="line" data-linenr="13"><span style="color:#999999">-</span><span style="color:#BF616A">    framework:</span></span>
+<span class="line" data-linenr="14"><span style="color:#999999">-</span><span style="color:#BF616A">        test: true</span></span>
+<span class="line" data-linenr="15"><span style="color:#999999">-</span><span style="color:#BF616A">        session:</span></span>
+<span class="line" data-linenr="16"><span style="color:#999999">-</span><span style="color:#BF616A">            storage_factory_id: session.storage.factory.mock_file</span></span></code></pre></div>
 </div>
 
-<div class="language-diff highlighter-shiki"><pre class="shiki-gutter">1
+<div class="language-diff highlighter-shiki"><div><pre class="shiki-gutter">1
 2
 3
 4
@@ -264,18 +287,17 @@ ready, so we’re not interested in these other environments.</p>
 8
 9
 10
-11
-</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #BBBBBB"> # config/packages/routing.yaml</span></span>
-<span class="line" data-linenr="2"><span style="color: #BBBBBB"> framework:</span></span>
-<span class="line" data-linenr="3"><span style="color: #BBBBBB">     router:</span></span>
-<span class="line" data-linenr="4"><span style="color: #999999">-</span><span style="color: #BF616A">        # Configure how to generate URLs in non-HTTP contexts, such as CLI commands.</span></span>
-<span class="line" data-linenr="5"><span style="color: #999999">-</span><span style="color: #BF616A">        # See https://symfony.com/doc/current/routing.html#generating-urls-in-commands</span></span>
-<span class="line" data-linenr="6"><span style="color: #BBBBBB">         default_uri: &#39;%env(DEFAULT_URI)%&#39;</span></span>
-<span class="line" data-linenr="7"><span style="color: #999999">-</span></span>
-<span class="line" data-linenr="8"><span style="color: #999999">-</span><span style="color: #BF616A">when@prod:</span></span>
-<span class="line" data-linenr="9"><span style="color: #999999">-</span><span style="color: #BF616A">    framework:</span></span>
-<span class="line" data-linenr="10"><span style="color: #999999">-</span><span style="color: #BF616A">        router:</span></span>
-<span class="line" data-linenr="11"><span style="color: #999999">-</span><span style="color: #BF616A">            strict_requirements: null</span></span></code></pre>
+11</pre><pre class="shiki wouterj shiki-code" style="background-color:#1e1e1e;color:#bbbbbb" tabindex="0"><code><span class="line" data-linenr="1"><span style="color:#BBBBBB"> # config/packages/routing.yaml</span></span>
+<span class="line" data-linenr="2"><span style="color:#BBBBBB"> framework:</span></span>
+<span class="line" data-linenr="3"><span style="color:#BBBBBB">     router:</span></span>
+<span class="line" data-linenr="4"><span style="color:#999999">-</span><span style="color:#BF616A">        # Configure how to generate URLs in non-HTTP contexts, such as CLI commands.</span></span>
+<span class="line" data-linenr="5"><span style="color:#999999">-</span><span style="color:#BF616A">        # See https://symfony.com/doc/current/routing.html#generating-urls-in-commands</span></span>
+<span class="line" data-linenr="6"><span style="color:#BBBBBB">         default_uri: '%env(DEFAULT_URI)%'</span></span>
+<span class="line" data-linenr="7"><span style="color:#999999">-</span></span>
+<span class="line" data-linenr="8"><span style="color:#999999">-</span><span style="color:#BF616A">when@prod:</span></span>
+<span class="line" data-linenr="9"><span style="color:#999999">-</span><span style="color:#BF616A">    framework:</span></span>
+<span class="line" data-linenr="10"><span style="color:#999999">-</span><span style="color:#BF616A">        router:</span></span>
+<span class="line" data-linenr="11"><span style="color:#999999">-</span><span style="color:#BF616A">            strict_requirements: null</span></span></code></pre></div>
 </div>
 
 <p>This leaves us only with a couple config values:</p>
@@ -315,8 +337,7 @@ remove them without creating issues.</p>
 <code class="highlighter-shiki">symfony/dotenv</code> Composer dependency. Otherwise, Symfony will keep trying
 to load the <code class="highlighter-shiki">.env</code> file.</p>
 
-<div class="language-terminal highlighter-shiki"><pre class="shiki-gutter">1
-</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #999999">$ </span><span style="color: #D8DEE9">composer remove symfony/dotenv</span></span></code></pre>
+<div class="language-terminal highlighter-shiki"><div><pre class="shiki-gutter">1</pre><pre class="shiki wouterj shiki-code" style="background-color:#1e1e1e;color:#bbbbbb" tabindex="0"><code><span class="line" data-linenr="1"><span style="color:#999999">$ </span><span style="color:#D8DEE9">composer remove symfony/dotenv</span></span></code></pre></div>
 </div>
     
       <h3 id="routing">
@@ -360,7 +381,7 @@ that just so happens to load the <code class="highlighter-shiki">config/bundles.
 
 <p>Interestingly, this method contains one other bit of logic:</p>
 
-<div class="language-php highlighter-shiki"><pre class="shiki-gutter">1
+<div class="language-php highlighter-shiki"><div><pre class="shiki-gutter">1
 2
 3
 4
@@ -374,20 +395,20 @@ that just so happens to load the <code class="highlighter-shiki">config/bundles.
 12
 13
 14
-</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #E5673D">trait</span><span style="color: #BBBBBB"> MicroKernelTrait</span></span>
-<span class="line" data-linenr="2"><span style="color: #999999">{</span></span>
-<span class="line" data-linenr="3"><span style="color: #999999">    </span><span style="color: #6B90C0; font-style: italic">// ...</span></span>
-<span class="line" data-linenr="4"><span style="color: #BBBBBB">    </span><span style="color: #E5673D">public</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">function</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">registerBundles</span><span style="color: #999999">()</span><span style="color: #E5673D">:</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">iterable</span></span>
-<span class="line" data-linenr="5"><span style="color: #BBBBBB">    </span><span style="color: #999999">{</span></span>
-<span class="line" data-linenr="6"><span style="color: #BBBBBB">        </span><span style="color: #E5673D">if</span><span style="color: #BBBBBB"> </span><span style="color: #999999">(</span><span style="color: #E5673D">!</span><span style="color: #C7C8D2">is_file</span><span style="color: #999999">(</span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">bundlesPath</span><span style="color: #C7C8D2"> </span><span style="color: #E5673D">=</span><span style="color: #C7C8D2"> </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">this</span><span style="color: #E5673D">-&gt;</span><span style="color: #C7C8D2">getBundlesPath</span><span style="color: #999999">()))</span><span style="color: #BBBBBB"> </span><span style="color: #999999">{</span></span>
-<span class="line" data-linenr="7"><span style="color: #BBBBBB">            </span><span style="color: #E5673D">yield</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">new</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">FrameworkBundle</span><span style="color: #999999">()</span><span style="color: #E5673D">;</span></span>
-<span class="line" data-linenr="8"></span>
-<span class="line" data-linenr="9"><span style="color: #BBBBBB">            </span><span style="color: #E5673D">return;</span></span>
-<span class="line" data-linenr="10"><span style="color: #BBBBBB">        </span><span style="color: #999999">}</span></span>
-<span class="line" data-linenr="11"></span>
-<span class="line" data-linenr="12"><span style="color: #999999">        </span><span style="color: #6B90C0; font-style: italic">// ...</span></span>
-<span class="line" data-linenr="13"><span style="color: #BBBBBB">    </span><span style="color: #999999">}</span></span>
-<span class="line" data-linenr="14"><span style="color: #999999">}</span></span></code></pre>
+15</pre><pre class="shiki wouterj has-focused shiki-code" style="background-color:#1e1e1e;color:#bbbbbb" tabindex="0"><code><span class="line" data-linenr="1"><span style="color:#E5673D">trait</span><span style="color:#BBBBBB"> MicroKernelTrait</span></span>
+<span class="line" data-linenr="2"><span style="color:#999999">{</span></span>
+<span class="line" data-linenr="3"><span style="color:#6B90C0;font-style:italic">    // ...</span></span>
+<span class="line" data-linenr="4"><span style="color:#E5673D">    public</span><span style="color:#E5673D"> function</span><span style="color:#C7C8D2"> registerBundles</span><span style="color:#999999">()</span><span style="color:#E5673D">:</span><span style="color:#E5673D"> iterable</span></span>
+<span class="line" data-linenr="5"><span style="color:#999999">    {</span></span>
+<span class="line focused" data-linenr="7"><span style="color:#E5673D">        if</span><span style="color:#999999"> (</span><span style="color:#E5673D">!</span><span style="color:#C7C8D2">is_file</span><span style="color:#999999">(</span><span style="color:#E5673D">$</span><span style="color:#D8DEE9">bundlesPath</span><span style="color:#E5673D"> =</span><span style="color:#E5673D"> $</span><span style="color:#D8DEE9">this</span><span style="color:#E5673D">-></span><span style="color:#C7C8D2">getBundlesPath</span><span style="color:#999999">()))</span><span style="color:#999999"> {</span></span>
+<span class="line focused" data-linenr="8"><span style="color:#E5673D">            yield</span><span style="color:#E5673D"> new</span><span style="color:#C7C8D2"> FrameworkBundle</span><span style="color:#999999">()</span><span style="color:#E5673D">;</span></span>
+<span class="line focused" data-linenr="9"></span>
+<span class="line focused" data-linenr="10"><span style="color:#E5673D">            return;</span></span>
+<span class="line focused" data-linenr="11"><span style="color:#999999">        }</span></span>
+<span class="line" data-linenr="12"></span>
+<span class="line" data-linenr="13"><span style="color:#6B90C0;font-style:italic">        // ...</span></span>
+<span class="line" data-linenr="14"><span style="color:#999999">    }</span></span>
+<span class="line" data-linenr="15"><span style="color:#999999">}</span></span></code></pre></div>
 </div>
 
 <p>In other words, if the <code class="highlighter-shiki">config/bundles.php</code> file does not exist, it
@@ -416,7 +437,7 @@ file (and environment-specific files).</p>
 <p>We can transform the YAML configuration to PHP code and override this method
 in our app’s Kernel:</p>
 
-<div class="language-php highlighter-shiki"><pre class="shiki-gutter">1
+<div class="language-php highlighter-shiki"><div><pre class="shiki-gutter">1
 2
 3
 4
@@ -430,20 +451,20 @@ in our app’s Kernel:</p>
 12
 13
 14
-</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #E5673D">class</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">Kernel</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">extends</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">BaseKernel</span></span>
-<span class="line" data-linenr="2"><span style="color: #999999">{</span></span>
-<span class="line" data-linenr="3"><span style="color: #BBBBBB">    </span><span style="color: #E5673D">use</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">MicroKernelTrait</span><span style="color: #E5673D">;</span></span>
+15</pre><pre class="shiki wouterj has-focused shiki-code" style="background-color:#1e1e1e;color:#bbbbbb" tabindex="0"><code><span class="line" data-linenr="1"><span style="color:#E5673D">class</span><span style="color:#C7C8D2"> Kernel</span><span style="color:#E5673D"> extends</span><span style="color:#C7C8D2"> BaseKernel</span></span>
+<span class="line" data-linenr="2"><span style="color:#999999">{</span></span>
+<span class="line" data-linenr="3"><span style="color:#E5673D">    use</span><span style="color:#C7C8D2"> MicroKernelTrait</span><span style="color:#E5673D">;</span></span>
 <span class="line" data-linenr="4"></span>
-<span class="line" data-linenr="5"><span style="color: #BBBBBB">    </span><span style="color: #E5673D">private</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">function</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">configureContainer</span><span style="color: #999999">(</span><span style="color: #C7C8D2">ContainerConfigurator</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">container</span><span style="color: #999999">,</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">LoaderInterface</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">loader</span><span style="color: #999999">,</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">ContainerBuilder</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">builder</span><span style="color: #999999">)</span><span style="color: #E5673D">:</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">void</span></span>
-<span class="line" data-linenr="6"><span style="color: #BBBBBB">    </span><span style="color: #999999">{</span></span>
-<span class="line" data-linenr="7"><span style="color: #BBBBBB">        </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">container</span><span style="color: #E5673D">-&gt;</span><span style="color: #C7C8D2">services</span><span style="color: #999999">()</span></span>
-<span class="line" data-linenr="8"><span style="color: #BBBBBB">            </span><span style="color: #E5673D">-&gt;</span><span style="color: #C7C8D2">defaults</span><span style="color: #999999">()</span></span>
-<span class="line" data-linenr="9"><span style="color: #BBBBBB">                </span><span style="color: #E5673D">-&gt;</span><span style="color: #C7C8D2">autowire</span><span style="color: #999999">(</span><span style="color: #E5673D">true</span><span style="color: #999999">)</span></span>
-<span class="line" data-linenr="10"><span style="color: #BBBBBB">                </span><span style="color: #E5673D">-&gt;</span><span style="color: #C7C8D2">autoconfigure</span><span style="color: #999999">(</span><span style="color: #E5673D">true</span><span style="color: #999999">)</span></span>
-<span class="line" data-linenr="11"><span style="color: #BBBBBB">            </span><span style="color: #E5673D">-&gt;</span><span style="color: #C7C8D2">load</span><span style="color: #999999">(</span><span style="color: #999999">&#39;</span><span style="color: #7CC64A">App</span><span style="color: #EBCB8B">\\</span><span style="color: #999999">&#39;</span><span style="color: #999999">,</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">__DIR__</span><span style="color: #999999">)</span></span>
-<span class="line" data-linenr="12"><span style="color: #BBBBBB">      </span><span style="color: #E5673D">;</span></span>
-<span class="line" data-linenr="13"><span style="color: #BBBBBB">    </span><span style="color: #999999">}</span></span>
-<span class="line" data-linenr="14"><span style="color: #999999">}</span></span></code></pre>
+<span class="line focused" data-linenr="6"><span style="color:#E5673D">    private</span><span style="color:#E5673D"> function</span><span style="color:#C7C8D2"> configureContainer</span><span style="color:#999999">(</span><span style="color:#C7C8D2">ContainerConfigurator</span><span style="color:#E5673D"> $</span><span style="color:#D8DEE9">container</span><span style="color:#999999">,</span><span style="color:#C7C8D2"> LoaderInterface</span><span style="color:#E5673D"> $</span><span style="color:#D8DEE9">loader</span><span style="color:#999999">,</span><span style="color:#C7C8D2"> ContainerBuilder</span><span style="color:#E5673D"> $</span><span style="color:#D8DEE9">builder</span><span style="color:#999999">)</span><span style="color:#E5673D">:</span><span style="color:#E5673D"> void</span></span>
+<span class="line focused" data-linenr="7"><span style="color:#999999">    {</span></span>
+<span class="line focused" data-linenr="8"><span style="color:#E5673D">        $</span><span style="color:#D8DEE9">container</span><span style="color:#E5673D">-></span><span style="color:#C7C8D2">services</span><span style="color:#999999">()</span></span>
+<span class="line focused" data-linenr="9"><span style="color:#E5673D">            -></span><span style="color:#C7C8D2">defaults</span><span style="color:#999999">()</span></span>
+<span class="line focused" data-linenr="10"><span style="color:#E5673D">                -></span><span style="color:#C7C8D2">autowire</span><span style="color:#999999">(</span><span style="color:#E5673D">true</span><span style="color:#999999">)</span></span>
+<span class="line focused" data-linenr="11"><span style="color:#E5673D">                -></span><span style="color:#C7C8D2">autoconfigure</span><span style="color:#999999">(</span><span style="color:#E5673D">true</span><span style="color:#999999">)</span></span>
+<span class="line focused" data-linenr="12"><span style="color:#E5673D">            -></span><span style="color:#C7C8D2">load</span><span style="color:#999999">(</span><span style="color:#999999">'</span><span style="color:#7CC64A">App</span><span style="color:#EBCB8B">\\</span><span style="color:#999999">'</span><span style="color:#999999">,</span><span style="color:#E5673D"> __DIR__</span><span style="color:#999999">)</span></span>
+<span class="line focused" data-linenr="13"><span style="color:#E5673D">      ;</span></span>
+<span class="line focused" data-linenr="14"><span style="color:#999999">    }</span></span>
+<span class="line" data-linenr="15"><span style="color:#999999">}</span></span></code></pre></div>
 </div>
     
       <h3 id="moving-routing-configuration-to-the-kernel">
@@ -465,20 +486,20 @@ to PHP code and override <code class="highlighter-shiki">configureRoutes()</code
 
 <p>However, <code class="highlighter-shiki">loadRoutes()</code> has one more trick:</p>
 
-<div class="language-php highlighter-shiki"><pre class="shiki-gutter">1
+<div class="language-php highlighter-shiki"><div><pre class="shiki-gutter">1
 2
 3
 4
 5
 6
 7
-</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #E5673D">private</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">function</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">configureRoutes</span><span style="color: #999999">(</span><span style="color: #C7C8D2">RoutingConfigurator</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">routes</span><span style="color: #999999">)</span><span style="color: #E5673D">:</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">void</span></span>
-<span class="line" data-linenr="2"><span style="color: #999999">{</span></span>
-<span class="line" data-linenr="3"><span style="color: #999999">    </span><span style="color: #6B90C0; font-style: italic">// ...</span></span>
-<span class="line" data-linenr="4"><span style="color: #BBBBBB">    </span><span style="color: #E5673D">if</span><span style="color: #BBBBBB"> </span><span style="color: #999999">(</span><span style="color: #E5673D">false</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">!==</span><span style="color: #BBBBBB"> </span><span style="color: #999999">(</span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">fileName</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">=</span><span style="color: #BBBBBB"> </span><span style="color: #999999">(</span><span style="color: #E5673D">new</span><span style="color: #BBBBBB"> </span><span style="color: #999999">\</span><span style="color: #C7C8D2">ReflectionObject</span><span style="color: #999999">(</span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">this</span><span style="color: #999999">))</span><span style="color: #E5673D">-&gt;</span><span style="color: #C7C8D2">getFileName</span><span style="color: #999999">()))</span><span style="color: #BBBBBB"> </span><span style="color: #999999">{</span></span>
-<span class="line" data-linenr="5"><span style="color: #BBBBBB">        </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">routes</span><span style="color: #E5673D">-&gt;</span><span style="color: #C7C8D2">import</span><span style="color: #999999">(</span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">fileName</span><span style="color: #999999">,</span><span style="color: #BBBBBB"> </span><span style="color: #999999">&#39;</span><span style="color: #7CC64A">attribute</span><span style="color: #999999">&#39;</span><span style="color: #999999">)</span><span style="color: #E5673D">;</span></span>
-<span class="line" data-linenr="6"><span style="color: #BBBBBB">    </span><span style="color: #999999">}</span></span>
-<span class="line" data-linenr="7"><span style="color: #999999">}</span></span></code></pre>
+8</pre><pre class="shiki wouterj has-focused shiki-code" style="background-color:#1e1e1e;color:#bbbbbb" tabindex="0"><code><span class="line" data-linenr="1"><span style="color:#E5673D">private</span><span style="color:#E5673D"> function</span><span style="color:#C7C8D2"> configureRoutes</span><span style="color:#999999">(</span><span style="color:#C7C8D2">RoutingConfigurator</span><span style="color:#E5673D"> $</span><span style="color:#D8DEE9">routes</span><span style="color:#999999">)</span><span style="color:#E5673D">:</span><span style="color:#E5673D"> void</span></span>
+<span class="line" data-linenr="2"><span style="color:#999999">{</span></span>
+<span class="line" data-linenr="3"><span style="color:#6B90C0;font-style:italic">    // ...</span></span>
+<span class="line focused" data-linenr="5"><span style="color:#E5673D">    if</span><span style="color:#999999"> (</span><span style="color:#E5673D">false</span><span style="color:#E5673D"> !==</span><span style="color:#999999"> (</span><span style="color:#E5673D">$</span><span style="color:#D8DEE9">fileName</span><span style="color:#E5673D"> =</span><span style="color:#999999"> (</span><span style="color:#E5673D">new</span><span style="color:#999999"> \</span><span style="color:#C7C8D2">ReflectionObject</span><span style="color:#999999">(</span><span style="color:#E5673D">$</span><span style="color:#D8DEE9">this</span><span style="color:#999999">))</span><span style="color:#E5673D">-></span><span style="color:#C7C8D2">getFileName</span><span style="color:#999999">()))</span><span style="color:#999999"> {</span></span>
+<span class="line focused" data-linenr="6"><span style="color:#E5673D">        $</span><span style="color:#D8DEE9">routes</span><span style="color:#E5673D">-></span><span style="color:#C7C8D2">import</span><span style="color:#999999">(</span><span style="color:#E5673D">$</span><span style="color:#D8DEE9">fileName</span><span style="color:#999999">,</span><span style="color:#999999"> '</span><span style="color:#7CC64A">attribute</span><span style="color:#999999">'</span><span style="color:#999999">)</span><span style="color:#E5673D">;</span></span>
+<span class="line focused" data-linenr="7"><span style="color:#999999">    }</span></span>
+<span class="line" data-linenr="8"><span style="color:#999999">}</span></span></code></pre></div>
 </div>
 
 <p>The Kernel class itself is always configured to find methods with the
@@ -488,7 +509,7 @@ class, we don’t need any routing config.</p>
 <p>As an example, let’s add a homepage controller and remove the
 <code class="highlighter-shiki">config/routes.yaml</code> file:</p>
 
-<div class="language-php highlighter-shiki"><pre class="shiki-gutter">1
+<div class="language-php highlighter-shiki"><div><pre class="shiki-gutter">1
 2
 3
 4
@@ -507,25 +528,25 @@ class, we don’t need any routing config.</p>
 17
 18
 19
-</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #E5673D">use</span><span style="color: #BBBBBB"> Symfony</span><span style="color: #999999">\</span><span style="color: #BBBBBB">Component</span><span style="color: #999999">\</span><span style="color: #BBBBBB">HttpFoundation</span><span style="color: #999999">\</span><span style="color: #C7C8D2">Response</span><span style="color: #E5673D">;</span></span>
-<span class="line" data-linenr="2"><span style="color: #E5673D">use</span><span style="color: #BBBBBB"> Symfony</span><span style="color: #999999">\</span><span style="color: #BBBBBB">Component</span><span style="color: #999999">\</span><span style="color: #BBBBBB">Routing</span><span style="color: #999999">\</span><span style="color: #BBBBBB">Attribute</span><span style="color: #999999">\</span><span style="color: #C7C8D2">Route</span><span style="color: #E5673D">;</span></span>
+20</pre><pre class="shiki wouterj has-focused shiki-code" style="background-color:#1e1e1e;color:#bbbbbb" tabindex="0"><code><span class="line" data-linenr="1"><span style="color:#E5673D">use</span><span style="color:#BBBBBB"> Symfony</span><span style="color:#999999">\</span><span style="color:#BBBBBB">Component</span><span style="color:#999999">\</span><span style="color:#BBBBBB">HttpFoundation</span><span style="color:#999999">\</span><span style="color:#C7C8D2">Response</span><span style="color:#E5673D">;</span></span>
+<span class="line" data-linenr="2"><span style="color:#E5673D">use</span><span style="color:#BBBBBB"> Symfony</span><span style="color:#999999">\</span><span style="color:#BBBBBB">Component</span><span style="color:#999999">\</span><span style="color:#BBBBBB">Routing</span><span style="color:#999999">\</span><span style="color:#BBBBBB">Attribute</span><span style="color:#999999">\</span><span style="color:#C7C8D2">Route</span><span style="color:#E5673D">;</span></span>
 <span class="line" data-linenr="3"></span>
-<span class="line" data-linenr="4"><span style="color: #E5673D">class</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">Kernel</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">extends</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">BaseKernel</span></span>
-<span class="line" data-linenr="5"><span style="color: #999999">{</span></span>
-<span class="line" data-linenr="6"><span style="color: #999999">    </span><span style="color: #6B90C0; font-style: italic">// ...</span></span>
+<span class="line" data-linenr="4"><span style="color:#E5673D">class</span><span style="color:#C7C8D2"> Kernel</span><span style="color:#E5673D"> extends</span><span style="color:#C7C8D2"> BaseKernel</span></span>
+<span class="line" data-linenr="5"><span style="color:#999999">{</span></span>
+<span class="line" data-linenr="6"><span style="color:#6B90C0;font-style:italic">    // ...</span></span>
 <span class="line" data-linenr="7"></span>
-<span class="line" data-linenr="8"><span style="color: #BBBBBB">    #[Route</span><span style="color: #999999">(</span><span style="color: #999999">&#39;</span><span style="color: #7CC64A">/</span><span style="color: #999999">&#39;</span><span style="color: #999999">)</span><span style="color: #BBBBBB">]</span></span>
-<span class="line" data-linenr="9"><span style="color: #BBBBBB">    </span><span style="color: #E5673D">public</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">function</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">home</span><span style="color: #999999">()</span><span style="color: #E5673D">:</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">Response</span></span>
-<span class="line" data-linenr="10"><span style="color: #BBBBBB">    </span><span style="color: #999999">{</span></span>
-<span class="line" data-linenr="11"><span style="color: #BBBBBB">        </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">loc</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">=</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">count</span><span style="color: #999999">(</span><span style="color: #C7C8D2">file</span><span style="color: #999999">(</span><span style="color: #E5673D">__FILE__</span><span style="color: #999999">))</span><span style="color: #E5673D">;</span></span>
-<span class="line" data-linenr="12"></span>
-<span class="line" data-linenr="13"><span style="color: #BBBBBB">        </span><span style="color: #E5673D">return</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">new</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">Response</span><span style="color: #999999">(</span><span style="color: #999999">&lt;&lt;&lt;</span><span style="color: #E5673D">EOF</span></span>
-<span class="line" data-linenr="14"><span style="color: #7CC64A">            &lt;!doctype html&gt;</span></span>
-<span class="line" data-linenr="15"><span style="color: #7CC64A">            &lt;title&gt;Symfony One File Challenge&lt;/title&gt;</span></span>
-<span class="line" data-linenr="16"><span style="color: #7CC64A">            &lt;h1&gt;Symfony One File Challenge: </span><span style="color: #E5673D">{$</span><span style="color: #D8DEE9">loc</span><span style="color: #E5673D">}</span><span style="color: #7CC64A"> lines&lt;/h1&gt;</span></span>
-<span class="line" data-linenr="17"><span style="color: #7CC64A">            </span><span style="color: #E5673D">EOF</span><span style="color: #999999">)</span><span style="color: #E5673D">;</span></span>
-<span class="line" data-linenr="18"><span style="color: #BBBBBB">    </span><span style="color: #999999">}</span></span>
-<span class="line" data-linenr="19"><span style="color: #999999">}</span></span></code></pre>
+<span class="line focused" data-linenr="9"><span style="color:#BBBBBB">    #[Route</span><span style="color:#999999">(</span><span style="color:#999999">'</span><span style="color:#7CC64A">/</span><span style="color:#999999">'</span><span style="color:#999999">)</span><span style="color:#BBBBBB">]</span></span>
+<span class="line focused" data-linenr="10"><span style="color:#E5673D">    public</span><span style="color:#E5673D"> function</span><span style="color:#C7C8D2"> home</span><span style="color:#999999">()</span><span style="color:#E5673D">:</span><span style="color:#C7C8D2"> Response</span></span>
+<span class="line focused" data-linenr="11"><span style="color:#999999">    {</span></span>
+<span class="line focused" data-linenr="12"><span style="color:#E5673D">        $</span><span style="color:#D8DEE9">loc</span><span style="color:#E5673D"> =</span><span style="color:#C7C8D2"> count</span><span style="color:#999999">(</span><span style="color:#C7C8D2">file</span><span style="color:#999999">(</span><span style="color:#E5673D">__FILE__</span><span style="color:#999999">))</span><span style="color:#E5673D">;</span></span>
+<span class="line focused" data-linenr="13"></span>
+<span class="line focused" data-linenr="14"><span style="color:#E5673D">        return</span><span style="color:#E5673D"> new</span><span style="color:#C7C8D2"> Response</span><span style="color:#999999">(</span><span style="color:#999999">&#x3C;&#x3C;&#x3C;</span><span style="color:#E5673D">EOF</span></span>
+<span class="line focused" data-linenr="15"><span style="color:#7CC64A">            &#x3C;!doctype html></span></span>
+<span class="line focused" data-linenr="16"><span style="color:#7CC64A">            &#x3C;title>Symfony One File Challenge&#x3C;/title></span></span>
+<span class="line focused" data-linenr="17"><span style="color:#7CC64A">            &#x3C;h1>Symfony One File Challenge: </span><span style="color:#E5673D">{$</span><span style="color:#D8DEE9">loc</span><span style="color:#E5673D">}</span><span style="color:#7CC64A"> lines&#x3C;/h1></span></span>
+<span class="line focused" data-linenr="18"><span style="color:#E5673D">            EOF</span><span style="color:#999999">)</span><span style="color:#E5673D">;</span></span>
+<span class="line focused" data-linenr="19"><span style="color:#999999">    }</span></span>
+<span class="line" data-linenr="20"><span style="color:#999999">}</span></span></code></pre></div>
 </div>
     
       <h3 id="cleaning-up-the-config-folder">
@@ -553,20 +574,31 @@ can remove the whole directory now.</p>
 <p>We’ve removed quite a lot of files and lines in our minimal application.
 Let’s take another look at the file structure:</p>
 
-<div class="language-text highlighter-shiki"><pre class="shiki-gutter">1
-</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: undefined">symfony-onefile/
-├── bin/
-│   └── console
-├── public/
-│   └── index.php
-├── src/
-│   └── Kernel.php
-├── var/
-├── vendor/
-├── .editorconfig
-├── composer.json
-├── composer.lock
-└── symfony.lock</span></span></code></pre>
+<div class="language-text highlighter-shiki"><div><pre class="shiki-gutter">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13</pre><pre class="shiki wouterj shiki-code" style="background-color:#1e1e1e;color:#bbbbbb" tabindex="0"><code><span class="line" data-linenr="1"><span>symfony-onefile/</span></span>
+<span class="line" data-linenr="2"><span>├── bin/</span></span>
+<span class="line" data-linenr="3"><span>│   └── console</span></span>
+<span class="line" data-linenr="4"><span>├── public/</span></span>
+<span class="line" data-linenr="5"><span>│   └── index.php</span></span>
+<span class="line" data-linenr="6"><span>├── src/</span></span>
+<span class="line" data-linenr="7"><span>│   └── Kernel.php</span></span>
+<span class="line" data-linenr="8"><span>├── var/</span></span>
+<span class="line" data-linenr="9"><span>├── vendor/</span></span>
+<span class="line" data-linenr="10"><span>├── .editorconfig</span></span>
+<span class="line" data-linenr="11"><span>├── composer.json</span></span>
+<span class="line" data-linenr="12"><span>├── composer.lock</span></span>
+<span class="line" data-linenr="13"><span>└── symfony.lock</span></span></code></pre></div>
 </div>
 
 <p>Only three application files are left:</p>
@@ -587,7 +619,7 @@ closure returns an <code class="highlighter-shiki">Application</code> with our K
 Kernel for HTTP requests. We can use PHP’s <code class="highlighter-shiki">PHP_SAPI</code> constant to
 determine if a file is called from an CLI context or HTTP one:</p>
 
-<div class="language-php highlighter-shiki"><pre class="shiki-gutter">1
+<div class="language-php highlighter-shiki"><div><pre class="shiki-gutter">1
 2
 3
 4
@@ -599,18 +631,18 @@ determine if a file is called from an CLI context or HTTP one:</p>
 10
 11
 12
-</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #E5673D">&lt;?</span><span style="color: #BBBBBB">php </span><span style="color: #6B90C0; font-style: italic">// app.php</span></span>
+13</pre><pre class="shiki wouterj has-focused shiki-code" style="background-color:#1e1e1e;color:#bbbbbb" tabindex="0"><code><span class="line" data-linenr="1"><span style="color:#E5673D">&#x3C;?</span><span style="color:#BBBBBB">php </span><span style="color:#6B90C0;font-style:italic">// app.php</span></span>
 <span class="line" data-linenr="2"></span>
-<span class="line" data-linenr="3"><span style="color: #E5673D">use</span><span style="color: #BBBBBB"> App</span><span style="color: #999999">\</span><span style="color: #C7C8D2">Kernel</span><span style="color: #E5673D">;</span></span>
-<span class="line" data-linenr="4"><span style="color: #E5673D">use</span><span style="color: #BBBBBB"> Symfony</span><span style="color: #999999">\</span><span style="color: #BBBBBB">Bundle</span><span style="color: #999999">\</span><span style="color: #BBBBBB">FrameworkBundle</span><span style="color: #999999">\</span><span style="color: #BBBBBB">Console</span><span style="color: #999999">\</span><span style="color: #C7C8D2">Application</span><span style="color: #E5673D">;</span></span>
+<span class="line" data-linenr="3"><span style="color:#E5673D">use</span><span style="color:#BBBBBB"> App</span><span style="color:#999999">\</span><span style="color:#C7C8D2">Kernel</span><span style="color:#E5673D">;</span></span>
+<span class="line" data-linenr="4"><span style="color:#E5673D">use</span><span style="color:#BBBBBB"> Symfony</span><span style="color:#999999">\</span><span style="color:#BBBBBB">Bundle</span><span style="color:#999999">\</span><span style="color:#BBBBBB">FrameworkBundle</span><span style="color:#999999">\</span><span style="color:#BBBBBB">Console</span><span style="color:#999999">\</span><span style="color:#C7C8D2">Application</span><span style="color:#E5673D">;</span></span>
 <span class="line" data-linenr="5"></span>
-<span class="line" data-linenr="6"><span style="color: #E5673D">require_once</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">__DIR__</span><span style="color: #E5673D">.</span><span style="color: #999999">&#39;</span><span style="color: #7CC64A">/vendor/autoload_runtime.php</span><span style="color: #999999">&#39;</span><span style="color: #E5673D">;</span></span>
+<span class="line" data-linenr="6"><span style="color:#E5673D">require_once</span><span style="color:#E5673D"> __DIR__</span><span style="color:#E5673D">.</span><span style="color:#999999">'</span><span style="color:#7CC64A">/vendor/autoload_runtime.php</span><span style="color:#999999">'</span><span style="color:#E5673D">;</span></span>
 <span class="line" data-linenr="7"></span>
-<span class="line" data-linenr="8"><span style="color: #E5673D">return</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">function</span><span style="color: #BBBBBB"> </span><span style="color: #999999">(</span><span style="color: #E5673D">array</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">context</span><span style="color: #999999">)</span><span style="color: #BBBBBB"> </span><span style="color: #999999">{</span></span>
-<span class="line" data-linenr="9"><span style="color: #BBBBBB">    </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">kernel</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">=</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">new</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">Kernel</span><span style="color: #999999">(</span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">context</span><span style="color: #999999">[</span><span style="color: #999999">&#39;</span><span style="color: #7CC64A">APP_ENV</span><span style="color: #999999">&#39;</span><span style="color: #999999">],</span><span style="color: #BBBBBB"> </span><span style="color: #999999">(</span><span style="color: #E5673D">bool</span><span style="color: #999999">)</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">context</span><span style="color: #999999">[</span><span style="color: #999999">&#39;</span><span style="color: #7CC64A">APP_DEBUG</span><span style="color: #999999">&#39;</span><span style="color: #999999">])</span><span style="color: #E5673D">;</span></span>
-<span class="line" data-linenr="10"></span>
-<span class="line" data-linenr="11"><span style="color: #BBBBBB">    </span><span style="color: #E5673D">return</span><span style="color: #BBBBBB"> </span><span style="color: #999999">&#39;</span><span style="color: #7CC64A">cli</span><span style="color: #999999">&#39;</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">===</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">PHP_SAPI</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">?</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">new</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">Application</span><span style="color: #999999">(</span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">kernel</span><span style="color: #999999">)</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">:</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">kernel</span><span style="color: #E5673D">;</span></span>
-<span class="line" data-linenr="12"><span style="color: #999999">}</span><span style="color: #E5673D">;</span></span></code></pre>
+<span class="line focused" data-linenr="9"><span style="color:#E5673D">return</span><span style="color:#E5673D"> function</span><span style="color:#999999"> (</span><span style="color:#E5673D">array</span><span style="color:#E5673D"> $</span><span style="color:#D8DEE9">context</span><span style="color:#999999">)</span><span style="color:#999999"> {</span></span>
+<span class="line focused" data-linenr="10"><span style="color:#E5673D">    $</span><span style="color:#D8DEE9">kernel</span><span style="color:#E5673D"> =</span><span style="color:#E5673D"> new</span><span style="color:#C7C8D2"> Kernel</span><span style="color:#999999">(</span><span style="color:#E5673D">$</span><span style="color:#D8DEE9">context</span><span style="color:#999999">[</span><span style="color:#999999">'</span><span style="color:#7CC64A">APP_ENV</span><span style="color:#999999">'</span><span style="color:#999999">],</span><span style="color:#999999"> (</span><span style="color:#E5673D">bool</span><span style="color:#999999">)</span><span style="color:#E5673D"> $</span><span style="color:#D8DEE9">context</span><span style="color:#999999">[</span><span style="color:#999999">'</span><span style="color:#7CC64A">APP_DEBUG</span><span style="color:#999999">'</span><span style="color:#999999">])</span><span style="color:#E5673D">;</span></span>
+<span class="line focused" data-linenr="11"></span>
+<span class="line focused" data-linenr="12"><span style="color:#E5673D">    return</span><span style="color:#999999"> '</span><span style="color:#7CC64A">cli</span><span style="color:#999999">'</span><span style="color:#E5673D"> ===</span><span style="color:#E5673D"> PHP_SAPI</span><span style="color:#E5673D"> ?</span><span style="color:#E5673D"> new</span><span style="color:#C7C8D2"> Application</span><span style="color:#999999">(</span><span style="color:#E5673D">$</span><span style="color:#D8DEE9">kernel</span><span style="color:#999999">)</span><span style="color:#E5673D"> :</span><span style="color:#E5673D"> $</span><span style="color:#D8DEE9">kernel</span><span style="color:#E5673D">;</span></span>
+<span class="line focused" data-linenr="13"><span style="color:#999999">}</span><span style="color:#E5673D">;</span></span></code></pre></div>
 </div>
 
 <p>It looks like we should now be able to delete the <code class="highlighter-shiki">bin/console</code> and
@@ -653,7 +685,7 @@ service).</p>
 application is now nothing more than one file, one class, one method and
 one closure:</p>
 
-<div class="language-php highlighter-shiki"><pre class="shiki-gutter">1
+<div class="language-php highlighter-shiki"><div><pre class="shiki-gutter">1
 2
 3
 4
@@ -684,39 +716,38 @@ one closure:</p>
 29
 30
 31
-32
-</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #E5673D">&lt;?</span><span style="color: #BBBBBB">php</span></span>
+32</pre><pre class="shiki wouterj shiki-code" style="background-color:#1e1e1e;color:#bbbbbb" tabindex="0"><code><span class="line" data-linenr="1"><span style="color:#E5673D">&#x3C;?</span><span style="color:#BBBBBB">php</span></span>
 <span class="line" data-linenr="2"></span>
-<span class="line" data-linenr="3"><span style="color: #E5673D">use</span><span style="color: #BBBBBB"> Symfony</span><span style="color: #999999">\</span><span style="color: #BBBBBB">Bundle</span><span style="color: #999999">\</span><span style="color: #BBBBBB">FrameworkBundle</span><span style="color: #999999">\</span><span style="color: #BBBBBB">Console</span><span style="color: #999999">\</span><span style="color: #C7C8D2">Application</span><span style="color: #E5673D">;</span></span>
-<span class="line" data-linenr="4"><span style="color: #E5673D">use</span><span style="color: #BBBBBB"> Symfony</span><span style="color: #999999">\</span><span style="color: #BBBBBB">Bundle</span><span style="color: #999999">\</span><span style="color: #BBBBBB">FrameworkBundle</span><span style="color: #999999">\</span><span style="color: #BBBBBB">Kernel</span><span style="color: #999999">\</span><span style="color: #C7C8D2">MicroKernelTrait</span><span style="color: #E5673D">;</span></span>
-<span class="line" data-linenr="5"><span style="color: #E5673D">use</span><span style="color: #BBBBBB"> Symfony</span><span style="color: #999999">\</span><span style="color: #BBBBBB">Component</span><span style="color: #999999">\</span><span style="color: #BBBBBB">HttpFoundation</span><span style="color: #999999">\</span><span style="color: #C7C8D2">Response</span><span style="color: #E5673D">;</span></span>
-<span class="line" data-linenr="6"><span style="color: #E5673D">use</span><span style="color: #BBBBBB"> Symfony</span><span style="color: #999999">\</span><span style="color: #BBBBBB">Component</span><span style="color: #999999">\</span><span style="color: #BBBBBB">HttpKernel</span><span style="color: #999999">\</span><span style="color: #C7C8D2">Kernel</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">as</span><span style="color: #BBBBBB"> BaseKernel</span><span style="color: #E5673D">;</span></span>
-<span class="line" data-linenr="7"><span style="color: #E5673D">use</span><span style="color: #BBBBBB"> Symfony</span><span style="color: #999999">\</span><span style="color: #BBBBBB">Component</span><span style="color: #999999">\</span><span style="color: #BBBBBB">Routing</span><span style="color: #999999">\</span><span style="color: #BBBBBB">Attribute</span><span style="color: #999999">\</span><span style="color: #C7C8D2">Route</span><span style="color: #E5673D">;</span></span>
+<span class="line" data-linenr="3"><span style="color:#E5673D">use</span><span style="color:#BBBBBB"> Symfony</span><span style="color:#999999">\</span><span style="color:#BBBBBB">Bundle</span><span style="color:#999999">\</span><span style="color:#BBBBBB">FrameworkBundle</span><span style="color:#999999">\</span><span style="color:#BBBBBB">Console</span><span style="color:#999999">\</span><span style="color:#C7C8D2">Application</span><span style="color:#E5673D">;</span></span>
+<span class="line" data-linenr="4"><span style="color:#E5673D">use</span><span style="color:#BBBBBB"> Symfony</span><span style="color:#999999">\</span><span style="color:#BBBBBB">Bundle</span><span style="color:#999999">\</span><span style="color:#BBBBBB">FrameworkBundle</span><span style="color:#999999">\</span><span style="color:#BBBBBB">Kernel</span><span style="color:#999999">\</span><span style="color:#C7C8D2">MicroKernelTrait</span><span style="color:#E5673D">;</span></span>
+<span class="line" data-linenr="5"><span style="color:#E5673D">use</span><span style="color:#BBBBBB"> Symfony</span><span style="color:#999999">\</span><span style="color:#BBBBBB">Component</span><span style="color:#999999">\</span><span style="color:#BBBBBB">HttpFoundation</span><span style="color:#999999">\</span><span style="color:#C7C8D2">Response</span><span style="color:#E5673D">;</span></span>
+<span class="line" data-linenr="6"><span style="color:#E5673D">use</span><span style="color:#BBBBBB"> Symfony</span><span style="color:#999999">\</span><span style="color:#BBBBBB">Component</span><span style="color:#999999">\</span><span style="color:#BBBBBB">HttpKernel</span><span style="color:#999999">\</span><span style="color:#C7C8D2">Kernel</span><span style="color:#E5673D"> as</span><span style="color:#BBBBBB"> BaseKernel</span><span style="color:#E5673D">;</span></span>
+<span class="line" data-linenr="7"><span style="color:#E5673D">use</span><span style="color:#BBBBBB"> Symfony</span><span style="color:#999999">\</span><span style="color:#BBBBBB">Component</span><span style="color:#999999">\</span><span style="color:#BBBBBB">Routing</span><span style="color:#999999">\</span><span style="color:#BBBBBB">Attribute</span><span style="color:#999999">\</span><span style="color:#C7C8D2">Route</span><span style="color:#E5673D">;</span></span>
 <span class="line" data-linenr="8"></span>
-<span class="line" data-linenr="9"><span style="color: #E5673D">require_once</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">__DIR__</span><span style="color: #E5673D">.</span><span style="color: #999999">&#39;</span><span style="color: #7CC64A">/vendor/autoload_runtime.php</span><span style="color: #999999">&#39;</span><span style="color: #E5673D">;</span></span>
+<span class="line" data-linenr="9"><span style="color:#E5673D">require_once</span><span style="color:#E5673D"> __DIR__</span><span style="color:#E5673D">.</span><span style="color:#999999">'</span><span style="color:#7CC64A">/vendor/autoload_runtime.php</span><span style="color:#999999">'</span><span style="color:#E5673D">;</span></span>
 <span class="line" data-linenr="10"></span>
-<span class="line" data-linenr="11"><span style="color: #E5673D">class</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">Kernel</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">extends</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">BaseKernel</span></span>
-<span class="line" data-linenr="12"><span style="color: #999999">{</span></span>
-<span class="line" data-linenr="13"><span style="color: #BBBBBB">    </span><span style="color: #E5673D">use</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">MicroKernelTrait</span><span style="color: #E5673D">;</span></span>
+<span class="line" data-linenr="11"><span style="color:#E5673D">class</span><span style="color:#C7C8D2"> Kernel</span><span style="color:#E5673D"> extends</span><span style="color:#C7C8D2"> BaseKernel</span></span>
+<span class="line" data-linenr="12"><span style="color:#999999">{</span></span>
+<span class="line" data-linenr="13"><span style="color:#E5673D">    use</span><span style="color:#C7C8D2"> MicroKernelTrait</span><span style="color:#E5673D">;</span></span>
 <span class="line" data-linenr="14"></span>
-<span class="line" data-linenr="15"><span style="color: #BBBBBB">    #[Route</span><span style="color: #999999">(</span><span style="color: #999999">&#39;</span><span style="color: #7CC64A">/</span><span style="color: #999999">&#39;</span><span style="color: #999999">)</span><span style="color: #BBBBBB">]</span></span>
-<span class="line" data-linenr="16"><span style="color: #BBBBBB">    </span><span style="color: #E5673D">public</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">function</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">home</span><span style="color: #999999">()</span><span style="color: #E5673D">:</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">Response</span></span>
-<span class="line" data-linenr="17"><span style="color: #BBBBBB">    </span><span style="color: #999999">{</span></span>
-<span class="line" data-linenr="18"><span style="color: #BBBBBB">        </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">loc</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">=</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">count</span><span style="color: #999999">(</span><span style="color: #C7C8D2">file</span><span style="color: #999999">(</span><span style="color: #E5673D">__FILE__</span><span style="color: #999999">))</span><span style="color: #E5673D">;</span></span>
+<span class="line" data-linenr="15"><span style="color:#BBBBBB">    #[Route</span><span style="color:#999999">(</span><span style="color:#999999">'</span><span style="color:#7CC64A">/</span><span style="color:#999999">'</span><span style="color:#999999">)</span><span style="color:#BBBBBB">]</span></span>
+<span class="line" data-linenr="16"><span style="color:#E5673D">    public</span><span style="color:#E5673D"> function</span><span style="color:#C7C8D2"> home</span><span style="color:#999999">()</span><span style="color:#E5673D">:</span><span style="color:#C7C8D2"> Response</span></span>
+<span class="line" data-linenr="17"><span style="color:#999999">    {</span></span>
+<span class="line" data-linenr="18"><span style="color:#E5673D">        $</span><span style="color:#D8DEE9">loc</span><span style="color:#E5673D"> =</span><span style="color:#C7C8D2"> count</span><span style="color:#999999">(</span><span style="color:#C7C8D2">file</span><span style="color:#999999">(</span><span style="color:#E5673D">__FILE__</span><span style="color:#999999">))</span><span style="color:#E5673D">;</span></span>
 <span class="line" data-linenr="19"></span>
-<span class="line" data-linenr="20"><span style="color: #BBBBBB">        </span><span style="color: #E5673D">return</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">new</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">Response</span><span style="color: #999999">(</span><span style="color: #999999">&lt;&lt;&lt;</span><span style="color: #E5673D">EOF</span></span>
-<span class="line" data-linenr="21"><span style="color: #7CC64A">            &lt;!doctype html&gt;</span></span>
-<span class="line" data-linenr="22"><span style="color: #7CC64A">            &lt;title&gt;Symfony 1 file challenge&lt;/title&gt;</span></span>
-<span class="line" data-linenr="23"><span style="color: #7CC64A">            &lt;h1&gt;Symfony 1 file challenge: </span><span style="color: #E5673D">{$</span><span style="color: #D8DEE9">loc</span><span style="color: #E5673D">}</span><span style="color: #7CC64A"> lines&lt;/h1&gt;</span></span>
-<span class="line" data-linenr="24"><span style="color: #7CC64A">            </span><span style="color: #E5673D">EOF</span><span style="color: #999999">)</span><span style="color: #E5673D">;</span></span>
-<span class="line" data-linenr="25"><span style="color: #BBBBBB">    </span><span style="color: #999999">}</span></span>
-<span class="line" data-linenr="26"><span style="color: #999999">}</span></span>
+<span class="line" data-linenr="20"><span style="color:#E5673D">        return</span><span style="color:#E5673D"> new</span><span style="color:#C7C8D2"> Response</span><span style="color:#999999">(</span><span style="color:#999999">&#x3C;&#x3C;&#x3C;</span><span style="color:#E5673D">EOF</span></span>
+<span class="line" data-linenr="21"><span style="color:#7CC64A">            &#x3C;!doctype html></span></span>
+<span class="line" data-linenr="22"><span style="color:#7CC64A">            &#x3C;title>Symfony 1 file challenge&#x3C;/title></span></span>
+<span class="line" data-linenr="23"><span style="color:#7CC64A">            &#x3C;h1>Symfony 1 file challenge: </span><span style="color:#E5673D">{$</span><span style="color:#D8DEE9">loc</span><span style="color:#E5673D">}</span><span style="color:#7CC64A"> lines&#x3C;/h1></span></span>
+<span class="line" data-linenr="24"><span style="color:#E5673D">            EOF</span><span style="color:#999999">)</span><span style="color:#E5673D">;</span></span>
+<span class="line" data-linenr="25"><span style="color:#999999">    }</span></span>
+<span class="line" data-linenr="26"><span style="color:#999999">}</span></span>
 <span class="line" data-linenr="27"></span>
-<span class="line" data-linenr="28"><span style="color: #E5673D">return</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">function</span><span style="color: #BBBBBB"> </span><span style="color: #999999">(</span><span style="color: #E5673D">array</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">context</span><span style="color: #999999">)</span><span style="color: #BBBBBB"> </span><span style="color: #999999">{</span></span>
-<span class="line" data-linenr="29"><span style="color: #BBBBBB">    </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">kernel</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">=</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">new</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">Kernel</span><span style="color: #999999">(</span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">context</span><span style="color: #999999">[</span><span style="color: #999999">&#39;</span><span style="color: #7CC64A">APP_ENV</span><span style="color: #999999">&#39;</span><span style="color: #999999">],</span><span style="color: #BBBBBB"> </span><span style="color: #999999">(</span><span style="color: #E5673D">bool</span><span style="color: #999999">)</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">context</span><span style="color: #999999">[</span><span style="color: #999999">&#39;</span><span style="color: #7CC64A">APP_DEBUG</span><span style="color: #999999">&#39;</span><span style="color: #999999">])</span><span style="color: #E5673D">;</span></span>
+<span class="line" data-linenr="28"><span style="color:#E5673D">return</span><span style="color:#E5673D"> function</span><span style="color:#999999"> (</span><span style="color:#E5673D">array</span><span style="color:#E5673D"> $</span><span style="color:#D8DEE9">context</span><span style="color:#999999">)</span><span style="color:#999999"> {</span></span>
+<span class="line" data-linenr="29"><span style="color:#E5673D">    $</span><span style="color:#D8DEE9">kernel</span><span style="color:#E5673D"> =</span><span style="color:#E5673D"> new</span><span style="color:#C7C8D2"> Kernel</span><span style="color:#999999">(</span><span style="color:#E5673D">$</span><span style="color:#D8DEE9">context</span><span style="color:#999999">[</span><span style="color:#999999">'</span><span style="color:#7CC64A">APP_ENV</span><span style="color:#999999">'</span><span style="color:#999999">],</span><span style="color:#999999"> (</span><span style="color:#E5673D">bool</span><span style="color:#999999">)</span><span style="color:#E5673D"> $</span><span style="color:#D8DEE9">context</span><span style="color:#999999">[</span><span style="color:#999999">'</span><span style="color:#7CC64A">APP_DEBUG</span><span style="color:#999999">'</span><span style="color:#999999">])</span><span style="color:#E5673D">;</span></span>
 <span class="line" data-linenr="30"></span>
-<span class="line" data-linenr="31"><span style="color: #BBBBBB">    </span><span style="color: #E5673D">return</span><span style="color: #BBBBBB"> </span><span style="color: #999999">&#39;</span><span style="color: #7CC64A">cli</span><span style="color: #999999">&#39;</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">===</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">PHP_SAPI</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">?</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">new</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">Application</span><span style="color: #999999">(</span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">kernel</span><span style="color: #999999">)</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">:</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">kernel</span><span style="color: #E5673D">;</span></span>
-<span class="line" data-linenr="32"><span style="color: #999999">}</span><span style="color: #E5673D">;</span></span></code></pre>
+<span class="line" data-linenr="31"><span style="color:#E5673D">    return</span><span style="color:#999999"> '</span><span style="color:#7CC64A">cli</span><span style="color:#999999">'</span><span style="color:#E5673D"> ===</span><span style="color:#E5673D"> PHP_SAPI</span><span style="color:#E5673D"> ?</span><span style="color:#E5673D"> new</span><span style="color:#C7C8D2"> Application</span><span style="color:#999999">(</span><span style="color:#E5673D">$</span><span style="color:#D8DEE9">kernel</span><span style="color:#999999">)</span><span style="color:#E5673D"> :</span><span style="color:#E5673D"> $</span><span style="color:#D8DEE9">kernel</span><span style="color:#E5673D">;</span></span>
+<span class="line" data-linenr="32"><span style="color:#999999">}</span><span style="color:#E5673D">;</span></span></code></pre></div>
 </div>
 
 <p>With only 32 lines, we’ve more than reached the goal of less than 200 lines!

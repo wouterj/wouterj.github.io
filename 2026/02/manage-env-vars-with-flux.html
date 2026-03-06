@@ -89,22 +89,21 @@ repository, the resource will change in the cluster.</p>
 <p>In this GitLab repository, we define the environment variables from the
 application in a ConfigMap:</p>
 
-<div class="language-yaml highlighter-shiki"><pre class="shiki-gutter">1
+<div class="language-yaml highlighter-shiki"><div><pre class="shiki-gutter">1
 2
 3
 4
 5
 6
 7
-8
-</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #C7C8D2">apiVersion</span><span style="color: #999999">:</span><span style="color: #BBBBBB"> </span><span style="color: #7CC64A">v1</span></span>
-<span class="line" data-linenr="2"><span style="color: #C7C8D2">kind</span><span style="color: #999999">:</span><span style="color: #BBBBBB"> </span><span style="color: #7CC64A">ConfigMap</span></span>
-<span class="line" data-linenr="3"><span style="color: #C7C8D2">metadata</span><span style="color: #999999">:</span></span>
-<span class="line" data-linenr="4"><span style="color: #BBBBBB">    </span><span style="color: #C7C8D2">name</span><span style="color: #999999">:</span><span style="color: #BBBBBB"> </span><span style="color: #7CC64A">gitops-our-application</span></span>
-<span class="line" data-linenr="5"><span style="color: #BBBBBB">    </span><span style="color: #C7C8D2">namespace</span><span style="color: #999999">:</span><span style="color: #BBBBBB"> </span><span style="color: #7CC64A">production</span></span>
-<span class="line" data-linenr="6"><span style="color: #C7C8D2">data</span><span style="color: #999999">:</span></span>
-<span class="line" data-linenr="7"><span style="color: #BBBBBB">    </span><span style="color: #C7C8D2">APP_ENV</span><span style="color: #999999">:</span><span style="color: #BBBBBB"> </span><span style="color: #7CC64A">prod</span></span>
-<span class="line" data-linenr="8"><span style="color: #999999">    </span><span style="color: #6B90C0; font-style: italic"># ...</span></span></code></pre>
+8</pre><pre class="shiki wouterj shiki-code" style="background-color:#1e1e1e;color:#bbbbbb" tabindex="0"><code><span class="line" data-linenr="1"><span style="color:#C7C8D2">apiVersion</span><span style="color:#999999">:</span><span style="color:#7CC64A"> v1</span></span>
+<span class="line" data-linenr="2"><span style="color:#C7C8D2">kind</span><span style="color:#999999">:</span><span style="color:#7CC64A"> ConfigMap</span></span>
+<span class="line" data-linenr="3"><span style="color:#C7C8D2">metadata</span><span style="color:#999999">:</span></span>
+<span class="line" data-linenr="4"><span style="color:#C7C8D2">    name</span><span style="color:#999999">:</span><span style="color:#7CC64A"> gitops-our-application</span></span>
+<span class="line" data-linenr="5"><span style="color:#C7C8D2">    namespace</span><span style="color:#999999">:</span><span style="color:#7CC64A"> production</span></span>
+<span class="line" data-linenr="6"><span style="color:#C7C8D2">data</span><span style="color:#999999">:</span></span>
+<span class="line" data-linenr="7"><span style="color:#C7C8D2">    APP_ENV</span><span style="color:#999999">:</span><span style="color:#7CC64A"> prod</span></span>
+<span class="line" data-linenr="8"><span style="color:#6B90C0;font-style:italic">    # ...</span></span></code></pre></div>
 </div>
 
 <p>Sensitive environment variables (e.g. the database DSN) can be put in a
@@ -117,7 +116,7 @@ You can of course also store sensitive config in a secret vault.</p>
 deployments. This can be done by using <code class="highlighter-shiki">envFrom</code>, referencing the resources
 created by Flux:</p>
 
-<div class="language-yaml highlighter-shiki"><pre class="shiki-gutter">1
+<div class="language-yaml highlighter-shiki"><div><pre class="shiki-gutter">1
 2
 3
 4
@@ -132,21 +131,21 @@ created by Flux:</p>
 13
 14
 15
-</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #C7C8D2">apiVersion</span><span style="color: #999999">:</span><span style="color: #BBBBBB"> </span><span style="color: #7CC64A">apps/v1</span></span>
-<span class="line" data-linenr="2"><span style="color: #C7C8D2">kind</span><span style="color: #999999">:</span><span style="color: #BBBBBB"> </span><span style="color: #7CC64A">Deployment</span></span>
-<span class="line" data-linenr="3"><span style="color: #C7C8D2">metadata</span><span style="color: #999999">:</span></span>
-<span class="line" data-linenr="4"><span style="color: #BBBBBB">  </span><span style="color: #C7C8D2">name</span><span style="color: #999999">:</span><span style="color: #BBBBBB"> </span><span style="color: #7CC64A">our-application</span></span>
-<span class="line" data-linenr="5"><span style="color: #BBBBBB">  </span><span style="color: #C7C8D2">namespace</span><span style="color: #999999">:</span><span style="color: #BBBBBB"> </span><span style="color: #7CC64A">production</span></span>
-<span class="line" data-linenr="6"><span style="color: #C7C8D2">spec</span><span style="color: #999999">:</span></span>
-<span class="line" data-linenr="7"><span style="color: #BBBBBB">  </span><span style="color: #C7C8D2">template</span><span style="color: #999999">:</span></span>
-<span class="line" data-linenr="8"><span style="color: #BBBBBB">    </span><span style="color: #C7C8D2">spec</span><span style="color: #999999">:</span></span>
-<span class="line" data-linenr="9"><span style="color: #BBBBBB">      </span><span style="color: #C7C8D2">containers</span><span style="color: #999999">:</span></span>
-<span class="line" data-linenr="10"><span style="color: #BBBBBB">        </span><span style="color: #999999">-</span><span style="color: #BBBBBB"> </span><span style="color: #6B90C0; font-style: italic"># ...</span></span>
-<span class="line" data-linenr="11"><span style="color: #BBBBBB">          </span><span style="color: #C7C8D2">envFrom</span><span style="color: #999999">:</span></span>
-<span class="line" data-linenr="12"><span style="color: #BBBBBB">            </span><span style="color: #999999">-</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">configMapRef</span><span style="color: #999999">:</span></span>
-<span class="line" data-linenr="13"><span style="color: #BBBBBB">                </span><span style="color: #C7C8D2">name</span><span style="color: #999999">:</span><span style="color: #BBBBBB"> </span><span style="color: #7CC64A">gitops-our-application</span></span>
-<span class="line" data-linenr="14"><span style="color: #BBBBBB">            </span><span style="color: #999999">-</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">secretRef</span><span style="color: #999999">:</span></span>
-<span class="line" data-linenr="15"><span style="color: #BBBBBB">                </span><span style="color: #C7C8D2">name</span><span style="color: #999999">:</span><span style="color: #BBBBBB"> </span><span style="color: #7CC64A">gitops-our-application</span></span></code></pre>
+16</pre><pre class="shiki wouterj has-focused shiki-code" style="background-color:#1e1e1e;color:#bbbbbb" tabindex="0"><code><span class="line" data-linenr="1"><span style="color:#C7C8D2">apiVersion</span><span style="color:#999999">:</span><span style="color:#7CC64A"> apps/v1</span></span>
+<span class="line" data-linenr="2"><span style="color:#C7C8D2">kind</span><span style="color:#999999">:</span><span style="color:#7CC64A"> Deployment</span></span>
+<span class="line" data-linenr="3"><span style="color:#C7C8D2">metadata</span><span style="color:#999999">:</span></span>
+<span class="line" data-linenr="4"><span style="color:#C7C8D2">  name</span><span style="color:#999999">:</span><span style="color:#7CC64A"> our-application</span></span>
+<span class="line" data-linenr="5"><span style="color:#C7C8D2">  namespace</span><span style="color:#999999">:</span><span style="color:#7CC64A"> production</span></span>
+<span class="line" data-linenr="6"><span style="color:#C7C8D2">spec</span><span style="color:#999999">:</span></span>
+<span class="line" data-linenr="7"><span style="color:#C7C8D2">  template</span><span style="color:#999999">:</span></span>
+<span class="line" data-linenr="8"><span style="color:#C7C8D2">    spec</span><span style="color:#999999">:</span></span>
+<span class="line" data-linenr="9"><span style="color:#C7C8D2">      containers</span><span style="color:#999999">:</span></span>
+<span class="line" data-linenr="10"><span style="color:#999999">        -</span><span style="color:#6B90C0;font-style:italic"> # ...</span></span>
+<span class="line focused" data-linenr="12"><span style="color:#C7C8D2">          envFrom</span><span style="color:#999999">:</span></span>
+<span class="line focused" data-linenr="13"><span style="color:#999999">            -</span><span style="color:#C7C8D2"> configMapRef</span><span style="color:#999999">:</span></span>
+<span class="line focused" data-linenr="14"><span style="color:#C7C8D2">                name</span><span style="color:#999999">:</span><span style="color:#7CC64A"> gitops-our-application</span></span>
+<span class="line focused" data-linenr="15"><span style="color:#999999">            -</span><span style="color:#C7C8D2"> secretRef</span><span style="color:#999999">:</span></span>
+<span class="line focused" data-linenr="16"><span style="color:#C7C8D2">                name</span><span style="color:#999999">:</span><span style="color:#7CC64A"> gitops-our-application</span></span></code></pre></div>
 </div>
 
 <p>Now we’re set! Upon releasing this Helm chart, the deployment will read the
@@ -161,7 +160,7 @@ read the new environment variables until after a new deploy. The
 forcing Kubernetes to restart the pod when the mounted ConfigMap or Secret
 changes. After installing the operator, add the appropriate annotation:</p>
 
-<div class="language-yaml highlighter-shiki"><pre class="shiki-gutter">1
+<div class="language-yaml highlighter-shiki"><div><pre class="shiki-gutter">1
 2
 3
 4
@@ -169,14 +168,14 @@ changes. After installing the operator, add the appropriate annotation:</p>
 6
 7
 8
-</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #C7C8D2">kind</span><span style="color: #999999">:</span><span style="color: #BBBBBB"> </span><span style="color: #7CC64A">Deployment</span></span>
-<span class="line" data-linenr="2"><span style="color: #6B90C0; font-style: italic"># ...</span></span>
-<span class="line" data-linenr="3"><span style="color: #C7C8D2">spec</span><span style="color: #999999">:</span></span>
-<span class="line" data-linenr="4"><span style="color: #BBBBBB">  </span><span style="color: #C7C8D2">template</span><span style="color: #999999">:</span></span>
-<span class="line" data-linenr="5"><span style="color: #BBBBBB">    </span><span style="color: #C7C8D2">metadata</span><span style="color: #999999">:</span></span>
-<span class="line" data-linenr="6"><span style="color: #BBBBBB">      </span><span style="color: #C7C8D2">annotations</span><span style="color: #999999">:</span></span>
-<span class="line" data-linenr="7"><span style="color: #BBBBBB">        </span><span style="color: #C7C8D2">reloader.stakater.com/auto</span><span style="color: #999999">:</span><span style="color: #BBBBBB"> </span><span style="color: #999999">&quot;</span><span style="color: #7CC64A">true</span><span style="color: #999999">&quot;</span></span>
-<span class="line" data-linenr="8"><span style="color: #999999">  </span><span style="color: #6B90C0; font-style: italic"># ...</span></span></code></pre>
+9</pre><pre class="shiki wouterj has-focused shiki-code" style="background-color:#1e1e1e;color:#bbbbbb" tabindex="0"><code><span class="line" data-linenr="1"><span style="color:#C7C8D2">kind</span><span style="color:#999999">:</span><span style="color:#7CC64A"> Deployment</span></span>
+<span class="line" data-linenr="2"><span style="color:#6B90C0;font-style:italic"># ...</span></span>
+<span class="line" data-linenr="3"><span style="color:#C7C8D2">spec</span><span style="color:#999999">:</span></span>
+<span class="line" data-linenr="4"><span style="color:#C7C8D2">  template</span><span style="color:#999999">:</span></span>
+<span class="line" data-linenr="5"><span style="color:#C7C8D2">    metadata</span><span style="color:#999999">:</span></span>
+<span class="line focused" data-linenr="7"><span style="color:#C7C8D2">      annotations</span><span style="color:#999999">:</span></span>
+<span class="line focused" data-linenr="8"><span style="color:#C7C8D2">        reloader.stakater.com/auto</span><span style="color:#999999">:</span><span style="color:#999999"> "</span><span style="color:#7CC64A">true</span><span style="color:#999999">"</span></span>
+<span class="line" data-linenr="9"><span style="color:#6B90C0;font-style:italic">  # ...</span></span></code></pre></div>
 </div>
 
 <p>Now, an update of the ConfigMap in the GitLab repository triggers Flux to

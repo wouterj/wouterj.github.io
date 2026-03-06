@@ -83,14 +83,13 @@ generation using <a href="https://travis-ci.org/">Travis</a>.</p></div><div clas
 <code class="highlighter-shiki">publish.sh</code> file which will execute all commands required to generate the
 site:</p>
 
-<div class="language-bash highlighter-shiki"><pre class="shiki-gutter">1
+<div class="language-bash highlighter-shiki"><div><pre class="shiki-gutter">1
 2
 3
-4
-</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #6B90C0; font-style: italic"># build site</span></span>
-<span class="line" data-linenr="2"><span style="color: #BBBBBB">$ sass source/css/wouterj.scss:source/css/wouterj.css --style compressed --no-cache</span></span>
-<span class="line" data-linenr="3"><span style="color: #BBBBBB">$ ./vendor/bin/sculpin generate --env prod</span></span>
-<span class="line" data-linenr="4"><span style="color: #BBBBBB">$ touch output_prod/.nojekyll</span></span></code></pre>
+4</pre><pre class="shiki wouterj shiki-code" style="background-color:#1e1e1e;color:#bbbbbb" tabindex="0"><code><span class="line" data-linenr="1"><span style="color:#6B90C0;font-style:italic"># build site</span></span>
+<span class="line" data-linenr="2"><span style="color:#C7C8D2">sass</span><span style="color:#7CC64A"> source/css/wouterj.scss:source/css/wouterj.css</span><span style="color:#7CC64A"> --style</span><span style="color:#7CC64A"> compressed</span><span style="color:#7CC64A"> --no-cache</span></span>
+<span class="line" data-linenr="3"><span style="color:#C7C8D2">./vendor/bin/sculpin</span><span style="color:#7CC64A"> generate</span><span style="color:#7CC64A"> --env</span><span style="color:#7CC64A"> prod</span></span>
+<span class="line" data-linenr="4"><span style="color:#C7C8D2">touch</span><span style="color:#7CC64A"> output_prod/.nojekyll</span></span></code></pre></div>
 </div>
 
 <p>As this site uses Sass, it first needs to compile the sass code into a css
@@ -100,7 +99,7 @@ render the site as a Jekyll blog.</p>
 
 <p>To make Travis execute this file, you need some Travis configuration:</p>
 
-<div class="language-yaml highlighter-shiki"><pre class="shiki-gutter">1
+<div class="language-yaml highlighter-shiki"><div><pre class="shiki-gutter">1
 2
 3
 4
@@ -115,23 +114,22 @@ render the site as a Jekyll blog.</p>
 13
 14
 15
-16
-</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #6B90C0; font-style: italic"># .travis.yml</span></span>
-<span class="line" data-linenr="2"><span style="color: #C7C8D2">language</span><span style="color: #999999">:</span><span style="color: #BBBBBB"> </span><span style="color: #7CC64A">php</span></span>
-<span class="line" data-linenr="3"><span style="color: #C7C8D2">php</span><span style="color: #999999">:</span></span>
-<span class="line" data-linenr="4"><span style="color: #BBBBBB">  </span><span style="color: #999999">-</span><span style="color: #BBBBBB"> </span><span style="color: #7CC64A">hhvm</span></span>
+16</pre><pre class="shiki wouterj shiki-code" style="background-color:#1e1e1e;color:#bbbbbb" tabindex="0"><code><span class="line" data-linenr="1"><span style="color:#6B90C0;font-style:italic"># .travis.yml</span></span>
+<span class="line" data-linenr="2"><span style="color:#C7C8D2">language</span><span style="color:#999999">:</span><span style="color:#7CC64A"> php</span></span>
+<span class="line" data-linenr="3"><span style="color:#C7C8D2">php</span><span style="color:#999999">:</span></span>
+<span class="line" data-linenr="4"><span style="color:#999999">  -</span><span style="color:#7CC64A"> hhvm</span></span>
 <span class="line" data-linenr="5"></span>
-<span class="line" data-linenr="6"><span style="color: #C7C8D2">sudo</span><span style="color: #999999">:</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">false</span></span>
-<span class="line" data-linenr="7"><span style="color: #C7C8D2">cache</span><span style="color: #999999">:</span></span>
-<span class="line" data-linenr="8"><span style="color: #BBBBBB">  </span><span style="color: #C7C8D2">directories</span><span style="color: #999999">:</span></span>
-<span class="line" data-linenr="9"><span style="color: #BBBBBB">    </span><span style="color: #999999">-</span><span style="color: #BBBBBB"> </span><span style="color: #7CC64A">$HOME/.composer/cache</span></span>
+<span class="line" data-linenr="6"><span style="color:#C7C8D2">sudo</span><span style="color:#999999">:</span><span style="color:#E5673D"> false</span></span>
+<span class="line" data-linenr="7"><span style="color:#C7C8D2">cache</span><span style="color:#999999">:</span></span>
+<span class="line" data-linenr="8"><span style="color:#C7C8D2">  directories</span><span style="color:#999999">:</span></span>
+<span class="line" data-linenr="9"><span style="color:#999999">    -</span><span style="color:#7CC64A"> $HOME/.composer/cache</span></span>
 <span class="line" data-linenr="10"></span>
-<span class="line" data-linenr="11"><span style="color: #C7C8D2">before_script</span><span style="color: #999999">:</span></span>
-<span class="line" data-linenr="12"><span style="color: #BBBBBB">  </span><span style="color: #999999">-</span><span style="color: #BBBBBB"> </span><span style="color: #7CC64A">gem install sass</span></span>
-<span class="line" data-linenr="13"><span style="color: #BBBBBB">  </span><span style="color: #999999">-</span><span style="color: #BBBBBB"> </span><span style="color: #7CC64A">composer install --prefer-dist</span></span>
+<span class="line" data-linenr="11"><span style="color:#C7C8D2">before_script</span><span style="color:#999999">:</span></span>
+<span class="line" data-linenr="12"><span style="color:#999999">  -</span><span style="color:#7CC64A"> gem install sass</span></span>
+<span class="line" data-linenr="13"><span style="color:#999999">  -</span><span style="color:#7CC64A"> composer install --prefer-dist</span></span>
 <span class="line" data-linenr="14"></span>
-<span class="line" data-linenr="15"><span style="color: #C7C8D2">script</span><span style="color: #999999">:</span></span>
-<span class="line" data-linenr="16"><span style="color: #BBBBBB">  </span><span style="color: #999999">-</span><span style="color: #BBBBBB"> </span><span style="color: #7CC64A">sh publish.sh</span></span></code></pre>
+<span class="line" data-linenr="15"><span style="color:#C7C8D2">script</span><span style="color:#999999">:</span></span>
+<span class="line" data-linenr="16"><span style="color:#999999">  -</span><span style="color:#7CC64A"> sh publish.sh</span></span></code></pre></div>
 </div>
 
 <p>The first 9 lines are setting up the quickest Travis PHP build: HHVM, caching,
@@ -139,11 +137,10 @@ Docker environment, etc. The lines after this install Sass and the dependencies
 (yes, I commit <code class="highlighter-shiki">composer.lock</code>). The real Travis script executes the <code class="highlighter-shiki">publish.sh</code>
 file.</p>
 
-<div class="highlighter-shiki"><pre class="shiki-gutter">1</pre><pre class="shiki-code"><code>[note]
-Sculpin is added as a dependency in `composer.json` as shown under &quot;Download
-via Composer&quot; on the [download page][6].
-</code></pre>
-</div>
+<aside class="side" data-type="Note">
+  <p>Sculpin is added as a dependency in <code class="highlighter-shiki">composer.json</code> as shown under “Download
+via Composer” on the <a href="https://sculpin.io/download/">download page</a>.</p>
+</aside>
     
       <h2 id="the-branching-strategy">
         
@@ -160,18 +157,17 @@ on GitHub, as this is the only branch you should care about.</p>
 <p>To make sure that Travis only runs builds on the <code class="highlighter-shiki">source</code> branch, use the
 <code class="highlighter-shiki">branches.only</code> setting:</p>
 
-<div class="language-yaml highlighter-shiki"><pre class="shiki-gutter">1
+<div class="language-yaml highlighter-shiki"><div><pre class="shiki-gutter">1
 2
 3
 4
 5
-6
-</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #6B90C0; font-style: italic"># .travis.yml</span></span>
+6</pre><pre class="shiki wouterj shiki-code" style="background-color:#1e1e1e;color:#bbbbbb" tabindex="0"><code><span class="line" data-linenr="1"><span style="color:#6B90C0;font-style:italic"># .travis.yml</span></span>
 <span class="line" data-linenr="2"></span>
-<span class="line" data-linenr="3"><span style="color: #6B90C0; font-style: italic"># ...</span></span>
-<span class="line" data-linenr="4"><span style="color: #C7C8D2">branches</span><span style="color: #999999">:</span></span>
-<span class="line" data-linenr="5"><span style="color: #BBBBBB">  </span><span style="color: #C7C8D2">only</span><span style="color: #999999">:</span></span>
-<span class="line" data-linenr="6"><span style="color: #BBBBBB">    </span><span style="color: #999999">-</span><span style="color: #BBBBBB"> </span><span style="color: #7CC64A">source</span></span></code></pre>
+<span class="line" data-linenr="3"><span style="color:#6B90C0;font-style:italic"># ...</span></span>
+<span class="line" data-linenr="4"><span style="color:#C7C8D2">branches</span><span style="color:#999999">:</span></span>
+<span class="line" data-linenr="5"><span style="color:#C7C8D2">  only</span><span style="color:#999999">:</span></span>
+<span class="line" data-linenr="6"><span style="color:#999999">    -</span><span style="color:#7CC64A"> source</span></span></code></pre></div>
 </div>
     
       <h2 id="commiting-the-build">
@@ -186,40 +182,38 @@ on GitHub, as this is the only branch you should care about.</p>
 <code class="highlighter-shiki">output_prod</code> directory, commit and push it as the <code class="highlighter-shiki">master</code> branch. First, some
 Git config is required:</p>
 
-<div class="language-bash highlighter-shiki"><pre class="shiki-gutter">1
+<div class="language-bash highlighter-shiki"><div><pre class="shiki-gutter">1
 2
 3
 4
 5
 6
-7
-</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #6B90C0; font-style: italic"># publish.sh</span></span>
+7</pre><pre class="shiki wouterj shiki-code" style="background-color:#1e1e1e;color:#bbbbbb" tabindex="0"><code><span class="line" data-linenr="1"><span style="color:#6B90C0;font-style:italic"># publish.sh</span></span>
 <span class="line" data-linenr="2"></span>
-<span class="line" data-linenr="3"><span style="color: #6B90C0; font-style: italic"># configure env</span></span>
-<span class="line" data-linenr="4"><span style="color: #BBBBBB">git config --global user.email </span><span style="color: #999999">&#39;</span><span style="color: #7CC64A">your_email@example.com</span><span style="color: #999999">&#39;</span></span>
-<span class="line" data-linenr="5"><span style="color: #BBBBBB">git config --global user.name </span><span style="color: #999999">&#39;</span><span style="color: #7CC64A">WouterJ.nl bot</span><span style="color: #999999">&#39;</span></span>
+<span class="line" data-linenr="3"><span style="color:#6B90C0;font-style:italic"># configure env</span></span>
+<span class="line" data-linenr="4"><span style="color:#C7C8D2">git</span><span style="color:#7CC64A"> config</span><span style="color:#7CC64A"> --global</span><span style="color:#7CC64A"> user.email</span><span style="color:#999999"> '</span><span style="color:#7CC64A">your_email@example.com</span><span style="color:#999999">'</span></span>
+<span class="line" data-linenr="5"><span style="color:#C7C8D2">git</span><span style="color:#7CC64A"> config</span><span style="color:#7CC64A"> --global</span><span style="color:#7CC64A"> user.name</span><span style="color:#999999"> '</span><span style="color:#7CC64A">WouterJ.nl bot</span><span style="color:#999999">'</span></span>
 <span class="line" data-linenr="6"></span>
-<span class="line" data-linenr="7"><span style="color: #6B90C0; font-style: italic"># ... build site section</span></span></code></pre>
+<span class="line" data-linenr="7"><span style="color:#6B90C0;font-style:italic"># ... build site section</span></span></code></pre></div>
 </div>
 
 <p>Since the build is executed on the <code class="highlighter-shiki">source</code> branch, Travis need to checkout the
 <code class="highlighter-shiki">master</code> branch. However, as <code class="highlighter-shiki">master</code> is going to be replaced each time, it should
 just delete current <code class="highlighter-shiki">master</code> and create a new one based on the <code class="highlighter-shiki">source</code> branch:</p>
 
-<div class="language-bash highlighter-shiki"><pre class="shiki-gutter">1
+<div class="language-bash highlighter-shiki"><div><pre class="shiki-gutter">1
 2
 3
 4
 5
 6
-7
-</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #6B90C0; font-style: italic"># ... configure env section</span></span>
+7</pre><pre class="shiki wouterj shiki-code" style="background-color:#1e1e1e;color:#bbbbbb" tabindex="0"><code><span class="line" data-linenr="1"><span style="color:#6B90C0;font-style:italic"># ... configure env section</span></span>
 <span class="line" data-linenr="2"></span>
-<span class="line" data-linenr="3"><span style="color: #6B90C0; font-style: italic"># checkout publish branch</span></span>
-<span class="line" data-linenr="4"><span style="color: #BBBBBB">git branch -D master</span></span>
-<span class="line" data-linenr="5"><span style="color: #BBBBBB">git checkout -b master</span></span>
+<span class="line" data-linenr="3"><span style="color:#6B90C0;font-style:italic"># checkout publish branch</span></span>
+<span class="line" data-linenr="4"><span style="color:#C7C8D2">git</span><span style="color:#7CC64A"> branch</span><span style="color:#7CC64A"> -D</span><span style="color:#7CC64A"> master</span></span>
+<span class="line" data-linenr="5"><span style="color:#C7C8D2">git</span><span style="color:#7CC64A"> checkout</span><span style="color:#7CC64A"> -b</span><span style="color:#7CC64A"> master</span></span>
 <span class="line" data-linenr="6"></span>
-<span class="line" data-linenr="7"><span style="color: #6B90C0; font-style: italic"># ... build site section</span></span></code></pre>
+<span class="line" data-linenr="7"><span style="color:#6B90C0;font-style:italic"># ... build site section</span></span></code></pre></div>
 </div>
 
 <p>Travis is in the <code class="highlighter-shiki">master</code> branch and has build the site in <code class="highlighter-shiki">output_prod</code> now.
@@ -227,37 +221,35 @@ Git can make this output directory the new root of the branch using the <code cl
 filter-branch</code> command. Before executing this, Travis has to commit the
 currently added files (the <code class="highlighter-shiki">output_prod</code> directory):</p>
 
-<div class="language-bash highlighter-shiki"><pre class="shiki-gutter">1
+<div class="language-bash highlighter-shiki"><div><pre class="shiki-gutter">1
 2
 3
 4
 5
 6
-7
-</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #6B90C0; font-style: italic"># .travis.yml</span></span>
+7</pre><pre class="shiki wouterj shiki-code" style="background-color:#1e1e1e;color:#bbbbbb" tabindex="0"><code><span class="line" data-linenr="1"><span style="color:#6B90C0;font-style:italic"># .travis.yml</span></span>
 <span class="line" data-linenr="2"></span>
-<span class="line" data-linenr="3"><span style="color: #6B90C0; font-style: italic"># ... configure env, checkout publish branch and build site sections</span></span>
+<span class="line" data-linenr="3"><span style="color:#6B90C0;font-style:italic"># ... configure env, checkout publish branch and build site sections</span></span>
 <span class="line" data-linenr="4"></span>
-<span class="line" data-linenr="5"><span style="color: #6B90C0; font-style: italic"># commit build</span></span>
-<span class="line" data-linenr="6"><span style="color: #BBBBBB">git add -f output_prod</span></span>
-<span class="line" data-linenr="7"><span style="color: #BBBBBB">git commit -m </span><span style="color: #999999">&quot;</span><span style="color: #7CC64A">Build website</span><span style="color: #999999">&quot;</span></span></code></pre>
+<span class="line" data-linenr="5"><span style="color:#6B90C0;font-style:italic"># commit build</span></span>
+<span class="line" data-linenr="6"><span style="color:#C7C8D2">git</span><span style="color:#7CC64A"> add</span><span style="color:#7CC64A"> -f</span><span style="color:#7CC64A"> output_prod</span></span>
+<span class="line" data-linenr="7"><span style="color:#C7C8D2">git</span><span style="color:#7CC64A"> commit</span><span style="color:#7CC64A"> -m</span><span style="color:#999999"> "</span><span style="color:#7CC64A">Build website</span><span style="color:#999999">"</span></span></code></pre></div>
 </div>
 
 <p>The <code class="highlighter-shiki">-f</code> is required, as output directories are in the <code class="highlighter-shiki">.gitignore</code> file of
 a common Sculpin blog. Now, execute the <code class="highlighter-shiki">git filter-branch</code> command:</p>
 
-<div class="language-bash highlighter-shiki"><pre class="shiki-gutter">1
+<div class="language-bash highlighter-shiki"><div><pre class="shiki-gutter">1
 2
 3
 4
 5
-6
-</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #6B90C0; font-style: italic"># .travis.yml</span></span>
+6</pre><pre class="shiki wouterj shiki-code" style="background-color:#1e1e1e;color:#bbbbbb" tabindex="0"><code><span class="line" data-linenr="1"><span style="color:#6B90C0;font-style:italic"># .travis.yml</span></span>
 <span class="line" data-linenr="2"></span>
-<span class="line" data-linenr="3"><span style="color: #6B90C0; font-style: italic"># ...</span></span>
+<span class="line" data-linenr="3"><span style="color:#6B90C0;font-style:italic"># ...</span></span>
 <span class="line" data-linenr="4"></span>
-<span class="line" data-linenr="5"><span style="color: #6B90C0; font-style: italic"># only commit output dir</span></span>
-<span class="line" data-linenr="6"><span style="color: #BBBBBB">git filter-branch --subdirectory-filter output_prod/ -f</span></span></code></pre>
+<span class="line" data-linenr="5"><span style="color:#6B90C0;font-style:italic"># only commit output dir</span></span>
+<span class="line" data-linenr="6"><span style="color:#C7C8D2">git</span><span style="color:#7CC64A"> filter-branch</span><span style="color:#7CC64A"> --subdirectory-filter</span><span style="color:#7CC64A"> output_prod/</span><span style="color:#7CC64A"> -f</span></span></code></pre></div>
 </div>
     
       <h2 id="pushing-the-result">
@@ -270,18 +262,17 @@ a common Sculpin blog. Now, execute the <code class="highlighter-shiki">git filt
 
 <p>The branch is ready to be pushed back to GitHub, so let’s do that!</p>
 
-<div class="language-bash highlighter-shiki"><pre class="shiki-gutter">1
+<div class="language-bash highlighter-shiki"><div><pre class="shiki-gutter">1
 2
 3
 4
 5
-6
-</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #6B90C0; font-style: italic"># .travis.yml</span></span>
+6</pre><pre class="shiki wouterj shiki-code" style="background-color:#1e1e1e;color:#bbbbbb" tabindex="0"><code><span class="line" data-linenr="1"><span style="color:#6B90C0;font-style:italic"># .travis.yml</span></span>
 <span class="line" data-linenr="2"></span>
-<span class="line" data-linenr="3"><span style="color: #6B90C0; font-style: italic"># ...</span></span>
+<span class="line" data-linenr="3"><span style="color:#6B90C0;font-style:italic"># ...</span></span>
 <span class="line" data-linenr="4"></span>
-<span class="line" data-linenr="5"><span style="color: #6B90C0; font-style: italic"># push to GitHub Pages</span></span>
-<span class="line" data-linenr="6"><span style="color: #BBBBBB">git push </span><span style="color: #999999">&quot;</span><span style="color: #7CC64A">https://github.com/WouterJ/wouterj.github.com</span><span style="color: #999999">&quot;</span><span style="color: #BBBBBB"> -f master</span></span></code></pre>
+<span class="line" data-linenr="5"><span style="color:#6B90C0;font-style:italic"># push to GitHub Pages</span></span>
+<span class="line" data-linenr="6"><span style="color:#C7C8D2">git</span><span style="color:#7CC64A"> push</span><span style="color:#999999"> "</span><span style="color:#7CC64A">https://github.com/WouterJ/wouterj.github.com</span><span style="color:#999999">"</span><span style="color:#7CC64A"> -f</span><span style="color:#7CC64A"> master</span></span></code></pre></div>
 </div>
 
 <p>Wait a moment… It needs either a username and password or a GitHub token in
@@ -293,16 +284,14 @@ works for your repository. This way, you’re the only person who can use this
 token. Download the <a href="https://github.com/travis-ci/travis.rb">Travis command line app</a> and use the <code class="highlighter-shiki">travis encrypt</code>
 command to encrypt your public token to an environment variable:</p>
 
-<div class="language-bash highlighter-shiki"><pre class="shiki-gutter">1
-</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #BBBBBB">$ travis encrypt --add GH_TOKEN=XXX</span></span></code></pre>
+<div class="language-terminal highlighter-shiki"><div><pre class="shiki-gutter">1</pre><pre class="shiki wouterj shiki-code" style="background-color:#1e1e1e;color:#bbbbbb" tabindex="0"><code><span class="line" data-linenr="1"><span style="color:#999999">$ </span><span style="color:#D8DEE9">travis encrypt --add GH_TOKEN</span><span style="color:#E5673D">=</span><span style="color:#7CC64A">XXX</span></span></code></pre></div>
 </div>
 
 <p>(<code class="highlighter-shiki">XXX</code> is your github token here).</p>
 
-<div class="highlighter-shiki"><pre class="shiki-gutter">1</pre><pre class="shiki-code"><code>[caution]
-Be sure to execute this when your in the directory of your blog repository.
-</code></pre>
-</div>
+<aside class="side" data-type="Caution">
+  <p>Be sure to execute this when your in the directory of your blog repository.</p>
+</aside>
 
 <p>As the <code class="highlighter-shiki">--add</code> option was added, the encrypted string is added to your
 <code class="highlighter-shiki">.travis.yml</code> configuration. Using this directly like
@@ -311,16 +300,15 @@ the output of the command. You have to put it in the <code class="highlighter-sh
 environment before executing this command. This file is used by Linux to
 authenticate with ssh servers.</p>
 
-<div class="language-yaml highlighter-shiki"><pre class="shiki-gutter">1
+<div class="language-yaml highlighter-shiki"><div><pre class="shiki-gutter">1
 2
 3
 4
-5
-</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #6B90C0; font-style: italic"># .travis.yml</span></span>
+5</pre><pre class="shiki wouterj shiki-code" style="background-color:#1e1e1e;color:#bbbbbb" tabindex="0"><code><span class="line" data-linenr="1"><span style="color:#6B90C0;font-style:italic"># .travis.yml</span></span>
 <span class="line" data-linenr="2"></span>
-<span class="line" data-linenr="3"><span style="color: #6B90C0; font-style: italic"># ...</span></span>
-<span class="line" data-linenr="4"><span style="color: #C7C8D2">before_install</span><span style="color: #999999">:</span></span>
-<span class="line" data-linenr="5"><span style="color: #BBBBBB">  </span><span style="color: #999999">-</span><span style="color: #BBBBBB"> </span><span style="color: #7CC64A">echo -e &quot;machine github.com\n  login $GH_TOKEN&quot; &gt;&gt; ~/.netrc</span></span></code></pre>
+<span class="line" data-linenr="3"><span style="color:#6B90C0;font-style:italic"># ...</span></span>
+<span class="line" data-linenr="4"><span style="color:#C7C8D2">before_install</span><span style="color:#999999">:</span></span>
+<span class="line" data-linenr="5"><span style="color:#999999">  -</span><span style="color:#7CC64A"> echo -e "machine github.com\n  login $GH_TOKEN" >> ~/.netrc</span></span></code></pre></div>
 </div>
     
       <h2 id="round-up">

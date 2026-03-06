@@ -87,8 +87,7 @@ Composer is doing for PHP.</p>
 <p>To install it, make sure you have NodeJS and NPM installed and then install the
 bower package:</p>
 
-<div class="language-bash highlighter-shiki"><pre class="shiki-gutter">1
-</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #BBBBBB">$ npm install -g bower</span></span></code></pre>
+<div class="language-terminal highlighter-shiki"><div><pre class="shiki-gutter">1</pre><pre class="shiki wouterj shiki-code" style="background-color:#1e1e1e;color:#bbbbbb" tabindex="0"><code><span class="line" data-linenr="1"><span style="color:#999999">$ </span><span style="color:#D8DEE9">npm install -g bower</span></span></code></pre></div>
 </div>
 
 <p>For information about using Bower in Symfony, read <a href="https://symfony.com/doc/current/cookbook/frontend/bower.html">the official Symfony
@@ -126,13 +125,12 @@ have to, continue reading!</p>
 
 <p>First things first, let’s make a <code class="highlighter-shiki">bower.json</code> file by running the init command:</p>
 
-<div class="language-bash highlighter-shiki"><pre class="shiki-gutter">1
-</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #BBBBBB">$ bower init</span></span></code></pre>
+<div class="language-terminal highlighter-shiki"><div><pre class="shiki-gutter">1</pre><pre class="shiki wouterj shiki-code" style="background-color:#1e1e1e;color:#bbbbbb" tabindex="0"><code><span class="line" data-linenr="1"><span style="color:#999999">$ </span><span style="color:#D8DEE9">bower init</span></span></code></pre></div>
 </div>
 
 <p>Your <code class="highlighter-shiki">bower.json</code> file looks something like this:</p>
 
-<div class="language-json highlighter-shiki"><pre class="shiki-gutter">1
+<div class="language-json highlighter-shiki"><div><pre class="shiki-gutter">1
 2
 3
 4
@@ -145,21 +143,20 @@ have to, continue reading!</p>
 11
 12
 13
-14
-</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #999999">{</span></span>
-<span class="line" data-linenr="2"><span style="color: #BBBBBB">    </span><span style="color: #999999">&quot;</span><span style="color: #C7C8D2">name</span><span style="color: #999999">&quot;</span><span style="color: #999999">:</span><span style="color: #BBBBBB"> </span><span style="color: #999999">&quot;</span><span style="color: #7CC64A">...</span><span style="color: #999999">&quot;</span><span style="color: #999999">,</span></span>
-<span class="line" data-linenr="3"><span style="color: #BBBBBB">    </span><span style="color: #999999">&quot;</span><span style="color: #C7C8D2">version</span><span style="color: #999999">&quot;</span><span style="color: #999999">:</span><span style="color: #BBBBBB"> </span><span style="color: #999999">&quot;</span><span style="color: #7CC64A">...</span><span style="color: #999999">&quot;</span><span style="color: #999999">,</span></span>
-<span class="line" data-linenr="4"><span style="color: #BBBBBB">    </span><span style="color: #999999">&quot;</span><span style="color: #C7C8D2">authors</span><span style="color: #999999">&quot;</span><span style="color: #999999">:</span><span style="color: #BBBBBB"> </span><span style="color: #999999">[</span><span style="color: #999999">&quot;</span><span style="color: #7CC64A">...</span><span style="color: #999999">&quot;</span><span style="color: #999999">],</span></span>
-<span class="line" data-linenr="5"><span style="color: #BBBBBB">    </span><span style="color: #999999">&quot;</span><span style="color: #C7C8D2">keywords</span><span style="color: #999999">&quot;</span><span style="color: #999999">:</span><span style="color: #BBBBBB"> </span><span style="color: #999999">[</span><span style="color: #999999">&quot;</span><span style="color: #7CC64A">...</span><span style="color: #999999">&quot;</span><span style="color: #999999">],</span></span>
-<span class="line" data-linenr="6"><span style="color: #BBBBBB">    </span><span style="color: #999999">&quot;</span><span style="color: #C7C8D2">license</span><span style="color: #999999">&quot;</span><span style="color: #999999">:</span><span style="color: #BBBBBB"> </span><span style="color: #999999">&quot;</span><span style="color: #7CC64A">MIT</span><span style="color: #999999">&quot;</span><span style="color: #999999">,</span></span>
-<span class="line" data-linenr="7"><span style="color: #BBBBBB">    </span><span style="color: #999999">&quot;</span><span style="color: #C7C8D2">ignore</span><span style="color: #999999">&quot;</span><span style="color: #999999">:</span><span style="color: #BBBBBB"> </span><span style="color: #999999">[</span></span>
-<span class="line" data-linenr="8"><span style="color: #BBBBBB">        </span><span style="color: #999999">&quot;</span><span style="color: #7CC64A">**/.*</span><span style="color: #999999">&quot;</span><span style="color: #999999">,</span></span>
-<span class="line" data-linenr="9"><span style="color: #BBBBBB">        </span><span style="color: #999999">&quot;</span><span style="color: #7CC64A">node_modules</span><span style="color: #999999">&quot;</span><span style="color: #999999">,</span></span>
-<span class="line" data-linenr="10"><span style="color: #BBBBBB">        </span><span style="color: #999999">&quot;</span><span style="color: #7CC64A">bower_components</span><span style="color: #999999">&quot;</span><span style="color: #999999">,</span></span>
-<span class="line" data-linenr="11"><span style="color: #BBBBBB">        </span><span style="color: #999999">&quot;</span><span style="color: #7CC64A">test</span><span style="color: #999999">&quot;</span><span style="color: #999999">,</span></span>
-<span class="line" data-linenr="12"><span style="color: #BBBBBB">        </span><span style="color: #999999">&quot;</span><span style="color: #7CC64A">tests</span><span style="color: #999999">&quot;</span></span>
-<span class="line" data-linenr="13"><span style="color: #BBBBBB">    </span><span style="color: #999999">]</span></span>
-<span class="line" data-linenr="14"><span style="color: #999999">}</span></span></code></pre>
+14</pre><pre class="shiki wouterj shiki-code" style="background-color:#1e1e1e;color:#bbbbbb" tabindex="0"><code><span class="line" data-linenr="1"><span style="color:#999999">{</span></span>
+<span class="line" data-linenr="2"><span style="color:#999999">    "</span><span style="color:#C7C8D2">name</span><span style="color:#999999">"</span><span style="color:#999999">:</span><span style="color:#999999"> "</span><span style="color:#7CC64A">...</span><span style="color:#999999">"</span><span style="color:#999999">,</span></span>
+<span class="line" data-linenr="3"><span style="color:#999999">    "</span><span style="color:#C7C8D2">version</span><span style="color:#999999">"</span><span style="color:#999999">:</span><span style="color:#999999"> "</span><span style="color:#7CC64A">...</span><span style="color:#999999">"</span><span style="color:#999999">,</span></span>
+<span class="line" data-linenr="4"><span style="color:#999999">    "</span><span style="color:#C7C8D2">authors</span><span style="color:#999999">"</span><span style="color:#999999">:</span><span style="color:#999999"> [</span><span style="color:#999999">"</span><span style="color:#7CC64A">...</span><span style="color:#999999">"</span><span style="color:#999999">],</span></span>
+<span class="line" data-linenr="5"><span style="color:#999999">    "</span><span style="color:#C7C8D2">keywords</span><span style="color:#999999">"</span><span style="color:#999999">:</span><span style="color:#999999"> [</span><span style="color:#999999">"</span><span style="color:#7CC64A">...</span><span style="color:#999999">"</span><span style="color:#999999">],</span></span>
+<span class="line" data-linenr="6"><span style="color:#999999">    "</span><span style="color:#C7C8D2">license</span><span style="color:#999999">"</span><span style="color:#999999">:</span><span style="color:#999999"> "</span><span style="color:#7CC64A">MIT</span><span style="color:#999999">"</span><span style="color:#999999">,</span></span>
+<span class="line" data-linenr="7"><span style="color:#999999">    "</span><span style="color:#C7C8D2">ignore</span><span style="color:#999999">"</span><span style="color:#999999">:</span><span style="color:#999999"> [</span></span>
+<span class="line" data-linenr="8"><span style="color:#999999">        "</span><span style="color:#7CC64A">**/.*</span><span style="color:#999999">"</span><span style="color:#999999">,</span></span>
+<span class="line" data-linenr="9"><span style="color:#999999">        "</span><span style="color:#7CC64A">node_modules</span><span style="color:#999999">"</span><span style="color:#999999">,</span></span>
+<span class="line" data-linenr="10"><span style="color:#999999">        "</span><span style="color:#7CC64A">bower_components</span><span style="color:#999999">"</span><span style="color:#999999">,</span></span>
+<span class="line" data-linenr="11"><span style="color:#999999">        "</span><span style="color:#7CC64A">test</span><span style="color:#999999">"</span><span style="color:#999999">,</span></span>
+<span class="line" data-linenr="12"><span style="color:#999999">        "</span><span style="color:#7CC64A">tests</span><span style="color:#999999">"</span></span>
+<span class="line" data-linenr="13"><span style="color:#999999">    ]</span></span>
+<span class="line" data-linenr="14"><span style="color:#999999">}</span></span></code></pre></div>
 </div>
 
 <p>The <code class="highlighter-shiki">ignore</code> option might be new to you. This is caused by the differences
@@ -192,10 +189,9 @@ there.</p>
 <p>Assume your bundle is called <code class="highlighter-shiki">acme/blog-bundle</code>, your Bower package might be
 called <code class="highlighter-shiki">acme-blog-bundle</code>. Installation now consists of 2 steps:</p>
 
-<div class="language-bash highlighter-shiki"><pre class="shiki-gutter">1
-2
-</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #BBBBBB">$ composer require acme/blog-bundle</span></span>
-<span class="line" data-linenr="2"><span style="color: #BBBBBB">$ bower install --save acme-blog-bundle</span></span></code></pre>
+<div class="language-terminal highlighter-shiki"><div><pre class="shiki-gutter">1
+2</pre><pre class="shiki wouterj shiki-code" style="background-color:#1e1e1e;color:#bbbbbb" tabindex="0"><code><span class="line" data-linenr="1"><span style="color:#999999">$ </span><span style="color:#D8DEE9">composer require acme/blog-bundle</span></span>
+<span class="line" data-linenr="2"><span style="color:#999999">$ </span><span style="color:#D8DEE9">bower install --save acme-blog-bundle</span></span></code></pre></div>
 </div>
     
       <h2 id="extra-being-open-for-people-that-dont-use-bower">
@@ -226,38 +222,35 @@ virtual Bower package</li>
 <p>In the CmfTreeBrowserBundle, we solved this problem by having a
 <code class="highlighter-shiki">scripts.html.twig</code> template like this:</p>
 
-<div class="language-twig highlighter-shiki"><pre class="shiki-gutter">1
+<div class="language-twig highlighter-shiki"><div><pre class="shiki-gutter">1
 2
-3
-</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #6B90C0; font-style: italic">{# CmfTreeBrowserBundle/Resources/views/Base/scripts.html.twig #}</span></span>
-<span class="line" data-linenr="2"><span style="color: #E5673D">&lt;script</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">src</span><span style="color: #BBBBBB">=</span><span style="color: #999999">&quot;{{</span><span style="color: #7CC64A"> </span><span style="color: #C7C8D2">asset</span><span style="color: #999999">(</span><span style="color: #D8DEE9">assetsBasePath</span><span style="color: #7CC64A"> ~ </span><span style="color: #999999">&#39;</span><span style="color: #7CC64A">/jquery/dist/jquery.min.js</span><span style="color: #999999">&#39;)</span><span style="color: #7CC64A"> </span><span style="color: #999999">}}&quot;</span><span style="color: #E5673D">&gt;</span></span>
-<span class="line" data-linenr="3"><span style="color: #E5673D">&lt;/script&gt;</span></span></code></pre>
+3</pre><pre class="shiki wouterj shiki-code" style="background-color:#1e1e1e;color:#bbbbbb" tabindex="0"><code><span class="line" data-linenr="1"><span style="color:#6B90C0;font-style:italic">{# CmfTreeBrowserBundle/Resources/views/Base/scripts.html.twig #}</span></span>
+<span class="line" data-linenr="2"><span style="color:#E5673D">&#x3C;script</span><span style="color:#C7C8D2"> src</span><span style="color:#BBBBBB">=</span><span style="color:#999999">"{{</span><span style="color:#7CC64A"> asset</span><span style="color:#999999">(</span><span style="color:#D8DEE9">assetsBasePath</span><span style="color:#E5673D"> ~</span><span style="color:#999999"> '</span><span style="color:#7CC64A">/jquery/dist/jquery.min.js</span><span style="color:#999999">')</span><span style="color:#999999"> }}"</span><span style="color:#E5673D">></span></span>
+<span class="line" data-linenr="3"><span style="color:#E5673D">&#x3C;/script></span></span></code></pre></div>
 </div>
 
 <p>You see the <code class="highlighter-shiki">assetsBasePath</code> variable in front of the path, this can be set to
 the path to the frontend dependencies. The main template file now looks like:</p>
 
-<div class="language-twig highlighter-shiki"><pre class="shiki-gutter">1
+<div class="language-twig highlighter-shiki"><div><pre class="shiki-gutter">1
 2
 3
-4
-</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #6B90C0; font-style: italic">{# CmfTreeBrowserBundle/Resources/views/Base/tree.html.twig #}</span></span>
-<span class="line" data-linenr="2"><span style="color: #999999">{%</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">include</span><span style="color: #BBBBBB"> </span><span style="color: #999999">&#39;</span><span style="color: #7CC64A">CmfTreeBrowserBundle:Base:scripts.html.twig</span><span style="color: #999999">&#39;</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">with</span><span style="color: #BBBBBB"> </span><span style="color: #999999">{</span></span>
-<span class="line" data-linenr="3"><span style="color: #BBBBBB">    </span><span style="color: #D8DEE9">assetsBasePath</span><span style="color: #999999">:</span><span style="color: #BBBBBB"> </span><span style="color: #999999">&#39;</span><span style="color: #7CC64A">bundles/cmftreebrowser/vendor</span><span style="color: #999999">&#39;</span></span>
-<span class="line" data-linenr="4"><span style="color: #999999">}</span><span style="color: #BBBBBB"> </span><span style="color: #999999">%}</span></span></code></pre>
+4</pre><pre class="shiki wouterj shiki-code" style="background-color:#1e1e1e;color:#bbbbbb" tabindex="0"><code><span class="line" data-linenr="1"><span style="color:#6B90C0;font-style:italic">{# CmfTreeBrowserBundle/Resources/views/Base/tree.html.twig #}</span></span>
+<span class="line" data-linenr="2"><span style="color:#999999">{%</span><span style="color:#E5673D"> include</span><span style="color:#999999"> '</span><span style="color:#7CC64A">CmfTreeBrowserBundle:Base:scripts.html.twig</span><span style="color:#999999">'</span><span style="color:#E5673D"> with</span><span style="color:#999999"> {</span></span>
+<span class="line" data-linenr="3"><span style="color:#D8DEE9">    assetsBasePath</span><span style="color:#999999">:</span><span style="color:#999999"> '</span><span style="color:#7CC64A">bundles/cmftreebrowser/vendor</span><span style="color:#999999">'</span></span>
+<span class="line" data-linenr="4"><span style="color:#999999">}</span><span style="color:#999999"> %}</span></span></code></pre></div>
 </div>
 
 <p>This will retrieve the files installed with the bundle. When a user uses Bower,
 they override this file with the new base path:</p>
 
-<div class="language-twig highlighter-shiki"><pre class="shiki-gutter">1
+<div class="language-twig highlighter-shiki"><div><pre class="shiki-gutter">1
 2
 3
-4
-</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #6B90C0; font-style: italic">{# app/Resources/views/CmfTreeBrowserBundle/Base/tree.html.twig #}</span></span>
-<span class="line" data-linenr="2"><span style="color: #999999">{%</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">include</span><span style="color: #BBBBBB"> </span><span style="color: #999999">&#39;</span><span style="color: #7CC64A">CmfTreeBrowserBundle:Base:scripts.html.twig</span><span style="color: #999999">&#39;</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">with</span><span style="color: #BBBBBB"> </span><span style="color: #999999">{</span></span>
-<span class="line" data-linenr="3"><span style="color: #BBBBBB">    </span><span style="color: #D8DEE9">assetsBasePath</span><span style="color: #999999">:</span><span style="color: #BBBBBB"> </span><span style="color: #999999">&#39;</span><span style="color: #7CC64A">bower_packages</span><span style="color: #999999">&#39;</span></span>
-<span class="line" data-linenr="4"><span style="color: #999999">}</span><span style="color: #BBBBBB"> </span><span style="color: #999999">%}</span></span></code></pre>
+4</pre><pre class="shiki wouterj shiki-code" style="background-color:#1e1e1e;color:#bbbbbb" tabindex="0"><code><span class="line" data-linenr="1"><span style="color:#6B90C0;font-style:italic">{# app/Resources/views/CmfTreeBrowserBundle/Base/tree.html.twig #}</span></span>
+<span class="line" data-linenr="2"><span style="color:#999999">{%</span><span style="color:#E5673D"> include</span><span style="color:#999999"> '</span><span style="color:#7CC64A">CmfTreeBrowserBundle:Base:scripts.html.twig</span><span style="color:#999999">'</span><span style="color:#E5673D"> with</span><span style="color:#999999"> {</span></span>
+<span class="line" data-linenr="3"><span style="color:#D8DEE9">    assetsBasePath</span><span style="color:#999999">:</span><span style="color:#999999"> '</span><span style="color:#7CC64A">bower_packages</span><span style="color:#999999">'</span></span>
+<span class="line" data-linenr="4"><span style="color:#999999">}</span><span style="color:#999999"> %}</span></span></code></pre></div>
 </div>
 
 <p>This will pick the scripts from <code class="highlighter-shiki">/web/bower_packages/jquery/dist/jquery.min.js</code>

@@ -112,28 +112,26 @@ objects: one Git object (commit) can have multiple Git notes references it.</p>
 
 <p>First, create a commit:</p>
 
-<div class="language-terminal highlighter-shiki"><pre class="shiki-gutter">1
+<div class="language-terminal highlighter-shiki"><div><pre class="shiki-gutter">1
 2
-3
-</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #999999">$ </span><span style="color: #D8DEE9">git commit --allow-empty -m </span><span style="color: #999999">&quot;</span><span style="color: #7CC64A">Playing with Git notes</span><span style="color: #999999">&quot;</span></span>
-<span class="line" data-linenr="2"><span style="color: #BBBBBB">[main a63c1ff] Playing with Git notes</span></span>
-<span class="line" data-linenr="3"><span style="color: #BBBBBB"> Date: Mon Jul 8 21:18:00 2024 +0200</span></span></code></pre>
+3</pre><pre class="shiki wouterj shiki-code" style="background-color:#1e1e1e;color:#bbbbbb" tabindex="0"><code><span class="line" data-linenr="1"><span style="color:#999999">$ </span><span style="color:#D8DEE9">git commit --allow-empty -m </span><span style="color:#999999">"</span><span style="color:#7CC64A">Playing with Git notes</span><span style="color:#999999">"</span></span>
+<span class="line" data-linenr="2"><span style="color:#BBBBBB">[main a63c1ff] Playing with Git notes</span></span>
+<span class="line" data-linenr="3"><span style="color:#BBBBBB"> Date: Mon Jul 8 21:18:00 2024 +0200</span></span></code></pre></div>
 </div>
 
 <p>Now, we can add a note to this commit using the <code class="highlighter-shiki">git notes</code> command:</p>
 
-<div class="language-terminal highlighter-shiki"><pre class="shiki-gutter">1
+<div class="language-terminal highlighter-shiki"><div><pre class="shiki-gutter">1
 2
-3
-</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #6B90C0; font-style: italic"># &#39;a63c1ff&#39; is the object (commit) to attach this note, it defaults</span></span>
-<span class="line" data-linenr="2"><span style="color: #6B90C0; font-style: italic"># to HEAD (i.e. the latest commit on the current branch)</span></span>
-<span class="line" data-linenr="3"><span style="color: #999999">$ </span><span style="color: #D8DEE9">git notes add -m </span><span style="color: #999999">&quot;</span><span style="color: #7CC64A">Extra information of this commit</span><span style="color: #999999">&quot;</span><span style="color: #D8DEE9"> a63c1ff</span></span></code></pre>
+3</pre><pre class="shiki wouterj shiki-code" style="background-color:#1e1e1e;color:#bbbbbb" tabindex="0"><code><span class="line" data-linenr="1"><span style="color:#6B90C0;font-style:italic"># 'a63c1ff' is the object (commit) to attach this note, it defaults</span></span>
+<span class="line" data-linenr="2"><span style="color:#6B90C0;font-style:italic"># to HEAD (i.e. the latest commit on the current branch)</span></span>
+<span class="line" data-linenr="3"><span style="color:#999999">$ </span><span style="color:#D8DEE9">git notes add -m </span><span style="color:#999999">"</span><span style="color:#7CC64A">Extra information of this commit</span><span style="color:#999999">"</span><span style="color:#D8DEE9"> a63c1ff</span></span></code></pre></div>
 </div>
 
 <p>Great, we’ve added extra information to that commit! Now, we can view it by
 using the <code class="highlighter-shiki">--notes</code> option:</p>
 
-<div class="language-terminal highlighter-shiki"><pre class="shiki-gutter">1
+<div class="language-terminal highlighter-shiki"><div><pre class="shiki-gutter">1
 2
 3
 4
@@ -141,16 +139,15 @@ using the <code class="highlighter-shiki">--notes</code> option:</p>
 6
 7
 8
-9
-</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #999999">$ </span><span style="color: #D8DEE9">git log --notes</span></span>
-<span class="line" data-linenr="2"><span style="color: #BBBBBB">commit a63c1ffcf90a6ee3188a086b14eebf33087aebaa (HEAD -&gt; main)</span></span>
-<span class="line" data-linenr="3"><span style="color: #BBBBBB">Author: Wouter de Jong &lt;wouter@example.com&gt;</span></span>
-<span class="line" data-linenr="4"><span style="color: #BBBBBB">Date:   Mon Jul 8 21:18:00 2024 +0200</span></span>
+9</pre><pre class="shiki wouterj shiki-code" style="background-color:#1e1e1e;color:#bbbbbb" tabindex="0"><code><span class="line" data-linenr="1"><span style="color:#999999">$ </span><span style="color:#D8DEE9">git log --notes</span></span>
+<span class="line" data-linenr="2"><span style="color:#BBBBBB">commit a63c1ffcf90a6ee3188a086b14eebf33087aebaa (HEAD -> main)</span></span>
+<span class="line" data-linenr="3"><span style="color:#BBBBBB">Author: Wouter de Jong &#x3C;wouter@example.com></span></span>
+<span class="line" data-linenr="4"><span style="color:#BBBBBB">Date:   Mon Jul 8 21:18:00 2024 +0200</span></span>
 <span class="line" data-linenr="5"></span>
-<span class="line" data-linenr="6"><span style="color: #BBBBBB">    Playing with Git notes</span></span>
+<span class="line" data-linenr="6"><span style="color:#BBBBBB">    Playing with Git notes</span></span>
 <span class="line" data-linenr="7"></span>
-<span class="line" data-linenr="8"><span style="color: #BBBBBB">Notes:</span></span>
-<span class="line" data-linenr="9"><span style="color: #BBBBBB">    Extra information of this commit</span></span></code></pre>
+<span class="line" data-linenr="8"><span style="color:#BBBBBB">Notes:</span></span>
+<span class="line" data-linenr="9"><span style="color:#BBBBBB">    Extra information of this commit</span></span></code></pre></div>
 </div>
 
 <p>Cool! As you can see, the commit object didn’t change (the hash is the same
@@ -170,7 +167,7 @@ types of notes to a single commit.</p>
 
 <p>You can use the <code class="highlighter-shiki">--ref</code> option to specify the note tree:</p>
 
-<div class="language-terminal highlighter-shiki"><pre class="shiki-gutter">1
+<div class="language-terminal highlighter-shiki"><div><pre class="shiki-gutter">1
 2
 3
 4
@@ -179,24 +176,23 @@ types of notes to a single commit.</p>
 7
 8
 9
-10
-</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #999999">$ </span><span style="color: #D8DEE9">git notes --ref=acceptance add -m </span><span style="color: #999999">&quot;</span><span style="color: #7CC64A">Tested-by: Jane doe &lt;jane@example.com&gt;</span><span style="color: #999999">&quot;</span></span>
-<span class="line" data-linenr="2"><span style="color: #999999">$ </span><span style="color: #D8DEE9">git log --notes=acceptance</span></span>
-<span class="line" data-linenr="3"><span style="color: #BBBBBB">commit a63c1ffcf90a6ee3188a086b14eebf33087aebaa (HEAD -&gt; main)</span></span>
-<span class="line" data-linenr="4"><span style="color: #BBBBBB">Author: Wouter de Jong &lt;wouter@example.com&gt;</span></span>
-<span class="line" data-linenr="5"><span style="color: #BBBBBB">Date:   Mon Jul 8 21:18:00 2024 +0200</span></span>
+10</pre><pre class="shiki wouterj shiki-code" style="background-color:#1e1e1e;color:#bbbbbb" tabindex="0"><code><span class="line" data-linenr="1"><span style="color:#999999">$ </span><span style="color:#D8DEE9">git notes --ref</span><span style="color:#E5673D">=</span><span style="color:#7CC64A">acceptance</span><span style="color:#C7C8D2"> add</span><span style="color:#7CC64A"> -m</span><span style="color:#999999"> "</span><span style="color:#7CC64A">Tested-by: Jane doe &#x3C;jane@example.com></span><span style="color:#999999">"</span></span>
+<span class="line" data-linenr="2"><span style="color:#999999">$ </span><span style="color:#D8DEE9">git log --notes</span><span style="color:#E5673D">=</span><span style="color:#7CC64A">acceptance</span></span>
+<span class="line" data-linenr="3"><span style="color:#BBBBBB">commit a63c1ffcf90a6ee3188a086b14eebf33087aebaa (HEAD -> main)</span></span>
+<span class="line" data-linenr="4"><span style="color:#BBBBBB">Author: Wouter de Jong &#x3C;wouter@example.com></span></span>
+<span class="line" data-linenr="5"><span style="color:#BBBBBB">Date:   Mon Jul 8 21:18:00 2024 +0200</span></span>
 <span class="line" data-linenr="6"></span>
-<span class="line" data-linenr="7"><span style="color: #BBBBBB">    Playing with Git notes</span></span>
+<span class="line" data-linenr="7"><span style="color:#BBBBBB">    Playing with Git notes</span></span>
 <span class="line" data-linenr="8"></span>
-<span class="line" data-linenr="9"><span style="color: #BBBBBB">Notes (acceptance):</span></span>
-<span class="line" data-linenr="10"><span style="color: #BBBBBB">    Tested-by: Jane doe &lt;jane@example.com&gt;</span></span></code></pre>
+<span class="line" data-linenr="9"><span style="color:#BBBBBB">Notes (acceptance):</span></span>
+<span class="line" data-linenr="10"><span style="color:#BBBBBB">    Tested-by: Jane doe &#x3C;jane@example.com></span></span></code></pre></div>
 </div>
 
 <p>The <code class="highlighter-shiki">ref/notes/acceptance</code> now holds this new note. Using multiple
 references allows us to add multiple notes to a single commit (one per
 reference):</p>
 
-<div class="language-terminal highlighter-shiki"><pre class="shiki-gutter">1
+<div class="language-terminal highlighter-shiki"><div><pre class="shiki-gutter">1
 2
 3
 4
@@ -207,19 +203,18 @@ reference):</p>
 9
 10
 11
-12
-</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #999999">$ </span><span style="color: #D8DEE9">git log --notes=commits --notes=acceptance</span></span>
-<span class="line" data-linenr="2"><span style="color: #BBBBBB">commit a63c1ffcf90a6ee3188a086b14eebf33087aebaa (HEAD -&gt; main)</span></span>
-<span class="line" data-linenr="3"><span style="color: #BBBBBB">Author: Wouter de Jong &lt;wouter@example.com&gt;</span></span>
-<span class="line" data-linenr="4"><span style="color: #BBBBBB">Date:   Mon Jul 8 21:18:00 2024 +0200</span></span>
+12</pre><pre class="shiki wouterj shiki-code" style="background-color:#1e1e1e;color:#bbbbbb" tabindex="0"><code><span class="line" data-linenr="1"><span style="color:#999999">$ </span><span style="color:#D8DEE9">git log --notes</span><span style="color:#E5673D">=</span><span style="color:#7CC64A">commits</span><span style="color:#D8DEE9"> --notes</span><span style="color:#E5673D">=</span><span style="color:#7CC64A">acceptance</span></span>
+<span class="line" data-linenr="2"><span style="color:#BBBBBB">commit a63c1ffcf90a6ee3188a086b14eebf33087aebaa (HEAD -> main)</span></span>
+<span class="line" data-linenr="3"><span style="color:#BBBBBB">Author: Wouter de Jong &#x3C;wouter@example.com></span></span>
+<span class="line" data-linenr="4"><span style="color:#BBBBBB">Date:   Mon Jul 8 21:18:00 2024 +0200</span></span>
 <span class="line" data-linenr="5"></span>
-<span class="line" data-linenr="6"><span style="color: #BBBBBB">    Let&#39;s use Git notes</span></span>
+<span class="line" data-linenr="6"><span style="color:#BBBBBB">    Let's use Git notes</span></span>
 <span class="line" data-linenr="7"></span>
-<span class="line" data-linenr="8"><span style="color: #BBBBBB">Notes:</span></span>
-<span class="line" data-linenr="9"><span style="color: #BBBBBB">    Extra information for this commit</span></span>
+<span class="line" data-linenr="8"><span style="color:#BBBBBB">Notes:</span></span>
+<span class="line" data-linenr="9"><span style="color:#BBBBBB">    Extra information for this commit</span></span>
 <span class="line" data-linenr="10"></span>
-<span class="line" data-linenr="11"><span style="color: #BBBBBB">Notes (acceptance):</span></span>
-<span class="line" data-linenr="12"><span style="color: #BBBBBB">    Tested-by: Jane doe &lt;jane@example.com&gt;</span></span></code></pre>
+<span class="line" data-linenr="11"><span style="color:#BBBBBB">Notes (acceptance):</span></span>
+<span class="line" data-linenr="12"><span style="color:#BBBBBB">    Tested-by: Jane doe &#x3C;jane@example.com></span></span></code></pre></div>
 </div>
 
 <aside class="side" data-type="Git Notes in practise">
@@ -264,7 +259,7 @@ read it. Even if Symfony decides to switch to another platform one day.</p>
 <p>First, the tool fetches the pull request comments using the <a href="https://github.com/KnpLabs/php-github-api/">GitHub API</a>
 via the <a href="https://github.com/KnpLabs/php-github-api/">KnpLabs GitHub API package</a>:</p>
 
-<div class="language-php highlighter-shiki"><pre class="shiki-gutter">1
+<div class="language-php highlighter-shiki"><div><pre class="shiki-gutter">1
 2
 3
 4
@@ -273,22 +268,21 @@ via the <a href="https://github.com/KnpLabs/php-github-api/">KnpLabs GitHub API 
 7
 8
 9
-10
-</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #E5673D">use</span><span style="color: #BBBBBB"> GitHub</span><span style="color: #999999">\</span><span style="color: #C7C8D2">Client</span><span style="color: #E5673D">;</span></span>
+10</pre><pre class="shiki wouterj shiki-code" style="background-color:#1e1e1e;color:#bbbbbb" tabindex="0"><code><span class="line" data-linenr="1"><span style="color:#E5673D">use</span><span style="color:#BBBBBB"> GitHub</span><span style="color:#999999">\</span><span style="color:#C7C8D2">Client</span><span style="color:#E5673D">;</span></span>
 <span class="line" data-linenr="2"></span>
-<span class="line" data-linenr="3"><span style="color: #E5673D">$</span><span style="color: #D8DEE9">github</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">=</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">new</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">Client</span><span style="color: #999999">()</span><span style="color: #E5673D">;</span></span>
-<span class="line" data-linenr="4"><span style="color: #E5673D">$</span><span style="color: #D8DEE9">resultPager</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">=</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">new</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">ResultPager</span><span style="color: #999999">(</span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">github</span><span style="color: #999999">)</span><span style="color: #E5673D">;</span></span>
+<span class="line" data-linenr="3"><span style="color:#E5673D">$</span><span style="color:#D8DEE9">github</span><span style="color:#E5673D"> =</span><span style="color:#E5673D"> new</span><span style="color:#C7C8D2"> Client</span><span style="color:#999999">()</span><span style="color:#E5673D">;</span></span>
+<span class="line" data-linenr="4"><span style="color:#E5673D">$</span><span style="color:#D8DEE9">resultPager</span><span style="color:#E5673D"> =</span><span style="color:#E5673D"> new</span><span style="color:#C7C8D2"> ResultPager</span><span style="color:#999999">(</span><span style="color:#E5673D">$</span><span style="color:#D8DEE9">github</span><span style="color:#999999">)</span><span style="color:#E5673D">;</span></span>
 <span class="line" data-linenr="5"></span>
-<span class="line" data-linenr="6"><span style="color: #E5673D">$</span><span style="color: #D8DEE9">prComments</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">=</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">resultPager</span><span style="color: #E5673D">-&gt;</span><span style="color: #C7C8D2">fetchAll</span><span style="color: #999999">(</span></span>
-<span class="line" data-linenr="7"><span style="color: #BBBBBB">    </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">github</span><span style="color: #E5673D">-&gt;</span><span style="color: #C7C8D2">issues</span><span style="color: #999999">()</span><span style="color: #E5673D">-&gt;</span><span style="color: #C7C8D2">comments</span><span style="color: #999999">(),</span></span>
-<span class="line" data-linenr="8"><span style="color: #BBBBBB">    </span><span style="color: #999999">&#39;</span><span style="color: #7CC64A">all</span><span style="color: #999999">&#39;</span><span style="color: #999999">,</span></span>
-<span class="line" data-linenr="9"><span style="color: #BBBBBB">    </span><span style="color: #999999">[</span><span style="color: #999999">&#39;</span><span style="color: #7CC64A">symfony</span><span style="color: #999999">&#39;</span><span style="color: #999999">,</span><span style="color: #BBBBBB"> </span><span style="color: #999999">&#39;</span><span style="color: #7CC64A">symfony</span><span style="color: #999999">&#39;</span><span style="color: #999999">,</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">prNumber</span><span style="color: #999999">]</span></span>
-<span class="line" data-linenr="10"><span style="color: #999999">)</span><span style="color: #E5673D">;</span></span></code></pre>
+<span class="line" data-linenr="6"><span style="color:#E5673D">$</span><span style="color:#D8DEE9">prComments</span><span style="color:#E5673D"> =</span><span style="color:#E5673D"> $</span><span style="color:#D8DEE9">resultPager</span><span style="color:#E5673D">-></span><span style="color:#C7C8D2">fetchAll</span><span style="color:#999999">(</span></span>
+<span class="line" data-linenr="7"><span style="color:#E5673D">    $</span><span style="color:#D8DEE9">github</span><span style="color:#E5673D">-></span><span style="color:#C7C8D2">issues</span><span style="color:#999999">()</span><span style="color:#E5673D">-></span><span style="color:#C7C8D2">comments</span><span style="color:#999999">(),</span></span>
+<span class="line" data-linenr="8"><span style="color:#999999">    '</span><span style="color:#7CC64A">all</span><span style="color:#999999">'</span><span style="color:#999999">,</span></span>
+<span class="line" data-linenr="9"><span style="color:#999999">    [</span><span style="color:#999999">'</span><span style="color:#7CC64A">symfony</span><span style="color:#999999">'</span><span style="color:#999999">,</span><span style="color:#999999"> '</span><span style="color:#7CC64A">symfony</span><span style="color:#999999">'</span><span style="color:#999999">,</span><span style="color:#E5673D"> $</span><span style="color:#D8DEE9">prNumber</span><span style="color:#999999">]</span></span>
+<span class="line" data-linenr="10"><span style="color:#999999">)</span><span style="color:#E5673D">;</span></span></code></pre></div>
 </div>
 
 <p>Then, it loops over all comments and puts it in a temporary file:</p>
 
-<div class="language-php highlighter-shiki"><pre class="shiki-gutter">1
+<div class="language-php highlighter-shiki"><div><pre class="shiki-gutter">1
 2
 3
 4
@@ -301,43 +295,40 @@ via the <a href="https://github.com/KnpLabs/php-github-api/">KnpLabs GitHub API 
 11
 12
 13
-14
-</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #E5673D">$</span><span style="color: #D8DEE9">notes</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">=</span><span style="color: #BBBBBB"> </span><span style="color: #999999">&#39;&#39;</span><span style="color: #E5673D">;</span></span>
-<span class="line" data-linenr="2"><span style="color: #E5673D">foreach</span><span style="color: #BBBBBB"> </span><span style="color: #999999">(</span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">prComments</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">as</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">comment</span><span style="color: #999999">)</span><span style="color: #BBBBBB"> </span><span style="color: #999999">{</span></span>
-<span class="line" data-linenr="3"><span style="color: #BBBBBB">    </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">notes</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">.=</span><span style="color: #BBBBBB"> </span><span style="color: #999999">&lt;&lt;&lt;</span><span style="color: #E5673D">EOF</span></span>
-<span class="line" data-linenr="4"><span style="color: #7CC64A">---------------------------------------------------------------------------</span></span>
+14</pre><pre class="shiki wouterj shiki-code" style="background-color:#1e1e1e;color:#bbbbbb" tabindex="0"><code><span class="line" data-linenr="1"><span style="color:#E5673D">$</span><span style="color:#D8DEE9">notes</span><span style="color:#E5673D"> =</span><span style="color:#999999"> ''</span><span style="color:#E5673D">;</span></span>
+<span class="line" data-linenr="2"><span style="color:#E5673D">foreach</span><span style="color:#999999"> (</span><span style="color:#E5673D">$</span><span style="color:#D8DEE9">prComments</span><span style="color:#E5673D"> as</span><span style="color:#E5673D"> $</span><span style="color:#D8DEE9">comment</span><span style="color:#999999">)</span><span style="color:#999999"> {</span></span>
+<span class="line" data-linenr="3"><span style="color:#E5673D">    $</span><span style="color:#D8DEE9">notes</span><span style="color:#E5673D"> .=</span><span style="color:#999999"> &#x3C;&#x3C;&#x3C;</span><span style="color:#E5673D">EOF</span></span>
+<span class="line" data-linenr="4"><span style="color:#7CC64A">---------------------------------------------------------------------------</span></span>
 <span class="line" data-linenr="5"></span>
-<span class="line" data-linenr="6"><span style="color: #7CC64A">by </span><span style="color: #E5673D">{$</span><span style="color: #D8DEE9">comment</span><span style="color: #999999">[&#39;</span><span style="color: #7CC64A">user</span><span style="color: #999999">&#39;][&#39;</span><span style="color: #7CC64A">login</span><span style="color: #999999">&#39;]</span><span style="color: #E5673D">}</span><span style="color: #7CC64A"> at </span><span style="color: #E5673D">{$</span><span style="color: #D8DEE9">comment</span><span style="color: #999999">[&#39;</span><span style="color: #7CC64A">created_at</span><span style="color: #999999">&#39;]</span><span style="color: #E5673D">}</span></span>
+<span class="line" data-linenr="6"><span style="color:#7CC64A">by </span><span style="color:#E5673D">{$</span><span style="color:#D8DEE9">comment</span><span style="color:#999999">['</span><span style="color:#7CC64A">user</span><span style="color:#999999">']['</span><span style="color:#7CC64A">login</span><span style="color:#999999">']</span><span style="color:#E5673D">}</span><span style="color:#7CC64A"> at </span><span style="color:#E5673D">{$</span><span style="color:#D8DEE9">comment</span><span style="color:#999999">['</span><span style="color:#7CC64A">created_at</span><span style="color:#999999">']</span><span style="color:#E5673D">}</span></span>
 <span class="line" data-linenr="7"></span>
-<span class="line" data-linenr="8"><span style="color: #E5673D">{$</span><span style="color: #D8DEE9">comment</span><span style="color: #999999">[&#39;</span><span style="color: #7CC64A">body</span><span style="color: #999999">&#39;]</span><span style="color: #E5673D">}</span></span>
+<span class="line" data-linenr="8"><span style="color:#E5673D">{$</span><span style="color:#D8DEE9">comment</span><span style="color:#999999">['</span><span style="color:#7CC64A">body</span><span style="color:#999999">']</span><span style="color:#E5673D">}</span></span>
 <span class="line" data-linenr="9"></span>
 <span class="line" data-linenr="10"></span>
-<span class="line" data-linenr="11"><span style="color: #7CC64A">    </span><span style="color: #E5673D">EOF</span><span style="color: #E5673D">;</span></span>
-<span class="line" data-linenr="12"><span style="color: #999999">}</span></span>
+<span class="line" data-linenr="11"><span style="color:#E5673D">    EOF</span><span style="color:#E5673D">;</span></span>
+<span class="line" data-linenr="12"><span style="color:#999999">}</span></span>
 <span class="line" data-linenr="13"></span>
-<span class="line" data-linenr="14"><span style="color: #C7C8D2">file_put_contents</span><span style="color: #999999">(</span><span style="color: #C7C8D2">getcwd</span><span style="color: #999999">()</span><span style="color: #E5673D">.</span><span style="color: #999999">&#39;</span><span style="color: #7CC64A">/.notes</span><span style="color: #999999">&#39;</span><span style="color: #999999">,</span><span style="color: #C7C8D2"> </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">notes</span><span style="color: #999999">)</span><span style="color: #E5673D">;</span></span></code></pre>
+<span class="line" data-linenr="14"><span style="color:#C7C8D2">file_put_contents</span><span style="color:#999999">(</span><span style="color:#C7C8D2">getcwd</span><span style="color:#999999">()</span><span style="color:#E5673D">.</span><span style="color:#999999">'</span><span style="color:#7CC64A">/.notes</span><span style="color:#999999">'</span><span style="color:#999999">,</span><span style="color:#E5673D"> $</span><span style="color:#D8DEE9">notes</span><span style="color:#999999">)</span><span style="color:#E5673D">;</span></span></code></pre></div>
 </div>
 
 <p>Now, we can create a Git note from the file contents (Symfony puts them in
 a named “github-comments” reference):</p>
 
-<div class="language-terminal highlighter-shiki"><pre class="shiki-gutter">1
+<div class="language-terminal highlighter-shiki"><div><pre class="shiki-gutter">1
 2
 3
 4
-5
-</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #6B90C0; font-style: italic"># first, replace the local github-comments ref with the upstream one</span></span>
-<span class="line" data-linenr="2"><span style="color: #999999">$ </span><span style="color: #D8DEE9">git fetch origin refs/notes/github-comments:refs/notes/github-comments</span></span>
+5</pre><pre class="shiki wouterj shiki-code" style="background-color:#1e1e1e;color:#bbbbbb" tabindex="0"><code><span class="line" data-linenr="1"><span style="color:#6B90C0;font-style:italic"># first, replace the local github-comments ref with the upstream one</span></span>
+<span class="line" data-linenr="2"><span style="color:#999999">$ </span><span style="color:#D8DEE9">git fetch origin refs/notes/github-comments:refs/notes/github-comments</span></span>
 <span class="line" data-linenr="3"></span>
-<span class="line" data-linenr="4"><span style="color: #6B90C0; font-style: italic"># then, create the new note</span></span>
-<span class="line" data-linenr="5"><span style="color: #999999">$ </span><span style="color: #D8DEE9">git notes --ref=github-comments add --file=.notes</span></span></code></pre>
+<span class="line" data-linenr="4"><span style="color:#6B90C0;font-style:italic"># then, create the new note</span></span>
+<span class="line" data-linenr="5"><span style="color:#999999">$ </span><span style="color:#D8DEE9">git notes --ref</span><span style="color:#E5673D">=</span><span style="color:#7CC64A">github-comments</span><span style="color:#C7C8D2"> add</span><span style="color:#7CC64A"> --file=.notes</span></span></code></pre></div>
 </div>
 
 <p>Finally, we can push the notes to GitHub. Git doesn’t push notes by
 default, we have to mention the reference explicitly:</p>
 
-<div class="language-terminal highlighter-shiki"><pre class="shiki-gutter">1
-</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #999999">$ </span><span style="color: #D8DEE9">git push --no-follow-tags origin refs/notes/github-comments</span></span></code></pre>
+<div class="language-terminal highlighter-shiki"><div><pre class="shiki-gutter">1</pre><pre class="shiki wouterj shiki-code" style="background-color:#1e1e1e;color:#bbbbbb" tabindex="0"><code><span class="line" data-linenr="1"><span style="color:#999999">$ </span><span style="color:#D8DEE9">git push --no-follow-tags origin refs/notes/github-comments</span></span></code></pre></div>
 </div>
 
 <aside class="side" data-type="Distributed Code Reviews">
@@ -362,30 +353,28 @@ code.</p>
 just another set of objects (just like the commit tree), you can still
 push and fetch it from GitHub if you reference it directly:</p>
 
-<div class="language-terminal highlighter-shiki"><pre class="shiki-gutter">1
+<div class="language-terminal highlighter-shiki"><div><pre class="shiki-gutter">1
 2
 3
-4
-</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #999999">$ </span><span style="color: #D8DEE9">git fetch origin refs/notes/github-comments:refs/notes/github-comments</span></span>
+4</pre><pre class="shiki wouterj shiki-code" style="background-color:#1e1e1e;color:#bbbbbb" tabindex="0"><code><span class="line" data-linenr="1"><span style="color:#999999">$ </span><span style="color:#D8DEE9">git fetch origin refs/notes/github-comments:refs/notes/github-comments</span></span>
 <span class="line" data-linenr="2"></span>
-<span class="line" data-linenr="3"><span style="color: #6B90C0; font-style: italic"># or fetch all note references</span></span>
-<span class="line" data-linenr="4"><span style="color: #999999">$ </span><span style="color: #D8DEE9">git fetch origin </span><span style="color: #999999">&quot;</span><span style="color: #7CC64A">refs/notes/*:refs/notes/*</span><span style="color: #999999">&quot;</span></span></code></pre>
+<span class="line" data-linenr="3"><span style="color:#6B90C0;font-style:italic"># or fetch all note references</span></span>
+<span class="line" data-linenr="4"><span style="color:#999999">$ </span><span style="color:#D8DEE9">git fetch origin </span><span style="color:#999999">"</span><span style="color:#7CC64A">refs/notes/*:refs/notes/*</span><span style="color:#999999">"</span></span></code></pre></div>
 </div>
 
 <p>You can also edit the <code class="highlighter-shiki">.git/config</code> file of a project to always fetch
 notes by default:</p>
 
-<div class="language-diff highlighter-shiki"><pre class="shiki-gutter">1
+<div class="language-diff highlighter-shiki"><div><pre class="shiki-gutter">1
 2
-3
-</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #BBBBBB">  [remote &quot;origin&quot;]</span></span>
-<span class="line" data-linenr="2"><span style="color: #BBBBBB">    fetch = +refs/heads/*:refs/remotes/origin/*</span></span>
-<span class="line" data-linenr="3"><span style="color: #999999">+</span><span style="color: #7CC64A">   fetch = +refs/notes/*:refs/notes/*</span></span></code></pre>
+3</pre><pre class="shiki wouterj shiki-code" style="background-color:#1e1e1e;color:#bbbbbb" tabindex="0"><code><span class="line" data-linenr="1"><span style="color:#BBBBBB">  [remote "origin"]</span></span>
+<span class="line" data-linenr="2"><span style="color:#BBBBBB">    fetch = +refs/heads/*:refs/remotes/origin/*</span></span>
+<span class="line" data-linenr="3"><span style="color:#999999">+</span><span style="color:#7CC64A">   fetch = +refs/notes/*:refs/notes/*</span></span></code></pre></div>
 </div>
 
 <p>Now the notes exist locally, you can view them in the Git logs for instance:</p>
 
-<div class="language-terminal highlighter-shiki"><pre class="shiki-gutter">1
+<div class="language-terminal highlighter-shiki"><div><pre class="shiki-gutter">1
 2
 3
 4
@@ -425,48 +414,47 @@ notes by default:</p>
 38
 39
 40
-41
-</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #999999">$ </span><span style="color: #D8DEE9">git log --notes=github-comments</span></span>
-<span class="line" data-linenr="2"><span style="color: #BBBBBB">commit 1a16ebc32598faada074e0af12a6a698d2964a5e (HEAD -&gt; 7.2, origin/7.2)</span></span>
-<span class="line" data-linenr="3"><span style="color: #BBBBBB">Merge: 09f9eb73b6 1303cd1a56</span></span>
-<span class="line" data-linenr="4"><span style="color: #BBBBBB">Author: Nicolas Grekas &lt;nicolas.grekas@gmail.com&gt;</span></span>
-<span class="line" data-linenr="5"><span style="color: #BBBBBB">Date:   Wed Jul 10 17:23:17 2024 +0200</span></span>
+41</pre><pre class="shiki wouterj shiki-code" style="background-color:#1e1e1e;color:#bbbbbb" tabindex="0"><code><span class="line" data-linenr="1"><span style="color:#999999">$ </span><span style="color:#D8DEE9">git log --notes</span><span style="color:#E5673D">=</span><span style="color:#7CC64A">github-comments</span></span>
+<span class="line" data-linenr="2"><span style="color:#BBBBBB">commit 1a16ebc32598faada074e0af12a6a698d2964a5e (HEAD -> 7.2, origin/7.2)</span></span>
+<span class="line" data-linenr="3"><span style="color:#BBBBBB">Merge: 09f9eb73b6 1303cd1a56</span></span>
+<span class="line" data-linenr="4"><span style="color:#BBBBBB">Author: Nicolas Grekas &#x3C;nicolas.grekas@gmail.com></span></span>
+<span class="line" data-linenr="5"><span style="color:#BBBBBB">Date:   Wed Jul 10 17:23:17 2024 +0200</span></span>
 <span class="line" data-linenr="6"></span>
-<span class="line" data-linenr="7"><span style="color: #BBBBBB">    minor #57657 [Messenger] [SQS] Allow to pass `sslmode` as an option (spuf)</span></span>
+<span class="line" data-linenr="7"><span style="color:#BBBBBB">    minor #57657 [Messenger] [SQS] Allow to pass `sslmode` as an option (spuf)</span></span>
 <span class="line" data-linenr="8"></span>
-<span class="line" data-linenr="9"><span style="color: #BBBBBB">    This PR was merged into the 7.2 branch.</span></span>
+<span class="line" data-linenr="9"><span style="color:#BBBBBB">    This PR was merged into the 7.2 branch.</span></span>
 <span class="line" data-linenr="10"></span>
-<span class="line" data-linenr="11"><span style="color: #BBBBBB">    Discussion</span></span>
-<span class="line" data-linenr="12"><span style="color: #BBBBBB">    ----------</span></span>
+<span class="line" data-linenr="11"><span style="color:#BBBBBB">    Discussion</span></span>
+<span class="line" data-linenr="12"><span style="color:#BBBBBB">    ----------</span></span>
 <span class="line" data-linenr="13"></span>
-<span class="line" data-linenr="14"><span style="color: #BBBBBB">    [Messenger] [SQS] Allow to pass `sslmode` as an option</span></span>
+<span class="line" data-linenr="14"><span style="color:#BBBBBB">    [Messenger] [SQS] Allow to pass `sslmode` as an option</span></span>
 <span class="line" data-linenr="15"></span>
-<span class="line" data-linenr="16"><span style="color: #BBBBBB">    | Q             | A</span></span>
-<span class="line" data-linenr="17"><span style="color: #BBBBBB">    | ------------- | ---</span></span>
-<span class="line" data-linenr="18"><span style="color: #BBBBBB">    | Branch?       | 7.2</span></span>
-<span class="line" data-linenr="19"><span style="color: #BBBBBB">    | Bug fix?      | no</span></span>
-<span class="line" data-linenr="20"><span style="color: #BBBBBB">    | New feature?  | no</span></span>
-<span class="line" data-linenr="21"><span style="color: #BBBBBB">    | Deprecations? | no</span></span>
-<span class="line" data-linenr="22"><span style="color: #BBBBBB">    | Issues        |</span></span>
-<span class="line" data-linenr="23"><span style="color: #BBBBBB">    | License       | MIT</span></span>
+<span class="line" data-linenr="16"><span style="color:#BBBBBB">    | Q             | A</span></span>
+<span class="line" data-linenr="17"><span style="color:#BBBBBB">    | ------------- | ---</span></span>
+<span class="line" data-linenr="18"><span style="color:#BBBBBB">    | Branch?       | 7.2</span></span>
+<span class="line" data-linenr="19"><span style="color:#BBBBBB">    | Bug fix?      | no</span></span>
+<span class="line" data-linenr="20"><span style="color:#BBBBBB">    | New feature?  | no</span></span>
+<span class="line" data-linenr="21"><span style="color:#BBBBBB">    | Deprecations? | no</span></span>
+<span class="line" data-linenr="22"><span style="color:#BBBBBB">    | Issues        |</span></span>
+<span class="line" data-linenr="23"><span style="color:#BBBBBB">    | License       | MIT</span></span>
 <span class="line" data-linenr="24"></span>
-<span class="line" data-linenr="25"><span style="color: #BBBBBB">    This is a minor. There is an option &quot;sslmode&quot; that is documented as an option but can be passed only in dsn query string.</span></span>
+<span class="line" data-linenr="25"><span style="color:#BBBBBB">    This is a minor. There is an option "sslmode" that is documented as an option but can be passed only in dsn query string.</span></span>
 <span class="line" data-linenr="26"></span>
-<span class="line" data-linenr="27"><span style="color: #BBBBBB">    Commits</span></span>
-<span class="line" data-linenr="28"><span style="color: #BBBBBB">    -------</span></span>
+<span class="line" data-linenr="27"><span style="color:#BBBBBB">    Commits</span></span>
+<span class="line" data-linenr="28"><span style="color:#BBBBBB">    -------</span></span>
 <span class="line" data-linenr="29"></span>
-<span class="line" data-linenr="30"><span style="color: #BBBBBB">    1303cd1a56 [Messenger][SQS] Allow to pass sslmode as an option</span></span>
+<span class="line" data-linenr="30"><span style="color:#BBBBBB">    1303cd1a56 [Messenger][SQS] Allow to pass sslmode as an option</span></span>
 <span class="line" data-linenr="31"></span>
-<span class="line" data-linenr="32"><span style="color: #BBBBBB">Notes (github-comments):</span></span>
-<span class="line" data-linenr="33"><span style="color: #BBBBBB">    ---------------------------------------------------------------------------</span></span>
+<span class="line" data-linenr="32"><span style="color:#BBBBBB">Notes (github-comments):</span></span>
+<span class="line" data-linenr="33"><span style="color:#BBBBBB">    ---------------------------------------------------------------------------</span></span>
 <span class="line" data-linenr="34"></span>
-<span class="line" data-linenr="35"><span style="color: #BBBBBB">    by carsonbot at 2024-07-04T20:10:34Z</span></span>
+<span class="line" data-linenr="35"><span style="color:#BBBBBB">    by carsonbot at 2024-07-04T20:10:34Z</span></span>
 <span class="line" data-linenr="36"></span>
-<span class="line" data-linenr="37"><span style="color: #BBBBBB">    Hey!</span></span>
+<span class="line" data-linenr="37"><span style="color:#BBBBBB">    Hey!</span></span>
 <span class="line" data-linenr="38"></span>
-<span class="line" data-linenr="39"><span style="color: #BBBBBB">    I see that this is your first PR. That is great! Welcome!</span></span>
+<span class="line" data-linenr="39"><span style="color:#BBBBBB">    I see that this is your first PR. That is great! Welcome!</span></span>
 <span class="line" data-linenr="40"></span>
-<span class="line" data-linenr="41"><span style="color: #BBBBBB">    ...</span></span></code></pre>
+<span class="line" data-linenr="41"><span style="color:#BBBBBB">    ...</span></span></code></pre></div>
 </div>
     
       <h2 id="summary">

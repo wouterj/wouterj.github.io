@@ -96,7 +96,7 @@ without CSRF protection, it can use your website as if it was the user.</p>
 <p>For instance, an attacker can trick the user into thinking they are on your
 website and show them a form that looks like the login:</p>
 
-<div class="language-html highlighter-shiki"><pre class="shiki-gutter">1
+<div class="language-html highlighter-shiki"><div><pre class="shiki-gutter">1
 2
 3
 4
@@ -104,16 +104,15 @@ website and show them a form that looks like the login:</p>
 6
 7
 8
-9
-</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #E5673D">&lt;form</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">action</span><span style="color: #999999">=</span><span style="color: #999999">&quot;</span><span style="color: #7CC64A">https://yourwebsite.com/profile/change_password</span><span style="color: #999999">&quot;</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">method</span><span style="color: #999999">=</span><span style="color: #999999">&quot;</span><span style="color: #7CC64A">POST</span><span style="color: #999999">&quot;</span><span style="color: #E5673D">&gt;</span></span>
-<span class="line" data-linenr="2"><span style="color: #BBBBBB">    </span><span style="color: #E5673D">&lt;label&gt;</span><span style="color: #BBBBBB">Username </span><span style="color: #E5673D">&lt;input</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">type</span><span style="color: #999999">=</span><span style="color: #999999">&quot;</span><span style="color: #7CC64A">text</span><span style="color: #999999">&quot;</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">name</span><span style="color: #999999">=</span><span style="color: #999999">&quot;</span><span style="color: #7CC64A">username</span><span style="color: #999999">&quot;</span><span style="color: #E5673D">&gt;&lt;/label&gt;</span></span>
+9</pre><pre class="shiki wouterj shiki-code" style="background-color:#1e1e1e;color:#bbbbbb" tabindex="0"><code><span class="line" data-linenr="1"><span style="color:#E5673D">&#x3C;form</span><span style="color:#C7C8D2"> action</span><span style="color:#999999">=</span><span style="color:#999999">"</span><span style="color:#7CC64A">https://yourwebsite.com/profile/change_password</span><span style="color:#999999">"</span><span style="color:#C7C8D2"> method</span><span style="color:#999999">=</span><span style="color:#999999">"</span><span style="color:#7CC64A">POST</span><span style="color:#999999">"</span><span style="color:#E5673D">></span></span>
+<span class="line" data-linenr="2"><span style="color:#E5673D">    &#x3C;label></span><span style="color:#BBBBBB">Username </span><span style="color:#E5673D">&#x3C;input</span><span style="color:#C7C8D2"> type</span><span style="color:#999999">=</span><span style="color:#999999">"</span><span style="color:#7CC64A">text</span><span style="color:#999999">"</span><span style="color:#C7C8D2"> name</span><span style="color:#999999">=</span><span style="color:#999999">"</span><span style="color:#7CC64A">username</span><span style="color:#999999">"</span><span style="color:#E5673D">>&#x3C;/label></span></span>
 <span class="line" data-linenr="3"></span>
-<span class="line" data-linenr="4"><span style="color: #BBBBBB">    </span><span style="color: #E5673D">&lt;label&gt;</span><span style="color: #BBBBBB">Password </span><span style="color: #E5673D">&lt;input</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">type</span><span style="color: #999999">=</span><span style="color: #999999">&quot;</span><span style="color: #7CC64A">password</span><span style="color: #999999">&quot;</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">name</span><span style="color: #999999">=</span><span style="color: #999999">&quot;</span><span style="color: #7CC64A">current_password</span><span style="color: #999999">&quot;</span><span style="color: #E5673D">&gt;&lt;/label&gt;</span></span>
+<span class="line" data-linenr="4"><span style="color:#E5673D">    &#x3C;label></span><span style="color:#BBBBBB">Password </span><span style="color:#E5673D">&#x3C;input</span><span style="color:#C7C8D2"> type</span><span style="color:#999999">=</span><span style="color:#999999">"</span><span style="color:#7CC64A">password</span><span style="color:#999999">"</span><span style="color:#C7C8D2"> name</span><span style="color:#999999">=</span><span style="color:#999999">"</span><span style="color:#7CC64A">current_password</span><span style="color:#999999">"</span><span style="color:#E5673D">>&#x3C;/label></span></span>
 <span class="line" data-linenr="5"></span>
-<span class="line" data-linenr="6"><span style="color: #BBBBBB">    </span><span style="color: #E5673D">&lt;input</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">type</span><span style="color: #999999">=</span><span style="color: #999999">&quot;</span><span style="color: #7CC64A">hidden</span><span style="color: #999999">&quot;</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">name</span><span style="color: #999999">=</span><span style="color: #999999">&quot;</span><span style="color: #7CC64A">new_password</span><span style="color: #999999">&quot;</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">value</span><span style="color: #999999">=</span><span style="color: #999999">&quot;</span><span style="color: #7CC64A">...</span><span style="color: #999999">&quot;</span><span style="color: #E5673D">&gt;</span></span>
+<span class="line" data-linenr="6"><span style="color:#E5673D">    &#x3C;input</span><span style="color:#C7C8D2"> type</span><span style="color:#999999">=</span><span style="color:#999999">"</span><span style="color:#7CC64A">hidden</span><span style="color:#999999">"</span><span style="color:#C7C8D2"> name</span><span style="color:#999999">=</span><span style="color:#999999">"</span><span style="color:#7CC64A">new_password</span><span style="color:#999999">"</span><span style="color:#C7C8D2"> value</span><span style="color:#999999">=</span><span style="color:#999999">"</span><span style="color:#7CC64A">...</span><span style="color:#999999">"</span><span style="color:#E5673D">></span></span>
 <span class="line" data-linenr="7"></span>
-<span class="line" data-linenr="8"><span style="color: #BBBBBB">    </span><span style="color: #E5673D">&lt;button</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">type</span><span style="color: #999999">=</span><span style="color: #999999">&quot;</span><span style="color: #7CC64A">submit</span><span style="color: #999999">&quot;</span><span style="color: #E5673D">&gt;</span><span style="color: #BBBBBB">Login</span><span style="color: #E5673D">&lt;/button&gt;</span></span>
-<span class="line" data-linenr="9"><span style="color: #E5673D">&lt;/form&gt;</span></span></code></pre>
+<span class="line" data-linenr="8"><span style="color:#E5673D">    &#x3C;button</span><span style="color:#C7C8D2"> type</span><span style="color:#999999">=</span><span style="color:#999999">"</span><span style="color:#7CC64A">submit</span><span style="color:#999999">"</span><span style="color:#E5673D">></span><span style="color:#BBBBBB">Login</span><span style="color:#E5673D">&#x3C;/button></span></span>
+<span class="line" data-linenr="9"><span style="color:#E5673D">&#x3C;/form></span></span></code></pre></div>
 </div>
 
 <p>In reality (looking at the <code class="highlighter-shiki">action</code> and <code class="highlighter-shiki">type=&quot;hidden&quot;</code> input), this form
@@ -190,28 +189,26 @@ submission, this token is checked for validity.</p>
 validating this randomized token is mostly automated for you. First, enable
 CSRF protection in the authenticator:</p>
 
-<div class="language-yaml highlighter-shiki"><pre class="shiki-gutter">1
+<div class="language-yaml highlighter-shiki"><div><pre class="shiki-gutter">1
 2
 3
 4
 5
 6
-7
-</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #C7C8D2">security</span><span style="color: #999999">:</span></span>
-<span class="line" data-linenr="2"><span style="color: #999999">    </span><span style="color: #6B90C0; font-style: italic"># ...</span></span>
-<span class="line" data-linenr="3"><span style="color: #BBBBBB">    </span><span style="color: #C7C8D2">firewalls</span><span style="color: #999999">:</span></span>
-<span class="line" data-linenr="4"><span style="color: #BBBBBB">        </span><span style="color: #C7C8D2">main</span><span style="color: #999999">:</span></span>
-<span class="line" data-linenr="5"><span style="color: #BBBBBB">            </span><span style="color: #C7C8D2">form_login</span><span style="color: #999999">:</span></span>
-<span class="line" data-linenr="6"><span style="color: #999999">                </span><span style="color: #6B90C0; font-style: italic"># ...</span></span>
-<span class="line" data-linenr="7"><span style="color: #BBBBBB">                </span><span style="color: #C7C8D2">enable_csrf</span><span style="color: #999999">:</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">true</span></span></code></pre>
+7</pre><pre class="shiki wouterj shiki-code" style="background-color:#1e1e1e;color:#bbbbbb" tabindex="0"><code><span class="line" data-linenr="1"><span style="color:#C7C8D2">security</span><span style="color:#999999">:</span></span>
+<span class="line" data-linenr="2"><span style="color:#6B90C0;font-style:italic">    # ...</span></span>
+<span class="line" data-linenr="3"><span style="color:#C7C8D2">    firewalls</span><span style="color:#999999">:</span></span>
+<span class="line" data-linenr="4"><span style="color:#C7C8D2">        main</span><span style="color:#999999">:</span></span>
+<span class="line" data-linenr="5"><span style="color:#C7C8D2">            form_login</span><span style="color:#999999">:</span></span>
+<span class="line" data-linenr="6"><span style="color:#6B90C0;font-style:italic">                # ...</span></span>
+<span class="line" data-linenr="7"><span style="color:#C7C8D2">                enable_csrf</span><span style="color:#999999">:</span><span style="color:#E5673D"> true</span></span></code></pre></div>
 </div>
 
 <p>And then, add a hidden CSRF token to your login form template:</p>
 
-<div class="language-twig highlighter-shiki"><pre class="shiki-gutter">1
-2
-</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #6B90C0; font-style: italic">&lt;!-- csrf_token() takes care of correctly generating and storing the CSRF token --&gt;</span></span>
-<span class="line" data-linenr="2"><span style="color: #E5673D">&lt;input</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">type</span><span style="color: #BBBBBB">=</span><span style="color: #999999">&quot;</span><span style="color: #7CC64A">hidden</span><span style="color: #999999">&quot;</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">name</span><span style="color: #BBBBBB">=</span><span style="color: #999999">&quot;</span><span style="color: #7CC64A">_csrf_token</span><span style="color: #999999">&quot;</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">value</span><span style="color: #BBBBBB">=</span><span style="color: #999999">&quot;{{</span><span style="color: #7CC64A"> </span><span style="color: #C7C8D2">csrf_token</span><span style="color: #999999">(&#39;</span><span style="color: #7CC64A">authenticate</span><span style="color: #999999">&#39;)</span><span style="color: #7CC64A"> </span><span style="color: #999999">}}&quot;</span><span style="color: #E5673D">&gt;</span></span></code></pre>
+<div class="language-twig highlighter-shiki"><div><pre class="shiki-gutter">1
+2</pre><pre class="shiki wouterj shiki-code" style="background-color:#1e1e1e;color:#bbbbbb" tabindex="0"><code><span class="line" data-linenr="1"><span style="color:#6B90C0;font-style:italic">&#x3C;!-- csrf_token() takes care of correctly generating and storing the CSRF token --></span></span>
+<span class="line" data-linenr="2"><span style="color:#E5673D">&#x3C;input</span><span style="color:#C7C8D2"> type</span><span style="color:#BBBBBB">=</span><span style="color:#999999">"</span><span style="color:#7CC64A">hidden</span><span style="color:#999999">"</span><span style="color:#C7C8D2"> name</span><span style="color:#BBBBBB">=</span><span style="color:#999999">"</span><span style="color:#7CC64A">_csrf_token</span><span style="color:#999999">"</span><span style="color:#C7C8D2"> value</span><span style="color:#BBBBBB">=</span><span style="color:#999999">"{{</span><span style="color:#7CC64A"> csrf_token</span><span style="color:#999999">('</span><span style="color:#7CC64A">authenticate</span><span style="color:#999999">')</span><span style="color:#999999"> }}"</span><span style="color:#E5673D">></span></span></code></pre></div>
 </div>
 
 <p>That’s it! Your users are safe against this attack now!</p>
@@ -237,20 +234,19 @@ instead. Read more about it in <a href="https://symfony.com/doc/5.4/reference/co
 <p>You can protect logout in a similar way by enabling CSRF protection in the
 config:</p>
 
-<div class="language-yaml highlighter-shiki"><pre class="shiki-gutter">1
+<div class="language-yaml highlighter-shiki"><div><pre class="shiki-gutter">1
 2
 3
 4
 5
 6
-7
-</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #C7C8D2">security</span><span style="color: #999999">:</span></span>
-<span class="line" data-linenr="2"><span style="color: #999999">    </span><span style="color: #6B90C0; font-style: italic"># ...</span></span>
-<span class="line" data-linenr="3"><span style="color: #BBBBBB">    </span><span style="color: #C7C8D2">firewalls</span><span style="color: #999999">:</span></span>
-<span class="line" data-linenr="4"><span style="color: #BBBBBB">        </span><span style="color: #C7C8D2">main</span><span style="color: #999999">:</span></span>
-<span class="line" data-linenr="5"><span style="color: #BBBBBB">            </span><span style="color: #C7C8D2">logout</span><span style="color: #999999">:</span></span>
-<span class="line" data-linenr="6"><span style="color: #999999">                </span><span style="color: #6B90C0; font-style: italic"># ...</span></span>
-<span class="line" data-linenr="7"><span style="color: #BBBBBB">                </span><span style="color: #C7C8D2">enable_csrf</span><span style="color: #999999">:</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">true</span></span></code></pre>
+7</pre><pre class="shiki wouterj shiki-code" style="background-color:#1e1e1e;color:#bbbbbb" tabindex="0"><code><span class="line" data-linenr="1"><span style="color:#C7C8D2">security</span><span style="color:#999999">:</span></span>
+<span class="line" data-linenr="2"><span style="color:#6B90C0;font-style:italic">    # ...</span></span>
+<span class="line" data-linenr="3"><span style="color:#C7C8D2">    firewalls</span><span style="color:#999999">:</span></span>
+<span class="line" data-linenr="4"><span style="color:#C7C8D2">        main</span><span style="color:#999999">:</span></span>
+<span class="line" data-linenr="5"><span style="color:#C7C8D2">            logout</span><span style="color:#999999">:</span></span>
+<span class="line" data-linenr="6"><span style="color:#6B90C0;font-style:italic">                # ...</span></span>
+<span class="line" data-linenr="7"><span style="color:#C7C8D2">                enable_csrf</span><span style="color:#999999">:</span><span style="color:#E5673D"> true</span></span></code></pre></div>
 </div>
 
 <p>If you’re already using the <code class="highlighter-shiki">logout_path()</code> Twig helper function to
@@ -260,8 +256,7 @@ function generates a unique CSRF token and attaches it to the URL.</p>
 <p>Otherwise, replace links to the logout page with this Twig function in your
 Twig templates:</p>
 
-<div class="language-twig highlighter-shiki"><pre class="shiki-gutter">1
-</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #E5673D">&lt;a</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">href</span><span style="color: #BBBBBB">=</span><span style="color: #999999">&quot;{{</span><span style="color: #7CC64A"> logout_path</span><span style="color: #999999">()</span><span style="color: #7CC64A"> </span><span style="color: #999999">}}&quot;</span><span style="color: #E5673D">&gt;</span><span style="color: #BBBBBB">Logout</span><span style="color: #E5673D">&lt;/a&gt;</span></span></code></pre>
+<div class="language-twig highlighter-shiki"><div><pre class="shiki-gutter">1</pre><pre class="shiki wouterj shiki-code" style="background-color:#1e1e1e;color:#bbbbbb" tabindex="0"><code><span class="line" data-linenr="1"><span style="color:#E5673D">&#x3C;a</span><span style="color:#C7C8D2"> href</span><span style="color:#BBBBBB">=</span><span style="color:#999999">"{{</span><span style="color:#7CC64A"> logout_path</span><span style="color:#999999">()</span><span style="color:#999999"> }}"</span><span style="color:#E5673D">></span><span style="color:#BBBBBB">Logout</span><span style="color:#E5673D">&#x3C;/a></span></span></code></pre></div>
 </div>
     
       <h2 id="take-homes">

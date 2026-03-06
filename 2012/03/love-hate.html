@@ -91,10 +91,9 @@ voor.</li>
 
 <p>Met regel 3 bedoel ik:</p>
 
-<div class="language-css highlighter-shiki"><pre class="shiki-gutter">1
-2
-</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #999999">#</span><span style="color: #C7C8D2">box</span><span style="color: #BBBBBB"> </span><span style="color: #999999">{</span><span style="color: #BBBBBB"> </span><span style="color: #D8DEE9">background</span><span style="color: #999999">:</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">red;</span><span style="color: #BBBBBB">   </span><span style="color: #999999">}</span></span>
-<span class="line" data-linenr="2"><span style="color: #999999">#</span><span style="color: #C7C8D2">box</span><span style="color: #BBBBBB"> </span><span style="color: #999999">{</span><span style="color: #BBBBBB"> </span><span style="color: #D8DEE9">background</span><span style="color: #999999">:</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">green;</span><span style="color: #BBBBBB"> </span><span style="color: #999999">}</span></span></code></pre>
+<div class="language-css highlighter-shiki"><div><pre class="shiki-gutter">1
+2</pre><pre class="shiki wouterj shiki-code" style="background-color:#1e1e1e;color:#bbbbbb" tabindex="0"><code><span class="line" data-linenr="1"><span style="color:#999999">#</span><span style="color:#C7C8D2">box</span><span style="color:#999999"> {</span><span style="color:#D8DEE9"> background</span><span style="color:#999999">:</span><span style="color:#E5673D"> red;</span><span style="color:#999999">   }</span></span>
+<span class="line" data-linenr="2"><span style="color:#999999">#</span><span style="color:#C7C8D2">box</span><span style="color:#999999"> {</span><span style="color:#D8DEE9"> background</span><span style="color:#999999">:</span><span style="color:#E5673D"> green;</span><span style="color:#999999"> }</span></span></code></pre></div>
 </div>
 
 <p>Dan wordt de background green van <code class="highlighter-shiki">#box</code>. Deze regel is erg belangrijk voor
@@ -119,10 +118,9 @@ het verloop van deze tutorial.</p>
 
 <p>Deze condities kun je allemaal een aparte stijl meegeven. Bijvoorbeeld:</p>
 
-<div class="language-css highlighter-shiki"><pre class="shiki-gutter">1
-2
-</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #E5673D">a</span><span style="color: #BBBBBB">       </span><span style="color: #999999">{</span><span style="color: #BBBBBB"> </span><span style="color: #D8DEE9">text-decoration</span><span style="color: #999999">:</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">none;</span><span style="color: #BBBBBB">      </span><span style="color: #999999">}</span></span>
-<span class="line" data-linenr="2"><span style="color: #E5673D">a</span><span style="color: #999999">:</span><span style="color: #C7C8D2">hover</span><span style="color: #BBBBBB"> </span><span style="color: #999999">{</span><span style="color: #BBBBBB"> </span><span style="color: #D8DEE9">text-decoration</span><span style="color: #999999">:</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">underline;</span><span style="color: #BBBBBB"> </span><span style="color: #999999">}</span></span></code></pre>
+<div class="language-css highlighter-shiki"><div><pre class="shiki-gutter">1
+2</pre><pre class="shiki wouterj shiki-code" style="background-color:#1e1e1e;color:#bbbbbb" tabindex="0"><code><span class="line" data-linenr="1"><span style="color:#E5673D">a</span><span style="color:#999999">       {</span><span style="color:#D8DEE9"> text-decoration</span><span style="color:#999999">:</span><span style="color:#E5673D"> none;</span><span style="color:#999999">      }</span></span>
+<span class="line" data-linenr="2"><span style="color:#E5673D">a</span><span style="color:#999999">:</span><span style="color:#C7C8D2">hover</span><span style="color:#999999"> {</span><span style="color:#D8DEE9"> text-decoration</span><span style="color:#999999">:</span><span style="color:#E5673D"> underline;</span><span style="color:#999999"> }</span></span></code></pre></div>
 </div>
 
 <p>Nu zal er een lijn onder de tekst komen als je er met je muis overheen gaat.
@@ -143,10 +141,9 @@ overrulled en dat je daardoor nooit de echte stijl ziet.</p>
 <p>Stel we hebben een link waarop je al een keer bent geweest en we hebben de
 volgende CSS:</p>
 
-<div class="language-css highlighter-shiki"><pre class="shiki-gutter">1
-2
-</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #E5673D">a</span><span style="color: #999999">:</span><span style="color: #C7C8D2">link</span><span style="color: #BBBBBB">    </span><span style="color: #999999">{</span><span style="color: #BBBBBB"> </span><span style="color: #D8DEE9">color</span><span style="color: #999999">:</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">red;</span><span style="color: #BBBBBB">   </span><span style="color: #999999">}</span></span>
-<span class="line" data-linenr="2"><span style="color: #E5673D">a</span><span style="color: #999999">:</span><span style="color: #C7C8D2">visited</span><span style="color: #BBBBBB"> </span><span style="color: #999999">{</span><span style="color: #BBBBBB"> </span><span style="color: #D8DEE9">color</span><span style="color: #999999">:</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">green;</span><span style="color: #BBBBBB"> </span><span style="color: #999999">}</span></span></code></pre>
+<div class="language-css highlighter-shiki"><div><pre class="shiki-gutter">1
+2</pre><pre class="shiki wouterj shiki-code" style="background-color:#1e1e1e;color:#bbbbbb" tabindex="0"><code><span class="line" data-linenr="1"><span style="color:#E5673D">a</span><span style="color:#999999">:</span><span style="color:#C7C8D2">link</span><span style="color:#999999">    {</span><span style="color:#D8DEE9"> color</span><span style="color:#999999">:</span><span style="color:#E5673D"> red;</span><span style="color:#999999">   }</span></span>
+<span class="line" data-linenr="2"><span style="color:#E5673D">a</span><span style="color:#999999">:</span><span style="color:#C7C8D2">visited</span><span style="color:#999999"> {</span><span style="color:#D8DEE9"> color</span><span style="color:#999999">:</span><span style="color:#E5673D"> green;</span><span style="color:#999999"> }</span></span></code></pre></div>
 </div>
 
 <p>Nu komt dit bij de browser binnen, hij denkt: <em>‘Hé, je het is een echte link’</em>

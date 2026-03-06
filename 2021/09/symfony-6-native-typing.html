@@ -115,12 +115,11 @@ components).</p>
 possible are brand-new. Please install 5.4-dev now and let us <a href="https://github.com/symfony/symfony/issues/new/choose">know about
 any issue</a>.</p>
 
-<div class="language-bash highlighter-shiki"><pre class="shiki-gutter">1
+<div class="language-terminal highlighter-shiki"><div><pre class="shiki-gutter">1
 2
-3
-</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #BBBBBB">$ composer config minimum-stability dev</span></span>
-<span class="line" data-linenr="2"><span style="color: #6B90C0; font-style: italic"># now, modify all Symfony constraints to &quot;^5.4&quot; in &quot;composer.json&quot;, then:</span></span>
-<span class="line" data-linenr="3"><span style="color: #BBBBBB">$ composer update </span><span style="color: #999999">&#39;</span><span style="color: #7CC64A">symfony/*</span><span style="color: #999999">&#39;</span></span></code></pre>
+3</pre><pre class="shiki wouterj shiki-code" style="background-color:#1e1e1e;color:#bbbbbb" tabindex="0"><code><span class="line" data-linenr="1"><span style="color:#999999">$ </span><span style="color:#D8DEE9">composer config minimum-stability dev</span></span>
+<span class="line" data-linenr="2"><span style="color:#6B90C0;font-style:italic"># now, modify all Symfony constraints to "^5.4" in "composer.json", then:</span></span>
+<span class="line" data-linenr="3"><span style="color:#999999">$ </span><span style="color:#D8DEE9">composer update </span><span style="color:#999999">'</span><span style="color:#7CC64A">symfony/*</span><span style="color:#999999">'</span></span></code></pre></div>
 </div>
     
       <h3 id="when-upgrading-to-symfony-54">
@@ -137,7 +136,7 @@ you also need to fix some type declarations.</p>
 <p>In PHP, it is possible to define a return type when the parent
 declaration doesn’t define it (yet):</p>
 
-<div class="language-php highlighter-shiki"><pre class="shiki-gutter">1
+<div class="language-php highlighter-shiki"><div><pre class="shiki-gutter">1
 2
 3
 4
@@ -149,20 +148,19 @@ declaration doesn’t define it (yet):</p>
 10
 11
 12
-13
-</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #E5673D">interface</span><span style="color: #BBBBBB"> UserInterface</span></span>
-<span class="line" data-linenr="2"><span style="color: #999999">{</span></span>
-<span class="line" data-linenr="3"><span style="color: #BBBBBB">    </span><span style="color: #E5673D">public</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">function</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">getRoles</span><span style="color: #999999">()</span><span style="color: #E5673D">;</span></span>
-<span class="line" data-linenr="4"><span style="color: #999999">}</span></span>
+13</pre><pre class="shiki wouterj shiki-code" style="background-color:#1e1e1e;color:#bbbbbb" tabindex="0"><code><span class="line" data-linenr="1"><span style="color:#E5673D">interface</span><span style="color:#BBBBBB"> UserInterface</span></span>
+<span class="line" data-linenr="2"><span style="color:#999999">{</span></span>
+<span class="line" data-linenr="3"><span style="color:#E5673D">    public</span><span style="color:#E5673D"> function</span><span style="color:#C7C8D2"> getRoles</span><span style="color:#999999">()</span><span style="color:#E5673D">;</span></span>
+<span class="line" data-linenr="4"><span style="color:#999999">}</span></span>
 <span class="line" data-linenr="5"></span>
-<span class="line" data-linenr="6"><span style="color: #E5673D">class</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">User</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">implements</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">UserInterface</span></span>
-<span class="line" data-linenr="7"><span style="color: #999999">{</span></span>
-<span class="line" data-linenr="8"><span style="color: #999999">    </span><span style="color: #6B90C0; font-style: italic">// valid!</span></span>
-<span class="line" data-linenr="9"><span style="color: #BBBBBB">    </span><span style="color: #E5673D">public</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">function</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">getRoles</span><span style="color: #999999">()</span><span style="color: #E5673D">:</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">array</span></span>
-<span class="line" data-linenr="10"><span style="color: #BBBBBB">    </span><span style="color: #999999">{</span></span>
-<span class="line" data-linenr="11"><span style="color: #999999">        </span><span style="color: #6B90C0; font-style: italic">// ...</span></span>
-<span class="line" data-linenr="12"><span style="color: #BBBBBB">    </span><span style="color: #999999">}</span></span>
-<span class="line" data-linenr="13"><span style="color: #999999">}</span></span></code></pre>
+<span class="line" data-linenr="6"><span style="color:#E5673D">class</span><span style="color:#C7C8D2"> User</span><span style="color:#E5673D"> implements</span><span style="color:#C7C8D2"> UserInterface</span></span>
+<span class="line" data-linenr="7"><span style="color:#999999">{</span></span>
+<span class="line" data-linenr="8"><span style="color:#6B90C0;font-style:italic">    // valid!</span></span>
+<span class="line" data-linenr="9"><span style="color:#E5673D">    public</span><span style="color:#E5673D"> function</span><span style="color:#C7C8D2"> getRoles</span><span style="color:#999999">()</span><span style="color:#E5673D">:</span><span style="color:#E5673D"> array</span></span>
+<span class="line" data-linenr="10"><span style="color:#999999">    {</span></span>
+<span class="line" data-linenr="11"><span style="color:#6B90C0;font-style:italic">        // ...</span></span>
+<span class="line" data-linenr="12"><span style="color:#999999">    }</span></span>
+<span class="line" data-linenr="13"><span style="color:#999999">}</span></span></code></pre></div>
 </div>
 
 <p>At the other hand, you must define a return type if your parent does
@@ -175,20 +173,19 @@ to automatically add the required return types. First, generate a
 complete classmap of your application using Composer. Then, run the
 utility:</p>
 
-<div class="language-bash highlighter-shiki"><pre class="shiki-gutter">1
+<div class="language-terminal highlighter-shiki"><div><pre class="shiki-gutter">1
 2
 3
 4
 5
 6
-7
-</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #6B90C0; font-style: italic"># (1) Make sure &quot;exclude-from-classmap&quot; is not set in your &quot;composer.json&quot;</span></span>
+7</pre><pre class="shiki wouterj shiki-code" style="background-color:#1e1e1e;color:#bbbbbb" tabindex="0"><code><span class="line" data-linenr="1"><span style="color:#6B90C0;font-style:italic"># (1) Make sure "exclude-from-classmap" is not set in your "composer.json"</span></span>
 <span class="line" data-linenr="2"></span>
-<span class="line" data-linenr="3"><span style="color: #6B90C0; font-style: italic"># (2) Generate the classmap (&quot;-o&quot; is important!)</span></span>
-<span class="line" data-linenr="4"><span style="color: #BBBBBB">$ composer dump-autoload -o</span></span>
+<span class="line" data-linenr="3"><span style="color:#6B90C0;font-style:italic"># (2) Generate the classmap ("-o" is important!)</span></span>
+<span class="line" data-linenr="4"><span style="color:#999999">$ </span><span style="color:#D8DEE9">composer dump-autoload -o</span></span>
 <span class="line" data-linenr="5"></span>
-<span class="line" data-linenr="6"><span style="color: #6B90C0; font-style: italic"># (3) Run the patch script</span></span>
-<span class="line" data-linenr="7"><span style="color: #BBBBBB">$ ./vendor/bin/patch-type-declarations</span></span></code></pre>
+<span class="line" data-linenr="6"><span style="color:#6B90C0;font-style:italic"># (3) Run the patch script</span></span>
+<span class="line" data-linenr="7"><span style="color:#999999">$ </span><span style="color:#D8DEE9">./vendor/bin/patch-type-declarations</span></span></code></pre></div>
 </div>
 
 <p>Once you’ve fixed them (and running this script above will do it all for
@@ -207,7 +204,7 @@ Parameter type compatibility is inverted compared to return types: a
 child may not set the type if the parent already does, but a child
 cannot set the type before the parent:</p>
 
-<div class="language-php highlighter-shiki"><pre class="shiki-gutter">1
+<div class="language-php highlighter-shiki"><div><pre class="shiki-gutter">1
 2
 3
 4
@@ -219,20 +216,19 @@ cannot set the type before the parent:</p>
 10
 11
 12
-13
-</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #E5673D">interface</span><span style="color: #BBBBBB"> FormTypeGuesserInterface</span></span>
-<span class="line" data-linenr="2"><span style="color: #999999">{</span></span>
-<span class="line" data-linenr="3"><span style="color: #BBBBBB">    </span><span style="color: #E5673D">public</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">function</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">guessType</span><span style="color: #999999">(</span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">class</span><span style="color: #999999">,</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">property</span><span style="color: #999999">)</span><span style="color: #E5673D">;</span></span>
-<span class="line" data-linenr="4"><span style="color: #999999">}</span></span>
+13</pre><pre class="shiki wouterj shiki-code" style="background-color:#1e1e1e;color:#bbbbbb" tabindex="0"><code><span class="line" data-linenr="1"><span style="color:#E5673D">interface</span><span style="color:#BBBBBB"> FormTypeGuesserInterface</span></span>
+<span class="line" data-linenr="2"><span style="color:#999999">{</span></span>
+<span class="line" data-linenr="3"><span style="color:#E5673D">    public</span><span style="color:#E5673D"> function</span><span style="color:#C7C8D2"> guessType</span><span style="color:#999999">(</span><span style="color:#E5673D">$</span><span style="color:#D8DEE9">class</span><span style="color:#999999">,</span><span style="color:#E5673D"> $</span><span style="color:#D8DEE9">property</span><span style="color:#999999">)</span><span style="color:#E5673D">;</span></span>
+<span class="line" data-linenr="4"><span style="color:#999999">}</span></span>
 <span class="line" data-linenr="5"></span>
-<span class="line" data-linenr="6"><span style="color: #E5673D">class</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">CustomTypeGuesser</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">implements</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">UserInterface</span></span>
-<span class="line" data-linenr="7"><span style="color: #999999">{</span></span>
-<span class="line" data-linenr="8"><span style="color: #999999">    </span><span style="color: #6B90C0; font-style: italic">// error!</span></span>
-<span class="line" data-linenr="9"><span style="color: #BBBBBB">    </span><span style="color: #E5673D">public</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">function</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">guessType</span><span style="color: #999999">(</span><span style="color: #E5673D">string</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">class</span><span style="color: #999999">,</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">string</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">property</span><span style="color: #999999">)</span></span>
-<span class="line" data-linenr="10"><span style="color: #BBBBBB">    </span><span style="color: #999999">{</span></span>
-<span class="line" data-linenr="11"><span style="color: #999999">        </span><span style="color: #6B90C0; font-style: italic">// ...</span></span>
-<span class="line" data-linenr="12"><span style="color: #BBBBBB">    </span><span style="color: #999999">}</span></span>
-<span class="line" data-linenr="13"><span style="color: #999999">}</span></span></code></pre>
+<span class="line" data-linenr="6"><span style="color:#E5673D">class</span><span style="color:#C7C8D2"> CustomTypeGuesser</span><span style="color:#E5673D"> implements</span><span style="color:#C7C8D2"> UserInterface</span></span>
+<span class="line" data-linenr="7"><span style="color:#999999">{</span></span>
+<span class="line" data-linenr="8"><span style="color:#6B90C0;font-style:italic">    // error!</span></span>
+<span class="line" data-linenr="9"><span style="color:#E5673D">    public</span><span style="color:#E5673D"> function</span><span style="color:#C7C8D2"> guessType</span><span style="color:#999999">(</span><span style="color:#E5673D">string</span><span style="color:#E5673D"> $</span><span style="color:#D8DEE9">class</span><span style="color:#999999">,</span><span style="color:#E5673D"> string</span><span style="color:#E5673D"> $</span><span style="color:#D8DEE9">property</span><span style="color:#999999">)</span></span>
+<span class="line" data-linenr="10"><span style="color:#999999">    {</span></span>
+<span class="line" data-linenr="11"><span style="color:#6B90C0;font-style:italic">        // ...</span></span>
+<span class="line" data-linenr="12"><span style="color:#999999">    }</span></span>
+<span class="line" data-linenr="13"><span style="color:#999999">}</span></span></code></pre></div>
 </div>
 
 <p>For this reason, you cannot add these parameter types in 5.4.</p>
@@ -272,12 +268,11 @@ from Symfony defines safe methods as any method that:</p>
 
 <p>Use <code class="highlighter-shiki">force=1</code> to only patch types for these safe methods:</p>
 
-<div class="language-bash highlighter-shiki"><pre class="shiki-gutter">1
+<div class="language-terminal highlighter-shiki"><div><pre class="shiki-gutter">1
 2
-3
-</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #6B90C0; font-style: italic"># you can set the minimum PHP version, e.g. &quot;static&quot; won&#39;t be added</span></span>
-<span class="line" data-linenr="2"><span style="color: #6B90C0; font-style: italic"># as a return type for 7.4</span></span>
-<span class="line" data-linenr="3"><span style="color: #BBBBBB">$ SYMFONY_PATCH_TYPE_DECLARATIONS=</span><span style="color: #999999">&quot;</span><span style="color: #7CC64A">force=1&amp;php=7.4</span><span style="color: #999999">&quot;</span><span style="color: #BBBBBB"> ./vendor/bin/patch-type-declarations</span></span></code></pre>
+3</pre><pre class="shiki wouterj shiki-code" style="background-color:#1e1e1e;color:#bbbbbb" tabindex="0"><code><span class="line" data-linenr="1"><span style="color:#6B90C0;font-style:italic"># you can set the minimum PHP version, e.g. "static" won't be added</span></span>
+<span class="line" data-linenr="2"><span style="color:#6B90C0;font-style:italic"># as a return type for 7.4</span></span>
+<span class="line" data-linenr="3"><span style="color:#999999">$ </span><span style="color:#D8DEE9">SYMFONY_PATCH_TYPE_DECLARATIONS</span><span style="color:#E5673D">=</span><span style="color:#999999">"</span><span style="color:#7CC64A">force=1&#x26;php=7.4</span><span style="color:#999999">"</span><span style="color:#C7C8D2"> ./vendor/bin/patch-type-declarations</span></span></code></pre></div>
 </div>
 
 <p>Now, you have to check if there are any methods that would produce an
@@ -307,8 +302,7 @@ users to know they have to update their PHP return types. The patch
 script can add this PHPDoc for methods that implement/override from
 third party classes/interfaces:</p>
 
-<div class="language-bash highlighter-shiki"><pre class="shiki-gutter">1
-</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #BBBBBB">$ SYMFONY_PATCH_TYPE_DECLARATIONS=force=phpdoc ./vendor/bin/patch-type-declarations</span></span></code></pre>
+<div class="language-terminal highlighter-shiki"><div><pre class="shiki-gutter">1</pre><pre class="shiki wouterj shiki-code" style="background-color:#1e1e1e;color:#bbbbbb" tabindex="0"><code><span class="line" data-linenr="1"><span style="color:#999999">$ </span><span style="color:#D8DEE9">SYMFONY_PATCH_TYPE_DECLARATIONS</span><span style="color:#E5673D">=</span><span style="color:#D8DEE9">force</span><span style="color:#E5673D">=</span><span style="color:#7CC64A">phpdoc</span><span style="color:#C7C8D2"> ./vendor/bin/patch-type-declarations</span></span></code></pre></div>
 </div>
 
 <p>After this minor release with all deprecations, you can safely add all

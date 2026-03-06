@@ -168,12 +168,11 @@ welk element deze klasse hoort kun je
 <a href="http://csswizardry.com/2012/07/quasi-qualified-css-selectors/">quasi-qualified selectors</a>
 gebruiken. Stel we hebben dit:</p>
 
-<div class="language-css highlighter-shiki"><pre class="shiki-gutter">1
+<div class="language-css highlighter-shiki"><div><pre class="shiki-gutter">1
 2
-3
-</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #E5673D">article</span><span style="color: #999999">.</span><span style="color: #C7C8D2">featured</span><span style="color: #999999">{</span></span>
-<span class="line" data-linenr="2"><span style="color: #BBBBBB">    </span><span style="color: #6B90C0; font-style: italic">/* ... */</span></span>
-<span class="line" data-linenr="3"><span style="color: #999999">}</span></span></code></pre>
+3</pre><pre class="shiki wouterj shiki-code" style="background-color:#1e1e1e;color:#bbbbbb" tabindex="0"><code><span class="line" data-linenr="1"><span style="color:#E5673D">article</span><span style="color:#999999">.</span><span style="color:#C7C8D2">featured</span><span style="color:#999999">{</span></span>
+<span class="line" data-linenr="2"><span style="color:#6B90C0;font-style:italic">    /* ... */</span></span>
+<span class="line" data-linenr="3"><span style="color:#999999">}</span></span></code></pre></div>
 </div>
 
 <p>Nu kunnen we de <code class="highlighter-shiki">.featured</code> class alleen op een <code class="highlighter-shiki">&lt;article&gt;</code> element gebruiken.
@@ -183,12 +182,11 @@ wil ik bijv. een <code class="highlighter-shiki">&lt;section&gt;</code> of <code
 <p>Om toch aan te geven dat hij bij een <code class="highlighter-shiki">article</code> element hoort, maar om hem niet
 te limiteren op dit element, plaatsen we de selector in een comment:</p>
 
-<div class="language-css highlighter-shiki"><pre class="shiki-gutter">1
+<div class="language-css highlighter-shiki"><div><pre class="shiki-gutter">1
 2
-3
-</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #6B90C0; font-style: italic">/*article*/</span><span style="color: #999999">.</span><span style="color: #C7C8D2">featured</span><span style="color: #999999">{</span></span>
-<span class="line" data-linenr="2"><span style="color: #BBBBBB">    </span><span style="color: #6B90C0; font-style: italic">/* ... */</span></span>
-<span class="line" data-linenr="3"><span style="color: #999999">}</span></span></code></pre>
+3</pre><pre class="shiki wouterj shiki-code" style="background-color:#1e1e1e;color:#bbbbbb" tabindex="0"><code><span class="line" data-linenr="1"><span style="color:#6B90C0;font-style:italic">/*article*/</span><span style="color:#999999">.</span><span style="color:#C7C8D2">featured</span><span style="color:#999999">{</span></span>
+<span class="line" data-linenr="2"><span style="color:#6B90C0;font-style:italic">    /* ... */</span></span>
+<span class="line" data-linenr="3"><span style="color:#999999">}</span></span></code></pre></div>
 </div>
 
 <p>Voor CSS is dit nu gewoon een <code class="highlighter-shiki">.featured</code> class, maar voor de lezer wordt dit
@@ -210,7 +208,7 @@ genoemd. Dit staat voor <b>B</b>lock, <b>E</b>lement, <b>M</b>odifier.</p>
 <p>Ik ga een voorbeeld laten zien van deze techniek doormiddel van deze HTML
 code:</p>
 
-<div class="language-html highlighter-shiki"><pre class="shiki-gutter">1
+<div class="language-html highlighter-shiki"><div><pre class="shiki-gutter">1
 2
 3
 4
@@ -228,37 +226,35 @@ code:</p>
 16
 17
 18
-19
-</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #E5673D">&lt;article&gt;</span></span>
-<span class="line" data-linenr="2"><span style="color: #BBBBBB">    </span><span style="color: #E5673D">&lt;header&gt;</span></span>
-<span class="line" data-linenr="3"><span style="color: #BBBBBB">        </span><span style="color: #E5673D">&lt;h1&gt;</span><span style="color: #BBBBBB">Hello World</span><span style="color: #E5673D">&lt;/h1&gt;</span></span>
-<span class="line" data-linenr="4"><span style="color: #BBBBBB">        </span><span style="color: #E5673D">&lt;img</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">src</span><span style="color: #999999">=</span><span style="color: #999999">&quot;</span><span style="color: #7CC64A">img/thumbs/hello-world.png</span><span style="color: #999999">&quot;</span><span style="color: #E5673D">&gt;</span></span>
-<span class="line" data-linenr="5"><span style="color: #BBBBBB">    </span><span style="color: #E5673D">&lt;/header&gt;</span></span>
-<span class="line" data-linenr="6"><span style="color: #BBBBBB">    </span><span style="color: #E5673D">&lt;article&gt;</span></span>
-<span class="line" data-linenr="7"><span style="color: #BBBBBB">        </span><span style="color: #6B90C0; font-style: italic">&lt;!-- ... --&gt;</span></span>
-<span class="line" data-linenr="8"><span style="color: #BBBBBB">    </span><span style="color: #E5673D">&lt;/article&gt;</span></span>
-<span class="line" data-linenr="9"><span style="color: #BBBBBB">    </span><span style="color: #E5673D">&lt;footer&gt;</span></span>
-<span class="line" data-linenr="10"><span style="color: #BBBBBB">        </span><span style="color: #E5673D">&lt;p&gt;</span><span style="color: #BBBBBB">Geplaatst in </span><span style="color: #E5673D">&lt;a</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">href</span><span style="color: #999999">=</span><span style="color: #999999">&quot;</span><span style="color: #7CC64A">...</span><span style="color: #999999">&quot;</span><span style="color: #E5673D">&gt;</span><span style="color: #BBBBBB">Nieuws</span><span style="color: #E5673D">&lt;/a&gt;&lt;/p&gt;</span></span>
+19</pre><pre class="shiki wouterj shiki-code" style="background-color:#1e1e1e;color:#bbbbbb" tabindex="0"><code><span class="line" data-linenr="1"><span style="color:#E5673D">&#x3C;article></span></span>
+<span class="line" data-linenr="2"><span style="color:#E5673D">    &#x3C;header></span></span>
+<span class="line" data-linenr="3"><span style="color:#E5673D">        &#x3C;h1></span><span style="color:#BBBBBB">Hello World</span><span style="color:#E5673D">&#x3C;/h1></span></span>
+<span class="line" data-linenr="4"><span style="color:#E5673D">        &#x3C;img</span><span style="color:#C7C8D2"> src</span><span style="color:#999999">=</span><span style="color:#999999">"</span><span style="color:#7CC64A">img/thumbs/hello-world.png</span><span style="color:#999999">"</span><span style="color:#E5673D">></span></span>
+<span class="line" data-linenr="5"><span style="color:#E5673D">    &#x3C;/header></span></span>
+<span class="line" data-linenr="6"><span style="color:#E5673D">    &#x3C;article></span></span>
+<span class="line" data-linenr="7"><span style="color:#6B90C0;font-style:italic">        &#x3C;!-- ... --></span></span>
+<span class="line" data-linenr="8"><span style="color:#E5673D">    &#x3C;/article></span></span>
+<span class="line" data-linenr="9"><span style="color:#E5673D">    &#x3C;footer></span></span>
+<span class="line" data-linenr="10"><span style="color:#E5673D">        &#x3C;p></span><span style="color:#BBBBBB">Geplaatst in </span><span style="color:#E5673D">&#x3C;a</span><span style="color:#C7C8D2"> href</span><span style="color:#999999">=</span><span style="color:#999999">"</span><span style="color:#7CC64A">...</span><span style="color:#999999">"</span><span style="color:#E5673D">></span><span style="color:#BBBBBB">Nieuws</span><span style="color:#E5673D">&#x3C;/a>&#x3C;/p></span></span>
 <span class="line" data-linenr="11"></span>
-<span class="line" data-linenr="12"><span style="color: #BBBBBB">        </span><span style="color: #E5673D">&lt;nav&gt;</span></span>
-<span class="line" data-linenr="13"><span style="color: #BBBBBB">            </span><span style="color: #E5673D">&lt;ul&gt;</span></span>
-<span class="line" data-linenr="14"><span style="color: #BBBBBB">                </span><span style="color: #E5673D">&lt;li&gt;&lt;a</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">href</span><span style="color: #999999">=</span><span style="color: #999999">&quot;</span><span style="color: #7CC64A">...</span><span style="color: #999999">&quot;</span><span style="color: #E5673D">&gt;</span><span style="color: #BBBBBB">Tweet</span><span style="color: #E5673D">&lt;/a&gt;&lt;/li&gt;</span></span>
-<span class="line" data-linenr="15"><span style="color: #BBBBBB">                </span><span style="color: #E5673D">&lt;li&gt;&lt;a</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">href</span><span style="color: #999999">=</span><span style="color: #999999">&quot;</span><span style="color: #7CC64A">...</span><span style="color: #999999">&quot;</span><span style="color: #E5673D">&gt;</span><span style="color: #BBBBBB">like</span><span style="color: #E5673D">&lt;/a&gt;&lt;/li&gt;</span></span>
-<span class="line" data-linenr="16"><span style="color: #BBBBBB">                </span><span style="color: #E5673D">&lt;li&gt;&lt;a</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">href</span><span style="color: #999999">=</span><span style="color: #999999">&quot;</span><span style="color: #7CC64A">...</span><span style="color: #999999">&quot;</span><span style="color: #E5673D">&gt;</span><span style="color: #BBBBBB">+1</span><span style="color: #E5673D">&lt;/a&gt;&lt;/li&gt;</span></span>
-<span class="line" data-linenr="17"><span style="color: #BBBBBB">            </span><span style="color: #E5673D">&lt;/ul&gt;</span></span>
-<span class="line" data-linenr="18"><span style="color: #BBBBBB">        </span><span style="color: #E5673D">&lt;/nav&gt;</span></span>
-<span class="line" data-linenr="19"><span style="color: #E5673D">&lt;/article&gt;</span></span></code></pre>
+<span class="line" data-linenr="12"><span style="color:#E5673D">        &#x3C;nav></span></span>
+<span class="line" data-linenr="13"><span style="color:#E5673D">            &#x3C;ul></span></span>
+<span class="line" data-linenr="14"><span style="color:#E5673D">                &#x3C;li>&#x3C;a</span><span style="color:#C7C8D2"> href</span><span style="color:#999999">=</span><span style="color:#999999">"</span><span style="color:#7CC64A">...</span><span style="color:#999999">"</span><span style="color:#E5673D">></span><span style="color:#BBBBBB">Tweet</span><span style="color:#E5673D">&#x3C;/a>&#x3C;/li></span></span>
+<span class="line" data-linenr="15"><span style="color:#E5673D">                &#x3C;li>&#x3C;a</span><span style="color:#C7C8D2"> href</span><span style="color:#999999">=</span><span style="color:#999999">"</span><span style="color:#7CC64A">...</span><span style="color:#999999">"</span><span style="color:#E5673D">></span><span style="color:#BBBBBB">like</span><span style="color:#E5673D">&#x3C;/a>&#x3C;/li></span></span>
+<span class="line" data-linenr="16"><span style="color:#E5673D">                &#x3C;li>&#x3C;a</span><span style="color:#C7C8D2"> href</span><span style="color:#999999">=</span><span style="color:#999999">"</span><span style="color:#7CC64A">...</span><span style="color:#999999">"</span><span style="color:#E5673D">></span><span style="color:#BBBBBB">+1</span><span style="color:#E5673D">&#x3C;/a>&#x3C;/li></span></span>
+<span class="line" data-linenr="17"><span style="color:#E5673D">            &#x3C;/ul></span></span>
+<span class="line" data-linenr="18"><span style="color:#E5673D">        &#x3C;/nav></span></span>
+<span class="line" data-linenr="19"><span style="color:#E5673D">&#x3C;/article></span></span></code></pre></div>
 </div>
 
 <p>Een Block is het hoofdobject, in ons geval is dit een post. We geven onze
 article element dus een <code class="highlighter-shiki">post</code> class mee:</p>
 
-<div class="language-html highlighter-shiki"><pre class="shiki-gutter">1
+<div class="language-html highlighter-shiki"><div><pre class="shiki-gutter">1
 2
-3
-</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #E5673D">&lt;article</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">class</span><span style="color: #999999">=</span><span style="color: #7CC64A">post</span><span style="color: #E5673D">&gt;</span></span>
-<span class="line" data-linenr="2"><span style="color: #BBBBBB">    </span><span style="color: #6B90C0; font-style: italic">&lt;!-- ... --&gt;</span></span>
-<span class="line" data-linenr="3"><span style="color: #E5673D">&lt;/article&gt;</span></span></code></pre>
+3</pre><pre class="shiki wouterj shiki-code" style="background-color:#1e1e1e;color:#bbbbbb" tabindex="0"><code><span class="line" data-linenr="1"><span style="color:#E5673D">&#x3C;article</span><span style="color:#C7C8D2"> class</span><span style="color:#999999">=</span><span style="color:#7CC64A">post</span><span style="color:#E5673D">></span></span>
+<span class="line" data-linenr="2"><span style="color:#6B90C0;font-style:italic">    &#x3C;!-- ... --></span></span>
+<span class="line" data-linenr="3"><span style="color:#E5673D">&#x3C;/article></span></span></code></pre></div>
 </div>
 
 <p>Een Block heeft children. In ons geval heeft hij een header, body en footer.
@@ -266,7 +262,7 @@ Dit zijn de Elementen. De conventie voor een element class naam is
 <code class="highlighter-shiki">block__element</code> (2 underscores). In ons geval wordt het bijvoorbeeld
 <code class="highlighter-shiki">post__header</code>:</p>
 
-<div class="language-html highlighter-shiki"><pre class="shiki-gutter">1
+<div class="language-html highlighter-shiki"><div><pre class="shiki-gutter">1
 2
 3
 4
@@ -276,24 +272,23 @@ Dit zijn de Elementen. De conventie voor een element class naam is
 8
 9
 10
-11
-</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #E5673D">&lt;article</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">class</span><span style="color: #999999">=</span><span style="color: #7CC64A">post</span><span style="color: #E5673D">&gt;</span></span>
-<span class="line" data-linenr="2"><span style="color: #BBBBBB">    </span><span style="color: #E5673D">&lt;header</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">class</span><span style="color: #999999">=</span><span style="color: #7CC64A">post__header</span><span style="color: #E5673D">&gt;</span></span>
-<span class="line" data-linenr="3"><span style="color: #BBBBBB">        </span><span style="color: #6B90C0; font-style: italic">&lt;!-- ... --&gt;</span></span>
-<span class="line" data-linenr="4"><span style="color: #BBBBBB">    </span><span style="color: #E5673D">&lt;/header&gt;</span></span>
-<span class="line" data-linenr="5"><span style="color: #BBBBBB">    </span><span style="color: #E5673D">&lt;article</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">class</span><span style="color: #999999">=</span><span style="color: #7CC64A">post__body</span><span style="color: #E5673D">&gt;</span></span>
-<span class="line" data-linenr="6"><span style="color: #BBBBBB">        </span><span style="color: #6B90C0; font-style: italic">&lt;!-- ... --&gt;</span></span>
-<span class="line" data-linenr="7"><span style="color: #BBBBBB">    </span><span style="color: #E5673D">&lt;/article&gt;</span></span>
-<span class="line" data-linenr="8"><span style="color: #BBBBBB">    </span><span style="color: #E5673D">&lt;footer</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">class</span><span style="color: #999999">=</span><span style="color: #7CC64A">post__footer</span><span style="color: #E5673D">&gt;</span></span>
-<span class="line" data-linenr="9"><span style="color: #BBBBBB">        </span><span style="color: #6B90C0; font-style: italic">&lt;!-- ... --&gt;</span></span>
-<span class="line" data-linenr="10"><span style="color: #BBBBBB">    </span><span style="color: #E5673D">&lt;/footer&gt;</span></span>
-<span class="line" data-linenr="11"><span style="color: #E5673D">&lt;/article&gt;</span></span></code></pre>
+11</pre><pre class="shiki wouterj shiki-code" style="background-color:#1e1e1e;color:#bbbbbb" tabindex="0"><code><span class="line" data-linenr="1"><span style="color:#E5673D">&#x3C;article</span><span style="color:#C7C8D2"> class</span><span style="color:#999999">=</span><span style="color:#7CC64A">post</span><span style="color:#E5673D">></span></span>
+<span class="line" data-linenr="2"><span style="color:#E5673D">    &#x3C;header</span><span style="color:#C7C8D2"> class</span><span style="color:#999999">=</span><span style="color:#7CC64A">post__header</span><span style="color:#E5673D">></span></span>
+<span class="line" data-linenr="3"><span style="color:#6B90C0;font-style:italic">        &#x3C;!-- ... --></span></span>
+<span class="line" data-linenr="4"><span style="color:#E5673D">    &#x3C;/header></span></span>
+<span class="line" data-linenr="5"><span style="color:#E5673D">    &#x3C;article</span><span style="color:#C7C8D2"> class</span><span style="color:#999999">=</span><span style="color:#7CC64A">post__body</span><span style="color:#E5673D">></span></span>
+<span class="line" data-linenr="6"><span style="color:#6B90C0;font-style:italic">        &#x3C;!-- ... --></span></span>
+<span class="line" data-linenr="7"><span style="color:#E5673D">    &#x3C;/article></span></span>
+<span class="line" data-linenr="8"><span style="color:#E5673D">    &#x3C;footer</span><span style="color:#C7C8D2"> class</span><span style="color:#999999">=</span><span style="color:#7CC64A">post__footer</span><span style="color:#E5673D">></span></span>
+<span class="line" data-linenr="9"><span style="color:#6B90C0;font-style:italic">        &#x3C;!-- ... --></span></span>
+<span class="line" data-linenr="10"><span style="color:#E5673D">    &#x3C;/footer></span></span>
+<span class="line" data-linenr="11"><span style="color:#E5673D">&#x3C;/article></span></span></code></pre></div>
 </div>
 
 <p>Deze Elementen hebben ook weer children. Dit zijn ook allemaal Elementen van
 de post, we hebben een <code class="highlighter-shiki">post__title</code>, <code class="highlighter-shiki">post__tumbnail</code>, ect.:</p>
 
-<div class="language-html highlighter-shiki"><pre class="shiki-gutter">1
+<div class="language-html highlighter-shiki"><div><pre class="shiki-gutter">1
 2
 3
 4
@@ -312,27 +307,26 @@ de post, we hebben een <code class="highlighter-shiki">post__title</code>, <code
 17
 18
 19
-20
-</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #E5673D">&lt;article</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">class</span><span style="color: #999999">=</span><span style="color: #7CC64A">post</span><span style="color: #E5673D">&gt;</span></span>
-<span class="line" data-linenr="2"><span style="color: #BBBBBB">    </span><span style="color: #E5673D">&lt;header</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">class</span><span style="color: #999999">=</span><span style="color: #7CC64A">post__header</span><span style="color: #E5673D">&gt;</span></span>
-<span class="line" data-linenr="3"><span style="color: #BBBBBB">        </span><span style="color: #E5673D">&lt;h1</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">class</span><span style="color: #999999">=</span><span style="color: #7CC64A">post__title</span><span style="color: #E5673D">&gt;</span><span style="color: #BBBBBB">Hello World</span><span style="color: #E5673D">&lt;/h1&gt;</span></span>
-<span class="line" data-linenr="4"><span style="color: #BBBBBB">        </span><span style="color: #E5673D">&lt;img</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">class</span><span style="color: #999999">=</span><span style="color: #7CC64A">post__thumbnail</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">src</span><span style="color: #999999">=</span><span style="color: #999999">&quot;</span><span style="color: #7CC64A">img/thumbs/hello-world.png</span><span style="color: #999999">&quot;</span><span style="color: #E5673D">&gt;</span></span>
-<span class="line" data-linenr="5"><span style="color: #BBBBBB">    </span><span style="color: #E5673D">&lt;/header&gt;</span></span>
-<span class="line" data-linenr="6"><span style="color: #BBBBBB">    </span><span style="color: #E5673D">&lt;article</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">class</span><span style="color: #999999">=</span><span style="color: #7CC64A">post__body</span><span style="color: #E5673D">&gt;</span></span>
-<span class="line" data-linenr="7"><span style="color: #BBBBBB">        </span><span style="color: #6B90C0; font-style: italic">&lt;!-- ... --&gt;</span></span>
-<span class="line" data-linenr="8"><span style="color: #BBBBBB">    </span><span style="color: #E5673D">&lt;/article&gt;</span></span>
-<span class="line" data-linenr="9"><span style="color: #BBBBBB">    </span><span style="color: #E5673D">&lt;footer</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">class</span><span style="color: #999999">=</span><span style="color: #7CC64A">post__footer</span><span style="color: #E5673D">&gt;</span></span>
-<span class="line" data-linenr="10"><span style="color: #BBBBBB">        </span><span style="color: #E5673D">&lt;p</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">class</span><span style="color: #999999">=</span><span style="color: #7CC64A">post__meta</span><span style="color: #E5673D">&gt;</span><span style="color: #BBBBBB">Geplaatst in </span><span style="color: #E5673D">&lt;a</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">href</span><span style="color: #999999">=</span><span style="color: #999999">&quot;</span><span style="color: #7CC64A">...</span><span style="color: #999999">&quot;</span><span style="color: #E5673D">&gt;</span><span style="color: #BBBBBB">Nieuws</span><span style="color: #E5673D">&lt;/a&gt;&lt;/p&gt;</span></span>
+20</pre><pre class="shiki wouterj shiki-code" style="background-color:#1e1e1e;color:#bbbbbb" tabindex="0"><code><span class="line" data-linenr="1"><span style="color:#E5673D">&#x3C;article</span><span style="color:#C7C8D2"> class</span><span style="color:#999999">=</span><span style="color:#7CC64A">post</span><span style="color:#E5673D">></span></span>
+<span class="line" data-linenr="2"><span style="color:#E5673D">    &#x3C;header</span><span style="color:#C7C8D2"> class</span><span style="color:#999999">=</span><span style="color:#7CC64A">post__header</span><span style="color:#E5673D">></span></span>
+<span class="line" data-linenr="3"><span style="color:#E5673D">        &#x3C;h1</span><span style="color:#C7C8D2"> class</span><span style="color:#999999">=</span><span style="color:#7CC64A">post__title</span><span style="color:#E5673D">></span><span style="color:#BBBBBB">Hello World</span><span style="color:#E5673D">&#x3C;/h1></span></span>
+<span class="line" data-linenr="4"><span style="color:#E5673D">        &#x3C;img</span><span style="color:#C7C8D2"> class</span><span style="color:#999999">=</span><span style="color:#7CC64A">post__thumbnail</span><span style="color:#C7C8D2"> src</span><span style="color:#999999">=</span><span style="color:#999999">"</span><span style="color:#7CC64A">img/thumbs/hello-world.png</span><span style="color:#999999">"</span><span style="color:#E5673D">></span></span>
+<span class="line" data-linenr="5"><span style="color:#E5673D">    &#x3C;/header></span></span>
+<span class="line" data-linenr="6"><span style="color:#E5673D">    &#x3C;article</span><span style="color:#C7C8D2"> class</span><span style="color:#999999">=</span><span style="color:#7CC64A">post__body</span><span style="color:#E5673D">></span></span>
+<span class="line" data-linenr="7"><span style="color:#6B90C0;font-style:italic">        &#x3C;!-- ... --></span></span>
+<span class="line" data-linenr="8"><span style="color:#E5673D">    &#x3C;/article></span></span>
+<span class="line" data-linenr="9"><span style="color:#E5673D">    &#x3C;footer</span><span style="color:#C7C8D2"> class</span><span style="color:#999999">=</span><span style="color:#7CC64A">post__footer</span><span style="color:#E5673D">></span></span>
+<span class="line" data-linenr="10"><span style="color:#E5673D">        &#x3C;p</span><span style="color:#C7C8D2"> class</span><span style="color:#999999">=</span><span style="color:#7CC64A">post__meta</span><span style="color:#E5673D">></span><span style="color:#BBBBBB">Geplaatst in </span><span style="color:#E5673D">&#x3C;a</span><span style="color:#C7C8D2"> href</span><span style="color:#999999">=</span><span style="color:#999999">"</span><span style="color:#7CC64A">...</span><span style="color:#999999">"</span><span style="color:#E5673D">></span><span style="color:#BBBBBB">Nieuws</span><span style="color:#E5673D">&#x3C;/a>&#x3C;/p></span></span>
 <span class="line" data-linenr="11"></span>
-<span class="line" data-linenr="12"><span style="color: #BBBBBB">        </span><span style="color: #E5673D">&lt;nav</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">class</span><span style="color: #999999">=</span><span style="color: #7CC64A">post__social</span><span style="color: #E5673D">&gt;</span></span>
-<span class="line" data-linenr="13"><span style="color: #BBBBBB">            </span><span style="color: #E5673D">&lt;ul&gt;</span></span>
-<span class="line" data-linenr="14"><span style="color: #BBBBBB">                </span><span style="color: #E5673D">&lt;li&gt;&lt;a</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">href</span><span style="color: #999999">=</span><span style="color: #999999">&quot;</span><span style="color: #7CC64A">...</span><span style="color: #999999">&quot;</span><span style="color: #E5673D">&gt;</span><span style="color: #BBBBBB">Tweet</span><span style="color: #E5673D">&lt;/a&gt;&lt;/li&gt;</span></span>
-<span class="line" data-linenr="15"><span style="color: #BBBBBB">                </span><span style="color: #E5673D">&lt;li&gt;&lt;a</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">href</span><span style="color: #999999">=</span><span style="color: #999999">&quot;</span><span style="color: #7CC64A">...</span><span style="color: #999999">&quot;</span><span style="color: #E5673D">&gt;</span><span style="color: #BBBBBB">like</span><span style="color: #E5673D">&lt;/a&gt;&lt;/li&gt;</span></span>
-<span class="line" data-linenr="16"><span style="color: #BBBBBB">                </span><span style="color: #E5673D">&lt;li&gt;&lt;a</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">href</span><span style="color: #999999">=</span><span style="color: #999999">&quot;</span><span style="color: #7CC64A">...</span><span style="color: #999999">&quot;</span><span style="color: #E5673D">&gt;</span><span style="color: #BBBBBB">+1</span><span style="color: #E5673D">&lt;/a&gt;&lt;/li&gt;</span></span>
-<span class="line" data-linenr="17"><span style="color: #BBBBBB">            </span><span style="color: #E5673D">&lt;/ul&gt;</span></span>
-<span class="line" data-linenr="18"><span style="color: #BBBBBB">        </span><span style="color: #E5673D">&lt;/nav&gt;</span></span>
-<span class="line" data-linenr="19"><span style="color: #BBBBBB">    </span><span style="color: #E5673D">&lt;/footer&gt;</span></span>
-<span class="line" data-linenr="20"><span style="color: #E5673D">&lt;/article&gt;</span></span></code></pre>
+<span class="line" data-linenr="12"><span style="color:#E5673D">        &#x3C;nav</span><span style="color:#C7C8D2"> class</span><span style="color:#999999">=</span><span style="color:#7CC64A">post__social</span><span style="color:#E5673D">></span></span>
+<span class="line" data-linenr="13"><span style="color:#E5673D">            &#x3C;ul></span></span>
+<span class="line" data-linenr="14"><span style="color:#E5673D">                &#x3C;li>&#x3C;a</span><span style="color:#C7C8D2"> href</span><span style="color:#999999">=</span><span style="color:#999999">"</span><span style="color:#7CC64A">...</span><span style="color:#999999">"</span><span style="color:#E5673D">></span><span style="color:#BBBBBB">Tweet</span><span style="color:#E5673D">&#x3C;/a>&#x3C;/li></span></span>
+<span class="line" data-linenr="15"><span style="color:#E5673D">                &#x3C;li>&#x3C;a</span><span style="color:#C7C8D2"> href</span><span style="color:#999999">=</span><span style="color:#999999">"</span><span style="color:#7CC64A">...</span><span style="color:#999999">"</span><span style="color:#E5673D">></span><span style="color:#BBBBBB">like</span><span style="color:#E5673D">&#x3C;/a>&#x3C;/li></span></span>
+<span class="line" data-linenr="16"><span style="color:#E5673D">                &#x3C;li>&#x3C;a</span><span style="color:#C7C8D2"> href</span><span style="color:#999999">=</span><span style="color:#999999">"</span><span style="color:#7CC64A">...</span><span style="color:#999999">"</span><span style="color:#E5673D">></span><span style="color:#BBBBBB">+1</span><span style="color:#E5673D">&#x3C;/a>&#x3C;/li></span></span>
+<span class="line" data-linenr="17"><span style="color:#E5673D">            &#x3C;/ul></span></span>
+<span class="line" data-linenr="18"><span style="color:#E5673D">        &#x3C;/nav></span></span>
+<span class="line" data-linenr="19"><span style="color:#E5673D">    &#x3C;/footer></span></span>
+<span class="line" data-linenr="20"><span style="color:#E5673D">&#x3C;/article></span></span></code></pre></div>
 </div>
 
 <p>Dan hebben we als laatst nog een Modifier. Dit betekend dat het een Block is,
@@ -348,28 +342,24 @@ de Cascade.</p>
 <p>Een Modifier gebruikt als conventie <code class="highlighter-shiki">block--modifier</code>. In ons geval wordt dit
 waarschijnlijk <code class="highlighter-shiki">post--latest</code>:</p>
 
-<div class="language-html highlighter-shiki"><pre class="shiki-gutter">1
+<div class="language-html highlighter-shiki"><div><pre class="shiki-gutter">1
 2
 3
 4
 5
 6
-7
-</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #E5673D">&lt;article</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">class</span><span style="color: #999999">=</span><span style="color: #999999">&quot;</span><span style="color: #7CC64A">post  post--latest</span><span style="color: #999999">&quot;</span><span style="color: #E5673D">&gt;</span></span>
-<span class="line" data-linenr="2"><span style="color: #BBBBBB">    </span><span style="color: #6B90C0; font-style: italic">&lt;!-- ... --&gt;</span></span>
-<span class="line" data-linenr="3"><span style="color: #E5673D">&lt;/article&gt;</span></span>
+7</pre><pre class="shiki wouterj shiki-code" style="background-color:#1e1e1e;color:#bbbbbb" tabindex="0"><code><span class="line" data-linenr="1"><span style="color:#E5673D">&#x3C;article</span><span style="color:#C7C8D2"> class</span><span style="color:#999999">=</span><span style="color:#999999">"</span><span style="color:#7CC64A">post  post--latest</span><span style="color:#999999">"</span><span style="color:#E5673D">></span></span>
+<span class="line" data-linenr="2"><span style="color:#6B90C0;font-style:italic">    &#x3C;!-- ... --></span></span>
+<span class="line" data-linenr="3"><span style="color:#E5673D">&#x3C;/article></span></span>
 <span class="line" data-linenr="4"></span>
-<span class="line" data-linenr="5"><span style="color: #E5673D">&lt;article</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">class</span><span style="color: #999999">=</span><span style="color: #7CC64A">post</span><span style="color: #E5673D">&gt;</span></span>
-<span class="line" data-linenr="6"><span style="color: #BBBBBB">    </span><span style="color: #6B90C0; font-style: italic">&lt;!-- ... --&gt;</span></span>
-<span class="line" data-linenr="7"><span style="color: #E5673D">&lt;/article&gt;</span></span></code></pre>
+<span class="line" data-linenr="5"><span style="color:#E5673D">&#x3C;article</span><span style="color:#C7C8D2"> class</span><span style="color:#999999">=</span><span style="color:#7CC64A">post</span><span style="color:#E5673D">></span></span>
+<span class="line" data-linenr="6"><span style="color:#6B90C0;font-style:italic">    &#x3C;!-- ... --></span></span>
+<span class="line" data-linenr="7"><span style="color:#E5673D">&#x3C;/article></span></span></code></pre></div>
 </div>
 
-<div class="highlighter-shiki"><pre class="shiki-gutter">1</pre><pre class="shiki-code"><code>[note]
-Een opmerkzame lezer zal zien dat ik 2 spaties tussen de classnamen heb
+<p>Een opmerkzame lezer zal zien dat ik 2 spaties tussen de classnamen heb
 geplaatst. Hierdoor kun je snel zien wat de classnamen zijn, met 1 spatie
-staan ze te dicht op elkaar om het snel te kunnen zien.
-</code></pre>
-</div>
+staan ze te dicht op elkaar om het snel te kunnen zien.</p>
     
       <h2 id="harry-roberts-en-inuitcss">
         

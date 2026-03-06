@@ -114,12 +114,11 @@ identified in (1) is allowed to do the action he wants to do</li>
 the directory, we’ll use <a href="https://getcomposer.org/">Composer</a> to install the
 Security Core component:</p>
 
-<div class="language-bash highlighter-shiki"><pre class="shiki-gutter">1
+<div class="language-terminal highlighter-shiki"><div><pre class="shiki-gutter">1
 2
-3
-</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #BBBBBB">$ mkdir security-101</span></span>
-<span class="line" data-linenr="2"><span style="color: #BBBBBB">$ </span><span style="color: #C7C8D2">cd</span><span style="color: #BBBBBB"> security-101</span></span>
-<span class="line" data-linenr="3"><span style="color: #BBBBBB">$ composer require symfony/security-core</span></span></code></pre>
+3</pre><pre class="shiki wouterj shiki-code" style="background-color:#1e1e1e;color:#bbbbbb" tabindex="0"><code><span class="line" data-linenr="1"><span style="color:#999999">$ </span><span style="color:#D8DEE9">mkdir security-101</span></span>
+<span class="line" data-linenr="2"><span style="color:#999999">$ </span><span style="color:#D8DEE9">cd security-101</span></span>
+<span class="line" data-linenr="3"><span style="color:#999999">$ </span><span style="color:#D8DEE9">composer require symfony/security-core</span></span></code></pre></div>
 </div>
 
 <p>Security contains a couple sub components: Core, Http, Guard, Csrf. In this
@@ -151,20 +150,19 @@ creates a <code class="highlighter-shiki">UsernamePasswordToken</code> based on 
 <p>As our goal is just to write one working PHP file, we’ll use static strings as
 “input from the user”:</p>
 
-<div class="language-php highlighter-shiki"><pre class="shiki-gutter">1
+<div class="language-php highlighter-shiki"><div><pre class="shiki-gutter">1
 2
 3
 4
 5
 6
-7
-</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #E5673D">&lt;?</span><span style="color: #BBBBBB">php </span><span style="color: #6B90C0; font-style: italic">// secure.php</span></span>
+7</pre><pre class="shiki wouterj shiki-code" style="background-color:#1e1e1e;color:#bbbbbb" tabindex="0"><code><span class="line" data-linenr="1"><span style="color:#E5673D">&#x3C;?</span><span style="color:#BBBBBB">php </span><span style="color:#6B90C0;font-style:italic">// secure.php</span></span>
 <span class="line" data-linenr="2"></span>
-<span class="line" data-linenr="3"><span style="color: #E5673D">require_once</span><span style="color: #BBBBBB"> </span><span style="color: #999999">&#39;</span><span style="color: #7CC64A">vendor/autoload.php</span><span style="color: #999999">&#39;</span><span style="color: #E5673D">;</span></span>
+<span class="line" data-linenr="3"><span style="color:#E5673D">require_once</span><span style="color:#999999"> '</span><span style="color:#7CC64A">vendor/autoload.php</span><span style="color:#999999">'</span><span style="color:#E5673D">;</span></span>
 <span class="line" data-linenr="4"></span>
-<span class="line" data-linenr="5"><span style="color: #E5673D">use</span><span style="color: #BBBBBB"> Symfony</span><span style="color: #999999">\</span><span style="color: #BBBBBB">Component</span><span style="color: #999999">\</span><span style="color: #BBBBBB">Security</span><span style="color: #999999">\</span><span style="color: #BBBBBB">Core</span><span style="color: #999999">\</span><span style="color: #BBBBBB">Authentication</span><span style="color: #999999">\</span><span style="color: #BBBBBB">Token</span><span style="color: #999999">\</span><span style="color: #C7C8D2">UsernamePasswordToken</span><span style="color: #E5673D">;</span></span>
+<span class="line" data-linenr="5"><span style="color:#E5673D">use</span><span style="color:#BBBBBB"> Symfony</span><span style="color:#999999">\</span><span style="color:#BBBBBB">Component</span><span style="color:#999999">\</span><span style="color:#BBBBBB">Security</span><span style="color:#999999">\</span><span style="color:#BBBBBB">Core</span><span style="color:#999999">\</span><span style="color:#BBBBBB">Authentication</span><span style="color:#999999">\</span><span style="color:#BBBBBB">Token</span><span style="color:#999999">\</span><span style="color:#C7C8D2">UsernamePasswordToken</span><span style="color:#E5673D">;</span></span>
 <span class="line" data-linenr="6"></span>
-<span class="line" data-linenr="7"><span style="color: #E5673D">$</span><span style="color: #D8DEE9">token</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">=</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">new</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">UsernamePasswordToken</span><span style="color: #999999">(</span><span style="color: #999999">&#39;</span><span style="color: #7CC64A">wouter</span><span style="color: #999999">&#39;</span><span style="color: #999999">,</span><span style="color: #BBBBBB"> </span><span style="color: #999999">&#39;</span><span style="color: #7CC64A">pa$$word</span><span style="color: #999999">&#39;</span><span style="color: #999999">,</span><span style="color: #BBBBBB"> </span><span style="color: #999999">&#39;</span><span style="color: #7CC64A">default</span><span style="color: #999999">&#39;</span><span style="color: #999999">)</span><span style="color: #E5673D">;</span></span></code></pre>
+<span class="line" data-linenr="7"><span style="color:#E5673D">$</span><span style="color:#D8DEE9">token</span><span style="color:#E5673D"> =</span><span style="color:#E5673D"> new</span><span style="color:#C7C8D2"> UsernamePasswordToken</span><span style="color:#999999">(</span><span style="color:#999999">'</span><span style="color:#7CC64A">wouter</span><span style="color:#999999">'</span><span style="color:#999999">,</span><span style="color:#999999"> '</span><span style="color:#7CC64A">pa$$word</span><span style="color:#999999">'</span><span style="color:#999999">,</span><span style="color:#999999"> '</span><span style="color:#7CC64A">default</span><span style="color:#999999">'</span><span style="color:#999999">)</span><span style="color:#E5673D">;</span></span></code></pre></div>
 </div>
 
 <p>This type of token is most often used in traditional applications, it holds a
@@ -219,7 +217,7 @@ from a PHP array.</p>
 load users from a database or LDAP servers.</p>
 </aside>
 
-<div class="language-php highlighter-shiki"><pre class="shiki-gutter">1
+<div class="language-php highlighter-shiki"><div><pre class="shiki-gutter">1
 2
 3
 4
@@ -231,20 +229,19 @@ load users from a database or LDAP servers.</p>
 10
 11
 12
-13
-</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #6B90C0; font-style: italic">// secure.php</span></span>
-<span class="line" data-linenr="2"><span style="color: #E5673D">use</span><span style="color: #BBBBBB"> Symfony</span><span style="color: #999999">\</span><span style="color: #BBBBBB">Component</span><span style="color: #999999">\</span><span style="color: #BBBBBB">Security</span><span style="color: #999999">\</span><span style="color: #BBBBBB">Core</span><span style="color: #999999">\</span><span style="color: #BBBBBB">User</span><span style="color: #999999">\</span><span style="color: #C7C8D2">InMemoryUserProvider</span><span style="color: #E5673D">;</span></span>
-<span class="line" data-linenr="3"><span style="color: #6B90C0; font-style: italic">// ...</span></span>
+13</pre><pre class="shiki wouterj shiki-code" style="background-color:#1e1e1e;color:#bbbbbb" tabindex="0"><code><span class="line" data-linenr="1"><span style="color:#6B90C0;font-style:italic">// secure.php</span></span>
+<span class="line" data-linenr="2"><span style="color:#E5673D">use</span><span style="color:#BBBBBB"> Symfony</span><span style="color:#999999">\</span><span style="color:#BBBBBB">Component</span><span style="color:#999999">\</span><span style="color:#BBBBBB">Security</span><span style="color:#999999">\</span><span style="color:#BBBBBB">Core</span><span style="color:#999999">\</span><span style="color:#BBBBBB">User</span><span style="color:#999999">\</span><span style="color:#C7C8D2">InMemoryUserProvider</span><span style="color:#E5673D">;</span></span>
+<span class="line" data-linenr="3"><span style="color:#6B90C0;font-style:italic">// ...</span></span>
 <span class="line" data-linenr="4"></span>
-<span class="line" data-linenr="5"><span style="color: #E5673D">$</span><span style="color: #D8DEE9">userProvider</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">=</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">new</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">InMemoryUserProvider</span><span style="color: #999999">([</span></span>
-<span class="line" data-linenr="6"><span style="color: #BBBBBB">    </span><span style="color: #999999">&#39;</span><span style="color: #7CC64A">wouter</span><span style="color: #999999">&#39;</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">=&gt;</span><span style="color: #BBBBBB"> </span><span style="color: #999999">[</span></span>
-<span class="line" data-linenr="7"><span style="color: #BBBBBB">        </span><span style="color: #999999">&#39;</span><span style="color: #7CC64A">password</span><span style="color: #999999">&#39;</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">=&gt;</span><span style="color: #BBBBBB"> </span><span style="color: #999999">&#39;</span><span style="color: #7CC64A">pa$$word</span><span style="color: #999999">&#39;</span><span style="color: #999999">,</span></span>
-<span class="line" data-linenr="8"><span style="color: #BBBBBB">        </span><span style="color: #999999">&#39;</span><span style="color: #7CC64A">roles</span><span style="color: #999999">&#39;</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">=&gt;</span><span style="color: #BBBBBB"> </span><span style="color: #999999">[</span><span style="color: #999999">&#39;</span><span style="color: #7CC64A">TITLE_SUPERVISOR</span><span style="color: #999999">&#39;</span><span style="color: #999999">]</span></span>
-<span class="line" data-linenr="9"><span style="color: #BBBBBB">    </span><span style="color: #999999">],</span></span>
-<span class="line" data-linenr="10"><span style="color: #999999">])</span><span style="color: #E5673D">;</span></span>
+<span class="line" data-linenr="5"><span style="color:#E5673D">$</span><span style="color:#D8DEE9">userProvider</span><span style="color:#E5673D"> =</span><span style="color:#E5673D"> new</span><span style="color:#C7C8D2"> InMemoryUserProvider</span><span style="color:#999999">([</span></span>
+<span class="line" data-linenr="6"><span style="color:#999999">    '</span><span style="color:#7CC64A">wouter</span><span style="color:#999999">'</span><span style="color:#E5673D"> =></span><span style="color:#999999"> [</span></span>
+<span class="line" data-linenr="7"><span style="color:#999999">        '</span><span style="color:#7CC64A">password</span><span style="color:#999999">'</span><span style="color:#E5673D"> =></span><span style="color:#999999"> '</span><span style="color:#7CC64A">pa$$word</span><span style="color:#999999">'</span><span style="color:#999999">,</span></span>
+<span class="line" data-linenr="8"><span style="color:#999999">        '</span><span style="color:#7CC64A">roles</span><span style="color:#999999">'</span><span style="color:#E5673D"> =></span><span style="color:#999999"> [</span><span style="color:#999999">'</span><span style="color:#7CC64A">TITLE_SUPERVISOR</span><span style="color:#999999">'</span><span style="color:#999999">]</span></span>
+<span class="line" data-linenr="9"><span style="color:#999999">    ],</span></span>
+<span class="line" data-linenr="10"><span style="color:#999999">])</span><span style="color:#E5673D">;</span></span>
 <span class="line" data-linenr="11"></span>
-<span class="line" data-linenr="12"><span style="color: #6B90C0; font-style: italic">// As an example of this class, let&#39;s find the user:</span></span>
-<span class="line" data-linenr="13"><span style="color: #E5673D">$</span><span style="color: #D8DEE9">wouterUser</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">=</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">userProvider</span><span style="color: #E5673D">-&gt;</span><span style="color: #C7C8D2">loadUserByUsername</span><span style="color: #999999">(</span><span style="color: #999999">&#39;</span><span style="color: #7CC64A">wouter</span><span style="color: #999999">&#39;</span><span style="color: #999999">)</span><span style="color: #E5673D">;</span></span></code></pre>
+<span class="line" data-linenr="12"><span style="color:#6B90C0;font-style:italic">// As an example of this class, let's find the user:</span></span>
+<span class="line" data-linenr="13"><span style="color:#E5673D">$</span><span style="color:#D8DEE9">wouterUser</span><span style="color:#E5673D"> =</span><span style="color:#E5673D"> $</span><span style="color:#D8DEE9">userProvider</span><span style="color:#E5673D">-></span><span style="color:#C7C8D2">loadUserByUsername</span><span style="color:#999999">(</span><span style="color:#999999">'</span><span style="color:#7CC64A">wouter</span><span style="color:#999999">'</span><span style="color:#999999">)</span><span style="color:#E5673D">;</span></span></code></pre></div>
 </div>
     
       <h3 id="safety-first-encrypted-user-passwords">
@@ -260,7 +257,7 @@ encoded using for instance bcrypt or sha256. This is abstracted in <em>password
 encoders</em>. They are able to encode a plain text password and check whether the
 password entered by the user was valid:</p>
 
-<div class="language-php highlighter-shiki"><pre class="shiki-gutter">1
+<div class="language-php highlighter-shiki"><div><pre class="shiki-gutter">1
 2
 3
 4
@@ -275,23 +272,22 @@ password entered by the user was valid:</p>
 13
 14
 15
-16
-</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #6B90C0; font-style: italic">// secure.php</span></span>
-<span class="line" data-linenr="2"><span style="color: #E5673D">use</span><span style="color: #BBBBBB"> Symfony</span><span style="color: #999999">\</span><span style="color: #BBBBBB">Component</span><span style="color: #999999">\</span><span style="color: #BBBBBB">Security</span><span style="color: #999999">\</span><span style="color: #BBBBBB">Core</span><span style="color: #999999">\</span><span style="color: #BBBBBB">Encoder</span><span style="color: #999999">\</span><span style="color: #C7C8D2">EncoderFactory</span><span style="color: #E5673D">;</span></span>
-<span class="line" data-linenr="3"><span style="color: #E5673D">use</span><span style="color: #BBBBBB"> Symfony</span><span style="color: #999999">\</span><span style="color: #BBBBBB">Component</span><span style="color: #999999">\</span><span style="color: #BBBBBB">Security</span><span style="color: #999999">\</span><span style="color: #BBBBBB">Core</span><span style="color: #999999">\</span><span style="color: #BBBBBB">Encoder</span><span style="color: #999999">\</span><span style="color: #C7C8D2">PlaintextPasswordEncoder</span><span style="color: #E5673D">;</span></span>
-<span class="line" data-linenr="4"><span style="color: #E5673D">use</span><span style="color: #BBBBBB"> Symfony</span><span style="color: #999999">\</span><span style="color: #BBBBBB">Component</span><span style="color: #999999">\</span><span style="color: #BBBBBB">Security</span><span style="color: #999999">\</span><span style="color: #BBBBBB">Core</span><span style="color: #999999">\</span><span style="color: #BBBBBB">User</span><span style="color: #999999">\</span><span style="color: #C7C8D2">User</span><span style="color: #E5673D">;</span></span>
-<span class="line" data-linenr="5"><span style="color: #6B90C0; font-style: italic">// ...</span></span>
+16</pre><pre class="shiki wouterj shiki-code" style="background-color:#1e1e1e;color:#bbbbbb" tabindex="0"><code><span class="line" data-linenr="1"><span style="color:#6B90C0;font-style:italic">// secure.php</span></span>
+<span class="line" data-linenr="2"><span style="color:#E5673D">use</span><span style="color:#BBBBBB"> Symfony</span><span style="color:#999999">\</span><span style="color:#BBBBBB">Component</span><span style="color:#999999">\</span><span style="color:#BBBBBB">Security</span><span style="color:#999999">\</span><span style="color:#BBBBBB">Core</span><span style="color:#999999">\</span><span style="color:#BBBBBB">Encoder</span><span style="color:#999999">\</span><span style="color:#C7C8D2">EncoderFactory</span><span style="color:#E5673D">;</span></span>
+<span class="line" data-linenr="3"><span style="color:#E5673D">use</span><span style="color:#BBBBBB"> Symfony</span><span style="color:#999999">\</span><span style="color:#BBBBBB">Component</span><span style="color:#999999">\</span><span style="color:#BBBBBB">Security</span><span style="color:#999999">\</span><span style="color:#BBBBBB">Core</span><span style="color:#999999">\</span><span style="color:#BBBBBB">Encoder</span><span style="color:#999999">\</span><span style="color:#C7C8D2">PlaintextPasswordEncoder</span><span style="color:#E5673D">;</span></span>
+<span class="line" data-linenr="4"><span style="color:#E5673D">use</span><span style="color:#BBBBBB"> Symfony</span><span style="color:#999999">\</span><span style="color:#BBBBBB">Component</span><span style="color:#999999">\</span><span style="color:#BBBBBB">Security</span><span style="color:#999999">\</span><span style="color:#BBBBBB">Core</span><span style="color:#999999">\</span><span style="color:#BBBBBB">User</span><span style="color:#999999">\</span><span style="color:#C7C8D2">User</span><span style="color:#E5673D">;</span></span>
+<span class="line" data-linenr="5"><span style="color:#6B90C0;font-style:italic">// ...</span></span>
 <span class="line" data-linenr="6"></span>
-<span class="line" data-linenr="7"><span style="color: #E5673D">$</span><span style="color: #D8DEE9">encoderFactory</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">=</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">new</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">EncoderFactory</span><span style="color: #999999">([</span></span>
-<span class="line" data-linenr="8"><span style="color: #999999">    </span><span style="color: #6B90C0; font-style: italic">// we take the easiest road: plain text passwords</span></span>
-<span class="line" data-linenr="9"><span style="color: #BBBBBB">    </span><span style="color: #C7C8D2">User</span><span style="color: #E5673D">::class</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">=&gt;</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">new</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">PlaintextPasswordEncoder</span><span style="color: #999999">(),</span></span>
-<span class="line" data-linenr="10"><span style="color: #999999">])</span><span style="color: #E5673D">;</span></span>
+<span class="line" data-linenr="7"><span style="color:#E5673D">$</span><span style="color:#D8DEE9">encoderFactory</span><span style="color:#E5673D"> =</span><span style="color:#E5673D"> new</span><span style="color:#C7C8D2"> EncoderFactory</span><span style="color:#999999">([</span></span>
+<span class="line" data-linenr="8"><span style="color:#6B90C0;font-style:italic">    // we take the easiest road: plain text passwords</span></span>
+<span class="line" data-linenr="9"><span style="color:#C7C8D2">    User</span><span style="color:#E5673D">::class</span><span style="color:#E5673D"> =></span><span style="color:#E5673D"> new</span><span style="color:#C7C8D2"> PlaintextPasswordEncoder</span><span style="color:#999999">(),</span></span>
+<span class="line" data-linenr="10"><span style="color:#999999">])</span><span style="color:#E5673D">;</span></span>
 <span class="line" data-linenr="11"></span>
-<span class="line" data-linenr="12"><span style="color: #6B90C0; font-style: italic">// First, get the encoder associated with our user (other users</span></span>
-<span class="line" data-linenr="13"><span style="color: #6B90C0; font-style: italic">// can use other encoders).</span></span>
-<span class="line" data-linenr="14"><span style="color: #E5673D">$</span><span style="color: #D8DEE9">encoderFactory</span><span style="color: #E5673D">-&gt;</span><span style="color: #C7C8D2">getEncoder</span><span style="color: #999999">(</span><span style="color: #C7C8D2">User</span><span style="color: #E5673D">::class</span><span style="color: #999999">)</span></span>
-<span class="line" data-linenr="15"><span style="color: #999999">    </span><span style="color: #6B90C0; font-style: italic">// Then, check whether some input matches our user&#39;s password:</span></span>
-<span class="line" data-linenr="16"><span style="color: #BBBBBB">    </span><span style="color: #E5673D">-&gt;</span><span style="color: #C7C8D2">isPasswordValid</span><span style="color: #999999">(</span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">wouterUser</span><span style="color: #E5673D">-&gt;</span><span style="color: #C7C8D2">getPassword</span><span style="color: #999999">(),</span><span style="color: #BBBBBB"> </span><span style="color: #999999">&#39;</span><span style="color: #7CC64A">pa$$word</span><span style="color: #999999">&#39;</span><span style="color: #999999">,</span><span style="color: #BBBBBB"> </span><span style="color: #999999">&#39;&#39;</span><span style="color: #999999">)</span><span style="color: #E5673D">;</span></span></code></pre>
+<span class="line" data-linenr="12"><span style="color:#6B90C0;font-style:italic">// First, get the encoder associated with our user (other users</span></span>
+<span class="line" data-linenr="13"><span style="color:#6B90C0;font-style:italic">// can use other encoders).</span></span>
+<span class="line" data-linenr="14"><span style="color:#E5673D">$</span><span style="color:#D8DEE9">encoderFactory</span><span style="color:#E5673D">-></span><span style="color:#C7C8D2">getEncoder</span><span style="color:#999999">(</span><span style="color:#C7C8D2">User</span><span style="color:#E5673D">::class</span><span style="color:#999999">)</span></span>
+<span class="line" data-linenr="15"><span style="color:#6B90C0;font-style:italic">    // Then, check whether some input matches our user's password:</span></span>
+<span class="line" data-linenr="16"><span style="color:#E5673D">    -></span><span style="color:#C7C8D2">isPasswordValid</span><span style="color:#999999">(</span><span style="color:#E5673D">$</span><span style="color:#D8DEE9">wouterUser</span><span style="color:#E5673D">-></span><span style="color:#C7C8D2">getPassword</span><span style="color:#999999">(),</span><span style="color:#999999"> '</span><span style="color:#7CC64A">pa$$word</span><span style="color:#999999">'</span><span style="color:#999999">,</span><span style="color:#999999"> ''</span><span style="color:#999999">)</span><span style="color:#E5673D">;</span></span></code></pre></div>
 </div>
     
       <h3 id="instantiating-the-authentication-manager">
@@ -312,7 +308,7 @@ our application and also to know which provided should handle the token
 (multiple providers might be able to handle a <code class="highlighter-shiki">UsernamePasswordToken</code>).</p>
 </aside>
 
-<div class="language-php highlighter-shiki"><pre class="shiki-gutter">1
+<div class="language-php highlighter-shiki"><div><pre class="shiki-gutter">1
 2
 3
 4
@@ -325,21 +321,20 @@ our application and also to know which provided should handle the token
 11
 12
 13
-14
-</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #6B90C0; font-style: italic">// secure.php</span></span>
-<span class="line" data-linenr="2"><span style="color: #E5673D">use</span><span style="color: #BBBBBB"> Symfony</span><span style="color: #999999">\</span><span style="color: #BBBBBB">Component</span><span style="color: #999999">\</span><span style="color: #BBBBBB">Security</span><span style="color: #999999">\</span><span style="color: #BBBBBB">Core</span><span style="color: #999999">\</span><span style="color: #BBBBBB">Authentication</span><span style="color: #999999">\</span><span style="color: #C7C8D2">AuthenticationProviderManager</span><span style="color: #E5673D">;</span></span>
-<span class="line" data-linenr="3"><span style="color: #E5673D">use</span><span style="color: #BBBBBB"> Symfony</span><span style="color: #999999">\</span><span style="color: #BBBBBB">Component</span><span style="color: #999999">\</span><span style="color: #BBBBBB">Security</span><span style="color: #999999">\</span><span style="color: #BBBBBB">Core</span><span style="color: #999999">\</span><span style="color: #BBBBBB">Authentication</span><span style="color: #999999">\</span><span style="color: #BBBBBB">Provider</span><span style="color: #999999">\</span><span style="color: #C7C8D2">DaoAuthenticationProvider</span><span style="color: #E5673D">;</span></span>
-<span class="line" data-linenr="4"><span style="color: #E5673D">use</span><span style="color: #BBBBBB"> Symfony</span><span style="color: #999999">\</span><span style="color: #BBBBBB">Component</span><span style="color: #999999">\</span><span style="color: #BBBBBB">Security</span><span style="color: #999999">\</span><span style="color: #BBBBBB">Core</span><span style="color: #999999">\</span><span style="color: #BBBBBB">User</span><span style="color: #999999">\</span><span style="color: #C7C8D2">UserChecker</span><span style="color: #E5673D">;</span></span>
-<span class="line" data-linenr="5"><span style="color: #6B90C0; font-style: italic">// ...</span></span>
+14</pre><pre class="shiki wouterj shiki-code" style="background-color:#1e1e1e;color:#bbbbbb" tabindex="0"><code><span class="line" data-linenr="1"><span style="color:#6B90C0;font-style:italic">// secure.php</span></span>
+<span class="line" data-linenr="2"><span style="color:#E5673D">use</span><span style="color:#BBBBBB"> Symfony</span><span style="color:#999999">\</span><span style="color:#BBBBBB">Component</span><span style="color:#999999">\</span><span style="color:#BBBBBB">Security</span><span style="color:#999999">\</span><span style="color:#BBBBBB">Core</span><span style="color:#999999">\</span><span style="color:#BBBBBB">Authentication</span><span style="color:#999999">\</span><span style="color:#C7C8D2">AuthenticationProviderManager</span><span style="color:#E5673D">;</span></span>
+<span class="line" data-linenr="3"><span style="color:#E5673D">use</span><span style="color:#BBBBBB"> Symfony</span><span style="color:#999999">\</span><span style="color:#BBBBBB">Component</span><span style="color:#999999">\</span><span style="color:#BBBBBB">Security</span><span style="color:#999999">\</span><span style="color:#BBBBBB">Core</span><span style="color:#999999">\</span><span style="color:#BBBBBB">Authentication</span><span style="color:#999999">\</span><span style="color:#BBBBBB">Provider</span><span style="color:#999999">\</span><span style="color:#C7C8D2">DaoAuthenticationProvider</span><span style="color:#E5673D">;</span></span>
+<span class="line" data-linenr="4"><span style="color:#E5673D">use</span><span style="color:#BBBBBB"> Symfony</span><span style="color:#999999">\</span><span style="color:#BBBBBB">Component</span><span style="color:#999999">\</span><span style="color:#BBBBBB">Security</span><span style="color:#999999">\</span><span style="color:#BBBBBB">Core</span><span style="color:#999999">\</span><span style="color:#BBBBBB">User</span><span style="color:#999999">\</span><span style="color:#C7C8D2">UserChecker</span><span style="color:#E5673D">;</span></span>
+<span class="line" data-linenr="5"><span style="color:#6B90C0;font-style:italic">// ...</span></span>
 <span class="line" data-linenr="6"></span>
-<span class="line" data-linenr="7"><span style="color: #E5673D">$</span><span style="color: #D8DEE9">authenticationManager</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">=</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">new</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">AuthenticationProviderManager</span><span style="color: #999999">([</span></span>
-<span class="line" data-linenr="8"><span style="color: #BBBBBB">    </span><span style="color: #E5673D">new</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">DaoAuthenticationProvider</span><span style="color: #999999">(</span></span>
-<span class="line" data-linenr="9"><span style="color: #BBBBBB">        </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">userProvider</span><span style="color: #999999">,</span></span>
-<span class="line" data-linenr="10"><span style="color: #BBBBBB">        </span><span style="color: #E5673D">new</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">UserChecker</span><span style="color: #999999">(),</span></span>
-<span class="line" data-linenr="11"><span style="color: #BBBBBB">        </span><span style="color: #999999">&#39;</span><span style="color: #7CC64A">default</span><span style="color: #999999">&#39;</span><span style="color: #999999">,</span></span>
-<span class="line" data-linenr="12"><span style="color: #BBBBBB">        </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">encoderFactory</span></span>
-<span class="line" data-linenr="13"><span style="color: #BBBBBB">    </span><span style="color: #999999">),</span></span>
-<span class="line" data-linenr="14"><span style="color: #999999">])</span><span style="color: #E5673D">;</span></span></code></pre>
+<span class="line" data-linenr="7"><span style="color:#E5673D">$</span><span style="color:#D8DEE9">authenticationManager</span><span style="color:#E5673D"> =</span><span style="color:#E5673D"> new</span><span style="color:#C7C8D2"> AuthenticationProviderManager</span><span style="color:#999999">([</span></span>
+<span class="line" data-linenr="8"><span style="color:#E5673D">    new</span><span style="color:#C7C8D2"> DaoAuthenticationProvider</span><span style="color:#999999">(</span></span>
+<span class="line" data-linenr="9"><span style="color:#E5673D">        $</span><span style="color:#D8DEE9">userProvider</span><span style="color:#999999">,</span></span>
+<span class="line" data-linenr="10"><span style="color:#E5673D">        new</span><span style="color:#C7C8D2"> UserChecker</span><span style="color:#999999">(),</span></span>
+<span class="line" data-linenr="11"><span style="color:#999999">        '</span><span style="color:#7CC64A">default</span><span style="color:#999999">'</span><span style="color:#999999">,</span></span>
+<span class="line" data-linenr="12"><span style="color:#E5673D">        $</span><span style="color:#D8DEE9">encoderFactory</span></span>
+<span class="line" data-linenr="13"><span style="color:#999999">    ),</span></span>
+<span class="line" data-linenr="14"><span style="color:#999999">])</span><span style="color:#E5673D">;</span></span></code></pre></div>
 </div>
 
 <p>As you see, there is one more class: The <code class="highlighter-shiki">UserChecker</code>. It checks some “user
@@ -363,20 +358,19 @@ directly. See for instance the
 <p>Finally – we’re more than halfway the post now – we are able to authenticate
 the token we created:</p>
 
-<div class="language-php highlighter-shiki"><pre class="shiki-gutter">1
+<div class="language-php highlighter-shiki"><div><pre class="shiki-gutter">1
 2
 3
 4
 5
 6
-7
-</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #6B90C0; font-style: italic">// secure.php</span></span>
+7</pre><pre class="shiki wouterj shiki-code" style="background-color:#1e1e1e;color:#bbbbbb" tabindex="0"><code><span class="line" data-linenr="1"><span style="color:#6B90C0;font-style:italic">// secure.php</span></span>
 <span class="line" data-linenr="2"></span>
-<span class="line" data-linenr="3"><span style="color: #6B90C0; font-style: italic">// ...</span></span>
+<span class="line" data-linenr="3"><span style="color:#6B90C0;font-style:italic">// ...</span></span>
 <span class="line" data-linenr="4"></span>
-<span class="line" data-linenr="5"><span style="color: #E5673D">$</span><span style="color: #D8DEE9">authenticatedToken</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">=</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">authenticationManager</span><span style="color: #E5673D">-&gt;</span><span style="color: #C7C8D2">authenticate</span><span style="color: #999999">(</span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">inputToken</span><span style="color: #999999">)</span><span style="color: #E5673D">;</span></span>
+<span class="line" data-linenr="5"><span style="color:#E5673D">$</span><span style="color:#D8DEE9">authenticatedToken</span><span style="color:#E5673D"> =</span><span style="color:#E5673D"> $</span><span style="color:#D8DEE9">authenticationManager</span><span style="color:#E5673D">-></span><span style="color:#C7C8D2">authenticate</span><span style="color:#999999">(</span><span style="color:#E5673D">$</span><span style="color:#D8DEE9">inputToken</span><span style="color:#999999">)</span><span style="color:#E5673D">;</span></span>
 <span class="line" data-linenr="6"></span>
-<span class="line" data-linenr="7"><span style="color: #E5673D">echo</span><span style="color: #BBBBBB"> </span><span style="color: #999999">&#39;</span><span style="color: #7CC64A">Hello </span><span style="color: #999999">&#39;</span><span style="color: #E5673D">.</span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">authenticatedToken</span><span style="color: #E5673D">-&gt;</span><span style="color: #C7C8D2">getUsername</span><span style="color: #999999">()</span><span style="color: #E5673D">.</span><span style="color: #999999">&#39;</span><span style="color: #7CC64A">!</span><span style="color: #999999">&#39;</span><span style="color: #E5673D">;</span></span></code></pre>
+<span class="line" data-linenr="7"><span style="color:#E5673D">echo</span><span style="color:#999999"> '</span><span style="color:#7CC64A">Hello </span><span style="color:#999999">'</span><span style="color:#E5673D">.</span><span style="color:#E5673D">$</span><span style="color:#D8DEE9">authenticatedToken</span><span style="color:#E5673D">-></span><span style="color:#C7C8D2">getUsername</span><span style="color:#999999">()</span><span style="color:#E5673D">.</span><span style="color:#999999">'</span><span style="color:#7CC64A">!</span><span style="color:#999999">'</span><span style="color:#E5673D">;</span></span></code></pre></div>
 </div>
     
       <h2 id="authorize-actions-the-accessdecisionmanager">
@@ -409,20 +403,19 @@ checks access using this manager based on the configured <code class="highlighte
 rules.</p>
 </aside>
 
-<div class="language-php highlighter-shiki"><pre class="shiki-gutter">1
+<div class="language-php highlighter-shiki"><div><pre class="shiki-gutter">1
 2
 3
 4
 5
 6
-7
-</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #6B90C0; font-style: italic">// secure.php</span></span>
-<span class="line" data-linenr="2"><span style="color: #E5673D">use</span><span style="color: #BBBBBB"> Symfony</span><span style="color: #999999">\</span><span style="color: #BBBBBB">Component</span><span style="color: #999999">\</span><span style="color: #BBBBBB">Security</span><span style="color: #999999">\</span><span style="color: #BBBBBB">Core</span><span style="color: #999999">\</span><span style="color: #BBBBBB">Authorization</span><span style="color: #999999">\</span><span style="color: #C7C8D2">AccessDecisionManager</span><span style="color: #E5673D">;</span></span>
-<span class="line" data-linenr="3"><span style="color: #6B90C0; font-style: italic">// ...</span></span>
+7</pre><pre class="shiki wouterj shiki-code" style="background-color:#1e1e1e;color:#bbbbbb" tabindex="0"><code><span class="line" data-linenr="1"><span style="color:#6B90C0;font-style:italic">// secure.php</span></span>
+<span class="line" data-linenr="2"><span style="color:#E5673D">use</span><span style="color:#BBBBBB"> Symfony</span><span style="color:#999999">\</span><span style="color:#BBBBBB">Component</span><span style="color:#999999">\</span><span style="color:#BBBBBB">Security</span><span style="color:#999999">\</span><span style="color:#BBBBBB">Core</span><span style="color:#999999">\</span><span style="color:#BBBBBB">Authorization</span><span style="color:#999999">\</span><span style="color:#C7C8D2">AccessDecisionManager</span><span style="color:#E5673D">;</span></span>
+<span class="line" data-linenr="3"><span style="color:#6B90C0;font-style:italic">// ...</span></span>
 <span class="line" data-linenr="4"></span>
-<span class="line" data-linenr="5"><span style="color: #E5673D">$</span><span style="color: #D8DEE9">accessDecisionManager</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">=</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">new</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">AccessDecisionManager</span><span style="color: #999999">([</span></span>
-<span class="line" data-linenr="6"><span style="color: #999999">    </span><span style="color: #6B90C0; font-style: italic">// ... voters</span></span>
-<span class="line" data-linenr="7"><span style="color: #999999">])</span><span style="color: #E5673D">;</span></span></code></pre>
+<span class="line" data-linenr="5"><span style="color:#E5673D">$</span><span style="color:#D8DEE9">accessDecisionManager</span><span style="color:#E5673D"> =</span><span style="color:#E5673D"> new</span><span style="color:#C7C8D2"> AccessDecisionManager</span><span style="color:#999999">([</span></span>
+<span class="line" data-linenr="6"><span style="color:#6B90C0;font-style:italic">    // ... voters</span></span>
+<span class="line" data-linenr="7"><span style="color:#999999">])</span><span style="color:#E5673D">;</span></span></code></pre></div>
 </div>
 
 <p>The default voters of Symfony are a bit strange, they don’t validate an action,
@@ -436,7 +429,7 @@ is the <code class="highlighter-shiki">AuthenticatedVoter</code>, which checks i
 anonymous, etc.</p>
 </aside>
 
-<div class="language-php highlighter-shiki"><pre class="shiki-gutter">1
+<div class="language-php highlighter-shiki"><div><pre class="shiki-gutter">1
 2
 3
 4
@@ -459,31 +452,30 @@ anonymous, etc.</p>
 21
 22
 23
-24
-</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #6B90C0; font-style: italic">// secure.php</span></span>
-<span class="line" data-linenr="2"><span style="color: #E5673D">use</span><span style="color: #BBBBBB"> Symfony</span><span style="color: #999999">\</span><span style="color: #BBBBBB">Component</span><span style="color: #999999">\</span><span style="color: #BBBBBB">Security</span><span style="color: #999999">\</span><span style="color: #BBBBBB">Core</span><span style="color: #999999">\</span><span style="color: #BBBBBB">Authorization</span><span style="color: #999999">\</span><span style="color: #BBBBBB">Voter</span><span style="color: #999999">\</span><span style="color: #C7C8D2">RoleVoter</span><span style="color: #E5673D">;</span></span>
-<span class="line" data-linenr="3"><span style="color: #6B90C0; font-style: italic">// ...</span></span>
+24</pre><pre class="shiki wouterj shiki-code" style="background-color:#1e1e1e;color:#bbbbbb" tabindex="0"><code><span class="line" data-linenr="1"><span style="color:#6B90C0;font-style:italic">// secure.php</span></span>
+<span class="line" data-linenr="2"><span style="color:#E5673D">use</span><span style="color:#BBBBBB"> Symfony</span><span style="color:#999999">\</span><span style="color:#BBBBBB">Component</span><span style="color:#999999">\</span><span style="color:#BBBBBB">Security</span><span style="color:#999999">\</span><span style="color:#BBBBBB">Core</span><span style="color:#999999">\</span><span style="color:#BBBBBB">Authorization</span><span style="color:#999999">\</span><span style="color:#BBBBBB">Voter</span><span style="color:#999999">\</span><span style="color:#C7C8D2">RoleVoter</span><span style="color:#E5673D">;</span></span>
+<span class="line" data-linenr="3"><span style="color:#6B90C0;font-style:italic">// ...</span></span>
 <span class="line" data-linenr="4"></span>
-<span class="line" data-linenr="5"><span style="color: #E5673D">$</span><span style="color: #D8DEE9">accessDecisionManager</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">=</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">new</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">AccessDecisionManager</span><span style="color: #999999">([</span></span>
-<span class="line" data-linenr="6"><span style="color: #999999">    </span><span style="color: #6B90C0; font-style: italic">// TITLE_ is the prefix an attribute must have in order to be</span></span>
-<span class="line" data-linenr="7"><span style="color: #999999">    </span><span style="color: #6B90C0; font-style: italic">// managed by this voter</span></span>
-<span class="line" data-linenr="8"><span style="color: #BBBBBB">    </span><span style="color: #E5673D">new</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">RoleVoter</span><span style="color: #999999">(</span><span style="color: #999999">&#39;</span><span style="color: #7CC64A">TITLE_</span><span style="color: #999999">&#39;</span><span style="color: #999999">),</span></span>
-<span class="line" data-linenr="9"><span style="color: #999999">])</span><span style="color: #E5673D">;</span></span>
+<span class="line" data-linenr="5"><span style="color:#E5673D">$</span><span style="color:#D8DEE9">accessDecisionManager</span><span style="color:#E5673D"> =</span><span style="color:#E5673D"> new</span><span style="color:#C7C8D2"> AccessDecisionManager</span><span style="color:#999999">([</span></span>
+<span class="line" data-linenr="6"><span style="color:#6B90C0;font-style:italic">    // TITLE_ is the prefix an attribute must have in order to be</span></span>
+<span class="line" data-linenr="7"><span style="color:#6B90C0;font-style:italic">    // managed by this voter</span></span>
+<span class="line" data-linenr="8"><span style="color:#E5673D">    new</span><span style="color:#C7C8D2"> RoleVoter</span><span style="color:#999999">(</span><span style="color:#999999">'</span><span style="color:#7CC64A">TITLE_</span><span style="color:#999999">'</span><span style="color:#999999">),</span></span>
+<span class="line" data-linenr="9"><span style="color:#999999">])</span><span style="color:#E5673D">;</span></span>
 <span class="line" data-linenr="10"></span>
-<span class="line" data-linenr="11"><span style="color: #6B90C0; font-style: italic">// now we can use the access decision manager to see if the</span></span>
-<span class="line" data-linenr="12"><span style="color: #6B90C0; font-style: italic">// authenticated token has the &quot;supervisor&quot; role:</span></span>
-<span class="line" data-linenr="13"><span style="color: #E5673D">$</span><span style="color: #D8DEE9">isSupervisor</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">=</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">accessDecisionManager</span><span style="color: #E5673D">-&gt;</span><span style="color: #C7C8D2">decide</span><span style="color: #999999">(</span></span>
-<span class="line" data-linenr="14"><span style="color: #BBBBBB">    </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">authenticatedToken</span><span style="color: #999999">,</span></span>
-<span class="line" data-linenr="15"><span style="color: #BBBBBB">    </span><span style="color: #999999">[</span><span style="color: #999999">&#39;</span><span style="color: #7CC64A">TITLE_SUPERVISOR</span><span style="color: #999999">&#39;</span><span style="color: #999999">]</span></span>
-<span class="line" data-linenr="16"><span style="color: #999999">)</span><span style="color: #E5673D">;</span></span>
+<span class="line" data-linenr="11"><span style="color:#6B90C0;font-style:italic">// now we can use the access decision manager to see if the</span></span>
+<span class="line" data-linenr="12"><span style="color:#6B90C0;font-style:italic">// authenticated token has the "supervisor" role:</span></span>
+<span class="line" data-linenr="13"><span style="color:#E5673D">$</span><span style="color:#D8DEE9">isSupervisor</span><span style="color:#E5673D"> =</span><span style="color:#E5673D"> $</span><span style="color:#D8DEE9">accessDecisionManager</span><span style="color:#E5673D">-></span><span style="color:#C7C8D2">decide</span><span style="color:#999999">(</span></span>
+<span class="line" data-linenr="14"><span style="color:#E5673D">    $</span><span style="color:#D8DEE9">authenticatedToken</span><span style="color:#999999">,</span></span>
+<span class="line" data-linenr="15"><span style="color:#999999">    [</span><span style="color:#999999">'</span><span style="color:#7CC64A">TITLE_SUPERVISOR</span><span style="color:#999999">'</span><span style="color:#999999">]</span></span>
+<span class="line" data-linenr="16"><span style="color:#999999">)</span><span style="color:#E5673D">;</span></span>
 <span class="line" data-linenr="17"></span>
-<span class="line" data-linenr="18"><span style="color: #6B90C0; font-style: italic">// If we add a custom voter, we would be able to i.e. test if we are</span></span>
-<span class="line" data-linenr="19"><span style="color: #6B90C0; font-style: italic">// able to view a user&#39;s profile:</span></span>
-<span class="line" data-linenr="20"><span style="color: #E5673D">$</span><span style="color: #D8DEE9">canViewProfile</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">=</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">accessDecisionManager</span><span style="color: #E5673D">-&gt;</span><span style="color: #C7C8D2">decide</span><span style="color: #999999">(</span></span>
-<span class="line" data-linenr="21"><span style="color: #BBBBBB">    </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">authenticatedToken</span><span style="color: #999999">,</span></span>
-<span class="line" data-linenr="22"><span style="color: #BBBBBB">    </span><span style="color: #999999">[</span><span style="color: #999999">&#39;</span><span style="color: #7CC64A">VIEW</span><span style="color: #999999">&#39;</span><span style="color: #999999">],</span></span>
-<span class="line" data-linenr="23"><span style="color: #BBBBBB">    </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">authenticatedToken</span><span style="color: #E5673D">-&gt;</span><span style="color: #C7C8D2">getUser</span><span style="color: #999999">()</span><span style="color: #BBBBBB"> </span><span style="color: #6B90C0; font-style: italic">// some context for the &quot;view&quot; action</span></span>
-<span class="line" data-linenr="24"><span style="color: #999999">)</span><span style="color: #E5673D">;</span></span></code></pre>
+<span class="line" data-linenr="18"><span style="color:#6B90C0;font-style:italic">// If we add a custom voter, we would be able to i.e. test if we are</span></span>
+<span class="line" data-linenr="19"><span style="color:#6B90C0;font-style:italic">// able to view a user's profile:</span></span>
+<span class="line" data-linenr="20"><span style="color:#E5673D">$</span><span style="color:#D8DEE9">canViewProfile</span><span style="color:#E5673D"> =</span><span style="color:#E5673D"> $</span><span style="color:#D8DEE9">accessDecisionManager</span><span style="color:#E5673D">-></span><span style="color:#C7C8D2">decide</span><span style="color:#999999">(</span></span>
+<span class="line" data-linenr="21"><span style="color:#E5673D">    $</span><span style="color:#D8DEE9">authenticatedToken</span><span style="color:#999999">,</span></span>
+<span class="line" data-linenr="22"><span style="color:#999999">    [</span><span style="color:#999999">'</span><span style="color:#7CC64A">VIEW</span><span style="color:#999999">'</span><span style="color:#999999">],</span></span>
+<span class="line" data-linenr="23"><span style="color:#E5673D">    $</span><span style="color:#D8DEE9">authenticatedToken</span><span style="color:#E5673D">-></span><span style="color:#C7C8D2">getUser</span><span style="color:#999999">()</span><span style="color:#6B90C0;font-style:italic"> // some context for the "view" action</span></span>
+<span class="line" data-linenr="24"><span style="color:#999999">)</span><span style="color:#E5673D">;</span></span></code></pre></div>
 </div>
     
       <h2 id="relation-with-the-symfony-framework">
@@ -497,7 +489,7 @@ anonymous, etc.</p>
 <p>Now, if we take a look at the configuration for the SecurityBundle, we’ll find
 many relations with the architecture used above:</p>
 
-<div class="language-yaml highlighter-shiki"><pre class="shiki-gutter">1
+<div class="language-yaml highlighter-shiki"><div><pre class="shiki-gutter">1
 2
 3
 4
@@ -529,40 +521,39 @@ many relations with the architecture used above:</p>
 30
 31
 32
-33
-</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #C7C8D2">security</span><span style="color: #999999">:</span></span>
-<span class="line" data-linenr="2"><span style="color: #999999">    </span><span style="color: #6B90C0; font-style: italic"># Providers: UserProvider classes</span></span>
-<span class="line" data-linenr="3"><span style="color: #BBBBBB">    </span><span style="color: #C7C8D2">providers</span><span style="color: #999999">:</span></span>
-<span class="line" data-linenr="4"><span style="color: #BBBBBB">        </span><span style="color: #C7C8D2">in_memory</span><span style="color: #999999">:</span></span>
-<span class="line" data-linenr="5"><span style="color: #999999">            </span><span style="color: #6B90C0; font-style: italic"># indicating the InMemoryUserProvider</span></span>
-<span class="line" data-linenr="6"><span style="color: #BBBBBB">            </span><span style="color: #C7C8D2">memory</span><span style="color: #999999">:</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">~</span></span>
+33</pre><pre class="shiki wouterj shiki-code" style="background-color:#1e1e1e;color:#bbbbbb" tabindex="0"><code><span class="line" data-linenr="1"><span style="color:#C7C8D2">security</span><span style="color:#999999">:</span></span>
+<span class="line" data-linenr="2"><span style="color:#6B90C0;font-style:italic">    # Providers: UserProvider classes</span></span>
+<span class="line" data-linenr="3"><span style="color:#C7C8D2">    providers</span><span style="color:#999999">:</span></span>
+<span class="line" data-linenr="4"><span style="color:#C7C8D2">        in_memory</span><span style="color:#999999">:</span></span>
+<span class="line" data-linenr="5"><span style="color:#6B90C0;font-style:italic">            # indicating the InMemoryUserProvider</span></span>
+<span class="line" data-linenr="6"><span style="color:#C7C8D2">            memory</span><span style="color:#999999">:</span><span style="color:#E5673D"> ~</span></span>
 <span class="line" data-linenr="7"></span>
-<span class="line" data-linenr="8"><span style="color: #999999">    </span><span style="color: #6B90C0; font-style: italic"># The UserPasswordEncoders</span></span>
-<span class="line" data-linenr="9"><span style="color: #BBBBBB">    </span><span style="color: #C7C8D2">encoders</span><span style="color: #999999">:</span></span>
-<span class="line" data-linenr="10"><span style="color: #BBBBBB">        </span><span style="color: #C7C8D2">Symfony\Component\Security\Core\User\UserInterface</span><span style="color: #999999">:</span><span style="color: #BBBBBB"> </span><span style="color: #7CC64A">plaintext</span></span>
+<span class="line" data-linenr="8"><span style="color:#6B90C0;font-style:italic">    # The UserPasswordEncoders</span></span>
+<span class="line" data-linenr="9"><span style="color:#C7C8D2">    encoders</span><span style="color:#999999">:</span></span>
+<span class="line" data-linenr="10"><span style="color:#C7C8D2">        Symfony\Component\Security\Core\User\UserInterface</span><span style="color:#999999">:</span><span style="color:#7CC64A"> plaintext</span></span>
 <span class="line" data-linenr="11"></span>
-<span class="line" data-linenr="12"><span style="color: #999999">    </span><span style="color: #6B90C0; font-style: italic"># Firewalls are listeners of the HTTP component that</span></span>
-<span class="line" data-linenr="13"><span style="color: #999999">    </span><span style="color: #6B90C0; font-style: italic"># execute authentication based on paths</span></span>
-<span class="line" data-linenr="14"><span style="color: #BBBBBB">    </span><span style="color: #C7C8D2">firewalls</span><span style="color: #999999">:</span></span>
-<span class="line" data-linenr="15"><span style="color: #999999">        </span><span style="color: #6B90C0; font-style: italic"># ...</span></span>
+<span class="line" data-linenr="12"><span style="color:#6B90C0;font-style:italic">    # Firewalls are listeners of the HTTP component that</span></span>
+<span class="line" data-linenr="13"><span style="color:#6B90C0;font-style:italic">    # execute authentication based on paths</span></span>
+<span class="line" data-linenr="14"><span style="color:#C7C8D2">    firewalls</span><span style="color:#999999">:</span></span>
+<span class="line" data-linenr="15"><span style="color:#6B90C0;font-style:italic">        # ...</span></span>
 <span class="line" data-linenr="16"></span>
-<span class="line" data-linenr="17"><span style="color: #999999">        </span><span style="color: #6B90C0; font-style: italic"># Each firewall configures a list of authentication providers</span></span>
-<span class="line" data-linenr="18"><span style="color: #999999">        </span><span style="color: #6B90C0; font-style: italic"># used for this AuthenticationProviderManager. I.e. all</span></span>
-<span class="line" data-linenr="19"><span style="color: #999999">        </span><span style="color: #6B90C0; font-style: italic"># firewalls are one AuthenticationProviderManager (and thus,</span></span>
-<span class="line" data-linenr="20"><span style="color: #999999">        </span><span style="color: #6B90C0; font-style: italic"># one security system).</span></span>
-<span class="line" data-linenr="21"><span style="color: #BBBBBB">        </span><span style="color: #C7C8D2">main</span><span style="color: #999999">:</span></span>
-<span class="line" data-linenr="22"><span style="color: #999999">            </span><span style="color: #6B90C0; font-style: italic"># AnonymousAuthenticationProvider</span></span>
-<span class="line" data-linenr="23"><span style="color: #BBBBBB">            </span><span style="color: #C7C8D2">anonymous</span><span style="color: #999999">:</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">true</span></span>
+<span class="line" data-linenr="17"><span style="color:#6B90C0;font-style:italic">        # Each firewall configures a list of authentication providers</span></span>
+<span class="line" data-linenr="18"><span style="color:#6B90C0;font-style:italic">        # used for this AuthenticationProviderManager. I.e. all</span></span>
+<span class="line" data-linenr="19"><span style="color:#6B90C0;font-style:italic">        # firewalls are one AuthenticationProviderManager (and thus,</span></span>
+<span class="line" data-linenr="20"><span style="color:#6B90C0;font-style:italic">        # one security system).</span></span>
+<span class="line" data-linenr="21"><span style="color:#C7C8D2">        main</span><span style="color:#999999">:</span></span>
+<span class="line" data-linenr="22"><span style="color:#6B90C0;font-style:italic">            # AnonymousAuthenticationProvider</span></span>
+<span class="line" data-linenr="23"><span style="color:#C7C8D2">            anonymous</span><span style="color:#999999">:</span><span style="color:#E5673D"> true</span></span>
 <span class="line" data-linenr="24"></span>
-<span class="line" data-linenr="25"><span style="color: #999999">            </span><span style="color: #6B90C0; font-style: italic"># Use UsernamePasswordToken and DaoAuthenticationProvider</span></span>
-<span class="line" data-linenr="26"><span style="color: #BBBBBB">            </span><span style="color: #C7C8D2">http_basic</span><span style="color: #999999">:</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">true</span></span>
-<span class="line" data-linenr="27"><span style="color: #BBBBBB">            </span><span style="color: #C7C8D2">form_login</span><span style="color: #999999">:</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">true</span></span>
+<span class="line" data-linenr="25"><span style="color:#6B90C0;font-style:italic">            # Use UsernamePasswordToken and DaoAuthenticationProvider</span></span>
+<span class="line" data-linenr="26"><span style="color:#C7C8D2">            http_basic</span><span style="color:#999999">:</span><span style="color:#E5673D"> true</span></span>
+<span class="line" data-linenr="27"><span style="color:#C7C8D2">            form_login</span><span style="color:#999999">:</span><span style="color:#E5673D"> true</span></span>
 <span class="line" data-linenr="28"></span>
-<span class="line" data-linenr="29"><span style="color: #999999">    </span><span style="color: #6B90C0; font-style: italic"># Relate to AccessDecisionManager#isGranted() calls for</span></span>
-<span class="line" data-linenr="30"><span style="color: #999999">    </span><span style="color: #6B90C0; font-style: italic"># specific paths</span></span>
-<span class="line" data-linenr="31"><span style="color: #BBBBBB">    </span><span style="color: #C7C8D2">access_control</span><span style="color: #999999">:</span></span>
-<span class="line" data-linenr="32"><span style="color: #BBBBBB">        </span><span style="color: #999999">-</span><span style="color: #BBBBBB"> </span><span style="color: #999999">{</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">path</span><span style="color: #999999">:</span><span style="color: #BBBBBB"> </span><span style="color: #7CC64A">^/admin</span><span style="color: #999999">,</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">roles</span><span style="color: #999999">:</span><span style="color: #BBBBBB"> </span><span style="color: #7CC64A">ROLE_ADMIN</span><span style="color: #BBBBBB"> </span><span style="color: #999999">}</span></span>
-<span class="line" data-linenr="33"><span style="color: #BBBBBB">        </span><span style="color: #999999">-</span><span style="color: #BBBBBB"> </span><span style="color: #999999">{</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">path</span><span style="color: #999999">:</span><span style="color: #BBBBBB"> </span><span style="color: #7CC64A">^/profile</span><span style="color: #999999">,</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">roles</span><span style="color: #999999">:</span><span style="color: #BBBBBB"> </span><span style="color: #7CC64A">ROLE_USER</span><span style="color: #BBBBBB"> </span><span style="color: #999999">}</span></span></code></pre>
+<span class="line" data-linenr="29"><span style="color:#6B90C0;font-style:italic">    # Relate to AccessDecisionManager#isGranted() calls for</span></span>
+<span class="line" data-linenr="30"><span style="color:#6B90C0;font-style:italic">    # specific paths</span></span>
+<span class="line" data-linenr="31"><span style="color:#C7C8D2">    access_control</span><span style="color:#999999">:</span></span>
+<span class="line" data-linenr="32"><span style="color:#999999">        -</span><span style="color:#999999"> {</span><span style="color:#C7C8D2"> path</span><span style="color:#999999">:</span><span style="color:#7CC64A"> ^/admin</span><span style="color:#999999">,</span><span style="color:#C7C8D2"> roles</span><span style="color:#999999">:</span><span style="color:#7CC64A"> ROLE_ADMIN</span><span style="color:#999999"> }</span></span>
+<span class="line" data-linenr="33"><span style="color:#999999">        -</span><span style="color:#999999"> {</span><span style="color:#C7C8D2"> path</span><span style="color:#999999">:</span><span style="color:#7CC64A"> ^/profile</span><span style="color:#999999">,</span><span style="color:#C7C8D2"> roles</span><span style="color:#999999">:</span><span style="color:#7CC64A"> ROLE_USER</span><span style="color:#999999"> }</span></span></code></pre></div>
 </div>
     
       <h2 id="take-homes">

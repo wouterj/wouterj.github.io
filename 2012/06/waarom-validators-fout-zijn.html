@@ -90,7 +90,7 @@ Helaas zal de validator alleen maar kijken of onze mark-up voldoet aan de
 regels, gesteld door een één of andere DTD file. Of de pagina semantisch
 correct is boeit hem niks. Deze pagina bijv. zou worden goed gerekend:</p>
 
-<div class="language-html highlighter-shiki"><pre class="shiki-gutter">1
+<div class="language-html highlighter-shiki"><div><pre class="shiki-gutter">1
 2
 3
 4
@@ -103,21 +103,20 @@ correct is boeit hem niks. Deze pagina bijv. zou worden goed gerekend:</p>
 11
 12
 13
-14
-</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #E5673D">&lt;!doctype</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">html</span><span style="color: #E5673D">&gt;</span></span>
-<span class="line" data-linenr="2"><span style="color: #E5673D">&lt;html&gt;</span></span>
-<span class="line" data-linenr="3"><span style="color: #E5673D">&lt;head&gt;</span></span>
-<span class="line" data-linenr="4"><span style="color: #BBBBBB">    </span><span style="color: #E5673D">&lt;title&gt;</span><span style="color: #BBBBBB">Hello World</span><span style="color: #E5673D">&lt;/title&gt;</span></span>
-<span class="line" data-linenr="5"><span style="color: #BBBBBB">    </span><span style="color: #E5673D">&lt;meta</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">charset</span><span style="color: #999999">=</span><span style="color: #7CC64A">utf-8</span><span style="color: #E5673D">&gt;</span></span>
-<span class="line" data-linenr="6"><span style="color: #E5673D">&lt;/head&gt;</span></span>
-<span class="line" data-linenr="7"><span style="color: #E5673D">&lt;body&gt;</span></span>
-<span class="line" data-linenr="8"><span style="color: #BBBBBB">    </span><span style="color: #E5673D">&lt;div&gt;</span><span style="color: #BBBBBB">Sitetitel</span><span style="color: #E5673D">&lt;/div&gt;</span></span>
-<span class="line" data-linenr="9"><span style="color: #BBBBBB">    </span><span style="color: #E5673D">&lt;div&gt;</span><span style="color: #BBBBBB">Artikeltitel</span><span style="color: #E5673D">&lt;/div&gt;</span></span>
-<span class="line" data-linenr="10"><span style="color: #BBBBBB">    </span><span style="color: #E5673D">&lt;div&gt;</span><span style="color: #BBBBBB">Lorem ipsum geblaat</span><span style="color: #E5673D">&lt;/div&gt;</span></span>
-<span class="line" data-linenr="11"><span style="color: #BBBBBB">    </span><span style="color: #E5673D">&lt;div&gt;</span><span style="color: #BBBBBB">Nog een alinea</span><span style="color: #E5673D">&lt;/div&gt;</span></span>
-<span class="line" data-linenr="12"><span style="color: #BBBBBB">    </span><span style="color: #E5673D">&lt;div&gt;</span><span style="color: #BBBBBB">Footer info</span><span style="color: #E5673D">&lt;/div&gt;</span></span>
-<span class="line" data-linenr="13"><span style="color: #E5673D">&lt;/body&gt;</span></span>
-<span class="line" data-linenr="14"><span style="color: #E5673D">&lt;/html&gt;</span></span></code></pre>
+14</pre><pre class="shiki wouterj shiki-code" style="background-color:#1e1e1e;color:#bbbbbb" tabindex="0"><code><span class="line" data-linenr="1"><span style="color:#E5673D">&#x3C;!doctype</span><span style="color:#C7C8D2"> html</span><span style="color:#E5673D">></span></span>
+<span class="line" data-linenr="2"><span style="color:#E5673D">&#x3C;html></span></span>
+<span class="line" data-linenr="3"><span style="color:#E5673D">&#x3C;head></span></span>
+<span class="line" data-linenr="4"><span style="color:#E5673D">    &#x3C;title></span><span style="color:#BBBBBB">Hello World</span><span style="color:#E5673D">&#x3C;/title></span></span>
+<span class="line" data-linenr="5"><span style="color:#E5673D">    &#x3C;meta</span><span style="color:#C7C8D2"> charset</span><span style="color:#999999">=</span><span style="color:#7CC64A">utf-8</span><span style="color:#E5673D">></span></span>
+<span class="line" data-linenr="6"><span style="color:#E5673D">&#x3C;/head></span></span>
+<span class="line" data-linenr="7"><span style="color:#E5673D">&#x3C;body></span></span>
+<span class="line" data-linenr="8"><span style="color:#E5673D">    &#x3C;div></span><span style="color:#BBBBBB">Sitetitel</span><span style="color:#E5673D">&#x3C;/div></span></span>
+<span class="line" data-linenr="9"><span style="color:#E5673D">    &#x3C;div></span><span style="color:#BBBBBB">Artikeltitel</span><span style="color:#E5673D">&#x3C;/div></span></span>
+<span class="line" data-linenr="10"><span style="color:#E5673D">    &#x3C;div></span><span style="color:#BBBBBB">Lorem ipsum geblaat</span><span style="color:#E5673D">&#x3C;/div></span></span>
+<span class="line" data-linenr="11"><span style="color:#E5673D">    &#x3C;div></span><span style="color:#BBBBBB">Nog een alinea</span><span style="color:#E5673D">&#x3C;/div></span></span>
+<span class="line" data-linenr="12"><span style="color:#E5673D">    &#x3C;div></span><span style="color:#BBBBBB">Footer info</span><span style="color:#E5673D">&#x3C;/div></span></span>
+<span class="line" data-linenr="13"><span style="color:#E5673D">&#x3C;/body></span></span>
+<span class="line" data-linenr="14"><span style="color:#E5673D">&#x3C;/html></span></span></code></pre></div>
 </div>
 
 <p>Even voor de duidelijkheid, dit is natuurlijk totaal verkeerd. Titels horen
@@ -188,10 +187,9 @@ kan je achterhalen wat er verkeerd is afgesloten. Waarom meldt je dat niet?</p>
 
 <p>Of neem nou deze voorbeeld code:</p>
 
-<div class="language-html highlighter-shiki"><pre class="shiki-gutter">1
-2
-</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #E5673D">&lt;!doctype</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">html</span><span style="color: #E5673D">&gt;</span></span>
-<span class="line" data-linenr="2"><span style="color: #E5673D">&lt;h1&gt;</span><span style="color: #BBBBBB">Sitenaam</span><span style="color: #E5673D">&lt;/h1&gt;</span></span></code></pre>
+<div class="language-html highlighter-shiki"><div><pre class="shiki-gutter">1
+2</pre><pre class="shiki wouterj shiki-code" style="background-color:#1e1e1e;color:#bbbbbb" tabindex="0"><code><span class="line" data-linenr="1"><span style="color:#E5673D">&#x3C;!doctype</span><span style="color:#C7C8D2"> html</span><span style="color:#E5673D">></span></span>
+<span class="line" data-linenr="2"><span style="color:#E5673D">&#x3C;h1></span><span style="color:#BBBBBB">Sitenaam</span><span style="color:#E5673D">&#x3C;/h1></span></span></code></pre></div>
 </div>
 
 <p>Laten we de error stap voor stap nagaan:</p>

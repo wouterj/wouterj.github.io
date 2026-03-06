@@ -90,7 +90,7 @@ like your interfaces, the implementation will probably be nice as well. In this
 post, we’re going to design a collection of products. The interface first
 contains some basic collection methods:</p>
 
-<div class="language-php highlighter-shiki"><pre class="shiki-gutter">1
+<div class="language-php highlighter-shiki"><div><pre class="shiki-gutter">1
 2
 3
 4
@@ -103,28 +103,27 @@ contains some basic collection methods:</p>
 11
 12
 13
-14
-</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #6B90C0; font-style: italic">// src/AppBundle/Product/ProductRepository.php</span></span>
-<span class="line" data-linenr="2"><span style="color: #E5673D">namespace</span><span style="color: #BBBBBB"> AppBundle</span><span style="color: #999999">\</span><span style="color: #BBBBBB">Product</span><span style="color: #E5673D">;</span></span>
+14</pre><pre class="shiki wouterj shiki-code" style="background-color:#1e1e1e;color:#bbbbbb" tabindex="0"><code><span class="line" data-linenr="1"><span style="color:#6B90C0;font-style:italic">// src/AppBundle/Product/ProductRepository.php</span></span>
+<span class="line" data-linenr="2"><span style="color:#E5673D">namespace</span><span style="color:#BBBBBB"> AppBundle</span><span style="color:#999999">\</span><span style="color:#BBBBBB">Product</span><span style="color:#E5673D">;</span></span>
 <span class="line" data-linenr="3"></span>
-<span class="line" data-linenr="4"><span style="color: #E5673D">interface</span><span style="color: #BBBBBB"> ProductRepository </span><span style="color: #E5673D">extends</span><span style="color: #BBBBBB"> </span><span style="color: #999999">\</span><span style="color: #C7C8D2">Countable</span></span>
-<span class="line" data-linenr="5"><span style="color: #999999">{</span></span>
-<span class="line" data-linenr="6"><span style="color: #BBBBBB">    </span><span style="color: #6B90C0; font-style: italic">/** @return </span><span style="color: #C7C8D2; font-style: italic">Product</span><span style="color: #E5673D; font-style: italic">[]</span><span style="color: #6B90C0; font-style: italic"> */</span></span>
-<span class="line" data-linenr="7"><span style="color: #BBBBBB">    </span><span style="color: #E5673D">public</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">function</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">all</span><span style="color: #999999">()</span><span style="color: #E5673D">;</span></span>
+<span class="line" data-linenr="4"><span style="color:#E5673D">interface</span><span style="color:#BBBBBB"> ProductRepository </span><span style="color:#E5673D">extends</span><span style="color:#999999"> \</span><span style="color:#C7C8D2">Countable</span></span>
+<span class="line" data-linenr="5"><span style="color:#999999">{</span></span>
+<span class="line" data-linenr="6"><span style="color:#6B90C0;font-style:italic">    /** @return </span><span style="color:#C7C8D2;font-style:italic">Product</span><span style="color:#E5673D;font-style:italic">[]</span><span style="color:#6B90C0;font-style:italic"> */</span></span>
+<span class="line" data-linenr="7"><span style="color:#E5673D">    public</span><span style="color:#E5673D"> function</span><span style="color:#C7C8D2"> all</span><span style="color:#999999">()</span><span style="color:#E5673D">;</span></span>
 <span class="line" data-linenr="8"></span>
-<span class="line" data-linenr="9"><span style="color: #BBBBBB">    </span><span style="color: #6B90C0; font-style: italic">/** @return </span><span style="color: #E5673D; font-style: italic">bool</span><span style="color: #6B90C0; font-style: italic"> */</span></span>
-<span class="line" data-linenr="10"><span style="color: #BBBBBB">    </span><span style="color: #E5673D">public</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">function</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">includes</span><span style="color: #999999">(</span><span style="color: #C7C8D2">Product</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">product</span><span style="color: #999999">)</span><span style="color: #E5673D">;</span></span>
+<span class="line" data-linenr="9"><span style="color:#6B90C0;font-style:italic">    /** @return </span><span style="color:#E5673D;font-style:italic">bool</span><span style="color:#6B90C0;font-style:italic"> */</span></span>
+<span class="line" data-linenr="10"><span style="color:#E5673D">    public</span><span style="color:#E5673D"> function</span><span style="color:#C7C8D2"> includes</span><span style="color:#999999">(</span><span style="color:#C7C8D2">Product</span><span style="color:#E5673D"> $</span><span style="color:#D8DEE9">product</span><span style="color:#999999">)</span><span style="color:#E5673D">;</span></span>
 <span class="line" data-linenr="11"></span>
-<span class="line" data-linenr="12"><span style="color: #BBBBBB">    </span><span style="color: #6B90C0; font-style: italic">/** @return </span><span style="color: #E5673D; font-style: italic">int</span><span style="color: #6B90C0; font-style: italic"> */</span></span>
-<span class="line" data-linenr="13"><span style="color: #BBBBBB">    </span><span style="color: #E5673D">public</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">function</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">count</span><span style="color: #999999">()</span><span style="color: #E5673D">;</span></span>
-<span class="line" data-linenr="14"><span style="color: #999999">}</span></span></code></pre>
+<span class="line" data-linenr="12"><span style="color:#6B90C0;font-style:italic">    /** @return </span><span style="color:#E5673D;font-style:italic">int</span><span style="color:#6B90C0;font-style:italic"> */</span></span>
+<span class="line" data-linenr="13"><span style="color:#E5673D">    public</span><span style="color:#E5673D"> function</span><span style="color:#C7C8D2"> count</span><span style="color:#999999">()</span><span style="color:#E5673D">;</span></span>
+<span class="line" data-linenr="14"><span style="color:#999999">}</span></span></code></pre></div>
 </div>
 
 <p>We can now count the number of products in the collection, get all products in
 the collection and check if a product is included in the collection. Now, let’s
 add two simple methods for more specific operations on this collection:</p>
 
-<div class="language-php highlighter-shiki"><pre class="shiki-gutter">1
+<div class="language-php highlighter-shiki"><div><pre class="shiki-gutter">1
 2
 3
 4
@@ -134,18 +133,17 @@ add two simple methods for more specific operations on this collection:</p>
 8
 9
 10
-11
-</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #6B90C0; font-style: italic">// src/AppBundle/Product/ProductRepository.php</span></span>
+11</pre><pre class="shiki wouterj shiki-code" style="background-color:#1e1e1e;color:#bbbbbb" tabindex="0"><code><span class="line" data-linenr="1"><span style="color:#6B90C0;font-style:italic">// src/AppBundle/Product/ProductRepository.php</span></span>
 <span class="line" data-linenr="2"></span>
-<span class="line" data-linenr="3"><span style="color: #6B90C0; font-style: italic">// ...</span></span>
-<span class="line" data-linenr="4"><span style="color: #E5673D">interface</span><span style="color: #BBBBBB"> ProductRepository </span><span style="color: #E5673D">extends</span><span style="color: #BBBBBB"> </span><span style="color: #999999">\</span><span style="color: #C7C8D2">Countable</span></span>
-<span class="line" data-linenr="5"><span style="color: #999999">{</span></span>
-<span class="line" data-linenr="6"><span style="color: #999999">    </span><span style="color: #6B90C0; font-style: italic">// ...</span></span>
-<span class="line" data-linenr="7"><span style="color: #BBBBBB">    </span><span style="color: #E5673D">public</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">function</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">add</span><span style="color: #999999">(</span><span style="color: #C7C8D2">Product</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">product</span><span style="color: #999999">)</span><span style="color: #E5673D">;</span></span>
+<span class="line" data-linenr="3"><span style="color:#6B90C0;font-style:italic">// ...</span></span>
+<span class="line" data-linenr="4"><span style="color:#E5673D">interface</span><span style="color:#BBBBBB"> ProductRepository </span><span style="color:#E5673D">extends</span><span style="color:#999999"> \</span><span style="color:#C7C8D2">Countable</span></span>
+<span class="line" data-linenr="5"><span style="color:#999999">{</span></span>
+<span class="line" data-linenr="6"><span style="color:#6B90C0;font-style:italic">    // ...</span></span>
+<span class="line" data-linenr="7"><span style="color:#E5673D">    public</span><span style="color:#E5673D"> function</span><span style="color:#C7C8D2"> add</span><span style="color:#999999">(</span><span style="color:#C7C8D2">Product</span><span style="color:#E5673D"> $</span><span style="color:#D8DEE9">product</span><span style="color:#999999">)</span><span style="color:#E5673D">;</span></span>
 <span class="line" data-linenr="8"></span>
-<span class="line" data-linenr="9"><span style="color: #BBBBBB">    </span><span style="color: #6B90C0; font-style: italic">/** @return </span><span style="color: #E5673D; font-style: italic">null</span><span style="color: #999999; font-style: italic">|</span><span style="color: #C7C8D2; font-style: italic">Product</span><span style="color: #6B90C0; font-style: italic"> */</span></span>
-<span class="line" data-linenr="10"><span style="color: #BBBBBB">    </span><span style="color: #E5673D">public</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">function</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">byId</span><span style="color: #999999">(</span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">id</span><span style="color: #999999">)</span><span style="color: #E5673D">;</span></span>
-<span class="line" data-linenr="11"><span style="color: #999999">}</span></span></code></pre>
+<span class="line" data-linenr="9"><span style="color:#6B90C0;font-style:italic">    /** @return </span><span style="color:#E5673D;font-style:italic">null</span><span style="color:#999999;font-style:italic">|</span><span style="color:#C7C8D2;font-style:italic">Product</span><span style="color:#6B90C0;font-style:italic"> */</span></span>
+<span class="line" data-linenr="10"><span style="color:#E5673D">    public</span><span style="color:#E5673D"> function</span><span style="color:#C7C8D2"> byId</span><span style="color:#999999">(</span><span style="color:#E5673D">$</span><span style="color:#D8DEE9">id</span><span style="color:#999999">)</span><span style="color:#E5673D">;</span></span>
+<span class="line" data-linenr="11"><span style="color:#999999">}</span></span></code></pre></div>
 </div>
     
       <h2 id="a-basic-implementation">
@@ -159,7 +157,7 @@ add two simple methods for more specific operations on this collection:</p>
 <p>The most straight-forward way to implement collections in PHP is by using
 arrays. Let’s create an array based product collection:</p>
 
-<div class="language-php highlighter-shiki"><pre class="shiki-gutter">1
+<div class="language-php highlighter-shiki"><div><pre class="shiki-gutter">1
 2
 3
 4
@@ -194,62 +192,60 @@ arrays. Let’s create an array based product collection:</p>
 33
 34
 35
-36
-</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #6B90C0; font-style: italic">// src/AppBundle/Product/ArrayBasedProductRepository.php</span></span>
-<span class="line" data-linenr="2"><span style="color: #E5673D">namespace</span><span style="color: #BBBBBB"> AppBundle</span><span style="color: #999999">\</span><span style="color: #BBBBBB">Product</span><span style="color: #E5673D">;</span></span>
+36</pre><pre class="shiki wouterj shiki-code" style="background-color:#1e1e1e;color:#bbbbbb" tabindex="0"><code><span class="line" data-linenr="1"><span style="color:#6B90C0;font-style:italic">// src/AppBundle/Product/ArrayBasedProductRepository.php</span></span>
+<span class="line" data-linenr="2"><span style="color:#E5673D">namespace</span><span style="color:#BBBBBB"> AppBundle</span><span style="color:#999999">\</span><span style="color:#BBBBBB">Product</span><span style="color:#E5673D">;</span></span>
 <span class="line" data-linenr="3"></span>
-<span class="line" data-linenr="4"><span style="color: #E5673D">class</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">ArrayBasedProductRepository</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">implements</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">ProductRepository</span></span>
-<span class="line" data-linenr="5"><span style="color: #999999">{</span></span>
-<span class="line" data-linenr="6"><span style="color: #BBBBBB">    </span><span style="color: #E5673D">private</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">products</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">=</span><span style="color: #BBBBBB"> </span><span style="color: #999999">[]</span><span style="color: #E5673D">;</span></span>
+<span class="line" data-linenr="4"><span style="color:#E5673D">class</span><span style="color:#C7C8D2"> ArrayBasedProductRepository</span><span style="color:#E5673D"> implements</span><span style="color:#C7C8D2"> ProductRepository</span></span>
+<span class="line" data-linenr="5"><span style="color:#999999">{</span></span>
+<span class="line" data-linenr="6"><span style="color:#E5673D">    private</span><span style="color:#E5673D"> $</span><span style="color:#D8DEE9">products</span><span style="color:#E5673D"> =</span><span style="color:#999999"> []</span><span style="color:#E5673D">;</span></span>
 <span class="line" data-linenr="7"></span>
-<span class="line" data-linenr="8"><span style="color: #BBBBBB">    </span><span style="color: #E5673D">public</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">function</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">all</span><span style="color: #999999">()</span></span>
-<span class="line" data-linenr="9"><span style="color: #BBBBBB">    </span><span style="color: #999999">{</span></span>
-<span class="line" data-linenr="10"><span style="color: #BBBBBB">        </span><span style="color: #E5673D">return</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">this</span><span style="color: #E5673D">-&gt;</span><span style="color: #D8DEE9">products</span><span style="color: #E5673D">;</span></span>
-<span class="line" data-linenr="11"><span style="color: #BBBBBB">    </span><span style="color: #999999">}</span></span>
+<span class="line" data-linenr="8"><span style="color:#E5673D">    public</span><span style="color:#E5673D"> function</span><span style="color:#C7C8D2"> all</span><span style="color:#999999">()</span></span>
+<span class="line" data-linenr="9"><span style="color:#999999">    {</span></span>
+<span class="line" data-linenr="10"><span style="color:#E5673D">        return</span><span style="color:#E5673D"> $</span><span style="color:#D8DEE9">this</span><span style="color:#E5673D">-></span><span style="color:#D8DEE9">products</span><span style="color:#E5673D">;</span></span>
+<span class="line" data-linenr="11"><span style="color:#999999">    }</span></span>
 <span class="line" data-linenr="12"></span>
-<span class="line" data-linenr="13"><span style="color: #BBBBBB">    </span><span style="color: #E5673D">public</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">function</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">includes</span><span style="color: #999999">(</span><span style="color: #C7C8D2">Product</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">product</span><span style="color: #999999">)</span></span>
-<span class="line" data-linenr="14"><span style="color: #BBBBBB">    </span><span style="color: #999999">{</span></span>
-<span class="line" data-linenr="15"><span style="color: #BBBBBB">        </span><span style="color: #E5673D">return</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">in_array</span><span style="color: #999999">(</span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">product</span><span style="color: #999999">,</span><span style="color: #C7C8D2"> </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">this</span><span style="color: #E5673D">-&gt;</span><span style="color: #D8DEE9">products</span><span style="color: #999999">)</span><span style="color: #E5673D">;</span></span>
-<span class="line" data-linenr="16"><span style="color: #BBBBBB">    </span><span style="color: #999999">}</span></span>
+<span class="line" data-linenr="13"><span style="color:#E5673D">    public</span><span style="color:#E5673D"> function</span><span style="color:#C7C8D2"> includes</span><span style="color:#999999">(</span><span style="color:#C7C8D2">Product</span><span style="color:#E5673D"> $</span><span style="color:#D8DEE9">product</span><span style="color:#999999">)</span></span>
+<span class="line" data-linenr="14"><span style="color:#999999">    {</span></span>
+<span class="line" data-linenr="15"><span style="color:#E5673D">        return</span><span style="color:#C7C8D2"> in_array</span><span style="color:#999999">(</span><span style="color:#E5673D">$</span><span style="color:#D8DEE9">product</span><span style="color:#999999">,</span><span style="color:#E5673D"> $</span><span style="color:#D8DEE9">this</span><span style="color:#E5673D">-></span><span style="color:#D8DEE9">products</span><span style="color:#999999">)</span><span style="color:#E5673D">;</span></span>
+<span class="line" data-linenr="16"><span style="color:#999999">    }</span></span>
 <span class="line" data-linenr="17"></span>
-<span class="line" data-linenr="18"><span style="color: #BBBBBB">    </span><span style="color: #E5673D">public</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">function</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">count</span><span style="color: #999999">()</span></span>
-<span class="line" data-linenr="19"><span style="color: #BBBBBB">    </span><span style="color: #999999">{</span></span>
-<span class="line" data-linenr="20"><span style="color: #BBBBBB">        </span><span style="color: #E5673D">return</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">count</span><span style="color: #999999">(</span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">this</span><span style="color: #E5673D">-&gt;</span><span style="color: #D8DEE9">products</span><span style="color: #999999">)</span><span style="color: #E5673D">;</span></span>
-<span class="line" data-linenr="21"><span style="color: #BBBBBB">    </span><span style="color: #999999">}</span></span>
+<span class="line" data-linenr="18"><span style="color:#E5673D">    public</span><span style="color:#E5673D"> function</span><span style="color:#C7C8D2"> count</span><span style="color:#999999">()</span></span>
+<span class="line" data-linenr="19"><span style="color:#999999">    {</span></span>
+<span class="line" data-linenr="20"><span style="color:#E5673D">        return</span><span style="color:#C7C8D2"> count</span><span style="color:#999999">(</span><span style="color:#E5673D">$</span><span style="color:#D8DEE9">this</span><span style="color:#E5673D">-></span><span style="color:#D8DEE9">products</span><span style="color:#999999">)</span><span style="color:#E5673D">;</span></span>
+<span class="line" data-linenr="21"><span style="color:#999999">    }</span></span>
 <span class="line" data-linenr="22"></span>
-<span class="line" data-linenr="23"><span style="color: #BBBBBB">    </span><span style="color: #E5673D">public</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">function</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">add</span><span style="color: #999999">(</span><span style="color: #C7C8D2">Product</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">product</span><span style="color: #999999">)</span></span>
-<span class="line" data-linenr="24"><span style="color: #BBBBBB">    </span><span style="color: #999999">{</span></span>
-<span class="line" data-linenr="25"><span style="color: #BBBBBB">        </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">this</span><span style="color: #E5673D">-&gt;</span><span style="color: #D8DEE9">products</span><span style="color: #999999">[</span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">product</span><span style="color: #E5673D">-&gt;</span><span style="color: #C7C8D2">getId</span><span style="color: #999999">()]</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">=</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">product</span><span style="color: #E5673D">;</span></span>
-<span class="line" data-linenr="26"><span style="color: #BBBBBB">    </span><span style="color: #999999">}</span></span>
+<span class="line" data-linenr="23"><span style="color:#E5673D">    public</span><span style="color:#E5673D"> function</span><span style="color:#C7C8D2"> add</span><span style="color:#999999">(</span><span style="color:#C7C8D2">Product</span><span style="color:#E5673D"> $</span><span style="color:#D8DEE9">product</span><span style="color:#999999">)</span></span>
+<span class="line" data-linenr="24"><span style="color:#999999">    {</span></span>
+<span class="line" data-linenr="25"><span style="color:#E5673D">        $</span><span style="color:#D8DEE9">this</span><span style="color:#E5673D">-></span><span style="color:#D8DEE9">products</span><span style="color:#999999">[</span><span style="color:#E5673D">$</span><span style="color:#D8DEE9">product</span><span style="color:#E5673D">-></span><span style="color:#C7C8D2">getId</span><span style="color:#999999">()]</span><span style="color:#E5673D"> =</span><span style="color:#E5673D"> $</span><span style="color:#D8DEE9">product</span><span style="color:#E5673D">;</span></span>
+<span class="line" data-linenr="26"><span style="color:#999999">    }</span></span>
 <span class="line" data-linenr="27"></span>
-<span class="line" data-linenr="28"><span style="color: #BBBBBB">    </span><span style="color: #E5673D">public</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">function</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">byId</span><span style="color: #999999">(</span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">id</span><span style="color: #999999">)</span></span>
-<span class="line" data-linenr="29"><span style="color: #BBBBBB">    </span><span style="color: #999999">{</span></span>
-<span class="line" data-linenr="30"><span style="color: #BBBBBB">        </span><span style="color: #E5673D">if</span><span style="color: #BBBBBB"> </span><span style="color: #999999">(</span><span style="color: #E5673D">!isset</span><span style="color: #999999">(</span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">this</span><span style="color: #E5673D">-&gt;</span><span style="color: #D8DEE9">products</span><span style="color: #999999">[</span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">id</span><span style="color: #999999">]))</span><span style="color: #BBBBBB"> </span><span style="color: #999999">{</span></span>
-<span class="line" data-linenr="31"><span style="color: #BBBBBB">            </span><span style="color: #E5673D">return</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">null;</span></span>
-<span class="line" data-linenr="32"><span style="color: #BBBBBB">        </span><span style="color: #999999">}</span></span>
+<span class="line" data-linenr="28"><span style="color:#E5673D">    public</span><span style="color:#E5673D"> function</span><span style="color:#C7C8D2"> byId</span><span style="color:#999999">(</span><span style="color:#E5673D">$</span><span style="color:#D8DEE9">id</span><span style="color:#999999">)</span></span>
+<span class="line" data-linenr="29"><span style="color:#999999">    {</span></span>
+<span class="line" data-linenr="30"><span style="color:#E5673D">        if</span><span style="color:#999999"> (</span><span style="color:#E5673D">!isset</span><span style="color:#999999">(</span><span style="color:#E5673D">$</span><span style="color:#D8DEE9">this</span><span style="color:#E5673D">-></span><span style="color:#D8DEE9">products</span><span style="color:#999999">[</span><span style="color:#E5673D">$</span><span style="color:#D8DEE9">id</span><span style="color:#999999">]))</span><span style="color:#999999"> {</span></span>
+<span class="line" data-linenr="31"><span style="color:#E5673D">            return</span><span style="color:#E5673D"> null;</span></span>
+<span class="line" data-linenr="32"><span style="color:#999999">        }</span></span>
 <span class="line" data-linenr="33"></span>
-<span class="line" data-linenr="34"><span style="color: #BBBBBB">        </span><span style="color: #E5673D">return</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">this</span><span style="color: #E5673D">-&gt;</span><span style="color: #D8DEE9">products</span><span style="color: #999999">[</span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">id</span><span style="color: #999999">]</span><span style="color: #E5673D">;</span></span>
-<span class="line" data-linenr="35"><span style="color: #BBBBBB">    </span><span style="color: #999999">}</span></span>
-<span class="line" data-linenr="36"><span style="color: #999999">}</span></span></code></pre>
+<span class="line" data-linenr="34"><span style="color:#E5673D">        return</span><span style="color:#E5673D"> $</span><span style="color:#D8DEE9">this</span><span style="color:#E5673D">-></span><span style="color:#D8DEE9">products</span><span style="color:#999999">[</span><span style="color:#E5673D">$</span><span style="color:#D8DEE9">id</span><span style="color:#999999">]</span><span style="color:#E5673D">;</span></span>
+<span class="line" data-linenr="35"><span style="color:#999999">    }</span></span>
+<span class="line" data-linenr="36"><span style="color:#999999">}</span></span></code></pre></div>
 </div>
 
 <p>Most of the methods in the interface can be mapped to simple PHP array
 methods. This repository can be defined as a service:</p>
 
-<div class="language-yaml highlighter-shiki"><pre class="shiki-gutter">1
+<div class="language-yaml highlighter-shiki"><div><pre class="shiki-gutter">1
 2
 3
-4
-</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #6B90C0; font-style: italic"># app/config/services.yml</span></span>
-<span class="line" data-linenr="2"><span style="color: #C7C8D2">services</span><span style="color: #999999">:</span></span>
-<span class="line" data-linenr="3"><span style="color: #BBBBBB">    </span><span style="color: #C7C8D2">app.product_repository</span><span style="color: #999999">:</span></span>
-<span class="line" data-linenr="4"><span style="color: #BBBBBB">        </span><span style="color: #C7C8D2">class</span><span style="color: #999999">:</span><span style="color: #BBBBBB"> </span><span style="color: #7CC64A">AppBundle\Product\ArrayBasedProductRepository</span></span></code></pre>
+4</pre><pre class="shiki wouterj shiki-code" style="background-color:#1e1e1e;color:#bbbbbb" tabindex="0"><code><span class="line" data-linenr="1"><span style="color:#6B90C0;font-style:italic"># app/config/services.yml</span></span>
+<span class="line" data-linenr="2"><span style="color:#C7C8D2">services</span><span style="color:#999999">:</span></span>
+<span class="line" data-linenr="3"><span style="color:#C7C8D2">    app.product_repository</span><span style="color:#999999">:</span></span>
+<span class="line" data-linenr="4"><span style="color:#C7C8D2">        class</span><span style="color:#999999">:</span><span style="color:#7CC64A"> AppBundle\Product\ArrayBasedProductRepository</span></span></code></pre></div>
 </div>
 
 <p>Then you can probably imagine how we would use this product collection in a
 controller:</p>
 
-<div class="language-php highlighter-shiki"><pre class="shiki-gutter">1
+<div class="language-php highlighter-shiki"><div><pre class="shiki-gutter">1
 2
 3
 4
@@ -272,31 +268,30 @@ controller:</p>
 21
 22
 23
-24
-</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #6B90C0; font-style: italic">// src/AppBundle/Controller/ShopController.php</span></span>
-<span class="line" data-linenr="2"><span style="color: #E5673D">namespace</span><span style="color: #BBBBBB"> AppBundle</span><span style="color: #999999">\</span><span style="color: #BBBBBB">Controller</span><span style="color: #E5673D">;</span></span>
+24</pre><pre class="shiki wouterj shiki-code" style="background-color:#1e1e1e;color:#bbbbbb" tabindex="0"><code><span class="line" data-linenr="1"><span style="color:#6B90C0;font-style:italic">// src/AppBundle/Controller/ShopController.php</span></span>
+<span class="line" data-linenr="2"><span style="color:#E5673D">namespace</span><span style="color:#BBBBBB"> AppBundle</span><span style="color:#999999">\</span><span style="color:#BBBBBB">Controller</span><span style="color:#E5673D">;</span></span>
 <span class="line" data-linenr="3"></span>
-<span class="line" data-linenr="4"><span style="color: #6B90C0; font-style: italic">// ...</span></span>
-<span class="line" data-linenr="5"><span style="color: #E5673D">class</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">ShopController</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">extends</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">Controller</span></span>
-<span class="line" data-linenr="6"><span style="color: #999999">{</span></span>
-<span class="line" data-linenr="7"><span style="color: #BBBBBB">    </span><span style="color: #E5673D">public</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">function</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">listAction</span><span style="color: #999999">()</span></span>
-<span class="line" data-linenr="8"><span style="color: #BBBBBB">    </span><span style="color: #999999">{</span></span>
-<span class="line" data-linenr="9"><span style="color: #BBBBBB">        </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">products</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">=</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">this</span><span style="color: #E5673D">-&gt;</span><span style="color: #C7C8D2">get</span><span style="color: #999999">(</span><span style="color: #999999">&#39;</span><span style="color: #7CC64A">app.product_repository</span><span style="color: #999999">&#39;</span><span style="color: #999999">)</span><span style="color: #E5673D">-&gt;</span><span style="color: #C7C8D2">all</span><span style="color: #999999">()</span><span style="color: #E5673D">;</span></span>
+<span class="line" data-linenr="4"><span style="color:#6B90C0;font-style:italic">// ...</span></span>
+<span class="line" data-linenr="5"><span style="color:#E5673D">class</span><span style="color:#C7C8D2"> ShopController</span><span style="color:#E5673D"> extends</span><span style="color:#C7C8D2"> Controller</span></span>
+<span class="line" data-linenr="6"><span style="color:#999999">{</span></span>
+<span class="line" data-linenr="7"><span style="color:#E5673D">    public</span><span style="color:#E5673D"> function</span><span style="color:#C7C8D2"> listAction</span><span style="color:#999999">()</span></span>
+<span class="line" data-linenr="8"><span style="color:#999999">    {</span></span>
+<span class="line" data-linenr="9"><span style="color:#E5673D">        $</span><span style="color:#D8DEE9">products</span><span style="color:#E5673D"> =</span><span style="color:#E5673D"> $</span><span style="color:#D8DEE9">this</span><span style="color:#E5673D">-></span><span style="color:#C7C8D2">get</span><span style="color:#999999">(</span><span style="color:#999999">'</span><span style="color:#7CC64A">app.product_repository</span><span style="color:#999999">'</span><span style="color:#999999">)</span><span style="color:#E5673D">-></span><span style="color:#C7C8D2">all</span><span style="color:#999999">()</span><span style="color:#E5673D">;</span></span>
 <span class="line" data-linenr="10"></span>
-<span class="line" data-linenr="11"><span style="color: #BBBBBB">        </span><span style="color: #E5673D">return</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">this</span><span style="color: #E5673D">-&gt;</span><span style="color: #C7C8D2">render</span><span style="color: #999999">(</span><span style="color: #999999">&#39;</span><span style="color: #7CC64A">shop/products.twig</span><span style="color: #999999">&#39;</span><span style="color: #999999">,</span><span style="color: #BBBBBB"> </span><span style="color: #999999">[</span></span>
-<span class="line" data-linenr="12"><span style="color: #BBBBBB">            </span><span style="color: #999999">&#39;</span><span style="color: #7CC64A">products</span><span style="color: #999999">&#39;</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">=&gt;</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">products</span><span style="color: #999999">,</span></span>
-<span class="line" data-linenr="13"><span style="color: #BBBBBB">        </span><span style="color: #999999">])</span><span style="color: #E5673D">;</span></span>
-<span class="line" data-linenr="14"><span style="color: #BBBBBB">    </span><span style="color: #999999">}</span></span>
+<span class="line" data-linenr="11"><span style="color:#E5673D">        return</span><span style="color:#E5673D"> $</span><span style="color:#D8DEE9">this</span><span style="color:#E5673D">-></span><span style="color:#C7C8D2">render</span><span style="color:#999999">(</span><span style="color:#999999">'</span><span style="color:#7CC64A">shop/products.twig</span><span style="color:#999999">'</span><span style="color:#999999">,</span><span style="color:#999999"> [</span></span>
+<span class="line" data-linenr="12"><span style="color:#999999">            '</span><span style="color:#7CC64A">products</span><span style="color:#999999">'</span><span style="color:#E5673D"> =></span><span style="color:#E5673D"> $</span><span style="color:#D8DEE9">products</span><span style="color:#999999">,</span></span>
+<span class="line" data-linenr="13"><span style="color:#999999">        ])</span><span style="color:#E5673D">;</span></span>
+<span class="line" data-linenr="14"><span style="color:#999999">    }</span></span>
 <span class="line" data-linenr="15"></span>
-<span class="line" data-linenr="16"><span style="color: #BBBBBB">    </span><span style="color: #E5673D">public</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">function</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">productInfoAction</span><span style="color: #999999">(</span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">productId</span><span style="color: #999999">)</span></span>
-<span class="line" data-linenr="17"><span style="color: #BBBBBB">    </span><span style="color: #999999">{</span></span>
-<span class="line" data-linenr="18"><span style="color: #BBBBBB">        </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">product</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">=</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">this</span><span style="color: #E5673D">-&gt;</span><span style="color: #C7C8D2">get</span><span style="color: #999999">(</span><span style="color: #999999">&#39;</span><span style="color: #7CC64A">app.product_repository</span><span style="color: #999999">&#39;</span><span style="color: #999999">)</span><span style="color: #E5673D">-&gt;</span><span style="color: #C7C8D2">byId</span><span style="color: #999999">(</span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">productId</span><span style="color: #999999">)</span><span style="color: #E5673D">;</span></span>
+<span class="line" data-linenr="16"><span style="color:#E5673D">    public</span><span style="color:#E5673D"> function</span><span style="color:#C7C8D2"> productInfoAction</span><span style="color:#999999">(</span><span style="color:#E5673D">$</span><span style="color:#D8DEE9">productId</span><span style="color:#999999">)</span></span>
+<span class="line" data-linenr="17"><span style="color:#999999">    {</span></span>
+<span class="line" data-linenr="18"><span style="color:#E5673D">        $</span><span style="color:#D8DEE9">product</span><span style="color:#E5673D"> =</span><span style="color:#E5673D"> $</span><span style="color:#D8DEE9">this</span><span style="color:#E5673D">-></span><span style="color:#C7C8D2">get</span><span style="color:#999999">(</span><span style="color:#999999">'</span><span style="color:#7CC64A">app.product_repository</span><span style="color:#999999">'</span><span style="color:#999999">)</span><span style="color:#E5673D">-></span><span style="color:#C7C8D2">byId</span><span style="color:#999999">(</span><span style="color:#E5673D">$</span><span style="color:#D8DEE9">productId</span><span style="color:#999999">)</span><span style="color:#E5673D">;</span></span>
 <span class="line" data-linenr="19"></span>
-<span class="line" data-linenr="20"><span style="color: #BBBBBB">        </span><span style="color: #E5673D">return</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">this</span><span style="color: #E5673D">-&gt;</span><span style="color: #C7C8D2">render</span><span style="color: #999999">(</span><span style="color: #999999">&#39;</span><span style="color: #7CC64A">shop/product_info.twig</span><span style="color: #999999">&#39;</span><span style="color: #999999">,</span><span style="color: #BBBBBB"> </span><span style="color: #999999">[</span></span>
-<span class="line" data-linenr="21"><span style="color: #BBBBBB">            </span><span style="color: #999999">&#39;</span><span style="color: #7CC64A">product</span><span style="color: #999999">&#39;</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">=&gt;</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">product</span><span style="color: #999999">,</span></span>
-<span class="line" data-linenr="22"><span style="color: #BBBBBB">        </span><span style="color: #999999">])</span><span style="color: #E5673D">;</span></span>
-<span class="line" data-linenr="23"><span style="color: #BBBBBB">    </span><span style="color: #999999">}</span></span>
-<span class="line" data-linenr="24"><span style="color: #999999">}</span></span></code></pre>
+<span class="line" data-linenr="20"><span style="color:#E5673D">        return</span><span style="color:#E5673D"> $</span><span style="color:#D8DEE9">this</span><span style="color:#E5673D">-></span><span style="color:#C7C8D2">render</span><span style="color:#999999">(</span><span style="color:#999999">'</span><span style="color:#7CC64A">shop/product_info.twig</span><span style="color:#999999">'</span><span style="color:#999999">,</span><span style="color:#999999"> [</span></span>
+<span class="line" data-linenr="21"><span style="color:#999999">            '</span><span style="color:#7CC64A">product</span><span style="color:#999999">'</span><span style="color:#E5673D"> =></span><span style="color:#E5673D"> $</span><span style="color:#D8DEE9">product</span><span style="color:#999999">,</span></span>
+<span class="line" data-linenr="22"><span style="color:#999999">        ])</span><span style="color:#E5673D">;</span></span>
+<span class="line" data-linenr="23"><span style="color:#999999">    }</span></span>
+<span class="line" data-linenr="24"><span style="color:#999999">}</span></span></code></pre></div>
 </div>
     
       <h2 id="using-doctrine">
@@ -319,7 +314,7 @@ Doctrine itself, it’s purely an easy starting point for the users. This means
 we can completely drop it and base our doctrine collection on top of the entity
 manager:</p>
 
-<div class="language-php highlighter-shiki"><pre class="shiki-gutter">1
+<div class="language-php highlighter-shiki"><div><pre class="shiki-gutter">1
 2
 3
 4
@@ -363,52 +358,51 @@ manager:</p>
 42
 43
 44
-45
-</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #6B90C0; font-style: italic">// src/AppBundle/Product/DoctrineBasedProductRepository.php</span></span>
-<span class="line" data-linenr="2"><span style="color: #E5673D">namespace</span><span style="color: #BBBBBB"> AppBundle</span><span style="color: #999999">\</span><span style="color: #BBBBBB">Product</span><span style="color: #E5673D">;</span></span>
+45</pre><pre class="shiki wouterj shiki-code" style="background-color:#1e1e1e;color:#bbbbbb" tabindex="0"><code><span class="line" data-linenr="1"><span style="color:#6B90C0;font-style:italic">// src/AppBundle/Product/DoctrineBasedProductRepository.php</span></span>
+<span class="line" data-linenr="2"><span style="color:#E5673D">namespace</span><span style="color:#BBBBBB"> AppBundle</span><span style="color:#999999">\</span><span style="color:#BBBBBB">Product</span><span style="color:#E5673D">;</span></span>
 <span class="line" data-linenr="3"></span>
-<span class="line" data-linenr="4"><span style="color: #E5673D">use</span><span style="color: #BBBBBB"> Doctrine</span><span style="color: #999999">\</span><span style="color: #BBBBBB">ORM</span><span style="color: #999999">\</span><span style="color: #C7C8D2">EntityManager</span><span style="color: #E5673D">;</span></span>
+<span class="line" data-linenr="4"><span style="color:#E5673D">use</span><span style="color:#BBBBBB"> Doctrine</span><span style="color:#999999">\</span><span style="color:#BBBBBB">ORM</span><span style="color:#999999">\</span><span style="color:#C7C8D2">EntityManager</span><span style="color:#E5673D">;</span></span>
 <span class="line" data-linenr="5"></span>
-<span class="line" data-linenr="6"><span style="color: #E5673D">class</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">DoctrineBasedProductRepository</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">implements</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">ProductRepository</span></span>
-<span class="line" data-linenr="7"><span style="color: #999999">{</span></span>
-<span class="line" data-linenr="8"><span style="color: #BBBBBB">    </span><span style="color: #E5673D">private</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">entityManager</span><span style="color: #E5673D">;</span></span>
+<span class="line" data-linenr="6"><span style="color:#E5673D">class</span><span style="color:#C7C8D2"> DoctrineBasedProductRepository</span><span style="color:#E5673D"> implements</span><span style="color:#C7C8D2"> ProductRepository</span></span>
+<span class="line" data-linenr="7"><span style="color:#999999">{</span></span>
+<span class="line" data-linenr="8"><span style="color:#E5673D">    private</span><span style="color:#E5673D"> $</span><span style="color:#D8DEE9">entityManager</span><span style="color:#E5673D">;</span></span>
 <span class="line" data-linenr="9"></span>
-<span class="line" data-linenr="10"><span style="color: #BBBBBB">    </span><span style="color: #E5673D">public</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">function</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">__construct</span><span style="color: #999999">(</span><span style="color: #C7C8D2">EntityManager</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">entityManager</span><span style="color: #999999">)</span></span>
-<span class="line" data-linenr="11"><span style="color: #BBBBBB">    </span><span style="color: #999999">{</span></span>
-<span class="line" data-linenr="12"><span style="color: #BBBBBB">        </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">this</span><span style="color: #E5673D">-&gt;</span><span style="color: #D8DEE9">entityManager</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">=</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">entityManager</span><span style="color: #E5673D">;</span></span>
-<span class="line" data-linenr="13"><span style="color: #BBBBBB">    </span><span style="color: #999999">}</span></span>
+<span class="line" data-linenr="10"><span style="color:#E5673D">    public</span><span style="color:#E5673D"> function</span><span style="color:#C7C8D2"> __construct</span><span style="color:#999999">(</span><span style="color:#C7C8D2">EntityManager</span><span style="color:#E5673D"> $</span><span style="color:#D8DEE9">entityManager</span><span style="color:#999999">)</span></span>
+<span class="line" data-linenr="11"><span style="color:#999999">    {</span></span>
+<span class="line" data-linenr="12"><span style="color:#E5673D">        $</span><span style="color:#D8DEE9">this</span><span style="color:#E5673D">-></span><span style="color:#D8DEE9">entityManager</span><span style="color:#E5673D"> =</span><span style="color:#E5673D"> $</span><span style="color:#D8DEE9">entityManager</span><span style="color:#E5673D">;</span></span>
+<span class="line" data-linenr="13"><span style="color:#999999">    }</span></span>
 <span class="line" data-linenr="14"></span>
-<span class="line" data-linenr="15"><span style="color: #BBBBBB">    </span><span style="color: #E5673D">public</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">function</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">all</span><span style="color: #999999">()</span></span>
-<span class="line" data-linenr="16"><span style="color: #BBBBBB">    </span><span style="color: #999999">{</span></span>
-<span class="line" data-linenr="17"><span style="color: #999999">        </span><span style="color: #6B90C0; font-style: italic">// Create a basic DQL query to fetch all entities</span></span>
-<span class="line" data-linenr="18"><span style="color: #BBBBBB">        </span><span style="color: #E5673D">return</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">this</span><span style="color: #E5673D">-&gt;</span><span style="color: #D8DEE9">entityManager</span><span style="color: #E5673D">-&gt;</span><span style="color: #C7C8D2">createQuery</span><span style="color: #999999">(</span><span style="color: #999999">&#39;</span><span style="color: #E5673D">SELECT</span><span style="color: #7CC64A"> p </span><span style="color: #E5673D">FROM</span><span style="color: #7CC64A"> </span><span style="color: #999999">&#39;</span><span style="color: #E5673D">.</span><span style="color: #C7C8D2">Product</span><span style="color: #E5673D">::class</span><span style="color: #E5673D">.</span><span style="color: #999999">&#39;</span><span style="color: #7CC64A"> p</span><span style="color: #999999">&#39;</span><span style="color: #999999">)</span></span>
-<span class="line" data-linenr="19"><span style="color: #BBBBBB">            </span><span style="color: #E5673D">-&gt;</span><span style="color: #C7C8D2">getResult</span><span style="color: #999999">()</span><span style="color: #E5673D">;</span></span>
-<span class="line" data-linenr="20"><span style="color: #BBBBBB">    </span><span style="color: #999999">}</span></span>
+<span class="line" data-linenr="15"><span style="color:#E5673D">    public</span><span style="color:#E5673D"> function</span><span style="color:#C7C8D2"> all</span><span style="color:#999999">()</span></span>
+<span class="line" data-linenr="16"><span style="color:#999999">    {</span></span>
+<span class="line" data-linenr="17"><span style="color:#6B90C0;font-style:italic">        // Create a basic DQL query to fetch all entities</span></span>
+<span class="line" data-linenr="18"><span style="color:#E5673D">        return</span><span style="color:#E5673D"> $</span><span style="color:#D8DEE9">this</span><span style="color:#E5673D">-></span><span style="color:#D8DEE9">entityManager</span><span style="color:#E5673D">-></span><span style="color:#C7C8D2">createQuery</span><span style="color:#999999">(</span><span style="color:#999999">'</span><span style="color:#E5673D">SELECT</span><span style="color:#7CC64A"> p </span><span style="color:#E5673D">FROM</span><span style="color:#999999"> '</span><span style="color:#E5673D">.</span><span style="color:#C7C8D2">Product</span><span style="color:#E5673D">::class</span><span style="color:#E5673D">.</span><span style="color:#999999">'</span><span style="color:#7CC64A"> p</span><span style="color:#999999">'</span><span style="color:#999999">)</span></span>
+<span class="line" data-linenr="19"><span style="color:#E5673D">            -></span><span style="color:#C7C8D2">getResult</span><span style="color:#999999">()</span><span style="color:#E5673D">;</span></span>
+<span class="line" data-linenr="20"><span style="color:#999999">    }</span></span>
 <span class="line" data-linenr="21"></span>
-<span class="line" data-linenr="22"><span style="color: #BBBBBB">    </span><span style="color: #E5673D">public</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">function</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">includes</span><span style="color: #999999">(</span><span style="color: #C7C8D2">Product</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">product</span><span style="color: #999999">)</span></span>
-<span class="line" data-linenr="23"><span style="color: #BBBBBB">    </span><span style="color: #999999">{</span></span>
-<span class="line" data-linenr="24"><span style="color: #999999">        </span><span style="color: #6B90C0; font-style: italic">// Check if the entity is managed by the entity manager</span></span>
-<span class="line" data-linenr="25"><span style="color: #BBBBBB">        </span><span style="color: #E5673D">return</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">this</span><span style="color: #E5673D">-&gt;</span><span style="color: #D8DEE9">entityManager</span><span style="color: #E5673D">-&gt;</span><span style="color: #C7C8D2">contains</span><span style="color: #999999">(</span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">product</span><span style="color: #999999">)</span><span style="color: #E5673D">;</span></span>
-<span class="line" data-linenr="26"><span style="color: #BBBBBB">    </span><span style="color: #999999">}</span></span>
+<span class="line" data-linenr="22"><span style="color:#E5673D">    public</span><span style="color:#E5673D"> function</span><span style="color:#C7C8D2"> includes</span><span style="color:#999999">(</span><span style="color:#C7C8D2">Product</span><span style="color:#E5673D"> $</span><span style="color:#D8DEE9">product</span><span style="color:#999999">)</span></span>
+<span class="line" data-linenr="23"><span style="color:#999999">    {</span></span>
+<span class="line" data-linenr="24"><span style="color:#6B90C0;font-style:italic">        // Check if the entity is managed by the entity manager</span></span>
+<span class="line" data-linenr="25"><span style="color:#E5673D">        return</span><span style="color:#E5673D"> $</span><span style="color:#D8DEE9">this</span><span style="color:#E5673D">-></span><span style="color:#D8DEE9">entityManager</span><span style="color:#E5673D">-></span><span style="color:#C7C8D2">contains</span><span style="color:#999999">(</span><span style="color:#E5673D">$</span><span style="color:#D8DEE9">product</span><span style="color:#999999">)</span><span style="color:#E5673D">;</span></span>
+<span class="line" data-linenr="26"><span style="color:#999999">    }</span></span>
 <span class="line" data-linenr="27"></span>
-<span class="line" data-linenr="28"><span style="color: #BBBBBB">    </span><span style="color: #E5673D">public</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">function</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">count</span><span style="color: #999999">()</span></span>
-<span class="line" data-linenr="29"><span style="color: #BBBBBB">    </span><span style="color: #999999">{</span></span>
-<span class="line" data-linenr="30"><span style="color: #999999">        </span><span style="color: #6B90C0; font-style: italic">// Create a basic count DQL query</span></span>
-<span class="line" data-linenr="31"><span style="color: #BBBBBB">        </span><span style="color: #E5673D">return</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">this</span><span style="color: #E5673D">-&gt;</span><span style="color: #D8DEE9">entityManager</span><span style="color: #E5673D">-&gt;</span><span style="color: #C7C8D2">createQuery</span><span style="color: #999999">(</span><span style="color: #999999">&#39;</span><span style="color: #E5673D">SELECT</span><span style="color: #7CC64A"> </span><span style="color: #C7C8D2">count</span><span style="color: #7CC64A">(p) </span><span style="color: #E5673D">FROM</span><span style="color: #7CC64A"> </span><span style="color: #999999">&#39;</span><span style="color: #E5673D">.</span><span style="color: #C7C8D2">Product</span><span style="color: #E5673D">::class</span><span style="color: #E5673D">.</span><span style="color: #999999">&#39;</span><span style="color: #7CC64A"> p</span><span style="color: #999999">&#39;</span><span style="color: #999999">)</span></span>
-<span class="line" data-linenr="32"><span style="color: #BBBBBB">            </span><span style="color: #E5673D">-&gt;</span><span style="color: #C7C8D2">getSingleScalarResult</span><span style="color: #999999">()</span><span style="color: #E5673D">;</span></span>
-<span class="line" data-linenr="33"><span style="color: #BBBBBB">    </span><span style="color: #999999">}</span></span>
+<span class="line" data-linenr="28"><span style="color:#E5673D">    public</span><span style="color:#E5673D"> function</span><span style="color:#C7C8D2"> count</span><span style="color:#999999">()</span></span>
+<span class="line" data-linenr="29"><span style="color:#999999">    {</span></span>
+<span class="line" data-linenr="30"><span style="color:#6B90C0;font-style:italic">        // Create a basic count DQL query</span></span>
+<span class="line" data-linenr="31"><span style="color:#E5673D">        return</span><span style="color:#E5673D"> $</span><span style="color:#D8DEE9">this</span><span style="color:#E5673D">-></span><span style="color:#D8DEE9">entityManager</span><span style="color:#E5673D">-></span><span style="color:#C7C8D2">createQuery</span><span style="color:#999999">(</span><span style="color:#999999">'</span><span style="color:#E5673D">SELECT</span><span style="color:#C7C8D2"> count</span><span style="color:#7CC64A">(p) </span><span style="color:#E5673D">FROM</span><span style="color:#999999"> '</span><span style="color:#E5673D">.</span><span style="color:#C7C8D2">Product</span><span style="color:#E5673D">::class</span><span style="color:#E5673D">.</span><span style="color:#999999">'</span><span style="color:#7CC64A"> p</span><span style="color:#999999">'</span><span style="color:#999999">)</span></span>
+<span class="line" data-linenr="32"><span style="color:#E5673D">            -></span><span style="color:#C7C8D2">getSingleScalarResult</span><span style="color:#999999">()</span><span style="color:#E5673D">;</span></span>
+<span class="line" data-linenr="33"><span style="color:#999999">    }</span></span>
 <span class="line" data-linenr="34"></span>
-<span class="line" data-linenr="35"><span style="color: #BBBBBB">    </span><span style="color: #E5673D">public</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">function</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">add</span><span style="color: #999999">(</span><span style="color: #C7C8D2">Product</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">product</span><span style="color: #999999">)</span></span>
-<span class="line" data-linenr="36"><span style="color: #BBBBBB">    </span><span style="color: #999999">{</span></span>
-<span class="line" data-linenr="37"><span style="color: #BBBBBB">        </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">this</span><span style="color: #E5673D">-&gt;</span><span style="color: #D8DEE9">entityManager</span><span style="color: #E5673D">-&gt;</span><span style="color: #C7C8D2">persist</span><span style="color: #999999">(</span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">product</span><span style="color: #999999">)</span><span style="color: #E5673D">;</span></span>
-<span class="line" data-linenr="38"><span style="color: #BBBBBB">    </span><span style="color: #999999">}</span></span>
+<span class="line" data-linenr="35"><span style="color:#E5673D">    public</span><span style="color:#E5673D"> function</span><span style="color:#C7C8D2"> add</span><span style="color:#999999">(</span><span style="color:#C7C8D2">Product</span><span style="color:#E5673D"> $</span><span style="color:#D8DEE9">product</span><span style="color:#999999">)</span></span>
+<span class="line" data-linenr="36"><span style="color:#999999">    {</span></span>
+<span class="line" data-linenr="37"><span style="color:#E5673D">        $</span><span style="color:#D8DEE9">this</span><span style="color:#E5673D">-></span><span style="color:#D8DEE9">entityManager</span><span style="color:#E5673D">-></span><span style="color:#C7C8D2">persist</span><span style="color:#999999">(</span><span style="color:#E5673D">$</span><span style="color:#D8DEE9">product</span><span style="color:#999999">)</span><span style="color:#E5673D">;</span></span>
+<span class="line" data-linenr="38"><span style="color:#999999">    }</span></span>
 <span class="line" data-linenr="39"></span>
-<span class="line" data-linenr="40"><span style="color: #BBBBBB">    </span><span style="color: #E5673D">public</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">function</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">byId</span><span style="color: #999999">(</span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">id</span><span style="color: #999999">)</span></span>
-<span class="line" data-linenr="41"><span style="color: #BBBBBB">    </span><span style="color: #999999">{</span></span>
-<span class="line" data-linenr="42"><span style="color: #999999">        </span><span style="color: #6B90C0; font-style: italic">// Fetch a product by id (note: No need to use DQL or the EntityRepository here either!)</span></span>
-<span class="line" data-linenr="43"><span style="color: #BBBBBB">        </span><span style="color: #E5673D">return</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">this</span><span style="color: #E5673D">-&gt;</span><span style="color: #D8DEE9">entityManager</span><span style="color: #E5673D">-&gt;</span><span style="color: #C7C8D2">find</span><span style="color: #999999">(</span><span style="color: #C7C8D2">Product</span><span style="color: #E5673D">::class</span><span style="color: #999999">,</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">$</span><span style="color: #D8DEE9">id</span><span style="color: #999999">)</span><span style="color: #E5673D">;</span></span>
-<span class="line" data-linenr="44"><span style="color: #BBBBBB">    </span><span style="color: #999999">}</span></span>
-<span class="line" data-linenr="45"><span style="color: #999999">}</span></span></code></pre>
+<span class="line" data-linenr="40"><span style="color:#E5673D">    public</span><span style="color:#E5673D"> function</span><span style="color:#C7C8D2"> byId</span><span style="color:#999999">(</span><span style="color:#E5673D">$</span><span style="color:#D8DEE9">id</span><span style="color:#999999">)</span></span>
+<span class="line" data-linenr="41"><span style="color:#999999">    {</span></span>
+<span class="line" data-linenr="42"><span style="color:#6B90C0;font-style:italic">        // Fetch a product by id (note: No need to use DQL or the EntityRepository here either!)</span></span>
+<span class="line" data-linenr="43"><span style="color:#E5673D">        return</span><span style="color:#E5673D"> $</span><span style="color:#D8DEE9">this</span><span style="color:#E5673D">-></span><span style="color:#D8DEE9">entityManager</span><span style="color:#E5673D">-></span><span style="color:#C7C8D2">find</span><span style="color:#999999">(</span><span style="color:#C7C8D2">Product</span><span style="color:#E5673D">::class</span><span style="color:#999999">,</span><span style="color:#E5673D"> $</span><span style="color:#D8DEE9">id</span><span style="color:#999999">)</span><span style="color:#E5673D">;</span></span>
+<span class="line" data-linenr="44"><span style="color:#999999">    }</span></span>
+<span class="line" data-linenr="45"><span style="color:#999999">}</span></span></code></pre></div>
 </div>
 
 <p>As you can see, the code in here is just a bit more complex than using the
@@ -416,16 +410,15 @@ array repository. Even better, the usage of this repository has not changed a
 single bit when comparing it with the <code class="highlighter-shiki">ArrayBasedProductRepository</code>. So we only
 have to update the service definitions to use doctrine:</p>
 
-<div class="language-yaml highlighter-shiki"><pre class="shiki-gutter">1
+<div class="language-yaml highlighter-shiki"><div><pre class="shiki-gutter">1
 2
 3
 4
-5
-</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #6B90C0; font-style: italic"># app/config/services.yml</span></span>
-<span class="line" data-linenr="2"><span style="color: #C7C8D2">services</span><span style="color: #999999">:</span></span>
-<span class="line" data-linenr="3"><span style="color: #BBBBBB">    </span><span style="color: #C7C8D2">app.product_repository</span><span style="color: #999999">:</span></span>
-<span class="line" data-linenr="4"><span style="color: #BBBBBB">        </span><span style="color: #C7C8D2">class</span><span style="color: #999999">:</span><span style="color: #BBBBBB"> </span><span style="color: #7CC64A">AppBundle\Product\DoctrineBasedProductRepository</span></span>
-<span class="line" data-linenr="5"><span style="color: #BBBBBB">        </span><span style="color: #C7C8D2">arguments</span><span style="color: #999999">:</span><span style="color: #BBBBBB"> </span><span style="color: #999999">[</span><span style="color: #999999">&#39;</span><span style="color: #7CC64A">@doctrine.orm.entity_manager</span><span style="color: #999999">&#39;</span><span style="color: #999999">]</span></span></code></pre>
+5</pre><pre class="shiki wouterj shiki-code" style="background-color:#1e1e1e;color:#bbbbbb" tabindex="0"><code><span class="line" data-linenr="1"><span style="color:#6B90C0;font-style:italic"># app/config/services.yml</span></span>
+<span class="line" data-linenr="2"><span style="color:#C7C8D2">services</span><span style="color:#999999">:</span></span>
+<span class="line" data-linenr="3"><span style="color:#C7C8D2">    app.product_repository</span><span style="color:#999999">:</span></span>
+<span class="line" data-linenr="4"><span style="color:#C7C8D2">        class</span><span style="color:#999999">:</span><span style="color:#7CC64A"> AppBundle\Product\DoctrineBasedProductRepository</span></span>
+<span class="line" data-linenr="5"><span style="color:#C7C8D2">        arguments</span><span style="color:#999999">:</span><span style="color:#999999"> [</span><span style="color:#999999">'</span><span style="color:#7CC64A">@doctrine.orm.entity_manager</span><span style="color:#999999">'</span><span style="color:#999999">]</span></span></code></pre></div>
 </div>
     
       <h2 id="treat-repositories-as-collections">

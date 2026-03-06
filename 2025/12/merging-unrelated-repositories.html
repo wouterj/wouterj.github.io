@@ -92,14 +92,13 @@ can just point to the local repository! Then, instruct Git to merge even
 though both branches don’t share any common ancestors in the commit tree
 using a special flag.</p>
 
-<div class="language-bash highlighter-shiki"><pre class="shiki-gutter">1
+<div class="language-terminal highlighter-shiki"><div><pre class="shiki-gutter">1
 2
 3
-4
-</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #6B90C0; font-style: italic"># add a remote, pointing at the new Git project on my local filesystem</span></span>
-<span class="line" data-linenr="2"><span style="color: #BBBBBB">$ git remote add </span><span style="color: #E5673D">local</span><span style="color: #BBBBBB"> </span><span style="color: #E5673D">~</span><span style="color: #BBBBBB">/projects/github.com/wouterj/docs-builder-new</span></span>
-<span class="line" data-linenr="3"><span style="color: #BBBBBB">$ git fetch </span><span style="color: #E5673D">local</span></span>
-<span class="line" data-linenr="4"><span style="color: #BBBBBB">$ git merge --allow-unrelated-histories local/main</span></span></code></pre>
+4</pre><pre class="shiki wouterj shiki-code" style="background-color:#1e1e1e;color:#bbbbbb" tabindex="0"><code><span class="line" data-linenr="1"><span style="color:#6B90C0;font-style:italic"># add a remote, pointing at the new Git project on my local filesystem</span></span>
+<span class="line" data-linenr="2"><span style="color:#999999">$ </span><span style="color:#D8DEE9">git remote add </span><span style="color:#E5673D">local</span><span style="color:#E5673D"> ~</span><span style="color:#D8DEE9">/projects/github.com/wouterj/docs-builder-new</span></span>
+<span class="line" data-linenr="3"><span style="color:#999999">$ </span><span style="color:#D8DEE9">git fetch </span><span style="color:#E5673D">local</span></span>
+<span class="line" data-linenr="4"><span style="color:#999999">$ </span><span style="color:#D8DEE9">git merge --allow-unrelated-histories local/main</span></span></code></pre></div>
 </div>
 
 <p>Without common ancestors, Git will compare the full diff leading up the

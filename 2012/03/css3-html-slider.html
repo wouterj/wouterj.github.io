@@ -128,16 +128,15 @@ handelbaar te krijgen?</p>
 
 <p>Het eerste idee:</p>
 
-<div class="language-html highlighter-shiki"><pre class="shiki-gutter">1
+<div class="language-html highlighter-shiki"><div><pre class="shiki-gutter">1
 2
 3
 4
-5
-</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #E5673D">&lt;div</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">id</span><span style="color: #999999">=</span><span style="color: #999999">&quot;</span><span style="color: #7CC64A">slider</span><span style="color: #999999">&quot;</span><span style="color: #E5673D">&gt;</span></span>
-<span class="line" data-linenr="2"><span style="color: #BBBBBB">    </span><span style="color: #E5673D">&lt;img</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">src</span><span style="color: #999999">=</span><span style="color: #999999">&quot;</span><span style="color: #7CC64A">img/slide1.png</span><span style="color: #999999">&quot;</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">alt</span><span style="color: #999999">=</span><span style="color: #999999">&quot;</span><span style="color: #7CC64A">some text</span><span style="color: #999999">&quot;</span><span style="color: #E5673D">&gt;</span></span>
-<span class="line" data-linenr="3"><span style="color: #BBBBBB">    </span><span style="color: #E5673D">&lt;img</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">src</span><span style="color: #999999">=</span><span style="color: #999999">&quot;</span><span style="color: #7CC64A">img/slide2.png</span><span style="color: #999999">&quot;</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">alt</span><span style="color: #999999">=</span><span style="color: #999999">&quot;</span><span style="color: #7CC64A">some other text</span><span style="color: #999999">&quot;</span><span style="color: #E5673D">&gt;</span></span>
-<span class="line" data-linenr="4"><span style="color: #BBBBBB">    </span><span style="color: #6B90C0; font-style: italic">&lt;!-- ... --&gt;</span></span>
-<span class="line" data-linenr="5"><span style="color: #E5673D">&lt;/div&gt;</span></span></code></pre>
+5</pre><pre class="shiki wouterj shiki-code" style="background-color:#1e1e1e;color:#bbbbbb" tabindex="0"><code><span class="line" data-linenr="1"><span style="color:#E5673D">&#x3C;div</span><span style="color:#C7C8D2"> id</span><span style="color:#999999">=</span><span style="color:#999999">"</span><span style="color:#7CC64A">slider</span><span style="color:#999999">"</span><span style="color:#E5673D">></span></span>
+<span class="line" data-linenr="2"><span style="color:#E5673D">    &#x3C;img</span><span style="color:#C7C8D2"> src</span><span style="color:#999999">=</span><span style="color:#999999">"</span><span style="color:#7CC64A">img/slide1.png</span><span style="color:#999999">"</span><span style="color:#C7C8D2"> alt</span><span style="color:#999999">=</span><span style="color:#999999">"</span><span style="color:#7CC64A">some text</span><span style="color:#999999">"</span><span style="color:#E5673D">></span></span>
+<span class="line" data-linenr="3"><span style="color:#E5673D">    &#x3C;img</span><span style="color:#C7C8D2"> src</span><span style="color:#999999">=</span><span style="color:#999999">"</span><span style="color:#7CC64A">img/slide2.png</span><span style="color:#999999">"</span><span style="color:#C7C8D2"> alt</span><span style="color:#999999">=</span><span style="color:#999999">"</span><span style="color:#7CC64A">some other text</span><span style="color:#999999">"</span><span style="color:#E5673D">></span></span>
+<span class="line" data-linenr="4"><span style="color:#6B90C0;font-style:italic">    &#x3C;!-- ... --></span></span>
+<span class="line" data-linenr="5"><span style="color:#E5673D">&#x3C;/div></span></span></code></pre></div>
 </div>
 
 <p>Ziet er niet verkeerd uit, zo werken de meeste jQuery sliders ook. Alleen hoe
@@ -158,18 +157,17 @@ kunnen we de <code class="highlighter-shiki">ul</code> als overkoepelende elemen
 animeren. Ook qua semantisch opzicht is het te verdedigen en zeker niet fout.
 De code wordt dus zoiets:</p>
 
-<div class="language-html highlighter-shiki"><pre class="shiki-gutter">1
+<div class="language-html highlighter-shiki"><div><pre class="shiki-gutter">1
 2
 3
 4
 5
-6
-</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #E5673D">&lt;div</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">id</span><span style="color: #999999">=</span><span style="color: #999999">&quot;</span><span style="color: #7CC64A">slider</span><span style="color: #999999">&quot;</span><span style="color: #E5673D">&gt;</span></span>
-<span class="line" data-linenr="2"><span style="color: #E5673D">&lt;ul&gt;</span></span>
-<span class="line" data-linenr="3"><span style="color: #BBBBBB">    </span><span style="color: #E5673D">&lt;li&gt;&lt;img</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">src</span><span style="color: #999999">=</span><span style="color: #999999">&quot;</span><span style="color: #7CC64A">img/slide1.png</span><span style="color: #999999">&quot;</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">alt</span><span style="color: #999999">=</span><span style="color: #999999">&quot;</span><span style="color: #7CC64A">some text</span><span style="color: #999999">&quot;</span><span style="color: #E5673D">&gt;&lt;/li&gt;</span></span>
-<span class="line" data-linenr="4"><span style="color: #BBBBBB">    </span><span style="color: #E5673D">&lt;li&gt;&lt;img</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">src</span><span style="color: #999999">=</span><span style="color: #999999">&quot;</span><span style="color: #7CC64A">img/slide2.png</span><span style="color: #999999">&quot;</span><span style="color: #BBBBBB"> </span><span style="color: #C7C8D2">alt</span><span style="color: #999999">=</span><span style="color: #999999">&quot;</span><span style="color: #7CC64A">some other text</span><span style="color: #999999">&quot;</span><span style="color: #E5673D">&gt;&lt;/li&gt;</span></span>
-<span class="line" data-linenr="5"><span style="color: #E5673D">&lt;/ul&gt;</span></span>
-<span class="line" data-linenr="6"><span style="color: #E5673D">&lt;/div&gt;</span></span></code></pre>
+6</pre><pre class="shiki wouterj shiki-code" style="background-color:#1e1e1e;color:#bbbbbb" tabindex="0"><code><span class="line" data-linenr="1"><span style="color:#E5673D">&#x3C;div</span><span style="color:#C7C8D2"> id</span><span style="color:#999999">=</span><span style="color:#999999">"</span><span style="color:#7CC64A">slider</span><span style="color:#999999">"</span><span style="color:#E5673D">></span></span>
+<span class="line" data-linenr="2"><span style="color:#E5673D">&#x3C;ul></span></span>
+<span class="line" data-linenr="3"><span style="color:#E5673D">    &#x3C;li>&#x3C;img</span><span style="color:#C7C8D2"> src</span><span style="color:#999999">=</span><span style="color:#999999">"</span><span style="color:#7CC64A">img/slide1.png</span><span style="color:#999999">"</span><span style="color:#C7C8D2"> alt</span><span style="color:#999999">=</span><span style="color:#999999">"</span><span style="color:#7CC64A">some text</span><span style="color:#999999">"</span><span style="color:#E5673D">>&#x3C;/li></span></span>
+<span class="line" data-linenr="4"><span style="color:#E5673D">    &#x3C;li>&#x3C;img</span><span style="color:#C7C8D2"> src</span><span style="color:#999999">=</span><span style="color:#999999">"</span><span style="color:#7CC64A">img/slide2.png</span><span style="color:#999999">"</span><span style="color:#C7C8D2"> alt</span><span style="color:#999999">=</span><span style="color:#999999">"</span><span style="color:#7CC64A">some other text</span><span style="color:#999999">"</span><span style="color:#E5673D">>&#x3C;/li></span></span>
+<span class="line" data-linenr="5"><span style="color:#E5673D">&#x3C;/ul></span></span>
+<span class="line" data-linenr="6"><span style="color:#E5673D">&#x3C;/div></span></span></code></pre></div>
 </div>
     
       <h3 id="probleem-2-hoe-verbergen-we-de-andere-afbeeldingen">
@@ -240,16 +238,15 @@ bericht over.</p>
 probleem was dat we deze <code class="highlighter-shiki">overflow: hidden;</code> en de hoogte en
 breedte van de afbeelding meegeven. Nou, laten we dat dan maar gaan doen:</p>
 
-<div class="language-css highlighter-shiki"><pre class="shiki-gutter">1
+<div class="language-css highlighter-shiki"><div><pre class="shiki-gutter">1
 2
 3
 4
-5
-</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #999999">#</span><span style="color: #C7C8D2">slider</span><span style="color: #999999">{</span></span>
-<span class="line" data-linenr="2"><span style="color: #BBBBBB">    </span><span style="color: #D8DEE9">width</span><span style="color: #999999">:</span><span style="color: #B48EAD">610</span><span style="color: #E5673D">px;</span></span>
-<span class="line" data-linenr="3"><span style="color: #BBBBBB">    </span><span style="color: #D8DEE9">height</span><span style="color: #999999">:</span><span style="color: #B48EAD">244</span><span style="color: #E5673D">px;</span></span>
-<span class="line" data-linenr="4"><span style="color: #BBBBBB">    </span><span style="color: #D8DEE9">overflow</span><span style="color: #999999">:</span><span style="color: #E5673D">hidden;</span></span>
-<span class="line" data-linenr="5"><span style="color: #999999">}</span></span></code></pre>
+5</pre><pre class="shiki wouterj shiki-code" style="background-color:#1e1e1e;color:#bbbbbb" tabindex="0"><code><span class="line" data-linenr="1"><span style="color:#999999">#</span><span style="color:#C7C8D2">slider</span><span style="color:#999999">{</span></span>
+<span class="line" data-linenr="2"><span style="color:#D8DEE9">    width</span><span style="color:#999999">:</span><span style="color:#B48EAD">610</span><span style="color:#E5673D">px;</span></span>
+<span class="line" data-linenr="3"><span style="color:#D8DEE9">    height</span><span style="color:#999999">:</span><span style="color:#B48EAD">244</span><span style="color:#E5673D">px;</span></span>
+<span class="line" data-linenr="4"><span style="color:#D8DEE9">    overflow</span><span style="color:#999999">:</span><span style="color:#E5673D">hidden;</span></span>
+<span class="line" data-linenr="5"><span style="color:#999999">}</span></span></code></pre></div>
 </div>
     
       <h3 id="de-animatie">
@@ -270,22 +267,21 @@ is. Dus de keyframe bevat een gedetailleerde overzicht van de animatie. Als we
 bijv. een animatie willen maken die de achtergrondkleur van rood naar blauw
 veranderd doen we:</p>
 
-<div class="language-css highlighter-shiki"><pre class="shiki-gutter">1
+<div class="language-css highlighter-shiki"><div><pre class="shiki-gutter">1
 2
 3
 4
 5
 6
 7
-8
-</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #E5673D">@keyframes</span><span style="color: #BBBBBB"> </span><span style="color: #D8DEE9">changeBgColor</span><span style="color: #BBBBBB"> </span><span style="color: #999999">{</span></span>
-<span class="line" data-linenr="2"><span style="color: #BBBBBB">    from </span><span style="color: #999999">{</span><span style="color: #BBBBBB"> </span></span>
-<span class="line" data-linenr="3"><span style="color: #BBBBBB">        </span><span style="color: #D8DEE9">background</span><span style="color: #999999">:</span><span style="color: #E5673D">red;</span></span>
-<span class="line" data-linenr="4"><span style="color: #BBBBBB">    </span><span style="color: #999999">}</span></span>
-<span class="line" data-linenr="5"><span style="color: #BBBBBB">    to </span><span style="color: #999999">{</span></span>
-<span class="line" data-linenr="6"><span style="color: #BBBBBB">        </span><span style="color: #D8DEE9">background</span><span style="color: #999999">:</span><span style="color: #E5673D">green;</span></span>
-<span class="line" data-linenr="7"><span style="color: #BBBBBB">    </span><span style="color: #999999">}</span></span>
-<span class="line" data-linenr="8"><span style="color: #999999">}</span></span></code></pre>
+8</pre><pre class="shiki wouterj shiki-code" style="background-color:#1e1e1e;color:#bbbbbb" tabindex="0"><code><span class="line" data-linenr="1"><span style="color:#E5673D">@keyframes</span><span style="color:#D8DEE9"> changeBgColor</span><span style="color:#999999"> {</span></span>
+<span class="line" data-linenr="2"><span style="color:#BBBBBB">    from </span><span style="color:#999999">{</span><span style="color:#BBBBBB"> </span></span>
+<span class="line" data-linenr="3"><span style="color:#D8DEE9">        background</span><span style="color:#999999">:</span><span style="color:#E5673D">red;</span></span>
+<span class="line" data-linenr="4"><span style="color:#999999">    }</span></span>
+<span class="line" data-linenr="5"><span style="color:#BBBBBB">    to </span><span style="color:#999999">{</span></span>
+<span class="line" data-linenr="6"><span style="color:#D8DEE9">        background</span><span style="color:#999999">:</span><span style="color:#E5673D">green;</span></span>
+<span class="line" data-linenr="7"><span style="color:#999999">    }</span></span>
+<span class="line" data-linenr="8"><span style="color:#999999">}</span></span></code></pre></div>
 </div>
 
 <p>Merk wel op dat het geen je hier ziet alleen de animatie zelf is. We moeten
@@ -327,27 +323,25 @@ dit geval dus <code class="highlighter-shiki">-620px</code>. De tweede stap is o
 dus <code class="highlighter-shiki">-1240px</code>. En zo ga je door met 74% en 100% (to), waarbij deze beide een
 waarde van <code class="highlighter-shiki">-1860px</code> hebben. De totale code wordt dus zoiets:</p>
 
-<div class="language-css highlighter-shiki"><pre class="shiki-gutter">1
+<div class="language-css highlighter-shiki"><div><pre class="shiki-gutter">1
 2
 3
 4
 5
 6
-7
-</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #E5673D">@keyframes</span><span style="color: #BBBBBB"> </span><span style="color: #D8DEE9">slider</span></span>
-<span class="line" data-linenr="2"><span style="color: #999999">{</span></span>
-<span class="line" data-linenr="3"><span style="color: #BBBBBB">    from     </span><span style="color: #999999">{</span><span style="color: #BBBBBB"> </span><span style="color: #D8DEE9">margin-left</span><span style="color: #999999">:</span><span style="color: #B48EAD">0</span><span style="color: #E5673D">;</span><span style="color: #BBBBBB">          </span><span style="color: #999999">}</span></span>
-<span class="line" data-linenr="4"><span style="color: #BBBBBB">    28%      </span><span style="color: #999999">{</span><span style="color: #BBBBBB"> </span><span style="color: #D8DEE9">margin-left</span><span style="color: #999999">:</span><span style="color: #B48EAD">-620</span><span style="color: #E5673D">px;</span><span style="color: #BBBBBB">     </span><span style="color: #999999">}</span></span>
-<span class="line" data-linenr="5"><span style="color: #BBBBBB">    56%      </span><span style="color: #999999">{</span><span style="color: #BBBBBB"> </span><span style="color: #D8DEE9">margin-left</span><span style="color: #999999">:</span><span style="color: #B48EAD">-1240</span><span style="color: #E5673D">px;</span><span style="color: #BBBBBB">    </span><span style="color: #999999">}</span></span>
-<span class="line" data-linenr="6"><span style="color: #BBBBBB">    74%, to  </span><span style="color: #999999">{</span><span style="color: #BBBBBB"> </span><span style="color: #D8DEE9">margin-left</span><span style="color: #999999">:</span><span style="color: #B48EAD">-1860</span><span style="color: #E5673D">px;</span><span style="color: #BBBBBB">    </span><span style="color: #999999">}</span></span>
-<span class="line" data-linenr="7"><span style="color: #999999">}</span></span></code></pre>
+7</pre><pre class="shiki wouterj shiki-code" style="background-color:#1e1e1e;color:#bbbbbb" tabindex="0"><code><span class="line" data-linenr="1"><span style="color:#E5673D">@keyframes</span><span style="color:#D8DEE9"> slider</span></span>
+<span class="line" data-linenr="2"><span style="color:#999999">{</span></span>
+<span class="line" data-linenr="3"><span style="color:#BBBBBB">    from     </span><span style="color:#999999">{</span><span style="color:#D8DEE9"> margin-left</span><span style="color:#999999">:</span><span style="color:#B48EAD">0</span><span style="color:#E5673D">;</span><span style="color:#999999">          }</span></span>
+<span class="line" data-linenr="4"><span style="color:#BBBBBB">    28%      </span><span style="color:#999999">{</span><span style="color:#D8DEE9"> margin-left</span><span style="color:#999999">:</span><span style="color:#B48EAD">-620</span><span style="color:#E5673D">px;</span><span style="color:#999999">     }</span></span>
+<span class="line" data-linenr="5"><span style="color:#BBBBBB">    56%      </span><span style="color:#999999">{</span><span style="color:#D8DEE9"> margin-left</span><span style="color:#999999">:</span><span style="color:#B48EAD">-1240</span><span style="color:#E5673D">px;</span><span style="color:#999999">    }</span></span>
+<span class="line" data-linenr="6"><span style="color:#BBBBBB">    74%, to  </span><span style="color:#999999">{</span><span style="color:#D8DEE9"> margin-left</span><span style="color:#999999">:</span><span style="color:#B48EAD">-1860</span><span style="color:#E5673D">px;</span><span style="color:#999999">    }</span></span>
+<span class="line" data-linenr="7"><span style="color:#999999">}</span></span></code></pre></div>
 </div>
 
 <p>Nu moeten we alleen de ul nog deze keyframe meegeven, een tijd en wat extra
 opties, en we hebben onze slider af. De aanroep in <code class="highlighter-shiki">#slider ul</code> wordt:</p>
 
-<div class="language-css highlighter-shiki"><pre class="shiki-gutter">1
-</pre><pre class="shiki-code"><code><span class="line" data-linenr="1"><span style="color: #BBBBBB">animation: slider 10s linear infinite alternate;</span></span></code></pre>
+<div class="language-css highlighter-shiki"><div><pre class="shiki-gutter">1</pre><pre class="shiki wouterj shiki-code" style="background-color:#1e1e1e;color:#bbbbbb" tabindex="0"><code><span class="line" data-linenr="1"><span style="color:#BBBBBB">animation: slider 10s linear infinite alternate;</span></span></code></pre></div>
 </div>
 
 <p>Even een uitleg:</p>
@@ -400,15 +394,19 @@ aangegeven wat er tussen 0% en 28% zit en dus zal hij telkens tussen deze 2
 waardes een stapje opschuiven. We moeten dus aangeven dat hij voor 28% nog
 steeds op <code class="highlighter-shiki">0px</code> zet. Dus doen we dit:</p>
 
-<div class="highlighter-shiki"><pre class="shiki-gutter">1</pre><pre class="shiki-code"><code>[css]
-@keyframes slider
-{
-    from,27% { margin-left:0;          }
-    28%, 55% { margin-left:-620px;     }
-    56%, 73% { margin-left:-1240px;    }
-    74%, to  { margin-left:-1860px;    }
-}
-</code></pre>
+<div class="language-css highlighter-shiki"><div><pre class="shiki-gutter">1
+2
+3
+4
+5
+6
+7</pre><pre class="shiki wouterj shiki-code" style="background-color:#1e1e1e;color:#bbbbbb" tabindex="0"><code><span class="line" data-linenr="1"><span style="color:#E5673D">@keyframes</span><span style="color:#D8DEE9"> slider</span></span>
+<span class="line" data-linenr="2"><span style="color:#999999">{</span></span>
+<span class="line" data-linenr="3"><span style="color:#BBBBBB">    from,27% </span><span style="color:#999999">{</span><span style="color:#D8DEE9"> margin-left</span><span style="color:#999999">:</span><span style="color:#B48EAD">0</span><span style="color:#E5673D">;</span><span style="color:#999999">          }</span></span>
+<span class="line" data-linenr="4"><span style="color:#BBBBBB">    28%, 55% </span><span style="color:#999999">{</span><span style="color:#D8DEE9"> margin-left</span><span style="color:#999999">:</span><span style="color:#B48EAD">-620</span><span style="color:#E5673D">px;</span><span style="color:#999999">     }</span></span>
+<span class="line" data-linenr="5"><span style="color:#BBBBBB">    56%, 73% </span><span style="color:#999999">{</span><span style="color:#D8DEE9"> margin-left</span><span style="color:#999999">:</span><span style="color:#B48EAD">-1240</span><span style="color:#E5673D">px;</span><span style="color:#999999">    }</span></span>
+<span class="line" data-linenr="6"><span style="color:#BBBBBB">    74%, to  </span><span style="color:#999999">{</span><span style="color:#D8DEE9"> margin-left</span><span style="color:#999999">:</span><span style="color:#B48EAD">-1860</span><span style="color:#E5673D">px;</span><span style="color:#999999">    }</span></span>
+<span class="line" data-linenr="7"><span style="color:#999999">}</span></span></code></pre></div>
 </div>
 
 <p>Hierbij kan CSS nog niks animaten en begin het pas met sliden bij 27% en dan
@@ -419,15 +417,19 @@ slide tijd verlengen. Ik stel voor dat we een slide tijd hebben van 6%. Dit
 betekend dat er 3% vanaf gaat en 3% bij komt. We krijgen dus uiteindelijk
 zoiets:</p>
 
-<div class="highlighter-shiki"><pre class="shiki-gutter">1</pre><pre class="shiki-code"><code>[css]
-@keyframes slider
-{
-    from, 24% { margin-left:0;         }
-    31%, 53%  { margin-left:-620px;    }
-    59%, 71%  { margin-left:-1240px;   }
-    77%, to   { margin-left:-1860px;   }
-}
-</code></pre>
+<div class="language-css highlighter-shiki"><div><pre class="shiki-gutter">1
+2
+3
+4
+5
+6
+7</pre><pre class="shiki wouterj shiki-code" style="background-color:#1e1e1e;color:#bbbbbb" tabindex="0"><code><span class="line" data-linenr="1"><span style="color:#E5673D">@keyframes</span><span style="color:#D8DEE9"> slider</span></span>
+<span class="line" data-linenr="2"><span style="color:#999999">{</span></span>
+<span class="line" data-linenr="3"><span style="color:#BBBBBB">    from, 24% </span><span style="color:#999999">{</span><span style="color:#D8DEE9"> margin-left</span><span style="color:#999999">:</span><span style="color:#B48EAD">0</span><span style="color:#E5673D">;</span><span style="color:#999999">         }</span></span>
+<span class="line" data-linenr="4"><span style="color:#BBBBBB">    31%, 53%  </span><span style="color:#999999">{</span><span style="color:#D8DEE9"> margin-left</span><span style="color:#999999">:</span><span style="color:#B48EAD">-620</span><span style="color:#E5673D">px;</span><span style="color:#999999">    }</span></span>
+<span class="line" data-linenr="5"><span style="color:#BBBBBB">    59%, 71%  </span><span style="color:#999999">{</span><span style="color:#D8DEE9"> margin-left</span><span style="color:#999999">:</span><span style="color:#B48EAD">-1240</span><span style="color:#E5673D">px;</span><span style="color:#999999">   }</span></span>
+<span class="line" data-linenr="6"><span style="color:#BBBBBB">    77%, to   </span><span style="color:#999999">{</span><span style="color:#D8DEE9"> margin-left</span><span style="color:#999999">:</span><span style="color:#B48EAD">-1860</span><span style="color:#E5673D">px;</span><span style="color:#999999">   }</span></span>
+<span class="line" data-linenr="7"><span style="color:#999999">}</span></span></code></pre></div>
 </div>
     
       <h3 id="feestje">
