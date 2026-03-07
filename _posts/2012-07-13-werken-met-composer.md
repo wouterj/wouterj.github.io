@@ -4,6 +4,7 @@ title: "Werken met Composer"
 thumbnail: composer-thumb.png
 categories: article
 tags: [development, php]
+hide: true
 
 ---
 Je hebt vast wel eens gewerkt met Ruby of Node.js en je hebt vast wel eens

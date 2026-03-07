@@ -7,6 +7,7 @@ categories:
 tags:
 - symfony2
 - php
+hide: true
 
 ---
 Symfony2, ik ben er een groot fan van. Deze blogpost bevat een makkelijk weg

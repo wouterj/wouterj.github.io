@@ -6,6 +6,7 @@ categories:
 tags:
 - bleeding edge
 - css
+hide: true
 
 ---
 Vandaag bespreek ik een echte bleeding edge: Er is nog geen specificatie voor

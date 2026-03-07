@@ -4,6 +4,7 @@ title: "Pure CSS3 en HTML slider"
 thumbnail: css3-slider-thumb.jpg
 categories: experiment
 tags: [bleeding edge, css]
+hide: true
 
 ---
 Op 10 nov. 2011 zei

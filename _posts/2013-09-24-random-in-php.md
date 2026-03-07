@@ -6,6 +6,7 @@ categories:
 tags:
 - php
 - reading the source
+hide: true
 
 ---
 Een computer is logisch, hoe kan zo'n logisch apparaat nou random getallen

@@ -4,6 +4,7 @@ title: "Google Maps API V3 - Begin tot eind"
 thumbnail: google-maps-api-thumb.png
 categories: article
 tags: [google maps, javascript]
+hide: true
 
 ---
 Google Maps kent iedereen wel en je kan er geweldige dingen mee doen. Om een

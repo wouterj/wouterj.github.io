@@ -7,6 +7,7 @@ categories:
 tags:
 - object oriented
 - css
+hide: true
 
 ---
 Dat je kunt programmeren in objecten is waarschijnlijk al bekent. Maar dat je

@@ -4,6 +4,7 @@ title: "OO: De onbekende kant"
 thumbnail: oo-onbekende-kant-thumb.png
 categories: article
 tags: oo
+hide: true
 
 ---
 OO, elke beginner weet het wel: Denken in objecten en dat omzetten in een

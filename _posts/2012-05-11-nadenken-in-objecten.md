@@ -4,6 +4,7 @@ title: "OO: Eens goed nadenken in objecten"
 thumbnail: oop-nadenken-thumb.png
 categories: article
 tags: [scripting, object oriented]
+hide: true
 
 ---
 OOP is vooral het denken in objecten. Daar beginnen heel veel OOP
