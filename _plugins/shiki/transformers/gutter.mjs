@@ -3,13 +3,18 @@ export default function (startAt = 1) {
     let lang;
 
     return {
+        enforce: 'post',
+
         preprocess(code, options) {
             lang = options.lang;
         },
 
-        line(node) {
-            node.properties['data-linenr'] = startAt + nrOfLines;
-            nrOfLines++;
+        code(node) {
+            const lines = node.children.filter(e => e.type === 'element');
+            for (const line of lines) {
+                line.properties['data-linenr'] = startAt + nrOfLines;
+                nrOfLines++;
+            }
         },
 
         pre(node) {
