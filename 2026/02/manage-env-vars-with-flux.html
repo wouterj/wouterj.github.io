@@ -130,8 +130,7 @@ created by Flux:</p>
 12
 13
 14
-15
-16</pre><pre class="shiki wouterj has-focused shiki-code" style="background-color:#1e1e1e;color:#bbbbbb" tabindex="0"><code><span class="line" data-linenr="1"><span style="color:#C7C8D2">apiVersion</span><span style="color:#999999">:</span><span style="color:#7CC64A"> apps/v1</span></span>
+15</pre><pre class="shiki wouterj has-focused shiki-code" style="background-color:#1e1e1e;color:#bbbbbb" tabindex="0"><code><span class="line" data-linenr="1"><span style="color:#C7C8D2">apiVersion</span><span style="color:#999999">:</span><span style="color:#7CC64A"> apps/v1</span></span>
 <span class="line" data-linenr="2"><span style="color:#C7C8D2">kind</span><span style="color:#999999">:</span><span style="color:#7CC64A"> Deployment</span></span>
 <span class="line" data-linenr="3"><span style="color:#C7C8D2">metadata</span><span style="color:#999999">:</span></span>
 <span class="line" data-linenr="4"><span style="color:#C7C8D2">  name</span><span style="color:#999999">:</span><span style="color:#7CC64A"> our-application</span></span>
@@ -141,11 +140,11 @@ created by Flux:</p>
 <span class="line" data-linenr="8"><span style="color:#C7C8D2">    spec</span><span style="color:#999999">:</span></span>
 <span class="line" data-linenr="9"><span style="color:#C7C8D2">      containers</span><span style="color:#999999">:</span></span>
 <span class="line" data-linenr="10"><span style="color:#999999">        -</span><span style="color:#6B90C0;font-style:italic"> # ...</span></span>
-<span class="line focused" data-linenr="12"><span style="color:#C7C8D2">          envFrom</span><span style="color:#999999">:</span></span>
-<span class="line focused" data-linenr="13"><span style="color:#999999">            -</span><span style="color:#C7C8D2"> configMapRef</span><span style="color:#999999">:</span></span>
-<span class="line focused" data-linenr="14"><span style="color:#C7C8D2">                name</span><span style="color:#999999">:</span><span style="color:#7CC64A"> gitops-our-application</span></span>
-<span class="line focused" data-linenr="15"><span style="color:#999999">            -</span><span style="color:#C7C8D2"> secretRef</span><span style="color:#999999">:</span></span>
-<span class="line focused" data-linenr="16"><span style="color:#C7C8D2">                name</span><span style="color:#999999">:</span><span style="color:#7CC64A"> gitops-our-application</span></span></code></pre></div>
+<span class="line focused" data-linenr="11"><span style="color:#C7C8D2">          envFrom</span><span style="color:#999999">:</span></span>
+<span class="line focused" data-linenr="12"><span style="color:#999999">            -</span><span style="color:#C7C8D2"> configMapRef</span><span style="color:#999999">:</span></span>
+<span class="line focused" data-linenr="13"><span style="color:#C7C8D2">                name</span><span style="color:#999999">:</span><span style="color:#7CC64A"> gitops-our-application</span></span>
+<span class="line focused" data-linenr="14"><span style="color:#999999">            -</span><span style="color:#C7C8D2"> secretRef</span><span style="color:#999999">:</span></span>
+<span class="line focused" data-linenr="15"><span style="color:#C7C8D2">                name</span><span style="color:#999999">:</span><span style="color:#7CC64A"> gitops-our-application</span></span></code></pre></div>
 </div>
 
 <p>Now we’re set! Upon releasing this Helm chart, the deployment will read the
@@ -167,15 +166,14 @@ changes. After installing the operator, add the appropriate annotation:</p>
 5
 6
 7
-8
-9</pre><pre class="shiki wouterj has-focused shiki-code" style="background-color:#1e1e1e;color:#bbbbbb" tabindex="0"><code><span class="line" data-linenr="1"><span style="color:#C7C8D2">kind</span><span style="color:#999999">:</span><span style="color:#7CC64A"> Deployment</span></span>
+8</pre><pre class="shiki wouterj has-focused shiki-code" style="background-color:#1e1e1e;color:#bbbbbb" tabindex="0"><code><span class="line" data-linenr="1"><span style="color:#C7C8D2">kind</span><span style="color:#999999">:</span><span style="color:#7CC64A"> Deployment</span></span>
 <span class="line" data-linenr="2"><span style="color:#6B90C0;font-style:italic"># ...</span></span>
 <span class="line" data-linenr="3"><span style="color:#C7C8D2">spec</span><span style="color:#999999">:</span></span>
 <span class="line" data-linenr="4"><span style="color:#C7C8D2">  template</span><span style="color:#999999">:</span></span>
 <span class="line" data-linenr="5"><span style="color:#C7C8D2">    metadata</span><span style="color:#999999">:</span></span>
-<span class="line focused" data-linenr="7"><span style="color:#C7C8D2">      annotations</span><span style="color:#999999">:</span></span>
-<span class="line focused" data-linenr="8"><span style="color:#C7C8D2">        reloader.stakater.com/auto</span><span style="color:#999999">:</span><span style="color:#999999"> "</span><span style="color:#7CC64A">true</span><span style="color:#999999">"</span></span>
-<span class="line" data-linenr="9"><span style="color:#6B90C0;font-style:italic">  # ...</span></span></code></pre></div>
+<span class="line focused" data-linenr="6"><span style="color:#C7C8D2">      annotations</span><span style="color:#999999">:</span></span>
+<span class="line focused" data-linenr="7"><span style="color:#C7C8D2">        reloader.stakater.com/auto</span><span style="color:#999999">:</span><span style="color:#999999"> "</span><span style="color:#7CC64A">true</span><span style="color:#999999">"</span></span>
+<span class="line" data-linenr="8"><span style="color:#6B90C0;font-style:italic">  # ...</span></span></code></pre></div>
 </div>
 
 <p>Now, an update of the ConfigMap in the GitLab repository triggers Flux to

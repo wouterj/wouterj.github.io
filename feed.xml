@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.7">Jekyll</generator><link href="https://wouterj.nl/feed.xml" rel="self" type="application/atom+xml" /><link href="https://wouterj.nl/" rel="alternate" type="text/html" /><updated>2026-03-06T14:29:44+00:00</updated><id>https://wouterj.nl/feed.xml</id><title type="html">Wouter J</title><author><name>Wouter de Jong</name></author><entry><title type="html">Symfony in 200 lines</title><link href="https://wouterj.nl/2026/02/200-lines-of-symfony" rel="alternate" type="text/html" title="Symfony in 200 lines" /><published>2026-02-28T00:00:00+00:00</published><updated>2026-02-28T00:00:00+00:00</updated><id>https://wouterj.nl/2026/02/200-lines-of-symfony</id><content type="html" xml:base="https://wouterj.nl/2026/02/200-lines-of-symfony"><![CDATA[<p>In 2013, Fabien Potencier <a href="https://fabien.potencier.org/packing-a-symfony-full-stack-framework-application-in-one-file-introduction.html">blogged</a> about a One File
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.7">Jekyll</generator><link href="https://wouterj.nl/feed.xml" rel="self" type="application/atom+xml" /><link href="https://wouterj.nl/" rel="alternate" type="text/html" /><updated>2026-03-07T00:53:53+00:00</updated><id>https://wouterj.nl/feed.xml</id><title type="html">Wouter J</title><author><name>Wouter de Jong</name></author><entry><title type="html">Symfony in 200 lines</title><link href="https://wouterj.nl/2026/02/200-lines-of-symfony" rel="alternate" type="text/html" title="Symfony in 200 lines" /><published>2026-02-28T00:00:00+00:00</published><updated>2026-02-28T00:00:00+00:00</updated><id>https://wouterj.nl/2026/02/200-lines-of-symfony</id><content type="html" xml:base="https://wouterj.nl/2026/02/200-lines-of-symfony"><![CDATA[<p>In 2013, Fabien Potencier <a href="https://fabien.potencier.org/packing-a-symfony-full-stack-framework-application-in-one-file-introduction.html">blogged</a> about a One File
 challenge: creating a Symfony app in 1 file and under 200 lines of code.
 The series never finished, but it initiated the Symfony Flex project. With
 more than 10 years of innovation, can we complete this challenge today?</p>
@@ -293,21 +293,20 @@ that just so happens to load the <code class="highlighter-shiki">config/bundles.
 11
 12
 13
-14
-15</pre><pre class="shiki wouterj has-focused shiki-code" style="background-color:#1e1e1e;color:#bbbbbb" tabindex="0"><code><span class="line" data-linenr="1"><span style="color:#E5673D">trait</span><span style="color:#BBBBBB"> MicroKernelTrait</span></span>
+14</pre><pre class="shiki wouterj has-focused shiki-code" style="background-color:#1e1e1e;color:#bbbbbb" tabindex="0"><code><span class="line" data-linenr="1"><span style="color:#E5673D">trait</span><span style="color:#BBBBBB"> MicroKernelTrait</span></span>
 <span class="line" data-linenr="2"><span style="color:#999999">{</span></span>
 <span class="line" data-linenr="3"><span style="color:#6B90C0;font-style:italic">    // ...</span></span>
 <span class="line" data-linenr="4"><span style="color:#E5673D">    public</span><span style="color:#E5673D"> function</span><span style="color:#C7C8D2"> registerBundles</span><span style="color:#999999">()</span><span style="color:#E5673D">:</span><span style="color:#E5673D"> iterable</span></span>
 <span class="line" data-linenr="5"><span style="color:#999999">    {</span></span>
-<span class="line focused" data-linenr="7"><span style="color:#E5673D">        if</span><span style="color:#999999"> (</span><span style="color:#E5673D">!</span><span style="color:#C7C8D2">is_file</span><span style="color:#999999">(</span><span style="color:#E5673D">$</span><span style="color:#D8DEE9">bundlesPath</span><span style="color:#E5673D"> =</span><span style="color:#E5673D"> $</span><span style="color:#D8DEE9">this</span><span style="color:#E5673D">-></span><span style="color:#C7C8D2">getBundlesPath</span><span style="color:#999999">()))</span><span style="color:#999999"> {</span></span>
-<span class="line focused" data-linenr="8"><span style="color:#E5673D">            yield</span><span style="color:#E5673D"> new</span><span style="color:#C7C8D2"> FrameworkBundle</span><span style="color:#999999">()</span><span style="color:#E5673D">;</span></span>
-<span class="line focused" data-linenr="9"></span>
-<span class="line focused" data-linenr="10"><span style="color:#E5673D">            return;</span></span>
-<span class="line focused" data-linenr="11"><span style="color:#999999">        }</span></span>
-<span class="line" data-linenr="12"></span>
-<span class="line" data-linenr="13"><span style="color:#6B90C0;font-style:italic">        // ...</span></span>
-<span class="line" data-linenr="14"><span style="color:#999999">    }</span></span>
-<span class="line" data-linenr="15"><span style="color:#999999">}</span></span></code></pre></div>
+<span class="line focused" data-linenr="6"><span style="color:#E5673D">        if</span><span style="color:#999999"> (</span><span style="color:#E5673D">!</span><span style="color:#C7C8D2">is_file</span><span style="color:#999999">(</span><span style="color:#E5673D">$</span><span style="color:#D8DEE9">bundlesPath</span><span style="color:#E5673D"> =</span><span style="color:#E5673D"> $</span><span style="color:#D8DEE9">this</span><span style="color:#E5673D">-></span><span style="color:#C7C8D2">getBundlesPath</span><span style="color:#999999">()))</span><span style="color:#999999"> {</span></span>
+<span class="line focused" data-linenr="7"><span style="color:#E5673D">            yield</span><span style="color:#E5673D"> new</span><span style="color:#C7C8D2"> FrameworkBundle</span><span style="color:#999999">()</span><span style="color:#E5673D">;</span></span>
+<span class="line focused" data-linenr="8"></span>
+<span class="line focused" data-linenr="9"><span style="color:#E5673D">            return;</span></span>
+<span class="line focused" data-linenr="10"><span style="color:#999999">        }</span></span>
+<span class="line" data-linenr="11"></span>
+<span class="line" data-linenr="12"><span style="color:#6B90C0;font-style:italic">        // ...</span></span>
+<span class="line" data-linenr="13"><span style="color:#999999">    }</span></span>
+<span class="line" data-linenr="14"><span style="color:#999999">}</span></span></code></pre></div>
 </div>
 
 <p>In other words, if the <code class="highlighter-shiki">config/bundles.php</code> file does not exist, it
@@ -343,21 +342,20 @@ in our app’s Kernel:</p>
 11
 12
 13
-14
-15</pre><pre class="shiki wouterj has-focused shiki-code" style="background-color:#1e1e1e;color:#bbbbbb" tabindex="0"><code><span class="line" data-linenr="1"><span style="color:#E5673D">class</span><span style="color:#C7C8D2"> Kernel</span><span style="color:#E5673D"> extends</span><span style="color:#C7C8D2"> BaseKernel</span></span>
+14</pre><pre class="shiki wouterj has-focused shiki-code" style="background-color:#1e1e1e;color:#bbbbbb" tabindex="0"><code><span class="line" data-linenr="1"><span style="color:#E5673D">class</span><span style="color:#C7C8D2"> Kernel</span><span style="color:#E5673D"> extends</span><span style="color:#C7C8D2"> BaseKernel</span></span>
 <span class="line" data-linenr="2"><span style="color:#999999">{</span></span>
 <span class="line" data-linenr="3"><span style="color:#E5673D">    use</span><span style="color:#C7C8D2"> MicroKernelTrait</span><span style="color:#E5673D">;</span></span>
 <span class="line" data-linenr="4"></span>
-<span class="line focused" data-linenr="6"><span style="color:#E5673D">    private</span><span style="color:#E5673D"> function</span><span style="color:#C7C8D2"> configureContainer</span><span style="color:#999999">(</span><span style="color:#C7C8D2">ContainerConfigurator</span><span style="color:#E5673D"> $</span><span style="color:#D8DEE9">container</span><span style="color:#999999">,</span><span style="color:#C7C8D2"> LoaderInterface</span><span style="color:#E5673D"> $</span><span style="color:#D8DEE9">loader</span><span style="color:#999999">,</span><span style="color:#C7C8D2"> ContainerBuilder</span><span style="color:#E5673D"> $</span><span style="color:#D8DEE9">builder</span><span style="color:#999999">)</span><span style="color:#E5673D">:</span><span style="color:#E5673D"> void</span></span>
-<span class="line focused" data-linenr="7"><span style="color:#999999">    {</span></span>
-<span class="line focused" data-linenr="8"><span style="color:#E5673D">        $</span><span style="color:#D8DEE9">container</span><span style="color:#E5673D">-></span><span style="color:#C7C8D2">services</span><span style="color:#999999">()</span></span>
-<span class="line focused" data-linenr="9"><span style="color:#E5673D">            -></span><span style="color:#C7C8D2">defaults</span><span style="color:#999999">()</span></span>
-<span class="line focused" data-linenr="10"><span style="color:#E5673D">                -></span><span style="color:#C7C8D2">autowire</span><span style="color:#999999">(</span><span style="color:#E5673D">true</span><span style="color:#999999">)</span></span>
-<span class="line focused" data-linenr="11"><span style="color:#E5673D">                -></span><span style="color:#C7C8D2">autoconfigure</span><span style="color:#999999">(</span><span style="color:#E5673D">true</span><span style="color:#999999">)</span></span>
-<span class="line focused" data-linenr="12"><span style="color:#E5673D">            -></span><span style="color:#C7C8D2">load</span><span style="color:#999999">(</span><span style="color:#999999">'</span><span style="color:#7CC64A">App</span><span style="color:#EBCB8B">\\</span><span style="color:#999999">'</span><span style="color:#999999">,</span><span style="color:#E5673D"> __DIR__</span><span style="color:#999999">)</span></span>
-<span class="line focused" data-linenr="13"><span style="color:#E5673D">      ;</span></span>
-<span class="line focused" data-linenr="14"><span style="color:#999999">    }</span></span>
-<span class="line" data-linenr="15"><span style="color:#999999">}</span></span></code></pre></div>
+<span class="line focused" data-linenr="5"><span style="color:#E5673D">    private</span><span style="color:#E5673D"> function</span><span style="color:#C7C8D2"> configureContainer</span><span style="color:#999999">(</span><span style="color:#C7C8D2">ContainerConfigurator</span><span style="color:#E5673D"> $</span><span style="color:#D8DEE9">container</span><span style="color:#999999">,</span><span style="color:#C7C8D2"> LoaderInterface</span><span style="color:#E5673D"> $</span><span style="color:#D8DEE9">loader</span><span style="color:#999999">,</span><span style="color:#C7C8D2"> ContainerBuilder</span><span style="color:#E5673D"> $</span><span style="color:#D8DEE9">builder</span><span style="color:#999999">)</span><span style="color:#E5673D">:</span><span style="color:#E5673D"> void</span></span>
+<span class="line focused" data-linenr="6"><span style="color:#999999">    {</span></span>
+<span class="line focused" data-linenr="7"><span style="color:#E5673D">        $</span><span style="color:#D8DEE9">container</span><span style="color:#E5673D">-></span><span style="color:#C7C8D2">services</span><span style="color:#999999">()</span></span>
+<span class="line focused" data-linenr="8"><span style="color:#E5673D">            -></span><span style="color:#C7C8D2">defaults</span><span style="color:#999999">()</span></span>
+<span class="line focused" data-linenr="9"><span style="color:#E5673D">                -></span><span style="color:#C7C8D2">autowire</span><span style="color:#999999">(</span><span style="color:#E5673D">true</span><span style="color:#999999">)</span></span>
+<span class="line focused" data-linenr="10"><span style="color:#E5673D">                -></span><span style="color:#C7C8D2">autoconfigure</span><span style="color:#999999">(</span><span style="color:#E5673D">true</span><span style="color:#999999">)</span></span>
+<span class="line focused" data-linenr="11"><span style="color:#E5673D">            -></span><span style="color:#C7C8D2">load</span><span style="color:#999999">(</span><span style="color:#999999">'</span><span style="color:#7CC64A">App</span><span style="color:#EBCB8B">\\</span><span style="color:#999999">'</span><span style="color:#999999">,</span><span style="color:#E5673D"> __DIR__</span><span style="color:#999999">)</span></span>
+<span class="line focused" data-linenr="12"><span style="color:#E5673D">      ;</span></span>
+<span class="line focused" data-linenr="13"><span style="color:#999999">    }</span></span>
+<span class="line" data-linenr="14"><span style="color:#999999">}</span></span></code></pre></div>
 </div>
 
 <h3 id="moving-routing-configuration-to-the-kernel">Moving Routing Configuration to the Kernel</h3>
@@ -379,14 +377,13 @@ to PHP code and override <code class="highlighter-shiki">configureRoutes()</code
 4
 5
 6
-7
-8</pre><pre class="shiki wouterj has-focused shiki-code" style="background-color:#1e1e1e;color:#bbbbbb" tabindex="0"><code><span class="line" data-linenr="1"><span style="color:#E5673D">private</span><span style="color:#E5673D"> function</span><span style="color:#C7C8D2"> configureRoutes</span><span style="color:#999999">(</span><span style="color:#C7C8D2">RoutingConfigurator</span><span style="color:#E5673D"> $</span><span style="color:#D8DEE9">routes</span><span style="color:#999999">)</span><span style="color:#E5673D">:</span><span style="color:#E5673D"> void</span></span>
+7</pre><pre class="shiki wouterj has-focused shiki-code" style="background-color:#1e1e1e;color:#bbbbbb" tabindex="0"><code><span class="line" data-linenr="1"><span style="color:#E5673D">private</span><span style="color:#E5673D"> function</span><span style="color:#C7C8D2"> configureRoutes</span><span style="color:#999999">(</span><span style="color:#C7C8D2">RoutingConfigurator</span><span style="color:#E5673D"> $</span><span style="color:#D8DEE9">routes</span><span style="color:#999999">)</span><span style="color:#E5673D">:</span><span style="color:#E5673D"> void</span></span>
 <span class="line" data-linenr="2"><span style="color:#999999">{</span></span>
 <span class="line" data-linenr="3"><span style="color:#6B90C0;font-style:italic">    // ...</span></span>
-<span class="line focused" data-linenr="5"><span style="color:#E5673D">    if</span><span style="color:#999999"> (</span><span style="color:#E5673D">false</span><span style="color:#E5673D"> !==</span><span style="color:#999999"> (</span><span style="color:#E5673D">$</span><span style="color:#D8DEE9">fileName</span><span style="color:#E5673D"> =</span><span style="color:#999999"> (</span><span style="color:#E5673D">new</span><span style="color:#999999"> \</span><span style="color:#C7C8D2">ReflectionObject</span><span style="color:#999999">(</span><span style="color:#E5673D">$</span><span style="color:#D8DEE9">this</span><span style="color:#999999">))</span><span style="color:#E5673D">-></span><span style="color:#C7C8D2">getFileName</span><span style="color:#999999">()))</span><span style="color:#999999"> {</span></span>
-<span class="line focused" data-linenr="6"><span style="color:#E5673D">        $</span><span style="color:#D8DEE9">routes</span><span style="color:#E5673D">-></span><span style="color:#C7C8D2">import</span><span style="color:#999999">(</span><span style="color:#E5673D">$</span><span style="color:#D8DEE9">fileName</span><span style="color:#999999">,</span><span style="color:#999999"> '</span><span style="color:#7CC64A">attribute</span><span style="color:#999999">'</span><span style="color:#999999">)</span><span style="color:#E5673D">;</span></span>
-<span class="line focused" data-linenr="7"><span style="color:#999999">    }</span></span>
-<span class="line" data-linenr="8"><span style="color:#999999">}</span></span></code></pre></div>
+<span class="line focused" data-linenr="4"><span style="color:#E5673D">    if</span><span style="color:#999999"> (</span><span style="color:#E5673D">false</span><span style="color:#E5673D"> !==</span><span style="color:#999999"> (</span><span style="color:#E5673D">$</span><span style="color:#D8DEE9">fileName</span><span style="color:#E5673D"> =</span><span style="color:#999999"> (</span><span style="color:#E5673D">new</span><span style="color:#999999"> \</span><span style="color:#C7C8D2">ReflectionObject</span><span style="color:#999999">(</span><span style="color:#E5673D">$</span><span style="color:#D8DEE9">this</span><span style="color:#999999">))</span><span style="color:#E5673D">-></span><span style="color:#C7C8D2">getFileName</span><span style="color:#999999">()))</span><span style="color:#999999"> {</span></span>
+<span class="line focused" data-linenr="5"><span style="color:#E5673D">        $</span><span style="color:#D8DEE9">routes</span><span style="color:#E5673D">-></span><span style="color:#C7C8D2">import</span><span style="color:#999999">(</span><span style="color:#E5673D">$</span><span style="color:#D8DEE9">fileName</span><span style="color:#999999">,</span><span style="color:#999999"> '</span><span style="color:#7CC64A">attribute</span><span style="color:#999999">'</span><span style="color:#999999">)</span><span style="color:#E5673D">;</span></span>
+<span class="line focused" data-linenr="6"><span style="color:#999999">    }</span></span>
+<span class="line" data-linenr="7"><span style="color:#999999">}</span></span></code></pre></div>
 </div>
 
 <p>The Kernel class itself is always configured to find methods with the
@@ -414,26 +411,25 @@ class, we don’t need any routing config.</p>
 16
 17
 18
-19
-20</pre><pre class="shiki wouterj has-focused shiki-code" style="background-color:#1e1e1e;color:#bbbbbb" tabindex="0"><code><span class="line" data-linenr="1"><span style="color:#E5673D">use</span><span style="color:#BBBBBB"> Symfony</span><span style="color:#999999">\</span><span style="color:#BBBBBB">Component</span><span style="color:#999999">\</span><span style="color:#BBBBBB">HttpFoundation</span><span style="color:#999999">\</span><span style="color:#C7C8D2">Response</span><span style="color:#E5673D">;</span></span>
+19</pre><pre class="shiki wouterj has-focused shiki-code" style="background-color:#1e1e1e;color:#bbbbbb" tabindex="0"><code><span class="line" data-linenr="1"><span style="color:#E5673D">use</span><span style="color:#BBBBBB"> Symfony</span><span style="color:#999999">\</span><span style="color:#BBBBBB">Component</span><span style="color:#999999">\</span><span style="color:#BBBBBB">HttpFoundation</span><span style="color:#999999">\</span><span style="color:#C7C8D2">Response</span><span style="color:#E5673D">;</span></span>
 <span class="line" data-linenr="2"><span style="color:#E5673D">use</span><span style="color:#BBBBBB"> Symfony</span><span style="color:#999999">\</span><span style="color:#BBBBBB">Component</span><span style="color:#999999">\</span><span style="color:#BBBBBB">Routing</span><span style="color:#999999">\</span><span style="color:#BBBBBB">Attribute</span><span style="color:#999999">\</span><span style="color:#C7C8D2">Route</span><span style="color:#E5673D">;</span></span>
 <span class="line" data-linenr="3"></span>
 <span class="line" data-linenr="4"><span style="color:#E5673D">class</span><span style="color:#C7C8D2"> Kernel</span><span style="color:#E5673D"> extends</span><span style="color:#C7C8D2"> BaseKernel</span></span>
 <span class="line" data-linenr="5"><span style="color:#999999">{</span></span>
 <span class="line" data-linenr="6"><span style="color:#6B90C0;font-style:italic">    // ...</span></span>
 <span class="line" data-linenr="7"></span>
-<span class="line focused" data-linenr="9"><span style="color:#BBBBBB">    #[Route</span><span style="color:#999999">(</span><span style="color:#999999">'</span><span style="color:#7CC64A">/</span><span style="color:#999999">'</span><span style="color:#999999">)</span><span style="color:#BBBBBB">]</span></span>
-<span class="line focused" data-linenr="10"><span style="color:#E5673D">    public</span><span style="color:#E5673D"> function</span><span style="color:#C7C8D2"> home</span><span style="color:#999999">()</span><span style="color:#E5673D">:</span><span style="color:#C7C8D2"> Response</span></span>
-<span class="line focused" data-linenr="11"><span style="color:#999999">    {</span></span>
-<span class="line focused" data-linenr="12"><span style="color:#E5673D">        $</span><span style="color:#D8DEE9">loc</span><span style="color:#E5673D"> =</span><span style="color:#C7C8D2"> count</span><span style="color:#999999">(</span><span style="color:#C7C8D2">file</span><span style="color:#999999">(</span><span style="color:#E5673D">__FILE__</span><span style="color:#999999">))</span><span style="color:#E5673D">;</span></span>
-<span class="line focused" data-linenr="13"></span>
-<span class="line focused" data-linenr="14"><span style="color:#E5673D">        return</span><span style="color:#E5673D"> new</span><span style="color:#C7C8D2"> Response</span><span style="color:#999999">(</span><span style="color:#999999">&#x3C;&#x3C;&#x3C;</span><span style="color:#E5673D">EOF</span></span>
-<span class="line focused" data-linenr="15"><span style="color:#7CC64A">            &#x3C;!doctype html></span></span>
-<span class="line focused" data-linenr="16"><span style="color:#7CC64A">            &#x3C;title>Symfony One File Challenge&#x3C;/title></span></span>
-<span class="line focused" data-linenr="17"><span style="color:#7CC64A">            &#x3C;h1>Symfony One File Challenge: </span><span style="color:#E5673D">{$</span><span style="color:#D8DEE9">loc</span><span style="color:#E5673D">}</span><span style="color:#7CC64A"> lines&#x3C;/h1></span></span>
-<span class="line focused" data-linenr="18"><span style="color:#E5673D">            EOF</span><span style="color:#999999">)</span><span style="color:#E5673D">;</span></span>
-<span class="line focused" data-linenr="19"><span style="color:#999999">    }</span></span>
-<span class="line" data-linenr="20"><span style="color:#999999">}</span></span></code></pre></div>
+<span class="line focused" data-linenr="8"><span style="color:#BBBBBB">    #[Route</span><span style="color:#999999">(</span><span style="color:#999999">'</span><span style="color:#7CC64A">/</span><span style="color:#999999">'</span><span style="color:#999999">)</span><span style="color:#BBBBBB">]</span></span>
+<span class="line focused" data-linenr="9"><span style="color:#E5673D">    public</span><span style="color:#E5673D"> function</span><span style="color:#C7C8D2"> home</span><span style="color:#999999">()</span><span style="color:#E5673D">:</span><span style="color:#C7C8D2"> Response</span></span>
+<span class="line focused" data-linenr="10"><span style="color:#999999">    {</span></span>
+<span class="line focused" data-linenr="11"><span style="color:#E5673D">        $</span><span style="color:#D8DEE9">loc</span><span style="color:#E5673D"> =</span><span style="color:#C7C8D2"> count</span><span style="color:#999999">(</span><span style="color:#C7C8D2">file</span><span style="color:#999999">(</span><span style="color:#E5673D">__FILE__</span><span style="color:#999999">))</span><span style="color:#E5673D">;</span></span>
+<span class="line focused" data-linenr="12"></span>
+<span class="line focused" data-linenr="13"><span style="color:#E5673D">        return</span><span style="color:#E5673D"> new</span><span style="color:#C7C8D2"> Response</span><span style="color:#999999">(</span><span style="color:#999999">&#x3C;&#x3C;&#x3C;</span><span style="color:#E5673D">EOF</span></span>
+<span class="line focused" data-linenr="14"><span style="color:#7CC64A">            &#x3C;!doctype html></span></span>
+<span class="line focused" data-linenr="15"><span style="color:#7CC64A">            &#x3C;title>Symfony One File Challenge&#x3C;/title></span></span>
+<span class="line focused" data-linenr="16"><span style="color:#7CC64A">            &#x3C;h1>Symfony One File Challenge: </span><span style="color:#E5673D">{$</span><span style="color:#D8DEE9">loc</span><span style="color:#E5673D">}</span><span style="color:#7CC64A"> lines&#x3C;/h1></span></span>
+<span class="line focused" data-linenr="17"><span style="color:#E5673D">            EOF</span><span style="color:#999999">)</span><span style="color:#E5673D">;</span></span>
+<span class="line focused" data-linenr="18"><span style="color:#999999">    }</span></span>
+<span class="line" data-linenr="19"><span style="color:#999999">}</span></span></code></pre></div>
 </div>
 
 <h3 id="cleaning-up-the-config-folder">Cleaning up the Config Folder</h3>
@@ -505,19 +501,18 @@ determine if a file is called from an CLI context or HTTP one:</p>
 9
 10
 11
-12
-13</pre><pre class="shiki wouterj has-focused shiki-code" style="background-color:#1e1e1e;color:#bbbbbb" tabindex="0"><code><span class="line" data-linenr="1"><span style="color:#E5673D">&#x3C;?</span><span style="color:#BBBBBB">php </span><span style="color:#6B90C0;font-style:italic">// app.php</span></span>
+12</pre><pre class="shiki wouterj has-focused shiki-code" style="background-color:#1e1e1e;color:#bbbbbb" tabindex="0"><code><span class="line" data-linenr="1"><span style="color:#E5673D">&#x3C;?</span><span style="color:#BBBBBB">php </span><span style="color:#6B90C0;font-style:italic">// app.php</span></span>
 <span class="line" data-linenr="2"></span>
 <span class="line" data-linenr="3"><span style="color:#E5673D">use</span><span style="color:#BBBBBB"> App</span><span style="color:#999999">\</span><span style="color:#C7C8D2">Kernel</span><span style="color:#E5673D">;</span></span>
 <span class="line" data-linenr="4"><span style="color:#E5673D">use</span><span style="color:#BBBBBB"> Symfony</span><span style="color:#999999">\</span><span style="color:#BBBBBB">Bundle</span><span style="color:#999999">\</span><span style="color:#BBBBBB">FrameworkBundle</span><span style="color:#999999">\</span><span style="color:#BBBBBB">Console</span><span style="color:#999999">\</span><span style="color:#C7C8D2">Application</span><span style="color:#E5673D">;</span></span>
 <span class="line" data-linenr="5"></span>
 <span class="line" data-linenr="6"><span style="color:#E5673D">require_once</span><span style="color:#E5673D"> __DIR__</span><span style="color:#E5673D">.</span><span style="color:#999999">'</span><span style="color:#7CC64A">/vendor/autoload_runtime.php</span><span style="color:#999999">'</span><span style="color:#E5673D">;</span></span>
 <span class="line" data-linenr="7"></span>
-<span class="line focused" data-linenr="9"><span style="color:#E5673D">return</span><span style="color:#E5673D"> function</span><span style="color:#999999"> (</span><span style="color:#E5673D">array</span><span style="color:#E5673D"> $</span><span style="color:#D8DEE9">context</span><span style="color:#999999">)</span><span style="color:#999999"> {</span></span>
-<span class="line focused" data-linenr="10"><span style="color:#E5673D">    $</span><span style="color:#D8DEE9">kernel</span><span style="color:#E5673D"> =</span><span style="color:#E5673D"> new</span><span style="color:#C7C8D2"> Kernel</span><span style="color:#999999">(</span><span style="color:#E5673D">$</span><span style="color:#D8DEE9">context</span><span style="color:#999999">[</span><span style="color:#999999">'</span><span style="color:#7CC64A">APP_ENV</span><span style="color:#999999">'</span><span style="color:#999999">],</span><span style="color:#999999"> (</span><span style="color:#E5673D">bool</span><span style="color:#999999">)</span><span style="color:#E5673D"> $</span><span style="color:#D8DEE9">context</span><span style="color:#999999">[</span><span style="color:#999999">'</span><span style="color:#7CC64A">APP_DEBUG</span><span style="color:#999999">'</span><span style="color:#999999">])</span><span style="color:#E5673D">;</span></span>
-<span class="line focused" data-linenr="11"></span>
-<span class="line focused" data-linenr="12"><span style="color:#E5673D">    return</span><span style="color:#999999"> '</span><span style="color:#7CC64A">cli</span><span style="color:#999999">'</span><span style="color:#E5673D"> ===</span><span style="color:#E5673D"> PHP_SAPI</span><span style="color:#E5673D"> ?</span><span style="color:#E5673D"> new</span><span style="color:#C7C8D2"> Application</span><span style="color:#999999">(</span><span style="color:#E5673D">$</span><span style="color:#D8DEE9">kernel</span><span style="color:#999999">)</span><span style="color:#E5673D"> :</span><span style="color:#E5673D"> $</span><span style="color:#D8DEE9">kernel</span><span style="color:#E5673D">;</span></span>
-<span class="line focused" data-linenr="13"><span style="color:#999999">}</span><span style="color:#E5673D">;</span></span></code></pre></div>
+<span class="line focused" data-linenr="8"><span style="color:#E5673D">return</span><span style="color:#E5673D"> function</span><span style="color:#999999"> (</span><span style="color:#E5673D">array</span><span style="color:#E5673D"> $</span><span style="color:#D8DEE9">context</span><span style="color:#999999">)</span><span style="color:#999999"> {</span></span>
+<span class="line focused" data-linenr="9"><span style="color:#E5673D">    $</span><span style="color:#D8DEE9">kernel</span><span style="color:#E5673D"> =</span><span style="color:#E5673D"> new</span><span style="color:#C7C8D2"> Kernel</span><span style="color:#999999">(</span><span style="color:#E5673D">$</span><span style="color:#D8DEE9">context</span><span style="color:#999999">[</span><span style="color:#999999">'</span><span style="color:#7CC64A">APP_ENV</span><span style="color:#999999">'</span><span style="color:#999999">],</span><span style="color:#999999"> (</span><span style="color:#E5673D">bool</span><span style="color:#999999">)</span><span style="color:#E5673D"> $</span><span style="color:#D8DEE9">context</span><span style="color:#999999">[</span><span style="color:#999999">'</span><span style="color:#7CC64A">APP_DEBUG</span><span style="color:#999999">'</span><span style="color:#999999">])</span><span style="color:#E5673D">;</span></span>
+<span class="line focused" data-linenr="10"></span>
+<span class="line focused" data-linenr="11"><span style="color:#E5673D">    return</span><span style="color:#999999"> '</span><span style="color:#7CC64A">cli</span><span style="color:#999999">'</span><span style="color:#E5673D"> ===</span><span style="color:#E5673D"> PHP_SAPI</span><span style="color:#E5673D"> ?</span><span style="color:#E5673D"> new</span><span style="color:#C7C8D2"> Application</span><span style="color:#999999">(</span><span style="color:#E5673D">$</span><span style="color:#D8DEE9">kernel</span><span style="color:#999999">)</span><span style="color:#E5673D"> :</span><span style="color:#E5673D"> $</span><span style="color:#D8DEE9">kernel</span><span style="color:#E5673D">;</span></span>
+<span class="line focused" data-linenr="12"><span style="color:#999999">}</span><span style="color:#E5673D">;</span></span></code></pre></div>
 </div>
 
 <p>It looks like we should now be able to delete the <code class="highlighter-shiki">bin/console</code> and
@@ -676,8 +671,7 @@ created by Flux:</p>
 12
 13
 14
-15
-16</pre><pre class="shiki wouterj has-focused shiki-code" style="background-color:#1e1e1e;color:#bbbbbb" tabindex="0"><code><span class="line" data-linenr="1"><span style="color:#C7C8D2">apiVersion</span><span style="color:#999999">:</span><span style="color:#7CC64A"> apps/v1</span></span>
+15</pre><pre class="shiki wouterj has-focused shiki-code" style="background-color:#1e1e1e;color:#bbbbbb" tabindex="0"><code><span class="line" data-linenr="1"><span style="color:#C7C8D2">apiVersion</span><span style="color:#999999">:</span><span style="color:#7CC64A"> apps/v1</span></span>
 <span class="line" data-linenr="2"><span style="color:#C7C8D2">kind</span><span style="color:#999999">:</span><span style="color:#7CC64A"> Deployment</span></span>
 <span class="line" data-linenr="3"><span style="color:#C7C8D2">metadata</span><span style="color:#999999">:</span></span>
 <span class="line" data-linenr="4"><span style="color:#C7C8D2">  name</span><span style="color:#999999">:</span><span style="color:#7CC64A"> our-application</span></span>
@@ -687,11 +681,11 @@ created by Flux:</p>
 <span class="line" data-linenr="8"><span style="color:#C7C8D2">    spec</span><span style="color:#999999">:</span></span>
 <span class="line" data-linenr="9"><span style="color:#C7C8D2">      containers</span><span style="color:#999999">:</span></span>
 <span class="line" data-linenr="10"><span style="color:#999999">        -</span><span style="color:#6B90C0;font-style:italic"> # ...</span></span>
-<span class="line focused" data-linenr="12"><span style="color:#C7C8D2">          envFrom</span><span style="color:#999999">:</span></span>
-<span class="line focused" data-linenr="13"><span style="color:#999999">            -</span><span style="color:#C7C8D2"> configMapRef</span><span style="color:#999999">:</span></span>
-<span class="line focused" data-linenr="14"><span style="color:#C7C8D2">                name</span><span style="color:#999999">:</span><span style="color:#7CC64A"> gitops-our-application</span></span>
-<span class="line focused" data-linenr="15"><span style="color:#999999">            -</span><span style="color:#C7C8D2"> secretRef</span><span style="color:#999999">:</span></span>
-<span class="line focused" data-linenr="16"><span style="color:#C7C8D2">                name</span><span style="color:#999999">:</span><span style="color:#7CC64A"> gitops-our-application</span></span></code></pre></div>
+<span class="line focused" data-linenr="11"><span style="color:#C7C8D2">          envFrom</span><span style="color:#999999">:</span></span>
+<span class="line focused" data-linenr="12"><span style="color:#999999">            -</span><span style="color:#C7C8D2"> configMapRef</span><span style="color:#999999">:</span></span>
+<span class="line focused" data-linenr="13"><span style="color:#C7C8D2">                name</span><span style="color:#999999">:</span><span style="color:#7CC64A"> gitops-our-application</span></span>
+<span class="line focused" data-linenr="14"><span style="color:#999999">            -</span><span style="color:#C7C8D2"> secretRef</span><span style="color:#999999">:</span></span>
+<span class="line focused" data-linenr="15"><span style="color:#C7C8D2">                name</span><span style="color:#999999">:</span><span style="color:#7CC64A"> gitops-our-application</span></span></code></pre></div>
 </div>
 
 <p>Now we’re set! Upon releasing this Helm chart, the deployment will read the
@@ -713,15 +707,14 @@ changes. After installing the operator, add the appropriate annotation:</p>
 5
 6
 7
-8
-9</pre><pre class="shiki wouterj has-focused shiki-code" style="background-color:#1e1e1e;color:#bbbbbb" tabindex="0"><code><span class="line" data-linenr="1"><span style="color:#C7C8D2">kind</span><span style="color:#999999">:</span><span style="color:#7CC64A"> Deployment</span></span>
+8</pre><pre class="shiki wouterj has-focused shiki-code" style="background-color:#1e1e1e;color:#bbbbbb" tabindex="0"><code><span class="line" data-linenr="1"><span style="color:#C7C8D2">kind</span><span style="color:#999999">:</span><span style="color:#7CC64A"> Deployment</span></span>
 <span class="line" data-linenr="2"><span style="color:#6B90C0;font-style:italic"># ...</span></span>
 <span class="line" data-linenr="3"><span style="color:#C7C8D2">spec</span><span style="color:#999999">:</span></span>
 <span class="line" data-linenr="4"><span style="color:#C7C8D2">  template</span><span style="color:#999999">:</span></span>
 <span class="line" data-linenr="5"><span style="color:#C7C8D2">    metadata</span><span style="color:#999999">:</span></span>
-<span class="line focused" data-linenr="7"><span style="color:#C7C8D2">      annotations</span><span style="color:#999999">:</span></span>
-<span class="line focused" data-linenr="8"><span style="color:#C7C8D2">        reloader.stakater.com/auto</span><span style="color:#999999">:</span><span style="color:#999999"> "</span><span style="color:#7CC64A">true</span><span style="color:#999999">"</span></span>
-<span class="line" data-linenr="9"><span style="color:#6B90C0;font-style:italic">  # ...</span></span></code></pre></div>
+<span class="line focused" data-linenr="6"><span style="color:#C7C8D2">      annotations</span><span style="color:#999999">:</span></span>
+<span class="line focused" data-linenr="7"><span style="color:#C7C8D2">        reloader.stakater.com/auto</span><span style="color:#999999">:</span><span style="color:#999999"> "</span><span style="color:#7CC64A">true</span><span style="color:#999999">"</span></span>
+<span class="line" data-linenr="8"><span style="color:#6B90C0;font-style:italic">  # ...</span></span></code></pre></div>
 </div>
 
 <p>Now, an update of the ConfigMap in the GitLab repository triggers Flux to
