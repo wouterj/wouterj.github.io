@@ -7,7 +7,7 @@ module OssList
     def initialize(config = {})
       @client = Octokit::Client.new()
       @@cacheDir = File.join(__dir__, '..', '.gh-cache')
-      Dir::mkdir(@@cacheDir, 0700) unless File.exists? @@cacheDir
+      Dir::mkdir(@@cacheDir, 0700) unless File.exist? @@cacheDir
     end
 
     def generate(site)
@@ -24,7 +24,7 @@ module OssList
     def fetchInfo(repo, id)
       hash = Digest::SHA1.hexdigest "#{repo}-#{id}"
       cacheFile = File.join(@@cacheDir, hash)
-      if File.exists? cacheFile
+      if File.exist? cacheFile
         return JSON.parse(File.read cacheFile)
       end
 

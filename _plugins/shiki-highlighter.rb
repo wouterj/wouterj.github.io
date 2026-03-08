@@ -6,7 +6,7 @@ module Kramdown::Converter
     module Shiki
       VERSION = '0.1.0'
       @@cacheDir = File.join(__dir__, '..', '.shiki-cache')
-      Dir::mkdir(@@cacheDir, 0700) unless File.exists? @@cacheDir
+      Dir::mkdir(@@cacheDir, 0700) unless File.exist? @@cacheDir
 
       def self.call(converter, text, lang, type, call_opts)
         if type == :span
@@ -19,7 +19,7 @@ module Kramdown::Converter
       def self.render_shiki(text, lang)
         hash = "#{lang}-#{Digest::SHA1.hexdigest text}"
         cacheFile = File.join(@@cacheDir, hash)
-        if File.exists? cacheFile
+        if File.exist? cacheFile
           return File.read cacheFile
         end
 

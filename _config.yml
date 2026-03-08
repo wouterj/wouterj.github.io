@@ -31,14 +31,9 @@ markdown: kramdown
 highlighter: shiki
 plugins:
   - jekyll-feed
-  - jekyll-paginate-v2
 
 kramdown:
     parse_block_html: true
-
-pagination:
-    enabled: true
-    sort_reverse: true
 
 # Exclude from processing.
 # The following items will not be processed, by default. Create a custom list
@@ -46,7 +41,7 @@ pagination:
 exclude:
   - Gemfile
   - Gemfile.lock
-  - node_modules
+  - _plugins/shiki/
   - vendor/bundle/
   - vendor/cache/
   - vendor/gems/
